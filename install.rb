@@ -27,6 +27,12 @@ def work!(options)
       outfile = File.join(ENV['HOME'], fname)
       outdir  = File.dirname(outfile)
 
+      # Do nothing if the file already exists
+      if File.exists?(outfile) and (!File.symlink?(outfile))
+        say_status :exists, outfile
+        next
+      end
+
       # Create the folder if it doesn't exist
       unless File.directory?(outdir)
         FileUtils.mkdir_p outdir  unless options[:simulate]
@@ -34,19 +40,14 @@ def work!(options)
       end
 
       # Delete the symlink if it exists
+      status = :symlink
       if File.symlink?(outfile)
         File.unlink outfile  unless options[:simulate]
-        say_status :unlink, outfile
-      end
-
-      # Do nothing if the file already exists
-      if File.exists?(outfile)
-        say_status :exists, outfile
-        next
+        status = :update
       end
 
       FileUtils.ln_s File.expand_path(infile), File.expand_path(outfile)  unless options[:simulate]
-      say_status :symlink, outfile
+      say_status status, outfile
     end
   end
 end
