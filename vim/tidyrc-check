@@ -1,0 +1,11 @@
+vertical-space: no
+doctype: strict
+wrap: 90
+indent: auto
+indent-spaces: 4
+show-body-only: yes
+wrap-attributes: yes
+markup: yes
+show-warnings: 1
+show-errors: 6
+quiet: 1

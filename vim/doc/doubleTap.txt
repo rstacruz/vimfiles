@@ -1,0 +1,571 @@
+*doubleTap.txt* Trying to keep those beasts at bay! v.1.6
+
+
+                              REFERENCE MANUAL *doubleTap*
+
+
+==============================================================================
+ 0.- CONTENTS                                           *doubleTap-contents*
+
+    1. Introduction____________________________|doubleTapIntro|
+    2. Functionality___________________________|doubleTapFunctionality|
+    3. Customization___________________________|doubleTapOptions|
+        3.1 Option summary_____________________|doubleTapOptionSummary|
+        3.2 Options details____________________|doubleTapOptionDetails|
+    4. Commands________________________________|doubleTapCommands|
+	4.1 DoubleTapFinishLine________________|DoubleTapFinishLine()|
+	4.2 DoubleTapJumpOut___________________|DoubleTapJumpOut()|
+	4.3 DoubleTapInsertJumpString__________|DoubleTapInsertJumpString()|
+	4.4 DoubleTapInsertJumpSimple__________|DoubleTapInsertJumpSimple()|
+    5. TODO list_______________________________|doubleTapTodo|
+    6. Maintainer______________________________|doubleTapMaintainer|
+    7. Credits_________________________________|doubleTapCredits|
+    8. History_________________________________|doubleTapHistory|
+
+==============================================================================
+ 1.- INTRODUCTION                                           *doubleTapIntro*
+
+This plugin provides a more manual, but easy, way to insert
+matching pair characters, ie: [],(),'', and not so matchy
+characters like + and . , common concatenation characters.
+Also provides a quick and easy way to terminate a line no
+matter where on the line the cursor is.
+For instance a double semicolon, ;;, will trim all of the
+space at the end of the line and insert a semicolon at the end
+of the current line. DoubleTap provides some simple abstraction
+functions to the do the more intricate work and then provides default 
+mappings to wire those functions to characters,pairs and
+events. You can easily use the core functions provided by doubleTap to 
+create your own mappings and behaviours.
+
+==============================================================================
+ 2. FUNCTIONALITY                                   *doubleTapFunctionality*
+
+For true matching pairs like {}:
+typing a double left curly brace, {{, will insert a matching
+pair of curly braces, {}, with the cursor in the middle.
+typing a double right curly brace, }}, will place the cursor
+after the next instance of a right curly brace in the buffer.
+This behavior is used with {},[],() pairs by default.
+	For string containers, quote marks, the behavior is similar
+to matching pairs. When a single quote is typed in twice 
+quickly, '', if the cursor is inside a string, as determined by 
+the syntax highlighting, then the cursor will be set to the
+right of the next occurrence of '. Otherwise two quotes are
+inserted into the buffer with the cursor between them. This
+is the behavior of '' and "" by default
+	There is also a pseudo matching pair functionality used
+for characters that aren't paired or used as a container. This
+is used for concatenation characters at the time of this
+release. It's used for the . and + characters. It is very
+simple. If .. is typed and there is a . to the right of the
+cursor the cursor position is set to the right of the next . on the
+current line. Otherwise two periods are inserted with the cursor 
+in between them. By default this is the behaviour of the . and
++ characters, depending on filetype.
+	The second part of this plugin is finish line. By double
+tapping a character the current line is 'finished' for
+you. The basic behaviour is to trim all white space from the
+end of the current line and insert a character, like a ;, at
+the end of the clean line. Some additional functionality, like
+saving the file, can be easily added in the mapping.
+
+The following table helps show the behaviour.  
+The position of the cursor is represented by a "|"
+and $ means end of line:
+
+Some Default mapping examples: >
+                          Type   |  You get
+                        ====================
+                           ((    |    (|)
+                        –––––––––|––––––––––
+                           ))    |    ()|
+                        –––––––––|––––––––––
+                           ""    |    "|"
+                        –––––––––|––––––––––
+                           "|"   |    ""|
+                        –––––––––|––––––––––
+                           ;;    |    ;|$
+<
+==============================================================================
+ 3. CUSTOMIZATION                                         *doubleTapOptions*
+
+------------------------------------------------------------------------------
+   3.1 OPTIONS SUMMARY                              *doubleTapOptionSummary*
+
+The behaviour of this script can be customized setting the following options
+in your vimrc file. You can use the options to set the configuration for
+specific file types, see |doubleTapOptionDetails| for examples.
+
+|b:DoubleTap_enable_defaults|			Enable/Disable ALL doubleTap
+						default settings	
+
+|b:loaded_doubleTap|				Enable/Disable doubleTap plugin
+
+|b:DoubleTab_map_left_bracket|			Enable/Disable doubleTap's
+						default mapping for [[
+
+|b:DoubleTab_map_right_bracket|			Enable/Disable doubleTap's
+						default mapping for ]]
+
+|b:DoubleTab_map_left_brace|			Enable/Disable doubleTap's
+						default mapping for {{
+
+|b:DoubleTab_map_right_brace|			Enable/Disable doubleTap's
+						default mapping for }}
+
+|b:DoubleTab_map_left_paren|			Enable/Disable doubleTap's
+						default mapping for ((
+
+|b:DoubleTab_map_right_paren|			Enable/Disable doubleTap's
+						default mapping for ))
+
+|b:DoubleTab_map_left_angle|			Enable/Disable doubleTap's
+						default mapping for <<
+
+|b:DoubleTab_map_right_angle|			Enable/Disable doubleTap's
+						default mapping for >>
+
+|b:DoubleTab_map_single_quote_insert_jump|	Enable/Disable doubleTap's
+						default mapping for ''
+
+|b:DoubleTab_map_double_quote_insert_jump|	Enable/Disable doubleTap's
+						default mapping for ""
+
+|b:DoubleTab_map_plus_insert_jump|		Enable/Disable doubleTap's
+						default mapping for ++
+
+|b:DoubleTab_map_period_insert_jump|		Enable/Disable doubleTap's
+						default mapping for ..
+
+|b:DoubleTab_map_semicolon_finish_line|		Enable/Disable doubleTap's
+						default mapping for ;;
+
+|b:DoubleTab_map_colon_finish_line|		Enable/Disable doubleTap's
+						default mapping for ::
+
+|b:DoubleTab_map_comma_finish_line|		Enable/Disable doubleTap's
+						default mapping for ,,
+
+
+------------------------------------------------------------------------------
+   3.2 OPTIONS DETAILS                              *doubleTapOptionDetails*
+
+Add the shown lines to your vimrc file in order to set the below options.
+Options can be used along with autocmd to modify doubleTap's behavior 
+for specific file types.
+
+						    *b:DoubleTap_enable_defaults*
+Values: 0 or 1.                                                              ~
+Default: 1                                                                   ~
+
+Enable/Disable ALL doubleTap default settings. This is so you can easily turn
+off all of doubleTap's default mappings leaving just the core functions
+available. 
+Core functions: |DoubleTapFinishLine()| |DoubleTapJumpOut()| 
+|DoubleTapInsertJumpString()| |DoubleTapInsertJumpSimple()|.
+
+                                                   *'b:loaded_doubleTap'*
+Values: 0 or 1.                                                              ~
+Default: 1                                                                   ~
+
+This option can prevent doubleTap from loading.
+e.g.: >
+        au FileType mail let b:loaded_doubleTap = 0
+<
+------------------------------------------------------------------------------
+
+                                                   *'b:DoubleTab_map_left_bracket'*
+Values: 0 or 1.                                                              ~
+Default: 1                                                                   ~
+
+Enable/Disable the default mapping for a double left bracket, [[.
+By default this mapping is enabled for all filetypes.
+e.g.: >
+	The Defualt mapping is:
+	    imap [[ []<Left>
+
+	Disable the mapping:
+	    let b:DoubleTab_map_left_bracket = 0
+
+	Disable the mapping for text files:
+	    au FileType text let b:DoubleTab_map_left_bracket = 0
+<
+------------------------------------------------------------------------------
+
+                                                   *'b:DoubleTab_map_right_bracket'*
+Values: 0 or 1.                                                              ~
+Default: 1                                                                   ~
+
+Enable/Disable the default mapping for a double right bracket, ]].
+By default this mapping is enabled for all filetypes.
+e.g.: >
+	The Defualt mapping is:
+	  imap ]] <C-R>=DoubleTapJumpOut("]")<CR>
+
+	Disable the mapping:
+	    let b:DoubleTab_map_right_bracket = 0
+
+	Disable the mapping for text files:
+	    au FileType text let b:DoubleTab_map_right_bracket = 0
+<
+------------------------------------------------------------------------------
+
+                                                   *'b:DoubleTab_map_left_brace'*
+Values: 0 or 1.                                                              ~
+Default: 1                                                                   ~
+
+Enable/Disable the default mapping for a double left curly brace, {{.
+By default this mapping is enabled for all filetypes.
+e.g.: >
+	The Defualt mapping is:
+	    imap {{ {}<Left>
+
+	Disable the mapping:
+	    let b:DoubleTab_map_left_brace = 0
+
+	Disable the mapping for text files:
+	    au FileType text let b:DoubleTab_map_left_brace = 0
+<
+------------------------------------------------------------------------------
+
+                                                   *'b:DoubleTab_map_right_brace'*
+Values: 0 or 1.                                                              ~
+Default: 1                                                                   ~
+
+Enable/Disable the default mapping for a double right curly brace, }}.
+By default this mapping is enabled for all filetypes.
+e.g.: >
+	The Defualt mapping is:
+	  imap }} <C-R>=DoubleTapJumpOut("}")<CR>
+
+	Disable the mapping:
+	    let b:DoubleTab_map_right_brace = 0
+
+	Disable the mapping for text files:
+	    au FileType text let b:DoubleTab_map_right_brace = 0
+<
+------------------------------------------------------------------------------
+
+                                                   *'b:DoubleTab_map_left_paren'*
+Values: 0 or 1.                                                              ~
+Default: 1                                                                   ~
+
+Enable/Disable the default mapping for a double left paren, ((.
+By default this mapping is enabled for all filetypes.
+e.g.: >
+	The Defualt mapping is:
+	    imap (( ()<Left>
+
+	Disable the mapping:
+	    let b:DoubleTab_map_left_paren = 0
+
+	Disable the mapping for text files:
+	    au FileType text let b:DoubleTab_map_left_paren = 0
+<
+------------------------------------------------------------------------------
+
+                                                   *'b:DoubleTab_map_right_paren'*
+Values: 0 or 1.                                                              ~
+Default: 1                                                                   ~
+
+Enable/Disable the default mapping for a double right paren, )).
+By default this mapping is enabled for all filetypes.
+e.g.: >
+	The Defualt mapping is:
+	  imap )) <C-R>=DoubleTapJumpOut(")")<CR>
+
+	Disable the mapping:
+	    let b:DoubleTab_map_right_paren = 0
+
+	Disable the mapping for text files:
+	    au FileType text let b:DoubleTab_map_right_paren = 0
+<
+------------------------------------------------------------------------------
+
+                                                   *'b:DoubleTab_map_left_angle'*
+Values: 0 or 1.                                                              ~
+Default: 1                                                                   ~
+
+Enable/Disable the default mapping for a double less than, aka left angle
+bracket, << .
+By default this mapping is enabled for the following filetypes:
+    html,xml,xhtml,htmlcheetah,javascript,php
+e.g.: >
+	The Defualt mapping is:
+	    imap << <><Left>
+
+	Disable the mapping:
+	    let b:DoubleTab_map_left_angle = 0
+
+	Disable the mapping for text files:
+	    au FileType text let b:DoubleTab_map_left_angle = 0
+<
+------------------------------------------------------------------------------
+
+                                                   *'b:DoubleTab_map_right_angle'*
+Values: 0 or 1.                                                              ~
+Default: 1                                                                   ~
+
+Enable/Disable the default mapping for a double greater than, aka right angle
+bracket, >> .
+By default this mapping is enabled for the following filetypes:
+    html,xml,xhtml,htmlcheetah,javascript,php
+e.g.: >
+	The Defualt mapping is:
+	  imap >> <C-R>=DoubleTapJumpOut(">")<CR>
+
+	Disable the mapping:
+	    let b:DoubleTab_map_right_angle = 0
+
+	Disable the mapping for text files:
+	    au FileType text let b:DoubleTab_map_right_angle = 0
+<
+------------------------------------------------------------------------------
+
+                                                   *'b:DoubleTab_map_single_quote_insert_jump'*
+Values: 0 or 1.                                                              ~
+Default: 1                                                                   ~
+
+Enable/Disable the default mapping for double single quote insert/jump out, ''
+By default this mapping is enabled for all filetypes.
+e.g.: >
+	The Defualt mapping is:
+	  imap '' <C-R>=DoubleTapInsertJumpString("'")<CR>
+
+	Disable the mapping:
+	    let b:DoubleTab_map_single_quote_insert_jump = 0
+
+	Disable the mapping for text files:
+	    au FileType text let b:DoubleTab_map_single_quote_insert_jump = 0
+>
+------------------------------------------------------------------------------
+
+                                                   *'b:DoubleTab_map_double_quote_insert_jump'*
+Values: 0 or 1.                                                              ~
+Default: 1                                                                   ~
+
+Enable/Disable the default mapping for double double quote insert/jump out, ""
+By default this mapping is enabled for all filetypes.
+e.g.: >
+	The Defualt mapping is:
+	  imap "" <C-R>=DoubleTapInsertJumpString('"')<CR>
+
+	Disable the mapping:
+	    let b:DoubleTab_map_double_quote_insert_jump = 0
+
+	Disable the mapping for text files:
+	    au FileType text let b:DoubleTab_map_double_quote_insert_jump = 0
+>
+------------------------------------------------------------------------------
+
+                                                   *'b:DoubleTab_map_plus_insert_jump'*
+Values: 0 or 1.                                                              ~
+Default: 1                                                                   ~
+
+Enable/Disable the default mapping for double plus insert/jump out, ++
+By default this mapping is enabled for the following filetypes:
+    javascript,python
+e.g.: >
+	The Defualt mapping is:
+	  au FileType javascript,python imap ++ <C-R>=DoubleTapInsertJumpSimple('+')<CR>
+
+	Disable the mapping:
+	    let b:DoubleTab_map_plus_insert_jump = 0
+
+	Disable the mapping for text files:
+	    au FileType text let b:DoubleTab_map_plus_insert_jump = 0
+>
+------------------------------------------------------------------------------
+
+                                                   *'b:DoubleTab_map_period_insert_jump'*
+Values: 0 or 1.                                                              ~
+Default: 1                                                                   ~
+
+Enable/Disable the default mapping for double period insert/jump out, ..
+By default this mapping is enabled for the following filetypes:
+    php,perl,vim
+e.g.: >
+	The Defualt mapping is:
+	  au FileType php,perl,vim imap .. <C-R>=DoubleTapInsertJumpSimple('.')<CR>
+
+	Disable the mapping:
+	    let b:DoubleTab_map_period_insert_jump = 0
+
+	Disable the mapping for text files:
+	    au FileType text let b:DoubleTab_map_period_insert_jump = 0
+>
+------------------------------------------------------------------------------
+
+                                                   *'b:DoubleTab_map_semicolon_finish_line'*
+Values: 0 or 1.                                                              ~
+Default: 1                                                                   ~
+
+Enable/Disable the default mapping for double semicolon, ;; .
+By default this mapping is enabled for all filetypes. There is an exception
+for the python filetype. By default python files will have a '::' inserted
+instead of a ';;', an empty line will be inserted and the cursor will be 
+dropped down a line. See the default mapping below.
+e.g.: >
+	The Defualt mapping is:
+	if &ft == 'python'
+	    " we use a different mapping in Python.
+	    " NOTICE: This will insert a ':', not a semicolon.
+	    imap ;; <ESC>:call DoubleTapFinishLine(':')<CR>:w<CR>o<ESC>
+	    nmap ;; <ESC>:call DoubleTapFinishLine(':')<CR>:w<CR>o<ESC>
+	else
+	    imap ;; <ESC>:call DoubleTapFinishLine(';')<CR>:w<CR><ESC>
+	    nmap ;; <ESC>:call DoubleTapFinishLine(';')<CR>:w<CR><ESC>
+	endif
+
+	Disable the mapping:
+	    let b:DoubleTab_map_semicolon_finish_line = 0
+
+	Disable the mapping for text files:
+	    au FileType text let b:DoubleTab_map_semicolon_finish_line = 0
+>
+------------------------------------------------------------------------------
+
+                                                   *'b:DoubleTab_map_colon_finish_line'*
+Values: 0 or 1.                                                              ~
+Default: 1                                                                   ~
+
+Enable/Disable the default mapping for double colon, :: .
+By default this mapping is enabled for the following filetypes: 
+    python
+By default python files will have a '::' inserted
+instead of a ';;', an empty line will be inserted and the cursor will be 
+dropped down a line. See the default mapping below.
+e.g.: >
+	The Defualt mapping is:
+	    au FileType python nmap :: <ESC>:call DoubleTapFinishLine(':')<CR>:w<CR>o<ESC>
+	    au FileType python imap :: <ESC>:call DoubleTapFinishLine(':')<CR>:w<CR>o<ESC>
+
+	Disable the mapping:
+	    let b:DoubleTab_map_colon_finish_line = 0
+
+	Disable the mapping for text files:
+	    au FileType text let b:DoubleTab_map_colon_finish_line = 0
+>
+------------------------------------------------------------------------------
+
+                                                   *'b:DoubleTab_map_comma_finish_line'*
+Values: 0 or 1.                                                              ~
+Default: 1                                                                   ~
+
+Enable/Disable the default mapping for double comma, ,, .
+By default this mapping is enabled for the following filetypes: 
+    php,javascript
+e.g.: >
+	The Defualt mapping is:
+	    au FileType php,javascript nmap ,, <ESC>:call DoubleTapFinishLine(',')<CR>:w<CR>
+	    au FileType php,javascript imap ,, <ESC>:call DoubleTapFinishLine(',')<CR>:w<CR>
+
+	Disable the mapping:
+	    let b:DoubleTab_map_comma_finish_line = 0
+
+	Disable the mapping for text files:
+	    au FileType text let b:DoubleTab_map_comma_finish_line = 0
+>
+------------------------------------------------------------------------------
+
+==============================================================================
+ 4. COMMANDS                                             *doubleTapCommands*
+
+------------------------------------------------------------------------------
+:DoubleTapFinishLine                                        *:DoubleTapFinishLine()*
+
+DoubleTapFinishLine( char )
+Remove trailing whitespace from the current line and put the given character 
+at the end of the current line.
+
+DoubleTapFinishLine is used as a quick and easy way to terminate a line no
+matter where on the line the cursor is.
+For instance DoubleTapFinishLine(';;') will trim all of the
+space at the end of the current line and insert a semicolon at the end
+of the current line.
+
+Example: >
+	imap ;; <ESC>:call DoubleTapFinishLine(';')<CR>:w<CR><ESC>
+	nmap ;; <ESC>:call DoubleTapFinishLine(';')<CR>:w<CR><ESC>
+<
+
+------------------------------------------------------------------------------
+:DoubleTapJumpOut                                        *:DoubleTapJumpOut()*
+
+DoubleTapJumpOut( char )
+Find the next instance of char in the current buffer and jump to it.
+If paste is set then 'charchar' is returned. 
+
+Example: >
+	imap )) <C-R>=DoubleTapJumpOut(")")<CR>
+
+	If paste is set, '))' is returned.
+<
+
+------------------------------------------------------------------------------
+:DoubleTapInsertJumpString                                        *:DoubleTapInsertJumpString()*
+
+DoubleTapInsertJumpString( char )
+This is a lot like |DoubleTapJumpOut()| but is explicity
+for the string encloser. This function is a bit smarter than 
+|DoubleTapJumpOut()| because it checks the syntax of the file to 
+see if it's in a string or not and then decide whether to insert
+a new string, "", or to jump out of the string. 
+
+Example: >
+      imap "" <C-R>=DoubleTapInsertJumpString('"')<CR>
+      imap '' <C-R>=DoubleTapInsertJumpString("'")<CR>
+<
+
+------------------------------------------------------------------------------
+:DoubleTapInsertJumpSimple                                        *:DoubleTapInsertJumpSimple()*
+
+DoubleTapInsertJumpSimple( char )
+This is a lot like |DoubleTapJumpOut()| but it is used
+for characters that aren't considered a matching
+pair. This can be a convenience for concatenation operators
+like . and + .
+If the char is present to the right of the cursor
+jump to it. Otherwise insert a pair and put the cursor
+in the middle of them.
+For now only works with single line matches, unlike |DoubleTapJumpOut()|.
+
+Example: >
+	Enable for php,vim filetype concatenation operators.
+	au FileType php,vim imap .. <C-R>=DoubleTapInsertJumpSimple('.')<CR>
+<
+
+==============================================================================
+ 5. TODO LIST                                                *doubleTapTodo*
+
+- Better, easier configuration setup and easy filetype support.
+- Make |DoubleTapInsertJumpSimple| smarter.
+
+
+==============================================================================
+ 6. MAINTAINER                                         *doubleTapMaintainer*
+
+is Jeff Buttars and I can be reached at:
+    mailto:jeffbuttars@gmail.com
+
+Feel free to send me any suggestions and/or comments about this plugin.
+
+==============================================================================
+ 7. CREDITS                                               *doubleTapCredits*
+
+The writting of this plugin was inspired by doubleTap. The initial double tapping idea is my
+own from some .vimrc mappings I've used for years. Then I tried doubleTap
+but ended up going back to my custom mappings. But I missed the jumping out 
+feature of doubleTap. So I wrote this plugin.
+
+==============================================================================
+ 8. HISTORY                                               *doubleTapHistory*
+
+  Version      Date      Release notes                                       ~
+|---------|------------|-----------------------------------------------------|
+    1.0     2009-08-23   Initial upload.
+
+|---------|------------|-----------------------------------------------------|
+
+vim:tw=78:ts=8:ft=help:norl:formatoptions+=tcroqn:autoindent:
