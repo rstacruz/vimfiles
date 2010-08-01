@@ -5,6 +5,7 @@ require 'fileutils'
 
 options = {
   :ignore => [ 'install.*' ],
+  :path   => ENV['HOME'],
   :dot    => [ '*' ],
   :files  => [ '*' ]
 }
@@ -24,7 +25,7 @@ def work!(options)
       next  if ignores.include?(infile)
 
       fname   = dots.include?(infile) ? ".#{infile}" : infile
-      outfile = File.join(ENV['HOME'], fname)
+      outfile = File.join(options[:path], fname)
       outdir  = File.dirname(outfile)
 
       # Do nothing if the file already exists

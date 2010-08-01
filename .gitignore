@@ -1,1 +1,11 @@
-vim/session
+*.swo
+*.swp
+*~
+.DS_Store
+Thumbs.db
+# Keys
+tc-*.bin
+*.pem
+id_rsa
+id_rsa.pub
+*conflicted*copy*
