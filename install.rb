@@ -1,6 +1,4 @@
 #!/usr/bin/env ruby
-
-require 'yaml'
 require 'fileutils'
 
 options = {
@@ -12,7 +10,7 @@ options = {
 
 def say_status(what, status)
   status.gsub!(ENV['HOME'], '~')
-  puts "%10s  %s" % [what, status]
+  puts "\033[1;32m%10s\033[0m  %s" % [what, status]
 end
 
 def work!(options)
