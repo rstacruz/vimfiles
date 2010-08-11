@@ -1,0 +1,6 @@
+Fugitive:
+
+:Gstatus    git status (- to add)
+:Gcommit
+:Gblame
+:Gdiff
