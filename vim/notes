@@ -1,6 +1,6 @@
 Fugitive:
 
-:Gstatus    git status (- to add)
+:Gstatus    git status (- to add, D to diff, C to commit)
 :Gcommit
 :Gblame
 :Gdiff
