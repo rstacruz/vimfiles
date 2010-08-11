@@ -322,7 +322,7 @@ let g:fuzzy_matching_limit="10"
 let g:fuzzy_enumerating_limit="30"
 
 " SimpleFold
-let g:ruby_simplefold_expr = 
+let g:ruby_simplefold_expr =
    \'\v(^\s*(def|class|module|attr_reader|attr_accessor|alias_method|' .
              \   'attr|module_function' . ')\s' .
        \ '\v^\s*(public|private|protected)>' .
@@ -342,6 +342,9 @@ let g:LustyExplorerSuppressRubyWarning = 1
 set hidden
 
 " Typos
-command! W execute 'w' 
+command! W execute 'w'
 command! Wq execute 'wq'
 command! WQ execute 'wq'
+
+" Pathogen
+call pathogen#runtime_append_all_bundles()

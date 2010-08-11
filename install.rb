@@ -2,19 +2,12 @@
 require 'yaml'
 require 'fileutils'
 
-options = {
-  :ignore => [ 'install.yml', File.basename($0) ],
-  :path   => ENV['HOME'],
-  :dot    => [ '*' ],
-  :files  => [ '*' ]
-}
-
 def say_status(what, status, priority=0)
   color = 32
   color = 31  if priority == 1
   status.gsub!(ENV['HOME'], '~')
   status += "/"  if File.directory?(File.expand_path(status))
-  puts "\033[1;#{color}m%10s\033[0m  %s" % [what, status]
+  puts "\033[1;#{color}m%20s\033[0m  %s" % [what, status]
 end
 
 def work!(options)
@@ -61,7 +54,7 @@ def work!(options)
       status = :symlink
       if File.symlink?(outfile)
         File.unlink outfile  unless options[:simulate]
-        status = :update
+        status = :'update symlink'
       end
 
       # Create the symlink
@@ -78,6 +71,13 @@ if ["-help", "--help", "-h", "-?"].include?(ARGV.join(''))
   puts "  #{$0} -u  # Uninstall"
   exit
 end
+
+options = {
+  :ignore => [ 'install.yml', File.basename($0) ],
+  :path   => ENV['HOME'],
+  :dot    => [ '*' ],
+  :files  => [ '*' ]
+}
 
 options.merge! YAML::load_file('install.yml')  if File.exists?('install.yml')
 options[:simulate]  = true  if ARGV.include?('-s')

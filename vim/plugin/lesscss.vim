@@ -1,1 +1,1 @@
-au BufRead,BufNewFile *.less  set filetype=css
+au BufRead,BufNewFile *.less  set filetype=less

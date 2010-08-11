@@ -1,20 +1,24 @@
 # Prototype
 snippet proto
 	${1:class_name}.prototype.${2:method_name} =
-	function(${3:first_argument}) {
+	function (${3}) {
 		${4:// body...}
 	};
 # Function
 snippet fun
-	function ${1:function_name} (${2:argument}) {
+	function ${1:function_name} (${2}) {
 		${3:// body...}
 	}
 # Anonymous Function
+snippet fn
+	function (${1}) { ${2} }
 snippet f
-	function(${1}) {${2}};
+	function (${1}) {
+		${2}
+	}
 # if
 snippet if
-	if (${1:true}) {${2}};
+	if (${1:true})
 # if ... else
 snippet ife
 	if (${1:true}) {${2}}
@@ -60,15 +64,32 @@ snippet do
 	} while (${1:/* condition */});
 # Object Method
 snippet :f
-	${1:method_name}: function(${2:attribute}) {
-		${4}
-	}${3:,}
+	${1:method_name}: function (${2:attribute}) {
+		${3}
+	},
 # setTimeout function
 snippet timeout
-	setTimeout(function() {${3}}${2}, ${1:10};
+	setTimeout(function () {
+		${2}
+	}, ${1:10});
 # Get Elements
 snippet get
 	getElementsBy${1:TagName}('${2}')${3}
 # Get Element
 snippet gett
 	getElementBy${1:Id}('${2}')${3}
+#
+
+snipppet db
+	debugger;
+snippet cl
+	console.log(${1});
+snippet foreach
+	for (i in ${1:collection}) {
+		var ${2:item} = ${3:$1}[i];
+		${4}
+	}
+
+# cl
+# :f
+# f (and fn)
