@@ -344,7 +344,8 @@ call s:X("Search","f0a0c0","302028","underline","Magenta","")
 
 call s:X("Directory","dad085","","","","")
 call s:X("ErrorMsg","","902020","","","")
-hi link Error ErrorMsg
+" hi link Error ErrorMsg
+hi Error            guifg=NONE        guibg=NONE        gui=undercurl ctermfg=white       ctermbg=red         cterm=NONE     guisp=#FF6C60 " undercurl color
 
 " Diff
 

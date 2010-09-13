@@ -212,6 +212,10 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" Auto-reload vimrc when editing
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
 
 " Closetag
 " http://www.linux.com/archive/articles/62139
@@ -276,12 +280,6 @@ map ,v <C-W>v
 map ,t <C-W>t
 map ,b <C-W>b
 
-" Switch between windows, maximizing the current window
-map ,.j <C-W>j<C-W>_
-map ,.k <C-W>k<C-W>_
-map ,.h <C-W>h<C-W>_
-map ..l <C-W>l<C-W>_
-
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
 map <C-H> <C-W>h<C-W>_
@@ -292,7 +290,6 @@ map ,- <C-W>_
 
 " New split, then maximize
 map ,N <C-W>n<C-W>_
-map ,.n <C-W>n<C-W>_
 
 " Even out all windows (tile)
 " map ,? <C-W>n<C-W>H<C-W>q
@@ -306,8 +303,8 @@ map ,+ :set columns=400<cr>:set lines=300<cr><C-W>n<C-W>H<C-W>q
 " Collapse (like on a sidebar)
 map ,< <C-W>30<
 map ,> <C-W>30>
-map ,., <C-W>30<
-map ,.. <C-W>30>
+map ,,, <C-W>30<
+map ,,. <C-W>30>
 
 imap ,/ <Esc>
 imap ,. <Esc>
