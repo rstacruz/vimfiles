@@ -344,4 +344,21 @@ command! Wq execute 'wq'
 command! WQ execute 'wq'
 
 " Pathogen
+call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
+
+" Highlight whitespaces
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+
+" Make j/k work on even when :set wrap is on
+map j gj
+map k gk
+
+" bundle/cssrefresh/ - Safari refresh
+map <F5> :RefreshSafari<CR>
+imap <F5> <Esc>:RefreshSafari<CR>
+
+" bundle/ack/
+" let g:ackprg="ack -H --nocolor --nogroup --column --ignore-dir=vendor --ignore-dir=db -a"
+let g:ackhighlight=1
