@@ -43,10 +43,8 @@ function! s:Ack(cmd, args)
 
     exec "nnoremap <silent> <buffer> q :ccl<CR>"
 
-    if exists('g:ackhighlight')
-        let @/=a:args
-        set hls
-    endif
+    let @/=a:args
+    set hls
 
     redraw!
 endfunction

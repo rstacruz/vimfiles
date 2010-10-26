@@ -1,4 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/Users/rsc/Pictures'
 let g:netrw_dirhist_2='/Users/rsc/Projects/Sinefunc/Code/nanomonk'
+let g:netrw_dirhist_3='/Users/rsc/Workdesk/aura'
+let g:netrw_dirhist_4='/Users/rsc/Workdesk/aura/extensions/admin/public/js'
+let g:netrw_dirhist_5='/Users/rsc/Workdesk/aura'
+let g:netrw_dirhist_6='/Users/rsc/Projects/Sinefunc/1006 Leafpile/app/etc/server-setup-files'

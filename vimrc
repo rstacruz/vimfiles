@@ -242,6 +242,7 @@ map <C-T> :FuzzyFinderTextMate<CR>
 imap <C-T> <Esc>:FuzzyFinderTextMate<CR>
 let NERDTreeShowBookmarks=1
 let NERDTreeWinPos="left"
+let NERDTreeIgnore=['\.pyc']
 
 " TextMate-style folding
 map <F1> za
@@ -331,10 +332,9 @@ let g:ruby_simplefold_prefix = '\v^\s*(#([^{]+|\{[^{]|\{\{[^{])*)?$'
 match Error /\s\+$/
 
 " Lusty
-map ,f :LustyFilesystemExplorer<CR>
 map ,e :LustyFilesystemExplorer<CR>
 map ,b :LustyBufferExplorer<CR>
-map ,g :LustyBufferGrep<CR>
+" map ,g :LustyBufferGrep<CR>
 let g:LustyExplorerSuppressRubyWarning = 1
 set hidden
 
@@ -358,7 +358,14 @@ map k gk
 " bundle/cssrefresh/ - Safari refresh
 map <F5> :RefreshSafari<CR>
 imap <F5> <Esc>:RefreshSafari<CR>
+let g:cssRefreshAll = 1
+let g:cssRefreshAuto = 1
 
 " bundle/ack/
 " let g:ackprg="ack -H --nocolor --nogroup --column --ignore-dir=vendor --ignore-dir=db -a"
 let g:ackhighlight=1
+
+" bundle/fugitive/
+map <Leader>gs :Gstatus<CR>
+map ,gs :Gstatus<CR><C-w>_jjjj
+map ,gc :Gcommit<CR><C-w>_i

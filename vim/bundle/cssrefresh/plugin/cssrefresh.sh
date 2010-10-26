@@ -40,6 +40,8 @@ osascript -s o << END
           \$sheets.each(function () {
               var \$this = \$(this);
 
+              if (\$this.attr('media') == 'print') { return; }
+
               if (\$this.data('url')) {
                   var href = \$this.data('url');
               } else {
