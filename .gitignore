@@ -9,3 +9,4 @@ tc-*.bin
 id_rsa
 id_rsa.pub
 *conflicted*copy*
+vim/.netrwhist
