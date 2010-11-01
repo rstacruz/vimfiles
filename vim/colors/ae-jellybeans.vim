@@ -306,12 +306,12 @@ call s:X("Cursor","","b0d0f0","","","")
 
 call s:X("Normal","e8e8d3","151618","","White","")
 call s:X("Normal","e8e8d3","151618","","White","")
-call s:X("LineNr","303030","101010","none","Black","")
-call s:X("Comment","a89880","252525","italic","Grey","")
+call s:X("LineNr","303030","101010","bold","Black","")
+call s:X("Comment","a89880","252525","none","Grey","")
 call s:X("Todo","808080","","bold","","")
 
-call s:X("StatusLine","f0f0f0","101010","italic","","")
-call s:X("StatusLineNC","a0a0a0","202122","italic","","")
+call s:X("StatusLine","f0f0f0","101010","bold","","")
+call s:X("StatusLineNC","a0a0a0","202122","bold","","")
 call s:X("VertSplit","101112","101112","italic","","")
 
 call s:X("Folded","a0a8b0","384048","italic","black","")
