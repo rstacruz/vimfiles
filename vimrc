@@ -166,8 +166,7 @@ set wildmode=longest:full,list:full  "wim:   helps wildmenu auto-completion
 " }}}
 " {{{ Console options
 "
-colorscheme ae-irblack
-set cursorline
+"set cursorline
 
 " }}}
 " {{{ GUI options
@@ -177,8 +176,6 @@ if has("gui_running")
     set guioptions-=T           "go:    No toolbar
     set guioptions-=L           "go:    No left scrollbar
     set guioptions-=r
-    set fuoptions=maxvert,maxhorz  " macvim fullscreen options
-   
     colorscheme ae-jellybeans
 endif
 
@@ -188,7 +185,8 @@ endif
 if has("gui_gtk2")
     set lines=60
     set columns=110
-    set guifont=Liberation\ Mono\ 9
+    "set guifont=Liberation\ Mono\ 9
+    set guifont=Inconsolata\ 11
 endif
 
 " }}}
@@ -201,6 +199,7 @@ if has("gui_macvim")
     " set guioptions-=e          " No graphical tab bar
     set guifont=DroidSansMono:h12
     set linespace=2
+    set fuoptions=maxvert,maxhorz  " macvim fullscreen options
     "set guifont=Monaco:h12
     "set guifont=Inconsolata:h14
 endif
@@ -348,12 +347,16 @@ call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
 " Highlight whitespaces
-set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
+" set list
+" set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 " Make j/k work on even when :set wrap is on
 map j gj
 map k gk
+
+" Ctrl+S and stuff
+imap <C-s> <Esc>:w<CR>
+map <C-s> <Esc>:w<CR>
 
 " bundle/cssrefresh/ - Safari refresh
 map <F5> :RefreshSafari<CR>
