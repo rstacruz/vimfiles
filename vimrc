@@ -167,6 +167,7 @@ set wildmode=longest:full,list:full  "wim:   helps wildmenu auto-completion
 " {{{ Console options
 "
 "set cursorline
+set mouse=a
 
 " }}}
 " {{{ GUI options
@@ -195,7 +196,7 @@ endif
 if has("gui_macvim")
     " set lines=60
     " set columns=150
-    set transparency=7
+    set transparency=2
     " set guioptions-=e          " No graphical tab bar
     set guifont=DroidSansMono:h12
     set linespace=2
@@ -372,3 +373,9 @@ let g:ackhighlight=1
 map <Leader>gs :Gstatus<CR>
 map ,gs :Gstatus<CR><C-w>_jjjj
 map ,gc :Gcommit<CR><C-w>_i
+
+map E :e **/
+map <C-e> :e **/*
+
+" Tabularize
+vmap T :Tabularize /{<Cr>
