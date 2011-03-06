@@ -177,7 +177,8 @@ if has("gui_running")
     set guioptions-=L           "go:    No left scrollbar
     set guioptions-=r
     "colorscheme ae-jellybeans
-    colorscheme mustang
+    "colorscheme mustang
+    colorscheme vydark
     set lines=60
     set columns=190
 endif
@@ -186,10 +187,11 @@ endif
 " {{{ For GVim
 
 if has("gui_gtk2")
-    "set guifont=Liberation\ Mono\ 9
-    set guifont=Inconsolata\ 9
+    "set guifont=Liberation\ Mono\ 9.2
+    "set guifont=Inconsolata\ 9
     "set guifont=Monaco\ 9.5
-    "set guifont=Meslo\ LG\ S\ DZ\ 10
+    set guifont=Meslo\ LG\ S\ DZ\ 9
+    set guioptions-=t
 endif
 
 " }}}

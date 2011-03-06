@@ -18,7 +18,7 @@ let g:colors_name="vydark"
 hi Normal        guifg=#bbbbbb  guibg=#191919
 hi Title         guifg=white
 hi Cursor        guibg=#ffffff
-hi LineNr        guifg=#444455  guibg=#1a1a1a
+hi LineNr        guifg=#444455  guibg=#121212
 hi Visual        guibg=#555555
 hi NonText       guifg=#191919  guibg=#191919
 hi StatusLine    guifg=#bbbbbb  guibg=#353535  gui=none
