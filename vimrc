@@ -176,17 +176,20 @@ if has("gui_running")
     set guioptions-=T           "go:    No toolbar
     set guioptions-=L           "go:    No left scrollbar
     set guioptions-=r
-    colorscheme ae-jellybeans
+    "colorscheme ae-jellybeans
+    colorscheme mustang
+    set lines=60
+    set columns=190
 endif
 
 " }}}
 " {{{ For GVim
 
 if has("gui_gtk2")
-    set lines=60
-    set columns=110
     "set guifont=Liberation\ Mono\ 9
-    set guifont=Inconsolata\ 11
+    set guifont=Inconsolata\ 9
+    "set guifont=Monaco\ 9.5
+    "set guifont=Meslo\ LG\ S\ DZ\ 10
 endif
 
 " }}}
@@ -210,11 +213,6 @@ set backupdir=""
 set nobackup
 set nowritebackup
 set noswapfile
-
-" Auto-reload vimrc when editing
-if has("autocmd")
-  autocmd bufwritepost .vimrc source $MYVIMRC
-endif
 
 " Closetag
 " http://www.linux.com/archive/articles/62139
@@ -355,8 +353,12 @@ map j gj
 map k gk
 
 " Ctrl+S and stuff
+map <C-a> <Esc>gg0vG$
 imap <C-s> <Esc>:w<CR>
 map <C-s> <Esc>:w<CR>
+imap <CS-v> <Esc>"+p
+vmap <C-c> "+y
+vmap <CS-c> "+y
 
 " bundle/cssrefresh/ - Safari refresh
 map <F5> :RefreshSafari<CR>
