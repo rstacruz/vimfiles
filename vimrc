@@ -45,7 +45,7 @@ else
   set backup		" keep a backup file
 endif
 set history=50		" keep 50 lines of command line history
-set ruler		    " show the cursor position all the time
+"set ruler		    " show the cursor position all the time
 set showcmd	     	" display incomplete commands
 set incsearch		" do incremental searching
 
@@ -201,7 +201,7 @@ endif
 if has("gui_macvim")
     " set lines=60
     " set columns=150
-    set transparency=2
+    set transparency=0
     " set guioptions-=e          " No graphical tab bar
     set guifont=DroidSansMono:h12
     set linespace=2

@@ -1,6 +1,6 @@
 *fugitive.txt*  A Git wrapper so awesome, it should be illegal
 
-Author:  Tim Pope <vimNOSPAM@tpope.info>        *fugitive-author*
+Author:  Tim Pope <vimNOSPAM@tpope.org>         *fugitive-author*
 License: Same terms as Vim itself (see |license|)
 
 This plugin is only available if 'compatible' is not set.
@@ -51,10 +51,13 @@ that are part of Git repositories).
 
                                                 *fugitive-:Gstatus*
 :Gstatus                Bring up the output of git-status in the preview
-                        window.  Press D to |:Gdiff| the file on the cursor
-                        line.  Press - to stage or unstage the file on the
-                        cursor line.  Press p to do so on a per hunk basis
-                        (--patch).  Press C to invoke |:Gcommit|.
+                        window.  In addition to standard motions, you can
+                        use <C-N> and <C-P> to jump from filename to
+                        filename.  Press D to |:Gdiff| the file on the cursor
+                        line, or dh to |:Gdiff!|.  Press - to stage or unstage
+                        the file on the cursor line.  Press p to do so on a
+                        per hunk basis (--patch).  Press C to invoke
+                        |:Gcommit|.
 
                                                 *fugitive-:Gcommit*
 :Gcommit [args]         A wrapper around git-commit.  If there is nothing
@@ -127,6 +130,9 @@ that are part of Git repositories).
                         to the right.  Use |do| and |dp| and write to the
                         index file to simulate "git add --patch".
 
+                                                *fugitive-:Gdiff!*
+:Gdiff! [revision]      Like |:Gdiff|, but split horizontally.
+
                                                 *fugitive-:Gmove*
 :Gmove {destination}    Wrapper around git-mv that renames the buffer
                         afterward.  The destination is relative to the current
@@ -147,6 +153,33 @@ that are part of Git repositories).
                         along to git-blame.
 
 :[range]Gblame [flags]  Run git-blame on the given range.
+
+                                                *fugitive-:Gbrowse*
+:[range]Gbrowse         If the remote for the current branch is on GitHub,
+                        open the current file, blob, tree, commit, or tag
+                        (with git-web--browse) on GitHub.  Otherwise, open the
+                        current file, blob, tree, commit, or tag in
+                        git-instaweb (if you have issues, verify you can run
+                        "git instaweb" from a terminal).  If a range is given,
+                        it is appropriately appended to the URL as an anchor.
+
+:[range]Gbrowse!        Like :Gbrowse, but put the URL on the clipboard rather
+                        than opening it.
+
+:[range]Gbrowse -       Like :Gbrowse, but tie the URL to the current HEAD.
+                        This is useful in a work tree file to ensure the link
+                        always goes to the file as it currently stands, rather
+                        than whatever the latest on master is.  Note that
+                        when editing a historical file, said link is tied by
+                        default to the commit you're currently browsing.  (The
+                        intent is that ultimately, one will be able to specify
+                        any |fugitive-revision| here, but the current
+                        implementation is limited to this one special case.)
+
+[range]Gbrowse [...]@{remote}
+                        Force using the given remote rather than the remote
+                        for the current branch.  The remote is used to
+                        determine which GitHub repository to link to.
 
 MAPPINGS                                        *fugitive-mappings*
 

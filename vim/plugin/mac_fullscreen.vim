@@ -8,8 +8,6 @@ function! s:ToggleFullscreen()
     else
         execute 'set nofullscreen'
         execute 'set guioptions+=e'
-        execute 'set guioptions+=L'
-        execute 'set guioptions+=r'
         execute 'redraw'
     endif
 endfunction
