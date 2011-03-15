@@ -28,6 +28,9 @@ hi ModeMsg       guifg=#99dd99  guibg=#394439  gui=none
 hi ErrorMsg      guifg=#222222  guibg=#ff8888  gui=none
 hi Error         guifg=#ffaaaa  guibg=#333333  gui=none
 
+hi TabLine          guifg=#777777     guibg=#353535     gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
+hi TabLineSel       guifg=#99dd99     guibg=NONE        gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
+hi TabLineFill      guifg=#7C7C7C     guibg=#353535     gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
 
 " Vim 7.x specific
 if version >= 700

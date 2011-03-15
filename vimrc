@@ -164,10 +164,22 @@ set wildmenu                    "wmnu:  enhanced ed command completion
 set wildmode=longest:full,list:full  "wim:   helps wildmenu auto-completion
 
 " }}}
+" {{{ Wrapping
+"
+"   Use `gq` in visual mode to rewrap
+"   Use `set fo=want` to make the wrapping become automatic
+
+set textwidth=78
+set formatoptions=croq
+
+" }}}
 " {{{ Console options
 "
-"set cursorline
 set mouse=a
+if !has("gui_running")
+  colorscheme ir_black
+  set cursorline
+end
 
 " }}}
 " {{{ GUI options
@@ -191,8 +203,11 @@ if has("gui_gtk2")
     "set guifont=Liberation\ Mono\ 9.2
     "set guifont=Inconsolata\ 9
     "set guifont=Monaco\ 9.5
-    set guifont=Meslo\ LG\ S\ DZ\ 9
-    set guioptions-=t
+    set guifont=Meslo\ LG\ S\ DZ\ 9.5
+    set linespace=0
+    set guioptions-=t       " No toolbar
+    set guioptions-=e       " Text mode tabs
+    set guioptions-=m       " No menu
 endif
 
 " }}}
@@ -371,6 +386,7 @@ let g:cssRefreshAuto = 1
 
 " bundle/ack/
 " let g:ackprg="ack -H --nocolor --nogroup --column --ignore-dir=vendor --ignore-dir=db -a"
+let g:ackprg="~/.bin/ack -H --nocolor --nogroup --column"
 let g:ackhighlight=1
 
 " bundle/fugitive/
@@ -383,3 +399,11 @@ map <C-e> :e **/*
 
 " Tabularize
 vmap T :Tabularize /{<Cr>
+
+" ConqueTerm
+map <F9> :ConqueTermSplit bash<Cr>
+map ,cc :ConqueTerm bash<Cr>
+map ,ck <C-w>n<C-w>K:ConqueTerm bash<Cr>
+map ,cn :ConqueTermSplit bash<Cr>
+map ,cv :ConqueTermVSplit bash<Cr>
+map ,ct :ConqueTermTab bash<Cr>
