@@ -42,9 +42,6 @@ Bundle 'godlygeek/tabular'
 " Tabular: Align stuff
 "   :Tabularize /=/   - Align by the given character
 
-Bundle 'javascript.vim'
-" JavaScript: Better support for JavaScript
-
 Bundle 'tpope/vim-endwise'
 " Endwise: Wisely add 'end' in Ruby, 'endif' in Vimscript, et al
 
