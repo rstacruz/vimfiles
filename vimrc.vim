@@ -97,6 +97,7 @@ Bundle 'jade.vim'
 " == Color bundles ===========================================================
 
 Bundle 'vim-scripts/Color-Sampler-Pack'
+Bundle 'vim-scripts/jQuery'
 Bundle 'tpope/vim-vividchalk'
 Bundle 'vim-scripts/Ambient-Color-Scheme'
 Bundle 'molokai'
