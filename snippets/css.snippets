@@ -1,0 +1,328 @@
+snippet mopo
+	margin: 0;
+	padding: 0;
+	
+snippet moa
+	margin: 0 auto;
+	
+snippet m0a
+	margin: 0 auto;
+	
+snippet fl
+	float: left;
+	
+snippet fr
+	float: right;
+	
+snippet fn
+	float: none;
+	
+snippet cl
+	clear: left;
+	
+snippet cr
+	clear: right;
+	
+snippet cb
+	clear: both;
+	
+snippet cd
+	cursor: default;
+	
+snippet cp
+	cursor: pointer;
+	
+snippet fsn
+	font-style: normal;
+	
+snippet fsi
+	font-style: italic;
+	
+snippet fwn
+	font-weight: normal;
+	
+snippet fwb
+	font-weight: bold;
+	
+snippet bold
+	font-weight: bold;
+	
+snippet it
+	font-style: italic;
+	
+snippet italic
+	font-style: italic;
+	
+snippet fs
+	font-size: ${1:1em};
+	${2}
+snippet va
+	vertical-align: ${1:top|bottom|baseline|middle};
+	${2}
+snippet vat
+	vertical-align: top;
+	
+snippet vab
+	vertical-align: bottom;
+	
+snippet vabl
+	vertical-align: baseline;
+	
+snippet vam
+	vertical-align: middle;
+	
+snippet v
+	visibility: ${1:visible/hidden/collapse};
+	$0
+snippet vh
+	visibility: hidden;
+	
+snippet vv
+	visibility: visible;
+	
+snippet sel
+	$1::-moz-selection, $1::selection {
+		color: ${2:inherit};
+		background: ${3:inherit};
+	}
+snippet bcc
+	border-collapse: collapse;
+	
+snippet bc
+	border-collapse: collapse;
+	
+snippet tt
+	text-transform: ${1:capitalize|uppercase|lowercase};
+	$0
+snippet ttu
+	text-transform: uppercase;
+	
+snippet ttn
+	text-transform: none;
+	
+snippet tdu
+	text-decoration: underline;
+	
+snippet tdn
+	text-decoration: none;
+	
+snippet por
+	position: relative;
+	
+snippet poa
+	position: absolute;
+	
+snippet pof
+	position: fixed;
+	
+snippet l
+	left: ${1:0};
+	${2}
+snippet t
+	top: ${1:0};
+	${2}
+snippet r
+	right: ${1:0};
+	${2}
+snippet lt
+	left: ${1:0};
+	top: ${2:0};
+	${3}
+snippet lb
+	left: ${1:0};
+	bottom: ${2:0};
+	${3}
+snippet rt
+	right: ${1:0};
+	top: ${2:0};
+	${3}
+snippet rb
+	right: ${1:0};
+	bottom: ${2:0};
+	${3}
+snippet m
+	margin: ${1:0};
+	${2}
+snippet m0
+	margin: 0;
+	
+snippet mb
+	margin-bottom: ${1:0};
+	${2}
+snippet mt
+	margin-top: ${1:0};
+	${2}
+snippet ml
+	margin-left: ${1:0};
+	${2}
+snippet mr
+	margin-right: ${1:0};
+	${2}
+snippet p
+	padding: ${1:0};
+	${2}
+snippet p0
+	padding: 0;
+	
+snippet pt
+	padding-top: ${1:0};
+	${2}
+snippet pl
+	padding-left: ${1:0};
+	${2}
+snippet pr
+	padding-right: ${1:0};
+	${2}
+snippet pb
+	padding-bottom: ${1:0};
+	${2}
+snippet lstn
+	list-style-type: none;
+	
+snippet lsn
+	list-style: none;
+	
+snippet c
+	color: ${1:#333};
+	${2}
+snippet cu
+	cursor: ${1:pointer|default};
+	${2}
+snippet cp
+	cursor: pointer;
+	
+snippet cd
+	cursor: default;
+	
+snippet f
+	font: ${1:italic bold 1em/1.5em serif};
+	${2}
+snippet font
+	font: ${1:italic bold 1em/1.5em serif};
+	${2}
+snippet ff
+	font-family: ${1:arial, sans-serif};
+	${2}
+snippet lh
+	line-height: ${1:1.5};
+	${2}
+snippet d
+	display: ${1:inline|none|block};
+	${2}
+snippet di
+	display: inline;
+	
+snippet dn
+	display: none;
+	
+snippet db
+	display: block;
+	
+snippet dib
+	display: inline-block;
+	
+snippet b
+	border: ${1:0};
+	
+snippet b0
+	border: 0;
+	
+snippet bl0
+	border-left: 0;
+	
+snippet bt0
+	border-top: 0;
+	
+snippet br0
+	border-right: 0;
+	
+snippet bb0
+	border-bottom: 0;
+	
+snippet bl
+	border-left: ${1:solid 1px #aaa};
+	${2}
+snippet bt
+	border-top: ${1:solid 1px #aaa};
+	${2}
+snippet br
+	border-right: ${1:solid 1px #aaa};
+	${2}
+snippet bb
+	border-bottom: ${1:solid 1px #aaa};
+	${2}
+snippet bg
+	background: ${1:#fff url(image.jpg) no-repeat 20px 100px fixed};
+	${2}
+snippet bgp
+	background-position: ${1:x y};
+	${2}
+snippet bgi
+	background-image: ${1};
+	${2}
+snippet bgc
+	background-color: ${1:transparent};
+	${2}
+snippet bgr
+	background-repeat: ${1:no-repeat};
+	${2}
+snippet ti
+	text-indent: ${1:-9999px};
+	${2}
+snippet mh
+	min-height; ${1:100%};
+	${2}
+snippet o
+	overflow: ${1:hidden|auto};
+	${2}
+snippet oh
+	overflow: hidden;
+	
+snippet oa
+	overflow: auto;
+	
+snippet ta
+	text-align: ${1:center|left|right};
+	${2}
+snippet tac
+	text-align: center;
+	
+snippet tal
+	text-align: left;
+	
+snippet tar
+	text-align: right;
+	
+snippet u
+	url(${1})${2}
+snippet w
+	width: ${1:0};
+	${2}
+snippet h
+	height: ${1:0};
+	${2}
+snippet ts
+	text-shadow: 1px 1px 0 rgba(${1:black}, ${2:0.1});
+	${2}
+snippet wh
+	width: ${1:0};
+	height: ${2:0};
+	${3}
+snippet nr
+	no-repeat
+snippet rx
+	repeat-x
+snippet ry
+	repeat-y
+snippet zi
+	z-index: ${1:1};
+	${2}
+snippet brad
+	@include border-radius(${1:4}px);
+	${2}
+snippet sh
+	@include box-shadow(${1:0 2px 3px rgba(${1:black}, ${2:0.2})});
+	${2}
+snippet grad
+	@include background(linear-gradient(top, ${1:white, black}));
+	${2}

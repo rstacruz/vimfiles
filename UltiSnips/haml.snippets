@@ -1,0 +1,74 @@
+# Auto-converted
+
+snippet html5 "html5"
+!!! 5
+%html(lang='en')
+	%head
+		%meta(charset='UTF-8')
+		%title Document
+	%body
+		#all
+endsnippet
+
+snippet css "css"
+%link(rel='stylesheet' media='screen' type='text/css' href='${1:/css/style.css}')
+endsnippet
+
+snippet js "js"
+%script(type='text/javascript' src='${1:/js/script.js}')
+endsnippet
+
+snippet form "form"
+%form{method: '${1:post}', action: '${2:/}'}$0
+endsnippet
+
+snippet sumbit "sumbit"
+%button(type='submit')
+	%span${1:= "Submit"}$0
+endsnippet
+
+snippet submit "submit"
+%button(type='submit')
+	%span${1:= "Submit"}$0
+endsnippet
+
+snippet label "label"
+%label(for='${1:user}')
+	%span${2:= "Username:"}$0
+endsnippet
+
+snippet input "input"
+%input(type='text' name='${1:user}' id='${2:user}' value='${3}')/$0
+endsnippet
+
+snippet password "password"
+%input(type='password' name='${1:user}' id='${2:user}' value='${3}')/$0
+endsnippet
+
+snippet radio "radio"
+%input(type='radio' name='${1:user}' id='${2:user}' value='${3}')/$0
+endsnippet
+
+snippet check "check"
+%input(type='checkbox' name='${1:user}' id='${2:user}' value='${3}')/$0
+endsnippet
+
+snippet text "text"
+%input(type='text' name='${1:user}' id='${2:user}' value='${3}')/$0
+endsnippet
+
+snippet textarea "textarea"
+%textarea(name='${1:user}' id='${2:user}')$0
+endsnippet
+
+snippet select "select"
+%select(name='${1:user}' id='${2:user}')$0
+endsnippet
+
+snippet a "a"
+%a{href: '${1:#}')$0
+endsnippet
+
+snippet s "s"
+%span
+endsnippet

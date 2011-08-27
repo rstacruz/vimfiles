@@ -1,0 +1,5 @@
+Vim files!
+----------
+
+    git clone git://... ~/.vim
+    cd ~/.vim; sh install.sh
