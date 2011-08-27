@@ -66,6 +66,11 @@ Bundle 'Conque-Shell'
 
 Bundle 'scrooloose/nerdcommenter'
 " NERD Commenter: Commenter
+"   \cc               - Comment
+"   \c<space>         - Toggle comment
+"   / (in visual)     - Toggle comment
+"
+vmap / <Leader>c <Cr>
 
 Bundle 'tpope/vim-markdown'
 " Markdown: Syntax support
@@ -89,6 +94,7 @@ Bundle 'vim-scripts/Ambient-Color-Scheme'
 
 Bundle 'wincent/Command-T'
 " Command T: File opener
+"   \t, or <C-t>      - Open the file opener
 "
 let g:CommandTMaxHeight=20
 set wildignore=vendor,*.pyc,.git,logs,tmp,.sass-cache,*~

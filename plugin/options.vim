@@ -1,10 +1,10 @@
 " == Options =================================================================
 
 set backspace=indent,eol,start  " Backspacing over insert mode
-set history=50	                " keep 50 lines of command line history
-set ruler		                    " show the cursor position all the time
-set showcmd	                    " display incomplete commands
-set incsearch	                  " do incremental searching
+set history=50                  " keep 50 lines of command line history
+set ruler                       " show the cursor position all the time
+set showcmd                     " display incomplete commands
+set incsearch                   " do incremental searching
 set winminheight=0
 
 " == Search ==================================================================
@@ -19,7 +19,7 @@ nmap <silent> <C-N> :silent noh<CR>
 
 syntax on                       "syn:   syntax highlighting
 set cindent                     "cin:   enables automatic indenting c-style
-set cinoptions=(0,l1,j1         "cino:  affects the way cindent reindents lines
+set cinoptions=l1,j1            "cino:  affects the way cindent reindents lines
 set showmatch                   "sm:    flashes matching brackets or parenthasis
 set matchtime=3
 set listchars=tab:>-,eol:$      "lcs:   makes finding tabs easier during `set list`
@@ -42,15 +42,11 @@ set mouse=a
 
 set lazyredraw                  "lz:    will not redraw the screen while running macros (goes faster)
 
-" }}}
-" {{{ Backups
+" == Backups =================================================================
 
-"set backup                      "bk:    makes a backup copy of every file you write to
-"set backupdir=~/tmp             "bdir:  this may not be the most secure location to store copies of all your files
-set nobackup
+set nobackup                    " Seriously, in this age of Git, who needs it
 
-" }}}
-" {{{ HUD and Status Info
+" == HUD and status info =====================================================
 
 set number                      "nu:    numbers lines
 set numberwidth=5               "nuw:   width of number column
@@ -62,8 +58,7 @@ set sidescrolloff=2             "siso:  places a couple lines between the curren
 set laststatus=2                "ls:    makes the status bar always visible
 set ttyfast                     "tf:    improves redrawing for newer computers
 
-" }}}
-" {{{ Menu completion
+" == Menu completion =========================================================
 
 set wildmenu                    "wmnu:  enhanced ed command completion
 set wildmode=longest:full,list:full  "wim:   helps wildmenu auto-completion
