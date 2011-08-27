@@ -4,7 +4,7 @@ if [ "$(basename `pwd`)" != ".vim" ]; then
   exit 61
 fi
 
-if [ -f ~/.vimrc ]; then
+if [ -e ~/.vimrc ]; then
   echo " * Moving aside your .vimrc to .vimrc.old..."
   mv ~/.vimrc ~/.vimrc.old
 fi
