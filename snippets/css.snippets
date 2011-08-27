@@ -240,16 +240,16 @@ snippet bb0
 	border-bottom: 0;
 	
 snippet bl
-	border-left: ${1:solid 1px #aaa};
+	border-left: ${1:solid 1px ${2:#aaa}};
 	${2}
 snippet bt
-	border-top: ${1:solid 1px #aaa};
+	border-top: ${1:solid 1px ${2:#aaa}};
 	${2}
 snippet br
-	border-right: ${1:solid 1px #aaa};
+	border-right: ${1:solid 1px ${2:#aaa}};
 	${2}
 snippet bb
-	border-bottom: ${1:solid 1px #aaa};
+	border-bottom: ${1:solid 1px ${2:#aaa}};
 	${2}
 snippet bg
 	background: ${1:#fff url(image.jpg) no-repeat 20px 100px fixed};
@@ -270,7 +270,7 @@ snippet ti
 	text-indent: ${1:-9999px};
 	${2}
 snippet mh
-	min-height; ${1:100%};
+	min-height: ${1:100%};
 	${2}
 snippet o
 	overflow: ${1:hidden|auto};
@@ -303,7 +303,7 @@ snippet h
 	${2}
 snippet ts
 	text-shadow: 1px 1px 0 rgba(${1:black}, ${2:0.1});
-	${2}
+	${3}
 snippet wh
 	width: ${1:0};
 	height: ${2:0};
@@ -321,7 +321,7 @@ snippet brad
 	@include border-radius(${1:4}px);
 	${2}
 snippet sh
-	@include box-shadow(${1:0 2px 3px rgba(${1:black}, ${2:0.2})});
+	@include box-shadow(${1:0 2px 3px rgba(${2:black}, ${3:0.2})});
 	${2}
 snippet grad
 	@include background(linear-gradient(top, ${1:white, black}));

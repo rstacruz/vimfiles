@@ -392,22 +392,22 @@ border-bottom: 0;
 endsnippet
 
 snippet bl "bl"
-border-left: ${1:solid 1px #aaa};
+border-left: ${1:solid 1px ${2:#aaa}};
 $0
 endsnippet
 
 snippet bt "bt"
-border-top: ${1:solid 1px #aaa};
+border-top: ${1:solid 1px ${2:#aaa}};
 $0
 endsnippet
 
 snippet br "br"
-border-right: ${1:solid 1px #aaa};
+border-right: ${1:solid 1px ${2:#aaa}};
 $0
 endsnippet
 
 snippet bb "bb"
-border-bottom: ${1:solid 1px #aaa};
+border-bottom: ${1:solid 1px ${2:#aaa}};
 $0
 endsnippet
 
@@ -442,7 +442,7 @@ $0
 endsnippet
 
 snippet mh "mh"
-min-height; ${1:100%};
+min-height: ${1:100%};
 $0
 endsnippet
 
@@ -529,7 +529,7 @@ $0
 endsnippet
 
 snippet sh "sh"
-@include box-shadow(${1:0 2px 3px rgba(${1:black}, ${2:0.2})});
+@include box-shadow(${1:0 2px 3px rgba(${2:black}, ${3:0.2})});
 $0
 endsnippet
 
