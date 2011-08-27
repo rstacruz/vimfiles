@@ -19,34 +19,11 @@ Bundle 'gmarik/vundle'
 "  :BundleSearch(!) foo - search(or refresh cache first) for foo
 "  :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
 
-Bundle 'tpope/vim-haml'
-" VimHAML: Support for HAML syntax
-
-Bundle 'UltiSnips'
-" UltiSnips: Tab snippets
-"   <Tab>             - Expand snippet
-"
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-Bundle 'vim-coffee-script'
-" Vim CoffeeScript: Support for CoffeeScript syntax
-
 Bundle 'tpope/vim-fugitive'
 " Fugitive: Git client
 "   :Gcd
 "   :Gstatus
 "   :G...
-
-Bundle 'scrooloose/nerdtree'
-" NERDTree: Project drawer
-"   <F10>             - Open NERDTree
-"   :NERDTree         - Open NERDTree
-"
-let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
-map <Leader>n :NERDTreeToggle<CR>
-map <F10> :NERDTree<CR>
 
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Sparkup: HTML helper
@@ -57,12 +34,36 @@ Bundle 'ack.vim'
 " Ack: Search in project
 "   :Ack              - Search
 
-Bundle 'vim-scripts/Color-Sampler-Pack'
-" Color Sample Pack: A bunch of colors
-
 Bundle 'Conque-Shell'
 " Conque Shell: Bash shell inside VIM
 "   :ConqueTerm bash  - Open a shell
+
+Bundle 'godlygeek/tabular'
+" Tabular: Align stuff
+"   :Tabularize /=/   - Align by the given character
+
+Bundle 'javascript.vim'
+" JavaScript: Better support for JavaScript
+
+Bundle 'tpope/vim-endwise'
+" Endwise: Wisely add 'end' in Ruby, 'endif' in Vimscript, et al
+
+Bundle 'UltiSnips'
+" UltiSnips: Tab snippets
+"   <Tab>             - Expand snippet
+"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+Bundle 'scrooloose/nerdtree'
+" NERDTree: Project drawer
+"   <F10>             - Open NERDTree
+"   :NERDTree         - Open NERDTree
+"
+let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
+map <Leader>n :NERDTreeToggle<CR>
+map <F10> :NERDTree<CR>
 
 Bundle 'scrooloose/nerdcommenter'
 " NERD Commenter: Commenter
@@ -72,31 +73,12 @@ Bundle 'scrooloose/nerdcommenter'
 "
 vmap / <Leader>c <Cr>
 
-Bundle 'tpope/vim-markdown'
-" Markdown: Syntax support
-
-Bundle 'godlygeek/tabular'
-" Tabular: Align stuff
-"   :Tabularize /=/   - Align by the given character
-
 Bundle 'vim-scripts/ZoomWin'
 " ZoomWin: Zoom windows
 "   <C-W>o            - Zoom in/out
 "
 map ,o <C-W>o
 map ,z <C-W>o
-
-Bundle 'javascript.vim'
-" JavaScript: Better support for JavaScript
-
-Bundle 'vim-scripts/Ambient-Color-Scheme'
-" Ambient Color Scheme: Color scheme based on Ubuntu
-
-Bundle 'tpope/vim-vividchalk'
-" Vividchalk: VIM port of the Vibrant Ink Textmate theme
-
-Bundle 'tpope/vim-endwise'
-" Endwise: Wisely add 'end' in Ruby, 'endif' in Vimscript, et al
 
 Bundle 'wincent/Command-T'
 " Command T: File opener
@@ -107,5 +89,20 @@ set wildignore=vendor,*.pyc,.git,logs,tmp,.sass-cache,*~
 if has("ruby")
   map <C-t> <Leader>t
 end
+
+" == Syntax bundles ==========================================================
+
+Bundle 'tpope/vim-haml'
+Bundle 'vim-coffee-script'
+Bundle 'tpope/vim-markdown'
+Bundle "jade.vim"
+
+" == Color bundles ===========================================================
+
+Bundle 'vim-scripts/Color-Sampler-Pack'
+Bundle 'tpope/vim-vividchalk'
+Bundle 'vim-scripts/Ambient-Color-Scheme'
+
+" ============================================================================
 
 filetype plugin indent on
