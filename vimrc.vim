@@ -116,4 +116,9 @@ Bundle 'molokai'
 
 " ============================================================================
 
+" For bundles not managed by Vundle, plop them onto extras/.
+let extra_paths=substitute(glob('~/.vim/extras/*'), '\n', ',', 'g')
+exec 'set runtimepath+=' . extra_paths
+
+" ============================================================================
 filetype plugin indent on
