@@ -25,7 +25,7 @@ Bundle 'tpope/vim-fugitive'
 "   :Gstatus
 "   :G...
 
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'rstacruz/sparkup', {'rtp': 'vim'}
 " Sparkup: HTML helper
 "   <C-e>             - Expand (HTML only)
 "   <C-n>             - Move to next
