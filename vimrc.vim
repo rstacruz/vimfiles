@@ -85,10 +85,8 @@ Bundle 'wincent/Command-T'
 "   \t, or <C-t>      - Open the file opener
 "
 let g:CommandTMaxHeight=20
-set wildignore=vendor,*.pyc,.git,logs,tmp,.sass-cache,doc,*~
 if has("ruby")
   map <C-t> <Leader>t
-  map ,t <Leader>t
 end
 
 Bundle 'EasyMotion'

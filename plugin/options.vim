@@ -1,11 +1,16 @@
 " == Options =================================================================
 
-set backspace=indent,eol,start  " Backspacing over insert mode
-set history=50                  " keep 50 lines of command line history
-set ruler                       " show the cursor position all the time
-set showcmd                     " display incomplete commands
-set incsearch                   " do incremental searching
-set winminheight=0
+set encoding=utf-8              "enc:   Character encoding
+set backspace=indent,eol,start  "bs:    Backspacing over insert mode
+set history=50                  "hi:    keep 50 lines of command line history
+set ruler                       "ru:    show the cursor position all the time
+set showcmd                     "sc:    display incomplete commands
+set incsearch                   "is:    do incremental searching
+set hidden                      "hid:   Don't care about closing modified buffers
+set winminheight=0              "wmh:   Allow showing windows as just status bars
+set foldmethod=manual           "fdm:   fold by the indentation by default
+set mouse=a                     "       Enable the use of a mouse
+set nowrap
 
 " == Search ==================================================================
 
@@ -21,8 +26,8 @@ syntax on                       "syn:   syntax highlighting
 set cindent                     "cin:   enables automatic indenting c-style
 set cinoptions=l1,j1            "cino:  affects the way cindent reindents lines
 set showmatch                   "sm:    flashes matching brackets or parenthasis
-set matchtime=3
-set listchars=tab:>-,eol:$      "lcs:   makes finding tabs easier during `set list`
+set matchtime=3                 "mat:   How long to flash brackets
+set listchars=tab:\ \ ,eol:◊,trail:•    "lcs:   makes finding tabs easier during `set list`  
 
 " == Tabs ====================================================================
 
@@ -31,12 +36,6 @@ set tabstop=2                   "ts:    number of spaces that a tab counts for
 set shiftwidth=2                "sw:    number of spaces to use for autoindent
 set smarttab                    "sta:   helps with backspacing because of expandtab
 set expandtab                   "et:    uses spaces instead of tab characters
-
-" == Others ==================================================================
-
-set foldmethod=manual           "fdm:   fold by the indentation by default
-set nowrap
-set mouse=a
 
 " == Macro helpers ===========================================================
 
@@ -65,4 +64,5 @@ set ttyfast                     "tf:    improves redrawing for newer computers
 
 set wildmenu                    "wmnu:  enhanced ed command completion
 set wildmode=longest:full,list:full  "wim:   helps wildmenu auto-completion
-
+set wildignore+=*.o,*.obj,.git,
+set wildignore+=vendor,*.pyc,logs,tmp,.sass-cache,doc,*~
