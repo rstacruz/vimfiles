@@ -10,7 +10,7 @@ if [ -f ~/.vimrc ]; then
 fi
 
 echo " * Installing ~/.vimrc..."
-ln -s "`pwd -LP`/vimrc" ~/.vimrc
+ln -s "`pwd -LP`/vimrc.vim" ~/.vimrc
 
 if [ ! -e "./bundle/vundle" ]; then
   echo " * Adding Vundle..."

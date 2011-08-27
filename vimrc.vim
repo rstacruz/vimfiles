@@ -92,6 +92,12 @@ Bundle 'javascript.vim'
 Bundle 'vim-scripts/Ambient-Color-Scheme'
 " Ambient Color Scheme: Color scheme based on Ubuntu
 
+Bundle 'tpope/vim-vividchalk'
+" Vividchalk: VIM port of the Vibrant Ink Textmate theme
+
+Bundle 'tpope/vim-endwise'
+" Endwise: Wisely add 'end' in Ruby, 'endif' in Vimscript, et al
+
 Bundle 'wincent/Command-T'
 " Command T: File opener
 "   \t, or <C-t>      - Open the file opener
