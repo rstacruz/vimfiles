@@ -1,3 +1,6 @@
+" Custom key bindings
+
+" Dvorak helpers
 imap ,. <Esc>
 map <C-,> <C-w>
 map U <Esc>:redo<CR>

@@ -85,10 +85,20 @@ Bundle 'wincent/Command-T'
 "   \t, or <C-t>      - Open the file opener
 "
 let g:CommandTMaxHeight=20
-set wildignore=vendor,*.pyc,.git,logs,tmp,.sass-cache,*~
+set wildignore=vendor,*.pyc,.git,logs,tmp,.sass-cache,doc,*~
 if has("ruby")
   map <C-t> <Leader>t
+  map ,t <Leader>t
 end
+
+Bundle 'EasyMotion'
+" EasyMotion: Jump around
+"  ,w                 - Jump to word
+"  ,f                 - Jump to letter
+"
+let g:EasyMotion_leader_key = '<Leader>m'
+map ,w <Leader>mw
+map ,f <Leader>mf
 
 " == Syntax bundles ==========================================================
 
