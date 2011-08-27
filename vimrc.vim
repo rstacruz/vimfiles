@@ -104,11 +104,12 @@ Bundle 'tpope/vim-haml'
 Bundle 'vim-coffee-script'
 Bundle 'tpope/vim-markdown'
 Bundle 'jade.vim'
+Bundle 'vim-scripts/jQuery'
+Bundle 'cakebaker/scss-syntax.vim'
 
 " == Color bundles ===========================================================
 
 Bundle 'vim-scripts/Color-Sampler-Pack'
-Bundle 'vim-scripts/jQuery'
 Bundle 'tpope/vim-vividchalk'
 Bundle 'vim-scripts/Ambient-Color-Scheme'
 Bundle 'molokai'

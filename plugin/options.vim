@@ -64,5 +64,5 @@ set ttyfast                     "tf:    improves redrawing for newer computers
 
 set wildmenu                    "wmnu:  enhanced ed command completion
 set wildmode=longest:full,list:full  "wim:   helps wildmenu auto-completion
-set wildignore+=*.o,*.obj,.git,
+set wildignore+=*.o,*.obj
 set wildignore+=vendor,*.pyc,logs,tmp,.sass-cache,doc,*~
