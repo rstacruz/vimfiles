@@ -92,7 +92,7 @@ end
 Bundle 'tpope/vim-haml'
 Bundle 'vim-coffee-script'
 Bundle 'tpope/vim-markdown'
-Bundle "jade.vim"
+Bundle 'jade.vim'
 
 " == Color bundles ===========================================================
 
