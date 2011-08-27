@@ -45,6 +45,9 @@ Bundle 'godlygeek/tabular'
 Bundle 'tpope/vim-endwise'
 " Endwise: Wisely add 'end' in Ruby, 'endif' in Vimscript, et al
 
+Bundle 'HTML-AutoCloseTag'
+" HTML Auto Close: Make HTML work like Dreamweaver.
+
 Bundle 'UltiSnips'
 " UltiSnips: Tab snippets
 "   <Tab>             - Expand snippet
