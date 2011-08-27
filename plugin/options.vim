@@ -45,6 +45,7 @@ set lazyredraw                  "lz:    will not redraw the screen while running
 " == Backups =================================================================
 
 set nobackup                    " Seriously, in this age of Git, who needs it
+set directory=/tmp              " Don't litter swap files everywhere
 
 " == HUD and status info =====================================================
 
