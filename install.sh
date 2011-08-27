@@ -20,5 +20,6 @@ else
   echo " * (Skipping Vundle checkout; you already have it.)"
 fi
 
-echo ""
-echo "OK! Now run :BundleInstall in Vim."
+echo " * Spawning Vim to install bundles..."
+sleep 1
+vim -u vimrc.vim +BundleInstall +q
