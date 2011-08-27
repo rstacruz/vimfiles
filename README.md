@@ -18,3 +18,10 @@ You're probably using MacVIM on a Mac. Add this to your `~/.profile` to use a be
 build of Vim that supports Ruby and Python (that is, Command-T, UltiSnip, etc):
 
     alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
+
+Usage
+-----
+
+    vimrc.vim         - Put your bundles here.
+    plugin/           - Put your initializers here.
+    after/ftplugin/   - Set your local options per filetype here, like tabstops and such.
