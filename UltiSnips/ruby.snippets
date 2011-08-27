@@ -57,39 +57,15 @@ end
 endsnippet
 
 snippet cl "cl"
-class ${1:`substitute(Filename(), '^.', '\u&', '')`}$0
+class ${1}
+  $0
 end
 endsnippet
 
 snippet mod "mod"
-module ${1:`substitute(Filename(), '^.', '\u&', '')`}$0
+module ${1}
+  $0
 end
-endsnippet
-
-snippet mod_ module .. module_function .. end "mod_ module .. module_function .. end"
-module ${1:`substitute(Filename(), '^.', '\u&', '')`}
-	module_function
-
-	$0
-end
-endsnippet
-
-snippet mod_ module .. ClassMethods .. end "mod_ module .. ClassMethods .. end"
-module ${1:`substitute(Filename(), '^.', '\u&', '')`}
-	module ClassMethods
-		$0
-	end
-
-	module InstanceMethods
-
-	end
-
-	def self.included(receiver)
-		receiver.extend         ClassMethods
-		receiver.send :include, InstanceMethods
-	end
-end
-# attr_reader
 endsnippet
 
 snippet r "r"
@@ -127,14 +103,12 @@ endsnippet
 
 snippet Forw- "Forw-"
 extend Forwardable
-# def self
 endsnippet
 
 snippet defs "defs"
 def self.${1:class_method_name}
 	$0
 end
-# def method_missing
 endsnippet
 
 snippet defmm "defmm"
@@ -183,19 +157,19 @@ snippet hash "hash"
 Hash.new { |${1:hash}, ${2:key}| $1[$2] = ${3} }
 endsnippet
 
-snippet file File.foreach() { |line| .. } "file File.foreach() { |line| .. }"
+snippet file "File.foreach() { |line| .. }"
 File.foreach(${1:"path/to/file"}) { |${2:line}| ${3} }
 endsnippet
 
-snippet file File.read() "file File.read()"
+snippet file "File.read()"
 File.read(${1:"path/to/file"})$0
 endsnippet
 
-snippet Dir Dir.global() { |file| .. } "Dir Dir.global() { |file| .. }"
+snippet Dir "Dir.global() { |file| .. }"
 Dir.glob(${1:"dir/glob/*"}) { |${2:file}| ${3} }
 endsnippet
 
-snippet Dir Dir[".."] "Dir Dir[".."]"
+snippet Dir "Dir['..']"
 Dir[${1:"glob/**/*.rb"}]$0
 endsnippet
 
@@ -249,11 +223,11 @@ snippet eab "eab"
 each_byte { |${1:byte}| ${2} }
 endsnippet
 
-snippet eac- each_char { |chr| .. } "eac- each_char { |chr| .. }"
+snippet eac- "each_char { |chr| .. }"
 each_char { |${1:chr}| ${2} }
 endsnippet
 
-snippet eac- each_cons(..) { |group| .. } "eac- each_cons(..) { |group| .. }"
+snippet eac- "each_cons(..) { |group| .. }"
 each_cons(${1:2}) { |${2:group}| ${3} }
 endsnippet
 
@@ -511,11 +485,11 @@ snippet asrt "asrt"
 assert_respond_to(${1:object}, :${2:method})$0
 endsnippet
 
-snippet ass assert_same(..) "ass assert_same(..)"
+snippet ass "assert_same(..)"
 assert_same(${1:expected}, ${2:actual})$0
 endsnippet
 
-snippet ass assert_send(..) "ass assert_send(..)"
+snippet ass "assert_send(..)"
 assert_send([${1:object}, :${2:message}, ${3:args}])$0
 endsnippet
 
