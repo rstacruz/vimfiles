@@ -11,10 +11,14 @@ task :setup => [
 
 # ============================================================================
 
+def status(str)
+  puts "\033[0;34m==>\033[0;32m #{str}\033[0;m"
+end
+
 namespace :setup do
   task :check do
     if File.basename(Dir.pwd) != '.vim'
-      puts "Note: This repo must be cloned into ~/.vim."
+      status "Note: This repo must be cloned into ~/.vim."
       exit
     end
   end
@@ -22,30 +26,30 @@ namespace :setup do
   task :vimrc do
     if File.exists?(x['~/.vimrc'])
       fn = "~/.vimrc.#{Time.now.to_i.to_s}"
-      puts "* Moving aside your .vimrc to #{fn}..."
+      status "Moving aside your .vimrc to #{fn}..."
       FileUtils.mv x["~/.vimrc"], x[fn]
     end
 
-    puts "* Installing ~./vimrc..."
+    status "Installing ~./vimrc..."
     FileUtils.ln_s "#{Dir.pwd}/vimrc.vim", x["~/.vimrc"]
   end
 
   task :vundle do
     if File.exists?("./bundle/vundle")
-      puts " * (Skipping Vundle checkout, you already have it.)"
+      status "(Skipping Vundle checkout, you already have it.)"
     else
-      puts " * Installing Vundle..."
+      status "Installing Vundle..."
       FileUtils.mkdir_p "./bundle"
       system "git clone http://github.com/gmarik/vundle.git bundle/vundle"
     end
 
-    puts " * Spawning Vim to install bundles..."
+    status "Spawning Vim to install bundles..."
     system "vim -u vimrc.vim +BundleInstall +q +q"
   end
 
   task :_after do
     puts ""
-    puts "OK! Hooray!"
+    status "OK! Hooray!"
   end
 end
 
