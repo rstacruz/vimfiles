@@ -59,6 +59,8 @@ Bundle 'HTML-AutoCloseTag'
 Bundle 'cheat.vim'
 " Cheat: Cheatsheats from http://cheat.errtheblog.com.
 "   :Cheat <tab>      - Open a cheat sheet
+"
+let g:cheats_cache=$HOME.'/.vim/cache/cheats'
 
 Bundle 'UltiSnips'
 " UltiSnips: Tab snippets
