@@ -33,6 +33,8 @@ Bundle 'rstacruz/sparkup', {'rtp': 'vim'}
 Bundle 'ack.vim'
 " Ack: Search in project
 "   :Ack              - Search
+"
+let g:ackhighlight=1
 
 Bundle 'godlygeek/csapprox'
 " CSApprox: Make gvim-only colorschemes work transparently in terminal vim
@@ -66,17 +68,21 @@ Bundle 'scrooloose/nerdtree'
 "   <F10>             - Open NERDTree
 "   :NERDTree         - Open NERDTree
 "
+let NERDTreeDirArrows=1
+let NERDTreeMouseMode=3
 let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
 map <Leader>n :NERDTreeToggle<CR>
 map <F10> :NERDTree<CR>
 
-Bundle 'scrooloose/nerdcommenter'
-" NERD Commenter: Commenter
-"   \cc               - Comment
-"   \c<space>         - Toggle comment
+Bundle 'tpope/vim-commentary'
+" Commentary: Commenter
+"   \\\               - Comment line
+"   \\ap              - Comment paragraph
+"   \\4j              - Comment 5 lines
 "   / (in visual)     - Toggle comment
-"
-vmap / <Leader>c <Cr>
+" 
+map \= \\
+vmap / \\
 
 Bundle 'vim-scripts/ZoomWin'
 " ZoomWin: Zoom windows
@@ -136,6 +142,7 @@ Bundle 'jade.vim'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'vim-scripts/jQuery'
 Bundle 'git://gist.github.com/369178.git'
+Bundle 'html-improved-indentation'
 " Less syntax
 
 " == Color bundles ===========================================================
