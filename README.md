@@ -22,7 +22,12 @@ build of Vim that supports Ruby and Python (that is, Command-T, UltiSnip, etc):
 Usage
 -----
 
-    vimrc.vim         - Put your bundles here.
-    plugin/           - Put your initializers here.
-    after/ftplugin/   - Set your local options per filetype here, like tabstops and such.
-    extras/           - If you have Bundles without sources (ie, not to be managed by Vundler), put them here.
+    * `vimrc.vim`         - Put your bundles here.
+    * `plugin/`           - Put your initializers here.
+    * `after/ftplugin/`   - Set your local options per filetype here, like tabstops and such.
+    * `extras/`           - If you have Bundles without sources (ie, not to be managed by Vundler), put them here.
+
+Caveats
+-------
+
+ * **TagBar**: You will need *exuberant-ctags*. On a Mac, that's `brew install ctags-exuberant`.

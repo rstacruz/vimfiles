@@ -128,6 +128,13 @@ Bundle 'ervandew/supertab'
 " SuperTab Continued: Perform insert mode completions with Tab
 "   (Insert) <Tab>    - Autocomplete
 
+Bundle 'majutsushi/tagbar'
+" Tagbar: CTags support
+"   :TagbarOpen
+"
+map <F11> :TagbarToggle<Cr>
+imap <F11> <Esc><F11>i
+
 " == Syntax bundles ==========================================================
 
 Bundle 'tpope/vim-haml'

@@ -45,7 +45,7 @@ if exists("syntax_on")
         syntax reset
 endif
 
-let colors_name = "jellybeans"
+let colors_name = "jellybeans+"
 
 if has("gui_running") || &t_Co == 88 || &t_Co == 256
         let s:low_color = 0
@@ -304,15 +304,15 @@ endif
 call s:X("Visual","","404040","","","")
 call s:X("Cursor","","b0d0f0","","","")
 
-call s:X("Normal","e8e8d3","151618","","White","")
+call s:X("Normal","151618","151618","","White","")
 call s:X("Normal","e8e8d3","151618","","White","")
 call s:X("LineNr","303030","151618","none","Black","")
 call s:X("Comment","a89880","252525","italic","Grey","")
 call s:X("Todo","808080","","bold","","")
 
-call s:X("StatusLine","f0f0f0","101010","italic","","")
-call s:X("StatusLineNC","a0a0a0","202122","italic","","")
-call s:X("VertSplit","101112","101112","italic","","")
+call s:X("StatusLine","a89880","252525","italic","","")
+call s:X("StatusLineNC","505050","202020","italic","","")
+call s:X("VertSplit","252525","252525","italic","","")
 
 call s:X("Folded","a0a8b0","384048","italic","black","")
 call s:X("FoldColumn","a0a8b0","384048","","","")
