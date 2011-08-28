@@ -116,6 +116,8 @@ Bundle 'tpope/vim-markdown'
 Bundle 'jade.vim'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'vim-scripts/jQuery'
+Bundle 'git://gist.github.com/369178.git'
+" Less syntax
 
 " == Color bundles ===========================================================
 
