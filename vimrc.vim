@@ -42,11 +42,21 @@ Bundle 'godlygeek/tabular'
 " Tabular: Align stuff
 "   :Tabularize /=/   - Align by the given character
 
+Bundle 'Raimondi/delimitMate'
+" Delimitmate: Auto-completion for quotes, parens, and brackets
+" This must be loaded before endwise.
+"
+let delimitMate_expand_cr=1
+
 Bundle 'tpope/vim-endwise'
 " Endwise: Wisely add 'end' in Ruby, 'endif' in Vimscript, et al
 
 Bundle 'HTML-AutoCloseTag'
 " HTML Auto Close: Make HTML work like Dreamweaver.
+
+Bundle 'cheat.vim'
+" Cheat: Cheatsheats from http://cheat.errtheblog.com.
+"   :Cheat <tab>      - Open a cheat sheet
 
 Bundle 'UltiSnips'
 " UltiSnips: Tab snippets
@@ -104,8 +114,8 @@ Bundle 'tpope/vim-haml'
 Bundle 'vim-coffee-script'
 Bundle 'tpope/vim-markdown'
 Bundle 'jade.vim'
-Bundle 'vim-scripts/jQuery'
 Bundle 'cakebaker/scss-syntax.vim'
+Bundle 'vim-scripts/jQuery'
 
 " == Color bundles ===========================================================
 
