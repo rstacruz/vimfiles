@@ -130,7 +130,7 @@ Bundle 'ervandew/supertab'
 
 Bundle 'majutsushi/tagbar'
 " Tagbar: CTags support
-"   :TagbarOpen
+"   <F11>             - Opens/closes the Tagbar drawer
 "
 map <F11> :TagbarToggle<Cr>
 imap <F11> <Esc><F11>i

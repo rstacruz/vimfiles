@@ -10,6 +10,7 @@ function! s:Work(...)
     silent! new
     silent! only
     NERDTree
+    TagbarOpen
 endfunction
 
 com! -nargs=* Work call s:Work(<f-args>)
