@@ -34,9 +34,8 @@ Bundle 'ack.vim'
 " Ack: Search in project
 "   :Ack              - Search
 
-Bundle 'Conque-Shell'
-" Conque Shell: Bash shell inside VIM
-"   :ConqueTerm bash  - Open a shell
+Bundle 'godlygeek/csapprox'
+" CSApprox: Make gvim-only colorschemes work transparently in terminal vim
 
 Bundle 'godlygeek/tabular'
 " Tabular: Align stuff
@@ -112,6 +111,17 @@ let g:EasyMotion_leader_key = '<Leader>m'
 map ,w <Leader>mw
 map ,f <Leader>mf
 
+Bundle 'tpope/vim-surround'
+" Surround: Surround text.
+"   (Visual) S"       - Surround with "
+"   (Visual) gS"      - Surround with " and indent
+"   cs"'              - Change surrounding thing from " to '
+"   cst<a>            - Change surrounding XML tag to <a>
+"   ds"               - Delete surrounding "
+"   dst               - Delete surrounding HTML tag
+"   ysiw]             - Surround with []
+"   ySiw]             - Surround with [], but indent
+"
 " == Syntax bundles ==========================================================
 
 Bundle 'tpope/vim-haml'
@@ -136,5 +146,9 @@ Bundle 'molokai'
 let extra_paths=substitute(glob('~/.vim/extras/*'), '\n', ',', 'g')
 exec 'set runtimepath+=' . extra_paths
 
+" Conque Shell: Bash shell inside VIM
+"   :ConqueTerm bash  - Open a shell
+
 " ============================================================================
+
 filetype plugin indent on
