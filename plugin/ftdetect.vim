@@ -9,5 +9,5 @@ augroup filetypedetect
 augroup END
 
 " DelimitMate sucks with these two.
-au FileType scss let b:delimitMate_matchpairs="(:),[:],<:>""
-au FileType css  let b:delimitMate_matchpairs="(:),[:],<:>""
+au FileType scss let b:delimitMate_matchpairs="(:),[:],<:>"
+au FileType css  let b:delimitMate_matchpairs="(:),[:],<:>"

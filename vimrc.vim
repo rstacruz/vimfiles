@@ -43,10 +43,12 @@ Bundle 'godlygeek/tabular'
 "   :Tabularize /=/   - Align by the given character
 
 Bundle 'Raimondi/delimitMate'
-" Delimitmate: Auto-completion for quotes, parens, and brackets
-" This must be loaded before endwise.
+" DelimitMate: Auto-completion for quotes, parens, and brackets
+" This must be loaded before endwise. Also, disabled curly brace matching
+" because it's the most useless thing ever.
 "
 let delimitMate_expand_cr=1
+let delimitMate_matchpairs="(:),[:],<:>"
 
 Bundle 'tpope/vim-endwise'
 " Endwise: Wisely add 'end' in Ruby, 'endif' in Vimscript, et al
