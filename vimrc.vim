@@ -120,8 +120,14 @@ Bundle 'tpope/vim-surround'
 "   ds"               - Delete surrounding "
 "   dst               - Delete surrounding HTML tag
 "   ysiw]             - Surround with []
+"   csw]              - Surround with []
+"   yss]              - Surround entire line with []
 "   ySiw]             - Surround with [], but indent
-"
+
+Bundle 'ervandew/supertab'
+" SuperTab Continued: Perform insert mode completions with Tab
+"   (Insert) <Tab>    - Autocomplete
+
 " == Syntax bundles ==========================================================
 
 Bundle 'tpope/vim-haml'
@@ -148,6 +154,8 @@ exec 'set runtimepath+=' . extra_paths
 
 " Conque Shell: Bash shell inside VIM
 "   :ConqueTerm bash  - Open a shell
+"
+map ,cs :ConqueTermSplit bash<Cr>
 
 " ============================================================================
 
