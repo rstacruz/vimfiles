@@ -41,14 +41,6 @@ Bundle 'godlygeek/tabular'
 " Tabular: Align stuff
 "   :Tabularize /=/   - Align by the given character
 
-Bundle 'Raimondi/delimitMate'
-" DelimitMate: Auto-completion for quotes, parens, and brackets
-" This must be loaded before endwise. Also, disabled curly brace matching
-" because it's the most useless thing ever.
-"
-let delimitMate_expand_cr=1
-let delimitMate_matchpairs="(:),[:],<:>"
-
 Bundle 'tpope/vim-endwise'
 " Endwise: Wisely add 'end' in Ruby, 'endif' in Vimscript, et al
 
@@ -151,7 +143,9 @@ Bundle 'git://gist.github.com/369178.git'
 Bundle 'vim-scripts/Color-Sampler-Pack'
 Bundle 'tpope/vim-vividchalk'
 Bundle 'vim-scripts/Ambient-Color-Scheme'
+Bundle 'altercation/vim-colors-solarized' 
 Bundle 'molokai'
+Bundle 'vydark'
 
 " ============================================================================
 
