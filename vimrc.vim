@@ -38,6 +38,8 @@ let g:ackhighlight=1
 
 Bundle 'godlygeek/csapprox'
 " CSApprox: Make gvim-only colorschemes work transparently in terminal vim
+"
+let g:CSApprox_verbose_level=0
 
 Bundle 'godlygeek/tabular'
 " Tabular: Align stuff
