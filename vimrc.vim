@@ -62,6 +62,7 @@ Bundle 'UltiSnips'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsDontReverseSearchPath=0
 
 Bundle 'scrooloose/nerdtree'
 " NERDTree: Project drawer
