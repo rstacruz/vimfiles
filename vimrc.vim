@@ -162,6 +162,7 @@ Bundle 'vim-scripts/Ambient-Color-Scheme'
 Bundle 'altercation/vim-colors-solarized' 
 Bundle 'molokai'
 Bundle 'vydark'
+Bundle 'Lucius'
 
 " ============================================================================
 
