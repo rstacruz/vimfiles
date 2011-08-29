@@ -1,4 +1,9 @@
 if !has("gui_running")
     "color jellybeans+
-    color vydark+
+    
+    if has("gui")
+      color vydark+
+    else
+      color vydark-snapshot
+    endif
 endif

@@ -55,7 +55,7 @@ Bundle 'cheat.vim'
 "
 let g:cheats_cache=$HOME.'/.vim/cache/cheats'
 
-Bundle 'UltiSnips'
+Bundle 'rygwdn/ultisnips'
 " UltiSnips: Tab snippets
 "   <Tab>             - Expand snippet
 "
