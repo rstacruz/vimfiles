@@ -136,6 +136,12 @@ Bundle 'majutsushi/tagbar'
 map <F11> :TagbarToggle<Cr>
 imap <F11> <Esc><F11>i
 
+Bundle 'lrvick/Conque-Shell'
+" Conque Shell: Bash shell inside VIM
+"   :ConqueTerm bash  - Open a shell
+"
+map ,cs :ConqueTermSplit bash<Cr>
+
 " == Syntax bundles ==========================================================
 
 Bundle 'tpope/vim-haml'
@@ -162,11 +168,6 @@ Bundle 'vydark'
 " For bundles not managed by Vundle, plop them onto extras/.
 let extra_paths=substitute(glob('~/.vim/extras/*'), '\n', ',', 'g')
 exec 'set runtimepath+=' . extra_paths
-
-" Conque Shell: Bash shell inside VIM
-"   :ConqueTerm bash  - Open a shell
-"
-map ,cs :ConqueTermSplit bash<Cr>
 
 " ============================================================================
 
