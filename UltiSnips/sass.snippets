@@ -29,22 +29,24 @@ snippet cl "cl"
 clear: left
 endsnippet
 
-snippet cr "cr"
+snippet cr "clear: right"
 clear: right
 endsnippet
 
-snippet cb "cb"
+snippet cb "clear: both"
 clear: both
 endsnippet
 
-snippet cd "cd"
-cursor: default
+snippet cd "cursor: default"
 cursor: default
 endsnippet
 
-snippet cp "cp"
+snippet cp "cursor: pointer"
 cursor: pointer
-cursor: pointer
+endsnippet
+
+snippet ct "cursor: text"
+cursor: text
 endsnippet
 
 snippet fsn "fsn"
@@ -404,7 +406,7 @@ height: ${1:0}$0
 endsnippet
 
 snippet ts "ts"
-text-shadow: 1px 1px 0 rgba(${1:black}, ${2:0.1})$0
+text-shadow: 1px 1px 0 ${1:rgba(black, 0.1)}$0
 endsnippet
 
 snippet wh "wh"
@@ -442,4 +444,36 @@ endsnippet
 
 snippet in "border-box"
 +box-sizing(border-box)
+endsnippet
+
+snippet import "import"
+@import '${1:compass/css3}'$0
+endsnippet
+
+snippet @ "import"
+@import '${1:compass/css3}'$0
+endsnippet
+
+snippet i "import"
+@import '${1:compass/css3}'$0
+endsnippet
+
+snippet ra "rgba"
+rgba(${1:black, ${2:0.2}})$0
+endsnippet
+
+snippet black "rgba black"
+rgba(black, ${2:0.2})$0
+endsnippet
+
+snippet white "rgba white"
+rgba(white, ${2:0.2})$0
+endsnippet
+
+snippet cf "+clearfix"
++pie-clearfix
+endsnippet
+
+snippet or "outline: red"
+outline: dotted 1px red
 endsnippet
