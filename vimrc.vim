@@ -24,6 +24,10 @@ Bundle 'tpope/vim-fugitive'
 "   :Gcd
 "   :Gstatus
 "   :G...
+"
+autocmd QuickFixCmdPost *grep* cwindow  " Open Ggrep in quickfix window
+map ,gc :Gcommit<Cr>
+map ,gs :Gstatus<Cr>
 
 Bundle 'rstacruz/sparkup', {'rtp': 'vim'}
 " Sparkup: HTML helper
@@ -68,14 +72,17 @@ let g:UltiSnipsDontReverseSearchPath=0
 
 Bundle 'scrooloose/nerdtree'
 " NERDTree: Project drawer
-"   <F10>             - Open NERDTree
-"   :NERDTree         - Open NERDTree
+"   <F12>             - Open NERDTree
+"   <F12>O            - Open NERDTree and expand all
 "
 let NERDTreeDirArrows=1
-let NERDTreeMouseMode=3
+let NERDTreeMouseMode=2
+let NERDTreeMinimalUI=1
+let NERDTreeStatusline=' '
+let NERDTreeWinPos='right'
 let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
 map <Leader>n :NERDTreeToggle<CR>
-map <F10> :NERDTree<CR>
+map <F12> :NERDTree<CR>
 
 Bundle 'tpope/vim-commentary'
 " Commentary: Commenter
@@ -142,6 +149,11 @@ Bundle 'lrvick/Conque-Shell'
 "
 map ,cs :ConqueTermSplit bash<Cr>
 
+Bundle 'thinca/vim-quickrun'
+" Quick Run: runs the current buffer.
+"    :QuickRun        - Execute the current buffer
+"    :QuickRun perl   - Execute the current buffer as perl
+
 " == Syntax bundles ==========================================================
 
 Bundle 'tpope/vim-haml'
@@ -151,7 +163,6 @@ Bundle 'jade.vim'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'vim-scripts/jQuery'
 Bundle 'git://gist.github.com/369178.git'
-Bundle 'html-improved-indentation'
 " Less syntax
 
 " == Color bundles ===========================================================
@@ -169,6 +180,13 @@ Bundle 'Lucius'
 " For bundles not managed by Vundle, plop them onto extras/.
 let extra_paths=substitute(glob('~/.vim/extras/*'), '\n', ',', 'g')
 exec 'set runtimepath+=' . extra_paths
+
+" Test runner
+"   <F10>   - Run tests
+"   ,tl     - Open test log
+"
+map <F10> :Test<Cr>
+map ,tl <C-w>n:e test.log<Cr>a<Esc>:set ft=ruby<Cr>
 
 " ============================================================================
 

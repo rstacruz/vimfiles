@@ -9,3 +9,11 @@ Bundle 'Raimondi/delimitMate'
 let delimitMate_expand_cr=1
 let delimitMate_matchpairs="(:),[:],<:>"
 
+
+" Kinda screws up tabbing
+Bundle 'html-improved-indentation'
+
+Bundle 'ervandew/supertab'
+" SuperTab Continued: Perform insert mode completions with Tab
+"   (Insert) <Tab>    - Autocomplete
+

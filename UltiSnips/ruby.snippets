@@ -2,10 +2,6 @@ snippet req "req"
 require '${1}'$0
 endsnippet
 
-snippet # "#"
-# =>
-endsnippet
-
 snippet end "end"
 __END__
 endsnippet
@@ -70,17 +66,14 @@ endsnippet
 
 snippet r "r"
 attr_reader :${1:attr_names}
-# attr_writer
 endsnippet
 
 snippet w "w"
 attr_writer :${1:attr_names}
-# attr_accessor
 endsnippet
 
 snippet rw "rw"
 attr_accessor :${1:attr_names}
-# include Enumerable
 endsnippet
 
 snippet Enum "Enum"
@@ -89,7 +82,6 @@ include Enumerable
 def each(&block)
 	$0
 end
-# include Comparable
 endsnippet
 
 snippet Comp "Comp"
@@ -98,7 +90,6 @@ include Comparable
 def <=>(other)
 	$0
 end
-# extend Forwardable
 endsnippet
 
 snippet Forw- "Forw-"
@@ -111,17 +102,17 @@ def self.${1:class_method_name}
 end
 endsnippet
 
-snippet defmm "defmm"
+snippet defmm "def method_missing"
 def method_missing(meth, *args, &blk)
 	$0
 end
 endsnippet
 
-snippet defd "defd"
+snippet defd "def_delegator"
 def_delegator :${1:@del_obj}, :${2:del_meth}, :${3:new_name}
 endsnippet
 
-snippet defds "defds"
+snippet defds "def_delegators"
 def_delegators :${1:@del_obj}, :${2:del_methods}
 endsnippet
 
@@ -129,32 +120,12 @@ snippet am "am"
 alias_method :${1:new_name}, :${2:old_name}
 endsnippet
 
-snippet app "app"
-if __FILE__ == $PROGRAM_NAME
-	$0
-end
-# usage_if()
-endsnippet
-
-snippet usai "usai"
-if ARGV.$0
-	abort "Usage: #{$PROGRAM_NAME} ${2:ARGS_GO_HERE}"$0
-end
-# usage_unless()
-endsnippet
-
-snippet usau "usau"
-unless ARGV.$0
-	abort "Usage: #{$PROGRAM_NAME} ${2:ARGS_GO_HERE}"$0
-end
-endsnippet
-
-snippet array "array"
+snippet array "array.new"
 Array.new(${1:10}) { |${2:i}| ${3} }
 endsnippet
 
-snippet hash "hash"
-Hash.new { |${1:hash}, ${2:key}| $1[$2] = ${3} }
+snippet hash "hash.new"
+Hash.new { |h, k| h[k] = ${1} }
 endsnippet
 
 snippet file "File.foreach() { |line| .. }"
@@ -174,16 +145,15 @@ Dir[${1:"glob/**/*.rb"}]$0
 endsnippet
 
 snippet dir "dir"
-Filename.dirname(__FILE__)
+File.dirname(__FILE__)
 endsnippet
 
-snippet deli "deli"
+snippet deli "delete_if"
 delete_if { |${1:e}| ${2} }
 endsnippet
 
 snippet fil "fil"
 fill(${1:range}) { |${2:i}| ${3} }
-# flatten_once()
 endsnippet
 
 snippet flao "flao"
@@ -192,7 +162,6 @@ endsnippet
 
 snippet zip "zip"
 zip(${1:enums}) { |${2:row}| ${3} }
-# downto(0) { |n| .. }
 endsnippet
 
 snippet dow "dow"
@@ -355,6 +324,11 @@ snippet lam "lam"
 lambda { |${1:args}| ${2} }
 endsnippet
 
+snippet -> "lambda"
+lambda { ${1} }${0}
+endsnippet
+
+
 snippet do "do"
 do |${1:variable}|
 	$0
@@ -367,19 +341,16 @@ endsnippet
 
 snippet ope "ope"
 open(${1:"path/or/url/or/pipe"}, "${2:w}") { |${3:io}| ${4} }
-# path_from_here()
 endsnippet
 
 snippet patfh "patfh"
 File.join(File.dirname(__FILE__), *%2[${1:rel path here}])$0
-# unix_filter {}
 endsnippet
 
 snippet unif "unif"
 ARGF.each_line${1} do |${2:line}|
 	$0
 end
-# option_parse {}
 endsnippet
 
 snippet optp "optp"
@@ -507,7 +478,6 @@ endsnippet
 
 snippet fl "fl"
 flunk("${1:Failure message.}")$0
-# Benchmark.bmbm do .. end
 endsnippet
 
 snippet bm- "bm-"
@@ -519,17 +489,14 @@ endsnippet
 
 snippet rep "rep"
 results.report("${1:name}:") { TESTS.times { ${2} }}
-# Marshal.dump(.., file)
 endsnippet
 
 snippet Md "Md"
 File.open(${1:"path/to/file.dump"}, "wb") { |${2:file}| Marshal.dump(${3:obj}, $2) }$0
-# Mashal.load(obj)
 endsnippet
 
 snippet Ml "Ml"
 File.open(${1:"path/to/file.dump"}, "rb") { |${2:file}| Marshal.load($2) }$0
-# deep_copy(..)
 endsnippet
 
 snippet deec "deec"
@@ -542,24 +509,20 @@ endsnippet
 
 snippet tra "tra"
 transaction(${1:true}) { ${2} }
-# xmlread(..)
 endsnippet
 
 snippet xml- "xml-"
 REXML::Document.new(File.read(${1:"path/to/file"}))$0
-# xpath(..) { .. }
 endsnippet
 
 snippet xpa "xpa"
 elements.each(${1:"//Xpath"}) do |${2:node}|
 	$0
 end
-# class_from_name()
 endsnippet
 
 snippet clafn "clafn"
 split("::").inject(Object) { |par, const| par.const_get(const) }
-# singleton_class()
 endsnippet
 
 snippet sinc "sinc"
@@ -577,7 +540,6 @@ desc "${1:Task description\}"
 task :${2:task_name => [:dependent, :tasks]} do
 	$0
 end
-# rsc
 endsnippet
 
 snippet $:. "$:."
@@ -592,8 +554,16 @@ snippet fex "fex"
 File.expand_path(
 endsnippet
 
-snippet fx "fx"
+snippet fx "File.expand_path"
 File.expand_path(
+endsnippet
+
+snippet ./ "relative path"
+File.expand_path('../${1}', __FILE__)${0}
+endsnippet
+
+snippet ../ "relative path"
+File.expand_path('../../${1}', __FILE__)${0}
 endsnippet
 
 snippet fj "fj"

@@ -270,6 +270,11 @@ snippet lh "lh"
 line-height: ${1:1.5};$0
 endsnippet
 
+snippet hlh "height + line-height"
+height: ${1:0px};
+line-height: $1;$0
+endsnippet
+
 snippet d "d"
 display: ${1:inline|none|block};$0
 endsnippet
@@ -424,7 +429,7 @@ z-index: ${1:1};$0
 endsnippet
 
 snippet brad "brad"
-@include border-radius(${1:4}px);$0
+@include border-radius(${1:4px});$0
 endsnippet
 
 snippet sh "sh"
@@ -433,4 +438,8 @@ endsnippet
 
 snippet grad "grad"
 @include background(linear-gradient(top, ${1:white, black}));$0
+endsnippet
+
+snippet in "border-box"
+@include box-sizing(border-box);
 endsnippet
