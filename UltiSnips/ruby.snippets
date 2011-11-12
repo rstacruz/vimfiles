@@ -573,3 +573,10 @@ endsnippet
 snippet . "."
 File.dirname(__FILE__)
 endsnippet
+
+snippet rt "respond to (Rails)"
+respond_to do |format|
+  format.html${1}
+end${0}
+endsnippet
+
