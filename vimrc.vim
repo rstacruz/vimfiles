@@ -48,6 +48,11 @@ let g:CSApprox_verbose_level=0
 Bundle 'godlygeek/tabular'
 " Tabular: Align stuff
 "   :Tabularize /=/   - Align by the given character
+vmap a= :Tabularize /[=:]/<Cr>
+map ,,t :Tabularize /: \zs/l1l0<Cr>
+map ,,{ :Tabularize /{ /l1l0<Cr>
+map ,,T :%g/.*: .*/Tabularize /: \zs/l1l0<Cr>
+map <F1> :noh<Cr>
 
 Bundle 'tpope/vim-endwise'
 " Endwise: Wisely add 'end' in Ruby, 'endif' in Vimscript, et al
