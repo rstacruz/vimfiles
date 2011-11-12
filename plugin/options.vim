@@ -66,3 +66,8 @@ set wildmenu                    "wmnu:  enhanced ed command completion
 set wildmode=longest:full,list:full  "wim:   helps wildmenu auto-completion
 set wildignore+=*.o,*.obj
 set wildignore+=vendor,*.pyc,logs,tmp,.sass-cache,doc,*~
+
+" == Indentations ============================================================
+
+autocmd FileType javascript setlocal nocindent smartindent sw=4 sts=4
+autocmd FileType python     setlocal sw=4 sts=4
