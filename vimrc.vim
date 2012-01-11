@@ -40,6 +40,17 @@ Bundle 'ack.vim'
 "
 let g:ackhighlight=1
 
+Bundle 'tjennings/git-grep-vim'
+" GitGrep: Search in project
+"   :GitGrep          - Search
+
+Bundle 'vim-coffee-script'
+" VimCoffeeScript: Coffee Script compilation
+"   :CoffeeCompile    - Compile a snippet or file
+
+vmap <leader>c <esc>:'<,'>:CoffeeCompile<CR>
+map <leader>c :CoffeeCompile<CR>
+
 Bundle 'godlygeek/csapprox'
 " CSApprox: Make gvim-only colorschemes work transparently in terminal vim
 "

@@ -69,5 +69,5 @@ set wildignore+=vendor,*.pyc,logs,tmp,.sass-cache,doc,*~
 
 " == Indentations ============================================================
 
-autocmd FileType javascript setlocal nocindent smartindent sw=4 sts=4
+autocmd FileType javascript setlocal nocindent smartindent sw=2 sts=2
 autocmd FileType python     setlocal sw=4 sts=4
