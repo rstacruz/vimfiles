@@ -2,8 +2,10 @@ snippet f "anonymous function"
 function(${1}) {${0}
 endsnippet
 
-snippet fn "anonymous function"
-function(${1}) {${0}
+snippet fn "anonymous function block"
+function($1) {
+  $2
+}$0
 endsnippet
 
 snippet cl "console.log"
@@ -20,4 +22,8 @@ endsnippet
 
 snippet pp "Prettify JSON"
 JSON.stringify(${1}, null, 2)
+endsnippet
+
+snippet vs "var self"
+var self = this;
 endsnippet

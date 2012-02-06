@@ -1,5 +1,5 @@
 " ============================================================================
-" _  _ _ _  _ ____ ____ 
+" _  _ _ _  _ ____ ____
 " |  | | |\/| |__/ |        rstacruz's vimrc.
 "  \/  | |  | |  \ |___     Also see plugin/*.vim for the initializers
 "
@@ -77,7 +77,7 @@ Bundle 'cheat.vim'
 "
 let g:cheats_cache=$HOME.'/.vim/cache/cheats'
 
-Bundle 'rygwdn/ultisnips'
+Bundle 'SirVer/ultisnips'
 " UltiSnips: Tab snippets
 "   <Tab>             - Expand snippet
 "
@@ -85,6 +85,13 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsDontReverseSearchPath=0
+
+Bundle 'rstacruz/vim-ultisnips-css'
+" VimUltisnipsCSS: Fast CSS snippets
+
+Bundle 'ervandew/supertab'
+" SuperTab Continued: Perform insert mode completions with Tab
+"   (Insert) <Tab>    - Autocomplete
 
 Bundle 'scrooloose/nerdtree'
 " NERDTree: Project drawer
@@ -106,7 +113,7 @@ Bundle 'tpope/vim-commentary'
 "   \\ap              - Comment paragraph
 "   \\4j              - Comment 5 lines
 "   / (in visual)     - Toggle comment
-" 
+"
 map \= \\
 vmap / \\
 
@@ -148,10 +155,6 @@ Bundle 'tpope/vim-surround'
 "   yss]              - Surround entire line with []
 "   ySiw]             - Surround with [], but indent
 
-Bundle 'ervandew/supertab'
-" SuperTab Continued: Perform insert mode completions with Tab
-"   (Insert) <Tab>    - Autocomplete
-
 Bundle 'majutsushi/tagbar'
 " Tagbar: CTags support
 "   <F11>             - Opens/closes the Tagbar drawer
@@ -170,6 +173,12 @@ Bundle 'thinca/vim-quickrun'
 "    :QuickRun        - Execute the current buffer
 "    :QuickRun perl   - Execute the current buffer as perl
 
+Bundle 'mikewest/vimroom'
+" Vim Room: Simulating a vaguely WriteRoom-like environment in Vim.
+"    :VimroomToggle
+"
+let g:vimroom_background='black'
+
 " == Syntax bundles ==========================================================
 
 Bundle 'tpope/vim-haml'
@@ -186,7 +195,7 @@ Bundle 'git://gist.github.com/369178.git'
 Bundle 'vim-scripts/Color-Sampler-Pack'
 Bundle 'tpope/vim-vividchalk'
 Bundle 'vim-scripts/Ambient-Color-Scheme'
-Bundle 'altercation/vim-colors-solarized' 
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'molokai'
 Bundle 'vydark'
 Bundle 'Lucius'
@@ -203,6 +212,9 @@ exec 'set runtimepath+=' . extra_paths
 "
 map <F10> :Test<Cr>
 map ,tl <C-w>n:e test.log<Cr>a<Esc>:set ft=ruby<Cr>
+
+" ============================================================================
+
 
 " ============================================================================
 

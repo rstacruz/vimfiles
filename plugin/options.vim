@@ -8,9 +8,15 @@ set showcmd                     "sc:    display incomplete commands
 set incsearch                   "is:    do incremental searching
 set hidden                      "hid:   Don't care about closing modified buffers
 set winminheight=0              "wmh:   Allow showing windows as just status bars
-set foldmethod=manual           "fdm:   fold by the indentation by default
 set mouse=a                     "       Enable the use of a mouse
 set nowrap
+
+" == Folding =================================================================
+
+set foldmethod=syntax           "fdm:   fold by the indentation by default
+set foldnestmax=10              "deepest fold is 10 levels
+set nofoldenable                "dont fold by default
+set foldlevel=1
 
 " == Search ==================================================================
 
