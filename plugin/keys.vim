@@ -23,10 +23,13 @@ map ,j <C-W>j
 map ,k <C-W>k
 map ,h <C-W>h
 map ,l <C-W>l
+
 map ,J <C-W>J
 map ,K <C-W>K
 map ,H <C-W>H
 map ,L <C-W>L
+
+map ,w <C-W>w
 map ,n <C-W>n
 map ,q <C-W>q
 map ,s <C-W>s

@@ -10,14 +10,19 @@ filetype off
 set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" == Bundles =================================================================
-
 Bundle 'gmarik/vundle'
 " Vundler: Bundle organizer
 "  :BundleList          - list configured bundles
 "  :BundleInstall(!)    - install(update) bundles
 "  :BundleSearch(!) foo - search(or refresh cache first) for foo
 "  :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+
+" ============================================================================
+
+" Don't load the other plugins in minimal mode.
+if $VIM_MINIMAL != '1'
+
+" == Bundles =================================================================
 
 Bundle 'tpope/vim-fugitive'
 " Fugitive: Git client
@@ -135,12 +140,10 @@ end
 
 Bundle 'EasyMotion'
 " EasyMotion: Jump around
-"  ,w                 - Jump to word
-"  ,f                 - Jump to letter
+"  ,mw                - Jump to word
+"  ,mf                - Jump to letter
 "
 let g:EasyMotion_leader_key = '<Leader>m'
-map ,w <Leader>mw
-map ,f <Leader>mf
 
 Bundle 'tpope/vim-surround'
 " Surround: Surround text.
@@ -179,6 +182,25 @@ Bundle 'mikewest/vimroom'
 "
 let g:vimroom_background='black'
 
+Bundle 'tpope/vim-rails'
+" Vim Rails: Rails syntax highlighting antools
+"   :Rextract {file}           - Partialize a visual block
+"   :Rscript about             - Calls script/* scripts
+"   :Rgenerate controller Blog - Calls `rails generate`
+"   :Rtree                     - Spawns NERDtree
+
+Bundle 'tpope/vim-abolish'
+" Abolish: Search and substitute multiple variants of a word
+"   crs - Coerce to snake_case
+"   crm - Coerce to MixedCase
+"   crc - Coerce to camelCase
+"   cru - Coerce to UPPERCASE
+"   %Subvert/facilit{y,ies}/building{,s}/g
+
+" Bundle 'jeffkreeftmeijer/vim-numbertoggle'
+" Number Toggle: smart absolute and relative line number toggling
+"   <C-n>    - Toogle relative number mode
+
 " == Syntax bundles ==========================================================
 
 Bundle 'tpope/vim-haml'
@@ -189,16 +211,6 @@ Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'vim-scripts/jQuery'
 Bundle 'git://gist.github.com/369178.git'
 " Less syntax
-
-" == Color bundles ===========================================================
-
-Bundle 'vim-scripts/Color-Sampler-Pack'
-Bundle 'tpope/vim-vividchalk'
-Bundle 'vim-scripts/Ambient-Color-Scheme'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'molokai'
-Bundle 'vydark'
-Bundle 'Lucius'
 
 " ============================================================================
 
@@ -215,6 +227,19 @@ map ,tl <C-w>n:e test.log<Cr>a<Esc>:set ft=ruby<Cr>
 
 " ============================================================================
 
+" End minimal mode block
+endif
+
+" == Color bundles ===========================================================
+
+Bundle 'vim-scripts/Color-Sampler-Pack'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'vydark'
+Bundle 'noahfrederick/Hemisu'
+" Bundle 'tpope/vim-vividchalk'
+" Bundle 'vim-scripts/Ambient-Color-Scheme'
+" Bundle 'molokai'
+" Bundle 'Lucius'
 
 " ============================================================================
 
