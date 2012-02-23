@@ -19,6 +19,13 @@ Bundle 'gmarik/vundle'
 
 " ============================================================================
 
+Bundle 'godlygeek/csapprox'
+" CSApprox: Make gvim-only colorschemes work transparently in terminal vim
+"
+let g:CSApprox_verbose_level=0
+
+" ============================================================================
+
 " Don't load the other plugins in minimal mode.
 if $VIM_MINIMAL != '1'
 
@@ -55,11 +62,6 @@ Bundle 'vim-coffee-script'
 
 vmap <leader>c <esc>:'<,'>:CoffeeCompile<CR>
 map <leader>c :CoffeeCompile<CR>
-
-Bundle 'godlygeek/csapprox'
-" CSApprox: Make gvim-only colorschemes work transparently in terminal vim
-"
-let g:CSApprox_verbose_level=0
 
 Bundle 'godlygeek/tabular'
 " Tabular: Align stuff
@@ -200,6 +202,22 @@ Bundle 'tpope/vim-abolish'
 " Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 " Number Toggle: smart absolute and relative line number toggling
 "   <C-n>    - Toogle relative number mode
+
+Bundle 'michaeljsmith/vim-indent-object'
+" Indent Object: text object for indentation
+"
+"   vii      - Delete indentation
+"   vai      - Delete indentation and the line above
+
+Bundle 'nathanaelkane/vim-indent-guides'
+" Vim Indent Guides:
+"   \ig      - Toggle indent guides
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+hi IndentGuidesEven guibg=#242424 ctermbg=234
+hi IndentGuidesOdd  guibg=#212121 ctermbg=232
 
 " == Syntax bundles ==========================================================
 

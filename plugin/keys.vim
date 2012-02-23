@@ -5,13 +5,14 @@ imap ,. <Esc>
 map <C-,> <C-w>
 map U <Esc>:redo<CR>
 
-" Windows
+" Navigate windows easily.
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
 map <C-H> <C-W>h<C-W>_
 map <C-L> <C-W>l<C-W>_
 map <C-_> <C-W>_
 
+" Make the above work in insert mode.
 imap <C-J> <Esc><C-W>j<C-W>_
 imap <C-K> <Esc><C-W>k<C-W>_
 imap <C-H> <Esc><C-W>h<C-W>_
@@ -39,11 +40,6 @@ map ,b <C-W>b
 map ,o <C-W>o
 map ,- <C-W>_
 map ,N <C-W>n<C-W>_
-
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
-map <C-H> <C-W>h<C-W>_
-map <C-L> <C-W>l<C-W>_
 
 " Collapse (like on a sidebar)
 map ,< <C-W>30<

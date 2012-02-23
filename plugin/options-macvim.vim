@@ -23,16 +23,16 @@ if has("gui_running") && has("gui_macvim")
     " set guifont=Droid\ Sans\ Mono:h10
     " set linespace=1
 
-    set guifont=Envy\ Code\ R:h12
-    set noantialias
-    set linespace=0
+    " set guifont=Envy\ Code\ R:h12
+    " set noantialias
+    " set linespace=0
 
     " Retro:
     " ------
 
-    " set guifont=Alto\ Mono:h8
-    " set noantialias
-    " set linespace=6
+    set guifont=Alto\ Mono:h8
+    set noantialias
+    set linespace=6
 
     " set guifont=ProFontX:h10
     " set linespace=3
@@ -59,6 +59,7 @@ if has("gui_running") && has("gui_macvim")
     " color dante         " Retro ISO-like
     color twilight+
     " color hemisu
+    " color inkpot
 
     " In between:
     " color darkblue
