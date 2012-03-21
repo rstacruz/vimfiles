@@ -60,6 +60,8 @@ if has("gui_running") && has("gui_macvim")
     color twilight+
     " color hemisu
     " color inkpot
+    " color darkbone
+    " fnaqevan
 
     " In between:
     " color darkblue

@@ -33,7 +33,6 @@ set cindent                     "cin:   enables automatic indenting c-style
 set cinoptions=l1,j1            "cino:  affects the way cindent reindents lines
 set showmatch                   "sm:    flashes matching brackets or parenthasis
 set matchtime=3                 "mat:   How long to flash brackets
-set listchars=tab:\ \ ,eol:◊,trail:•    "lcs:   makes finding tabs easier during `set list`  
 
 " == Tabs ====================================================================
 
@@ -72,6 +71,10 @@ set wildmenu                    "wmnu:  enhanced ed command completion
 set wildmode=longest:full,list:full  "wim:   helps wildmenu auto-completion
 set wildignore+=*.o,*.obj
 set wildignore+=vendor,*.pyc,logs,tmp,.sass-cache,doc,*~
+
+" == Spell check =============================================================
+
+set spellfile=~/.vim/spell/en.utf-8.add
 
 " == Indentations ============================================================
 

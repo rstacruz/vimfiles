@@ -66,10 +66,10 @@ map <leader>c :CoffeeCompile<CR>
 Bundle 'godlygeek/tabular'
 " Tabular: Align stuff
 "   :Tabularize /=/   - Align by the given character
-vmap a= :Tabularize /[=:]/<Cr>
-map ,,t :Tabularize /: \zs/l1l0<Cr>
-map ,,{ :Tabularize /{ /l1l0<Cr>
-map ,,T :%g/.*: .*/Tabularize /: \zs/l1l0<Cr>
+map ,a= :Tabularize /[=:]/<Cr>
+map ,a, :Tabularize commas<Cr>
+map ,a: :Tabularize css<Cr>
+map ,A: :%g/.*: .*/Tabularize css<Cr>
 map <F1> :noh<Cr>
 
 Bundle 'tpope/vim-endwise'
@@ -184,14 +184,14 @@ Bundle 'mikewest/vimroom'
 "
 let g:vimroom_background='black'
 
-Bundle 'tpope/vim-rails'
+" Bundle 'tpope/vim-rails'
 " Vim Rails: Rails syntax highlighting antools
 "   :Rextract {file}           - Partialize a visual block
 "   :Rscript about             - Calls script/* scripts
 "   :Rgenerate controller Blog - Calls `rails generate`
 "   :Rtree                     - Spawns NERDtree
 
-Bundle 'tpope/vim-abolish'
+" Bundle 'tpope/vim-abolish'
 " Abolish: Search and substitute multiple variants of a word
 "   crs - Coerce to snake_case
 "   crm - Coerce to MixedCase
@@ -212,12 +212,28 @@ Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'nathanaelkane/vim-indent-guides'
 " Vim Indent Guides:
 "   \ig      - Toggle indent guides
+"
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 hi IndentGuidesEven guibg=#242424 ctermbg=234
 hi IndentGuidesOdd  guibg=#212121 ctermbg=232
+
+" Bundle 'ScrollColors'
+" " ScrollColors: Preview many color schemes
+" "
+" map <silent><F3> :NEXTCOLOR<cr>
+" map <silent><F2> :PREVCOLOR<cr>
+
+Bundle 'sickill/vim-pasta'
+" Vim Pasta: Indentation-aware pasting
+
+Bundle 'mkitt/browser-refresh.vim'
+" Browser Refresh: Refresh Chrome/Safari in vim
+"  :RRB      - Refresh
+"
+map <silent><leader>r :RRB<CR>
 
 " == Syntax bundles ==========================================================
 
