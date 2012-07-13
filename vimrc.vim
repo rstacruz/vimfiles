@@ -160,18 +160,12 @@ Bundle 'tpope/vim-surround'
 "   yss]              - Surround entire line with []
 "   ySiw]             - Surround with [], but indent
 
-Bundle 'majutsushi/tagbar'
+" Bundle 'majutsushi/tagbar'
 " Tagbar: CTags support
 "   <F11>             - Opens/closes the Tagbar drawer
 "
-map <F11> :TagbarToggle<Cr>
-imap <F11> <Esc><F11>i
-
-Bundle 'lrvick/Conque-Shell'
-" Conque Shell: Bash shell inside VIM
-"   :ConqueTerm bash  - Open a shell
-"
-map ,cs :ConqueTermSplit bash<Cr>
+" map <F11> :TagbarToggle<Cr>
+" imap <F11> <Esc><F11>i
 
 " Bundle 'thinca/vim-quickrun'
 " Quick Run: runs the current buffer.
@@ -184,14 +178,7 @@ Bundle 'mikewest/vimroom'
 "
 let g:vimroom_background='black'
 
-" Bundle 'tpope/vim-rails'
-" Vim Rails: Rails syntax highlighting antools
-"   :Rextract {file}           - Partialize a visual block
-"   :Rscript about             - Calls script/* scripts
-"   :Rgenerate controller Blog - Calls `rails generate`
-"   :Rtree                     - Spawns NERDtree
-
-" Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-abolish'
 " Abolish: Search and substitute multiple variants of a word
 "   crs - Coerce to snake_case
 "   crm - Coerce to MixedCase
@@ -229,11 +216,11 @@ hi IndentGuidesOdd  guibg=#212121 ctermbg=232
 " Bundle 'sickill/vim-pasta'
 " Vim Pasta: Indentation-aware pasting
 
-Bundle 'mkitt/browser-refresh.vim'
+" Bundle 'mkitt/browser-refresh.vim'
 " Browser Refresh: Refresh Chrome/Safari in vim
 "  :RRB      - Refresh
 "
-map <silent><leader>r :RRB<CR>
+" map <silent><leader>r :RRB<CR>
 
 Bundle 'AutoTag'
 " AutoTag: Auto generate ctags file
