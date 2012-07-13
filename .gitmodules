@@ -102,7 +102,7 @@
   url = https://github.com/tpope/vim-surround.git
 [submodule "bundle/vim-ultisnips-css"]
   path = bundle/vim-ultisnips-css
-  url = git@github.com:rstacruz/vim-ultisnips-css.git
+  url = https://github.com/rstacruz/vim-ultisnips-css.git
 [submodule "bundle/vimroom"]
   path = bundle/vimroom
   url = https://github.com/mikewest/vimroom.git
