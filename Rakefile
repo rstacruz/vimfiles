@@ -69,6 +69,31 @@ end
 
 # ============================================================================
 
+def get_origin_url
+  output = `git remote -v`.split("\n")
+  line = output.select { |line| line =~ /^origin\t/ }.first
+  return unless line
+  line.split("\t")[1].split(' ')[0]
+end
+
+desc "Add bundles installed by Vundle into submodules."
+task :'submodule:sync' do
+  require 'fileutils'
+  cmds = []
+  Dir['./bundle/*'].each do |bundle_path|
+    Dir.chdir bundle_path do
+      url = get_origin_url
+      cmds << "git submodule add #{url} #{bundle_path}"
+    end
+  end
+  script = cmds.join("\n")
+  File.open('script.sh', 'w') { |f| f.write script }
+  system "bash script.sh"
+  FileUtils.rm "script.sh"
+end
+
+# ============================================================================
+
 namespace :build do
   task :command_t do
     system "which rvm >/dev/null && rvm use system; cd bundle/Command-T/ruby/command-t && ruby extconf.rb && make"
