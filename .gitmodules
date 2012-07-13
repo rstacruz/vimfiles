@@ -37,9 +37,6 @@
 [submodule "bundle/git-grep-vim"]
 	path = bundle/git-grep-vim
 	url = https://github.com/tjennings/git-grep-vim.git
-[submodule "bundle/golden-ratio"]
-	path = bundle/golden-ratio
-	url = https://github.com/roman/golden-ratio.git
 [submodule "bundle/Hemisu"]
 	path = bundle/Hemisu
 	url = https://github.com/noahfrederick/Hemisu.git
@@ -124,9 +121,6 @@
 [submodule "bundle/vim-powerline"]
 	path = bundle/vim-powerline
 	url = https://github.com/Lokaltog/vim-powerline.git
-[submodule "bundle/vim-quickrun"]
-	path = bundle/vim-quickrun
-	url = https://github.com/thinca/vim-quickrun.git
 [submodule "bundle/vim-rails"]
 	path = bundle/vim-rails
 	url = https://github.com/tpope/vim-rails.git
