@@ -64,15 +64,15 @@ end
 desc "Add bundles installed by Vundle into submodules."
 task :'submodule:sync' do
   require 'fileutils'
-  cmds = []
+  lines = []
   Dir['./bundle/*'].each do |bundle_path|
     Dir.chdir bundle_path do
       url = get_origin_url
-      cmds << "git submodule add #{url} #{bundle_path}"
+      lines << %<[submodule "#{bundle_path}"]>
+      lines << %<  path = #{bundle_path}>
+      lines << %<  url = #{url}>
     end
   end
-  script = cmds.join("\n")
-  File.open('script.sh', 'w') { |f| f.write script }
-  system "bash script.sh"
-  FileUtils.rm "script.sh"
+  script = lines.join("\n") + "\n"
+  File.open('.gitmodules', 'w') { |f| f.write script }
 end

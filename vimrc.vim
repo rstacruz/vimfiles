@@ -133,7 +133,7 @@ map ,z <C-W>o
 
 Bundle 'kien/ctrlp.vim'
 " CtrlP: File opener
-map <C-t> :CtrlP<Cr>
+map <C-t> :CtrlPTag<Cr>
 
 Bundle 'EasyMotion'
 " EasyMotion: Jump around
