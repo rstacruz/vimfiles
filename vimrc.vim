@@ -173,7 +173,7 @@ Bundle 'lrvick/Conque-Shell'
 "
 map ,cs :ConqueTermSplit bash<Cr>
 
-Bundle 'thinca/vim-quickrun'
+" Bundle 'thinca/vim-quickrun'
 " Quick Run: runs the current buffer.
 "    :QuickRun        - Execute the current buffer
 "    :QuickRun perl   - Execute the current buffer as perl
@@ -226,7 +226,7 @@ hi IndentGuidesOdd  guibg=#212121 ctermbg=232
 " map <silent><F3> :NEXTCOLOR<cr>
 " map <silent><F2> :PREVCOLOR<cr>
 
-Bundle 'sickill/vim-pasta'
+" Bundle 'sickill/vim-pasta'
 " Vim Pasta: Indentation-aware pasting
 
 Bundle 'mkitt/browser-refresh.vim'
@@ -234,6 +234,9 @@ Bundle 'mkitt/browser-refresh.vim'
 "  :RRB      - Refresh
 "
 map <silent><leader>r :RRB<CR>
+
+Bundle 'AutoTag'
+" AutoTag: Auto generate ctags file
 
 " == Syntax bundles ==========================================================
 

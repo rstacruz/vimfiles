@@ -145,3 +145,6 @@
 [submodule "bundle/ZoomWin"]
 	path = bundle/ZoomWin
 	url = https://github.com/vim-scripts/ZoomWin.git
+[submodule "bundle/AutoTag"]
+	path = bundle/AutoTag
+	url = https://github.com/vim-scripts/AutoTag.git

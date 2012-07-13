@@ -62,8 +62,12 @@ map <SwipeRight> :bnext<CR>
 set list
 set listchars=tab:┆\ ,extends:…,precedes:…
 
-" == Use semicolon for commands ==============================================
+" == Auto-use \v on regex ====================================================
+" Just press / on normal mode
 
-nnoremap ; :
-vnoremap ; :
-nnoremap F ;
+nnoremap / /\v
+
+" == Tag select ==============================================================
+" Find definition of a class using TClassName<Enter>
+
+nnoremap T :tjump 
