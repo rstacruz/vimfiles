@@ -3,7 +3,8 @@ if !has("gui_running")
 
     if has("gui")
       " color vydark+
-      color dante
+      " color dante
+      color jellybeans+
     else
       color vydark-snapshot
     endif
