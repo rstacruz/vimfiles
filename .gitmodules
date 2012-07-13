@@ -129,7 +129,7 @@
 	url = https://github.com/tpope/vim-surround.git
 [submodule "bundle/vim-ultisnips-css"]
 	path = bundle/vim-ultisnips-css
-	url = git@github.com:rstacruz/vim-ultisnips-css.git
+	url = https://github.com/rstacruz/vim-ultisnips-css.git
 [submodule "bundle/vim-vividchalk"]
 	path = bundle/vim-vividchalk
 	url = https://github.com/tpope/vim-vividchalk.git
