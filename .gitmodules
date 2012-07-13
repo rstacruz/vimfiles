@@ -3,7 +3,7 @@
 	url = https://github.com/vim-scripts/cheat.vim.git
 [submodule "bundle/vundle"]
 	path = bundle/vundle
-	url = http://github.com/gmairk/vundle.git
+	url = https://github.com/gmarik/vundle.git
 [submodule "bundle/369178"]
 	path = bundle/369178
 	url = git://gist.github.com/369178.git
