@@ -68,6 +68,7 @@ task :'submodule:sync' do
   Dir['./bundle/*'].each do |bundle_path|
     Dir.chdir bundle_path do
       url = get_origin_url
+      bundle_path =~ /^.\/(.*)$/ && bundle_path = $1
       lines << %<[submodule "#{bundle_path}"]>
       lines << %<  path = #{bundle_path}>
       lines << %<  url = #{url}>
