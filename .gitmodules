@@ -19,9 +19,6 @@
 [submodule "bundle/Color-Sampler-Pack"]
 	path = bundle/Color-Sampler-Pack
 	url = https://github.com/vim-scripts/Color-Sampler-Pack.git
-[submodule "bundle/Command-T"]
-	path = bundle/Command-T
-	url = https://github.com/wincent/Command-T.git
 [submodule "bundle/csapprox"]
 	path = bundle/csapprox
 	url = https://github.com/godlygeek/csapprox.git

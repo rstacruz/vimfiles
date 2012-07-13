@@ -131,14 +131,9 @@ Bundle 'vim-scripts/ZoomWin'
 map ,o <C-W>o
 map ,z <C-W>o
 
-Bundle 'wincent/Command-T'
-" Command T: File opener
-"   \t, or <C-t>      - Open the file opener
-"
-let g:CommandTMaxHeight=20
-if has("ruby")
-  map <C-t> <Leader>t
-end
+Bundle 'kien/ctrlp.vim'
+" CtrlP: File opener
+map <C-t> :CtrlP<Cr>
 
 Bundle 'EasyMotion'
 " EasyMotion: Jump around
