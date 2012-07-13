@@ -252,9 +252,9 @@ endif
 " == Color bundles ===========================================================
 
 Bundle 'vim-scripts/Color-Sampler-Pack'
-Bundle 'altercation/vim-colors-solarized'
+" Bundle 'altercation/vim-colors-solarized'
 Bundle 'vydark'
-Bundle 'noahfrederick/Hemisu'
+" Bundle 'noahfrederick/Hemisu'
 " Bundle 'tpope/vim-vividchalk'
 " Bundle 'vim-scripts/Ambient-Color-Scheme'
 " Bundle 'molokai'

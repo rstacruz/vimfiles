@@ -10,9 +10,6 @@
 [submodule "bundle/ack.vim"]
 	path = bundle/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
-[submodule "bundle/Ambient-Color-Scheme"]
-	path = bundle/Ambient-Color-Scheme
-	url = https://github.com/vim-scripts/Ambient-Color-Scheme.git
 [submodule "bundle/browser-refresh.vim"]
 	path = bundle/browser-refresh.vim
 	url = https://github.com/mkitt/browser-refresh.vim.git
@@ -31,9 +28,6 @@
 [submodule "bundle/git-grep-vim"]
 	path = bundle/git-grep-vim
 	url = https://github.com/tjennings/git-grep-vim.git
-[submodule "bundle/Hemisu"]
-	path = bundle/Hemisu
-	url = https://github.com/noahfrederick/Hemisu.git
 [submodule "bundle/HTML-AutoCloseTag"]
 	path = bundle/HTML-AutoCloseTag
 	url = https://github.com/vim-scripts/HTML-AutoCloseTag.git
@@ -46,12 +40,6 @@
 [submodule "bundle/js-mask"]
 	path = bundle/js-mask
 	url = https://github.com/tyok/js-mask.git
-[submodule "bundle/Lucius"]
-	path = bundle/Lucius
-	url = https://github.com/vim-scripts/Lucius.git
-[submodule "bundle/molokai"]
-	path = bundle/molokai
-	url = https://github.com/vim-scripts/molokai.git
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
@@ -79,9 +67,6 @@
 [submodule "bundle/vim-coffee-script"]
 	path = bundle/vim-coffee-script
 	url = https://github.com/vim-scripts/vim-coffee-script.git
-[submodule "bundle/vim-colors-solarized"]
-	path = bundle/vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "bundle/vim-commentary"]
 	path = bundle/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
@@ -115,9 +100,6 @@
 [submodule "bundle/vim-ultisnips-css"]
 	path = bundle/vim-ultisnips-css
 	url = https://github.com/rstacruz/vim-ultisnips-css.git
-[submodule "bundle/vim-vividchalk"]
-	path = bundle/vim-vividchalk
-	url = https://github.com/tpope/vim-vividchalk.git
 [submodule "bundle/vimroom"]
 	path = bundle/vimroom
 	url = https://github.com/mikewest/vimroom.git
