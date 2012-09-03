@@ -4,6 +4,9 @@
 [submodule "bundle/ack.vim"]
   path = bundle/ack.vim
   url = https://github.com/mileszs/ack.vim.git
+[submodule "bundle/AutoComplPop"]
+  path = bundle/AutoComplPop
+  url = https://github.com/vim-scripts/AutoComplPop.git
 [submodule "bundle/AutoTag"]
   path = bundle/AutoTag
   url = https://github.com/vim-scripts/AutoTag.git
@@ -43,6 +46,12 @@
 [submodule "bundle/js-mask"]
   path = bundle/js-mask
   url = https://github.com/tyok/js-mask.git
+[submodule "bundle/Muon"]
+  path = bundle/Muon
+  url = https://github.com/gregsexton/Muon.git
+[submodule "bundle/neocomplcache"]
+  path = bundle/neocomplcache
+  url = https://github.com/Shougo/neocomplcache.git
 [submodule "bundle/nerdtree"]
   path = bundle/nerdtree
   url = https://github.com/scrooloose/nerdtree.git
@@ -70,6 +79,9 @@
 [submodule "bundle/vim-coffee-script"]
   path = bundle/vim-coffee-script
   url = https://github.com/vim-scripts/vim-coffee-script.git
+[submodule "bundle/vim-colors-solarized"]
+  path = bundle/vim-colors-solarized
+  url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "bundle/vim-commentary"]
   path = bundle/vim-commentary
   url = https://github.com/tpope/vim-commentary.git

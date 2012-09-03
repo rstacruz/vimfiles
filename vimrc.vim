@@ -134,6 +134,7 @@ map ,z <C-W>o
 Bundle 'kien/ctrlp.vim'
 " CtrlP: File opener
 map <C-t> :CtrlPTag<Cr>
+" let g:ctrlp_cmd='CtrlPMixed'
 
 Bundle 'EasyMotion'
 " EasyMotion: Jump around
@@ -220,6 +221,9 @@ hi IndentGuidesOdd  guibg=#212121 ctermbg=232
 Bundle 'AutoTag'
 " AutoTag: Auto generate ctags file
 
+Bundle 'Shougo/neocomplcache'
+let g:neocomplcache_enable_at_startup = 1
+
 " == Syntax bundles ==========================================================
 
 Bundle 'tpope/vim-haml'
@@ -252,13 +256,14 @@ endif
 " == Color bundles ===========================================================
 
 Bundle 'vim-scripts/Color-Sampler-Pack'
-" Bundle 'altercation/vim-colors-solarized'
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'vydark'
 " Bundle 'noahfrederick/Hemisu'
 " Bundle 'tpope/vim-vividchalk'
 " Bundle 'vim-scripts/Ambient-Color-Scheme'
 " Bundle 'molokai'
 " Bundle 'Lucius'
+Bundle 'gregsexton/Muon'
 
 " ============================================================================
 

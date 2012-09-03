@@ -17,3 +17,9 @@ Bundle 'ervandew/supertab'
 " SuperTab Continued: Perform insert mode completions with Tab
 "   (Insert) <Tab>    - Autocomplete
 
+Bundle 'vim-scripts/AutoComplPop'
+" AutoComplPop: Automatically show the autocomplete popup
+map <F11> :AcpDisable<Cr>
+map <s-F11> :AcpEnable<Cr>
+let g:acp_completeOption = 'menu'
+" let g:acp_behaviorKeywordCommand = "\<C-n>"

@@ -71,3 +71,13 @@ nnoremap / /\v
 " Find definition of a class using TClassName<Enter>
 
 nnoremap T :tjump 
+
+" == Noh =====================================================================
+
+nnoremap <F2> :noh<Cr>
+inoremap <F2> <Esc>:noh<Cr>i
+
+" == Nicer vert splits =======================================================
+
+set fillchars=vert:│    " that's a vertical box-drawing character
+set fillchars="vert: "
