@@ -31,6 +31,16 @@ if $VIM_MINIMAL != '1'
 
 " == Bundles =================================================================
 
+Bundle 'Lokaltog/vim-powerline'
+" Powerline: cool status lines
+if has("gui_running") && has("gui_macvim")
+  let g:Powerline_symbols='fancy'
+endif
+
+let g:Powerline_colorscheme='solarized256'
+" lighter colors: let g:Powerline_colorscheme='solarized'
+" To reload: :PowerlineReloadColorscheme
+
 Bundle 'tpope/vim-fugitive'
 " Fugitive: Git client
 "   :Gcd
@@ -222,7 +232,16 @@ Bundle 'AutoTag'
 " AutoTag: Auto generate ctags file
 
 Bundle 'Shougo/neocomplcache'
+" Neocomplcache: Autocomplee thingie
+"   :NeoComplCacheToggle
 let g:neocomplcache_enable_at_startup = 1
+map ,nn :NeoComplCacheToggle<Cr>
+
+Bundle 'scrooloose/syntastic'
+" Syntastic: Auto check syntax
+
+Bundle 'embear/vim-localvimrc'
+" Local Vimrc: Project-specific settings via .lvimrc files
 
 " == Syntax bundles ==========================================================
 
@@ -232,6 +251,8 @@ Bundle 'tpope/vim-markdown'
 Bundle 'jade.vim'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'vim-scripts/jQuery'
+Bundle 'bbommarito/vim-slim'
+Bundle 'Textile-for-VIM'
 Bundle 'git://gist.github.com/369178.git'
 " Less syntax
 
@@ -258,13 +279,16 @@ endif
 Bundle 'vim-scripts/Color-Sampler-Pack'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'vydark'
-" Bundle 'noahfrederick/Hemisu'
+Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
+Bundle 'noahfrederick/Hemisu'
 " Bundle 'tpope/vim-vividchalk'
 " Bundle 'vim-scripts/Ambient-Color-Scheme'
 " Bundle 'molokai'
 " Bundle 'Lucius'
 Bundle 'gregsexton/Muon'
+Bundle 'therubymug/vim-pyte'
 
 " ============================================================================
 
 filetype plugin indent on
+

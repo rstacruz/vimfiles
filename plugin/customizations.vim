@@ -81,3 +81,50 @@ inoremap <F2> <Esc>:noh<Cr>i
 
 set fillchars=vert:│    " that's a vertical box-drawing character
 set fillchars="vert: "
+
+" == Writeroom, kind of ======================================================
+
+command! Focus set wrap linebreak nolist noruler nonumber laststatus=1
+
+" For soft-wrapping
+command! Wrap set wrap linebreak nolist
+command! Nowrap set nowrap
+
+" For hard-wrapping
+command! Hardwrap set fo=want tw=80
+command! Nohardwrap set fo=croq
+
+" == Focus on current fold ===================================================
+
+" Isolate current fold
+nnoremap ,z zMzvzz
+" Isolate current fold, and unfold its siblings
+nnoremap ,Z zMzvzazOzz
+
+" == Better commandline editing ==============================================
+" http://vimbits.com/bits/30
+
+cnoremap <C-j> <t_kd>
+cnoremap <C-k> <t_ku>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
+" == Folding =================================================================
+
+" In normal mode, press Space to toggle the current fold open/closed. If the
+" cursor is not in a fold, move to the right (the default behavior). In
+" addition, with the manual fold method, you can create a fold by visually
+" selecting some lines, then pressing Space.
+" (za = toggle fold, zA = toggle recursively)
+nnoremap <silent> <Space> @=(foldlevel('.')?'zA':"\<Space>")<CR>
+vnoremap <Space> zf
+
+" == Highlight spaces ========================================================
+" http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
