@@ -34,6 +34,9 @@
 [submodule "bundle/git-grep-vim"]
   path = bundle/git-grep-vim
   url = https://github.com/tjennings/git-grep-vim.git
+[submodule "bundle/Hemisu"]
+  path = bundle/Hemisu
+  url = https://github.com/noahfrederick/Hemisu.git
 [submodule "bundle/HTML-AutoCloseTag"]
   path = bundle/HTML-AutoCloseTag
   url = https://github.com/vim-scripts/HTML-AutoCloseTag.git
@@ -46,6 +49,9 @@
 [submodule "bundle/js-mask"]
   path = bundle/js-mask
   url = https://github.com/tyok/js-mask.git
+[submodule "bundle/mayansmoke"]
+  path = bundle/mayansmoke
+  url = https://github.com/vim-scripts/mayansmoke.git
 [submodule "bundle/Muon"]
   path = bundle/Muon
   url = https://github.com/gregsexton/Muon.git
@@ -55,6 +61,9 @@
 [submodule "bundle/nerdtree"]
   path = bundle/nerdtree
   url = https://github.com/scrooloose/nerdtree.git
+[submodule "bundle/peaksea"]
+  path = bundle/peaksea
+  url = https://github.com/vim-scripts/peaksea.git
 [submodule "bundle/ScrollColors"]
   path = bundle/ScrollColors
   url = https://github.com/vim-scripts/ScrollColors.git
@@ -67,9 +76,18 @@
 [submodule "bundle/supertab"]
   path = bundle/supertab
   url = https://github.com/ervandew/supertab.git
+[submodule "bundle/syntastic"]
+  path = bundle/syntastic
+  url = https://github.com/scrooloose/syntastic.git
 [submodule "bundle/tabular"]
   path = bundle/tabular
   url = https://github.com/godlygeek/tabular.git
+[submodule "bundle/Textile-for-VIM"]
+  path = bundle/Textile-for-VIM
+  url = https://github.com/vim-scripts/Textile-for-VIM.git
+[submodule "bundle/tomorrow-theme"]
+  path = bundle/tomorrow-theme
+  url = https://github.com/chriskempson/tomorrow-theme.git
 [submodule "bundle/ultisnips"]
   path = bundle/ultisnips
   url = https://github.com/SirVer/ultisnips.git
@@ -100,6 +118,9 @@
 [submodule "bundle/vim-indent-object"]
   path = bundle/vim-indent-object
   url = https://github.com/michaeljsmith/vim-indent-object.git
+[submodule "bundle/vim-localvimrc"]
+  path = bundle/vim-localvimrc
+  url = https://github.com/embear/vim-localvimrc.git
 [submodule "bundle/vim-markdown"]
   path = bundle/vim-markdown
   url = https://github.com/tpope/vim-markdown.git
@@ -109,12 +130,21 @@
 [submodule "bundle/vim-powerline"]
   path = bundle/vim-powerline
   url = https://github.com/Lokaltog/vim-powerline.git
+[submodule "bundle/vim-pyte"]
+  path = bundle/vim-pyte
+  url = https://github.com/therubymug/vim-pyte.git
+[submodule "bundle/vim-slim"]
+  path = bundle/vim-slim
+  url = https://github.com/bbommarito/vim-slim.git
 [submodule "bundle/vim-surround"]
   path = bundle/vim-surround
   url = https://github.com/tpope/vim-surround.git
 [submodule "bundle/vim-ultisnips-css"]
   path = bundle/vim-ultisnips-css
   url = https://github.com/rstacruz/vim-ultisnips-css.git
+[submodule "bundle/vim-vividchalk"]
+  path = bundle/vim-vividchalk
+  url = https://github.com/tpope/vim-vividchalk.git
 [submodule "bundle/vimroom"]
   path = bundle/vimroom
   url = https://github.com/mikewest/vimroom.git
