@@ -1,3 +1,4 @@
 cache/*
 !.gitkeep
 bundle/.vundle
+spell/*

@@ -2,7 +2,12 @@ if !has("gui_running")
     "color jellybeans+
 
     if has("gui")
-      color vydark+
+      set background=dark
+      color hemisu
+      set background=dark
+      " color Tomorrow-Night
+      " color muon
+      " color vydark+
       " color dante
       " color jellybeans+
     else

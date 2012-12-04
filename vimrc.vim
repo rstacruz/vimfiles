@@ -239,6 +239,14 @@ map ,nn :NeoComplCacheToggle<Cr>
 
 Bundle 'scrooloose/syntastic'
 " Syntastic: Auto check syntax
+" :Errors - opens error window
+" :SyntasticCheck - forces checking
+let g:syntastic_quiet_warnings=1
+let g:syntastic_check_on_open=1
+let g:syntastic_ruby_exec = "~/.rbenv/versions/1.9.3-p194/bin/ruby"
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'active_filetypes': ['css', 'php', 'js', 'ruby', 'vim', 'python', 'html', 'coffee'],
+                           \ 'passive_filetypes': ['sass', 'scss', 'haml'] }
 
 Bundle 'embear/vim-localvimrc'
 " Local Vimrc: Project-specific settings via .lvimrc files

@@ -9,12 +9,11 @@ augroup filetypedetect
   au! BufNewFile,BufRead *.styl    setf sass
 augroup END
 
-" Git commit messages: start in insert mode and have spellcheck
-if has('autocmd')
-  if has('spell')
-    au BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
-  endif
-  au BufNewFile,BufRead COMMIT_EDITMSG call feedkeys('ggi', 't')
+" Auto spellcheck
+if has('spell')
+  au BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
+  au Filetype markdown setlocal spell
+  au Filetype textile setlocal spell
 endif
 
 " DelimitMate sucks with these two.
