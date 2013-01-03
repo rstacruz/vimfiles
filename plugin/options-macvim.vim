@@ -57,7 +57,8 @@ if has("gui_running") && has("gui_macvim")
     " color rootwater     " Green accents
     " color vydark
     " color dante         " Retro ISO-like
-    color twilight+
+    " color twilight+
+    color vydark+
     " color hemisu
     " color inkpot
     " color darkbone

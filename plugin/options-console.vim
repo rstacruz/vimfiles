@@ -3,13 +3,14 @@ if !has("gui_running")
 
     if has("gui")
       set background=dark
-      color hemisu
-      set background=dark
+
+      " color hemisu
       " color Tomorrow-Night
       " color muon
-      " color vydark+
       " color dante
       " color jellybeans+
+      " color vydark+
+      color snap-vydark+
     else
       color vydark-snapshot
     endif

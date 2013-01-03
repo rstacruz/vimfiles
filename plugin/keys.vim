@@ -2,6 +2,7 @@
 
 " Dvorak helpers
 imap ,. <Esc>
+vmap ,. <Esc>
 map <C-,> <C-w>
 map U <Esc>:redo<CR>
 
@@ -39,7 +40,9 @@ map ,t <C-W>t
 map ,b <C-W>b
 map ,o <C-W>o
 map ,- <C-W>_
-map ,N <C-W>n<C-W>_
+
+" Stuff
+map ,N :NERDTree<Cr>
 
 " Collapse (like on a sidebar)
 map ,< <C-W>30<
@@ -48,4 +51,9 @@ map ,,, <C-W>30<
 map ,,. <C-W>30>
 
 " Pseudo-FuzzyFinder
-map E :e **/*
+map E :e **/
+
+map <Up>    <C-W>k
+map <Down>  <C-W>j
+map <Left>  <C-W>h
+map <Right> <C-W>l

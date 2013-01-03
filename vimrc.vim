@@ -21,13 +21,10 @@ Bundle 'gmarik/vundle'
 
 Bundle 'godlygeek/csapprox'
 " CSApprox: Make gvim-only colorschemes work transparently in terminal vim
+" This is a very slow plugin, so only enable (uncomment) it if you plan on
+" switching color schemes.
 "
 let g:CSApprox_verbose_level=0
-
-" ============================================================================
-
-" Don't load the other plugins in minimal mode.
-if $VIM_MINIMAL != '1'
 
 " == Bundles =================================================================
 
@@ -85,27 +82,6 @@ map <F1> :noh<Cr>
 Bundle 'tpope/vim-endwise'
 " Endwise: Wisely add 'end' in Ruby, 'endif' in Vimscript, et al
 
-Bundle 'HTML-AutoCloseTag'
-" HTML Auto Close: Make HTML work like Dreamweaver.
-
-Bundle 'cheat.vim'
-" Cheat: Cheatsheats from http://cheat.errtheblog.com.
-"   :Cheat <tab>      - Open a cheat sheet
-"
-let g:cheats_cache=$HOME.'/.vim/cache/cheats'
-
-Bundle 'SirVer/ultisnips'
-" UltiSnips: Tab snippets
-"   <Tab>             - Expand snippet
-"
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsDontReverseSearchPath=0
-
-Bundle 'rstacruz/vim-ultisnips-css'
-" VimUltisnipsCSS: Fast CSS snippets
-
 Bundle 'ervandew/supertab'
 " SuperTab Continued: Perform insert mode completions with Tab
 "   (Insert) <Tab>    - Autocomplete
@@ -141,17 +117,16 @@ Bundle 'vim-scripts/ZoomWin'
 map ,o <C-W>o
 map ,z <C-W>o
 
-Bundle 'kien/ctrlp.vim'
-" CtrlP: File opener
-map <C-t> :CtrlPTag<Cr>
-" let g:ctrlp_cmd='CtrlPMixed'
-
 Bundle 'EasyMotion'
 " EasyMotion: Jump around
 "  ,mw                - Jump to word
-"  ,mf                - Jump to letter
+"  ,f                 - Jump to letter
+"  ,F                 - Jump to letter (from left)
 "
-let g:EasyMotion_leader_key = '<Leader>m'
+let g:EasyMotion_leader_key = ',m'
+let g:EasyMotion_mapping_f = ',f'
+let g:EasyMotion_mapping_F = ',F'
+let g:EasyMotion_keys = 'aeouidhtnspyfgcrlAOEUIDHTNSPYFGCRLqjkxbmwvzQJKXBMWVZ'
 
 Bundle 'tpope/vim-surround'
 " Surround: Surround text.
@@ -178,6 +153,12 @@ Bundle 'tpope/vim-surround'
 "    :QuickRun        - Execute the current buffer
 "    :QuickRun perl   - Execute the current buffer as perl
 
+Bundle 'corntrace/bufexplorer'
+" BufExplorer: open other files in the buffer
+"    \be    - Open in current panel
+"    \bs    - Open in horiz split
+"    \bv    - Open in vert split
+
 Bundle 'mikewest/vimroom'
 " Vim Room: Simulating a vaguely WriteRoom-like environment in Vim.
 "    :VimroomToggle
@@ -190,7 +171,7 @@ Bundle 'tpope/vim-abolish'
 "   crm - Coerce to MixedCase
 "   crc - Coerce to camelCase
 "   cru - Coerce to UPPERCASE
-"   %Subvert/facilit{y,ies}/building{,s}/g
+"   %S/application/program  (works with Application, APPLICATION, ...)
 
 " Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 " Number Toggle: smart absolute and relative line number toggling
@@ -202,40 +183,8 @@ Bundle 'michaeljsmith/vim-indent-object'
 "   vii      - Delete indentation
 "   vai      - Delete indentation and the line above
 
-Bundle 'nathanaelkane/vim-indent-guides'
-" Vim Indent Guides:
-"   \ig      - Toggle indent guides
-"
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 0
-hi IndentGuidesEven guibg=#242424 ctermbg=234
-hi IndentGuidesOdd  guibg=#212121 ctermbg=232
-
-" Bundle 'ScrollColors'
-" " ScrollColors: Preview many color schemes
-" "
-" map <silent><F3> :NEXTCOLOR<cr>
-" map <silent><F2> :PREVCOLOR<cr>
-
-" Bundle 'sickill/vim-pasta'
-" Vim Pasta: Indentation-aware pasting
-
-" Bundle 'mkitt/browser-refresh.vim'
-" Browser Refresh: Refresh Chrome/Safari in vim
-"  :RRB      - Refresh
-"
-" map <silent><leader>r :RRB<CR>
-
 Bundle 'AutoTag'
 " AutoTag: Auto generate ctags file
-
-Bundle 'Shougo/neocomplcache'
-" Neocomplcache: Autocomplee thingie
-"   :NeoComplCacheToggle
-let g:neocomplcache_enable_at_startup = 1
-map ,nn :NeoComplCacheToggle<Cr>
 
 Bundle 'scrooloose/syntastic'
 " Syntastic: Auto check syntax
@@ -247,6 +196,14 @@ let g:syntastic_ruby_exec = "~/.rbenv/versions/1.9.3-p194/bin/ruby"
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': ['css', 'php', 'js', 'ruby', 'vim', 'python', 'html', 'coffee'],
                            \ 'passive_filetypes': ['sass', 'scss', 'haml'] }
+
+" Syntastic styles
+if has('unix')
+  let g:syntastic_error_symbol='⚠'
+  let g:syntastic_style_error_symbol='>'
+  let g:syntastic_warning_symbol='★'
+  let g:syntastic_style_warning_symbol='>'
+endif
 
 Bundle 'embear/vim-localvimrc'
 " Local Vimrc: Project-specific settings via .lvimrc files
@@ -277,24 +234,42 @@ exec 'set runtimepath+=' . extra_paths
 map <F10> :Test<Cr>
 map ,tl <C-w>n:e test.log<Cr>a<Esc>:set ft=ruby<Cr>
 
-" ============================================================================
-
-" End minimal mode block
-endif
-
 " == Color bundles ===========================================================
 
-Bundle 'vim-scripts/Color-Sampler-Pack'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'vydark'
 Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
 Bundle 'noahfrederick/Hemisu'
+Bundle 'gregsexton/Muon'
+Bundle 'therubymug/vim-pyte'
 " Bundle 'tpope/vim-vividchalk'
 " Bundle 'vim-scripts/Ambient-Color-Scheme'
 " Bundle 'molokai'
 " Bundle 'Lucius'
-Bundle 'gregsexton/Muon'
-Bundle 'therubymug/vim-pyte'
+
+" == Slow plugins ============================================================
+
+if $VIM_MINIMAL != '1'
+
+  Bundle 'SirVer/ultisnips'
+  " UltiSnips: Tab snippets
+  "   <Tab>             - Expand snippet
+  "
+  let g:UltiSnipsExpandTrigger="<tab>"
+  let g:UltiSnipsJumpForwardTrigger="<tab>"
+  let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+  let g:UltiSnipsDontReverseSearchPath=0
+
+  Bundle 'rstacruz/vim-ultisnips-css'
+  " VimUltisnipsCSS: Fast CSS snippets
+
+  Bundle 'kien/ctrlp.vim'
+  " CtrlP: File opener
+  map <C-t> :CtrlPTag<Cr>
+  let g:ctrlp_working_path_mode='r'
+  " let g:ctrlp_cmd='CtrlPMixed'
+
+endif
 
 " ============================================================================
 

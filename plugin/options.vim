@@ -24,6 +24,7 @@ set incsearch                   "is:    automatically begins searching as you ty
 set ignorecase                  "ic:    ignores case when pattern matching
 set smartcase                   "scs:   ignores ignorecase when pattern contains uppercase characters
 set hlsearch                    "hls:   highlights search results; ctrl-n or :noh to unhighlight
+set gdefault                    "gd:    Substitute all matches in a line by default
 nmap <silent> <C-N> :silent noh<CR>
 
 " == Programming =============================================================
@@ -76,7 +77,3 @@ set wildignore+=vendor,*.pyc,logs,tmp,.sass-cache,doc,*~
 
 set spellfile=~/.vim/spell/en.utf-8.add
 
-" == Indentations ============================================================
-
-autocmd FileType javascript setlocal nocindent smartindent sw=2 sts=2
-autocmd FileType python     setlocal sw=4 sts=4

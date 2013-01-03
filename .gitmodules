@@ -4,6 +4,9 @@
 [submodule "bundle/ack.vim"]
   path = bundle/ack.vim
   url = https://github.com/mileszs/ack.vim.git
+[submodule "bundle/ack.vim/bundle/ack.vim"]
+  path = bundle/ack.vim/bundle/ack.vim
+  url = https://github.com/mileszs/ack.vim.git
 [submodule "bundle/AutoComplPop"]
   path = bundle/AutoComplPop
   url = https://github.com/vim-scripts/AutoComplPop.git
@@ -13,17 +16,29 @@
 [submodule "bundle/browser-refresh.vim"]
   path = bundle/browser-refresh.vim
   url = https://github.com/mkitt/browser-refresh.vim.git
+[submodule "bundle/browser-refresh.vim/bundle/browser-refresh.vim"]
+  path = bundle/browser-refresh.vim/bundle/browser-refresh.vim
+  url = https://github.com/mkitt/browser-refresh.vim.git
+[submodule "bundle/bufexplorer"]
+  path = bundle/bufexplorer
+  url = https://github.com/corntrace/bufexplorer.git
 [submodule "bundle/cheat.vim"]
   path = bundle/cheat.vim
   url = https://github.com/vim-scripts/cheat.vim.git
 [submodule "bundle/Color-Sampler-Pack"]
   path = bundle/Color-Sampler-Pack
   url = https://github.com/vim-scripts/Color-Sampler-Pack.git
+[submodule "bundle/Color-Sampler-Pack/bundle/Color-Sampler-Pack"]
+  path = bundle/Color-Sampler-Pack/bundle/Color-Sampler-Pack
+  url = https://github.com/vim-scripts/Color-Sampler-Pack.git
 [submodule "bundle/csapprox"]
   path = bundle/csapprox
   url = https://github.com/godlygeek/csapprox.git
 [submodule "bundle/css_color.vim"]
   path = bundle/css_color.vim
+  url = https://github.com/vim-scripts/css_color.vim.git
+[submodule "bundle/css_color.vim/bundle/css_color.vim"]
+  path = bundle/css_color.vim/bundle/css_color.vim
   url = https://github.com/vim-scripts/css_color.vim.git
 [submodule "bundle/ctrlp.vim"]
   path = bundle/ctrlp.vim
