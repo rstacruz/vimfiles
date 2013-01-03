@@ -3,6 +3,7 @@ if !has("gui_running")
 
     if has("gui")
       set background=dark
+      set t_Co=256
 
       " color hemisu
       " color Tomorrow-Night
