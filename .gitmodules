@@ -150,7 +150,7 @@
   url = https://github.com/therubymug/vim-pyte.git
 [submodule "bundle/vim-slim"]
   path = bundle/vim-slim
-  url = https://github.com/bbommarito/vim-slim.git
+  url = git://github.com/bbommarito/vim-slim.git
 [submodule "bundle/vim-surround"]
   path = bundle/vim-surround
   url = https://github.com/tpope/vim-surround.git
