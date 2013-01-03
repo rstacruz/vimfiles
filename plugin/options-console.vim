@@ -1,9 +1,9 @@
 if !has("gui_running")
     "color jellybeans+
+    set t_Co=256
 
     if has("gui")
       set background=dark
-      set t_Co=256
 
       " color hemisu
       " color Tomorrow-Night
@@ -13,6 +13,6 @@ if !has("gui_running")
       " color vydark+
       color snap-vydark+
     else
-      color vydark-snapshot
+      color snap-vydark+
     endif
 endif
