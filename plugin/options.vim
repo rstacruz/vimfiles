@@ -1,21 +1,21 @@
 " == Options =================================================================
 
-set encoding=utf-8              "enc:   Character encoding
-set backspace=indent,eol,start  "bs:    Backspacing over insert mode
+set encoding=utf-8              "enc:   character encoding
+set backspace=indent,eol,start  "bs:    backspacing over insert mode
 set history=50                  "hi:    keep 50 lines of command line history
 set ruler                       "ru:    show the cursor position all the time
 set showcmd                     "sc:    display incomplete commands
 set incsearch                   "is:    do incremental searching
-set hidden                      "hid:   Don't care about closing modified buffers
-set winminheight=0              "wmh:   Allow showing windows as just status bars
+set hidden                      "hid:   don't care about closing modified buffers
+set winminheight=0              "wmh:   allow showing windows as just status bars
 set mouse=a                     "       Enable the use of a mouse
 set nowrap
 
 " == Folding =================================================================
 
 set foldmethod=syntax           "fdm:   fold by the indentation by default
-set foldnestmax=10              "deepest fold is 10 levels
-set nofoldenable                "dont fold by default
+set foldnestmax=10              "fdn:   deepest fold is 10 levels
+set nofoldenable                "nofen: don't fold by default
 set foldlevel=1
 
 " == Search ==================================================================
@@ -25,7 +25,6 @@ set ignorecase                  "ic:    ignores case when pattern matching
 set smartcase                   "scs:   ignores ignorecase when pattern contains uppercase characters
 set hlsearch                    "hls:   highlights search results; ctrl-n or :noh to unhighlight
 set gdefault                    "gd:    Substitute all matches in a line by default
-nmap <silent> <C-N> :silent noh<CR>
 
 " == Programming =============================================================
 
@@ -37,22 +36,19 @@ set matchtime=3                 "mat:   How long to flash brackets
 
 " == Tabs ====================================================================
 
-set softtabstop=2
-set tabstop=2                   "ts:    number of spaces that a tab counts for
+set tabstop=2                   "ts:    number of spaces that a tab renders as
 set shiftwidth=2                "sw:    number of spaces to use for autoindent
+set softtabstop=2               "sts:   number of spaces that tabs insert
 set smarttab                    "sta:   helps with backspacing because of expandtab
 set expandtab                   "et:    uses spaces instead of tab characters
 
-" == Macro helpers ===========================================================
-
-set lazyredraw                  "lz:    will not redraw the screen while running macros (goes faster)
 
 " == Backups =================================================================
 
-set nobackup                    " Seriously, in this age of Git, who needs it
-set nowritebackup               " Don't make a backup before overwriting
-set noswapfile                  " Don't litter swap files everywhere
-set directory=/tmp              " Temp directory
+set nobackup                    "nobk:  in this age of version control, who needs it
+set nowritebackup               "nowb:  don't make a backup before overwriting
+set noswapfile                  "noswf: don't litter swap files everywhere
+set directory=/tmp              "dir:   directory for temp files
 
 " == HUD and status info =====================================================
 
@@ -65,15 +61,29 @@ set scrolloff=4                 "so:    places a couple lines between the curren
 set sidescrolloff=2             "siso:  places a couple lines between the current column and the screen edge
 set laststatus=2                "ls:    makes the status bar always visible
 set ttyfast                     "tf:    improves redrawing for newer computers
+set lazyredraw                  "lz:    will not redraw the screen while running macros (goes faster)
+
+" == Encryption ==============================================================
+
+set cryptmethod=blowfish        "cm:    make encryption more secure
 
 " == Menu completion =========================================================
 
 set wildmenu                    "wmnu:  enhanced ed command completion
-set wildmode=longest:full,list:full  "wim:   helps wildmenu auto-completion
-set wildignore+=*.o,*.obj
-set wildignore+=vendor,*.pyc,logs,tmp,.sass-cache,doc,*~
+set wildignore+=*.~             "wig:   ignore compiled objects and backups
+set wig+=*.o,*.obj,*.pyc        "       compiled objects
+set wig+=.sass-cache,tmp        "       temp files
+set wig+=vendor,log,logs,doc    "       usual directories
+
+"wim:   helps wildmenu auto-completion
+set wildmode=longest:full,list:full
 
 " == Spell check =============================================================
 
+"spf:   user's dictionary for zq / zw
 set spellfile=~/.vim/spell/en.utf-8.add
 
+" == Session management ======================================================
+
+set sessionoptions-=options     "ssop:  don't store global/local values
+set sessionoptions-=folds       "ssop:  don't store folds

@@ -19,7 +19,7 @@ Bundle 'gmarik/vundle'
 
 " ============================================================================
 
-Bundle 'godlygeek/csapprox'
+" Bundle 'godlygeek/csapprox'
 " CSApprox: Make gvim-only colorschemes work transparently in terminal vim
 " This is a very slow plugin, so only enable (uncomment) it if you plan on
 " switching color schemes.
@@ -28,15 +28,22 @@ let g:CSApprox_verbose_level=0
 
 " == Bundles =================================================================
 
-Bundle 'Lokaltog/vim-powerline'
 " Powerline: cool status lines
+Bundle 'Lokaltog/vim-powerline'
 if has("gui_running") && has("gui_macvim")
   let g:Powerline_symbols='fancy'
 endif
 
-let g:Powerline_colorscheme='solarized256'
-" lighter colors: let g:Powerline_colorscheme='solarized'
+let g:Powerline_colorscheme='solarized16'
+" let g:Powerline_colorscheme='solarized256'
+" let g:Powerline_colorscheme='solarized'
 " To reload: :PowerlineReloadColorscheme
+call Pl#Theme#RemoveSegment('charcode')
+call Pl#Theme#RemoveSegment('fileformat')
+call Pl#Theme#RemoveSegment('fileencoding')
+call Pl#Theme#RemoveSegment('filetype')
+call Pl#Theme#RemoveSegment('scrollpercent')
+" call Pl#Theme#RemoveSegment('fugitive:branch')
 
 Bundle 'tpope/vim-fugitive'
 " Fugitive: Git client
@@ -62,6 +69,7 @@ let g:ackhighlight=1
 Bundle 'tjennings/git-grep-vim'
 " GitGrep: Search in project
 "   :GitGrep          - Search
+map :gg :GitGrep 
 
 Bundle 'vim-coffee-script'
 " VimCoffeeScript: Coffee Script compilation
@@ -208,6 +216,9 @@ endif
 Bundle 'embear/vim-localvimrc'
 " Local Vimrc: Project-specific settings via .lvimrc files
 
+Bundle 'terryma/vim-multiple-cursors'
+" Vim Multiple Cursors: Sublime-style multi cursors
+
 " == Syntax bundles ==========================================================
 
 Bundle 'tpope/vim-haml'
@@ -217,6 +228,7 @@ Bundle 'jade.vim'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'vim-scripts/jQuery'
 Bundle 'Textile-for-VIM'
+Bundle 'davidoc/taskpaper.vim'
 Bundle 'git://gist.github.com/369178.git'
 " Less syntax
 
@@ -226,25 +238,19 @@ Bundle 'git://gist.github.com/369178.git'
 let extra_paths=substitute(glob('~/.vim/extras/*'), '\n', ',', 'g')
 exec 'set runtimepath+=' . extra_paths
 
-" Test runner
-"   <F10>   - Run tests
-"   ,tl     - Open test log
-"
-map <F10> :Test<Cr>
-map ,tl <C-w>n:e test.log<Cr>a<Esc>:set ft=ruby<Cr>
-
 " == Color bundles ===========================================================
 
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'vydark'
+Bundle 'vylight'
 Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
 Bundle 'noahfrederick/Hemisu'
 Bundle 'gregsexton/Muon'
 Bundle 'therubymug/vim-pyte'
-" Bundle 'tpope/vim-vividchalk'
-" Bundle 'vim-scripts/Ambient-Color-Scheme'
-" Bundle 'molokai'
-" Bundle 'Lucius'
+Bundle 'tpope/vim-vividchalk'
+Bundle 'molokai'
+Bundle 'Lucius'
+Bundle 'chriskempson/base16-vim'
 
 " == Slow plugins ============================================================
 
@@ -265,8 +271,8 @@ if $VIM_MINIMAL != '1'
   Bundle 'kien/ctrlp.vim'
   " CtrlP: File opener
   map <C-t> :CtrlPTag<Cr>
+  map <C-b> :CtrlPBuffer<Cr>
   let g:ctrlp_working_path_mode='r'
-  " let g:ctrlp_cmd='CtrlPMixed'
 
 endif
 

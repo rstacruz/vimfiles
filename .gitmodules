@@ -4,20 +4,17 @@
 [submodule "bundle/ack.vim"]
   path = bundle/ack.vim
   url = https://github.com/mileszs/ack.vim.git
-[submodule "bundle/ack.vim/bundle/ack.vim"]
-  path = bundle/ack.vim/bundle/ack.vim
-  url = https://github.com/mileszs/ack.vim.git
 [submodule "bundle/AutoComplPop"]
   path = bundle/AutoComplPop
   url = https://github.com/vim-scripts/AutoComplPop.git
 [submodule "bundle/AutoTag"]
   path = bundle/AutoTag
   url = https://github.com/vim-scripts/AutoTag.git
+[submodule "bundle/base16-vim"]
+  path = bundle/base16-vim
+  url = https://github.com/chriskempson/base16-vim.git
 [submodule "bundle/browser-refresh.vim"]
   path = bundle/browser-refresh.vim
-  url = https://github.com/mkitt/browser-refresh.vim.git
-[submodule "bundle/browser-refresh.vim/bundle/browser-refresh.vim"]
-  path = bundle/browser-refresh.vim/bundle/browser-refresh.vim
   url = https://github.com/mkitt/browser-refresh.vim.git
 [submodule "bundle/bufexplorer"]
   path = bundle/bufexplorer
@@ -28,17 +25,11 @@
 [submodule "bundle/Color-Sampler-Pack"]
   path = bundle/Color-Sampler-Pack
   url = https://github.com/vim-scripts/Color-Sampler-Pack.git
-[submodule "bundle/Color-Sampler-Pack/bundle/Color-Sampler-Pack"]
-  path = bundle/Color-Sampler-Pack/bundle/Color-Sampler-Pack
-  url = https://github.com/vim-scripts/Color-Sampler-Pack.git
 [submodule "bundle/csapprox"]
   path = bundle/csapprox
   url = https://github.com/godlygeek/csapprox.git
 [submodule "bundle/css_color.vim"]
   path = bundle/css_color.vim
-  url = https://github.com/vim-scripts/css_color.vim.git
-[submodule "bundle/css_color.vim/bundle/css_color.vim"]
-  path = bundle/css_color.vim/bundle/css_color.vim
   url = https://github.com/vim-scripts/css_color.vim.git
 [submodule "bundle/ctrlp.vim"]
   path = bundle/ctrlp.vim
@@ -64,9 +55,15 @@
 [submodule "bundle/js-mask"]
   path = bundle/js-mask
   url = https://github.com/tyok/js-mask.git
+[submodule "bundle/Lucius"]
+  path = bundle/Lucius
+  url = https://github.com/vim-scripts/Lucius.git
 [submodule "bundle/mayansmoke"]
   path = bundle/mayansmoke
   url = https://github.com/vim-scripts/mayansmoke.git
+[submodule "bundle/molokai"]
+  path = bundle/molokai
+  url = https://github.com/vim-scripts/molokai.git
 [submodule "bundle/Muon"]
   path = bundle/Muon
   url = https://github.com/gregsexton/Muon.git
@@ -79,6 +76,9 @@
 [submodule "bundle/peaksea"]
   path = bundle/peaksea
   url = https://github.com/vim-scripts/peaksea.git
+[submodule "bundle/powerline"]
+  path = bundle/powerline
+  url = https://github.com/Lokaltog/powerline.git
 [submodule "bundle/ScrollColors"]
   path = bundle/ScrollColors
   url = https://github.com/vim-scripts/ScrollColors.git
@@ -97,6 +97,9 @@
 [submodule "bundle/tabular"]
   path = bundle/tabular
   url = https://github.com/godlygeek/tabular.git
+[submodule "bundle/taskpaper.vim"]
+  path = bundle/taskpaper.vim
+  url = https://github.com/davidoc/taskpaper.vim.git
 [submodule "bundle/Textile-for-VIM"]
   path = bundle/Textile-for-VIM
   url = https://github.com/vim-scripts/Textile-for-VIM.git
@@ -118,6 +121,9 @@
 [submodule "bundle/vim-commentary"]
   path = bundle/vim-commentary
   url = https://github.com/tpope/vim-commentary.git
+[submodule "bundle/vim-csexact"]
+  path = bundle/vim-csexact
+  url = https://github.com/KevinGoodsell/vim-csexact.git
 [submodule "bundle/vim-endwise"]
   path = bundle/vim-endwise
   url = https://github.com/tpope/vim-endwise.git
@@ -139,9 +145,15 @@
 [submodule "bundle/vim-markdown"]
   path = bundle/vim-markdown
   url = https://github.com/tpope/vim-markdown.git
+[submodule "bundle/vim-multiple-cursors"]
+  path = bundle/vim-multiple-cursors
+  url = https://github.com/terryma/vim-multiple-cursors.git
 [submodule "bundle/vim-pasta"]
   path = bundle/vim-pasta
   url = https://github.com/sickill/vim-pasta.git
+[submodule "bundle/vim-plugin-autosess"]
+  path = bundle/vim-plugin-autosess
+  url = https://github.com/powerman/vim-plugin-autosess.git
 [submodule "bundle/vim-powerline"]
   path = bundle/vim-powerline
   url = https://github.com/Lokaltog/vim-powerline.git
@@ -166,6 +178,9 @@
 [submodule "bundle/vydark"]
   path = bundle/vydark
   url = https://github.com/vim-scripts/vydark.git
+[submodule "bundle/vylight"]
+  path = bundle/vylight
+  url = https://github.com/vim-scripts/vylight.git
 [submodule "bundle/yaml-vim"]
   path = bundle/yaml-vim
   url = https://github.com/ingydotnet/yaml-vim.git

@@ -72,3 +72,5 @@ map ,nn :NeoComplCacheToggle<Cr>
 Bundle 'HTML-AutoCloseTag'
 " HTML Auto Close: Make HTML work like Dreamweaver.
 
+Bundle 'powerman/vim-plugin-autosess'
+" AutoSession: Save and load sessions automatically

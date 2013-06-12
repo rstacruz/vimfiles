@@ -34,7 +34,7 @@ function! g:ToggleNuMode()
   endif
 endfunction
 
-nnoremap <C-n> :call g:ToggleNuMode()<Cr>
+" nnoremap <C-n> :call g:ToggleNuMode()<Cr>
 
 " == Sudo write ==============================================================
 " Sudo write when you forgot to `sudo vim`
@@ -172,11 +172,24 @@ autocmd InsertEnter * se cursorline
 " https://github.com/sjl/vitality.vim/issues/3
 " http://pastebin.com/ZtEfsmcD
 
-set showcmd
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
+" set showcmd
+" if exists('$TMUX')
+"   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+"   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+" else
+"   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+"   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" endif
+
+" ============================================================================
+
+map <C-h> :bnext<CR>
+map <C-l> :bprev<CR>
+
+
+" ============================================================================
+"http://vimbits.com/bits/445
+
+let mapleader=" "
+noremap <leader><space> :
+

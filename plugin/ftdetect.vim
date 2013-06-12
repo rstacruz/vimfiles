@@ -14,7 +14,7 @@ augroup END
 " Auto spellcheck
 if has('spell')
   au BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
-  au Filetype markdown setlocal spell
+  " au Filetype markdown setlocal spell
   au Filetype textile  setlocal spell
 endif
 
@@ -22,6 +22,7 @@ endif
 au FileType scss let b:delimitMate_matchpairs="(:),[:],<:>"
 au FileType css  let b:delimitMate_matchpairs="(:),[:],<:>"
 
+au FileType haml set fdm=indent
 au FileType html set fdm=indent
 au FileType sass set fdm=indent
 
@@ -31,3 +32,5 @@ au FileType python     setlocal sw=4 sts=4
 
 " Treat '-' as part of words in CSS
 au FileType css,scss,html setlocal iskeyword+=-
+
+au FileType taskpaper setlocal nolist
