@@ -74,3 +74,21 @@ Bundle 'HTML-AutoCloseTag'
 
 Bundle 'powerman/vim-plugin-autosess'
 " AutoSession: Save and load sessions automatically
+"
+" Powerline: cool status lines
+Bundle 'Lokaltog/vim-powerline'
+if has("gui_running") && has("gui_macvim")
+  let g:Powerline_symbols='fancy'
+endif
+
+let g:Powerline_colorscheme='solarized16'
+" let g:Powerline_colorscheme='solarized256'
+" let g:Powerline_colorscheme='solarized'
+" To reload: :PowerlineReloadColorscheme
+call Pl#Theme#RemoveSegment('charcode')
+call Pl#Theme#RemoveSegment('fileformat')
+call Pl#Theme#RemoveSegment('fileencoding')
+call Pl#Theme#RemoveSegment('filetype')
+call Pl#Theme#RemoveSegment('scrollpercent')
+" call Pl#Theme#RemoveSegment('fugitive:branch')
+

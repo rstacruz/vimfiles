@@ -46,6 +46,9 @@
 [submodule "bundle/HTML-AutoCloseTag"]
   path = bundle/HTML-AutoCloseTag
   url = https://github.com/vim-scripts/HTML-AutoCloseTag.git
+[submodule "bundle/ini-syntax-definition"]
+  path = bundle/ini-syntax-definition
+  url = https://github.com/vim-scripts/ini-syntax-definition.git
 [submodule "bundle/jade.vim"]
   path = bundle/jade.vim
   url = https://github.com/vim-scripts/jade.vim.git
@@ -109,12 +112,21 @@
 [submodule "bundle/ultisnips"]
   path = bundle/ultisnips
   url = https://github.com/SirVer/ultisnips.git
+[submodule "bundle/unite.vim"]
+  path = bundle/unite.vim
+  url = https://github.com/Shougo/unite.vim.git
 [submodule "bundle/vim-abolish"]
   path = bundle/vim-abolish
   url = https://github.com/tpope/vim-abolish.git
+[submodule "bundle/vim-airline"]
+  path = bundle/vim-airline
+  url = https://github.com/bling/vim-airline.git
 [submodule "bundle/vim-coffee-script"]
   path = bundle/vim-coffee-script
   url = https://github.com/vim-scripts/vim-coffee-script.git
+[submodule "bundle/vim-colors"]
+  path = bundle/vim-colors
+  url = https://github.com/spf13/vim-colors.git
 [submodule "bundle/vim-colors-solarized"]
   path = bundle/vim-colors-solarized
   url = https://github.com/altercation/vim-colors-solarized.git
@@ -160,6 +172,9 @@
 [submodule "bundle/vim-pyte"]
   path = bundle/vim-pyte
   url = https://github.com/therubymug/vim-pyte.git
+[submodule "bundle/vim-signify"]
+  path = bundle/vim-signify
+  url = https://github.com/mhinz/vim-signify.git
 [submodule "bundle/vim-surround"]
   path = bundle/vim-surround
   url = https://github.com/tpope/vim-surround.git
@@ -172,6 +187,9 @@
 [submodule "bundle/vimroom"]
   path = bundle/vimroom
   url = https://github.com/mikewest/vimroom.git
+[submodule "bundle/vitality.vim"]
+  path = bundle/vitality.vim
+  url = https://github.com/sjl/vitality.vim.git
 [submodule "bundle/vundle"]
   path = bundle/vundle
   url = http://github.com/gmarik/vundle.git

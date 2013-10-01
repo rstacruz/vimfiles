@@ -9,6 +9,7 @@ augroup filetypedetect
   au! BufNewFile,BufRead *.styl    setf sass
   au! BufNewFile,BufRead *.json    setf javascript
   au! BufNewFile,BufRead *.hamljs  setf haml
+  au! BufNewFile,BufRead *.task    setf taskpaper
 augroup END
 
 " Auto spellcheck

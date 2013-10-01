@@ -28,32 +28,31 @@ let g:CSApprox_verbose_level=0
 
 " == Bundles =================================================================
 
-" Powerline: cool status lines
-Bundle 'Lokaltog/vim-powerline'
-if has("gui_running") && has("gui_macvim")
-  let g:Powerline_symbols='fancy'
-endif
-
-let g:Powerline_colorscheme='solarized16'
-" let g:Powerline_colorscheme='solarized256'
-" let g:Powerline_colorscheme='solarized'
-" To reload: :PowerlineReloadColorscheme
-call Pl#Theme#RemoveSegment('charcode')
-call Pl#Theme#RemoveSegment('fileformat')
-call Pl#Theme#RemoveSegment('fileencoding')
-call Pl#Theme#RemoveSegment('filetype')
-call Pl#Theme#RemoveSegment('scrollpercent')
-" call Pl#Theme#RemoveSegment('fugitive:branch')
+" Airline: Lightweight powerline
+Bundle 'bling/vim-airline'
+" Vim-powerline symbols
+  let g:airline_left_sep = '⮀'
+  let g:airline_left_alt_sep = '⮁'
+  let g:airline_right_sep = '⮂'
+  let g:airline_right_alt_sep = '⮃'
+  let g:airline_fugitive_prefix = '⭠ '
+  let g:airline_readonly_symbol = '⭤'
+  let g:airline_linecolumn_prefix = '⭡'
+" No filetype
+  let g:airline_section_x = ''
+  let g:airline_section_z = '%3p%%'
+  let g:airline_section_y = g:airline_linecolumn_prefix.'%4l ⋅%2c'
+" Themes
+  let g:airline_theme='solarized'
 
 Bundle 'tpope/vim-fugitive'
 " Fugitive: Git client
 "   :Gcd
 "   :Gstatus
+"   :Ggrep
 "   :G...
 "
 autocmd QuickFixCmdPost *grep* cwindow  " Open Ggrep in quickfix window
-map ,gc :Gcommit<Cr>
-map ,gs :Gstatus<Cr>
 
 Bundle 'rstacruz/sparkup', {'rtp': 'vim'}
 " Sparkup: HTML helper
@@ -65,11 +64,6 @@ Bundle 'ack.vim'
 "   :Ack              - Search
 "
 let g:ackhighlight=1
-
-Bundle 'tjennings/git-grep-vim'
-" GitGrep: Search in project
-"   :GitGrep          - Search
-map :gg :GitGrep 
 
 Bundle 'vim-coffee-script'
 " VimCoffeeScript: Coffee Script compilation
@@ -103,7 +97,7 @@ let NERDTreeDirArrows=1
 let NERDTreeMouseMode=2
 let NERDTreeMinimalUI=1
 let NERDTreeStatusline=' '
-let NERDTreeWinPos='right'
+let NERDTreeWinPos='left'
 let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
 map <Leader>n :NERDTreeToggle<CR>
 map <F12> :NERDTree<CR>
@@ -118,60 +112,82 @@ Bundle 'tpope/vim-commentary'
 map \= \\
 vmap / \\
 
+" ------
 Bundle 'vim-scripts/ZoomWin'
 " ZoomWin: Zoom windows
-"   <C-W>o            - Zoom in/out
-"
-map ,o <C-W>o
-map ,z <C-W>o
 
-Bundle 'EasyMotion'
+  "   <C-W>o            - Zoom in/out
+  map ,o <C-W>o
+  map ,z <C-W>o
+
+" ------
+" Bundle 'EasyMotion'
 " EasyMotion: Jump around
-"  ,mw                - Jump to word
-"  ,f                 - Jump to letter
-"  ,F                 - Jump to letter (from left)
-"
-let g:EasyMotion_leader_key = ',m'
-let g:EasyMotion_mapping_f = ',f'
-let g:EasyMotion_mapping_F = ',F'
-let g:EasyMotion_keys = 'aeouidhtnspyfgcrlAOEUIDHTNSPYFGCRLqjkxbmwvzQJKXBMWVZ'
 
+  "  ,mw - Jump to word
+  "  ,f  - Jump to letter
+  "  ,F  - Jump to letter (from left)
+
+  " let g:EasyMotion_leader_key = ',m'
+  " let g:EasyMotion_mapping_f = ',f'
+  " let g:EasyMotion_mapping_F = ',F'
+  " let g:EasyMotion_keys = 'aeouidhtnspyfgcrlAOEUIDHTNSPYFGCRLqjkxbmwvzQJKXBMWVZ'
+
+" ------
 Bundle 'tpope/vim-surround'
 " Surround: Surround text.
-"   (Visual) S"       - Surround with "
-"   (Visual) gS"      - Surround with " and indent
-"   cs"'              - Change surrounding thing from " to '
-"   cst<a>            - Change surrounding XML tag to <a>
-"   ds"               - Delete surrounding "
-"   dst               - Delete surrounding HTML tag
-"   ysiw]             - Surround with []
-"   csw]              - Surround with []
-"   yss]              - Surround entire line with []
-"   ySiw]             - Surround with [], but indent
 
+  " (Visual) S"       - Surround with "
+  " (Visual) gS"      - Surround with " and indent
+  " cs"'              - Change surrounding thing from " to '
+  " cst<a>            - Change surrounding XML tag to <a>
+  " ds"               - Delete surrounding "
+  " dst               - Delete surrounding HTML tag
+  " ysiw]             - Surround with []
+  " csw]              - Surround with []
+  " yss]              - Surround entire line with []
+  " ySiw]             - Surround with [], but indent
+
+" ------
+Bundle 'mhinz/vim-signify'
+" Signify: show VCS changed in left side
+
+  let g:signify_sign_add               = '⚙'
+  let g:signify_sign_change            = '•'
+  let g:signify_sign_delete            = '❌'
+  let g:signify_sign_delete_first_line = '✂'
+  let g:signify_skip_filetype = { 'taskpaper': 1 }
+
+  " Colors
+  au BufNewFile,BufRead * hi SignColumn ctermbg=none
+  au BufNewFile,BufRead * hi SignifySignAdd ctermbg=none ctermfg=2
+  au BufNewFile,BufRead * hi SignifySignChange ctermbg=none ctermfg=6
+  au BufNewFile,BufRead * hi SignifySignDelete ctermbg=none ctermfg=1
+
+" ------
 " Bundle 'majutsushi/tagbar'
 " Tagbar: CTags support
-"   <F11>             - Opens/closes the Tagbar drawer
-"
-" map <F11> :TagbarToggle<Cr>
-" imap <F11> <Esc><F11>i
+
+  " <F11>             - Opens/closes the Tagbar drawer
+  " map <F11> :TagbarToggle<Cr>
+  " imap <F11> <Esc><F11>i
 
 " Bundle 'thinca/vim-quickrun'
 " Quick Run: runs the current buffer.
 "    :QuickRun        - Execute the current buffer
 "    :QuickRun perl   - Execute the current buffer as perl
 
-Bundle 'corntrace/bufexplorer'
+" Bundle 'corntrace/bufexplorer'
 " BufExplorer: open other files in the buffer
 "    \be    - Open in current panel
 "    \bs    - Open in horiz split
 "    \bv    - Open in vert split
 
-Bundle 'mikewest/vimroom'
+" Bundle 'mikewest/vimroom'
 " Vim Room: Simulating a vaguely WriteRoom-like environment in Vim.
 "    :VimroomToggle
 "
-let g:vimroom_background='black'
+" let g:vimroom_background='black'
 
 Bundle 'tpope/vim-abolish'
 " Abolish: Search and substitute multiple variants of a word
@@ -202,8 +218,8 @@ let g:syntastic_quiet_warnings=1
 let g:syntastic_check_on_open=1
 let g:syntastic_ruby_exec = "~/.rbenv/versions/1.9.3-p194/bin/ruby"
 let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'active_filetypes': ['css', 'php', 'js', 'ruby', 'vim', 'python', 'html', 'coffee'],
-                           \ 'passive_filetypes': ['sass', 'scss', 'haml'] }
+                           \ 'active_filetypes': ['php', 'js', 'ruby', 'vim', 'python', 'html', 'coffee'],
+                           \ 'passive_filetypes': ['sass', 'scss', 'haml', 'css'] }
 
 " Syntastic styles
 if has('unix')
@@ -213,11 +229,32 @@ if has('unix')
   let g:syntastic_style_warning_symbol='>'
 endif
 
-Bundle 'embear/vim-localvimrc'
-" Local Vimrc: Project-specific settings via .lvimrc files
-
 Bundle 'terryma/vim-multiple-cursors'
 " Vim Multiple Cursors: Sublime-style multi cursors
+
+Bundle "sjl/vitality.vim"
+" Vim Vitality: cursor changing for tmux/iTerm2
+
+" Bundle "Shougo/unite.vim"
+" let g:unite_source_history_yank_enable = 1
+" call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" nnoremap <C-t> :<C-r>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+" nnoremap <leader>t :<C-r>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+" nnoremap <leader>f :<C-r>Unite -no-split -buffer-name=files   -start-insert file<cr>
+" nnoremap <leader>r :<C-r>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+" nnoremap <leader>o :<C-r>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+" nnoremap <leader>y :<C-r>Unite -no-split -buffer-name=yank    history/yank<cr>
+" nnoremap <leader>e :<C-r>Unite -no-split -buffer-name=buffer  buffer<cr>
+
+" Custom mappings for the unite buffer
+" autocmd FileType unite call s:unite_settings()
+" function! s:unite_settings()
+"   " Play nice with supertab
+"   let b:SuperTabDisabled=1
+"   " Enable navigation with control-j and control-k in insert mode
+"   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+"   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+" endfunction
 
 " == Syntax bundles ==========================================================
 
@@ -228,9 +265,12 @@ Bundle 'jade.vim'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'vim-scripts/jQuery'
 Bundle 'Textile-for-VIM'
-Bundle 'davidoc/taskpaper.vim'
 Bundle 'git://gist.github.com/369178.git'
 " Less syntax
+
+Bundle 'davidoc/taskpaper.vim'
+au Filetype taskpaper hi Title ctermfg=4
+au Filetype taskpaper setl nonumber
 
 " ============================================================================
 
@@ -241,16 +281,17 @@ exec 'set runtimepath+=' . extra_paths
 " == Color bundles ===========================================================
 
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'vydark'
-Bundle 'vylight'
+" Bundle 'vydark'
+" Bundle 'vylight'
 Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
-Bundle 'noahfrederick/Hemisu'
-Bundle 'gregsexton/Muon'
-Bundle 'therubymug/vim-pyte'
-Bundle 'tpope/vim-vividchalk'
-Bundle 'molokai'
-Bundle 'Lucius'
-Bundle 'chriskempson/base16-vim'
+" Bundle 'noahfrederick/Hemisu'
+" Bundle 'gregsexton/Muon'
+" Bundle 'therubymug/vim-pyte'
+" Bundle 'tpope/vim-vividchalk'
+" Bundle 'molokai'
+" Bundle 'Lucius'
+" Bundle 'chriskempson/base16-vim'
+Bundle 'spf13/vim-colors'
 
 " == Slow plugins ============================================================
 
@@ -270,7 +311,7 @@ if $VIM_MINIMAL != '1'
 
   Bundle 'kien/ctrlp.vim'
   " CtrlP: File opener
-  map <C-t> :CtrlPTag<Cr>
+  " map <C-t> :CtrlPTag<Cr>
   map <C-b> :CtrlPBuffer<Cr>
   let g:ctrlp_working_path_mode='r'
 
@@ -279,4 +320,3 @@ endif
 " ============================================================================
 
 filetype plugin indent on
-

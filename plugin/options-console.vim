@@ -1,14 +1,16 @@
 if !has("gui_running")
     "color jellybeans+
     " set t_Co=256
-    set background=dark
-    let g:solarized_termtrans=1
-    let g:solarized_hitrail=1
+    set background=light
+
+    " let g:solarized_termtrans=1
+    " let g:solarized_hitrail=1
 
     if has("gui")
+      color ir_black
       " color pablo
       " color solarized
-      color ir_black+
+      " color fruity
       " color vylight
       " color hemisu
       " color Tomorrow-Night
@@ -21,4 +23,5 @@ if !has("gui_running")
     else
       " color snap-vydark+
     endif
+
 endif

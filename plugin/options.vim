@@ -65,7 +65,9 @@ set lazyredraw                  "lz:    will not redraw the screen while running
 
 " == Encryption ==============================================================
 
-set cryptmethod=blowfish        "cm:    make encryption more secure
+if has("cryptv")
+  set cryptmethod=blowfish        "cm:    make encryption more secure
+endif
 
 " == Menu completion =========================================================
 

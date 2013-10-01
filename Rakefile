@@ -1,6 +1,7 @@
 x = lambda { |str| File.expand_path str }
 require 'fileutils'
 
+desc "Installs."
 task :setup => [
   :'setup:check',    # Ensure we're in ~/.vim
   :'setup:vimrc',    # Make a symlink to ~/.vimrc
@@ -40,20 +41,6 @@ end
 
 # ============================================================================
 
-desc "Make the sass snippets"
-task :sass do
-  str = File.read('UltiSnips/css.snippets')
-  str.gsub!(/;/, '')
-  str.gsub!(/ \{$/, '')
-  str.gsub!(/^\}$/, '')
-  str.gsub!('@include ', '+')
-
-  puts "+ UltiSnips/sass.snippets"
-  File.open('UltiSnips/sass.snippets', 'w') { |f| f.write str }
-end
-
-# ============================================================================
-
 def get_origin_url
   output = `git remote -v`.split("\n")
   line = output.select { |line| line =~ /^origin\t/ }.first
@@ -76,4 +63,5 @@ task :'submodule:sync' do
   end
   script = lines.join("\n") + "\n"
   File.open('.gitmodules', 'w') { |f| f.write script }
+  puts File.read('.gitmodules')
 end
