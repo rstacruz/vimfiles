@@ -1,3 +1,7 @@
+" == Leader ==================================================================
+
+let mapleader=" "
+
 " == Typos ===================================================================
 
 command! W execute 'w'
@@ -185,11 +189,4 @@ autocmd InsertEnter * se cursorline
 
 map <C-h> :bnext<CR>
 map <C-l> :bprev<CR>
-
-
-" ============================================================================
-"http://vimbits.com/bits/445
-
-let mapleader=" "
-noremap <leader><space> :
 

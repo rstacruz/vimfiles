@@ -57,3 +57,6 @@ map <Up>    <C-W>k
 map <Down>  <C-W>j
 map <Left>  <C-W>h
 map <Right> <C-W>l
+
+map <leader>nN :set number<Cr>
+map <leader>nn :set nonumber<Cr>
