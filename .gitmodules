@@ -102,7 +102,7 @@
   url = https://github.com/godlygeek/tabular.git
 [submodule "bundle/taskpaper.vim"]
   path = bundle/taskpaper.vim
-  url = https://github.com/davidoc/taskpaper.vim.git
+  url = https://github.com/rstacruz/taskpaper.vim.git
 [submodule "bundle/Textile-for-VIM"]
   path = bundle/Textile-for-VIM
   url = https://github.com/vim-scripts/Textile-for-VIM.git

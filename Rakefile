@@ -65,3 +65,17 @@ task :'submodule:sync' do
   File.open('.gitmodules', 'w') { |f| f.write script }
   puts File.read('.gitmodules')
 end
+
+desc "Help"
+task :'help' do
+  puts "mapleader:"
+  system %[cat plugin/* | grep "let mapleader"]
+
+  puts ""
+  puts "leader:"
+  system %[cat plugin/* vimrc.vim | grep "map <leader>"]
+
+  puts ""
+  puts "mappings:"
+  system %[cat plugin/* vimrc.vim | grep "^  \\"\\""]
+end

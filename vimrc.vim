@@ -9,6 +9,7 @@ set nocompatible
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
+let g:mapleader=" "
 
 Bundle 'gmarik/vundle'
 " Vundler: Bundle organizer
@@ -51,30 +52,30 @@ let g:CSApprox_verbose_level=0
 " Fugitive: Git client -------------------------------------------------------
   Bundle 'tpope/vim-fugitive'
 
-  " :Gcd
-  " :Gstatus
-  " :Ggrep
-  " :G...
+  "" :Gcd      - cd to project folder
+  "" :Gstatus  - git status
+  "" :Ggrep    - perform a git grep
+  "" :G...
 
   autocmd QuickFixCmdPost *grep* cwindow  " Open Ggrep in quickfix window
 
 " Sparkup: HTML helper -------------------------------------------------------
   Bundle 'rstacruz/sparkup', {'rtp': 'vim'}
 
-  " <C-e>  -  Expand (HTML only)
-  " <C-n>  -  Move to next
+  "" <C-e>  -  Expand sparkup (HTML only)
+  "" <C-n>  -  Move to next
 
 " Ack: Search in project -----------------------------------------------------
   Bundle 'ack.vim'
 
-  "   :Ack  -  Search
+  ""  :Ack  - search via ack
 
   let g:ackhighlight=1
 
 " VimCoffeeScript: Coffee Script compilation ---------------------------------
   Bundle 'vim-coffee-script'
 
-  " :CoffeeCompile  -  Compile a snippet or file
+  " :CoffeeCompile  - compile a snippet or file
 
   vmap <leader>cc <esc>:'<,'>:CoffeeCompile<CR>
   map <leader>cc :CoffeeCompile<CR>
@@ -96,13 +97,12 @@ let g:CSApprox_verbose_level=0
 " SuperTab Continued: insert mode completions with Tab -----------------------
   Bundle 'ervandew/supertab'
 
-  " (Insert) <Tab>    - Autocomplete
+  "" (Insert) <Tab>    - Autocomplete
 
 " NERDTree: Project drawer ---------------------------------------------------
   Bundle 'scrooloose/nerdtree'
 
-  " <F12>  - Open NERDTree
-  " <F12>O - Open NERDTree and expand all
+  "" <leader>nt  - open NERDTree
 
   let NERDTreeDirArrows=1
   let NERDTreeMouseMode=2
@@ -243,6 +243,20 @@ Bundle 'scrooloose/syntastic'
 " Vim Vitality: cursor changing for tmux/iTerm2 ------------------------------
   Bundle "sjl/vitality.vim"
 
+" TaskPaper: Taskpaper syntax file -------------------------------------------
+  Bundle 'davidoc/taskpaper.vim'
+
+  "" <leader>td - mark as done
+  "" <leader>tD - archive done
+  "" <leader>tP - focus
+  "" <leader>t. - hide notes
+
+  au Filetype taskpaper setl nonumber
+  au Filetype taskpaper hi Title ctermfg=4
+  au Filetype taskpaper hi taskpaperDoneTag ctermfg=Green ctermbg=none guifg=Green
+  au Filetype taskpaper hi taskpaperCancelledTag ctermfg=Red ctermbg=none guifg=Red
+  au Filetype taskpaper hi Conceal ctermfg=Green ctermbg=none guifg=Green
+
 " Unite: file browser --------------------------------------------------------
 " Bundle "Shougo/unite.vim"
 
@@ -270,10 +284,6 @@ Bundle 'vim-scripts/jQuery'
 Bundle 'Textile-for-VIM'
 Bundle 'git://gist.github.com/369178.git'
 " Less syntax
-
-Bundle 'davidoc/taskpaper.vim'
-au Filetype taskpaper hi Title ctermfg=4
-au Filetype taskpaper setl nonumber
 
 " ============================================================================
 
