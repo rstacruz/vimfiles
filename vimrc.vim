@@ -32,19 +32,24 @@ let g:CSApprox_verbose_level=0
 " Airline: Lightweight powerline ---------------------------------------------
   Bundle 'bling/vim-airline'
 
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
+
   " Vim-powerline symbols
   let g:airline_left_sep = '⮀'
   let g:airline_left_alt_sep = '⮁'
   let g:airline_right_sep = '⮂'
   let g:airline_right_alt_sep = '⮃'
-  let g:airline_fugitive_prefix = '⭠ '
-  let g:airline_readonly_symbol = '⭤'
-  let g:airline_linecolumn_prefix = '⭡'
+  let g:airline_symbols.branch = '⭠'
+  let g:airline_symbols.readonly = '⭤'
+  let g:airline_symbols.linenr = '⭡'
 
   " No filetype
   let g:airline_section_x = ''
   let g:airline_section_z = '%3p%%'
-  let g:airline_section_y = g:airline_linecolumn_prefix.'%4l ⋅%2c'
+  let g:airline_section_y = g:airline_symbols.linenr . '%4l ⋅%2c'
+  let g:airline#extensions#hunks#enabled = 0
 
   " Themes
   let g:airline_theme='solarized'
@@ -91,7 +96,7 @@ let g:CSApprox_verbose_level=0
   map ,A: :%g/.*: .*/Tabularize css<Cr>
   map <F1> :noh<Cr>
 
-" Endwise: Wisely add 'end', 'endif', et al --------------------------------
+" Endwise: Wisely add 'end', 'endif', et al ----------------------------------
   Bundle 'tpope/vim-endwise'
 
 " SuperTab Continued: insert mode completions with Tab -----------------------
@@ -115,10 +120,10 @@ let g:CSApprox_verbose_level=0
 " Commentary: Commenter ------------------------------------------------------
   Bundle 'tpope/vim-commentary'
 
-  " \\\            -  Comment line
-  " \\ap           -  Comment paragraph
-  " \\4j           -  Comment 5 lines
-  " / (in visual)  -  Toggle comment
+  "" \\\            -  Comment line
+  "" \\ap           -  Comment paragraph
+  "" \\4j           -  Comment 5 lines
+  "" / (in visual)  -  Toggle comment
 
   map \= \\
   vmap / \\
@@ -143,16 +148,16 @@ let g:CSApprox_verbose_level=0
 " Surround: Surround text ----------------------------------------------------
   Bundle 'tpope/vim-surround'
 
-  " (Visual) S"       - Surround with "
-  " (Visual) gS"      - Surround with " and indent
-  " cs"'              - Change surrounding thing from " to '
-  " cst<a>            - Change surrounding XML tag to <a>
-  " ds"               - Delete surrounding "
-  " dst               - Delete surrounding HTML tag
-  " ysiw]             - Surround with []
-  " csw]              - Surround with []
-  " yss]              - Surround entire line with []
-  " ySiw]             - Surround with [], but indent
+  "" (Visual) S"   - Surround with "
+  "" (Visual) gS"  - Surround with " and indent
+  "" cs"'          - Change surrounding thing from " to '
+  "" cst<a>        - Change surrounding XML tag to <a>
+  "" ds"           - Delete surrounding "
+  "" dst           - Delete surrounding HTML tag
+  "" ysiw]         - Surround with []
+  "" csw]          - Surround with []
+  "" yss]          - Surround entire line with []
+  "" ySiw]         - Surround with [], but indent
 
 " Signify: show VCS changed in left side --------------------------------------
   Bundle 'mhinz/vim-signify'
@@ -275,39 +280,38 @@ Bundle 'scrooloose/syntastic'
 
 " == Syntax bundles ==========================================================
 
-Bundle 'tpope/vim-haml'
-Bundle 'vim-coffee-script'
-Bundle 'tpope/vim-markdown'
-Bundle 'jade.vim'
-Bundle 'cakebaker/scss-syntax.vim'
-Bundle 'vim-scripts/jQuery'
-Bundle 'Textile-for-VIM'
-Bundle 'git://gist.github.com/369178.git'
-" Less syntax
+  Bundle 'tpope/vim-haml'
+  Bundle 'vim-coffee-script'
+  Bundle 'tpope/vim-markdown'
+  Bundle 'jade.vim'
+  Bundle 'cakebaker/scss-syntax.vim'
+  Bundle 'vim-scripts/jQuery'
+  Bundle 'Textile-for-VIM'
+  Bundle 'git://gist.github.com/369178.git'
+  " Less syntax
 
 " ============================================================================
 
-" For bundles not managed by Vundle, plop them onto extras/.
-let extra_paths=substitute(glob('~/.vim/extras/*'), '\n', ',', 'g')
-exec 'set runtimepath+=' . extra_paths
+  " For bundles not managed by Vundle, plop them onto extras/.
+  let extra_paths=substitute(glob('~/.vim/extras/*'), '\n', ',', 'g')
+  exec 'set runtimepath+=' . extra_paths
 
 " == Color bundles ===========================================================
 
-Bundle 'altercation/vim-colors-solarized'
-" Bundle 'vydark'
-" Bundle 'vylight'
-Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
-" Bundle 'noahfrederick/Hemisu'
-" Bundle 'gregsexton/Muon'
-" Bundle 'therubymug/vim-pyte'
-" Bundle 'tpope/vim-vividchalk'
-" Bundle 'molokai'
-" Bundle 'Lucius'
-" Bundle 'chriskempson/base16-vim'
-Bundle 'spf13/vim-colors'
+  Bundle 'altercation/vim-colors-solarized'
+  " Bundle 'vydark'
+  " Bundle 'vylight'
+  Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
+  " Bundle 'noahfrederick/Hemisu'
+  " Bundle 'gregsexton/Muon'
+  " Bundle 'therubymug/vim-pyte'
+  " Bundle 'tpope/vim-vividchalk'
+  " Bundle 'molokai'
+  " Bundle 'Lucius'
+  " Bundle 'chriskempson/base16-vim'
+  Bundle 'spf13/vim-colors'
 
 " == Slow plugins ============================================================
-
 if $VIM_MINIMAL != '1'
 
   Bundle 'SirVer/ultisnips'
@@ -332,7 +336,6 @@ if $VIM_MINIMAL != '1'
   let g:ctrlp_working_path_mode='r'
 
 endif
-
 " ============================================================================
 
 filetype plugin indent on
