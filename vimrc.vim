@@ -11,23 +11,21 @@ set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
 let g:mapleader=" "
 
-Bundle 'gmarik/vundle'
-" Vundler: Bundle organizer
-  "  :BundleList          - list configured bundles
-  "  :BundleInstall(!)    - install(update) bundles
-  "  :BundleSearch(!) foo - search(or refresh cache first) for foo
-  "  :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" Vundler: Bundle organizer --------------------------------------------------
+  Bundle 'gmarik/vundle'
 
-" ============================================================================
+  "" :BundleList          - list configured bundles
+  "" :BundleInstall(!)    - install(update) bundles
+  "" :BundleSearch(!) foo - search(or refresh cache first) for foo
+  "" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
 
-" Bundle 'godlygeek/csapprox'
-" CSApprox: Make gvim-only colorschemes work transparently in terminal vim
-" This is a very slow plugin, so only enable (uncomment) it if you plan on
-" switching color schemes.
-"
-let g:CSApprox_verbose_level=0
-
-" == Bundles =================================================================
+" CSApprox: Make gvim-only colorschemes work in terminal vim -----------------
+  " Bundle 'godlygeek/csapprox'
+  "
+  " This is a very slow plugin, so only enable (uncomment) it if you plan on
+  " switching color schemes.
+  "
+  let g:CSApprox_verbose_level=0
 
 " Airline: Lightweight powerline ---------------------------------------------
   Bundle 'bling/vim-airline'
@@ -54,36 +52,12 @@ let g:CSApprox_verbose_level=0
   " Themes
   let g:airline_theme='solarized'
 
-" Fugitive: Git client -------------------------------------------------------
-  Bundle 'tpope/vim-fugitive'
-
-  "" :Gcd      - cd to project folder
-  "" :Gstatus  - git status
-  "" :Ggrep    - perform a git grep
-  "" :G...
-
-  autocmd QuickFixCmdPost *grep* cwindow  " Open Ggrep in quickfix window
-
-" Sparkup: HTML helper -------------------------------------------------------
-  Bundle 'rstacruz/sparkup', {'rtp': 'vim'}
-
-  "" <C-e>  -  Expand sparkup (HTML only)
-  "" <C-n>  -  Move to next
-
 " Ack: Search in project -----------------------------------------------------
-  Bundle 'ack.vim'
+  " Bundle 'ack.vim'
 
   ""  :Ack  - search via ack
 
   let g:ackhighlight=1
-
-" VimCoffeeScript: Coffee Script compilation ---------------------------------
-  Bundle 'vim-coffee-script'
-
-  " :CoffeeCompile  - compile a snippet or file
-
-  vmap <leader>cc <esc>:'<,'>:CoffeeCompile<CR>
-  map <leader>cc :CoffeeCompile<CR>
 
 " Tabular: Align stuff -------------------------------------------------------
   Bundle 'godlygeek/tabular'
@@ -97,7 +71,7 @@ let g:CSApprox_verbose_level=0
   map <F1> :noh<Cr>
 
 " Endwise: Wisely add 'end', 'endif', et al ----------------------------------
-  Bundle 'tpope/vim-endwise'
+  " Bundle 'tpope/vim-endwise'
 
 " SuperTab Continued: insert mode completions with Tab -----------------------
   Bundle 'ervandew/supertab'
@@ -159,49 +133,12 @@ let g:CSApprox_verbose_level=0
   "" yss]          - Surround entire line with []
   "" ySiw]         - Surround with [], but indent
 
-" Signify: show VCS changed in left side --------------------------------------
-  Bundle 'mhinz/vim-signify'
-
-  let g:signify_sign_add               = '⚙'
-  let g:signify_sign_change            = '•'
-  let g:signify_sign_delete            = '❌'
-  let g:signify_sign_delete_first_line = '✂'
-  let g:signify_skip_filetype = { 'taskpaper': 1 }
-
-  " Colors
-  au BufNewFile,BufRead * hi SignColumn ctermbg=none
-  au BufNewFile,BufRead * hi SignifySignAdd ctermbg=none ctermfg=2
-  au BufNewFile,BufRead * hi SignifySignChange ctermbg=none ctermfg=6
-  au BufNewFile,BufRead * hi SignifySignDelete ctermbg=none ctermfg=1
-
-  map <leader>st :SignifyToggle<Cr>
-
 " Tagbar: CTags support ------------------------------------------------------
 " Bundle 'majutsushi/tagbar'
 
   " <F11>             - Opens/closes the Tagbar drawer
   " map <F11> :TagbarToggle<Cr>
   " imap <F11> <Esc><F11>i
-
-" Quick Run: runs the current buffer -----------------------------------------
-" Bundle 'thinca/vim-quickrun'
-
-"    :QuickRun        - Execute the current buffer
-"    :QuickRun perl   - Execute the current buffer as perl
-
-" BufExplorer: open other files in the buffer --------------------------------
-" Bundle 'corntrace/bufexplorer'
-
-  " \be    - Open in current panel
-  " \bs    - Open in horiz split
-  " \bv    - Open in vert split
-
-" Vim Room: Simulating a vaguely WriteRoom-like environment in Vim -----------
-" Bundle 'mikewest/vimroom'
-
-  "  :VimroomToggle
-
-  " let g:vimroom_background='black'
 
 " Abolish: Search and substitute multiple variants of a word -----------------
 Bundle 'tpope/vim-abolish'
@@ -213,34 +150,10 @@ Bundle 'tpope/vim-abolish'
   " %S/application/program  (works with Application, APPLICATION, ...)
 
 " Indent Object: text object for indentation ---------------------------------
-Bundle 'michaeljsmith/vim-indent-object'
+  Bundle 'michaeljsmith/vim-indent-object'
 
   " vii  -  Delete indentation
   " vai  -  Delete indentation and the line above
-
-" AutoTag: Auto generate ctags file ------------------------------------------
-  Bundle 'AutoTag'
-
-" Syntastic: Auto check syntax -----------------------------------------------
-Bundle 'scrooloose/syntastic'
-
-  " :Errors - opens error window
-  " :SyntasticCheck - forces checking
-
-  let g:syntastic_quiet_warnings=1
-  let g:syntastic_check_on_open=1
-  let g:syntastic_ruby_exec = "~/.rbenv/versions/1.9.3-p194/bin/ruby"
-  let g:syntastic_mode_map = { 'mode': 'active',
-                             \ 'active_filetypes': ['php', 'js', 'ruby', 'vim', 'python', 'html', 'coffee'],
-                             \ 'passive_filetypes': ['sass', 'scss', 'haml', 'css'] }
-
-  " Syntastic styles
-  if has('unix')
-    let g:syntastic_error_symbol='⚠'
-    let g:syntastic_style_error_symbol='>'
-    let g:syntastic_warning_symbol='★'
-    let g:syntastic_style_warning_symbol='>'
-  endif
 
 " Vim Multiple Cursors: Sublime-style multi cursors --------------------------
   Bundle 'terryma/vim-multiple-cursors'
@@ -260,7 +173,7 @@ Bundle 'scrooloose/syntastic'
   au Filetype taskpaper hi Title ctermfg=4
   au Filetype taskpaper hi taskpaperDoneTag ctermfg=Green ctermbg=none guifg=Green
   au Filetype taskpaper hi taskpaperCancelledTag ctermfg=Red ctermbg=none guifg=Red
-  au Filetype taskpaper hi Conceal ctermfg=Green ctermbg=none guifg=Green
+  au Filetype taskpaper hi Conceal ctermfg=2 ctermbg=none guifg=Green
 
 " Unite: file browser --------------------------------------------------------
 " Bundle "Shougo/unite.vim"
@@ -278,7 +191,106 @@ Bundle 'scrooloose/syntastic'
   "   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
   " endfunction
 
-" == Syntax bundles ==========================================================
+" == Non-essential plugins ===================================================
+if $VIM_MINIMAL != '1'
+
+  " to start Vim in minimal mode (which starts faster), just do:
+  "
+  "     VIM_MINIMAL=1 vim
+  "
+  " Useful as an editor for Git, viewing log files, or anything that doesn't
+  " need any heavy text editing.
+
+" Sparkup: HTML helper -------------------------------------------------------
+  Bundle 'rstacruz/sparkup', {'rtp': 'vim'}
+
+  "" <C-e>  -  Expand sparkup (HTML only)
+  "" <C-n>  -  Move to next
+
+" VimCoffeeScript: Coffee Script compilation ---------------------------------
+  Bundle 'vim-coffee-script'
+
+  " :CoffeeCompile  - compile a snippet or file
+
+  vmap <leader>cc <esc>:'<,'>:CoffeeCompile<CR>
+  map <leader>cc :CoffeeCompile<CR>
+
+
+" Signify: show VCS changed in left side --------------------------------------
+  Bundle 'mhinz/vim-signify'
+
+  let g:signify_sign_add               = '⚙'
+  let g:signify_sign_change            = '•'
+  let g:signify_sign_delete            = '❌'
+  let g:signify_sign_delete_first_line = '✂'
+  let g:signify_skip_filetype = { 'taskpaper': 1 }
+
+  " Colors
+  au BufNewFile,BufRead * hi SignColumn ctermbg=none
+  au BufNewFile,BufRead * hi SignifySignAdd ctermbg=none ctermfg=2
+  au BufNewFile,BufRead * hi SignifySignChange ctermbg=none ctermfg=6
+  au BufNewFile,BufRead * hi SignifySignDelete ctermbg=none ctermfg=1
+
+  map <leader>st :SignifyToggle<Cr>
+
+" AutoTag: Auto generate ctags file ------------------------------------------
+  Bundle 'AutoTag'
+
+" Syntastic: Auto check syntax -----------------------------------------------
+  Bundle 'scrooloose/syntastic'
+
+  " :Errors - opens error window
+  " :SyntasticCheck - forces checking
+
+  let g:syntastic_quiet_warnings=1
+  let g:syntastic_check_on_open=1
+  let g:syntastic_ruby_exec = "~/.rbenv/versions/1.9.3-p194/bin/ruby"
+  let g:syntastic_mode_map = { 'mode': 'active',
+                             \ 'active_filetypes': ['php', 'js', 'ruby', 'vim', 'python', 'html', 'coffee'],
+                             \ 'passive_filetypes': ['sass', 'scss', 'haml', 'css'] }
+
+  " Syntastic styles
+  if has('unix')
+    let g:syntastic_error_symbol='⚠'
+    let g:syntastic_style_error_symbol='>'
+    let g:syntastic_warning_symbol='★'
+    let g:syntastic_style_warning_symbol='>'
+  endif
+
+" Fugitive: Git client -------------------------------------------------------
+  Bundle 'tpope/vim-fugitive'
+
+  "" :Gcd      - cd to project folder
+  "" :Gstatus  - git status
+  "" :Ggrep    - perform a git grep
+  "" :G...
+
+  autocmd QuickFixCmdPost *grep* cwindow  " Open Ggrep in quickfix window
+
+" UltiSnips: Tab snippets ----------------------------------------------------
+  Bundle 'SirVer/ultisnips'
+
+  "" <Tab>  - Expand snippet
+
+  let g:UltiSnipsExpandTrigger="<tab>"
+  let g:UltiSnipsJumpForwardTrigger="<tab>"
+  let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+  let g:UltiSnipsDontReverseSearchPath=0
+
+" Vim Ultisnips CSS: Fast CSS snippets ---------------------------------------
+  Bundle 'rstacruz/vim-ultisnips-css'
+
+" CtrlP: File opener ---------------------------------------------------------
+  Bundle 'kien/ctrlp.vim'
+
+  " map <C-t> :CtrlPTag<Cr>
+  map <C-b> :CtrlPBuffer<Cr>
+  map <leader>pb :CtrlPBuffer<Cr>
+  map <leader>pt :CtrlPTag<Cr>
+  map <leader>pp :CtrlP<Cr>
+  let g:ctrlp_working_path_mode='r'
+
+" Syntax bundles -------------------------------------------------------------
 
   Bundle 'tpope/vim-haml'
   Bundle 'vim-coffee-script'
@@ -290,6 +302,7 @@ Bundle 'scrooloose/syntastic'
   Bundle 'git://gist.github.com/369178.git'
   " Less syntax
 
+endif
 " ============================================================================
 
   " For bundles not managed by Vundle, plop them onto extras/.
@@ -299,6 +312,7 @@ Bundle 'scrooloose/syntastic'
 " == Color bundles ===========================================================
 
   Bundle 'altercation/vim-colors-solarized'
+  Bundle 'spf13/vim-colors'
   " Bundle 'vydark'
   " Bundle 'vylight'
   Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim'}
@@ -309,33 +323,5 @@ Bundle 'scrooloose/syntastic'
   " Bundle 'molokai'
   " Bundle 'Lucius'
   " Bundle 'chriskempson/base16-vim'
-  Bundle 'spf13/vim-colors'
-
-" == Slow plugins ============================================================
-if $VIM_MINIMAL != '1'
-
-  Bundle 'SirVer/ultisnips'
-  " UltiSnips: Tab snippets
-  "   <Tab>             - Expand snippet
-  "
-  let g:UltiSnipsExpandTrigger="<tab>"
-  let g:UltiSnipsJumpForwardTrigger="<tab>"
-  let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-  let g:UltiSnipsDontReverseSearchPath=0
-
-  Bundle 'rstacruz/vim-ultisnips-css'
-  " VimUltisnipsCSS: Fast CSS snippets
-
-  Bundle 'kien/ctrlp.vim'
-  " CtrlP: File opener
-  " map <C-t> :CtrlPTag<Cr>
-  map <C-b> :CtrlPBuffer<Cr>
-  map <leader>pb :CtrlPBuffer<Cr>
-  map <leader>pt :CtrlPTag<Cr>
-  map <leader>pp :CtrlP<Cr>
-  let g:ctrlp_working_path_mode='r'
-
-endif
-" ============================================================================
 
 filetype plugin indent on
