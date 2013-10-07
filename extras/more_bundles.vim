@@ -1,6 +1,44 @@
 " These are bundles I don't like too much.
 " They will not be loaded.
 
+" Endwise: Wisely add 'end', 'endif', et al ----------------------------------
+" Bundle 'tpope/vim-endwise'
+
+" EasyMotion: Jump around ----------------------------------------------------
+" Bundle 'EasyMotion'
+
+  "  ,mw - Jump to word
+  "  ,f  - Jump to letter
+  "  ,F  - Jump to letter (from left)
+
+  " let g:EasyMotion_leader_key = ',m'
+  " let g:EasyMotion_mapping_f = ',f'
+  " let g:EasyMotion_mapping_F = ',F'
+  " let g:EasyMotion_keys = 'aeouidhtnspyfgcrlAOEUIDHTNSPYFGCRLqjkxbmwvzQJKXBMWVZ'
+
+" Tagbar: CTags support ------------------------------------------------------
+" Bundle 'majutsushi/tagbar'
+
+  " <F11>             - Opens/closes the Tagbar drawer
+  " map <F11> :TagbarToggle<Cr>
+  " imap <F11> <Esc><F11>i
+
+" Unite: file browser --------------------------------------------------------
+" Bundle "Shougo/unite.vim"
+
+  " let g:unite_source_history_yank_enable = 1
+  " call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
+  " Custom mappings for the unite buffer
+  " autocmd FileType unite call s:unite_settings()
+  " function! s:unite_settings()
+  "   " Play nice with supertab
+  "   let b:SuperTabDisabled=1
+  "   " Enable navigation with control-j and control-k in insert mode
+  "   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  "   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+  " endfunction
+
 Bundle 'Raimondi/delimitMate'
 " DelimitMate: Auto-completion for quotes, parens, and brackets
 " This must be loaded before endwise. Also, disabled curly brace matching

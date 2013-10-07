@@ -52,111 +52,11 @@ let g:mapleader=" "
   " Themes
   let g:airline_theme='solarized'
 
-" Ack: Search in project -----------------------------------------------------
-  " Bundle 'ack.vim'
-
-  ""  :Ack  - search via ack
-
-  let g:ackhighlight=1
-
-" Tabular: Align stuff -------------------------------------------------------
-  Bundle 'godlygeek/tabular'
-
-  " :Tabularize /=/   - Align by the given character
-
-  map ,a= :Tabularize /[=:]/<Cr>
-  map ,a, :Tabularize commas<Cr>
-  map ,a: :Tabularize css<Cr>
-  map ,A: :%g/.*: .*/Tabularize css<Cr>
-  map <F1> :noh<Cr>
-
-" Endwise: Wisely add 'end', 'endif', et al ----------------------------------
-  " Bundle 'tpope/vim-endwise'
-
-" SuperTab Continued: insert mode completions with Tab -----------------------
-  Bundle 'ervandew/supertab'
-
-  "" (Insert) <Tab>    - Autocomplete
-
-" NERDTree: Project drawer ---------------------------------------------------
-  Bundle 'scrooloose/nerdtree'
-
-  "" <leader>nt  - open NERDTree
-
-  let NERDTreeDirArrows=1
-  let NERDTreeMouseMode=2
-  let NERDTreeMinimalUI=1
-  let NERDTreeStatusline=' '
-  let NERDTreeWinPos='left'
-  let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
-  map <leader>nt :NERDTreeToggle<CR>
-
-" Commentary: Commenter ------------------------------------------------------
-  Bundle 'tpope/vim-commentary'
-
-  "" \\\            -  Comment line
-  "" \\ap           -  Comment paragraph
-  "" \\4j           -  Comment 5 lines
-  "" / (in visual)  -  Toggle comment
-
-  map \= \\
-  vmap / \\
-
-" ZoomWin: Zoom windows ------------------------------------------------------
-  Bundle 'vim-scripts/ZoomWin'
-
-  "   <C-W>o  -  Zoom in/out
-
-" EasyMotion: Jump around ----------------------------------------------------
-" Bundle 'EasyMotion'
-
-  "  ,mw - Jump to word
-  "  ,f  - Jump to letter
-  "  ,F  - Jump to letter (from left)
-
-  " let g:EasyMotion_leader_key = ',m'
-  " let g:EasyMotion_mapping_f = ',f'
-  " let g:EasyMotion_mapping_F = ',F'
-  " let g:EasyMotion_keys = 'aeouidhtnspyfgcrlAOEUIDHTNSPYFGCRLqjkxbmwvzQJKXBMWVZ'
-
-" Surround: Surround text ----------------------------------------------------
-  Bundle 'tpope/vim-surround'
-
-  "" (Visual) S"   - Surround with "
-  "" (Visual) gS"  - Surround with " and indent
-  "" cs"'          - Change surrounding thing from " to '
-  "" cst<a>        - Change surrounding XML tag to <a>
-  "" ds"           - Delete surrounding "
-  "" dst           - Delete surrounding HTML tag
-  "" ysiw]         - Surround with []
-  "" csw]          - Surround with []
-  "" yss]          - Surround entire line with []
-  "" ySiw]         - Surround with [], but indent
-
-" Tagbar: CTags support ------------------------------------------------------
-" Bundle 'majutsushi/tagbar'
-
-  " <F11>             - Opens/closes the Tagbar drawer
-  " map <F11> :TagbarToggle<Cr>
-  " imap <F11> <Esc><F11>i
-
-" Abolish: Search and substitute multiple variants of a word -----------------
-Bundle 'tpope/vim-abolish'
-
-  " crs - Coerce to snake_case
-  " crm - Coerce to MixedCase
-  " crc - Coerce to camelCase
-  " cru - Coerce to UPPERCASE
-  " %S/application/program  (works with Application, APPLICATION, ...)
-
 " Indent Object: text object for indentation ---------------------------------
   Bundle 'michaeljsmith/vim-indent-object'
 
   " vii  -  Delete indentation
   " vai  -  Delete indentation and the line above
-
-" Vim Multiple Cursors: Sublime-style multi cursors --------------------------
-  Bundle 'terryma/vim-multiple-cursors'
 
 " Vim Vitality: cursor changing for tmux/iTerm2 ------------------------------
   Bundle "sjl/vitality.vim"
@@ -175,21 +75,18 @@ Bundle 'tpope/vim-abolish'
   au Filetype taskpaper hi taskpaperCancelledTag ctermfg=Red ctermbg=none guifg=Red
   au Filetype taskpaper hi Conceal ctermfg=2 ctermbg=none guifg=Green
 
-" Unite: file browser --------------------------------------------------------
-" Bundle "Shougo/unite.vim"
+" NERDTree: Project drawer ---------------------------------------------------
+  Bundle 'scrooloose/nerdtree'
 
-  " let g:unite_source_history_yank_enable = 1
-  " call unite#filters#matcher_default#use(['matcher_fuzzy'])
+  "" <leader>nt  - open NERDTree
 
-  " Custom mappings for the unite buffer
-  " autocmd FileType unite call s:unite_settings()
-  " function! s:unite_settings()
-  "   " Play nice with supertab
-  "   let b:SuperTabDisabled=1
-  "   " Enable navigation with control-j and control-k in insert mode
-  "   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  "   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-  " endfunction
+  let NERDTreeDirArrows=1
+  let NERDTreeMouseMode=2
+  let NERDTreeMinimalUI=1
+  let NERDTreeStatusline=' '
+  let NERDTreeWinPos='left'
+  let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
+  map <leader>nt :NERDTreeToggle<CR>
 
 " == Non-essential plugins ===================================================
 if $VIM_MINIMAL != '1'
@@ -200,6 +97,64 @@ if $VIM_MINIMAL != '1'
   "
   " Useful as an editor for Git, viewing log files, or anything that doesn't
   " need any heavy text editing.
+
+" Surround: Surround text ----------------------------------------------------
+  Bundle 'tpope/vim-surround'
+
+  "" (Visual) S"   - Surround with "
+  "" (Visual) gS"  - Surround with " and indent
+  "" cs"'          - Change surrounding thing from " to '
+  "" cst<a>        - Change surrounding XML tag to <a>
+  "" ds"           - Delete surrounding "
+  "" dst           - Delete surrounding HTML tag
+  "" ysiw]         - Surround with []
+  "" csw]          - Surround with []
+  "" yss]          - Surround entire line with []
+  "" ySiw]         - Surround with [], but indent
+
+" Abolish: Search and substitute multiple variants of a word -----------------
+Bundle 'tpope/vim-abolish'
+
+  " crs - Coerce to snake_case
+  " crm - Coerce to MixedCase
+  " crc - Coerce to camelCase
+  " cru - Coerce to UPPERCASE
+  " %S/application/program  (works with Application, APPLICATION, ...)
+
+" Commentary: Commenter ------------------------------------------------------
+  Bundle 'tpope/vim-commentary'
+
+  "" \\\            -  Comment line
+  "" \\ap           -  Comment paragraph
+  "" \\4j           -  Comment 5 lines
+  "" / (in visual)  -  Toggle comment
+
+  map \= \\
+  vmap / \\
+
+" ZoomWin: Zoom windows ------------------------------------------------------
+  Bundle 'vim-scripts/ZoomWin'
+
+  "   <C-W>o  -  Zoom in/out
+
+" SuperTab Continued: insert mode completions with Tab -----------------------
+  Bundle 'ervandew/supertab'
+
+  "" (Insert) <Tab>    - Autocomplete
+
+" Tabular: Align stuff -------------------------------------------------------
+  Bundle 'godlygeek/tabular'
+
+  " :Tabularize /=/   - Align by the given character
+
+  map ,a= :Tabularize /[=:]/<Cr>
+  map ,a, :Tabularize commas<Cr>
+  map ,a: :Tabularize css<Cr>
+  map ,A: :%g/.*: .*/Tabularize css<Cr>
+  map <F1> :noh<Cr>
+
+" Vim Multiple Cursors: Sublime-style multi cursors --------------------------
+  Bundle 'terryma/vim-multiple-cursors'
 
 " Sparkup: HTML helper -------------------------------------------------------
   Bundle 'rstacruz/sparkup', {'rtp': 'vim'}
@@ -306,8 +261,8 @@ endif
 " ============================================================================
 
   " For bundles not managed by Vundle, plop them onto extras/.
-  let extra_paths=substitute(glob('~/.vim/extras/*'), '\n', ',', 'g')
-  exec 'set runtimepath+=' . extra_paths
+  "let extra_paths=substitute(glob('~/.vim/extras/*'), '\n', ',', 'g')
+  "exec 'set runtimepath+=' . extra_paths
 
 " == Color bundles ===========================================================
 
