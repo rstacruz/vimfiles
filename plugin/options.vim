@@ -42,7 +42,6 @@ set softtabstop=2               "sts:   number of spaces that tabs insert
 set smarttab                    "sta:   helps with backspacing because of expandtab
 set expandtab                   "et:    uses spaces instead of tab characters
 
-
 " == Backups =================================================================
 
 set nobackup                    "nobk:  in this age of version control, who needs it
@@ -89,3 +88,11 @@ set spellfile=~/.vim/spell/en.utf-8.add
 
 set sessionoptions-=options     "ssop:  don't store global/local values
 set sessionoptions-=folds       "ssop:  don't store folds
+
+" == Etc =====================================================================
+
+  set tabline=
+
+if $VIM_MINIMAL == 1
+  set laststatus=0
+endif

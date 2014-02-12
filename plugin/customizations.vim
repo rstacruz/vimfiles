@@ -192,3 +192,8 @@ autocmd InsertEnter * se cursorline
 
 map <C-h> :bnext<CR>
 map <C-l> :bprev<CR>
+
+" ============================================================================
+
+  "" <leader>ss - save session (to .vimsession)
+  map <silent><leader>ss :mksession! .vimsession<Cr>

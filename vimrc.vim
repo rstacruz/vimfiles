@@ -27,6 +27,75 @@ let g:mapleader=" "
   "
   let g:CSApprox_verbose_level=0
 
+" EditorConfig: see editorconfig.org -----------------------------------------
+  Bundle 'editorconfig/editorconfig-vim'
+
+" Indent Object: text object for indentation ---------------------------------
+  Bundle 'michaeljsmith/vim-indent-object'
+
+  " vii  -  Delete indentation
+  " vai  -  Delete indentation and the line above
+
+" Vim Vitality: cursor changing for tmux/iTerm2 ------------------------------
+  Bundle "sjl/vitality.vim"
+
+" Endwise: Wisely add 'end', 'endif', et al ----------------------------------
+  Bundle 'tpope/vim-endwise'
+
+" TaskPaper: Taskpaper syntax file -------------------------------------------
+  Bundle 'davidoc/taskpaper.vim'
+
+  "" <leader>td - mark as done
+  "" <leader>tD - archive done
+  "" <leader>tP - focus
+  "" <leader>t. - hide notes
+
+  au Filetype taskpaper setl nonumber
+  au Filetype taskpaper hi Title ctermfg=4
+  au Filetype taskpaper hi taskpaperDoneTag ctermfg=Green ctermbg=none guifg=Green
+  au Filetype taskpaper hi taskpaperCancelledTag ctermfg=Red ctermbg=none guifg=Red
+  au Filetype taskpaper hi taskpaperUrl ctermfg=Blue ctermbg=none guifg=Blue
+  au Filetype taskpaper hi Conceal ctermfg=2 ctermbg=none guifg=Green
+
+" NERDTree: Project drawer ---------------------------------------------------
+  " Bundle 'tpope/vinegar'
+  Bundle 'scrooloose/nerdtree'
+
+  "" <leader>nt  - open NERDTree
+  "" <leader>nd  - open NERDTree drawer
+
+  let NERDTreeDirArrows=1
+  let NERDTreeMouseMode=2
+  let NERDTreeMinimalUI=1
+  let NERDTreeStatusline=' '
+  let NERDTreeWinPos='left'
+  let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
+  map <leader>nd :NERDTreeToggle<CR>
+  map <leader>nt :e .<CR>
+
+" == Non-essential plugins ===================================================
+if $VIM_MINIMAL != '1'
+
+  " to start Vim in minimal mode (which starts faster), just do:
+  "
+  "     VIM_MINIMAL=1 vim
+  "
+  " Useful as an editor for Git, viewing log files, or anything that doesn't
+  " need any heavy text editing.
+
+" Unite: ---------------------------------------------------------------------
+  Bundle 'Shougo/vimproc.vim'
+  Bundle 'Shougo/unite.vim'
+  Bundle 'Shougo/unite-outline'
+
+  nnoremap <leader>uf :<C-u>Unite -no-split -start-insert file buffer<CR>
+  nnoremap <leader>ub :<C-u>Unite -no-split -start-insert buffer<CR>
+  nnoremap <leader>up :<C-u>Unite -no-split -start-insert file_rec<CR>
+
+  nnoremap <leader>Uf :<C-u>Unite -start-insert file buffer<CR>
+  nnoremap <leader>Ub :<C-u>Unite -start-insert buffer<CR>
+  nnoremap <leader>Up :<C-u>Unite -start-insert file_rec<CR>
+
 " Airline: Lightweight powerline ---------------------------------------------
   Bundle 'bling/vim-airline'
 
@@ -52,51 +121,9 @@ let g:mapleader=" "
   " Themes
   let g:airline_theme='solarized'
 
-" Indent Object: text object for indentation ---------------------------------
-  Bundle 'michaeljsmith/vim-indent-object'
-
-  " vii  -  Delete indentation
-  " vai  -  Delete indentation and the line above
-
-" Vim Vitality: cursor changing for tmux/iTerm2 ------------------------------
-  Bundle "sjl/vitality.vim"
-
-" TaskPaper: Taskpaper syntax file -------------------------------------------
-  Bundle 'davidoc/taskpaper.vim'
-
-  "" <leader>td - mark as done
-  "" <leader>tD - archive done
-  "" <leader>tP - focus
-  "" <leader>t. - hide notes
-
-  au Filetype taskpaper setl nonumber
-  au Filetype taskpaper hi Title ctermfg=4
-  au Filetype taskpaper hi taskpaperDoneTag ctermfg=Green ctermbg=none guifg=Green
-  au Filetype taskpaper hi taskpaperCancelledTag ctermfg=Red ctermbg=none guifg=Red
-  au Filetype taskpaper hi Conceal ctermfg=2 ctermbg=none guifg=Green
-
-" NERDTree: Project drawer ---------------------------------------------------
-  Bundle 'scrooloose/nerdtree'
-
-  "" <leader>nt  - open NERDTree
-
-  let NERDTreeDirArrows=1
-  let NERDTreeMouseMode=2
-  let NERDTreeMinimalUI=1
-  let NERDTreeStatusline=' '
-  let NERDTreeWinPos='left'
-  let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
-  map <leader>nt :NERDTreeToggle<CR>
-
-" == Non-essential plugins ===================================================
-if $VIM_MINIMAL != '1'
-
-  " to start Vim in minimal mode (which starts faster), just do:
-  "
-  "     VIM_MINIMAL=1 vim
-  "
-  " Useful as an editor for Git, viewing log files, or anything that doesn't
-  " need any heavy text editing.
+" ZenRoom2: iA Writer emulator -----------------------------------------------
+  Bundle 'junegunn/goyo.vim'
+  Bundle 'amix/vim-zenroom2'
 
 " Surround: Surround text ----------------------------------------------------
   Bundle 'tpope/vim-surround'
@@ -147,10 +174,7 @@ Bundle 'tpope/vim-abolish'
 
   " :Tabularize /=/   - Align by the given character
 
-  map ,a= :Tabularize /[=:]/<Cr>
-  map ,a, :Tabularize commas<Cr>
-  map ,a: :Tabularize css<Cr>
-  map ,A: :%g/.*: .*/Tabularize css<Cr>
+  map ,al :Tabularize /\v^\d*\.?\d*\*?\s/l2<Cr>
   map <F1> :noh<Cr>
 
 " Vim Multiple Cursors: Sublime-style multi cursors --------------------------
@@ -255,6 +279,8 @@ Bundle 'tpope/vim-abolish'
   Bundle 'cakebaker/scss-syntax.vim'
   Bundle 'vim-scripts/jQuery'
   Bundle 'Textile-for-VIM'
+  Bundle 'ledger/vim-ledger'
+  Bundle 'hsitz/VimOrganizer'
   Bundle 'git://gist.github.com/369178.git'
   " Less syntax
 
@@ -281,3 +307,5 @@ endif
   " Bundle 'chriskempson/base16-vim'
 
 filetype plugin indent on
+
+" https://github.com/terryma/dotfiles/blob/master/.vimrc

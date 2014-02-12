@@ -37,9 +37,15 @@
 [submodule "bundle/EasyMotion"]
   path = bundle/EasyMotion
   url = https://github.com/vim-scripts/EasyMotion.git
+[submodule "bundle/editorconfig-vim"]
+  path = bundle/editorconfig-vim
+  url = https://github.com/editorconfig/editorconfig-vim.git
 [submodule "bundle/git-grep-vim"]
   path = bundle/git-grep-vim
   url = https://github.com/tjennings/git-grep-vim.git
+[submodule "bundle/goyo.vim"]
+  path = bundle/goyo.vim
+  url = https://github.com/junegunn/goyo.vim.git
 [submodule "bundle/Hemisu"]
   path = bundle/Hemisu
   url = https://github.com/noahfrederick/Hemisu.git
@@ -112,6 +118,9 @@
 [submodule "bundle/ultisnips"]
   path = bundle/ultisnips
   url = https://github.com/SirVer/ultisnips.git
+[submodule "bundle/unite-outline"]
+  path = bundle/unite-outline
+  url = https://github.com/Shougo/unite-outline.git
 [submodule "bundle/unite.vim"]
   path = bundle/unite.vim
   url = https://github.com/Shougo/unite.vim.git
@@ -151,6 +160,9 @@
 [submodule "bundle/vim-indent-object"]
   path = bundle/vim-indent-object
   url = https://github.com/michaeljsmith/vim-indent-object.git
+[submodule "bundle/vim-ledger"]
+  path = bundle/vim-ledger
+  url = https://github.com/ledger/vim-ledger.git
 [submodule "bundle/vim-localvimrc"]
   path = bundle/vim-localvimrc
   url = https://github.com/embear/vim-localvimrc.git
@@ -178,12 +190,24 @@
 [submodule "bundle/vim-surround"]
   path = bundle/vim-surround
   url = https://github.com/tpope/vim-surround.git
+[submodule "bundle/vim-table-mode"]
+  path = bundle/vim-table-mode
+  url = https://github.com/dhruvasagar/vim-table-mode.git
 [submodule "bundle/vim-ultisnips-css"]
   path = bundle/vim-ultisnips-css
   url = https://github.com/rstacruz/vim-ultisnips-css.git
 [submodule "bundle/vim-vividchalk"]
   path = bundle/vim-vividchalk
   url = https://github.com/tpope/vim-vividchalk.git
+[submodule "bundle/vim-zenroom2"]
+  path = bundle/vim-zenroom2
+  url = https://github.com/amix/vim-zenroom2.git
+[submodule "bundle/VimOrganizer"]
+  path = bundle/VimOrganizer
+  url = https://github.com/hsitz/VimOrganizer.git
+[submodule "bundle/vimproc.vim"]
+  path = bundle/vimproc.vim
+  url = https://github.com/Shougo/vimproc.vim.git
 [submodule "bundle/vimroom"]
   path = bundle/vimroom
   url = https://github.com/mikewest/vimroom.git
