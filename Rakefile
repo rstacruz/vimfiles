@@ -3,10 +3,12 @@ require 'fileutils'
 
 desc "Installs."
 task :setup => [
-  :'setup:check',    # Ensure we're in ~/.vim
+  :'setup:link',     # Link me
   :'setup:vimrc',    # Make a symlink to ~/.vimrc
   :'setup:_after'
 ]
+
+task :install => :setup
 
 # ============================================================================
 
@@ -15,11 +17,14 @@ def status(str)
 end
 
 namespace :setup do
-  task :check do
-    if File.basename(Dir.pwd) != '.vim'
-      status "Note: This repo must be cloned into ~/.vim."
+  task :link do
+    if File.exists?(x['~/.vim'])
+      status "~/.vim exists. Remove it first."
       exit
     end
+
+    status "Linking to ~/.vim"
+    FileUtils.ln_s Dir.pwd, x['~/.vim']
   end
 
   task :vimrc do

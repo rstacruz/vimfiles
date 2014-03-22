@@ -55,7 +55,10 @@ let g:mapleader=" "
   au Filetype taskpaper hi taskpaperDoneTag ctermfg=Green ctermbg=none guifg=Green
   au Filetype taskpaper hi taskpaperCancelledTag ctermfg=Red ctermbg=none guifg=Red
   au Filetype taskpaper hi taskpaperUrl ctermfg=Blue ctermbg=none guifg=Blue
+  au Filetype taskpaper hi taskpaperUrl ctermfg=Blue ctermbg=none guifg=Blue
   au Filetype taskpaper hi Conceal ctermfg=2 ctermbg=none guifg=Green
+
+  au Filetype taskpaper hi link taskpaperComment       Text
 
 " NERDTree: Project drawer ---------------------------------------------------
   " Bundle 'tpope/vinegar'
@@ -87,14 +90,38 @@ if $VIM_MINIMAL != '1'
   Bundle 'Shougo/vimproc.vim'
   Bundle 'Shougo/unite.vim'
   Bundle 'Shougo/unite-outline'
+  Bundle 'Shougo/vimfiler.vim'
+  Bundle 'tsukkee/unite-tag'
 
-  nnoremap <leader>uf :<C-u>Unite -no-split -start-insert file buffer<CR>
-  nnoremap <leader>ub :<C-u>Unite -no-split -start-insert buffer<CR>
-  nnoremap <leader>up :<C-u>Unite -no-split -start-insert file_rec<CR>
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+  let g:unite_winheight = 10
+  let g:unite_win_split_rule = 'botright'
+  let g:unite_prompt = '▸ '
 
-  nnoremap <leader>Uf :<C-u>Unite -start-insert file buffer<CR>
-  nnoremap <leader>Ub :<C-u>Unite -start-insert buffer<CR>
-  nnoremap <leader>Up :<C-u>Unite -start-insert file_rec<CR>
+  nnoremap <leader>ua :<C-u>Unite -no-split -start-insert file_rec/async:!<CR>
+  nnoremap <leader>uf :<C-u>Unite -no-split file<CR>
+  nnoremap <leader>ub :<C-u>Unite -quick-match buffer<CR>
+  nnoremap <leader>um :<C-u>Unite -no-split -start-insert mru<CR>
+  nnoremap <leader>ut :<C-u>Unite -no-split -start-insert tag<CR>
+
+  nnoremap <leader>ug :<C-u>Unite -no-quit -winheight=10 grep:.<CR>
+  nnoremap <leader>uo :<C-u>Unite -no-split -auto-preview -winheight=20 outline<CR>
+
+  nnoremap <leader>uA :<C-u>Unite -start-insert file_rec/async<CR>
+  nnoremap <leader>uF :<C-u>Unite -start-insert file buffer<CR>
+  nnoremap <leader>uB :<C-u>Unite -start-insert buffer<CR>
+
+  " Use ag for search
+  if executable('ag')
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts = '--nogroup --nocolor --column --ignore vendor --ignore public'
+    let g:unite_source_grep_recursive_opt = ''
+  endif
+
+  " http://www.codeography.com/2013/06/17/replacing-all-the-things-with-unite-vim.html
+
+" ----------------------------------------------------------------------------
+  Bundle "tmhedberg/matchit"
 
 " Airline: Lightweight powerline ---------------------------------------------
   Bundle 'bling/vim-airline'
@@ -122,8 +149,11 @@ if $VIM_MINIMAL != '1'
   let g:airline_theme='solarized'
 
 " ZenRoom2: iA Writer emulator -----------------------------------------------
+  " focus
   Bundle 'junegunn/goyo.vim'
   Bundle 'amix/vim-zenroom2'
+  let g:goyo_margin_top=0
+  let g:goyo_margin_bottom=0
 
 " Surround: Surround text ----------------------------------------------------
   Bundle 'tpope/vim-surround'
@@ -268,7 +298,7 @@ Bundle 'tpope/vim-abolish'
   map <leader>pb :CtrlPBuffer<Cr>
   map <leader>pt :CtrlPTag<Cr>
   map <leader>pp :CtrlP<Cr>
-  let g:ctrlp_working_path_mode='r'
+  " let g:ctrlp_working_path_mode=2
 
 " Syntax bundles -------------------------------------------------------------
 

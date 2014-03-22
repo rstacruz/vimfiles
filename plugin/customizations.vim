@@ -145,17 +145,21 @@ let ctrlp_filter_greps = "".
     \ "deploy/|lib/|classes/|libs/|deploy/vendor/|.git/|.hg/|.svn/|.*migrations/|.*/\.gitkeep" .
     \ ")'"
 
+" command for git repos.
 let my_ctrlp_git_command = "" .
-    \ "cd %s && git ls-files | " .
+    \ "cd %s && (git ls-files; git ls-files --others --exclude-standard) | " .
     \ ctrlp_filter_greps
 
+" fallback command.
 if has("unix")
     let my_ctrlp_user_command = "" .
     \ "find %s '(' -type f -or -type l ')' -maxdepth 15 -not -path '*/.*/*' | " .
     \ ctrlp_filter_greps
 endif
 
-" let g:ctrlp_user_command = my_ctrlp_user_command
+" disable caching
+" let g:ctrlp_use_caching = 1
+
 let g:ctrlp_user_command = {
   \ 'types': {
     \ 1: ['.git', my_ctrlp_git_command]

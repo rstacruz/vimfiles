@@ -7,7 +7,7 @@ if !has("gui_running")
     " let g:solarized_hitrail=1
 
     if has("gui")
-      color ir_black
+      color ir_black+
       " color pablo
       " color solarized
       " color fruity
