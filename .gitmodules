@@ -121,6 +121,9 @@
 [submodule "bundle/unite-outline"]
   path = bundle/unite-outline
   url = https://github.com/Shougo/unite-outline.git
+[submodule "bundle/unite-tag"]
+  path = bundle/unite-tag
+  url = https://github.com/tsukkee/unite-tag.git
 [submodule "bundle/unite.vim"]
   path = bundle/unite.vim
   url = https://github.com/Shougo/unite.vim.git
@@ -202,6 +205,9 @@
 [submodule "bundle/vim-zenroom2"]
   path = bundle/vim-zenroom2
   url = https://github.com/amix/vim-zenroom2.git
+[submodule "bundle/vimfiler.vim"]
+  path = bundle/vimfiler.vim
+  url = https://github.com/Shougo/vimfiler.vim.git
 [submodule "bundle/VimOrganizer"]
   path = bundle/VimOrganizer
   url = https://github.com/hsitz/VimOrganizer.git
