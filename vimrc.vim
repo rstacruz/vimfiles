@@ -312,7 +312,7 @@ Bundle 'tpope/vim-abolish'
   Bundle 'ledger/vim-ledger'
   Bundle 'hsitz/VimOrganizer'
   Bundle 'git://gist.github.com/369178.git'
-  " Less syntax
+  Bundle 'groenewege/vim-less'
 
 endif
 " ============================================================================

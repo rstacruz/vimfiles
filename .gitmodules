@@ -67,6 +67,9 @@
 [submodule "bundle/Lucius"]
   path = bundle/Lucius
   url = https://github.com/vim-scripts/Lucius.git
+[submodule "bundle/matchit"]
+  path = bundle/matchit
+  url = https://github.com/tmhedberg/matchit.git
 [submodule "bundle/mayansmoke"]
   path = bundle/mayansmoke
   url = https://github.com/vim-scripts/mayansmoke.git
@@ -166,6 +169,9 @@
 [submodule "bundle/vim-ledger"]
   path = bundle/vim-ledger
   url = https://github.com/ledger/vim-ledger.git
+[submodule "bundle/vim-less"]
+  path = bundle/vim-less
+  url = https://github.com/groenewege/vim-less.git
 [submodule "bundle/vim-localvimrc"]
   path = bundle/vim-localvimrc
   url = https://github.com/embear/vim-localvimrc.git
