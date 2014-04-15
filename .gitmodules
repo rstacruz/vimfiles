@@ -238,6 +238,9 @@
 [submodule "bundle/yaml-vim"]
   path = bundle/yaml-vim
   url = https://github.com/ingydotnet/yaml-vim.git
+[submodule "bundle/YouCompleteMe"]
+  path = bundle/YouCompleteMe
+  url = https://github.com/Valloric/YouCompleteMe.git
 [submodule "bundle/ZoomWin"]
   path = bundle/ZoomWin
   url = https://github.com/vim-scripts/ZoomWin.git

@@ -195,9 +195,12 @@ Bundle 'tpope/vim-abolish'
   "   <C-W>o  -  Zoom in/out
 
 " SuperTab Continued: insert mode completions with Tab -----------------------
-  Bundle 'ervandew/supertab'
+  " Bundle 'ervandew/supertab'
 
   "" (Insert) <Tab>    - Autocomplete
+
+" YouCompleteMe: completion
+  Bundle 'Valloric/YouCompleteMe'
 
 " Tabular: Align stuff -------------------------------------------------------
   Bundle 'godlygeek/tabular'
@@ -282,10 +285,28 @@ Bundle 'tpope/vim-abolish'
 
   "" <Tab>  - Expand snippet
 
-  let g:UltiSnipsExpandTrigger="<tab>"
-  let g:UltiSnipsJumpForwardTrigger="<tab>"
-  let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
   let g:UltiSnipsDontReverseSearchPath=0
+
+  " https://github.com/Valloric/YouCompleteMe/issues/36#issuecomment-15451411
+  " UltiSnips completion function that tries to expand a snippet. If there's no
+  " snippet for expanding, it checks for completion window and if it's
+  " shown, selects first element. If there's no completion window it tries to
+  " jump to next placeholder. If there's no placeholder it just returns TAB key 
+  function! g:UltiSnips_Complete()
+      call UltiSnips#ExpandSnippet()
+      if g:ulti_expand_res == 0
+          if pumvisible()
+              return "\<C-n>"
+          else
+              call UltiSnips_JumpForwards()
+              if g:ulti_jump_forwards_res == 0
+                 return "\<TAB>"
+              endif
+          endif
+      endif
+      return ""
+  endfunction
+  au BufEnter * exec "inoremap <silent> <tab> <C-R>=g:UltiSnips_Complete()<cr>"
 
 " Vim Ultisnips CSS: Fast CSS snippets ---------------------------------------
   Bundle 'rstacruz/vim-ultisnips-css'
