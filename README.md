@@ -32,6 +32,8 @@ $ cd bundle/vimproc.vim && make
 
     bower.json          - manifest
     vimrc.vim           - linked as ~/.vimrc
+    bundle/             - where plugins lie (managed by bower)
+    extras/             - also where plugins lie
     plugin/
       customizations/   - customizations
       keys/             - key bindings
