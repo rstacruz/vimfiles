@@ -4,6 +4,7 @@
   "authors": [
     "Rico Sta. Cruz <hi@ricostacruz.com>"
   ],
+  "private": true,
   "license": "MIT",
   "dependencies": {
     "ZoomWin": "vim-scripts/ZoomWin",

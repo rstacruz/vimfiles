@@ -22,6 +22,10 @@ You may need to also build some bundles:
       options/          - vim options
       plugins/          - plugin settings
 
+## Checking for new versions
+
+    $ bower list
+
 ## Also see
 
 * https://github.com/terryma/dotfiles/blob/master/.vimrc
