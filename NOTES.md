@@ -33,3 +33,9 @@ eg:
     <div>
       xxx
     </div>
+
+## Also see
+
+* https://github.com/terryma/dotfiles/blob/master/.vimrc
+* https://github.com/vyorkin/dots/tree/master/tag-vim/vim/vundles
+

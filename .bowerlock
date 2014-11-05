@@ -39,6 +39,7 @@
     "vitality.vim": "sjl/vitality.vim#1.1.0",
     "vim-pathogen": "tpope/vim-pathogen#91e6378908721d20514bbe5d18d292a0a15faf0c",
     "vim-eunuch": "tpope/vim-eunuch#c856e5d649b9f87590aff66a84b930fce5793431",
-    "splitjoin.vim": "AndrewRadev/splitjoin.vim#~0.7.0"
+    "splitjoin.vim": "AndrewRadev/splitjoin.vim#~0.7.0",
+    "vim-flavored-markdown": "jtratner/vim-flavored-markdown#4a70aa2e0b98d20940a65ac38b6e9acc69c6b7a0"
   }
 }
