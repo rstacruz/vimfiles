@@ -1,18 +1,8 @@
 {
   "name": "vimfiles",
   "version": "0.0.0",
-  "authors": [
-    "Rico Sta. Cruz <hi@ricostacruz.com>"
-  ],
+  "author": "Rico Sta. Cruz <hi@ricostacruz.com>",
   "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "bundle",
-    "test",
-    "tests"
-  ],
   "dependencies": {
     "vim-haml": "tpope/vim-haml",
     "vim-sensible": "tpope/vim-sensible",
