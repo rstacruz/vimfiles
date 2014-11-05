@@ -14,7 +14,7 @@
     "unite-tag": "tsukkee/unite-tag#0.1.0",
     "unite.vim": "Shougo/unite.vim",
     "vim-abolish": "tpope/vim-abolish",
-    "vim-airline": "bling/vim-airline"
+    "vim-airline": "bling/vim-airline",
     "vim-autotag": "craigemery/vim-autotag",
     "vim-coffee-script": "kchmck/vim-coffee-script",
     "vim-commentary": "tpope/vim-commentary",
@@ -35,6 +35,6 @@
     "vim-ultisnips-css": "rstacruz/vim-ultisnips-css",
     "vim-vinegar": "tpope/vim-vinegar",
     "vimproc.vim": "Shougo/vimproc.vim",
-    "vitality.vim": "sjl/vitality.vim#1.1.0",
+    "vitality.vim": "sjl/vitality.vim#1.1.0"
   }
 }
