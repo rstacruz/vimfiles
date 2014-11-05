@@ -1,4 +1,11 @@
 {
+  "name": "vimfiles",
+  "version": "0.0.0",
+  "authors": [
+    "Rico Sta. Cruz <hi@ricostacruz.com>"
+  ],
+  "private": true,
+  "license": "MIT",
   "dependencies": {
     "ZoomWin": "vim-scripts/ZoomWin#cf21ce1f4b",
     "editorconfig-vim": "editorconfig/editorconfig-vim#0.3.2",

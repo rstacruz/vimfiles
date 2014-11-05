@@ -3,7 +3,7 @@ var Path = require('path');
 
 var bundlePath = 'bundle';
 
-var out = { dependencies: {} };
+var out = JSON.parse(Fs.readFileSync('./bower.json', 'utf-8'));
 
 var bundles = Fs.readdirSync(bundlePath);
 bundles.forEach(function (bundle) {
