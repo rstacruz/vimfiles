@@ -8,6 +8,8 @@ The ultimate vim setup managed by [bower] and [pathogen].
 * Bower alerts you of new package versions
 * Super-modular (see [plugins/](plugins/))
 
+<br>
+
 ## Let's go
 
 Use bower to fetch packages.
@@ -28,6 +30,8 @@ You may need to also build some bundles:
 $ cd bundle/vimproc.vim && make
 ```
 
+<br>
+
 ## File structure
 
     bower.json          - manifest
@@ -40,11 +44,17 @@ $ cd bundle/vimproc.vim && make
       options/          - vim options
       plugins/          - plugin settings
 
-## Checking for new versions
+<br>
+
+## Updating
+
+Check for new versions using bower.
 
 ```sh
 $ bower list
 ```
+
+<br>
 
 ## Version locking
 
@@ -54,6 +64,8 @@ Since bower still has no shrinkwrap feature ([#505]), there's a hackish way:
 $ make lock    # lock dependency versions into .bowerlock
 $ make bower   # install from locked versions in .bowerlock
 ```
+
+<br>
 
 ## Thanks
 
