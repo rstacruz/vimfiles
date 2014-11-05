@@ -36,6 +36,7 @@
     "vim-ultisnips-css": "rstacruz/vim-ultisnips-css",
     "vim-vinegar": "tpope/vim-vinegar",
     "vimproc.vim": "Shougo/vimproc.vim",
-    "vitality.vim": "sjl/vitality.vim#1.1.0"
+    "vitality.vim": "sjl/vitality.vim#1.1.0",
+    "vim-pathogen": "tpope/vim-pathogen"
   }
 }
