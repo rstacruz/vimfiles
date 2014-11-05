@@ -1,16 +1,30 @@
 # My vim files
 
-Install as symlinks:
+The ultimate vim setup managed by [bower] and [pathogen].
 
-    $ make install
+* No messy git submodules
+* Bower downloads vim packages fast (gets tarballs instead of git-cloning)
+* Bower alerts you of new package versions
 
-Managed by [bower](http://bower.io). Use bower to fetch packages.
+## Let's go
 
-    $ bower install
+Use bower to fetch packages.
+
+```sh
+$ bower install
+```
+
+Install as symlinks into `~`:
+
+```sh
+$ make install
+```
 
 You may need to also build some bundles:
 
-    $ cd bundle/vimproc.vim && make
+```sh
+$ cd bundle/vimproc.vim && make
+```
 
 ## File structure
 
@@ -24,7 +38,9 @@ You may need to also build some bundles:
 
 ## Checking for new versions
 
-    $ bower list
+```sh
+$ bower list
+```
 
 ## Version locking
 
@@ -35,8 +51,14 @@ $ make lock    # lock dependency versions into .bowerlock.json
 $ make bower   # install from locked versions in .bowerlock.json
 ```
 
-[#505]: https://github.com/bower/bower/issues/505
-
 ## Also see
 
 * https://github.com/terryma/dotfiles/blob/master/.vimrc
+
+## Thanks
+
+MIT license
+
+[#505]: https://github.com/bower/bower/issues/505
+[pathogen]: https://github.com/tpope/vim-pathogen
+[bower]: http://bower.io
