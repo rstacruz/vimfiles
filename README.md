@@ -2,7 +2,7 @@
 
 Install as symlinks:
 
-    $ source install.sh
+    $ make install
 
 Managed by [bower](http://bower.io). Use bower to fetch packages.
 
