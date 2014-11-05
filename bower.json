@@ -1,5 +1,5 @@
 {
-  "name": "vim2",
+  "name": "vimfiles",
   "version": "0.0.0",
   "authors": [
     "Rico Sta. Cruz <hi@ricostacruz.com>"
@@ -9,6 +9,7 @@
     "**/.*",
     "node_modules",
     "bower_components",
+    "bundle",
     "test",
     "tests"
   ],
