@@ -96,8 +96,8 @@ set fillchars="vert: "
   command! Nowrap set nowrap
 
   " For hard-wrapping
-  command! Hardwrap set fo=want tw=80
-  command! Nohardwrap set fo=croq
+  command! Hardwrap set fo=want tw=80 nowrap
+  command! Nohardwrap set fo=croq wrap linebreak nolist
 
 " == Focus on current fold ===================================================
 
@@ -142,7 +142,7 @@ let ctrlp_filter_greps = "".
     \ "jar|class|swp|swo|log|so|o|pyc|jpeg|jpg|png|gif|mo|po" .
     \ ")|" .
     \ "^(\\./)?(" .
-    \ "deploy/|lib/|classes/|libs/|deploy/vendor/|.git/|.hg/|.svn/|.*migrations/|.*/\.gitkeep" .
+    \ "deploy/|classes/|/|deploy/vendor/|.git/|.hg/|.svn/|.*migrations/|.*/\.gitkeep" .
     \ ")'"
 
 " command for git repos.

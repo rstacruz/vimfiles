@@ -4,14 +4,29 @@ snippet // "Comment block" !
  */
 
 endsnippet
-snippet /// "Comment line" !
-/* ----------------------------------------------------------------------------------
- * $1
- */
+
+snippet today "Today" !
+`ruby -e 'puts Time.now.strftime("%b %e %a")'`
 endsnippet
 
-snippet fbs "Faker: BS" !
-`ruby -rffaker -e 'puts Faker::Company.bs.capitalize + " via " + Faker::Company.catch_phrase.downcase'`
+snippet ftoday "Today full" !
+`ruby -e 'puts Time.now.strftime("%B %e, %Y")'`
+endsnippet
+
+snippet tom "Tomorrow" !
+`ruby -e 'puts (Time.now + 86400).strftime("%b %e %a")'`
+endsnippet
+
+snippet in2 "In 2 days" !
+`ruby -e 'puts (Time.now + 86400*2).strftime("%b %e %a")'`
+endsnippet
+
+snippet in3 "In 3 days" !
+`ruby -e 'puts (Time.now + 86400*3).strftime("%b %e %a")'`
+endsnippet
+
+snippet in4 "In 4 days" !
+`ruby -e 'puts (Time.now + 86400*4).strftime("%b %e %a")'`
 endsnippet
 
 snippet lorem "Faker: Lorem sentence" !
@@ -22,8 +37,16 @@ snippet loremp "Faker: Lorem paragraph" !
 `ruby -rffaker -e 'puts Faker::Lorem.paragraph'`
 endsnippet
 
+snippet ok "Checkmark" !
+✓
+endsnippet
+
 snippet check "Checkmark" !
 ✓
+endsnippet
+
+snippet nah "X mark" !
+✗
 endsnippet
 
 snippet star "Star" !
@@ -48,8 +71,4 @@ endsnippet
 
 snippet play "Play" !
 ▶
-endsnippet
-
-snippet --- "dashes" !
-----------------------------------------------------------------------------
 endsnippet

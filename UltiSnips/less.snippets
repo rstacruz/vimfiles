@@ -1,1 +1,25 @@
 extends css
+
+snippet mins "min-width: small (768px+)"
+@media (min-width: @screen-sm-min) { /* >= 768px (small tablet) */
+endsnippet
+
+snippet minm "min-width: medium (992px+)"
+@media (min-width: @screen-md-min) { /* >= 992px (medium laptop) */
+endsnippet
+
+snippet minl "min-width: large (1200px+)"
+@media (min-width: @screen-lg-min) { /* >= 1200px (large desktop) */
+endsnippet
+
+snippet maxx "max-width: xsmall (< 768px)"
+@media (max-width: @screen-xs-max) { /* < 768px (xsmall phone) */
+endsnippet
+
+snippet maxs "max-width: small (< 992px)"
+@media (max-width: @screen-sm-max) { /* < 992px (small tablet) */
+endsnippet
+
+snippet maxm "max-width: medium (< 1200px)"
+@media (max-width: @screen-md-max) { /* < 1200px (medium laptop) */
+endsnippet

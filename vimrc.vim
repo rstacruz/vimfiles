@@ -74,6 +74,7 @@ let g:mapleader=" "
   let NERDTreeWinPos='left'
   let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
   map <leader>nd :NERDTreeToggle<CR>
+  map <leader>nT :NERDTreeToggle<CR>
   map <leader>nt :e .<CR>
 
 " == Non-essential plugins ===================================================
@@ -98,11 +99,11 @@ if $VIM_MINIMAL != '1'
   let g:unite_win_split_rule = 'botright'
   let g:unite_prompt = '▸ '
 
-  nnoremap <leader>ua :<C-u>Unite -no-split -start-insert file_rec/async:!<CR>
-  nnoremap <leader>uf :<C-u>Unite -no-split file<CR>
+  " also consider -no-split
+  nnoremap <leader>ua :<C-u>Unite -start-insert file_rec/async:!<CR>
+  nnoremap <leader>uf :<C-u>Unite -start-insert file<CR>
   nnoremap <leader>ub :<C-u>Unite -quick-match buffer<CR>
-  nnoremap <leader>um :<C-u>Unite -no-split -start-insert mru<CR>
-  nnoremap <leader>ut :<C-u>Unite -no-split -start-insert tag<CR>
+  nnoremap <leader>ut :<C-u>Unite -start-insert tag<CR>
 
   nnoremap <leader>ug :<C-u>Unite -no-quit -winheight=10 grep:.<CR>
   nnoremap <leader>uo :<C-u>Unite -no-split -auto-preview -winheight=20 outline<CR>
@@ -321,10 +322,15 @@ Bundle 'tpope/vim-abolish'
   map <leader>pp :CtrlP<Cr>
   " let g:ctrlp_working_path_mode=2
 
+" SplitJoin: split join ------------------------------------------------------
+  Bundle 'AndrewRadev/splitjoin.vim'
+
+  nmap <leader>sk :SplitjoinJoin<cr>
+  nmap <leader>sj :SplitjoinSplit<cr>
+
 " Syntax bundles -------------------------------------------------------------
 
   Bundle 'tpope/vim-haml'
-  Bundle 'vim-coffee-script'
   Bundle 'tpope/vim-markdown'
   Bundle 'jade.vim'
   Bundle 'cakebaker/scss-syntax.vim'
