@@ -12,10 +12,6 @@
 ## vinegar
 
     -    back
-
-## vinegar
-
-    -    back
     .    open in command line
     !    open in command line
     D    delete
@@ -23,8 +19,8 @@
 
 ## splitjoin
 
-   gS    expand to multiple lines
-   gJ    collapse
+    gS    expand to multiple lines
+    gJ    collapse
 
 eg:
 
