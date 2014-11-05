@@ -13,23 +13,23 @@
   imap <C-_> <Esc><C-W>_
 
 " Convenience shortcuts for window ops
-  map ,j <C-W>j
-  map ,k <C-W>k
-  map ,h <C-W>h
-  map ,l <C-W>l
+  map <leader>j <C-W>j
+  map <leader>k <C-W>k
+  map <leader>h <C-W>h
+  map <leader>l <C-W>l
 
-  map ,J <C-W>J
-  map ,K <C-W>K
-  map ,H <C-W>H
-  map ,L <C-W>L
+  map <leader>J <C-W>J
+  map <leader>K <C-W>K
+  map <leader>H <C-W>H
+  map <leader>L <C-W>L
 
-  map ,w <C-W>w
-  map ,n <C-W>n
-  map ,q <C-W>q
-  map ,s <C-W>s
-  map ,v <C-W>v
-  map ,t <C-W>t
-  map ,b <C-W>b
-  map ,o <C-W>o
-  map ,- <C-W>_
+  map <leader>w <C-W>w
+  map <leader>n <C-W>n
+  map <leader>q <C-W>q
+  map <leader>s <C-W>s
+  map <leader>v <C-W>v
+  map <leader>t <C-W>t
+  map <leader>b <C-W>b
+  map <leader>o <C-W>o
+  map <leader>- <C-W>_
 
