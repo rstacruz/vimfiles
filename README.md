@@ -3,8 +3,10 @@
 The ultimate vim setup managed by [bower] and [pathogen].
 
 * No messy git submodules
+* Vim packages declared via [bower.json](bower.json)
 * Bower downloads vim packages fast (gets tarballs instead of git-cloning)
 * Bower alerts you of new package versions
+* Super-modular (see [plugins/](plugins/))
 
 ## Let's go
 
