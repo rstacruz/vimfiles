@@ -26,6 +26,17 @@ You may need to also build some bundles:
 
     $ bower list
 
+## Version locking
+
+Since bower still has no shrinkwrap feature ([#505]), there's a hackish way:
+
+```sh
+$ make lock    # lock dependency versions into .bowerlock.json
+$ make bower   # install from locked versions in .bowerlock.json
+```
+
+[#505]: https://github.com/bower/bower/issues/505
+
 ## Also see
 
 * https://github.com/terryma/dotfiles/blob/master/.vimrc

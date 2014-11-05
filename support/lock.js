@@ -18,7 +18,7 @@ bundles.forEach(function (bundle) {
       target = data._target,
       source = data._originalSource;
 
-    if (target === '*') target = data._release;
+    if (target === '*') target = data._resolution.commit;
 
     out.dependencies[name] = source + "#" + target;
   } catch (e) {
