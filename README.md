@@ -51,13 +51,9 @@ $ bower list
 Since bower still has no shrinkwrap feature ([#505]), there's a hackish way:
 
 ```sh
-$ make lock    # lock dependency versions into .bowerlock.json
-$ make bower   # install from locked versions in .bowerlock.json
+$ make lock    # lock dependency versions into .bowerlock
+$ make bower   # install from locked versions in .bowerlock
 ```
-
-## Also see
-
-* https://github.com/terryma/dotfiles/blob/master/.vimrc
 
 ## Thanks
 
