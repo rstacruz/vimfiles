@@ -1,0 +1,47 @@
+{
+  "name": "vim2",
+  "version": "0.0.0",
+  "authors": [
+    "Rico Sta. Cruz <hi@ricostacruz.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vim-haml": "tpope/vim-haml",
+    "vim-sensible": "tpope/vim-sensible",
+    "vim-commentary": "tpope/vim-commentary",
+    "vim-fugitive": "tpope/vim-fugitive",
+    "vim-vinegar": "tpope/vim-vinegar",
+    "vim-endwise": "tpope/vim-endwise",
+    "vim-surround": "tpope/vim-surround",
+    "vim-abolish": "tpope/vim-abolish",
+    "tabular": "godlygeek/tabular",
+    "editorconfig-vim": "editorconfig/editorconfig-vim#~0.3.2",
+    "vitality.vim": "sjl/vitality.vim#~1.1.0",
+    "vim-multiple-cursors": "terryma/vim-multiple-cursors",
+    "ZoomWin": "vim-scripts/ZoomWin",
+    "vim-indent-object": "michaeljsmith/vim-indent-object#~1.1.2",
+    "vim-autotag": "craigemery/vim-autotag",
+    "ultisnips": "SirVer/ultisnips",
+    "vim-markdown": "tpope/vim-markdown",
+    "vim-ledger": "ledger/vim-ledger",
+    "vim-less": "groenewege/vim-less",
+    "vim-coffee-script": "kchmck/vim-coffee-script",
+    "vim-css3-syntax": "hail2u/vim-css3-syntax#~0.13.0",
+    "vim-javascript": "pangloss/vim-javascript#~0.9.0",
+    "vim-snippets": "honza/vim-snippets#~1.0.0",
+    "vim-ultisnips-css": "rstacruz/vim-ultisnips-css",
+    "vim-signify": "mhinz/vim-signify",
+    "vimproc.vim": "Shougo/vimproc.vim",
+    "unite.vim": "Shougo/unite.vim",
+    "unite-outline": "Shougo/unite-outline#~0.5.0",
+    "unite-tag": "tsukkee/unite-tag#~0.1.0",
+    "vim-airline": "bling/vim-airline"
+  }
+}
