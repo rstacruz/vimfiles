@@ -1,7 +1,9 @@
 {
   "name": "vimfiles",
   "version": "0.0.0",
-  "author": "Rico Sta. Cruz <hi@ricostacruz.com>",
+  "authors": [
+    "Rico Sta. Cruz <hi@ricostacruz.com>"
+  ],
   "license": "MIT",
   "dependencies": {
     "vim-haml": "tpope/vim-haml",
