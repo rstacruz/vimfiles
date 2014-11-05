@@ -38,6 +38,7 @@
     "vimproc.vim": "Shougo/vimproc.vim",
     "vitality.vim": "sjl/vitality.vim#1.1.0",
     "vim-pathogen": "tpope/vim-pathogen",
-    "vim-eunuch": "tpope/vim-eunuch"
+    "vim-eunuch": "tpope/vim-eunuch",
+    "splitjoin.vim": "AndrewRadev/splitjoin.vim#~0.7.0"
   }
 }
