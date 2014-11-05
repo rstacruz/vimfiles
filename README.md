@@ -1,5 +1,10 @@
-Rico's vim files.
-Managed by [bower](http://bower.io).
+# My vim files
+
+Install as symlinks:
+
+    $ source install.sh
+
+Managed by [bower](http://bower.io). Use bower to fetch packages.
 
     $ bower install
 
@@ -7,6 +12,16 @@ You may need to also build some bundles:
 
     $ cd bundle/vimproc.vim && make
 
-Also see
+## File structure
+
+    bower.json          - manifest
+    vimrc.vim           - linked as ~/.vimrc
+    plugin/
+      customizations/   - customizations
+      keys/             - key bindings
+      options/          - vim options
+      plugins/          - plugin settings
+
+## Also see
 
 * https://github.com/terryma/dotfiles/blob/master/.vimrc
