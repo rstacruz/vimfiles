@@ -6,7 +6,7 @@ The ultimate vim setup managed by [bower] and [pathogen].
 * Vim packages declared via [bower.json](bower.json)
 * Bower downloads vim packages fast (gets tarballs instead of git-cloning)
 * Bower alerts you of new package versions
-* Super-modular (see [plugins/](plugins/))
+* Modular, options are categorized in [plugins/](plugins/)
 
 <br>
 
@@ -38,11 +38,7 @@ $ cd bundle/vimproc.vim && make
     vimrc.vim           - linked as ~/.vimrc
     bundle/             - where plugins lie (managed by bower)
     extras/             - also where plugins lie
-    plugin/
-      customizations/   - customizations
-      keys/             - key bindings
-      options/          - vim options
-      plugins/          - plugin settings
+    plugin/             - stuff to autoload
 
 <br>
 
