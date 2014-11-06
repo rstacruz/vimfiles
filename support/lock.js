@@ -22,6 +22,7 @@ function getLockedDependencies () {
   var dependencies = {};
   var bundlePath = getBowerPath();
   var bundles = Fs.readdirSync(bundlePath);
+  var m;
 
   bundles.forEach(function (bundle) {
     try {
@@ -39,6 +40,10 @@ function getLockedDependencies () {
       // if the resolution is ambiguous, lock the commit instead
       if (res === 'branch')
         target = data._resolution.commit;
+      else if (res === 'version') {
+        target = data._resolution.tag;
+        if (m = target.match(/^v(\d+\.\d+\.\d+)/)) target = m[1];
+      }
 
       dependencies[name] = source + "#" + target;
     } catch (e) {}
