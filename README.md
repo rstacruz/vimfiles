@@ -12,7 +12,7 @@ The ultimate vim setup managed by [bower] and [pathogen].
 
 ## Let's go
 
-Use bower to fetch packages.
+Use bower to fetch packages. ([alt](#no-bower))
 
 ```sh
 $ bower install
@@ -61,7 +61,10 @@ $ make install   # install from locked versions in .bowerlock
 Use `make lock` after doing bower updates. You'll then be able to see what's
 changed by inspecting the lockfile in `git diff`.
 
-No bower (eg, server deploy)? Use `make install`, it'll fetch via git instead of bower.
+#### No bower
+
+Stuck without bower (eg, a server deploy)? Use `make install`, it'll fetch via
+git instead of bower. It won't manage updates though, but will do in a pinch.
 
 <br>
 
