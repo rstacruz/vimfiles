@@ -6,16 +6,20 @@
 
 ## unity
 
-    ,t   outline
-    ,ua  all files
+    ,t    outline
+    ,ua   all files
 
 ## vinegar
 
-    -    back
-    .    open in command line
-    !    open in command line
-    D    delete
-    R    rename
+    -     back
+    .     open in command line
+    !     open in command line
+    D     delete
+    R     rename
+
+## nerdtree
+
+    ,n    open tree
 
 ## splitjoin
 
