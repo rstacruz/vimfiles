@@ -18,13 +18,14 @@ Use bower to fetch packages.
 $ bower install
 ```
 
-Install as symlinks into `~`:
+Install as symlinks into `~/.vimrc` and `~/.vim/`.
+(NB: this will delete them if they exist!)
 
 ```sh
 $ make link
 ```
 
-You may need to also build some bundles:
+You may need to also compile some bundles.
 
 ```sh
 $ cd bundle/vimproc.vim && make
