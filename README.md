@@ -67,6 +67,17 @@ changed by inspecting the lockfile in `git diff`.
 
 <br>
 
+## Tips
+
+In OSX, use MacVim to use a better build of vim with support for Ruby, Python,
+and other niceties.
+
+```sh
+$ brew install macvim --override-system-vim
+```
+
+<br>
+
 ## Thanks
 
 MIT license
