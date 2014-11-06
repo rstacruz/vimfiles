@@ -46,3 +46,12 @@ nnoremap k gk
 
 set fillchars=vert:│    
 set fillchars="vert: "
+
+
+"
+" :Hardwrap    -  turns on hardwrapping
+" :Nohardwrap  -  turns it off
+"
+
+command! Hardwrap set fo=want tw=80 nowrap
+command! Nohardwrap set fo=croq wrap linebreak nolist
