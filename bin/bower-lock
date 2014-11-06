@@ -1,18 +1,66 @@
+#!/usr/bin/env node
+// vim:ft=javascript
+
 /*
  * makes a "locked" version of bower.json, where versions of `dependencies` are
  * locked to be unambiguous.
+ *
+ *     bower-lock lock        # create a .bowerlock file
+ *     bower-lock install     # install from .bowerlock
  */
 
 var Fs = require('fs');
 var Path = require('path');
 var extend = require('util')._extend;
+var argv = process.argv.slice(2);
 
-var out = readJson('bower.json');
-extend(out.dependencies, out.devDependencies || {});
-extend(out.dependencies, getLockedDependencies());
-delete out.devDependencies;
+/*
+ * Run
+ */
 
-console.log(JSON.stringify(out, null, 2));
+if (!argv[0] || argv[0] === 'lock') {
+  var data = getLockfile();
+  Fs.writeFileSync('.bowerlock', data);
+}
+else if (argv[0] && argv[0] === 'install') {
+  installFromLockfile();
+}
+
+function installFromLockfile () {
+  var exit = 0;
+
+  run('sh', ['-c', 'mv bower.json bower.json~ && cp .bowerlock bower.json'], function (code) {
+    if (code !== 0) process.exit(code);
+    run('bower', ['install'], function (code) {
+      exit = code;
+      run('sh', ['-c', 'mv bower.json~ bower.json'], function (code) {
+        process.exit(exit === 0 ? code : exit);
+      });
+    });
+  });
+}
+
+/*
+ * Run helper
+ */
+
+function run (bin, args, fn) {
+  var spawn = require('child_process').spawn;
+  var pid = spawn(bin, args, { stdio: 'inherit' });
+  pid.on('close', fn);
+}
+
+/*
+ * Get contents of lock file as a string
+ */
+
+function getLockfile () {
+  var out = readJson('bower.json');
+  extend(out.dependencies, out.devDependencies || {});
+  extend(out.dependencies, getLockedDependencies());
+  delete out.devDependencies;
+  return JSON.stringify(out, null, 2) + "\n";
+}
 
 /*
  * Get locked dependencies

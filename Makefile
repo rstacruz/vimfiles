@@ -7,13 +7,10 @@ install:
 lock: .bowerlock
 
 .bowerlock: bower.json
-	node ./support/lock.js > $@
+	node bin/bower-lock
 
 # Install from the lock file
 bower:
-	mv bower.json bower.json~
-	cp .bowerlock bower.json
-	bower install
-	mv bower.json~ bower.json
+	node bin/bower-lock install
 
 .PHONY: install lock .bowerlock
