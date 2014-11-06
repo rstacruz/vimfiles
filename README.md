@@ -33,16 +33,6 @@ $ cd bundle/vimproc.vim && make
 
 <br>
 
-## File structure
-
-    bower.json          - manifest
-    vimrc.vim           - linked as ~/.vimrc
-    bundle/             - where plugins lie (managed by bower)
-    extras/             - also where plugins lie
-    plugin/             - stuff to autoload
-
-<br>
-
 ## Updating
 
 Add new packages via:
