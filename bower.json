@@ -11,7 +11,6 @@
     "editorconfig-vim": "editorconfig/editorconfig-vim",
     "tabular": "godlygeek/tabular",
     "ultisnips": "SirVer/ultisnips",
-    "unite-outline": "Shougo/unite-outline",
     "unite-tag": "tsukkee/unite-tag",
     "unite.vim": "Shougo/unite.vim",
     "vim-abolish": "tpope/vim-abolish",

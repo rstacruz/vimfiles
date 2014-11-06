@@ -8,8 +8,6 @@ echo "\n=> godlygeek/tabular"
 if [ ! -e $BUNDLE/tabular ]; then git clone git://github.com/godlygeek/tabular.git $BUNDLE/tabular && (cd $BUNDLE/tabular && git checkout -q 60f25648814f0695eeb6c1040d97adca93c4e0bb 2>/dev/null || git checkout -q v60f25648814f0695eeb6c1040d97adca93c4e0bb ); fi
 echo "\n=> SirVer/ultisnips"
 if [ ! -e $BUNDLE/ultisnips ]; then git clone git://github.com/SirVer/ultisnips.git $BUNDLE/ultisnips && (cd $BUNDLE/ultisnips && git checkout -q cb8536d7240f5f458c292f8aa38fc50278222fe8 2>/dev/null || git checkout -q vcb8536d7240f5f458c292f8aa38fc50278222fe8 ); fi
-echo "\n=> Shougo/unite-outline"
-if [ ! -e $BUNDLE/unite-outline ]; then git clone git://github.com/Shougo/unite-outline.git $BUNDLE/unite-outline && (cd $BUNDLE/unite-outline && git checkout -q 0.5.0 2>/dev/null || git checkout -q v0.5.0 ); fi
 echo "\n=> tsukkee/unite-tag"
 if [ ! -e $BUNDLE/unite-tag ]; then git clone git://github.com/tsukkee/unite-tag.git $BUNDLE/unite-tag && (cd $BUNDLE/unite-tag && git checkout -q 0.1.0 2>/dev/null || git checkout -q v0.1.0 ); fi
 echo "\n=> Shougo/unite.vim"
