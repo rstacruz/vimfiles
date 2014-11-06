@@ -47,7 +47,7 @@ $ cd bundle/vimproc.vim && make
 Check for new versions using bower.
 
 ```sh
-$ bower list
+$ bower update
 ```
 
 <br>
@@ -60,6 +60,9 @@ Since bower still has no shrinkwrap feature ([#505]), there's a hackish way:
 $ make lock      # lock dependency versions into .bowerlock
 $ make install   # install from locked versions in .bowerlock
 ```
+
+Use `make lock` after doing bower updates. You'll then be able to see what's
+changed by inspecting the lockfile in `git diff`.
 
 <br>
 
