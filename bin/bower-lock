@@ -127,13 +127,7 @@ function getLockedDependencies () {
  */
 
 function getBowerPath () {
-  try {
-    var bowerrc = readJson('.bowerrc');
-    if (bowerrc && bowerrc.directory)
-      return bowerrc.directory;
-  } catch (e) {}
-
-  return 'bower_components';
+  return require('bower').config.directory;
 }
 
 /*
