@@ -1,16 +1,11 @@
 # Install into home directory
-install:
+link:
 	ln -nfs "`pwd -LP`"/vimrc.vim ~/.vimrc
 	ln -nfs "`pwd -LP`" ~/.vim
 
-# Update lockfile
-lock: .bowerlock
+lock:
+	node ./bin/bower-lock lock
+install:
+	node ./bin/bower-lock install
 
-.bowerlock: bower.json
-	node bin/bower-lock lock
-
-# Install from the lock file
-bower:
-	node bin/bower-lock install
-
-.PHONY: install lock .bowerlock
+.PHONY: install lock update

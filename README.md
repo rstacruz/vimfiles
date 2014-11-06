@@ -21,7 +21,7 @@ $ bower install
 Install as symlinks into `~`:
 
 ```sh
-$ make install
+$ make link
 ```
 
 You may need to also build some bundles:
@@ -57,8 +57,8 @@ $ bower list
 Since bower still has no shrinkwrap feature ([#505]), there's a hackish way:
 
 ```sh
-$ make lock    # lock dependency versions into .bowerlock
-$ make bower   # install from locked versions in .bowerlock
+$ make lock      # lock dependency versions into .bowerlock
+$ make install   # install from locked versions in .bowerlock
 ```
 
 <br>
