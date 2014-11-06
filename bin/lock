@@ -1,0 +1,143 @@
+// run bower list
+/* bowerlist(function (err, data) { */
+/*   crunch(data); */
+/* }); */
+
+capture('bower', ['list', '--relative', '--json'], function (err, data) {
+  if (err) throw err;
+  crunch(data, function (err, data) {
+    if (err) throw err;
+
+    var lockfile = lockfilify(data);
+    require('fs').writeFileSync('.bowerlock', JSON.stringify(lockfile, null, 2));
+
+    var script = scriptify(data);
+    require('fs').writeFileSync('bin/install', script);
+  });
+});
+
+/*
+ * capture helper
+ */
+
+function capture(bin, args, fn) {
+  var spawn = require('child_process').spawn;
+  var child = spawn(bin, args);
+  var data = "";
+
+  child.stdout.on('data', function (_data) {
+    data += _data;
+  });
+
+  child.on('close', function (code) {
+    if (code !== 0) fn(new Error("exit code "+code));
+    else fn(null, data);
+  });
+}
+
+/*
+ * generate lockfile
+ */
+
+function lockfilify (data) {
+  var json = JSON.parse(require('fs').readFileSync('bower.json', 'utf-8'));
+  json.dependencies = {};
+  delete json.devDependencies;
+
+  Object.keys(data).forEach(function (key) {
+    var dep = data[key];
+
+    json.dependencies[key] = "" + dep.source + "#" + dep.target;
+  });
+
+  return json;
+}
+
+function scriptify (data) {
+  var lines = [];
+
+  lines.push('#!/usr/bin/env sh');
+  lines.push('BUNDLE="'+getBowerPath()+'"');
+
+  Object.keys(data).forEach(function (key) {
+    var dep = data[key];
+
+    var path = "\"$BUNDLE/"+key+"\"";
+    var cmd =
+      "if [ ! -e "+path+" ]; then " +
+      "git clone "+dep.repo+" "+path+" && " + 
+      "(cd "+path+" && git checkout -q "+dep.target+" 2>/dev/null); " +
+      "fi";
+
+    lines.push("echo \"\\n=> "+dep.source+"\"");
+    lines.push(cmd);
+  });
+
+  return lines.join("\n")+"\n";
+}
+
+
+/*
+ * get list of locked deps.
+ * looks like this:
+ *
+ *     {
+ *       "vim-unite-tag": {
+ *         "source: "tsukkee/unitetag",
+ *         "repo": "https://github.com/tsukkee/unite-tag.git",
+ *         "target": "0.1.0",
+ *         "type": "tag" (or "branch")
+ *       }
+ *     }
+ */
+
+function crunch (data, fn) {
+  data = JSON.parse(data);
+
+  var dependencies = {};
+
+  Object.keys(data.dependencies).forEach(function (key) {
+    var dep = data.dependencies[key];
+
+    var
+      meta = dep.pkgMeta,
+      name = meta.name,
+      target = meta._target,
+      source = meta._originalSource,
+      res = meta._resolution && meta._resolution.type;
+
+    // if the resolution is ambiguous, lock the commit instead
+    if (meta._direct) {
+      source = dep.endpoint.source;
+      target = 'master';
+      res = 'branch';
+    } else if (res === 'branch') {
+      target = meta._resolution && meta._resolution.commit;
+    } else if (res === 'version') {
+      target = meta._resolution && meta._resolution.tag;
+    }
+
+    dependencies[name] = {
+      source: source,
+      target: target,
+      repo: resolve(source),
+      type: res
+    };
+  });
+
+  fn(null, dependencies);
+}
+
+function resolve(src) {
+  if ((~src.indexOf('://')) || (~src.indexOf('@')))
+    return src;
+
+  var m = src.split('/');
+  return require('bower').config.shorthandResolver
+    .replace('{{owner}}', m[0])
+    .replace('{{package}}', m[1]);
+}
+
+function getBowerPath () {
+  return require('bower').config.directory;
+}

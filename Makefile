@@ -3,11 +3,10 @@ link:
 	ln -nfs "`pwd -LP`" ~/.vim
 	ln -nfs "`pwd -LP`"/vimrc.vim ~/.vimrc
 
-# Use bower-lock to manage .bowerlock
+# Use bower-lock to manage .bowerlock and ./bin/install
 lock:
-	node ./bin/bower-lock lock
-	node ./bin/make-script > bin/install
+	node ./bin/lock
 install:
-	./bin/install
+	node ./bin/install
 
-.PHONY: install lock update compile
+.PHONY: install lock link

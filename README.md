@@ -54,16 +54,16 @@ $ bower update
 Since bower still has no shrinkwrap feature ([#505]), there's a hackish way:
 
 ```sh
-$ make lock      # lock dependency versions into .bowerlock
-$ make install   # install from locked versions in .bowerlock
+$ ./bin/lock      # lock dependency versions into .bowerlock and ./bin/install
+$ ./bin/install   # install from locked versions
 ```
 
-Use `make lock` after doing bower updates. You'll then be able to see what's
+Use `.` after doing bower updates. You'll then be able to see what's
 changed by inspecting the lockfile in `git diff`.
 
 #### No bower
 
-Stuck without bower (eg, a server deploy)? Use `make install`, it'll fetch via
+Stuck without bower (eg, a server deploy)? Use `./bin/install`, it'll fetch via
 git instead of bower. It won't manage updates though, but will do in a pinch.
 
 <br>
