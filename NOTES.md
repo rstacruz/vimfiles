@@ -43,6 +43,11 @@ eg:
 
     ,C    preview compiled form (:CoffeeWatch)
 
+## vimr
+
+    cmd-shift-o   fuzzy find
+    cmd-1/0       sidebar show/hide
+
 ## Also see
 
 * https://github.com/terryma/dotfiles/blob/master/.vimrc

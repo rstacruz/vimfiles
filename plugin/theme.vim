@@ -19,8 +19,8 @@ endif
 " Macvim
 "
 
-if has("gui_running") && has("gui_macvim")
-  set transparency=0
+if has("gui_running") && (has("gui_macvim") || has("gui_vimr"))
+  set transparency=2
   set guioptions=gmt
   color Tomorrow-Night
 
