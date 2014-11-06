@@ -32,7 +32,7 @@
     "vim-signify": "mhinz/vim-signify#bd0956eee6dd7c236f0a350173cd5f221df11a22",
     "vim-snippets": "honza/vim-snippets#1.0.0",
     "vim-surround": "tpope/vim-surround#fa433e0b7330753688f715f3be5d10dc480f20e5",
-    "vim-ultisnips-css": "rstacruz/vim-ultisnips-css#a4a8a1424c454434b7b296dabc359c7919ff61f5",
+    "vim-ultisnips-css": "rstacruz/vim-ultisnips-css",
     "vim-vinegar": "tpope/vim-vinegar#ac893960c324d879b6923a4c1abaea352d8caeb5",
     "vimproc.vim": "Shougo/vimproc.vim#41eea46cf5b8418db6dc5c5a760a4cead31d1370",
     "vitality.vim": "sjl/vitality.vim#1.1.0",
@@ -43,6 +43,7 @@
     "nerdtree": "scrooloose/nerdtree#4.2.0",
     "syntastic": "scrooloose/syntastic#3.5.0",
     "tomorrow-theme": "chriskempson/tomorrow-theme#9b69df6106073c9ebfef54d3f85607a99c6a78fc",
-    "sparkup": "rstacruz/sparkup#f352ea74c4831b8e2c1c251f0b32157d9810afbd"
+    "sparkup": "rstacruz/sparkup#f352ea74c4831b8e2c1c251f0b32157d9810afbd",
+    "vim-opinion": "rstacruz/vim-opinion"
   }
 }

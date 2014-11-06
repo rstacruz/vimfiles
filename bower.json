@@ -43,6 +43,7 @@
     "nerdtree": "scrooloose/nerdtree",
     "syntastic": "scrooloose/syntastic",
     "tomorrow-theme": "chriskempson/tomorrow-theme",
-    "sparkup": "rstacruz/sparkup"
+    "sparkup": "rstacruz/sparkup",
+    "vim-opinion": "rstacruz/vim-opinion"
   }
 }
