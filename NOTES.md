@@ -19,7 +19,12 @@
 
 ## nerdtree
 
-    ,n    open tree
+    ,N    open tree
+
+    o     open
+    i     open in split
+    t     open in tab
+    T     open in tab, silently
 
 ## splitjoin
 
