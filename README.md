@@ -61,6 +61,8 @@ $ make install   # install from locked versions in .bowerlock
 Use `make lock` after doing bower updates. You'll then be able to see what's
 changed by inspecting the lockfile in `git diff`.
 
+No bower (eg, server deploy)? Use `make install`, it'll fetch via git instead of bower.
+
 <br>
 
 ## Tips
