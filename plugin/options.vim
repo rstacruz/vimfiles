@@ -94,6 +94,7 @@ set wig+=*.o,*.obj,*.pyc
 set wig+=.sass-cache,tmp
 set wig+=vendor,log,logs
 set wig+=node_modules
+set wig+=node_modules/**
 set wildmode=longest:full,list:full
 
 "

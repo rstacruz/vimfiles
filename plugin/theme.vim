@@ -1,4 +1,10 @@
 "
+" Common
+"
+
+let g:airline_theme='solarized'
+
+"
 " Console
 "
 
@@ -20,6 +26,7 @@ if has("gui_running") && has("gui_macvim")
 
   " set guifont=Envy\ Code\ R\ for\ Powerline:h13 noantialias linespace=0
   set guifont=InputMonoNarrow:h12 linespace=3
+  let g:airline_theme='base16'
   " set guifont=Monaco:h12 linespace=0
   " set guifont=Inconsolata:h14 linespace=0
   " set guifont=Menlo:h12 linespace=0

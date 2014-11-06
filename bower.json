@@ -27,7 +27,6 @@
     "vim-javascript": "pangloss/vim-javascript",
     "vim-ledger": "ledger/vim-ledger",
     "vim-less": "groenewege/vim-less",
-    "vim-markdown": "tpope/vim-markdown",
     "vim-multiple-cursors": "terryma/vim-multiple-cursors",
     "vim-sensible": "tpope/vim-sensible",
     "vim-signify": "mhinz/vim-signify",
@@ -43,6 +42,7 @@
     "vim-flavored-markdown": "jtratner/vim-flavored-markdown",
     "nerdtree": "scrooloose/nerdtree",
     "syntastic": "scrooloose/syntastic",
-    "tomorrow-theme": "chriskempson/tomorrow-theme"
+    "tomorrow-theme": "chriskempson/tomorrow-theme",
+    "sparkup": "rstacruz/sparkup"
   }
 }
