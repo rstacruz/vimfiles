@@ -18,11 +18,15 @@ var argv = process.argv.slice(2);
  * Run
  */
 
-if (!argv[0] || argv[0] === 'lock') {
+if (!argv[0]) {
+  console.warn("Usage: bower-lock {lock|install}");
+  process.exit(1);
+}
+else if (argv[0] === 'lock') {
   var data = getLockfile();
   Fs.writeFileSync('.bowerlock', data);
 }
-else if (argv[0] && argv[0] === 'install') {
+else if (argv[0] === 'install') {
   installFromLockfile();
 }
 

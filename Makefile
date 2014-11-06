@@ -7,7 +7,7 @@ install:
 lock: .bowerlock
 
 .bowerlock: bower.json
-	node bin/bower-lock
+	node bin/bower-lock lock
 
 # Install from the lock file
 bower:
