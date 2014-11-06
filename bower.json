@@ -42,6 +42,7 @@
     "splitjoin.vim": "AndrewRadev/splitjoin.vim",
     "vim-flavored-markdown": "jtratner/vim-flavored-markdown",
     "nerdtree": "scrooloose/nerdtree",
-    "syntastic": "scrooloose/syntastic"
+    "syntastic": "scrooloose/syntastic",
+    "tomorrow-theme": "chriskempson/tomorrow-theme"
   }
 }

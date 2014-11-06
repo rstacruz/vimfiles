@@ -45,6 +45,12 @@ $ cd bundle/vimproc.vim && make
 
 ## Updating
 
+Add new packages via:
+
+```sh
+$ bower install --save tpope/vim-haml
+```
+
 Check for new versions using bower.
 
 ```sh
