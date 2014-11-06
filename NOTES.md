@@ -39,6 +39,10 @@ eg:
       xxx
     </div>
 
+## coffeescript
+
+    ,C    preview compiled form (:CoffeeWatch)
+
 ## Also see
 
 * https://github.com/terryma/dotfiles/blob/master/.vimrc
