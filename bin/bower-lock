@@ -1,12 +1,26 @@
 #!/usr/bin/env node
-// vim:ft=javascript
 
 /*
  * makes a "locked" version of bower.json, where versions of `dependencies` are
  * locked to be unambiguous.
  *
- *     bower-lock lock        # create a .bowerlock file
- *     bower-lock install     # install from .bowerlock
+ *     $ bower-lock lock        - create a .bowerlock file
+ *     $ bower-lock install     - install from .bowerlock
+ *
+ * A `.bowerlock` file is based on bower.json, only with versions locked to
+ * a tag or a sha1 commit.
+ *
+ *     // bower.json
+ *     {
+ *       "name": "vimfiles",
+ *       "dependencies": { "vim-haml": "tpope/vim-haml" }
+ *     }
+ *
+ *     // .bowerlock
+ *     {
+ *       "name": "vimfiles",
+ *       "dependencies": { "vim-haml": "tpope/vim-haml#35028be1f71953d" }
+ *     }
  */
 
 var Fs = require('fs');
@@ -29,6 +43,10 @@ else if (argv[0] === 'lock') {
 else if (argv[0] === 'install') {
   installFromLockfile();
 }
+
+/*
+ * Install from .bowerlock via `bower install`
+ */
 
 function installFromLockfile () {
   var exit = 0;
@@ -67,7 +85,7 @@ function getLockfile () {
 }
 
 /*
- * Get locked dependencies
+ * Get locked dependencies; returns an object
  */
 
 function getLockedDependencies () {
@@ -105,7 +123,7 @@ function getLockedDependencies () {
 }
 
 /*
- * Helpers
+ * Bower path helper
  */
 
 function getBowerPath () {
@@ -118,6 +136,12 @@ function getBowerPath () {
   return 'bower_components';
 }
 
+/*
+ * Json helper
+ */
+
 function readJson (file) {
   return JSON.parse(Fs.readFileSync(file, 'utf-8'));
 }
+
+// vim:ft=javascript
