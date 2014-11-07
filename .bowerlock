@@ -9,6 +9,7 @@
   "dependencies": {
     "ZoomWin": "vim-scripts/ZoomWin#cf21ce1f4bfec10fe7e446c08e9e647a2a234e03",
     "editorconfig-vim": "editorconfig/editorconfig-vim#f28c03acdbefd27a3ed483b9aad20d99ed930023",
+    "ledgerdown": "rstacruz/ledgerdown#master",
     "nerdtree": "scrooloose/nerdtree#f8fd2ecce20f5005e6313ce57d6d2a209890c946",
     "sparkup": "rstacruz/sparkup#f352ea74c4831b8e2c1c251f0b32157d9810afbd",
     "splitjoin.vim": "AndrewRadev/splitjoin.vim#e66af1f7fed96859d269f219b4b5a3302b71defb",
@@ -38,7 +39,6 @@
     "vim-pathogen": "tpope/vim-pathogen#b9fb0dfd811004010f5f6903edef42d6004ebea2",
     "vim-sensible": "tpope/vim-sensible#64aa12b07b0be90a8e98bc7be1b5faac4ac873a4",
     "vim-signify": "mhinz/vim-signify#babf2fd9759e719d06e9796900afa6fcb010fafb",
-    "vim-sleuth": "tpope/vim-sleuth#6b0c9d61e246cb3a046202de0a016451c0dc1ede",
     "vim-snippets": "honza/vim-snippets#1.0.0",
     "vim-surround": "tpope/vim-surround#fa433e0b7330753688f715f3be5d10dc480f20e5",
     "vim-ultisnips-css": "rstacruz/vim-ultisnips-css#master",

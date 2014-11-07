@@ -43,6 +43,7 @@
     "syntastic": "scrooloose/syntastic#master",
     "tomorrow-theme": "chriskempson/tomorrow-theme",
     "sparkup": "rstacruz/sparkup",
-    "vim-opinion": "rstacruz/vim-opinion"
+    "vim-opinion": "rstacruz/vim-opinion",
+    "ledgerdown": "rstacruz/ledgerdown#master"
   }
 }

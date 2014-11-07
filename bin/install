@@ -4,6 +4,8 @@ echo "\n=> vim-scripts/ZoomWin"
 if [ ! -e "$BUNDLE/ZoomWin" ]; then git clone git://github.com/vim-scripts/ZoomWin.git "$BUNDLE/ZoomWin" && (cd "$BUNDLE/ZoomWin" && git checkout -q cf21ce1f4bfec10fe7e446c08e9e647a2a234e03 2>/dev/null); fi
 echo "\n=> editorconfig/editorconfig-vim"
 if [ ! -e "$BUNDLE/editorconfig-vim" ]; then git clone git://github.com/editorconfig/editorconfig-vim.git "$BUNDLE/editorconfig-vim" && (cd "$BUNDLE/editorconfig-vim" && git checkout -q f28c03acdbefd27a3ed483b9aad20d99ed930023 2>/dev/null); fi
+echo "\n=> rstacruz/ledgerdown"
+if [ ! -e "$BUNDLE/ledgerdown" ]; then git clone git://github.com/rstacruz/ledgerdown.git "$BUNDLE/ledgerdown" && (cd "$BUNDLE/ledgerdown" && git checkout -q master 2>/dev/null); fi
 echo "\n=> scrooloose/nerdtree"
 if [ ! -e "$BUNDLE/nerdtree" ]; then git clone git://github.com/scrooloose/nerdtree.git "$BUNDLE/nerdtree" && (cd "$BUNDLE/nerdtree" && git checkout -q f8fd2ecce20f5005e6313ce57d6d2a209890c946 2>/dev/null); fi
 echo "\n=> rstacruz/sparkup"
@@ -62,8 +64,6 @@ echo "\n=> tpope/vim-sensible"
 if [ ! -e "$BUNDLE/vim-sensible" ]; then git clone git://github.com/tpope/vim-sensible.git "$BUNDLE/vim-sensible" && (cd "$BUNDLE/vim-sensible" && git checkout -q 64aa12b07b0be90a8e98bc7be1b5faac4ac873a4 2>/dev/null); fi
 echo "\n=> mhinz/vim-signify"
 if [ ! -e "$BUNDLE/vim-signify" ]; then git clone git://github.com/mhinz/vim-signify.git "$BUNDLE/vim-signify" && (cd "$BUNDLE/vim-signify" && git checkout -q babf2fd9759e719d06e9796900afa6fcb010fafb 2>/dev/null); fi
-echo "\n=> tpope/vim-sleuth"
-if [ ! -e "$BUNDLE/vim-sleuth" ]; then git clone git://github.com/tpope/vim-sleuth.git "$BUNDLE/vim-sleuth" && (cd "$BUNDLE/vim-sleuth" && git checkout -q 6b0c9d61e246cb3a046202de0a016451c0dc1ede 2>/dev/null); fi
 echo "\n=> honza/vim-snippets"
 if [ ! -e "$BUNDLE/vim-snippets" ]; then git clone git://github.com/honza/vim-snippets.git "$BUNDLE/vim-snippets" && (cd "$BUNDLE/vim-snippets" && git checkout -q 1.0.0 2>/dev/null); fi
 echo "\n=> tpope/vim-surround"
