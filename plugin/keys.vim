@@ -15,20 +15,13 @@ map <leader>,, <C-W>15<
 map <leader>,. <C-W>15>
 
 "
-" Navigate windows easily.
+" Buffer navigation
 "
 
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
-map <C-H> <C-W>h<C-W>_
-map <C-L> <C-W>l<C-W>_
-map <C-_> <C-W>_
-
-imap <C-J> <Esc><C-W>j<C-W>_
-imap <C-K> <Esc><C-W>k<C-W>_
-imap <C-H> <Esc><C-W>h<C-W>_
-imap <C-L> <Esc><C-W>l<C-W>_
-imap <C-_> <Esc><C-W>_
+nmap <C-H> :bprev<CR>
+nmap <C-L> :bnext<CR>
+imap <C-H> <Esc>:bprev<CR>
+imap <C-L> <Esc>:bnext<CR>
 
 "
 " Convenience shortcuts for window ops
@@ -53,4 +46,3 @@ map <leader>t <C-W>t
 map <leader>b <C-W>b
 map <leader>o <C-W>o
 map <leader>- <C-W>_
-
