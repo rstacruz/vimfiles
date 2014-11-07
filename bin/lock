@@ -43,7 +43,7 @@ var Config = {
  * Run `bower list` and make lockfile and script from it
  */
 
-capture('bower', ['list', '--relative', '--json'], function (err, data) {
+capture('bower', ['list', '--relative', '--offline', '--json'], function (err, data) {
   if (err) throw err;
   getDeps(data, function (err, data) {
     if (err) throw err;
