@@ -107,7 +107,7 @@ function crunch (data, fn) {
       res = meta._resolution && meta._resolution.type;
 
     // if the resolution is ambiguous, lock the commit instead
-    if (meta._direct) {
+    if (!res) {
       source = dep.endpoint.source;
       target = 'master';
       res = 'branch';

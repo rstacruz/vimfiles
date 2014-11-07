@@ -7,7 +7,7 @@ if [ ! -e "$BUNDLE/editorconfig-vim" ]; then git clone git://github.com/editorco
 echo "\n=> scrooloose/nerdtree"
 if [ ! -e "$BUNDLE/nerdtree" ]; then git clone git://github.com/scrooloose/nerdtree.git "$BUNDLE/nerdtree" && (cd "$BUNDLE/nerdtree" && git checkout -q 4.2.0 2>/dev/null); fi
 echo "\n=> rstacruz/sparkup"
-if [ ! -e "$BUNDLE/sparkup" ]; then git clone git://github.com/rstacruz/sparkup.git "$BUNDLE/sparkup" && (cd "$BUNDLE/sparkup" && git checkout -q master 2>/dev/null); fi
+if [ ! -e "$BUNDLE/sparkup" ]; then git clone git://github.com/rstacruz/sparkup.git "$BUNDLE/sparkup" && (cd "$BUNDLE/sparkup" && git checkout -q f352ea74c4831b8e2c1c251f0b32157d9810afbd 2>/dev/null); fi
 echo "\n=> AndrewRadev/splitjoin.vim"
 if [ ! -e "$BUNDLE/splitjoin.vim" ]; then git clone git://github.com/AndrewRadev/splitjoin.vim.git "$BUNDLE/splitjoin.vim" && (cd "$BUNDLE/splitjoin.vim" && git checkout -q v0.7.0 2>/dev/null); fi
 echo "\n=> scrooloose/syntastic"
@@ -15,7 +15,7 @@ if [ ! -e "$BUNDLE/syntastic" ]; then git clone git://github.com/scrooloose/synt
 echo "\n=> godlygeek/tabular"
 if [ ! -e "$BUNDLE/tabular" ]; then git clone git://github.com/godlygeek/tabular.git "$BUNDLE/tabular" && (cd "$BUNDLE/tabular" && git checkout -q 60f25648814f0695eeb6c1040d97adca93c4e0bb 2>/dev/null); fi
 echo "\n=> chriskempson/tomorrow-theme"
-if [ ! -e "$BUNDLE/tomorrow-theme" ]; then git clone git://github.com/chriskempson/tomorrow-theme.git "$BUNDLE/tomorrow-theme" && (cd "$BUNDLE/tomorrow-theme" && git checkout -q master 2>/dev/null); fi
+if [ ! -e "$BUNDLE/tomorrow-theme" ]; then git clone git://github.com/chriskempson/tomorrow-theme.git "$BUNDLE/tomorrow-theme" && (cd "$BUNDLE/tomorrow-theme" && git checkout -q 9b69df6106073c9ebfef54d3f85607a99c6a78fc 2>/dev/null); fi
 echo "\n=> SirVer/ultisnips"
 if [ ! -e "$BUNDLE/ultisnips" ]; then git clone git://github.com/SirVer/ultisnips.git "$BUNDLE/ultisnips" && (cd "$BUNDLE/ultisnips" && git checkout -q cb8536d7240f5f458c292f8aa38fc50278222fe8 2>/dev/null); fi
 echo "\n=> tsukkee/unite-tag"
@@ -62,6 +62,8 @@ echo "\n=> tpope/vim-sensible"
 if [ ! -e "$BUNDLE/vim-sensible" ]; then git clone git://github.com/tpope/vim-sensible.git "$BUNDLE/vim-sensible" && (cd "$BUNDLE/vim-sensible" && git checkout -q 64aa12b07b0be90a8e98bc7be1b5faac4ac873a4 2>/dev/null); fi
 echo "\n=> mhinz/vim-signify"
 if [ ! -e "$BUNDLE/vim-signify" ]; then git clone git://github.com/mhinz/vim-signify.git "$BUNDLE/vim-signify" && (cd "$BUNDLE/vim-signify" && git checkout -q bd0956eee6dd7c236f0a350173cd5f221df11a22 2>/dev/null); fi
+echo "\n=> tpope/vim-sleuth"
+if [ ! -e "$BUNDLE/vim-sleuth" ]; then git clone git://github.com/tpope/vim-sleuth.git "$BUNDLE/vim-sleuth" && (cd "$BUNDLE/vim-sleuth" && git checkout -q 6b0c9d61e246cb3a046202de0a016451c0dc1ede 2>/dev/null); fi
 echo "\n=> honza/vim-snippets"
 if [ ! -e "$BUNDLE/vim-snippets" ]; then git clone git://github.com/honza/vim-snippets.git "$BUNDLE/vim-snippets" && (cd "$BUNDLE/vim-snippets" && git checkout -q 1.0.0 2>/dev/null); fi
 echo "\n=> tpope/vim-surround"
