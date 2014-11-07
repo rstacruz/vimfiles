@@ -9,11 +9,11 @@ if [ ! -e "$BUNDLE/ledgerdown" ]; then git clone git://github.com/rstacruz/ledge
 echo "\n=> scrooloose/nerdtree"
 if [ ! -e "$BUNDLE/nerdtree" ]; then git clone git://github.com/scrooloose/nerdtree.git "$BUNDLE/nerdtree" && (cd "$BUNDLE/nerdtree" && git checkout -q f8fd2ecce20f5005e6313ce57d6d2a209890c946 2>/dev/null); fi
 echo "\n=> rstacruz/sparkup"
-if [ ! -e "$BUNDLE/sparkup" ]; then git clone git://github.com/rstacruz/sparkup.git "$BUNDLE/sparkup" && (cd "$BUNDLE/sparkup" && git checkout -q f352ea74c4831b8e2c1c251f0b32157d9810afbd 2>/dev/null); fi
+if [ ! -e "$BUNDLE/sparkup" ]; then git clone git://github.com/rstacruz/sparkup.git "$BUNDLE/sparkup" && (cd "$BUNDLE/sparkup" && git checkout -q 332db21f6cc3dd398fec4d8f2e4c0cf26d8ca654 2>/dev/null); fi
 echo "\n=> AndrewRadev/splitjoin.vim"
-if [ ! -e "$BUNDLE/splitjoin.vim" ]; then git clone git://github.com/AndrewRadev/splitjoin.vim.git "$BUNDLE/splitjoin.vim" && (cd "$BUNDLE/splitjoin.vim" && git checkout -q e66af1f7fed96859d269f219b4b5a3302b71defb 2>/dev/null); fi
+if [ ! -e "$BUNDLE/splitjoin.vim" ]; then git clone git://github.com/AndrewRadev/splitjoin.vim.git "$BUNDLE/splitjoin.vim" && (cd "$BUNDLE/splitjoin.vim" && git checkout -q 41c2117b0fa0ec5d85a3690aea121bb99cc9620c 2>/dev/null); fi
 echo "\n=> scrooloose/syntastic"
-if [ ! -e "$BUNDLE/syntastic" ]; then git clone git://github.com/scrooloose/syntastic.git "$BUNDLE/syntastic" && (cd "$BUNDLE/syntastic" && git checkout -q e4c94d67a9ba7f35397b4a2f0daa8f346a84a8b9 2>/dev/null); fi
+if [ ! -e "$BUNDLE/syntastic" ]; then git clone git://github.com/scrooloose/syntastic.git "$BUNDLE/syntastic" && (cd "$BUNDLE/syntastic" && git checkout -q 412d3526abef3bfddaa371e4fc780c1f826a8176 2>/dev/null); fi
 echo "\n=> godlygeek/tabular"
 if [ ! -e "$BUNDLE/tabular" ]; then git clone git://github.com/godlygeek/tabular.git "$BUNDLE/tabular" && (cd "$BUNDLE/tabular" && git checkout -q 60f25648814f0695eeb6c1040d97adca93c4e0bb 2>/dev/null); fi
 echo "\n=> chriskempson/tomorrow-theme"
