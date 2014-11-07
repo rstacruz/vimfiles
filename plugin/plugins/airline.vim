@@ -20,3 +20,6 @@ let g:airline#extensions#hunks#enabled = 0
 " Extensions
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
+
+" Disable branch
+let g:airline#extensions#branch#enabled = 0
