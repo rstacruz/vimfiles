@@ -3,15 +3,15 @@ BUNDLE="bundle"
 echo "\n=> vim-scripts/ZoomWin"
 if [ ! -e "$BUNDLE/ZoomWin" ]; then git clone git://github.com/vim-scripts/ZoomWin.git "$BUNDLE/ZoomWin" && (cd "$BUNDLE/ZoomWin" && git checkout -q cf21ce1f4bfec10fe7e446c08e9e647a2a234e03 2>/dev/null); fi
 echo "\n=> editorconfig/editorconfig-vim"
-if [ ! -e "$BUNDLE/editorconfig-vim" ]; then git clone git://github.com/editorconfig/editorconfig-vim.git "$BUNDLE/editorconfig-vim" && (cd "$BUNDLE/editorconfig-vim" && git checkout -q v0.3.2 2>/dev/null); fi
+if [ ! -e "$BUNDLE/editorconfig-vim" ]; then git clone git://github.com/editorconfig/editorconfig-vim.git "$BUNDLE/editorconfig-vim" && (cd "$BUNDLE/editorconfig-vim" && git checkout -q f28c03acdbefd27a3ed483b9aad20d99ed930023 2>/dev/null); fi
 echo "\n=> scrooloose/nerdtree"
-if [ ! -e "$BUNDLE/nerdtree" ]; then git clone git://github.com/scrooloose/nerdtree.git "$BUNDLE/nerdtree" && (cd "$BUNDLE/nerdtree" && git checkout -q 4.2.0 2>/dev/null); fi
+if [ ! -e "$BUNDLE/nerdtree" ]; then git clone git://github.com/scrooloose/nerdtree.git "$BUNDLE/nerdtree" && (cd "$BUNDLE/nerdtree" && git checkout -q f8fd2ecce20f5005e6313ce57d6d2a209890c946 2>/dev/null); fi
 echo "\n=> rstacruz/sparkup"
 if [ ! -e "$BUNDLE/sparkup" ]; then git clone git://github.com/rstacruz/sparkup.git "$BUNDLE/sparkup" && (cd "$BUNDLE/sparkup" && git checkout -q f352ea74c4831b8e2c1c251f0b32157d9810afbd 2>/dev/null); fi
 echo "\n=> AndrewRadev/splitjoin.vim"
-if [ ! -e "$BUNDLE/splitjoin.vim" ]; then git clone git://github.com/AndrewRadev/splitjoin.vim.git "$BUNDLE/splitjoin.vim" && (cd "$BUNDLE/splitjoin.vim" && git checkout -q v0.7.0 2>/dev/null); fi
+if [ ! -e "$BUNDLE/splitjoin.vim" ]; then git clone git://github.com/AndrewRadev/splitjoin.vim.git "$BUNDLE/splitjoin.vim" && (cd "$BUNDLE/splitjoin.vim" && git checkout -q e66af1f7fed96859d269f219b4b5a3302b71defb 2>/dev/null); fi
 echo "\n=> scrooloose/syntastic"
-if [ ! -e "$BUNDLE/syntastic" ]; then git clone git://github.com/scrooloose/syntastic.git "$BUNDLE/syntastic" && (cd "$BUNDLE/syntastic" && git checkout -q 3.5.0 2>/dev/null); fi
+if [ ! -e "$BUNDLE/syntastic" ]; then git clone git://github.com/scrooloose/syntastic.git "$BUNDLE/syntastic" && (cd "$BUNDLE/syntastic" && git checkout -q e4c94d67a9ba7f35397b4a2f0daa8f346a84a8b9 2>/dev/null); fi
 echo "\n=> godlygeek/tabular"
 if [ ! -e "$BUNDLE/tabular" ]; then git clone git://github.com/godlygeek/tabular.git "$BUNDLE/tabular" && (cd "$BUNDLE/tabular" && git checkout -q 60f25648814f0695eeb6c1040d97adca93c4e0bb 2>/dev/null); fi
 echo "\n=> chriskempson/tomorrow-theme"
@@ -19,7 +19,7 @@ if [ ! -e "$BUNDLE/tomorrow-theme" ]; then git clone git://github.com/chriskemps
 echo "\n=> SirVer/ultisnips"
 if [ ! -e "$BUNDLE/ultisnips" ]; then git clone git://github.com/SirVer/ultisnips.git "$BUNDLE/ultisnips" && (cd "$BUNDLE/ultisnips" && git checkout -q cb8536d7240f5f458c292f8aa38fc50278222fe8 2>/dev/null); fi
 echo "\n=> tsukkee/unite-tag"
-if [ ! -e "$BUNDLE/unite-tag" ]; then git clone git://github.com/tsukkee/unite-tag.git "$BUNDLE/unite-tag" && (cd "$BUNDLE/unite-tag" && git checkout -q 0.1.0 2>/dev/null); fi
+if [ ! -e "$BUNDLE/unite-tag" ]; then git clone git://github.com/tsukkee/unite-tag.git "$BUNDLE/unite-tag" && (cd "$BUNDLE/unite-tag" && git checkout -q ce5d535025560a8ba890f6c9e9e8e386db40a6f2 2>/dev/null); fi
 echo "\n=> Shougo/unite.vim"
 if [ ! -e "$BUNDLE/unite.vim" ]; then git clone git://github.com/Shougo/unite.vim.git "$BUNDLE/unite.vim" && (cd "$BUNDLE/unite.vim" && git checkout -q bc48c2b00d457437585bc1d12f006bdeef7f9a3d 2>/dev/null); fi
 echo "\n=> tpope/vim-abolish"
@@ -41,13 +41,13 @@ if [ ! -e "$BUNDLE/vim-eunuch" ]; then git clone git://github.com/tpope/vim-eunu
 echo "\n=> jtratner/vim-flavored-markdown"
 if [ ! -e "$BUNDLE/vim-flavored-markdown" ]; then git clone git://github.com/jtratner/vim-flavored-markdown.git "$BUNDLE/vim-flavored-markdown" && (cd "$BUNDLE/vim-flavored-markdown" && git checkout -q 4a70aa2e0b98d20940a65ac38b6e9acc69c6b7a0 2>/dev/null); fi
 echo "\n=> tpope/vim-fugitive"
-if [ ! -e "$BUNDLE/vim-fugitive" ]; then git clone git://github.com/tpope/vim-fugitive.git "$BUNDLE/vim-fugitive" && (cd "$BUNDLE/vim-fugitive" && git checkout -q 0374322ba5d85ae44dd9dc44ef31ca015a59097e 2>/dev/null); fi
+if [ ! -e "$BUNDLE/vim-fugitive" ]; then git clone git://github.com/tpope/vim-fugitive.git "$BUNDLE/vim-fugitive" && (cd "$BUNDLE/vim-fugitive" && git checkout -q d3b98d988602b94dc705ca99b171bb9f5b6c8a2c 2>/dev/null); fi
 echo "\n=> tpope/vim-haml"
 if [ ! -e "$BUNDLE/vim-haml" ]; then git clone git://github.com/tpope/vim-haml.git "$BUNDLE/vim-haml" && (cd "$BUNDLE/vim-haml" && git checkout -q 204e32721154766e03e99ff857bc798aa5b741dc 2>/dev/null); fi
 echo "\n=> michaeljsmith/vim-indent-object"
-if [ ! -e "$BUNDLE/vim-indent-object" ]; then git clone git://github.com/michaeljsmith/vim-indent-object.git "$BUNDLE/vim-indent-object" && (cd "$BUNDLE/vim-indent-object" && git checkout -q 1.1.2 2>/dev/null); fi
+if [ ! -e "$BUNDLE/vim-indent-object" ]; then git clone git://github.com/michaeljsmith/vim-indent-object.git "$BUNDLE/vim-indent-object" && (cd "$BUNDLE/vim-indent-object" && git checkout -q 78fffa609b3e6b84ef01ee4c9aba6d7435d7b18e 2>/dev/null); fi
 echo "\n=> pangloss/vim-javascript"
-if [ ! -e "$BUNDLE/vim-javascript" ]; then git clone git://github.com/pangloss/vim-javascript.git "$BUNDLE/vim-javascript" && (cd "$BUNDLE/vim-javascript" && git checkout -q v0.9.0 2>/dev/null); fi
+if [ ! -e "$BUNDLE/vim-javascript" ]; then git clone git://github.com/pangloss/vim-javascript.git "$BUNDLE/vim-javascript" && (cd "$BUNDLE/vim-javascript" && git checkout -q f8122fd1caca68b2592553e43dad45b3dc445a06 2>/dev/null); fi
 echo "\n=> ledger/vim-ledger"
 if [ ! -e "$BUNDLE/vim-ledger" ]; then git clone git://github.com/ledger/vim-ledger.git "$BUNDLE/vim-ledger" && (cd "$BUNDLE/vim-ledger" && git checkout -q 9dc24c2b4045f63a2b6a026f947bda93970fe468 2>/dev/null); fi
 echo "\n=> groenewege/vim-less"
@@ -57,11 +57,11 @@ if [ ! -e "$BUNDLE/vim-multiple-cursors" ]; then git clone git://github.com/terr
 echo "\n=> rstacruz/vim-opinion"
 if [ ! -e "$BUNDLE/vim-opinion" ]; then git clone git://github.com/rstacruz/vim-opinion.git "$BUNDLE/vim-opinion" && (cd "$BUNDLE/vim-opinion" && git checkout -q master 2>/dev/null); fi
 echo "\n=> tpope/vim-pathogen"
-if [ ! -e "$BUNDLE/vim-pathogen" ]; then git clone git://github.com/tpope/vim-pathogen.git "$BUNDLE/vim-pathogen" && (cd "$BUNDLE/vim-pathogen" && git checkout -q 91e6378908721d20514bbe5d18d292a0a15faf0c 2>/dev/null); fi
+if [ ! -e "$BUNDLE/vim-pathogen" ]; then git clone git://github.com/tpope/vim-pathogen.git "$BUNDLE/vim-pathogen" && (cd "$BUNDLE/vim-pathogen" && git checkout -q b9fb0dfd811004010f5f6903edef42d6004ebea2 2>/dev/null); fi
 echo "\n=> tpope/vim-sensible"
 if [ ! -e "$BUNDLE/vim-sensible" ]; then git clone git://github.com/tpope/vim-sensible.git "$BUNDLE/vim-sensible" && (cd "$BUNDLE/vim-sensible" && git checkout -q 64aa12b07b0be90a8e98bc7be1b5faac4ac873a4 2>/dev/null); fi
 echo "\n=> mhinz/vim-signify"
-if [ ! -e "$BUNDLE/vim-signify" ]; then git clone git://github.com/mhinz/vim-signify.git "$BUNDLE/vim-signify" && (cd "$BUNDLE/vim-signify" && git checkout -q bd0956eee6dd7c236f0a350173cd5f221df11a22 2>/dev/null); fi
+if [ ! -e "$BUNDLE/vim-signify" ]; then git clone git://github.com/mhinz/vim-signify.git "$BUNDLE/vim-signify" && (cd "$BUNDLE/vim-signify" && git checkout -q babf2fd9759e719d06e9796900afa6fcb010fafb 2>/dev/null); fi
 echo "\n=> tpope/vim-sleuth"
 if [ ! -e "$BUNDLE/vim-sleuth" ]; then git clone git://github.com/tpope/vim-sleuth.git "$BUNDLE/vim-sleuth" && (cd "$BUNDLE/vim-sleuth" && git checkout -q 6b0c9d61e246cb3a046202de0a016451c0dc1ede 2>/dev/null); fi
 echo "\n=> honza/vim-snippets"
