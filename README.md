@@ -51,7 +51,8 @@ $ bower update
 
 ## Version locking
 
-Since bower still has no shrinkwrap feature ([#505]), there's a hackish way:
+Since bower still has no shrinkwrap feature ([#505]), there's a hackish script
+in `bin/lock` to update `.bowerlock` and `bin/install`.
 
 ```sh
 $ ./bin/lock      # lock dependency versions into .bowerlock and ./bin/install

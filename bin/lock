@@ -9,6 +9,14 @@
  *
  *     $ ./bin/lock
  *
+ * I also recommend adding this to .bowerrc:
+ *
+ *     {
+ *       "scripts": {
+ *         "postinstall": "bin/lock"
+ *       }
+ *     }
+ *
  * `.bowerlock` will be based on your bower.json, only with versions locked:
  *
  *     {
