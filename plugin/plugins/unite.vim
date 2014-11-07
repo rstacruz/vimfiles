@@ -12,7 +12,6 @@ let g:unite_prompt = '▸ '
 "
 
 nnoremap [unite] <Nop>
-nmap f [unite]
 nmap <leader>u [unite]
 
 "
@@ -29,7 +28,7 @@ nnoremap <silent> [unite]o :<C-u>Unite -no-split -auto-preview -winheight=30 out
 " aliases
 "
 
-map <C-p> fa
+map  <C-p>     [unite]a
 nmap <leader>t [unite]o
 
 "
