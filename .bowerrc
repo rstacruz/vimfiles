@@ -1,3 +1,6 @@
 {
-  "directory": "bundle"
+  "directory": "bundle",
+  "scripts": {
+    "postinstall": "./bin/lock"
+  }
 }
