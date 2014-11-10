@@ -21,7 +21,7 @@ nmap <leader>u [unite]
 nnoremap <silent> [unite]a :<C-u>Unite -start-insert -hide-source-names file_rec/git file/new<CR>
 nnoremap <silent> [unite]b :<C-u>Unite -start-insert buffer<CR>
 nnoremap <silent> [unite]t :<C-u>Unite -start-insert tag<CR>
-nnoremap <silent> [unite]g :<C-u>Unite -no-split -auto-preview -winheight=30 grep:.<CR>
+nnoremap <silent> [unite]g :<C-u>Unite -no-split -winheight=30 grep:.<CR>
 nnoremap <silent> [unite]o :<C-u>Unite -no-split -auto-preview -winheight=30 outline<CR>
 
 "
