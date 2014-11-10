@@ -13,7 +13,7 @@ if [ ! -e "$BUNDLE/sparkup" ]; then git clone git://github.com/rstacruz/sparkup.
 echo "\n=> AndrewRadev/splitjoin.vim"
 if [ ! -e "$BUNDLE/splitjoin.vim" ]; then git clone git://github.com/AndrewRadev/splitjoin.vim.git "$BUNDLE/splitjoin.vim" && (cd "$BUNDLE/splitjoin.vim" && git checkout -q 41c2117b0fa0ec5d85a3690aea121bb99cc9620c 2>/dev/null); fi
 echo "\n=> scrooloose/syntastic"
-if [ ! -e "$BUNDLE/syntastic" ]; then git clone git://github.com/scrooloose/syntastic.git "$BUNDLE/syntastic" && (cd "$BUNDLE/syntastic" && git checkout -q 412d3526abef3bfddaa371e4fc780c1f826a8176 2>/dev/null); fi
+if [ ! -e "$BUNDLE/syntastic" ]; then git clone git://github.com/scrooloose/syntastic.git "$BUNDLE/syntastic" && (cd "$BUNDLE/syntastic" && git checkout -q ba7d1b40bf14bcb6c8ad88e299d9269a5142c408 2>/dev/null); fi
 echo "\n=> godlygeek/tabular"
 if [ ! -e "$BUNDLE/tabular" ]; then git clone git://github.com/godlygeek/tabular.git "$BUNDLE/tabular" && (cd "$BUNDLE/tabular" && git checkout -q 60f25648814f0695eeb6c1040d97adca93c4e0bb 2>/dev/null); fi
 echo "\n=> chriskempson/tomorrow-theme"
@@ -27,7 +27,7 @@ if [ ! -e "$BUNDLE/unite.vim" ]; then git clone git://github.com/Shougo/unite.vi
 echo "\n=> tpope/vim-abolish"
 if [ ! -e "$BUNDLE/vim-abolish" ]; then git clone git://github.com/tpope/vim-abolish.git "$BUNDLE/vim-abolish" && (cd "$BUNDLE/vim-abolish" && git checkout -q d932b4491a35a0a85f1334223e315caac5e5cb0d 2>/dev/null); fi
 echo "\n=> bling/vim-airline"
-if [ ! -e "$BUNDLE/vim-airline" ]; then git clone git://github.com/bling/vim-airline.git "$BUNDLE/vim-airline" && (cd "$BUNDLE/vim-airline" && git checkout -q 256dec6800342c121c1b26dabc06dafb0c91edca 2>/dev/null); fi
+if [ ! -e "$BUNDLE/vim-airline" ]; then git clone git://github.com/bling/vim-airline.git "$BUNDLE/vim-airline" && (cd "$BUNDLE/vim-airline" && git checkout -q be6e4d6dd63a49132fc758643bb393a7f41f8b82 2>/dev/null); fi
 echo "\n=> craigemery/vim-autotag"
 if [ ! -e "$BUNDLE/vim-autotag" ]; then git clone git://github.com/craigemery/vim-autotag.git "$BUNDLE/vim-autotag" && (cd "$BUNDLE/vim-autotag" && git checkout -q 22ebd9651a504453023324f1d9b4e5906b9e498e 2>/dev/null); fi
 echo "\n=> kchmck/vim-coffee-script"
@@ -77,6 +77,6 @@ if [ ! -e "$BUNDLE/vim-ultisnips-css" ]; then git clone git://github.com/rstacru
 echo "\n=> tpope/vim-vinegar"
 if [ ! -e "$BUNDLE/vim-vinegar" ]; then git clone git://github.com/tpope/vim-vinegar.git "$BUNDLE/vim-vinegar" && (cd "$BUNDLE/vim-vinegar" && git checkout -q ac893960c324d879b6923a4c1abaea352d8caeb5 2>/dev/null); fi
 echo "\n=> Shougo/vimproc.vim"
-if [ ! -e "$BUNDLE/vimproc.vim" ]; then git clone git://github.com/Shougo/vimproc.vim.git "$BUNDLE/vimproc.vim" && (cd "$BUNDLE/vimproc.vim" && git checkout -q 41eea46cf5b8418db6dc5c5a760a4cead31d1370 2>/dev/null); fi
+if [ ! -e "$BUNDLE/vimproc.vim" ]; then git clone git://github.com/Shougo/vimproc.vim.git "$BUNDLE/vimproc.vim" && (cd "$BUNDLE/vimproc.vim" && git checkout -q c7fd9a19cb0bf3f18d66d29d269789126b4271b0 2>/dev/null); fi
 echo "\n=> sjl/vitality.vim"
 if [ ! -e "$BUNDLE/vitality.vim" ]; then git clone git://github.com/sjl/vitality.vim.git "$BUNDLE/vitality.vim" && (cd "$BUNDLE/vitality.vim" && git checkout -q v1.1.0 2>/dev/null); fi

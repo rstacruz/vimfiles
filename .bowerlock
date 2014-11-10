@@ -13,14 +13,14 @@
     "nerdtree": "scrooloose/nerdtree#f8fd2ecce20f5005e6313ce57d6d2a209890c946",
     "sparkup": "rstacruz/sparkup#332db21f6cc3dd398fec4d8f2e4c0cf26d8ca654",
     "splitjoin.vim": "AndrewRadev/splitjoin.vim#41c2117b0fa0ec5d85a3690aea121bb99cc9620c",
-    "syntastic": "scrooloose/syntastic#412d3526abef3bfddaa371e4fc780c1f826a8176",
+    "syntastic": "scrooloose/syntastic#ba7d1b40bf14bcb6c8ad88e299d9269a5142c408",
     "tabular": "godlygeek/tabular#60f25648814f0695eeb6c1040d97adca93c4e0bb",
     "tomorrow-theme": "chriskempson/tomorrow-theme#9b69df6106073c9ebfef54d3f85607a99c6a78fc",
     "ultisnips": "SirVer/ultisnips#cb8536d7240f5f458c292f8aa38fc50278222fe8",
     "unite-tag": "tsukkee/unite-tag#ce5d535025560a8ba890f6c9e9e8e386db40a6f2",
     "unite.vim": "Shougo/unite.vim#bc48c2b00d457437585bc1d12f006bdeef7f9a3d",
     "vim-abolish": "tpope/vim-abolish#d932b4491a35a0a85f1334223e315caac5e5cb0d",
-    "vim-airline": "bling/vim-airline#256dec6800342c121c1b26dabc06dafb0c91edca",
+    "vim-airline": "bling/vim-airline#be6e4d6dd63a49132fc758643bb393a7f41f8b82",
     "vim-autotag": "craigemery/vim-autotag#22ebd9651a504453023324f1d9b4e5906b9e498e",
     "vim-coffee-script": "kchmck/vim-coffee-script#827e4a38b07479433b619091469a7495a392df8a",
     "vim-commentary": "tpope/vim-commentary#401dbd8abee69defe66acf5e9ccc85e2746c27e2",
@@ -45,7 +45,7 @@
     "vim-surround": "tpope/vim-surround#fa433e0b7330753688f715f3be5d10dc480f20e5",
     "vim-ultisnips-css": "rstacruz/vim-ultisnips-css#master",
     "vim-vinegar": "tpope/vim-vinegar#ac893960c324d879b6923a4c1abaea352d8caeb5",
-    "vimproc.vim": "Shougo/vimproc.vim#41eea46cf5b8418db6dc5c5a760a4cead31d1370",
+    "vimproc.vim": "Shougo/vimproc.vim#c7fd9a19cb0bf3f18d66d29d269789126b4271b0",
     "vitality.vim": "sjl/vitality.vim#v1.1.0"
   }
 }
