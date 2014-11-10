@@ -36,6 +36,8 @@ echo "\n=> tpope/vim-commentary"
 if [ ! -e "$BUNDLE/vim-commentary" ]; then git clone git://github.com/tpope/vim-commentary.git "$BUNDLE/vim-commentary" && (cd "$BUNDLE/vim-commentary" && git checkout -q 401dbd8abee69defe66acf5e9ccc85e2746c27e2 2>/dev/null); fi
 echo "\n=> hail2u/vim-css3-syntax"
 if [ ! -e "$BUNDLE/vim-css3-syntax" ]; then git clone git://github.com/hail2u/vim-css3-syntax.git "$BUNDLE/vim-css3-syntax" && (cd "$BUNDLE/vim-css3-syntax" && git checkout -q v0.13.0 2>/dev/null); fi
+echo "\n=> junegunn/vim-easy-align"
+if [ ! -e "$BUNDLE/vim-easy-align" ]; then git clone git://github.com/junegunn/vim-easy-align.git "$BUNDLE/vim-easy-align" && (cd "$BUNDLE/vim-easy-align" && git checkout -q 2.9.6 2>/dev/null); fi
 echo "\n=> tpope/vim-endwise"
 if [ ! -e "$BUNDLE/vim-endwise" ]; then git clone git://github.com/tpope/vim-endwise.git "$BUNDLE/vim-endwise" && (cd "$BUNDLE/vim-endwise" && git checkout -q 96eb11755bb2d1a5583d44e9bcd10481bca45693 2>/dev/null); fi
 echo "\n=> tpope/vim-eunuch"
@@ -52,6 +54,8 @@ echo "\n=> pangloss/vim-javascript"
 if [ ! -e "$BUNDLE/vim-javascript" ]; then git clone git://github.com/pangloss/vim-javascript.git "$BUNDLE/vim-javascript" && (cd "$BUNDLE/vim-javascript" && git checkout -q f8122fd1caca68b2592553e43dad45b3dc445a06 2>/dev/null); fi
 echo "\n=> ledger/vim-ledger"
 if [ ! -e "$BUNDLE/vim-ledger" ]; then git clone git://github.com/ledger/vim-ledger.git "$BUNDLE/vim-ledger" && (cd "$BUNDLE/vim-ledger" && git checkout -q 9dc24c2b4045f63a2b6a026f947bda93970fe468 2>/dev/null); fi
+echo "\n=> junegunn/vim-lengthmatters"
+if [ ! -e "$BUNDLE/vim-lengthmatters" ]; then git clone git://github.com/junegunn/vim-lengthmatters.git "$BUNDLE/vim-lengthmatters" && (cd "$BUNDLE/vim-lengthmatters" && git checkout -q 3c4e694523a0658d4a55047780d71b4d484ed85a 2>/dev/null); fi
 echo "\n=> groenewege/vim-less"
 if [ ! -e "$BUNDLE/vim-less" ]; then git clone git://github.com/groenewege/vim-less.git "$BUNDLE/vim-less" && (cd "$BUNDLE/vim-less" && git checkout -q 940a8defa0576385dee1ad177bab0b34738540aa 2>/dev/null); fi
 echo "\n=> terryma/vim-multiple-cursors"

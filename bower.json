@@ -44,6 +44,8 @@
     "tomorrow-theme": "chriskempson/tomorrow-theme",
     "sparkup": "rstacruz/sparkup",
     "vim-opinion": "rstacruz/vim-opinion",
-    "ledgerdown": "rstacruz/ledgerdown#master"
+    "ledgerdown": "rstacruz/ledgerdown#master",
+    "vim-easy-align": "junegunn/vim-easy-align#~2.9.6",
+    "vim-lengthmatters": "junegunn/vim-lengthmatters"
   }
 }
