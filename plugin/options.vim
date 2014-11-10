@@ -1,3 +1,6 @@
+runtime! plugin/sensible.vim
+runtime! plugin/opinion.vim
+
 if !has('gui_running')
   set t_Co=256
 endif

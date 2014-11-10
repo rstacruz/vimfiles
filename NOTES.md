@@ -9,13 +9,27 @@
     ,t    outline
     ,ua   all files
 
-## vinegar
+## vinegar/netrw
 
     -     back
     .     open in command line
     !     open in command line
+
     D     delete
+    d     mkdir
     R     rename
+    %     new file
+
+    o     open in horiz split
+    v     open in vert split
+    t     open in tab
+
+    ^O    back to editing
+
+    i     change view (tree!)
+
+    mf    mark file
+    mm    move here
 
 ## nerdtree
 
