@@ -20,6 +20,8 @@ echo "\n=> chriskempson/tomorrow-theme"
 if [ ! -e "$BUNDLE/tomorrow-theme" ]; then git clone git://github.com/chriskempson/tomorrow-theme.git "$BUNDLE/tomorrow-theme" && (cd "$BUNDLE/tomorrow-theme" && git checkout -q 9b69df6106073c9ebfef54d3f85607a99c6a78fc 2>/dev/null); fi
 echo "\n=> SirVer/ultisnips"
 if [ ! -e "$BUNDLE/ultisnips" ]; then git clone git://github.com/SirVer/ultisnips.git "$BUNDLE/ultisnips" && (cd "$BUNDLE/ultisnips" && git checkout -q cb8536d7240f5f458c292f8aa38fc50278222fe8 2>/dev/null); fi
+echo "\n=> Shougo/unite-outline"
+if [ ! -e "$BUNDLE/unite-outline" ]; then git clone git://github.com/Shougo/unite-outline.git "$BUNDLE/unite-outline" && (cd "$BUNDLE/unite-outline" && git checkout -q a6240f9982a1c3693020453e7e88fa355458cdad 2>/dev/null); fi
 echo "\n=> tsukkee/unite-tag"
 if [ ! -e "$BUNDLE/unite-tag" ]; then git clone git://github.com/tsukkee/unite-tag.git "$BUNDLE/unite-tag" && (cd "$BUNDLE/unite-tag" && git checkout -q ce5d535025560a8ba890f6c9e9e8e386db40a6f2 2>/dev/null); fi
 echo "\n=> Shougo/unite.vim"
@@ -36,6 +38,8 @@ echo "\n=> tpope/vim-commentary"
 if [ ! -e "$BUNDLE/vim-commentary" ]; then git clone git://github.com/tpope/vim-commentary.git "$BUNDLE/vim-commentary" && (cd "$BUNDLE/vim-commentary" && git checkout -q 401dbd8abee69defe66acf5e9ccc85e2746c27e2 2>/dev/null); fi
 echo "\n=> hail2u/vim-css3-syntax"
 if [ ! -e "$BUNDLE/vim-css3-syntax" ]; then git clone git://github.com/hail2u/vim-css3-syntax.git "$BUNDLE/vim-css3-syntax" && (cd "$BUNDLE/vim-css3-syntax" && git checkout -q v0.13.0 2>/dev/null); fi
+echo "\n=> tpope/vim-dispatch"
+if [ ! -e "$BUNDLE/vim-dispatch" ]; then git clone git://github.com/tpope/vim-dispatch.git "$BUNDLE/vim-dispatch" && (cd "$BUNDLE/vim-dispatch" && git checkout -q 78ed0c065ee65c8368f1f10566b96cd890c14358 2>/dev/null); fi
 echo "\n=> junegunn/vim-easy-align"
 if [ ! -e "$BUNDLE/vim-easy-align" ]; then git clone git://github.com/junegunn/vim-easy-align.git "$BUNDLE/vim-easy-align" && (cd "$BUNDLE/vim-easy-align" && git checkout -q 2.9.6 2>/dev/null); fi
 echo "\n=> tpope/vim-endwise"
