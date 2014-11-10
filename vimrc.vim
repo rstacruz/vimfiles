@@ -11,35 +11,34 @@ Plug 'Shougo/unite.vim'
 Plug 'tpope/vim-abolish'
 Plug 'bling/vim-airline'
 Plug 'craigemery/vim-autotag'
-Plug 'kchmck/vim-coffee-script'
+Plug 'kchmck/vim-coffee-script', { 'for': ['coffee', 'coffeescript'] }
 Plug 'tpope/vim-commentary'
-Plug 'hail2u/vim-css3-syntax'
+Plug 'hail2u/vim-css3-syntax', { 'for': ['css'] }
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-haml'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'pangloss/vim-javascript'
-Plug 'ledger/vim-ledger'
-Plug 'groenewege/vim-less'
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'js'] }
+Plug 'ledger/vim-ledger', { 'for': ['ledger'] }
+Plug 'groenewege/vim-less', { 'for': ['less'] }
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-sensible'
 Plug 'mhinz/vim-signify'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
-Plug 'rstacruz/vim-ultisnips-css'
+Plug 'rstacruz/vim-ultisnips-css', { 'for': ['css', 'scss', 'sass', 'styl'] }
 Plug 'tpope/vim-vinegar'
 Plug 'Shougo/vimproc.vim'
 Plug 'sjl/vitality.vim'
-Plug 'tpope/vim-pathogen'
 Plug 'tpope/vim-eunuch'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'jtratner/vim-flavored-markdown'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
 Plug 'chriskempson/tomorrow-theme'
-Plug 'rstacruz/sparkup'
+Plug 'rstacruz/sparkup', { 'for': ['html'] }
 Plug 'rstacruz/vim-opinion'
-Plug 'rstacruz/ledgerdown'
+Plug 'rstacruz/ledgerdown', { 'for': ['ledgerdown'] }
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-lengthmatters'
 call plug#end()
