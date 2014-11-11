@@ -47,6 +47,7 @@
     "vim-surround": "tpope/vim-surround#fa433e0b7330753688f715f3be5d10dc480f20e5",
     "vim-ultisnips-css": "rstacruz/vim-ultisnips-css#master",
     "vim-vinegar": "tpope/vim-vinegar#ac893960c324d879b6923a4c1abaea352d8caeb5",
+    "vim-visualstar": "thinca/vim-visualstar#v0.5.0",
     "vimproc.vim": "Shougo/vimproc.vim#c7fd9a19cb0bf3f18d66d29d269789126b4271b0",
     "vitality.vim": "sjl/vitality.vim#v1.1.0"
   }

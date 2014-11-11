@@ -48,6 +48,7 @@
     "vim-easy-align": "junegunn/vim-easy-align#~2.9.6",
     "vim-lengthmatters": "junegunn/vim-lengthmatters",
     "vim-dispatch": "tpope/vim-dispatch",
-    "unite-outline": "Shougo/unite-outline#master"
+    "unite-outline": "Shougo/unite-outline#master",
+    "vim-visualstar": "thinca/vim-visualstar#~0.5.0"
   }
 }

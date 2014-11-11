@@ -80,6 +80,8 @@ echo "\n=> rstacruz/vim-ultisnips-css"
 if [ ! -e "$BUNDLE/vim-ultisnips-css" ]; then git clone git://github.com/rstacruz/vim-ultisnips-css.git "$BUNDLE/vim-ultisnips-css" && (cd "$BUNDLE/vim-ultisnips-css" && git checkout -q master 2>/dev/null); fi
 echo "\n=> tpope/vim-vinegar"
 if [ ! -e "$BUNDLE/vim-vinegar" ]; then git clone git://github.com/tpope/vim-vinegar.git "$BUNDLE/vim-vinegar" && (cd "$BUNDLE/vim-vinegar" && git checkout -q ac893960c324d879b6923a4c1abaea352d8caeb5 2>/dev/null); fi
+echo "\n=> thinca/vim-visualstar"
+if [ ! -e "$BUNDLE/vim-visualstar" ]; then git clone git://github.com/thinca/vim-visualstar.git "$BUNDLE/vim-visualstar" && (cd "$BUNDLE/vim-visualstar" && git checkout -q v0.5.0 2>/dev/null); fi
 echo "\n=> Shougo/vimproc.vim"
 if [ ! -e "$BUNDLE/vimproc.vim" ]; then git clone git://github.com/Shougo/vimproc.vim.git "$BUNDLE/vimproc.vim" && (cd "$BUNDLE/vimproc.vim" && git checkout -q c7fd9a19cb0bf3f18d66d29d269789126b4271b0 2>/dev/null); fi
 echo "\n=> sjl/vitality.vim"
