@@ -1,2 +1,4 @@
-map \= \\
-vmap / \\
+if globpath(&rtp, "plugin/commentary.vim") != ""
+  map \= \\
+  vmap / \\
+endif
