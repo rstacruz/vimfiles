@@ -76,6 +76,8 @@ echo "\n=> mhinz/vim-signify"
 if [ ! -e "$BUNDLE/vim-signify" ]; then git clone git://github.com/mhinz/vim-signify.git "$BUNDLE/vim-signify" && (cd "$BUNDLE/vim-signify" && git checkout -q babf2fd9759e719d06e9796900afa6fcb010fafb 2>/dev/null); fi
 echo "\n=> honza/vim-snippets"
 if [ ! -e "$BUNDLE/vim-snippets" ]; then git clone git://github.com/honza/vim-snippets.git "$BUNDLE/vim-snippets" && (cd "$BUNDLE/vim-snippets" && git checkout -q 1.0.0 2>/dev/null); fi
+echo "\n=> wavded/vim-stylus"
+if [ ! -e "$BUNDLE/vim-stylus" ]; then git clone git://github.com/wavded/vim-stylus.git "$BUNDLE/vim-stylus" && (cd "$BUNDLE/vim-stylus" && git checkout -q 0.9.1 2>/dev/null); fi
 echo "\n=> tpope/vim-surround"
 if [ ! -e "$BUNDLE/vim-surround" ]; then git clone git://github.com/tpope/vim-surround.git "$BUNDLE/vim-surround" && (cd "$BUNDLE/vim-surround" && git checkout -q fa433e0b7330753688f715f3be5d10dc480f20e5 2>/dev/null); fi
 echo "\n=> rstacruz/vim-ultisnips-css"

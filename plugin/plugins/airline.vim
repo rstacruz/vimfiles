@@ -30,7 +30,8 @@ if globpath(&rtp, "plugin/airline.vim") != ""
   let g:airline#extensions#tabline#show_buffers = 1
   let g:airline#extensions#tabline#show_tab_nr = 0
   let g:airline#extensions#tabline#buffer_idx_mode = 1
-  let g:airline_inactive_collapse=1
+  let g:airline#extensions#tabline#left_sep = '⮀ '
+  let g:airline#extensions#tabline#left_alt_sep = '⮁ '
 
   nmap ¡ <Plug>AirlineSelectTab1
   nmap ™ <Plug>AirlineSelectTab2
@@ -43,5 +44,7 @@ if globpath(&rtp, "plugin/airline.vim") != ""
   nmap ª <Plug>AirlineSelectTab9
 
   let g:bufferline_show_bufnr = 0
+  let g:bufferline_echo = 0
+  let g:bufferline_modified = ' •'
   let g:airline_section_c = '%t'
 endif
