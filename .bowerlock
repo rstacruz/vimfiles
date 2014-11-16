@@ -23,6 +23,7 @@
     "vim-abolish": "tpope/vim-abolish#d932b4491a35a0a85f1334223e315caac5e5cb0d",
     "vim-airline": "bling/vim-airline#be6e4d6dd63a49132fc758643bb393a7f41f8b82",
     "vim-autotag": "craigemery/vim-autotag#22ebd9651a504453023324f1d9b4e5906b9e498e",
+    "vim-bufferline": "bling/vim-bufferline#706e059acc3de5c829ba2d2685759c077a52ebbc",
     "vim-coffee-script": "kchmck/vim-coffee-script#827e4a38b07479433b619091469a7495a392df8a",
     "vim-commentary": "tpope/vim-commentary#401dbd8abee69defe66acf5e9ccc85e2746c27e2",
     "vim-css3-syntax": "hail2u/vim-css3-syntax#v0.13.0",

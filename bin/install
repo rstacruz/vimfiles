@@ -32,6 +32,8 @@ echo "\n=> bling/vim-airline"
 if [ ! -e "$BUNDLE/vim-airline" ]; then git clone git://github.com/bling/vim-airline.git "$BUNDLE/vim-airline" && (cd "$BUNDLE/vim-airline" && git checkout -q be6e4d6dd63a49132fc758643bb393a7f41f8b82 2>/dev/null); fi
 echo "\n=> craigemery/vim-autotag"
 if [ ! -e "$BUNDLE/vim-autotag" ]; then git clone git://github.com/craigemery/vim-autotag.git "$BUNDLE/vim-autotag" && (cd "$BUNDLE/vim-autotag" && git checkout -q 22ebd9651a504453023324f1d9b4e5906b9e498e 2>/dev/null); fi
+echo "\n=> bling/vim-bufferline"
+if [ ! -e "$BUNDLE/vim-bufferline" ]; then git clone git://github.com/bling/vim-bufferline.git "$BUNDLE/vim-bufferline" && (cd "$BUNDLE/vim-bufferline" && git checkout -q 706e059acc3de5c829ba2d2685759c077a52ebbc 2>/dev/null); fi
 echo "\n=> kchmck/vim-coffee-script"
 if [ ! -e "$BUNDLE/vim-coffee-script" ]; then git clone git://github.com/kchmck/vim-coffee-script.git "$BUNDLE/vim-coffee-script" && (cd "$BUNDLE/vim-coffee-script" && git checkout -q 827e4a38b07479433b619091469a7495a392df8a 2>/dev/null); fi
 echo "\n=> tpope/vim-commentary"

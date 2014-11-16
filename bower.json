@@ -49,6 +49,7 @@
     "vim-lengthmatters": "junegunn/vim-lengthmatters",
     "vim-dispatch": "tpope/vim-dispatch",
     "unite-outline": "Shougo/unite-outline#master",
-    "vim-visualstar": "thinca/vim-visualstar#~0.5.0"
+    "vim-visualstar": "thinca/vim-visualstar#~0.5.0",
+    "vim-bufferline": "bling/vim-bufferline"
   }
 }
