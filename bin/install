@@ -56,6 +56,8 @@ echo "\n=> tpope/vim-haml"
 if [ ! -e "$BUNDLE/vim-haml" ]; then git clone git://github.com/tpope/vim-haml.git "$BUNDLE/vim-haml" && (cd "$BUNDLE/vim-haml" && git checkout -q 204e32721154766e03e99ff857bc798aa5b741dc 2>/dev/null); fi
 echo "\n=> michaeljsmith/vim-indent-object"
 if [ ! -e "$BUNDLE/vim-indent-object" ]; then git clone git://github.com/michaeljsmith/vim-indent-object.git "$BUNDLE/vim-indent-object" && (cd "$BUNDLE/vim-indent-object" && git checkout -q 78fffa609b3e6b84ef01ee4c9aba6d7435d7b18e 2>/dev/null); fi
+echo "\n=> digitaltoad/vim-jade"
+if [ ! -e "$BUNDLE/vim-jade" ]; then git clone git://github.com/digitaltoad/vim-jade.git "$BUNDLE/vim-jade" && (cd "$BUNDLE/vim-jade" && git checkout -q f0ca7b562052a661b35dee50bcf31eeaf8558201 2>/dev/null); fi
 echo "\n=> pangloss/vim-javascript"
 if [ ! -e "$BUNDLE/vim-javascript" ]; then git clone git://github.com/pangloss/vim-javascript.git "$BUNDLE/vim-javascript" && (cd "$BUNDLE/vim-javascript" && git checkout -q f8122fd1caca68b2592553e43dad45b3dc445a06 2>/dev/null); fi
 echo "\n=> ledger/vim-ledger"
