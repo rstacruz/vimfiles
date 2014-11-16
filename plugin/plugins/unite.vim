@@ -24,6 +24,7 @@ if globpath(&rtp, "plugin/unite.vim") != ""
   nnoremap <silent> [unite]t :<C-u>Unite -start-insert tag<CR>
   nnoremap <silent> [unite]g :<C-u>Unite -winheight=30 -truncate grep:.<CR>
   nnoremap <silent> [unite]o :<C-u>Unite -auto-highlight -vertical -winwidth=30 outline<CR>
+  nnoremap <silent> [unite]O :<C-u>Unite -no-quit -vertical -winwidth=30 outline<CR>
 
   "
   " aliases
