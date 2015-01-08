@@ -55,3 +55,10 @@ set fillchars="vert: "
 
 command! Hardwrap set fo=want tw=80 nowrap
 command! Nohardwrap set fo=croq wrap linebreak nolist
+
+"
+" Fix slow Ruby editing
+" http://stackoverflow.com/questions/22949067/macvim-quite-slow-when-syntax-is-set-to-ruby
+"
+
+autocmd Filetype ruby setlocal foldmethod=manual
