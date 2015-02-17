@@ -30,7 +30,6 @@
     "vim-dispatch": "tpope/vim-dispatch#c4390c5724f9d262aeba62ab69c5bc5246626c6f",
     "vim-easy-align": "junegunn/vim-easy-align#2.9.6",
     "vim-endwise": "tpope/vim-endwise#bba43b831ae0485cf9b86d16340a6a314b927391",
-    "vim-eunuch": "tpope/vim-eunuch#8c996336ceecbfb7290c7c9b409195f190866548",
     "vim-flavored-markdown": "jtratner/vim-flavored-markdown#4a70aa2e0b98d20940a65ac38b6e9acc69c6b7a0",
     "vim-fugitive": "tpope/vim-fugitive#2c8461db084d205903a792a23163faa546f143c9",
     "vim-haml": "tpope/vim-haml#204e32721154766e03e99ff857bc798aa5b741dc",

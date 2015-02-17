@@ -46,8 +46,6 @@ echo "\n=> junegunn/vim-easy-align"
 if [ ! -e "$BUNDLE/vim-easy-align" ]; then git clone git://github.com/junegunn/vim-easy-align.git "$BUNDLE/vim-easy-align" && (cd "$BUNDLE/vim-easy-align" && git checkout -q 2.9.6 2>/dev/null); fi
 echo "\n=> tpope/vim-endwise"
 if [ ! -e "$BUNDLE/vim-endwise" ]; then git clone git://github.com/tpope/vim-endwise.git "$BUNDLE/vim-endwise" && (cd "$BUNDLE/vim-endwise" && git checkout -q bba43b831ae0485cf9b86d16340a6a314b927391 2>/dev/null); fi
-echo "\n=> tpope/vim-eunuch"
-if [ ! -e "$BUNDLE/vim-eunuch" ]; then git clone git://github.com/tpope/vim-eunuch.git "$BUNDLE/vim-eunuch" && (cd "$BUNDLE/vim-eunuch" && git checkout -q 8c996336ceecbfb7290c7c9b409195f190866548 2>/dev/null); fi
 echo "\n=> jtratner/vim-flavored-markdown"
 if [ ! -e "$BUNDLE/vim-flavored-markdown" ]; then git clone git://github.com/jtratner/vim-flavored-markdown.git "$BUNDLE/vim-flavored-markdown" && (cd "$BUNDLE/vim-flavored-markdown" && git checkout -q 4a70aa2e0b98d20940a65ac38b6e9acc69c6b7a0 2>/dev/null); fi
 echo "\n=> tpope/vim-fugitive"

@@ -36,7 +36,6 @@
     "vimproc.vim": "Shougo/vimproc.vim",
     "vitality.vim": "sjl/vitality.vim",
     "vim-pathogen": "tpope/vim-pathogen",
-    "vim-eunuch": "tpope/vim-eunuch",
     "splitjoin.vim": "AndrewRadev/splitjoin.vim#master",
     "vim-flavored-markdown": "jtratner/vim-flavored-markdown",
     "nerdtree": "scrooloose/nerdtree#master",
