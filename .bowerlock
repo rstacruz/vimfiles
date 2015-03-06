@@ -9,7 +9,7 @@
   "dependencies": {
     "ZoomWin": "vim-scripts/ZoomWin#cf21ce1f4bfec10fe7e446c08e9e647a2a234e03",
     "editorconfig-vim": "editorconfig/editorconfig-vim#3484d2e13b0a29cdaa307b51f38b039633d91aac",
-    "ledgerdown": "rstacruz/ledgerdown#master",
+    "ledgerdown": "rstacruz/ledgerdown#4f862e4716a882be14d4612a9da959fb5dd0a5b6",
     "nerdtree": "scrooloose/nerdtree#3b98a7fcae8f9fff356907171f0406ff8cd28921",
     "sparkup": "rstacruz/sparkup#332db21f6cc3dd398fec4d8f2e4c0cf26d8ca654",
     "splitjoin.vim": "AndrewRadev/splitjoin.vim#10905b5a76d3dfbca53853c3c30c7c554952548c",

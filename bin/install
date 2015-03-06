@@ -5,7 +5,7 @@ if [ ! -e "$BUNDLE/ZoomWin" ]; then git clone git://github.com/vim-scripts/ZoomW
 echo "\n=> editorconfig/editorconfig-vim"
 if [ ! -e "$BUNDLE/editorconfig-vim" ]; then git clone git://github.com/editorconfig/editorconfig-vim.git "$BUNDLE/editorconfig-vim" && (cd "$BUNDLE/editorconfig-vim" && git checkout -q 3484d2e13b0a29cdaa307b51f38b039633d91aac 2>/dev/null); fi
 echo "\n=> rstacruz/ledgerdown"
-if [ ! -e "$BUNDLE/ledgerdown" ]; then git clone git://github.com/rstacruz/ledgerdown.git "$BUNDLE/ledgerdown" && (cd "$BUNDLE/ledgerdown" && git checkout -q master 2>/dev/null); fi
+if [ ! -e "$BUNDLE/ledgerdown" ]; then git clone git://github.com/rstacruz/ledgerdown.git "$BUNDLE/ledgerdown" && (cd "$BUNDLE/ledgerdown" && git checkout -q 4f862e4716a882be14d4612a9da959fb5dd0a5b6 2>/dev/null); fi
 echo "\n=> scrooloose/nerdtree"
 if [ ! -e "$BUNDLE/nerdtree" ]; then git clone git://github.com/scrooloose/nerdtree.git "$BUNDLE/nerdtree" && (cd "$BUNDLE/nerdtree" && git checkout -q 3b98a7fcae8f9fff356907171f0406ff8cd28921 2>/dev/null); fi
 echo "\n=> rstacruz/sparkup"
