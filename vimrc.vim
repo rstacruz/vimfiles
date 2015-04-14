@@ -53,6 +53,7 @@ if $VIM_MINIMAL == ''
   Plug 'Shougo/unite-outline'
   Plug 'thinca/vim-visualstar'
   Plug 'bling/vim-bufferline'
+  Plug 'mileszs/ack.vim'
 
   " Language specific
   Plug 'wavded/vim-stylus', { 'for': 'stylus' }
