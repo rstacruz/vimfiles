@@ -5,11 +5,11 @@ link:
 
 # Produce lockfile
 lock:
-	vim +"PlugSnapshot ./bin/install" +qa
+	vim +PlugInstall +"PlugSnapshot ./bin/install" +qa
 
 # Upgrade plugins, vim-plug, and show changes
 update:
-	vim +PlugUpdate +PlugUpgrade +PlugDiff
+	vim +PlugUpdate +PlugUpgrade +"PlugSnapshot ./bin/install" +PlugDiff
 upgrade: update
 
 # Install from lockfile
