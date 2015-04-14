@@ -16,13 +16,8 @@ make restore  # install vim plugins
 ## Adding packages
 
 ```
-# in vimrc.vim
-Plug 'x/y'
-:PlugInstall
-```
-
-```
-make lock     # update ./bin/install
+vim ~/.vimrc     # add 'Plug 'x/y''
+make install     # update ./bin/install
 ```
 
 <br>

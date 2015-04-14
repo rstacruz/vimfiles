@@ -22,9 +22,12 @@ if $VIM_MINIMAL == ''
   Plug 'bling/vim-airline'
   Plug 'SirVer/ultisnips'
   Plug 'rstacruz/vim-ultisnips-css'
+
+  " Unite
   Plug 'Shougo/unite.vim'
   Plug 'tsukkee/unite-tag'
   Plug 'tacroe/unite-mark'
+  Plug 'Shougo/unite-outline'
 
   Plug 'vim-scripts/ZoomWin'
   Plug 'godlygeek/tabular'
@@ -48,9 +51,8 @@ if $VIM_MINIMAL == ''
   Plug 'rstacruz/sparkup', { 'rtp': 'vim' }
   Plug 'rstacruz/vim-opinion'
   Plug 'junegunn/vim-easy-align'
-  Plug 'junegunn/vim-lengthmatters'
+  Plug 'whatyouhide/vim-lengthmatters'
   Plug 'tpope/vim-dispatch'
-  Plug 'Shougo/unite-outline'
   Plug 'thinca/vim-visualstar'
   Plug 'bling/vim-bufferline'
   Plug 'mileszs/ack.vim'
