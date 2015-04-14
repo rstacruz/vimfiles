@@ -19,8 +19,18 @@ make install  # install vim plugins
 # in vimrc.vim
 Plug 'x/y'
 :PlugInstall
+```
 
-make lock       # update ./bin/install
+```
+make lock     # update ./bin/install
+```
+
+<br>
+
+## Updating plugins
+
+```
+make update
 ```
 
 <br>
