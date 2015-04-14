@@ -36,7 +36,7 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'rstacruz/vim-ultisnips-css'
 Plug 'tpope/vim-vinegar'
-Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'sjl/vitality.vim'
 Plug 'tpope/vim-pathogen'
 Plug 'AndrewRadev/splitjoin.vim'
