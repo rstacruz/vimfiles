@@ -51,6 +51,10 @@
     "vim-visualstar": "thinca/vim-visualstar#~0.5.0",
     "vim-bufferline": "bling/vim-bufferline",
     "vim-stylus": "wavded/vim-stylus#~0.9.1",
-    "vim-jade": "digitaltoad/vim-jade#master"
+    "vim-jade": "digitaltoad/vim-jade#master",
+    "unite-mark": "tacroe/unite-mark#master",
+    "vim-rails": "tpope/vim-rails#master",
+    "vim-bundler": "tpope/vim-bundler#master",
+    "vim-colors": "spf13/vim-colors#master"
   }
 }

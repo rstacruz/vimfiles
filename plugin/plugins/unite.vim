@@ -6,7 +6,7 @@ if globpath(&rtp, "plugin/unite.vim") != ""
   let g:unite_data_directory = expand("~/.cache/unite")
   let g:unite_winheight = 10
   let g:unite_prompt = '▸ '
-
+  let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyz" . "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
   "
   " Prefix key
@@ -21,6 +21,7 @@ if globpath(&rtp, "plugin/unite.vim") != ""
 
   nnoremap <silent> [unite]a :<C-u>Unite -start-insert -hide-source-names file_rec/git file/new<CR>
   nnoremap <silent> [unite]b :<C-u>Unite -start-insert buffer<CR>
+  nnoremap <silent> [unite]B :<C-u>UniteBookmarkAdd<CR>
   nnoremap <silent> [unite]t :<C-u>Unite -start-insert tag<CR>
   nnoremap <silent> [unite]g :<C-u>Unite -winheight=30 -truncate grep:.<CR>
   nnoremap <silent> [unite]o :<C-u>Unite -auto-highlight -vertical -winwidth=30 outline<CR>

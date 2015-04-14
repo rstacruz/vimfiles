@@ -20,6 +20,8 @@ echo "\n=> chriskempson/tomorrow-theme"
 if [ ! -e "$BUNDLE/tomorrow-theme" ]; then git clone git://github.com/chriskempson/tomorrow-theme.git "$BUNDLE/tomorrow-theme" && (cd "$BUNDLE/tomorrow-theme" && git checkout -q 440e24f192f274da6e898b573978d85f270379c5 2>/dev/null); fi
 echo "\n=> SirVer/ultisnips"
 if [ ! -e "$BUNDLE/ultisnips" ]; then git clone git://github.com/SirVer/ultisnips.git "$BUNDLE/ultisnips" && (cd "$BUNDLE/ultisnips" && git checkout -q d240aa24df36f08fb7ee48097ce502a83fd9e4aa 2>/dev/null); fi
+echo "\n=> tacroe/unite-mark"
+if [ ! -e "$BUNDLE/unite-mark" ]; then git clone git://github.com/tacroe/unite-mark.git "$BUNDLE/unite-mark" && (cd "$BUNDLE/unite-mark" && git checkout -q 816e40fd7b0e3c457199cf4971bc37e5441f6b32 2>/dev/null); fi
 echo "\n=> Shougo/unite-outline"
 if [ ! -e "$BUNDLE/unite-outline" ]; then git clone git://github.com/Shougo/unite-outline.git "$BUNDLE/unite-outline" && (cd "$BUNDLE/unite-outline" && git checkout -q 08e0a89494bbba2e040eebbfec894b5749c0c0e2 2>/dev/null); fi
 echo "\n=> tsukkee/unite-tag"
@@ -34,8 +36,12 @@ echo "\n=> craigemery/vim-autotag"
 if [ ! -e "$BUNDLE/vim-autotag" ]; then git clone git://github.com/craigemery/vim-autotag.git "$BUNDLE/vim-autotag" && (cd "$BUNDLE/vim-autotag" && git checkout -q 22ebd9651a504453023324f1d9b4e5906b9e498e 2>/dev/null); fi
 echo "\n=> bling/vim-bufferline"
 if [ ! -e "$BUNDLE/vim-bufferline" ]; then git clone git://github.com/bling/vim-bufferline.git "$BUNDLE/vim-bufferline" && (cd "$BUNDLE/vim-bufferline" && git checkout -q c595cbb2478c4ecde633d3ccb9be7260ca86aa39 2>/dev/null); fi
+echo "\n=> tpope/vim-bundler"
+if [ ! -e "$BUNDLE/vim-bundler" ]; then git clone git://github.com/tpope/vim-bundler.git "$BUNDLE/vim-bundler" && (cd "$BUNDLE/vim-bundler" && git checkout -q 48abb774c72732a75f8ab05ee7493b1041dd8ae8 2>/dev/null); fi
 echo "\n=> kchmck/vim-coffee-script"
 if [ ! -e "$BUNDLE/vim-coffee-script" ]; then git clone git://github.com/kchmck/vim-coffee-script.git "$BUNDLE/vim-coffee-script" && (cd "$BUNDLE/vim-coffee-script" && git checkout -q 827e4a38b07479433b619091469a7495a392df8a 2>/dev/null); fi
+echo "\n=> spf13/vim-colors"
+if [ ! -e "$BUNDLE/vim-colors" ]; then git clone git://github.com/spf13/vim-colors.git "$BUNDLE/vim-colors" && (cd "$BUNDLE/vim-colors" && git checkout -q 9522f2f17cfdf249eac0a0c5b25d65040d0909ce 2>/dev/null); fi
 echo "\n=> tpope/vim-commentary"
 if [ ! -e "$BUNDLE/vim-commentary" ]; then git clone git://github.com/tpope/vim-commentary.git "$BUNDLE/vim-commentary" && (cd "$BUNDLE/vim-commentary" && git checkout -q 9c685131a5facfa0d643feca3a61b41c007d8170 2>/dev/null); fi
 echo "\n=> hail2u/vim-css3-syntax"
@@ -70,6 +76,8 @@ echo "\n=> rstacruz/vim-opinion"
 if [ ! -e "$BUNDLE/vim-opinion" ]; then git clone git://github.com/rstacruz/vim-opinion.git "$BUNDLE/vim-opinion" && (cd "$BUNDLE/vim-opinion" && git checkout -q master 2>/dev/null); fi
 echo "\n=> tpope/vim-pathogen"
 if [ ! -e "$BUNDLE/vim-pathogen" ]; then git clone git://github.com/tpope/vim-pathogen.git "$BUNDLE/vim-pathogen" && (cd "$BUNDLE/vim-pathogen" && git checkout -q b9fb0dfd811004010f5f6903edef42d6004ebea2 2>/dev/null); fi
+echo "\n=> tpope/vim-rails"
+if [ ! -e "$BUNDLE/vim-rails" ]; then git clone git://github.com/tpope/vim-rails.git "$BUNDLE/vim-rails" && (cd "$BUNDLE/vim-rails" && git checkout -q c7aeb5b8923e744b8fb753ddf881185abc16eef9 2>/dev/null); fi
 echo "\n=> tpope/vim-sensible"
 if [ ! -e "$BUNDLE/vim-sensible" ]; then git clone git://github.com/tpope/vim-sensible.git "$BUNDLE/vim-sensible" && (cd "$BUNDLE/vim-sensible" && git checkout -q b30dcf387af977acfa21732592bfca05598b2188 2>/dev/null); fi
 echo "\n=> mhinz/vim-signify"

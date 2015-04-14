@@ -2,8 +2,8 @@
 " Dvorak helpers
 "
 
-imap ,. <Esc>
-vmap ,. <Esc>
+" imap ,. <Esc>
+" vmap ,. <Esc>
 
 "
 " Collapse (like on a sidebar)
