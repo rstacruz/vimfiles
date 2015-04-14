@@ -11,7 +11,6 @@ filetype plugin indent on
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'vim-scripts/ZoomWin'
-Plug 'vim-scripts/ZoomWin'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'SirVer/ultisnips'
