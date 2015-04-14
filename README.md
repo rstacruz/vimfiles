@@ -1,81 +1,36 @@
 # My vim files
 
-The ultimate vim setup managed by [bower] and [pathogen].
-
-* No messy git submodules
-* Vim packages declared via [bower.json](bower.json)
-* Bower downloads vim packages fast (gets tarballs instead of git-cloning)
-* Bower alerts you of new package versions
-* Modular, options are categorized in [plugin/](plugin/)
+vim setup managed by [vim-plug].
 
 <br>
 
-## Let's go
+## Install
 
-Use bower to fetch packages. ([alt](#no-bower))
-
-```sh
-$ bower install
 ```
-
-Install as symlinks into `~/.vimrc` and `~/.vim/`.
-(NB: this will delete them if they exist!)
-
-```sh
-$ make link
-```
-
-You may need to also compile some bundles.
-
-```sh
-$ cd bundle/vimproc.vim && make
+make link     # symlink to ~/.vim
+make install  # install vim plugins
 ```
 
 <br>
 
-## Updating
+## Adding packages
 
-Add new packages via:
-
-```sh
-$ bower install --save tpope/vim-haml
 ```
+# in vimrc.vim
+Plug 'x/y'
+:PlugInstall
 
-Check for new versions using bower.
-
-```sh
-$ bower update
+make lock       # update ./bin/install
 ```
-
-<br>
-
-## Version locking
-
-Since bower still has no shrinkwrap feature ([#505]), there's a hackish script
-in `bin/lock` to update `.bowerlock` and `bin/install`.
-
-```sh
-$ ./bin/lock      # lock dependency versions into .bowerlock and ./bin/install
-$ ./bin/install   # install from locked versions
-```
-
-Use `.` after doing bower updates. You'll then be able to see what's
-changed by inspecting the lockfile in `git diff`.
-
-#### No bower
-
-Stuck without bower (eg, a server deploy)? Use `./bin/install`, it'll fetch via
-git instead of bower. It won't manage updates though, but will do in a pinch.
 
 <br>
 
 ## Tips
 
-In OSX, use MacVim to use a better build of vim with support for Ruby, Python,
-and other niceties.
+In OSX, use MacVim to use a better build of vim with support for Ruby, Python, Lua, and other niceties.
 
 ```sh
-$ brew install macvim --override-system-vim
+$ brew install macvim --override-system-vim --with-python3 --with-lua --with-luajit
 ```
 
 <br>
@@ -84,6 +39,5 @@ $ brew install macvim --override-system-vim
 
 MIT license
 
-[#505]: https://github.com/bower/bower/issues/505
-[pathogen]: https://github.com/tpope/vim-pathogen
-[bower]: http://bower.io
+[vim-plug]: https://github.com/junegunn/vim-plug
+
