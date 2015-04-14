@@ -63,7 +63,7 @@ if [ ! -e "$BUNDLE/vim-indent-object" ]; then git clone git://github.com/michael
 echo "\n=> digitaltoad/vim-jade"
 if [ ! -e "$BUNDLE/vim-jade" ]; then git clone git://github.com/digitaltoad/vim-jade.git "$BUNDLE/vim-jade" && (cd "$BUNDLE/vim-jade" && git checkout -q 3ef825745aed04e44397ec6908e6bee12a550066 2>/dev/null); fi
 echo "\n=> pangloss/vim-javascript"
-if [ ! -e "$BUNDLE/vim-javascript" ]; then git clone git://github.com/pangloss/vim-javascript.git "$BUNDLE/vim-javascript" && (cd "$BUNDLE/vim-javascript" && git checkout -q 977e220b371938b81acb728eee36987c6fe4034a 2>/dev/null); fi
+if [ ! -e "$BUNDLE/vim-javascript" ]; then git clone git://github.com/pangloss/vim-javascript.git "$BUNDLE/vim-javascript" && (cd "$BUNDLE/vim-javascript" && git checkout -q 8a409f7fd89de746296a92218183dc69fb6e3d93 2>/dev/null); fi
 echo "\n=> ledger/vim-ledger"
 if [ ! -e "$BUNDLE/vim-ledger" ]; then git clone git://github.com/ledger/vim-ledger.git "$BUNDLE/vim-ledger" && (cd "$BUNDLE/vim-ledger" && git checkout -q 9dc24c2b4045f63a2b6a026f947bda93970fe468 2>/dev/null); fi
 echo "\n=> junegunn/vim-lengthmatters"

@@ -38,7 +38,7 @@
     "vim-haml": "tpope/vim-haml#204e32721154766e03e99ff857bc798aa5b741dc",
     "vim-indent-object": "michaeljsmith/vim-indent-object#78fffa609b3e6b84ef01ee4c9aba6d7435d7b18e",
     "vim-jade": "digitaltoad/vim-jade#3ef825745aed04e44397ec6908e6bee12a550066",
-    "vim-javascript": "pangloss/vim-javascript#977e220b371938b81acb728eee36987c6fe4034a",
+    "vim-javascript": "pangloss/vim-javascript#8a409f7fd89de746296a92218183dc69fb6e3d93",
     "vim-ledger": "ledger/vim-ledger#9dc24c2b4045f63a2b6a026f947bda93970fe468",
     "vim-lengthmatters": "junegunn/vim-lengthmatters#3c4e694523a0658d4a55047780d71b4d484ed85a",
     "vim-less": "groenewege/vim-less#940a8defa0576385dee1ad177bab0b34738540aa",
