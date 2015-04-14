@@ -35,6 +35,16 @@ make update
 
 <br>
 
+## Minimal mode
+
+To make vim startup time faster in git:
+
+```
+git config --global core.editor "env VIM_MINIMAL=1 vim"
+```
+
+<br>
+
 ## Tips
 
 In OSX, use MacVim to use a better build of vim with support for Ruby, Python, Lua, and other niceties.
