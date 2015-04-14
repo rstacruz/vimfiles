@@ -1,19 +1,21 @@
+lockfile := ./bin/restore
+
 # Install into home directory
 link:
 	ln -nfs "`pwd -LP`" ~/.vim
 	ln -nfs "`pwd -LP`"/vimrc.vim ~/.vimrc
 
-# Produce lockfile
-lock:
-	vim +PlugInstall +"PlugSnapshot ./bin/install" +qa
+# Installs plugins, produces lockfile
+install:
+	vim +PlugInstall +"PlugSnapshot ${lockfile}" +qa
 
 # Upgrade plugins, vim-plug, and show changes
 update:
-	vim +PlugUpdate +PlugUpgrade +"PlugSnapshot ./bin/install" +PlugDiff
+	vim +PlugUpdate +PlugUpgrade +"PlugSnapshot ${lockfile}" +PlugDiff
 upgrade: update
 
 # Install from lockfile
-install:
-	./bin/install
+restore:
+	${lockfile}
 
-.PHONY: install link update upgrade
+.PHONY: install link update upgrade restore

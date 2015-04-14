@@ -8,7 +8,7 @@ vim setup managed by [vim-plug].
 
 ```
 make link     # symlink to ~/.vim
-make install  # install vim plugins
+make restore  # install vim plugins
 ```
 
 <br>
@@ -40,7 +40,7 @@ make update
 To make vim startup time faster in git:
 
 ```
-git config --global core.editor "env VIM_MINIMAL=1 vim"
+git config --global core.editor "env VIM_MINIMAL=1 vim +startinsert"
 ```
 
 <br>
