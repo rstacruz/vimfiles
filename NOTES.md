@@ -62,6 +62,18 @@ eg:
     cmd-shift-o   fuzzy find
     cmd-1/0       sidebar show/hide
 
+## ack.vim
+
+    :Ack searchterm
+
+    go    preview
+
+    o     open file
+    O     open file and close ack list
+
+    t     open in tab
+    T     open in tab, background
+
 ## Also see
 
 * https://github.com/terryma/dotfiles/blob/master/.vimrc

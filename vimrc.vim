@@ -1,4 +1,4 @@
-" set term=xterm-256color
+set term=xterm-256color
 set t_Co=256
 set nocompatible
 let g:mapleader=","
@@ -11,9 +11,10 @@ filetype plugin indent on
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 
-" " Themes
+" Themes
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
 Plug 'spf13/vim-colors'
+Plug 'whatyouhide/vim-gotham'
 
 if $VIM_MINIMAL == ''
   " Slow plugins
@@ -60,7 +61,7 @@ if $VIM_MINIMAL == ''
   " Language specific
   Plug 'wavded/vim-stylus', { 'for': 'stylus' }
   Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
-  Plug 'tpope/vim-rails', { 'for': 'ruby' }
+  Plug 'tpope/vim-rails'
   Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
   Plug 'tpope/vim-bundler', { 'for': 'ruby' }
   Plug 'jtratner/vim-flavored-markdown', { 'for': ['markdown', 'md', 'mkdn'] }
