@@ -60,7 +60,7 @@ if $VIM_MINIMAL == ''
   Plug 'tpope/vim-rails'
   Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
   Plug 'tpope/vim-bundler', { 'for': 'ruby' }
-  Plug 'jtratner/vim-flavored-markdown', { 'for': ['markdown', 'md', 'mkdn'] }
+  Plug 'jtratner/vim-flavored-markdown'
   Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss', 'less'] }
   Plug 'groenewege/vim-less', { 'for': 'less' }
   Plug 'rstacruz/ledgerdown', { 'rtp': 'vim' }
