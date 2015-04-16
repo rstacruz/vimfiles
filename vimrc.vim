@@ -29,7 +29,6 @@ if $VIM_MINIMAL == ''
   Plug 'tacroe/unite-mark'
   Plug 'Shougo/unite-outline'
 
-  Plug 'MattesGroeger/vim-bookmarks'
   Plug 'vim-scripts/ZoomWin'
   Plug 'godlygeek/tabular'
   Plug 'tpope/vim-abolish'
