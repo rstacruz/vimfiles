@@ -20,8 +20,12 @@ endif
 "
 
 if has("gui_running") && (has("gui_macvim") || has("gui_vimr"))
-  set transparency=2
-  set guioptions=gmt
+  set transparency=0
+  set guioptions=
+  set guioptions+=g " gray menu items
+  set guioptions+=m " menu bar
+  set guioptions+=e " nice gui tabs
+
   color Tomorrow-Night
 
   " set guifont=Envy\ Code\ R\ for\ Powerline:h13 noantialias linespace=0
