@@ -1,9 +1,15 @@
 lockfile := ./bin/restore
 
 # Install into home directory
-link:
+link: link-vim link-neovim
+
+link-vim:
 	ln -nfs "`pwd -LP`" ~/.vim
 	ln -nfs "`pwd -LP`"/vimrc.vim ~/.vimrc
+
+link-neovim:
+	ln -nfs "`pwd -LP`" ~/.nvim
+	ln -nfs "`pwd -LP`"/vimrc.vim ~/.nvimrc
 
 # Installs plugins, produces lockfile
 install:
