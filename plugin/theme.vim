@@ -11,6 +11,8 @@ let g:airline_theme='solarized'
 if !has("gui_running")
   set background=light
   color elflord
+  hi VertSplit cterm=none ctermbg=none
+  hi NonText ctermfg=11
 endif
 
 "

@@ -19,7 +19,6 @@ if globpath(&rtp, "plugin/unite.vim") != ""
   " Keys. for no-splits, exit using C-o
   "
 
-  nnoremap <silent> [unite]a :<C-u>Unite -start-insert -hide-source-names file_rec/git file/new<CR>
   nnoremap <silent> [unite]b :<C-u>Unite -start-insert buffer<CR>
   nnoremap <silent> [unite]B :<C-u>UniteBookmarkAdd<CR>
   nnoremap <silent> [unite]t :<C-u>Unite -start-insert tag<CR>
@@ -43,5 +42,11 @@ if globpath(&rtp, "plugin/unite.vim") != ""
     let g:unite_source_grep_recursive_opt = ''
   endif
 
-  let g:unite_source_rec_async_command="git ls-files"
+  " if has("nvim")
+  "   nnoremap <silent> [unite]a :<C-u>Unite -start-insert -hide-source-names file_rec/neovim<CR>
+  " else
+    nnoremap <silent> [unite]a :<C-u>Unite -start-insert -hide-source-names file_rec/git<CR>
+    " let g:unite_source_rec_async_command="git ls-files"
+  " endif
+
 endif

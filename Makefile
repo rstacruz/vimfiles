@@ -1,5 +1,7 @@
 lockfile := ./bin/restore
 
+default: install
+
 # Install into home directory
 link: link-vim link-neovim
 
@@ -24,4 +26,4 @@ upgrade: update
 restore:
 	${lockfile}
 
-.PHONY: install link update upgrade restore
+.PHONY: install link update upgrade restore default link-vim link-neovim
