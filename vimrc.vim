@@ -26,7 +26,6 @@ if $VIM_MINIMAL == ''
   Plug 'tacroe/unite-mark'
   Plug 'Shougo/unite-outline'
 
-  Plug 'vim-scripts/ZoomWin'
   Plug 'godlygeek/tabular'
   Plug 'tpope/vim-abolish'
   Plug 'craigemery/vim-autotag'
@@ -54,6 +53,11 @@ if $VIM_MINIMAL == ''
   Plug 'bling/vim-bufferline'
   Plug 'mileszs/ack.vim'
   Plug 'junegunn/goyo.vim'
+
+  " Not working well with nvim
+  if !has('nvim')
+  endif
+  Plug 'markwu/ZoomWin'
 
   " Language specific
   Plug 'wavded/vim-stylus', { 'for': 'stylus' }
