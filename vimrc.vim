@@ -51,7 +51,6 @@ if $VIM_MINIMAL == ''
   Plug 'whatyouhide/vim-lengthmatters'
   Plug 'tpope/vim-dispatch'
   Plug 'thinca/vim-visualstar'
-  Plug 'bling/vim-bufferline'
   Plug 'mileszs/ack.vim'
   Plug 'junegunn/goyo.vim'
   Plug 'junegunn/vim-xmark', { 'do': 'make' }
@@ -82,6 +81,7 @@ if $VIM_MINIMAL == ''
   " Plug 'editorconfig/editorconfig-vim' - use sleuth.vim
   " Plug 'plasticboy/vim-markdown' - not even working
   " (https://github.com/plasticboy/vim-markdown/issues/194)
+  " Plug 'bling/vim-bufferline' - i dont care
   " mmai/vim-markdown-wiki 
 endif
 call plug#end()

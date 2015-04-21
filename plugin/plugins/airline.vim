@@ -46,7 +46,8 @@ nmap ¶ <Plug>AirlineSelectTab7
 nmap • <Plug>AirlineSelectTab8
 nmap ª <Plug>AirlineSelectTab9
 
-let g:bufferline_show_bufnr = 0
-let g:bufferline_echo = 0
-let g:bufferline_modified = ' •'
+" let g:bufferline_show_bufnr = 0
+" let g:bufferline_echo = 0
+" let g:bufferline_modified = ' •'
+" let g:airline_section_c = '%t'
 let g:airline_section_c = '%t'
