@@ -9,15 +9,21 @@ endif
 let g:unite_data_directory = expand("~/.cache/unite")
 let g:unite_winheight = 20
 let g:unite_prompt = '  ▸  '
-let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyz" . "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 "
-" Use ag so that file_rec will respect gitignore
+" Show file marks (mA) in unite-mark
+"
+
+let g:unite_source_mark_marks = "abcdefghijklmnopqrstuvwxyz" . "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+let g:unite_source_tag_max_fname_length = 70
+
+"
+" Use ag so that file_rec will respect gitignore.
 " https://github.com/Shougo/unite.vim/issues/398#issuecomment-27012821
 "
 
 if executable('ag')
-  let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
+  let g:unite_source_rec_async_command='ag --nocolor --nogroup --ignore "*.png" -g ""'
 endif
 
 "
@@ -30,10 +36,12 @@ call unite#custom#source('tag', 'sorters', ['sorter_rank'])
 "
 " Strip off absolute paths from file_rec.
 " Also, use fuzzy ctrl-p-style matcher.
+" Also, neovim doesn't have ruby so... no selecta
 "
 
-let s:file_recs = 'file_rec,file_rec/async'
-call unite#custom#source(s:file_recs, 'sorters', ['sorter_selecta'])
+let s:file_recs = 'file_rec,file_rec/async,tag'
+let s:sorter = has("ruby") ? 'sorter_selecta' : 'sorter_rank'
+call unite#custom#source(s:file_recs, 'sorters', [s:sorter])
 call unite#custom#source(s:file_recs, 'matchers', ['converter_relative_word', 'matcher_fuzzy'])
 
 "
@@ -50,8 +58,8 @@ nmap <leader>u [unite]
 " file (manual navigator)
 nnoremap <silent> [unite]f :<C-u>Unite -start-insert -hide-source-names file file/new<CR>
 
-" files (match all)
-nnoremap <silent> [unite]g :<C-u>Unite -resume -buffer-name=files -input= -start-insert file_rec/async<CR>
+" files (git)
+nnoremap <silent> [unite]g :<C-u>Unite -resume -buffer-name=files -input= -start-insert -hide-source-names file file_rec/async<CR>
 
 " buffer
 nnoremap <silent> [unite]b :<C-u>Unite -start-insert buffer<CR>
@@ -63,11 +71,21 @@ nnoremap <silent> [unite]t :<C-u>Unite -resume -buffer-name=tag -input= -start-i
 nnoremap <silent> [unite]o :<C-u>Unite -auto-highlight -vertical -winwidth=30 outline<CR>
 
 "
+" Use unite-tag instead of ^] for navigating to tags.
+" :help unite-tag-customize
+"
+
+autocmd BufEnter *
+\   if empty(&buftype)
+\|      nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immediately tag<CR>
+\| endif
+
+"
 " aliases
 "
 
-map  <C-e>     [unite]f
 map  <C-p>     [unite]g
+map  <C-e>     [unite]t
 nmap <leader>t [unite]o
 
 "
