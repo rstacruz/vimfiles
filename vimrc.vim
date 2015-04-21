@@ -52,7 +52,9 @@ if $VIM_MINIMAL == ''
   Plug 'bling/vim-bufferline'
   Plug 'mileszs/ack.vim'
   Plug 'junegunn/goyo.vim'
+  Plug 'junegunn/vim-xmark', { 'do': 'make' }
   Plug 'tpope/vim-sleuth'
+  Plug 'tpope/vim-repeat'
 
   " Not working well with nvim
   if !has('nvim')
@@ -76,5 +78,8 @@ if $VIM_MINIMAL == ''
   " Disabled
   " Plug 'mitee/vim-gf-python'
   " Plug 'editorconfig/editorconfig-vim' - use sleuth.vim
+  " Plug 'plasticboy/vim-markdown' - not even working
+  " (https://github.com/plasticboy/vim-markdown/issues/194)
+  " mmai/vim-markdown-wiki 
 endif
 call plug#end()

@@ -3,4 +3,5 @@ if globpath(&rtp, "plugin/easy_align.vim") == ""
 endif
 
 vmap <Enter> <Plug>(EasyAlign)
-nmap <Leader>a <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+nmap gA <Plug>(EasyAlign)ip

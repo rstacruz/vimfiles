@@ -1,0 +1,153 @@
+------------------------------------------------------------------------------
+*Shougo/unite*
+
+   `,ua`   all files (or CTRL-p)
+   `,ub`   buffer
+   `,ut`   tag
+   `,ug`   git ls-files
+   `,uo`   outline (or `,t`)
+
+   |:Unite|  open unite
+
+------------------------------------------------------------------------------
+*tpope/vim-vinegar*
+
+   |-|  back
+   |.|  open in command line
+   |!|  open in command line
+
+   |D|  delete
+   |d|  mkdir
+   |R|  rename
+   |%|  new file
+
+   |o|  open in horiz split
+   |v|  open in vert split
+   |t|  open in tab
+
+   |^O|  back to editing
+
+   |i|   change view (tree!)
+
+   |mf|  mark file
+   |mm|  move here
+
+------------------------------------------------------------------------------
+*scrooloose/nerdtree*
+
+   |,N|   open tree
+
+   |o|    open
+   |i|    open in split
+   |t|    open in tab
+   |T|    open in tab, silently
+
+------------------------------------------------------------------------------
+*splitjoin*
+Multiple lines into single lines (and vice versa).
+
+   |gS|  expand to multiple lines
+   |gJ|  collapse
+
+Example:
+>
+    <div>xxx</div>
+
+    <div>
+      xxx
+    </div>
+
+------------------------------------------------------------------------------
+*kchmck/vim-coffee-script*
+
+    |,C|    preview compiled form (|:CoffeeWatch|)
+
+------------------------------------------------------------------------------
+*junegunn/vim-easy-align*
+
+    {Visual}<Enter>   activate
+    ga{motion}        activate for motion/text object
+
+------------------------------------------------------------------------------
+*vimr.app*
+
+    `cmd-shift-o` fuzzy find
+    `cmd-1/0`     sidebar show/hide
+
+------------------------------------------------------------------------------
+*mileszs/ack.vim*
+Search through files
+>
+    :Ack searchterm
+<
+    `go`  preview
+
+    `o`  open file
+    `O`  open file and close ack list
+
+    `t`  open in tab
+    `T`  open in tab, background
+
+------------------------------------------------------------------------------
+*mileszs/ack.vim*
+
+    |:Ack| <pattern>
+
+------------------------------------------------------------------------------
+*junegunn/goyo.vim*
+
+   ||:Goyo|| enters zen mode
+
+------------------------------------------------------------------------------
+*tpope/vim-commentary*
+
+   {visual}/     comment
+   {visual}gc    comment
+
+   gc{motion}    comment
+     gcap
+
+------------------------------------------------------------------------------
+*moll/vim-node*
+Allows |gf| navigation on require('./xyz').
+
+    |gf|    Go to file
+    |[I|    search for keyword
+
+------------------------------------------------------------------------------
+*tpope/vim-sleuth*
+Auto-detects tab/space settings.
+
+------------------------------------------------------------------------------
+*tpope/vim-rails*
+Enables |gf| for files.
+See: http://ricostacruz.com/cheatsheets/vim-rails.html
+
+Commands: ~
+
+     |:A|   alternate file
+     |:R|   related file
+
+Abbreviations: ~
+
+    AC::   ActionController
+    AR::   ActiveRecord
+    ...
+
+Extracting partials: ~
+
+    `:Rextract` `home/foo_partial`
+
+App: ~
+
+    :Econtroller <file>  # app/controllers/*_controller.rb
+    :Ehelper             # app/helpers/*_helper.rb
+    :Emodel <file>       # app/models/*.rb
+
+------------------------------------------------------------------------------
+ALSO SEE                                                           *x-alsosee*
+
+  https://github.com/terryma/dotfiles/blob/master/.vimrc
+  https://github.com/vyorkin/dots/tree/master/tag-vim/vim/vundles
+
+vim:tw=78:ts=8:ft=help:noexpandtab:nolist:norl:
