@@ -20,10 +20,13 @@ if $VIM_MINIMAL == ''
   Plug 'rstacruz/vim-ultisnips-css'
 
   " Unite
+  Plug 'Shougo/vimproc.vim', { 'do': 'make' }
   Plug 'Shougo/unite.vim'
   Plug 'tsukkee/unite-tag'
   Plug 'tacroe/unite-mark'
   Plug 'Shougo/unite-outline'
+  Plug 'Shougo/neomru.vim'
+  Plug 'rstacruz/vim-fastunite'
 
   Plug 'godlygeek/tabular'
   Plug 'tpope/vim-abolish'
@@ -38,7 +41,6 @@ if $VIM_MINIMAL == ''
   Plug 'honza/vim-snippets'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-vinegar'
-  Plug 'Shougo/vimproc.vim', { 'do': 'make' }
   Plug 'sjl/vitality.vim'
   Plug 'tpope/vim-pathogen'
   Plug 'AndrewRadev/splitjoin.vim'
