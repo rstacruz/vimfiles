@@ -14,7 +14,6 @@ Plug 'whatyouhide/vim-gotham'
 
 if $VIM_MINIMAL == ''
   " Slow plugins
-  Plug 'editorconfig/editorconfig-vim'
   Plug 'scrooloose/nerdtree'
   Plug 'bling/vim-airline'
   Plug 'SirVer/ultisnips'
@@ -53,11 +52,12 @@ if $VIM_MINIMAL == ''
   Plug 'bling/vim-bufferline'
   Plug 'mileszs/ack.vim'
   Plug 'junegunn/goyo.vim'
+  Plug 'tpope/vim-sleuth'
 
   " Not working well with nvim
   if !has('nvim')
-  endif
   Plug 'markwu/ZoomWin'
+  endif
 
   " Language specific
   Plug 'wavded/vim-stylus', { 'for': 'stylus' }
@@ -71,5 +71,10 @@ if $VIM_MINIMAL == ''
   Plug 'kchmck/vim-coffee-script', { 'for': ['coffee', 'coffeescript'] }
   Plug 'tpope/vim-haml'
   Plug 'ledger/vim-ledger'
+  Plug 'moll/vim-node'
+
+  " Disabled
+  " Plug 'mitee/vim-gf-python'
+  " Plug 'editorconfig/editorconfig-vim' - use sleuth.vim
 endif
 call plug#end()

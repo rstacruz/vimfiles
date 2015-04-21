@@ -15,11 +15,11 @@ link-neovim:
 
 # Installs plugins, produces lockfile
 install:
-	vim +PlugInstall +"PlugSnapshot ${lockfile}" +qa
+	vim +PlugInstall +PlugClean +"PlugSnapshot ${lockfile}" +qa
 
 # Upgrade plugins, vim-plug, and show changes
 update:
-	vim +PlugUpdate +PlugUpgrade +"PlugSnapshot ${lockfile}" +PlugDiff
+	vim +PlugUpdate +PlugUpgrade +PlugClean +"PlugSnapshot ${lockfile}" +PlugDiff
 upgrade: update
 
 # Install from lockfile
