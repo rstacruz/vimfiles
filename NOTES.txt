@@ -119,6 +119,33 @@ Allows |gf| navigation on require('./xyz').
 Auto-detects tab/space settings.
 
 ------------------------------------------------------------------------------
+*tpope/vim-dispatch*
+
+    `F9`   dispatch
+    `,d`   dispatch
+    `,D`   dispatch! in background
+
+running:
+
+    |:Focus| npm test
+    |:Dispatch| (or `f9`)
+
+Usage:
+
+    |:Dispatch| bundle install
+    |:Dispatch| rspec %
+
+In background:
+
+    |:Dispatch!| bundle install
+    |:Copen| (to show results)
+
+Interactive processes (don't capture output)
+
+    |:Start| bundle exec rails c
+    |:Start!| make
+
+------------------------------------------------------------------------------
 *tpope/vim-rails*
 Enables |gf| for files.
 See: http://ricostacruz.com/cheatsheets/vim-rails.html

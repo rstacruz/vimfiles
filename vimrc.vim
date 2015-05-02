@@ -18,6 +18,7 @@ if $VIM_MINIMAL == ''
   Plug 'bling/vim-airline'
   Plug 'SirVer/ultisnips'
   Plug 'rstacruz/vim-ultisnips-css'
+  Plug 'Shougo/vimshell.vim'
 
   " Unite
   Plug 'Shougo/vimproc.vim', { 'do': 'make' }
