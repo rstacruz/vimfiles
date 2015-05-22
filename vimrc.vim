@@ -57,6 +57,7 @@ if $VIM_MINIMAL == ''
   Plug 'junegunn/vim-xmark', { 'do': 'make' }
   Plug 'tpope/vim-sleuth'
   Plug 'tpope/vim-repeat'
+  Plug 'justincampbell/vim-eighties'
 
   " Not working well with nvim
   if !has('nvim')
