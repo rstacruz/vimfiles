@@ -76,6 +76,7 @@ if $VIM_MINIMAL == ''
   Plug 'tpope/vim-haml'
   Plug 'ledger/vim-ledger'
   Plug 'moll/vim-node'
+  Plug 'dag/vim-fish'
 
   " Disabled
   " Plug 'mitee/vim-gf-python'
