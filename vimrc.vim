@@ -58,6 +58,7 @@ if $VIM_MINIMAL == ''
   Plug 'tpope/vim-sleuth'
   Plug 'tpope/vim-repeat'
   Plug 'justincampbell/vim-eighties'
+  " Plug 'roman/golden-ratio'
 
   " Not working well with nvim
   if !has('nvim')

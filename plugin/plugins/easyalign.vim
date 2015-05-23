@@ -5,3 +5,5 @@ endif
 vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 nmap gA <Plug>(EasyAlign)ip
+
+vnoremap E :EasyAlign<space>
