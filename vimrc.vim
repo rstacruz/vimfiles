@@ -46,7 +46,8 @@ if $VIM_MINIMAL == ''
   Plug 'tpope/vim-pathogen'
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'scrooloose/syntastic'
-  Plug 'rstacruz/sparkup', { 'rtp': 'vim' }
+  " Plug 'rstacruz/sparkup', { 'rtp': 'vim' }
+  Plug 'mattn/emmet-vim'
   Plug 'rstacruz/vim-opinion'
   Plug 'junegunn/vim-easy-align'
   Plug 'whatyouhide/vim-lengthmatters'
