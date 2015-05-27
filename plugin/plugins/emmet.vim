@@ -3,3 +3,4 @@ if globpath(&rtp, "plugin/emmet.vim") == ""
 endif
 
 imap <C-e> <C-y>,
+vmap <C-e> <C-y>,

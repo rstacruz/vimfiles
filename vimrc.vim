@@ -17,8 +17,8 @@ if $VIM_MINIMAL == ''
   Plug 'scrooloose/nerdtree'
   Plug 'bling/vim-airline'
   Plug 'SirVer/ultisnips'
-  Plug 'rstacruz/vim-ultisnips-css'
-  Plug 'Shougo/vimshell.vim'
+  " Plug 'Shougo/vimshell.vim'
+  " Plug 'rstacruz/vim-ultisnips-css' retired :)
 
   " Unite
   Plug 'Shougo/vimproc.vim', { 'do': 'make' }
@@ -59,7 +59,14 @@ if $VIM_MINIMAL == ''
   Plug 'tpope/vim-sleuth'
   Plug 'tpope/vim-repeat'
   Plug 'justincampbell/vim-eighties'
+  Plug 'rstacruz/vim-css-shorthand'
   " Plug 'roman/golden-ratio'
+
+  " Plug 'jiangmiao/auto-pairs'
+  " I don't really like this becaus when you have:
+  "     x = |foo
+  " And you want to quote foo, another ' gets inserted:
+  "     x = '|'foo
 
   " Not working well with nvim
   if !has('nvim')
@@ -80,6 +87,7 @@ if $VIM_MINIMAL == ''
   Plug 'ledger/vim-ledger'
   Plug 'moll/vim-node'
   Plug 'dag/vim-fish'
+  Plug 'mitsuhiko/vim-python-combined'
 
   " Disabled
   " Plug 'mitee/vim-gf-python'
