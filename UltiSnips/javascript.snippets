@@ -15,3 +15,17 @@ snippet { "{ ... }"
   $1
 }$0
 endsnippet
+
+snippet for "for loop" b
+for (var i = 0, len = ${1}.length; i < len; i++) {
+  var ${2:item} = $1[i];
+  ${VISUAL}$0
+}
+endsnippet
+
+snippet foreach "for each loop" b
+for (var ${1:key} in ${2:object}) {
+  if (!$2.hasOwnProperty($1)) continue;
+  ${VISUAL}$0
+}
+endsnippet

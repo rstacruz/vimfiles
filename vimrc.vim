@@ -65,7 +65,7 @@ if $VIM_MINIMAL == ''
   Plug 'ConradIrwin/vim-bracketed-paste'
 
   " Plug 'roman/golden-ratio'
-  " Plug 'jiangmiao/auto-pairs'
+  Plug 'jiangmiao/auto-pairs'
   " I don't really like this becaus when you have:
   "     x = |foo
   " And you want to quote foo, another ' gets inserted:
