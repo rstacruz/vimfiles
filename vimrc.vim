@@ -60,8 +60,11 @@ if $VIM_MINIMAL == ''
   Plug 'tpope/vim-repeat'
   Plug 'justincampbell/vim-eighties'
   Plug 'rstacruz/vim-css-shorthand'
-  " Plug 'roman/golden-ratio'
+  Plug 'rstacruz/named-media-queries'
+  Plug 'junegunn/vader.vim'
+  Plug 'ConradIrwin/vim-bracketed-paste'
 
+  " Plug 'roman/golden-ratio'
   " Plug 'jiangmiao/auto-pairs'
   " I don't really like this becaus when you have:
   "     x = |foo
