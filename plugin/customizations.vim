@@ -77,3 +77,9 @@ autocmd Filetype ruby setlocal foldmethod=manual
 "
 
 nnoremap <Enter> :
+
+"
+" Useful for creating color schemes
+"
+
+nmap <Leader>ss :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
