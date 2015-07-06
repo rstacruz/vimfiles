@@ -172,6 +172,59 @@ App: ~
     :Emodel <file>       # app/models/*.rb
 
 ------------------------------------------------------------------------------
+*mhinz/vim-startify*
+
+    :Startify    # opens start
+    :SSave       # save session
+
+------------------------------------------------------------------------------
+*tpope/vim-unimpaired*
+
+Navigate:~
+
+   ]l    # next location lits error (syntastic)
+   ]q    # next quickfix
+   ]t    # next tag
+
+Options:~
+
+   col     # list
+   cor     # relativenumber
+   con     # number
+
+   coc     # cursorline
+   cou     # cursorcolumn
+   cox     # cursorcolumn + cursorline
+
+   cob     # background (dark/light)
+   coi     # ignorecase
+   cod     # diffthis
+   cos     # spell
+   cow     # wrap
+
+   c toggle, [ on, ] off
+
+Above and below:~
+
+   ]p       # paste below (follow indent)
+   ]<Space> # new line below
+   ]e       # move line below (like `ddp`)
+
+   [ above, ] below
+
+Transforms:~
+
+   ]y       # string (\n)
+   ]u       # url (%20)
+   ]x       # xml (&amp;)
+
+   [ encode, ] decode
+
+Paste:~
+
+   yo     # start insert mode with paste
+
+------------------------------------------------------------------------------
 ALSO SEE                                                           *x-alsosee*
 
   https://github.com/terryma/dotfiles/blob/master/.vimrc

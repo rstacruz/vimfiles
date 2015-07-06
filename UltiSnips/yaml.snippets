@@ -9,3 +9,14 @@ language: ruby
 rvm:
 - 2.0.0
 endsnippet
+
+snippet zuul ".zuul.yml"
+ui: mocha-bdd
+browsers:
+  - name: ie
+    version: 6..latest
+  # - name: firefox
+  #   version: latest
+  # - name: chrome
+  #   version: latest
+endsnippet

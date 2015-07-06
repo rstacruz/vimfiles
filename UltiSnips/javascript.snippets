@@ -33,9 +33,9 @@ endsnippet
 
 snippet umd "universal module loader" b
 ;(function (root, factory) {
-	if (typeof define === 'function' && define.amd) define(factory);
-	else if (typeof exports === 'object') module.exports = factory();
-	else root.${1:MODULENAME} = factory();
+	if (typeof define === 'function' && define.amd) define(factory)
+	else if (typeof exports === 'object') module.exports = factory()
+	else root.${1:MODULENAME} = factory()
 }(this, function () {
 
 	${VISUAL}$0
@@ -45,12 +45,13 @@ endsnippet
 
 snippet umd! "universal module loader with deps" b
 ;(function (root, factory) {
-	if (typeof define === 'function' && define.amd)
-	define(['jquery'], factory);
-	else if (typeof exports === 'object')
-	module.exports = factory(require('jquery'));
-	else
-	root.${1:MODULENAME} = factory(root.jQuery);
+	if (typeof define === 'function' && define.amd) {
+		define(['jquery'], factory)
+	} else if (typeof exports === 'object') {
+		module.exports = factory(require('jquery'))
+	} else {
+		root.${1:MODULENAME} = factory(root.jQuery)
+	}
 }(this, function ($) {
 
 	${VISUAL}$0

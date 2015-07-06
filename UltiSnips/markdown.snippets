@@ -23,10 +23,14 @@ SOFTWARE.
 endsnippet
 
 snippet travis "Travis badge"
-[![Status](http://img.shields.io/travis/${1:user/repo}/master.svg)](https://travis-ci.org/$1 "See test builds")
+[![Status](https://travis-ci.org/${1:user/repo}.svg?branch=master)](https://travis-ci.org/$1 "See test builds")
 endsnippet
 
 snippet npm "npm badge"
+[![NPM](https://nodei.co/npm/${1:name}.png?mini=true)](https://npmjs.org/package/$1)
+endsnippet
+
+snippet npms "npm badge - shields.io"
 [![npm version](http://img.shields.io/npm/v/${1:name}.svg)](https://npmjs.org/package/$1 "View this project on npm")
 endsnippet
 
@@ -40,4 +44,21 @@ Authored and maintained by Rico Sta. Cruz with help from contributors ([list][co
 
 [MIT]: http://mit-license.org/
 [contributors]: http://github.com/rstacruz/$1/contributors
+endsnippet
+
+snippet collab
+# Thank you!
+
+Thanks for considering contributing to this project!<br>
+This project follows [collaborative etiquette](http://git.io/col) guidelines.
+
+### [Read →](http://git.io/col)
+endsnippet
+
+snippet collab-badge
+[![](https://img.shields.io/badge/%E2%9C%93-collaborative_etiquette-brightgreen.svg)](http://git.io/col)
+endsnippet
+
+snippet testling
+[![](https://ci.testling.com/${1:user/repo}.png)](https://ci.testling.com/$1)
 endsnippet

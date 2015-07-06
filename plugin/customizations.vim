@@ -83,3 +83,15 @@ nnoremap <Enter> :
 "
 
 nmap <Leader>ss :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
+
+"
+" Embiggen
+"
+
+command! Big call <SID>embiggen()
+
+function! s:embiggen()
+  set guifont=Monaco:h30
+  set fullscreen
+  Goyo 80
+endfunction

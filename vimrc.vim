@@ -10,7 +10,9 @@ Plug 'tpope/vim-sensible'
 " Themes
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
 Plug 'spf13/vim-colors'
+Plug 'ivan-cukic/vim-colors-penultimate'
 Plug 'whatyouhide/vim-gotham'
+Plug 'gryftir/gryffin'
 
 if $VIM_MINIMAL == ''
   " Slow plugins
@@ -41,8 +43,10 @@ if $VIM_MINIMAL == ''
   Plug 'justincampbell/vim-eighties'
   Plug 'mattn/emmet-vim'
   Plug 'mhinz/vim-signify'
+  Plug 'mhinz/vim-startify'
   Plug 'michaeljsmith/vim-indent-object'
   Plug 'mileszs/ack.vim'
+  Plug 'ngmy/vim-rubocop'
   Plug 'rstacruz/named-media-queries'
   Plug 'rstacruz/vim-hyperstyle'
   Plug 'rstacruz/vim-opinion'
@@ -53,6 +57,7 @@ if $VIM_MINIMAL == ''
   Plug 'terryma/vim-multiple-cursors'
   Plug 'thinca/vim-visualstar'
   Plug 'tpope/vim-abolish'
+  Plug 'tpope/vim-cucumber'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-endwise'
@@ -63,8 +68,12 @@ if $VIM_MINIMAL == ''
   Plug 'tpope/vim-sensible'
   Plug 'tpope/vim-sleuth'
   Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-vinegar'
   Plug 'whatyouhide/vim-lengthmatters'
+
+  " colors
+  Plug 'vim-scripts/vylight'
 
   " Plug 'rstacruz/sparkup', { 'rtp': 'vim' }
   " Plug 'roman/golden-ratio'
@@ -80,20 +89,22 @@ if $VIM_MINIMAL == ''
   endif
 
   " Language specific
-  Plug 'wavded/vim-stylus', { 'for': 'stylus' }
-  Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
-  Plug 'tpope/vim-rails'
-  Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-  Plug 'tpope/vim-bundler', { 'for': 'ruby' }
-  Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss', 'less'] }
-  Plug 'groenewege/vim-less', { 'for': 'less' }
-  Plug 'rstacruz/ledgerdown', { 'rtp': 'vim' }
-  Plug 'kchmck/vim-coffee-script', { 'for': ['coffee', 'coffeescript'] }
-  Plug 'tpope/vim-haml'
-  Plug 'ledger/vim-ledger'
-  Plug 'moll/vim-node'
   Plug 'dag/vim-fish'
+  Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+  Plug 'groenewege/vim-less', { 'for': 'less' }
+  Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss', 'less'] }
+  Plug 'kchmck/vim-coffee-script', { 'for': ['coffee', 'coffeescript'] }
+  Plug 'ledger/vim-ledger'
   Plug 'mitsuhiko/vim-python-combined'
+  Plug 'moll/vim-node'
+  Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+  Plug 'rstacruz/ledgerdown', { 'rtp': 'vim' }
+  Plug 'slim-template/vim-slim'
+  Plug 'tpope/vim-bundler', { 'for': 'ruby' }
+  Plug 'tpope/vim-haml'
+  Plug 'tpope/vim-rails'
+  Plug 'vim-ruby/vim-ruby'
+  Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 
   " Disabled
   " Plug 'mitee/vim-gf-python'
