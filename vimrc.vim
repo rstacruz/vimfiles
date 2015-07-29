@@ -40,6 +40,7 @@ if $VIM_MINIMAL == ''
   Plug 'junegunn/vader.vim'
   Plug 'junegunn/vim-easy-align'
   Plug 'junegunn/vim-xmark', { 'do': 'make' }
+  Plug 'junegunn/rainbow_parentheses.vim'
   Plug 'justincampbell/vim-eighties'
   Plug 'mattn/emmet-vim'
   Plug 'mhinz/vim-signify'
@@ -52,7 +53,6 @@ if $VIM_MINIMAL == ''
   Plug 'rstacruz/vim-opinion'
   Plug 'rstacruz/vim-closer'
   Plug 'rstacruz/vim-remux'
-  Plug 'scrooloose/syntastic'
   Plug 'sjl/vitality.vim'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'thinca/vim-visualstar'
@@ -85,7 +85,10 @@ if $VIM_MINIMAL == ''
 
   " Not working well with nvim
   if !has('nvim')
-  Plug 'markwu/ZoomWin'
+    Plug 'markwu/ZoomWin'
+    Plug 'scrooloose/syntastic'
+  else
+    Plug 'benekastah/neomake'
   endif
 
   " Language specific

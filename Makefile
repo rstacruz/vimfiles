@@ -1,4 +1,5 @@
 lockfile := ./bin/restore
+vim := nvim
 
 default: install
 
@@ -15,11 +16,11 @@ link-neovim:
 
 # Installs plugins, produces lockfile
 install:
-	vim +PlugInstall +PlugClean +"PlugSnapshot ${lockfile}" +qa
+	$(vim) +PlugInstall +PlugClean +"PlugSnapshot ${lockfile}" +qa
 
 # Upgrade plugins, vim-plug, and show changes
 update:
-	vim +PlugUpdate +PlugUpgrade +PlugClean +"PlugSnapshot ${lockfile}" +PlugDiff
+	$(vim) +PlugUpdate +PlugUpgrade +PlugClean +"PlugSnapshot ${lockfile}" +PlugDiff
 upgrade: update
 
 # Install from lockfile
