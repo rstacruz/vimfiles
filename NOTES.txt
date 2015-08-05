@@ -182,9 +182,13 @@ App: ~
 
 Navigate:~
 
-   ]l    # next location lits error (syntastic)
-   ]q    # next quickfix
-   ]t    # next tag
+   ]a      # :next  - next file
+   ]b      # :bnext - next buffer
+   ]l      # :lnext - next location list
+   ]q      # :cnext - next quickfix
+   ]t      # :tnext - next tag
+
+   [ previous, ] next
 
 Options:~
 
@@ -206,7 +210,15 @@ Options:~
 
 Above and below:~
 
-   ]p       # paste below (follow indent)
+   ]p       # paste below, indent
+   [p       # paste above, indent
+
+   >p       # paste below, indent +1
+   <p       # paste below, indent -1
+
+   >P       # paste above, indent +1
+   <P       # paste above, indent -1
+
    ]<Space> # new line below
    ]e       # move line below (like `ddp`)
 
@@ -223,6 +235,13 @@ Transforms:~
 Paste:~
 
    yo     # start insert mode with paste
+   yO     # start insert mode with paste (line above)
+
+------------------------------------------------------------------------------
+*neomake*
+
+    :ll       # view location list
+    [l ]l     # jump to prev/next location (via unimpaired)
 
 ------------------------------------------------------------------------------
 ALSO SEE                                                           *x-alsosee*

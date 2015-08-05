@@ -1,0 +1,35 @@
+# See:
+# - https://github.com/brigade/scss-lint/blob/master/config/default.yml
+
+linters:
+  # because & { .. } makes the indent level even
+  UnnecessaryParentReference:
+    enabled: false
+  # because `white -> #fff` shouldn't be complained about
+  ColorKeyword:
+    enabled: false
+  # Because `white` and `black` shouldn't be variabeized
+  ColorVariable:
+    enabled: false
+  # Because `h2, h3, p` can be reasonable
+  SingleLinePerSelector:
+    enabled: false
+  # Because I don't want to put `background` before `content`
+  PropertySortOrder:
+    enabled: false
+  # I don't like `padding: 1px 2px 3px 2px` being rewritten as `1px 2px 3px`
+  Shorthand:
+    enabled: false
+  # Enforce includes being above others
+  DeclarationOrder:
+    enabled: true
+  # Because `&.right` isn't always a good idea to merge with `&`
+  MergeableSelector:
+    enabled: false
+  NestingDepth:
+    max_depth: 3
+  # SelectorFormat:
+  #   class_convention: hyphenated_lowercase
+  # Because jekyll doesn't have autoprefixer. meh
+  VendorPrefix:
+    enabled: false
