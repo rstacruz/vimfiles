@@ -32,7 +32,7 @@ for (var ${2:key} in ${1:object}) {
 endsnippet
 
 snippet umd "universal module loader" b
-;(function (root, factory) {
+void (function (root, factory) {
 	if (typeof define === 'function' && define.amd) define(factory)
 	else if (typeof exports === 'object') module.exports = factory()
 	else root.${1:MODULENAME} = factory()
@@ -40,11 +40,11 @@ snippet umd "universal module loader" b
 
 	${VISUAL}$0
 
-}))
+})); // eslint-disable-line semi
 endsnippet
 
 snippet umd! "universal module loader with deps" b
-;(function (root, factory) {
+void (function (root, factory) {
 	if (typeof define === 'function' && define.amd) {
 		define(['jquery'], factory)
 	} else if (typeof exports === 'object') {
@@ -56,7 +56,7 @@ snippet umd! "universal module loader with deps" b
 
 	${VISUAL}$0
 
-}))
+})); // eslint-disable-line semi
 endsnippet
 
 snippet forof "for"
