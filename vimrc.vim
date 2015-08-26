@@ -4,7 +4,7 @@ let g:mapleader=","
 syntax on
 filetype plugin indent on
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/vendor')
 Plug 'tpope/vim-sensible'
 
 " Themes

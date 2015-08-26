@@ -1,6 +1,7 @@
 /bundle
 /node_modules
 /plugged
+/vendor
 /session
 /spell/*
 /autoload/*.old
