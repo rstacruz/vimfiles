@@ -18,10 +18,9 @@ link-neovim:
 install:
 	$(vim) +PlugInstall +PlugClean +"PlugSnapshot ${lockfile}" +qa
 
-# Upgrade plugins, vim-plug, and show changes
-update:
+# Updates plugins, vim-plug, and show changes
+upgrade:
 	$(vim) +PlugUpdate +PlugUpgrade +PlugClean +"PlugSnapshot ${lockfile}" +PlugDiff
-upgrade: update
 
 # Install from lockfile
 restore:
