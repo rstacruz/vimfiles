@@ -26,4 +26,4 @@ upgrade:
 restore:
 	${lockfile}
 
-.PHONY: install link update upgrade restore default link-vim link-neovim
+.PHONY: install link upgrade restore default link-vim link-neovim
