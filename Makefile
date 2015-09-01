@@ -1,18 +1,23 @@
 lockfile := ./bin/restore
 vim := nvim
+pwd := $(shell pwd -LP)
 
 default: install
 
 # Install into home directory
 link: link-vim link-neovim
+	@if [ ! -d ~/.vim/vendor ]; then \
+		echo "\n\033[32;1m→ NOTE:\033[0m run ':PlugInstall' in Vim to install plugins."; \
+		echo "  (alternatively, use 'make install')"; \
+	fi
 
 link-vim:
-	ln -nfs "`pwd -LP`" ~/.vim
-	ln -nfs "`pwd -LP`"/vimrc.vim ~/.vimrc
+	ln -nfs "${pwd}" ~/.vim
+	ln -nfs "${pwd}/vimrc.vm" ~/.vimrc
 
 link-neovim:
-	ln -nfs "`pwd -LP`" ~/.nvim
-	ln -nfs "`pwd -LP`"/vimrc.vim ~/.nvimrc
+	ln -nfs "${pwd}" ~/.nvim
+	ln -nfs "${pwd}/vimrc.vm" ~/.nvimrc
 
 # Installs plugins, produces lockfile
 install:
