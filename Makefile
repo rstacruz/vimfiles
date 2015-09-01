@@ -13,11 +13,11 @@ link: link-vim link-neovim
 
 link-vim:
 	ln -nfs "${pwd}" ~/.vim
-	ln -nfs "${pwd}/vimrc.vm" ~/.vimrc
+	ln -nfs "${pwd}/vimrc.vim" ~/.vimrc
 
 link-neovim:
 	ln -nfs "${pwd}" ~/.nvim
-	ln -nfs "${pwd}/vimrc.vm" ~/.nvimrc
+	ln -nfs "${pwd}/vimrc.vim" ~/.nvimrc
 
 # Installs plugins, produces lockfile
 install:
