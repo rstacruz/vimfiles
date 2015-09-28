@@ -52,6 +52,7 @@ if $VIM_MINIMAL == ''
   Plug 'rstacruz/vim-hyperstyle'
   Plug 'rstacruz/vim-opinion'
   Plug 'rstacruz/vim-remux'
+  Plug 'rstacruz/vim-node-import'
   Plug 'sjl/vitality.vim'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'thinca/vim-visualstar'
@@ -117,6 +118,6 @@ if $VIM_MINIMAL == ''
   " Plug 'bling/vim-bufferline' - i dont care
   " Plug 'honza/vim-snippets' - too much
   " Plug 'junegunn/rainbow_parentheses.vim' - doesnt work with js anyway
-  " mmai/vim-markdown-wiki 
+  " Plug 'mmai/vim-markdown-wiki'
 endif
 call plug#end()
