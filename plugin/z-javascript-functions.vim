@@ -6,19 +6,9 @@ augroup END
 function! s:set_js_shortcuts()
   inoremap <buffer> @. this.
 
-  imap <buffer> fn9   function (
-  imap <buffer> fn90  function ()
-  imap <buffer> fn[   function () {
-  imap <buffer> fn90[ function () {
-  imap <buffer> fn9[  function () {
-  imap <buffer> fn90<Space>{ function () {
-  imap <buffer> fn90<Space>[ function () {
-  imap <buffer> fn9<Space>{  function () {
-  imap <buffer> fn9<Space>[  function () {
-  imap <buffer> fn<Space>{   function () {
-  imap <buffer> fn<Space>[   function () {
-
   imap <buffer> fn<CR> function () {<CR>
+  imap <buffer> =><CR> => {<CR>
+  imap <buffer> -><CR> () => {<CR>
 
   imap <buffer> clog( console.log(
   imap <buffer> cerr( console.error(
