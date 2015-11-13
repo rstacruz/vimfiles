@@ -1,0 +1,10 @@
+{
+  "plugin/plugins/*.vim": {
+    "type": "plugin",
+    "template": [
+      "if globpath(&rtp, \"plugin/{}.vim\") == \"\" | finish | endif",
+      "",
+      "\" ..."
+    ]
+  }
+}
