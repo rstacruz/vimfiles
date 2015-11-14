@@ -18,7 +18,10 @@ if $VIM_MINIMAL == ''
   " Slow plugins
   Plug 'scrooloose/nerdtree'
   Plug 'bling/vim-airline'
-  Plug 'SirVer/ultisnips'
+
+  if version >= 704
+    Plug 'SirVer/ultisnips'
+  endif
   " Plug 'Shougo/vimshell.vim'
   " Plug 'rstacruz/vim-ultisnips-css' retired :)
 
@@ -43,7 +46,7 @@ if $VIM_MINIMAL == ''
   Plug 'junegunn/vim-easy-align'
   Plug 'junegunn/vim-xmark', { 'do': 'make' }
   Plug 'justincampbell/vim-eighties'
-  Plug 'kassio/neoterm'
+  Plug 'majkinetor/unite-cmdmatch'
   Plug 'mattn/emmet-vim'
   Plug 'mhinz/vim-signify'
   Plug 'mhinz/vim-startify'
@@ -74,6 +77,10 @@ if $VIM_MINIMAL == ''
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-vinegar'
   Plug 'whatyouhide/vim-lengthmatters'
+
+  if has('nvim')
+    Plug 'kassio/neoterm'
+  endif
 
   " colors
   Plug 'vim-scripts/vylight'
