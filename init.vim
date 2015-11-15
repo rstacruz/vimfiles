@@ -38,7 +38,6 @@ if $VIM_MINIMAL == ''
   Plug 'ConradIrwin/vim-bracketed-paste'
   Plug 'craigemery/vim-autotag'
   Plug 'godlygeek/tabular'
-  Plug 'janko-m/vim-test'
   Plug 'jreybert/vimagit'
   Plug 'junegunn/goyo.vim'
   Plug 'junegunn/limelight.vim'
@@ -129,5 +128,6 @@ if $VIM_MINIMAL == ''
   " Plug 'honza/vim-snippets' - too much
   " Plug 'junegunn/rainbow_parentheses.vim' - doesnt work with js anyway
   " Plug 'mmai/vim-markdown-wiki'
+  " Plug 'janko-m/vim-test' - just use dispatch
 endif
 call plug#end()

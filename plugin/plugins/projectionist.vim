@@ -88,3 +88,27 @@ call extend(g:projectionist_heuristics, {
 \     }
 \   }
 \ })
+
+" Vim: stuff
+call extend(g:projectionist_heuristics, {
+\   "*.vim|*/*.vim|_(vim)": {
+\     "autoload/*.vim": {
+\       "type": "autoload"
+\     },
+\     "UltiSnips/*.snippets": {
+\       "type": "ultisnip"
+\     },
+\     "colors/*.vim": {
+\       "type": "colorscheme"
+\     },
+\     "plugin/*.vim": {
+\       "type": "plugin"
+\     },
+\     "ftdetect/*.vim": {
+\       "type": "ftdetect"
+\     },
+\     "ftplugin/*.vim": {
+\       "type": "ftplugin"
+\     }
+\   }
+\ })

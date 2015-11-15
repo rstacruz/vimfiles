@@ -1,6 +1,6 @@
 {
   "plugin/plugins/*.vim": {
-    "type": "plugin",
+    "type": "integration",
     "template": [
       "if globpath(&rtp, \"plugin/{}.vim\") == \"\" | finish | endif",
       "",
