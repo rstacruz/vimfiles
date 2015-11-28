@@ -4,18 +4,31 @@ if exists('g:projectionist_heuristics') == "0"
   let g:projectionist_heuristics = {}
 endif
 
-" Rails app/services/
+" Rails: app/services/
 call extend(g:projectionist_heuristics, {
-\   "app/services/*.rb|_(rails_services)": {
+\   "app/services/*.rb|_(rails-services)": {
 \     "app/services/*.rb": {
-\       "type": "service"
+\       "type": "service",
+\       "template": [
+\         "class {camelcase|colons}",
+\         "end"
+\       ]
 \     }
 \   },
 \ })
 
-" Rails JavaScript behaviors using onmount
+" Rails: app/forms/
 call extend(g:projectionist_heuristics, {
-\   "app/assets/javascripts/behaviors/*.js|app/assets/javascripts/behaviors/*/*.js|_(rails_behaviors)": {
+\   "app/forms/*.rb|_(rails-forms)": {
+\     "app/forms/*.rb": {
+\       "type": "form"
+\     }
+\   },
+\ })
+
+" Rails: JavaScript behaviors using onmount
+call extend(g:projectionist_heuristics, {
+\   "app/assets/javascripts/behaviors/*.js|app/assets/javascripts/behaviors/*/*.js|_(rails-behaviors)": {
 \     "app/assets/javascripts/behaviors/*.js": {
 \       "type": "behavior",
 \       "template": [
@@ -30,9 +43,9 @@ call extend(g:projectionist_heuristics, {
 \   }
 \ })
 
-" Rails CSS files
+" Rails: CSS files
 call extend(g:projectionist_heuristics, {
-\   "app/assets/stylesheets/*.scss|app/assets/stylesheets/*/*.scss|_(rails_scss)": {
+\   "app/assets/stylesheets/*.scss|app/assets/stylesheets/*/*.scss|_(rails-scss)": {
 \     "app/assets/stylesheets/*.scss": {
 \       "type": "css",
 \       "template": [
@@ -47,9 +60,9 @@ call extend(g:projectionist_heuristics, {
 \   }
 \ })
 
-" Node.js projects (generic)
+" Node: projects (generic)
 call extend(g:projectionist_heuristics, {
-\   "package.json|_(node_lib_test)": {
+\   "package.json|_(node-projects)": {
 \     "lib/*.js": {
 \       "type": "lib",
 \       "alternate": [
@@ -73,17 +86,17 @@ call extend(g:projectionist_heuristics, {
 \         "  })",
 \         "})"
 \       ]
-\     }
-\   }
-\ })
-
-" Node.js projects (generic)
-call extend(g:projectionist_heuristics, {
-\   "package.json|_(node_bin)": {
+\     },
 \     "bin/*": {
 \       "type": "bin",
 \       "template": [
 \         "#!/usr/bin/env node"
+\       ]
+\     },
+\     "docs/*.md": {
+\       "type": "doc",
+\       "template": [
+\         "# {basename|blank|capitalize}"
 \       ]
 \     }
 \   }
@@ -106,6 +119,9 @@ call extend(g:projectionist_heuristics, {
 \     },
 \     "ftdetect/*.vim": {
 \       "type": "ftdetect"
+\     },
+\     "doc/*.txt": {
+\       "type": "doc"
 \     },
 \     "ftplugin/*.vim": {
 \       "type": "ftplugin"

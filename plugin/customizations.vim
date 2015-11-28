@@ -53,7 +53,6 @@ nnoremap k gk
 " that's a vertical box-drawing character
 "
 
-set fillchars=vert:│    
 set fillchars="vert: "
 
 
@@ -82,7 +81,7 @@ nnoremap <Enter> :
 " Useful for creating color schemes
 "
 
-nmap <Leader>ss :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
+nmap <Leader>SS :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
 
 "
 " Embiggen
