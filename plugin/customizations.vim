@@ -1,3 +1,4 @@
+scriptencoding utf-8
 "
 " Allow ^V in the console
 "
@@ -20,7 +21,7 @@ set timeout timeoutlen=1000 ttimeoutlen=100
 "
 
 set list
-set listchars=tab:┆\ ,extends:❯,precedes:❮,nbsp:␣
+set listchars=tab:·\ ,trail:·,nbsp:␣,extends:>,precedes:<
 set showbreak=↪
 
 "
@@ -72,12 +73,6 @@ command! Nohardwrap set fo=croq wrap linebreak nolist
 autocmd Filetype ruby setlocal foldmethod=manual
 
 "
-" Dunno if this is a good idea
-"
-
-nnoremap <Enter> :
-
-"
 " Useful for creating color schemes
 "
 
@@ -94,3 +89,9 @@ function! s:embiggen()
   set fullscreen
   Goyo 80
 endfunction
+
+"
+" Tab stops
+"
+
+set tabstop=2

@@ -3,7 +3,6 @@ hi clear
 if exists("syntax_on") | syntax reset | endif
 let g:colors_name = "lol"
 
-" 
 " Color Kit!
 " Form this triad first:
 "   _base1 _accent1  ("require 'active_support'" - strings)
@@ -95,6 +94,9 @@ hi! link SpecialChar    Special
 hi! link Delimiter      Special
 hi! link SpecialComment Special
 hi! link Debug          Special
+hi! link SpecialKey     LineNr
+hi! link Folded         LineNr
+hi! link FoldColumn     Noise
 
 "
 " Languages
