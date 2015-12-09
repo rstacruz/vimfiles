@@ -64,6 +64,9 @@ nmap <leader>f9 :set foldlevel=9<CR>
 
 "
 " Enter to toggle folds
+"   Enter - recursive open
+"   Space - toggle
 "
 
 nnoremap <Enter> za
+nnoremap <Space> zA

@@ -20,10 +20,6 @@ set timeout timeoutlen=1000 ttimeoutlen=100
 " List characters
 "
 
-set list
-set listchars=tab:·\ ,trail:·,nbsp:␣,extends:>,precedes:<
-set showbreak=↪
-
 "
 " Save typos
 " http://blog.sanctum.geek.nz/vim-command-typos/
@@ -91,7 +87,12 @@ function! s:embiggen()
 endfunction
 
 "
-" Tab stops
+" Opinion extensions
 "
 
 set tabstop=2
+set foldnestmax=3        " don't overfold
+set fillchars=fold:·     " improve appearance of folds
+set list
+set listchars=tab:·\ ,trail:—,nbsp:␣,extends:>,precedes:<
+set showbreak=↪
