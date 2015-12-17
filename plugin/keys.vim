@@ -68,5 +68,5 @@ nmap <leader>f9 :set foldlevel=9<CR>
 "   Space - toggle
 "
 
-nnoremap <Enter> za
-nnoremap <Space> zA
+" nnoremap <Enter> za
+nnoremap <Space> za
