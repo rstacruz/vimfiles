@@ -22,8 +22,6 @@ if $VIM_MINIMAL == ''
   if version >= 704
     Plug 'SirVer/ultisnips'
   endif
-  " Plug 'Shougo/vimshell.vim'
-  " Plug 'rstacruz/vim-ultisnips-css' retired :)
 
   " Unite
   Plug 'Shougo/vimproc.vim', { 'do': 'make' }
@@ -123,7 +121,7 @@ if $VIM_MINIMAL == ''
   Plug 'vim-ruby/vim-ruby'
   Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 
-  " Disabled
+  " Retired
   " Plug 'mitee/vim-gf-python'
   " Plug 'editorconfig/editorconfig-vim' - use sleuth.vim
   " Plug 'plasticboy/vim-markdown' - not even working
@@ -133,5 +131,6 @@ if $VIM_MINIMAL == ''
   " Plug 'junegunn/rainbow_parentheses.vim' - doesnt work with js anyway
   " Plug 'mmai/vim-markdown-wiki'
   " Plug 'janko-m/vim-test' - just use dispatch
+  " Plug 'Shougo/vimshell.vim' - dunno
 endif
 call plug#end()
