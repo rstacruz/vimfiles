@@ -13,6 +13,7 @@ Plug 'spf13/vim-colors'
 Plug 'ivan-cukic/vim-colors-penultimate'
 Plug 'whatyouhide/vim-gotham'
 Plug 'gryftir/gryffin'
+Plug 'vim-scripts/vylight'
 
 if $VIM_MINIMAL == ''
   " Slow plugins
@@ -57,7 +58,7 @@ if $VIM_MINIMAL == ''
   Plug 'rstacruz/vim-hyperstyle'
   Plug 'rstacruz/vim-opinion'
   Plug 'rstacruz/vim-remux'
-  Plug 'rstacruz/vim-node-import'
+  " Plug 'rstacruz/vim-node-import' - interferes with UltiSnips
   Plug 'samsonw/vim-task'
   Plug 'sjl/vitality.vim'
   Plug 'terryma/vim-multiple-cursors'
@@ -68,7 +69,6 @@ if $VIM_MINIMAL == ''
   Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-pathogen'
   Plug 'tpope/vim-projectionist'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-sensible'
@@ -79,26 +79,12 @@ if $VIM_MINIMAL == ''
   Plug 'tpope/vim-vinegar'
   Plug 'whatyouhide/vim-lengthmatters'
 
-  if has('nvim')
-    Plug 'kassio/neoterm'
-  endif
-
-  " colors
-  Plug 'vim-scripts/vylight'
-
-  " Plug 'rstacruz/sparkup', { 'rtp': 'vim' }
-  " Plug 'roman/golden-ratio'
-  " Plug 'jiangmiao/auto-pairs'
-  " I don't really like this becaus when you have:
-  "     x = |foo
-  " And you want to quote foo, another ' gets inserted:
-  "     x = '|'foo
-
   " Not working well with nvim
   if !has('nvim')
     Plug 'markwu/ZoomWin'
     Plug 'scrooloose/syntastic'
   else
+    Plug 'kassio/neoterm'
     Plug 'benekastah/neomake'
   endif
 
@@ -120,6 +106,7 @@ if $VIM_MINIMAL == ''
   Plug 'tpope/vim-rails'
   Plug 'vim-ruby/vim-ruby'
   Plug 'wavded/vim-stylus', { 'for': 'stylus' }
+  Plug 'romanzolotarev/vim-journal'
 
   " Retired
   " Plug 'mitee/vim-gf-python'

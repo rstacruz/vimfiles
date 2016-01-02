@@ -29,6 +29,6 @@ upgrade:
 
 # Install from lockfile
 restore:
-	${lockfile}
+	vim -S ${lockfile}
 
 .PHONY: install link upgrade restore default link-vim link-neovim
