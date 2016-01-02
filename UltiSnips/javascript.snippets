@@ -1,32 +1,6 @@
-snippet clog "console.log"
-console.log
-endsnippet
-
-snippet f "function"
-function
-endsnippet
-
-snippet fn "function"
-function () {
-endsnippet
-
-snippet { "{ ... }"
-{
-	$1
-}$0
-endsnippet
-
 snippet for "for loop" b
 for (var i = 0, len = ${1:list}.length; i < len; i++) {
 	var ${2:item} = $1[i];
-	${VISUAL}$0
-}
-endsnippet
-
-snippet foreach "for each loop" b
-for (var ${2:key} in ${1:object}) {
-	if (!$1.hasOwnProperty($2)) continue;
-	var ${3:val} = $1[$2];
 	${VISUAL}$0
 }
 endsnippet
@@ -63,4 +37,22 @@ snippet forof "for"
 for (const ${2:item} of ${1:list}) {
 	${VISUAL}$0
 }
+endsnippet
+
+snippet meow "meow.js" b
+const cli = require('meow')(`
+	Usage:
+		$ nowshow
+`, {
+	alias: {
+		h: 'help'
+	}
+})
+
+console.log(cli.flags)
+endsnippet
+
+snippet us "use strict" b
+'use strict'
+
 endsnippet

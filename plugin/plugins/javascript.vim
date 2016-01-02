@@ -16,4 +16,6 @@ let g:javascript_conceal_return     = "⇚"
 augroup javascript
   au!
   au BufNewFile,BufRead *.es6 setf javascript
+  " riot
+  au BufNewFile,BufRead *.tag setf javascript.jsx
 augroup END
