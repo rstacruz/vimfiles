@@ -34,6 +34,7 @@ if $VIM_MINIMAL == ''
   Plug 'rstacruz/vim-fastunite'
 
   Plug 'AndrewRadev/splitjoin.vim'
+  Plug 'christoomey/vim-quicklink' " C-k in visual mode
   Plug 'ConradIrwin/vim-bracketed-paste'
   Plug 'craigemery/vim-autotag'
   Plug 'godlygeek/tabular'
@@ -47,6 +48,7 @@ if $VIM_MINIMAL == ''
   Plug 'justincampbell/vim-eighties'
   Plug 'majkinetor/unite-cmdmatch'
   Plug 'mattn/emmet-vim'
+  Plug 'mattn/webapi-vim' " for vim-quicklink
   Plug 'mhinz/vim-grepper'
   Plug 'mhinz/vim-signify'
   Plug 'mhinz/vim-startify'
