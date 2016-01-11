@@ -40,19 +40,40 @@ for (const ${2:item} of ${1:list}) {
 endsnippet
 
 snippet meow "meow.js" b
-const cli = require('meow')(`
+const cli = require('meow')(\`
 	Usage:
-		$ nowshow
-`, {
+		$ ${1:yourapp}
+
+  Options:
+    -h, --help       show usage information
+    -v, --version    print version info and exit
+\`, {
+	boolean: ['help', 'version'],
 	alias: {
-		h: 'help'
+		h: 'help', v: 'version'
 	}
 })
 
-console.log(cli.flags)
+console.log(cli.flags, cli.input)
 endsnippet
 
-snippet us "use strict" b
+snippet u "use strict" b
 'use strict'
 
+endsnippet
+
+snippet r "require" b
+require
+endsnippet
+
+snippet v "var require" b
+var $1 = require('$2')$0
+endsnippet
+
+snippet c "const require" b
+const $1 = require('$2')$0
+endsnippet
+
+snippet i "import" b
+import $1 from '$2'$0
 endsnippet

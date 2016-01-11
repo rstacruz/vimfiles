@@ -1,7 +1,7 @@
 snippet mit "MIT license"
 The MIT License (MIT)
 
-Copyright (c) 2015 $0
+Copyright (c) `date "+%Y"` $0
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,20 +22,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 endsnippet
 
-snippet travis "Travis badge"
-[![Status](https://travis-ci.org/${1:user/repo}.svg?branch=master)](https://travis-ci.org/$1 "See test builds")
+snippet travis "Travis badge" b
+[![Status](https://travis-ci.org/`git config --get remote.origin.url | sed -e 's/\.git$//' -e 's/^.*github.com\///'`.svg?branch=master)](https://travis-ci.org/`git config --get remote.origin.url | sed -e 's/\.git$//' -e 's/^.*github.com\///'` "See test builds")
 endsnippet
 
 snippet npm "npm badge"
 [![NPM](https://nodei.co/npm/${1:name}.png?mini=true)](https://npmjs.org/package/$1)
 endsnippet
 
-snippet npms "npm badge - shields.io"
-[![npm version](http://img.shields.io/npm/v/${1:name}.svg)](https://npmjs.org/package/$1 "View this project on npm")
-endsnippet
-
 snippet thanks
-**${1:projectname}** © 2015+, Rico Sta. Cruz. Released under the [MIT] License.<br>
+**${1:projectname}** © `date "+%Y"`+, Rico Sta. Cruz. Released under the [MIT] License.<br>
 Authored and maintained by Rico Sta. Cruz with help from contributors ([list][contributors]).
 
 > [ricostacruz.com](http://ricostacruz.com) &nbsp;&middot;&nbsp;
@@ -59,6 +55,22 @@ snippet collab-badge
 [![](https://img.shields.io/badge/%E2%9C%93-collaborative_etiquette-brightgreen.svg)](http://git.io/col)
 endsnippet
 
-snippet testling
-[![](https://ci.testling.com/${1:user/repo}.png)](https://ci.testling.com/$1)
+# For history.md
+snippet blob "blob link (for history.md)"
+[${1:v1.0.0}]: `git config --get remote.origin.url | sed 's/\.git$//'`/tree/$1$0
+endsnippet
+
+# For history.md
+snippet compare "comparison link (for history.md)"
+[${1:v1.0.0}]: `git config --get remote.origin.url | sed 's/\.git$//'`/compare/${2:v0.0.0}...$1$0
+endsnippet
+
+snippet ver "version in changelog"
+## [${1:v1.0.0}]
+> `date "+%b %e, %Y"`
+
+${0:- ...}
+
+[$1]: `git config --get remote.origin.url | sed 's/\.git$//'`/compare/${2:v0.0.0}...$1
+
 endsnippet
