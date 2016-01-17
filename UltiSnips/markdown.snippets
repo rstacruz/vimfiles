@@ -65,12 +65,22 @@ snippet compare "comparison link (for history.md)"
 [${1:v1.0.0}]: `git config --get remote.origin.url | sed 's/\.git$//'`/compare/${2:v0.0.0}...$1$0
 endsnippet
 
-snippet ver "version in changelog"
-## [${1:v1.0.0}]
+snippet v "version in changelog"
+## [v${1:1.0.0}]
 > `date "+%b %e, %Y"`
 
 ${0:- ...}
 
-[$1]: `git config --get remote.origin.url | sed 's/\.git$//'`/compare/${2:v0.0.0}...$1
+[v$1]: `git config --get remote.origin.url | sed 's/\.git$//'`/compare/v${2:0.0.0}...v$1
+
+endsnippet
+
+snippet v1 "version in changelog"
+## [v${1:1.0.0}]
+> `date "+%b %e, %Y"`
+
+${0:- Initial release.}
+
+[v$1]: `git config --get remote.origin.url | sed 's/\.git$//'`/tree/v$1
 
 endsnippet

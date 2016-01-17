@@ -57,6 +57,24 @@ const cli = require('meow')(\`
 console.log(cli.flags, cli.input)
 endsnippet
 
+snippet meow "meow.js (es5)" b
+var cli = require('meow')([
+	'Usage:',
+	'  $ ${1:yourapp}',
+  '',
+  'Options:',
+  '  -h, --help       show usage information',
+  '  -v, --version    print version info and exit'
+].join('\n'), {
+	boolean: ['help', 'version'],
+	alias: {
+		h: 'help', v: 'version'
+	}
+})
+
+console.log(cli.flags, cli.input)
+endsnippet
+
 snippet u "use strict" b
 'use strict'
 
