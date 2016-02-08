@@ -22,15 +22,15 @@ hi! _normalb   ctermfg=240
 hi! _mute      ctermfg=11 ctermbg=none
 
 " Mute color (comments):
-hi! _comm1   ctermfg=24
+hi! _comm1   ctermfg=55
 
 " Base color:
 hi! _base1   ctermfg=13
 hi! _base1b  ctermfg=13
 
 " Accent colors:
-hi! _accent1   ctermfg=35
-hi! _accent1b  ctermfg=37
+hi! _accent1   ctermfg=210
+hi! _accent1b  ctermfg=208
 
 hi! _accent2   ctermfg=31
 hi! _accent2b  ctermfg=30
@@ -179,6 +179,3 @@ hi! link slimRubyChar Noise " -
 hi! link slimIdChar slimClass " #
 hi! link slimId slimClass
 hi! link slimDocType Noise
-
-hi! link vimSep Special
-hi! link vimSet Constant

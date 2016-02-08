@@ -10,10 +10,11 @@ Plug 'tpope/vim-sensible'
 " Themes
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
 Plug 'spf13/vim-colors'
-Plug 'ivan-cukic/vim-colors-penultimate'
-Plug 'whatyouhide/vim-gotham'
-Plug 'gryftir/gryffin'
-Plug 'vim-scripts/vylight'
+Plug 'chriskempson/base16-vim'
+" Plug 'ivan-cukic/vim-colors-penultimate'
+" Plug 'whatyouhide/vim-gotham'
+" Plug 'gryftir/gryffin'
+" Plug 'vim-scripts/vylight'
 
 if $VIM_MINIMAL == ''
   " Slow plugins
