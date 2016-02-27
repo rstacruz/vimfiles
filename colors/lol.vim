@@ -182,3 +182,6 @@ hi! link slimDocType Noise
 
 hi! link vimSep Special
 hi! link vimSet Constant
+
+hi! link elixirDocString Comment
+hi! link elixirVariable Special " @moduledoc

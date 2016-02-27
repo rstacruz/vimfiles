@@ -94,6 +94,7 @@ if $VIM_MINIMAL == ''
   " Language specific
   Plug 'dag/vim-fish'
   Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+  Plug 'elixir-lang/vim-elixir'
   Plug 'groenewege/vim-less', { 'for': 'less' }
   Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss', 'less'] }
   Plug 'kchmck/vim-coffee-script', { 'for': ['coffee', 'coffeescript'] }
