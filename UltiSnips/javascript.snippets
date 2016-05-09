@@ -5,6 +5,10 @@ for (var i = 0, len = ${1:list}.length; i < len; i++) {
 }
 endsnippet
 
+snippet ins "console.log(inspect(...))"
+console.log('${1}:', require('util').inspect($1, { depth: null, colors: true }))
+endsnippet
+
 snippet umd "universal module loader" b
 void (function (root, factory) {
 	if (typeof define === 'function' && define.amd) define(factory)
