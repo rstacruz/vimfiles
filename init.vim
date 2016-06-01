@@ -104,6 +104,7 @@ if $VIM_MINIMAL == ''
   Plug 'mxw/vim-jsx'
   Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
   Plug 'rstacruz/ledgerdown', { 'rtp': 'vim' }
+  Plug 'slashmili/alchemist.vim'
   Plug 'slim-template/vim-slim'
   Plug 'tpope/vim-bundler', { 'for': 'ruby' }
   Plug 'tpope/vim-haml'
