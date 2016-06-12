@@ -16,11 +16,7 @@ let g:startify_session_persistence    = 0
 let g:startify_session_delete_buffers = 1
 
 let g:startify_bookmarks = [
-  \ {'v': '~/.vim'},
-  \ {'l': '~/Projects/mashupgarage/lawadvisor'},
-  \ {'db': '~/Projects/docpress/docpress-base'},
-  \ {'dc': '~/Projects/docpress/docpress-core'},
-  \ {'dd': '~/Projects/docpress/docpress'}
+  \ {'v': '~/.vim'}
   \ ]
 
 let g:startify_list_order = [

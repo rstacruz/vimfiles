@@ -1,0 +1,53 @@
+snippet @d "doc"
+@doc """
+${1}
+"""$0
+endsnippet
+
+snippet dm "defmodule and doc"
+defmodule ${1} do
+	@moduledoc """
+	${2:...}
+	"""$0
+end
+endsnippet
+
+snippet r "require"
+require ${0:Module}
+endsnippet
+
+snippet u "use"
+use ${0:Module}
+endsnippet
+
+snippet i "import"
+import ${0:Module}
+endsnippet
+
+snippet a "alias"
+alias ${0:My.Module}
+endsnippet
+
+snippet d "doc and def"
+@doc """
+${2:...}
+"""
+def ${1:my_function} do${0}
+end
+endsnippet
+
+snippet dp "doc and defp"
+@doc """
+${2:...}
+"""
+defp ${1:my_function()} do${0}
+end
+endsnippet
+
+snippet puts "IO.puts"
+IO.puts 
+endsnippet
+
+snippet ins "IO.puts(inspect(...))"
+IO.puts("-> $1: " <> inspect(${1}))
+endsnippet
