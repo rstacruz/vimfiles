@@ -49,5 +49,73 @@ IO.puts
 endsnippet
 
 snippet ins "IO.puts(inspect(...))"
-IO.puts("-> $1: " <> inspect(${1}))
+IO.puts("-> $1: #{inspect(${1})}")
+endsnippet
+
+snippet lins "Logger.debug(inspect(...))"
+Logger.debug("-> $1: #{inspect(${1})}")
+endsnippet
+
+snippet ld "Logger.debug(...)"
+Logger.debug("$0")
+endsnippet
+
+snippet mix "mix.exs for hex packages"
+defmodule ${1/\w+\s*/\u$0/}.Mixfile do
+	use Mix.Project
+
+	@version "0.0.1"
+	@description """
+	${2:...}
+	"""
+
+	def project do
+		[app: :${1},
+		 version: @version,
+		 description: @description,
+		 elixir: "~> 1.2",
+		 elixirc_paths: elixirc_paths(Mix.env),
+		 build_embedded: Mix.env == :prod,
+		 start_permanent: Mix.env == :prod,
+		 source_url: "`git config --get remote.origin.url | sed -e 's/\.git$//'`",
+		 homepage_url: "`git config --get remote.origin.url | sed -e 's/\.git$//'`",
+		 docs: docs,
+		 package: package,
+		 deps: deps]
+	end
+
+	def application do
+		[applications: [:logger]]
+	end
+
+	defp deps do
+		[
+			{:earmark, "~> 0.1", only: :dev},
+			{:ex_doc, "~> 0.11", only: :dev}
+		]
+	end
+
+	defp elixirc_paths(:test), do: ["lib", "test/support"]
+	defp elixirc_paths(_), do: ["lib"]
+
+	def package do
+		[
+			maintainers: ["Rico Sta. Cruz"],
+			licenses: ["MIT"],
+			files: ["lib", "mix.exs", "README.md"],
+			links: %{github: "`git config --get remote.origin.url | sed -e 's/\.git$//'`"}
+		]
+	end
+
+	def docs do
+		[
+			source_ref: "v#{@version}",
+			main: "readme",
+			extras: [
+				Path.wildcard("*.md") |
+				Path.wildcard("docs/**/*.md")
+			]
+		]
+	end
+end
 endsnippet

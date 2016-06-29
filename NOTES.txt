@@ -244,6 +244,16 @@ Paste:~
     [l ]l     # jump to prev/next location (via unimpaired)
 
 ------------------------------------------------------------------------------
+*alchemist*
+
+    K      # show docs
+    C-]    # jump to def
+
+    :ExDef Plug.Conn
+    :IEx
+    :Mix help
+
+------------------------------------------------------------------------------
 ALSO SEE                                                           *x-alsosee*
 
   https://github.com/terryma/dotfiles/blob/master/.vimrc

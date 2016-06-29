@@ -19,7 +19,8 @@ Plug 'chriskempson/base16-vim'
 if $VIM_MINIMAL == ''
   " Slow plugins
   Plug 'scrooloose/nerdtree'
-  Plug 'bling/vim-airline'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
 
   if version >= 704
     Plug 'SirVer/ultisnips'
@@ -56,6 +57,7 @@ if $VIM_MINIMAL == ''
   Plug 'michaeljsmith/vim-indent-object'
   Plug 'mileszs/ack.vim'
   Plug 'ngmy/vim-rubocop'
+  Plug 'powerman/vim-plugin-AnsiEsc'
   Plug 'rstacruz/named-media-queries'
   Plug 'rstacruz/vim-closer'
   Plug 'rstacruz/vim-hyperstyle'
@@ -93,7 +95,7 @@ if $VIM_MINIMAL == ''
 
   " Language specific
   Plug 'dag/vim-fish'
-  Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+  Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
   Plug 'elixir-lang/vim-elixir'
   Plug 'groenewege/vim-less', { 'for': 'less' }
   Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss', 'less'] }

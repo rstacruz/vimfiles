@@ -1,0 +1,71 @@
+snippet new "new.html.pug"
+.page-heading
+  h1 New ${1:user}
+
+= render "form.html", changeset: @changeset, action: $1_path(@conn, :create)
+= link "Back", to: $1_path(@conn, :index)
+endsnippet
+
+snippet edit "edit.html.pug"
+.page-heading
+  h1 Edit ${1:user}
+
+= render "form.html", changeset: @changeset, action: $1_path(@conn, :update, @$1)
+= link "Back", to: $1_path(@conn, :index)
+endsnippet
+
+snippet index "index.html.pug"
+.page-heading
+  h1 ${1:user}
+
+table.crud-table
+  thead
+    tr
+      th= "Email"
+      th= ""
+  tbody
+    = for $1 <- @$1s do
+      tr
+        td= $1.email
+        td.text-right
+          = link "Show", to: $1_path(@conn, :show, $1), class: "btn btn-default btn-xs"
+          = link "Edit", to: $1_path(@conn, :edit, $1), class: "btn btn-default btn-xs"
+          = link "Delete", to: $1_path(@conn, :delete, $1), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs"
+
+= link "New $1", to: $1_path(@conn, :new)
+endsnippet
+
+snippet form "form.html.pug"
+= form_for @changeset, @action, fn f ->
+  = if @changeset.action do
+    .alert.alert-danger
+      p Oops, something went wrong! Please check the errors below.
+
+  .form-group
+    = label f, :email, class: "control-label"
+    = text_input f, :email, class: "form-control"
+    = error_tag f, :email
+
+  .form-group
+    = submit "Submit", class: "btn btn-primary"
+endsnippet
+
+snippet fgroup "form.html.pug formgroup"
+.form-group
+	= label f, :${1:email}, class: "control-label"
+	= text_input f, :$1, class: "form-control"
+	= error_tag f, :$1
+endsnippet
+
+snippet show "show.html.pug"
+.page-heading
+  h1= @${1:user}.email
+
+ul
+  li
+    strong Email:
+    = @$1.email
+
+= link "Edit", to: $1_path(@conn, :edit, @$1)
+= link "Back", to: $1_path(@conn, :index)
+endsnippet
