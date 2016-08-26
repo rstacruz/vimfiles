@@ -12,7 +12,6 @@ function! s:set_js_shortcuts()
 
   imap <buffer> clog( console.log(
   imap <buffer> cerr( console.error(
-  imap <buffer> cer( console.error(
   imap <buffer> gebid( document.getElementById(
   imap <buffer> rcc( React.createClass(
   imap <buffer> rcc<CR> React.createClass({<CR>
