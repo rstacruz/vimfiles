@@ -35,6 +35,17 @@ if $VIM_MINIMAL == ''
   Plug 'Shougo/neomru.vim'
   Plug 'rstacruz/vim-fastunite'
 
+  " Deoplete
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  " Plug 'mhartington/deoplete-typescript'
+  Plug 'thinca/vim-ref'
+  Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
+  Plug 'fishbullet/deoplete-ruby'
+  Plug 'Shougo/neco-vim'
+  Plug 'carlitux/deoplete-ternjs'
+  " Plug 'steelsojka/deoplete-flow'
+
+  Plug 'ternjs/tern_for_vim'
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'christoomey/vim-quicklink' " C-k in visual mode
   Plug 'ConradIrwin/vim-bracketed-paste'

@@ -254,6 +254,14 @@ Paste:~
     :Mix help
 
 ------------------------------------------------------------------------------
+*tern_for_vim*
+
+Tern for JavaScript.
+
+    :TernDef       jump to definition (in the same file)
+    :TernRename    rename variable in cursor
+
+------------------------------------------------------------------------------
 ALSO SEE                                                           *x-alsosee*
 
   https://github.com/terryma/dotfiles/blob/master/.vimrc
