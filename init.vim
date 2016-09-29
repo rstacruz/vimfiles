@@ -74,6 +74,7 @@ if $VIM_MINIMAL == ''
   Plug 'rstacruz/vim-hyperstyle'
   Plug 'rstacruz/vim-opinion'
   Plug 'rstacruz/vim-remux'
+  Plug 'rstacruz/vim-xtract'
   " Plug 'rstacruz/vim-node-import' - interferes with UltiSnips
   Plug 'samsonw/vim-task'
   Plug 'sjl/vitality.vim'
