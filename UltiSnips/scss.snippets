@@ -3,84 +3,84 @@ snippet out "outline"
 
 endsnippet
 
-snippet 1200- "> 1200px"
+snippet 12+ "> 1200px"
 @media (min-width: 1201px) {
 	
 endsnippet
 
-snippet -1200 "<= 1200px"
+snippet 12- "< 1200px"
 @media (max-width: 1200px) {
 	
 endsnippet
 
-snippet 992- "> 992px"
+snippet 9+ "> 992px"
 @media (min-width: 993px) {
 	
 endsnippet
 
-snippet -992 "<= 992px"
+snippet 9- "< 992px"
 @media (max-width: 992px) {
 	
 endsnippet
 
-snippet 768- "> 768px"
+snippet 7+ "> 768px"
 @media (min-width: 769px) {
 	
 endsnippet
 
-snippet -768 "<= 768px"
+snippet 7- "< 768px"
 @media (max-width: 768px) {
 	
 endsnippet
 
-snippet 480- "> 480px"
+snippet 4+ "> 480px"
 @media (min-width: 481px) {
 	
 endsnippet
 
-snippet -480 "<= 480px"
+snippet 4- "< 480px"
 @media (max-width: 480px) {
 	
 endsnippet
 
 # bootstrap
 
-snippet -b1200 "> 1200px"
+snippet b1200- "< 1200px"
+@media (max-width: $screen-lg-max) { // < 1200px
+	
+endsnippet
+
+snippet b12+ "> 1200px"
 @media (min-width: $screen-lg-min) { // > 1200px
 	
 endsnippet
 
-snippet b1200- "<= 1200px"
-@media (max-width: $screen-lg-max) { // <= 1200px
+snippet b9- "< 992px"
+@media (max-width: $screen-md-max) { // < 992px
 	
 endsnippet
 
-snippet -b992 "> 992px"
+snippet b9+ "> 992px"
 @media (min-width: $screen-md-min) { // > 992px
 	
 endsnippet
 
-snippet b992- "<= 992px"
-@media (max-width: $screen-md-max) { // <= 992px
+snippet b7- "> 768px"
+@media (max-width: $screen-sm-max) { // < 768px
 	
 endsnippet
 
-snippet -b768 "> 768px"
+snippet b7+ "< 768px"
 @media (min-width: $screen-sm-min) { // > 768px
 	
 endsnippet
 
-snippet b768- "<= 768px"
-@media (max-width: $screen-sm-max) { // <= 768px
+snippet b4- "> 480px"
+@media (max-width: $screen-xs-max) { // < 480px
 	
 endsnippet
 
-snippet -b480 "> 480px"
+snippet b4+ "<= 480px"
 @media (min-width: $screen-xs-min) { // > 480px
-	
-endsnippet
-
-snippet b480- "<= 480px"
-@media (max-width: $screen-xs-max) { // <= 480px
 	
 endsnippet
