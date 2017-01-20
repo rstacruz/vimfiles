@@ -3,5 +3,5 @@
 /plugged
 /vendor
 /session
-/spell/*
+/spell/*.spl
 /autoload/*.old
