@@ -42,10 +42,37 @@ map <leader>n <C-W>n
 map <leader>q <C-W>q
 map <leader>s <C-W>s
 map <leader>v <C-W>v
-map <leader>t <C-W>t
+" map <leader>t <C-W>t
 map <leader>b <C-W>b
 map <leader>o <C-W>o
 map <leader>- <C-W>_
+
+" Alt keys
+if has("nvim")
+  tnoremap <A-h> <C-\><C-n><C-w>h
+  tnoremap <A-j> <C-\><C-n><C-w>j
+  tnoremap <A-k> <C-\><C-n><C-w>k
+  tnoremap <A-l> <C-\><C-n><C-w>l
+endif
+
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+
+nnoremap <A-H> <C-w>H
+nnoremap <A-J> <C-w>J
+nnoremap <A-K> <C-w>K
+nnoremap <A-L> <C-w>L
+
+nnoremap <A-t> <C-w>t
+nnoremap <A-b> <C-w>b
+
+nnoremap <A-1> gT
+nnoremap <A-2> gt
+
+nnoremap <A-[> gT
+nnoremap <A-]> gt
 
 "
 " Code folding options

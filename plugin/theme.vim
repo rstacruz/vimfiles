@@ -2,7 +2,8 @@
 " Common
 "
 
-let g:airline_theme='solarized'
+" let g:airline_theme='zenburn'
+let g:airline_theme='raven'
 
 "
 " Console
@@ -10,7 +11,7 @@ let g:airline_theme='solarized'
 
 if !has("gui_running")
   set t_Co=256
-  set background=light
+  set background=dark
   color lol
   hi VertSplit cterm=none ctermbg=none
   hi NonText ctermfg=11

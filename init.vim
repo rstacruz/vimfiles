@@ -23,7 +23,7 @@ if $VIM_MINIMAL == ''
   Plug 'vim-airline/vim-airline-themes'
 
   if version >= 704
-    Plug 'SirVer/ultisnips'
+    " Plug 'SirVer/ultisnips'
   endif
 
   " Unite
@@ -32,25 +32,28 @@ if $VIM_MINIMAL == ''
   Plug 'tsukkee/unite-tag'
   Plug 'tacroe/unite-mark'
   Plug 'Shougo/unite-outline'
-  Plug 'Shougo/neomru.vim'
+  " Plug 'Shougo/neomru.vim'
   Plug 'rstacruz/vim-fastunite'
 
   " Deoplete
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   " Plug 'mhartington/deoplete-typescript'
   Plug 'thinca/vim-ref'
-  Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
+  if has("nvim")
+    Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
+  endif
   Plug 'fishbullet/deoplete-ruby'
   Plug 'Shougo/neco-vim'
-  Plug 'carlitux/deoplete-ternjs'
-  " Plug 'steelsojka/deoplete-flow'
+  " Plug 'carlitux/deoplete-ternjs'
 
-  Plug 'ternjs/tern_for_vim'
+  " Plug 'ternjs/tern_for_vim'
   Plug 'AndrewRadev/splitjoin.vim'
+  Plug 'benmills/vimux'
   Plug 'christoomey/vim-quicklink' " C-k in visual mode
   Plug 'ConradIrwin/vim-bracketed-paste'
   Plug 'craigemery/vim-autotag'
   Plug 'godlygeek/tabular'
+  Plug 'janko-m/vim-test'
   Plug 'jceb/vim-orgmode'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/goyo.vim'
@@ -73,7 +76,7 @@ if $VIM_MINIMAL == ''
   Plug 'rstacruz/vim-closer'
   Plug 'rstacruz/vim-hyperstyle'
   Plug 'rstacruz/vim-opinion'
-  Plug 'rstacruz/vim-remux'
+  " Plug 'rstacruz/vim-remux'
   Plug 'rstacruz/vim-xtract'
   " Plug 'rstacruz/vim-node-import' - interferes with UltiSnips
   Plug 'samsonw/vim-task'
@@ -83,7 +86,7 @@ if $VIM_MINIMAL == ''
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-cucumber'
-  Plug 'tpope/vim-dispatch'
+  " Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-projectionist'
