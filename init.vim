@@ -23,7 +23,7 @@ if $VIM_MINIMAL == ''
   Plug 'vim-airline/vim-airline-themes'
 
   if version >= 704
-    " Plug 'SirVer/ultisnips'
+    Plug 'SirVer/ultisnips'
   endif
 
   " Unite
