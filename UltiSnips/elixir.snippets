@@ -49,11 +49,11 @@ IO.puts
 endsnippet
 
 snippet ins "IO.puts(inspect(...))"
-IO.puts("-> $1: #{inspect(${1})}")
+IO.puts("-> $1: #{inspect(${1}, pretty: true)}")
 endsnippet
 
 snippet lins "Logger.debug(inspect(...))"
-Logger.debug("-> $1: #{inspect(${1})}")
+Logger.debug("-> $1: #{inspect(${1}, pretty: true)}")
 endsnippet
 
 snippet ld "Logger.debug(...)"

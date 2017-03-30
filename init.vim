@@ -36,20 +36,20 @@ if $VIM_MINIMAL == ''
   Plug 'rstacruz/vim-fastunite'
 
   " Deoplete
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   " Plug 'mhartington/deoplete-typescript'
-  Plug 'thinca/vim-ref'
+  " Plug 'thinca/vim-ref'
   if has("nvim")
     Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
   endif
-  Plug 'fishbullet/deoplete-ruby'
-  Plug 'Shougo/neco-vim'
+  " Plug 'fishbullet/deoplete-ruby'
+  " Plug 'Shougo/neco-vim'
   " Plug 'carlitux/deoplete-ternjs'
 
   " Plug 'ternjs/tern_for_vim'
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'benmills/vimux'
-  Plug 'christoomey/vim-quicklink' " C-k in visual mode
+  " Plug 'christoomey/vim-quicklink' " C-k in visual mode
   Plug 'ConradIrwin/vim-bracketed-paste'
   Plug 'craigemery/vim-autotag'
   Plug 'godlygeek/tabular'
@@ -57,14 +57,14 @@ if $VIM_MINIMAL == ''
   Plug 'jceb/vim-orgmode'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/goyo.vim'
-  Plug 'junegunn/limelight.vim'
-  Plug 'junegunn/vader.vim'
+  " Plug 'junegunn/limelight.vim' " :Limelight - focus on current paragraph
+  Plug 'junegunn/vader.vim' " Testing
   Plug 'junegunn/vim-easy-align'
   Plug 'junegunn/vim-xmark', { 'do': 'make' }
   Plug 'justincampbell/vim-eighties'
   Plug 'majkinetor/unite-cmdmatch'
   Plug 'mattn/emmet-vim'
-  Plug 'mattn/webapi-vim' " for vim-quicklink
+  " Plug 'mattn/webapi-vim' " for vim-quicklink
   Plug 'mhinz/vim-grepper'
   Plug 'mhinz/vim-signify'
   Plug 'mhinz/vim-startify'
@@ -105,7 +105,8 @@ if $VIM_MINIMAL == ''
     Plug 'scrooloose/syntastic'
   else
     Plug 'kassio/neoterm'
-    Plug 'benekastah/neomake'
+    " Plug 'benekastah/neomake'
+    Plug 'w0rp/ale'
   endif
 
   " Language specific
