@@ -69,6 +69,7 @@ hi! link Identifier _hilite1b  " @instancevars, vim vars
 hi! link Type       _hilite2   " ClassName
 hi! link Cursor     _mute
 hi! link Error      _red
+hi! link SpellBad   _red
 
 "
 " Common groups that link to default highlighting.
@@ -185,3 +186,7 @@ hi! link vimSet Constant
 
 hi! link elixirDocString Comment
 hi! link elixirVariable Special " @moduledoc
+
+hi! link SignifySignChange _mute
+hi! link SignifySignAdd _accent1
+hi! link SignifySignDelete _red
