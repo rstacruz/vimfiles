@@ -3,5 +3,7 @@
 /plugged
 /vendor
 /session
+/plugin/local
+/plugin/z-local
 /spell/*.spl
 /autoload/*.old

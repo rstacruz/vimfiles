@@ -1,3 +1,9 @@
+"" [N] <leader>tn -- Terminal: open in new split
+"" [N] <leader>ts -- Terminal: open in new split
+"" [N] <leader>tv -- Terminal: open in new vertical split
+"" [N] <leader>tt -- Terminal: open in new tab
+"" [N] <leader>t. -- Terminal: open here
+
 if has("nvim")
   nnoremap <Leader>tn <C-w>n:te<CR>
   nnoremap <Leader>ts <C-w>n:te<CR>

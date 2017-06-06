@@ -19,7 +19,10 @@ let g:colors_name = "lol"
 " Standard colors (normal, line numbers):
 hi! _normal    ctermfg=none  ctermbg=none
 hi! _normalb   ctermfg=240
-hi! _mute      ctermfg=11 ctermbg=none
+hi! _mute      ctermfg=236 ctermbg=none
+
+" End of buffer
+hi! _invis     ctermfg=0   ctermbg=none
 
 " Mute color (comments):
 hi! _comm1   ctermfg=24
@@ -51,6 +54,7 @@ hi! _highlight cterm=underline ctermbg=black gui=underline
 
 hi! link Normal     _normal
 hi! link NonText    _mute
+hi! link EndOfBuffer _invis
 hi! link Noise      _normalb
 hi! link LineNr     _mute
 hi! link Ignore     _mute      " ?
@@ -70,6 +74,11 @@ hi! link Type       _hilite2   " ClassName
 hi! link Cursor     _mute
 hi! link Error      _red
 hi! link SpellBad   _red
+
+hi! link TabLineFill _mute
+hi! link TabLine _mute
+hi! link TabLineSel _accent2
+hi! link Title _mute
 
 "
 " Common groups that link to default highlighting.

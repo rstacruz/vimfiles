@@ -2,5 +2,7 @@ if globpath(&rtp, "plugin/fugitive.vim") == ""
   finish
 endif
 
+"" [N] <leader>gs -- Fugitive: git status
+"" [N] <leader>gb -- Fugitive: git blame
 nmap <leader>gs :Gstatus<cr>
-nmap <leader>gp :Dispatch git push<cr>
+nmap <leader>gb :Gblame<cr>

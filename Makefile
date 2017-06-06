@@ -4,6 +4,9 @@ pwd := $(shell pwd -LP)
 
 default: install
 
+help:
+	@grep -h -E '^\"\"' plugin/*/*.vim plugin/*.vim | sort | sed 's/--/\t/g'
+
 # Install into home directory
 link: link-vim link-neovim
 	@if [ ! -d ~/.vim/vendor ]; then \

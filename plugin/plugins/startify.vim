@@ -15,17 +15,26 @@ let g:startify_session_autoload       = 1
 let g:startify_session_persistence    = 0
 let g:startify_session_delete_buffers = 1
 
-let g:startify_bookmarks = [
-  \ {'v': '~/.vim'}
+if !exists('g:startify_bookmarks')
+  let g:startify_bookmarks = []
+endif
+
+let g:startify_commands = [
   \ ]
 
 let g:startify_list_order = [
-  \ ['   LRU within this dir:'],
-  \ 'dir',
-  \ ['   Sessions:'],
+  \ 'commands',
+  \ [' → Sessions'],
   \ 'sessions',
-  \ ['   Bookmarks:'],
-  \ 'bookmarks',
-  \ ['   LRU:'],
-  \ 'files',
+  \ [' → LRU'],
+  \ 'dir',
   \ ]
+
+" \ ['   Sessions:'],
+" \ 'sessions',
+" \ ['   LRU:'],
+" \ 'files',
+" \ [' → Bookmarks'],
+" \ 'bookmarks',
+"
+"
