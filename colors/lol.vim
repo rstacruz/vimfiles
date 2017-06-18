@@ -5,44 +5,37 @@ let g:colors_name = "lol"
 
 " Color Kit!
 " Form this triad first:
-"   _base1 _accent1  ("require 'active_support'" - strings)
-"   _base1 _accent2  ("attr_reader :colors" - symbols/constants/numbers)
+"   _base_400 _accent_400  ("require 'active_support'" - strings)
+"   _base_400 _accent_200  ("attr_reader :colors" - symbols/constants/numbers)
 "
 " Add a white:
-"   _base1 _hilite1  ("def initialize" - function names)
-"   _base1 _hilite2 ("class MyClass" - class names)
-"   _base1 _normal  ("var list")
+"   _base_400 _normal_900  ("def initialize" - function names)
+"   _base_400 _accent_900 ("class MyClass" - class names)
+"   _base_400 _normal  ("var list")
 "
 " Do statements:
 "   _normal _normalb ("if (a == b)")
 
-" Standard colors (normal, line numbers):
-hi! _normal    ctermfg=none  ctermbg=none
-hi! _normalb   ctermfg=240
-hi! _mute      ctermfg=236 ctermbg=none
-
 " End of buffer
 hi! _invis     ctermfg=0   ctermbg=none
 
-" Mute color (comments):
-hi! _comm1   ctermfg=24
+hi! _normal_200 ctermfg=238  ctermbg=none  " Noise (parentheses, line nums)
+hi! _normal_300 ctermfg=242  ctermbg=none  " Semi-noise
+hi! _normal_400 ctermfg=none ctermbg=none  " Standard colors
+hi! _normal_900 ctermfg=255  ctermbg=none  " Bold
+hi! link _normal _normal_400
 
-" Base color:
-hi! _base1   ctermfg=13
-hi! _base1b  ctermfg=13
+" [base] comments:
+hi! _comment_400   ctermfg=24
 
-" Accent colors:
-hi! _accent1   ctermfg=35
-hi! _accent1b  ctermfg=37
+" Base color (return, const, function):
+hi! _base_400   ctermfg=62   " return, const, function
+hi! _base_900   ctermfg=68   " if, while, for, func calls (map, filter)
 
-hi! _accent2   ctermfg=31
-hi! _accent2b  ctermfg=30
-
-" White-ish:
-hi! _hilite1   ctermfg=255
-hi! _hilite1b  ctermfg=250
-
-hi! _hilite2   ctermfg=LightGreen
+" Accent/value colors (strings):
+hi! _accent_400   ctermfg=35          " strings
+hi! _accent_200   ctermfg=31          " true, false, nil
+hi! _accent_900   ctermfg=LightGreen  " class names
 
 " Special colors
 hi! _red       ctermfg=Red
@@ -53,32 +46,32 @@ hi! _highlight cterm=underline ctermbg=black gui=underline
 "
 
 hi! link Normal     _normal
-hi! link NonText    _mute
+hi! link NonText    _normal_200
 hi! link EndOfBuffer _invis
-hi! link Noise      _normalb
-hi! link LineNr     _mute
-hi! link Ignore     _mute      " ?
+hi! link Noise      _normal_200
+hi! link LineNr     _normal_200
+hi! link Ignore     _normal_200      " ?
 hi! link Search     _highlight " search highlight
-hi! link Todo       _comm1     " TODO tags
-hi! link Comment    _comm1     " comments
-hi! link Number     _accent2   " true, false, 99, 1
-hi! link Constant   _accent2b  " symbol, nil
-hi! link String     _accent1   " 'strings'
-hi! link Special    _accent1b  " #{ }
-hi! link PreProc    _base1     " require, include
-hi! link Statement  _base1b    " class, return, ...
-hi! link Function   _hilite1   " builtin functions, function names
-hi! link Repeat     _hilite1   " ?
-hi! link Identifier _hilite1b  " @instancevars, vim vars
-hi! link Type       _hilite2   " ClassName
-hi! link Cursor     _mute
+hi! link Todo       _comment_400     " TODO tags
+hi! link Comment    _comment_400     " comments
+hi! link Number     _accent_200   " true, false, 99, 1
+hi! link Constant   _accent_200   " symbol, nil
+hi! link String     _accent_400   " 'strings'
+hi! link Special    _normal_200      " #{ }
+hi! link PreProc    _base_400     " require, include
+hi! link Statement  _base_400     " class, return, ...
+hi! link Function   _normal_900   " builtin functions, function names
+hi! link Repeat     _base_900     " if, else, while, for, ...
+hi! link Identifier _normal_900   " @instancevars, vim vars
+hi! link Type       _accent_900   " ClassName
+hi! link Cursor     _normal_200
 hi! link Error      _red
 hi! link SpellBad   _red
 
-hi! link TabLineFill _mute
-hi! link TabLine _mute
-hi! link TabLineSel _accent2
-hi! link Title _mute
+hi! link TabLineFill _normal_200
+hi! link TabLine _normal_200
+hi! link TabLineSel _accent_200
+hi! link Title _normal_200
 
 "
 " Common groups that link to default highlighting.
@@ -114,8 +107,10 @@ hi! link FoldColumn     Noise
 
 hi! link jsFunction       PreProc
 hi! link jsOperator       Operator
+hi! link jsObjectKey      Function
 hi! link jsBrackets       Operator
 hi! link jsFuncBraces     Operator
+hi! link jsArrowFunction  Operator
 hi! link jsNoise          Noise
 hi! link jsBraces         Operator
 hi! link jsParens         Operator
@@ -126,6 +121,15 @@ hi! link jsNull           Constant
 hi! link jsUndefined      Constant
 hi! link jsStorageClass   PreProc " var
 hi! link jsFutureKeys Normal " short, long, boolean
+hi! link jsObjectProp     _normal_300
+hi! link jsFuncCall       _base_900
+hi! link jsExportDefault  Statement
+hi! link jsxRegion        String
+hi! link xmlAttrib        Normal
+hi! link xmlEqual         Noise
+hi! link xmlTag           Noise
+hi! link xmlEndTag        Noise
+hi! link xmlTagName       Function
 
 hi! link coffeeCurly      Operator
 hi! link coffeeExtendedOp Operator
@@ -134,8 +138,10 @@ hi! link coffeeParen      Operator
 hi! link coffeeBracket    Operator
 hi! link coffeeBrackets   Operator
 
+hi! link rubySymbol       _accent_200
 hi! link rubyBlock        Operator " class body
 hi! link rubyCurlyBlockDelimiter Operator
+hi! link rubyKeywordAsMethod _normal_300
 
 hi! link pythonBEscape   Operator
 
@@ -150,6 +156,9 @@ hi! link jsonKeywordMatch Operator " colon
 hi! link jsonKeyword Statement
 hi! link jsonString String
 
+hi! link markdownH1 Repeat
+hi! link markdownH2 Repeat
+hi! link markdownHeadingRule Operator
 hi! link markdownHeadingDelimiter Operator
 hi! link markdownCodeDelimiter Operator
 hi! link markdownCode String
@@ -196,6 +205,6 @@ hi! link vimSet Constant
 hi! link elixirDocString Comment
 hi! link elixirVariable Special " @moduledoc
 
-hi! link SignifySignChange _mute
-hi! link SignifySignAdd _accent1
+hi! link SignifySignChange _normal_200
+hi! link SignifySignAdd _accent_400
 hi! link SignifySignDelete _red

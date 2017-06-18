@@ -2,9 +2,8 @@ if globpath(&rtp, "plugin/startify.vim") == ""
   finish
 endif
 
-if executable('cowsay')
-  let g:startify_custom_header =
-    \ map(split(system('echo "Yo" | cowsay'), '\n'), '"   ". v:val') + ['','']
+if globpath(&rtp, "bin/motd") != ""
+  let g:startify_custom_header = split(system("bash " . globpath(&rtp, "bin/motd")), '\n')
 endif
 
 

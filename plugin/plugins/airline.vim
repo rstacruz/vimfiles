@@ -22,8 +22,10 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.linenr = '␊'
 
 let g:airline_section_x = '' " no filetype
-let g:airline_section_z = '%3p%%' " no line number, just percent
-let g:airline_section_y = g:airline_symbols.linenr . '%4l ⋅%3c' " no utf-8[unix]
+" let g:airline_section_z = '%3p%%' " no line number, just percent
+" let g:airline_section_y = g:airline_symbols.linenr . '%4l ⋅%3c' " no utf-8[unix]
+let g:airline_section_z = '' " nothing
+let g:airline_section_y = '' " nothing
 let g:airline#extensions#hunks#enabled = 0
 
 " Extensions

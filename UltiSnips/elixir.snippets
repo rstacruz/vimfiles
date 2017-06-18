@@ -48,8 +48,12 @@ snippet puts "IO.puts"
 IO.puts 
 endsnippet
 
-snippet ins "IO.puts(inspect(...))"
-IO.puts("-> $1: #{inspect(${1}, pretty: true)}")
+snippet ins "|> IO.inspect()"
+|> IO.inspect(pretty: true, width: 40)
+endsnippet
+
+snippet insl "|> IO.inspect(label: ...)"
+|> IO.inspect(pretty: true, width: 40, label: $1)
 endsnippet
 
 snippet lins "Logger.debug(inspect(...))"
