@@ -63,11 +63,11 @@ if $VIM_MINIMAL == ''
   Plug 'junegunn/goyo.vim'
   " Plug 'junegunn/limelight.vim' " :Limelight - focus on current paragraph
   " Plug 'junegunn/vader.vim' " Testing
-  Plug 'junegunn/vim-easy-align'
+  " Plug 'junegunn/vim-easy-align' - tabular na lang
   " Plug 'junegunn/vim-xmark', { 'do': 'make' }
   Plug 'justincampbell/vim-eighties'
   " Plug 'majkinetor/unite-cmdmatch'
-  Plug 'mattn/emmet-vim'
+  Plug 'mattn/emmet-vim', { 'for': ['html'] }
   " Plug 'mattn/webapi-vim' " for vim-quicklink
   Plug 'mhinz/vim-grepper'
   Plug 'mhinz/vim-signify'
@@ -80,11 +80,11 @@ if $VIM_MINIMAL == ''
   Plug 'rstacruz/vim-closer'
   Plug 'rstacruz/vim-hyperstyle'
   Plug 'rstacruz/vim-opinion'
-  Plug 'rstacruz/vim-remux'
+  " Plug 'rstacruz/vim-remux' - not working so well anymore
   Plug 'rstacruz/vim-xtract'
   " Plug 'rstacruz/vim-node-import' - interferes with UltiSnips
   " Plug 'samsonw/vim-task'
-  Plug 'sjl/vitality.vim'
+  " Plug 'sjl/vitality.vim' - not needed on neovim
   " Plug 'terryma/vim-multiple-cursors' - never used it
   Plug 'thinca/vim-visualstar'
   Plug 'tpope/vim-abolish'
@@ -93,7 +93,7 @@ if $VIM_MINIMAL == ''
   " Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-projectionist'
+  " Plug 'tpope/vim-projectionist' - interaction with fzf?
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-sensible'
   Plug 'tpope/vim-sleuth'
