@@ -96,3 +96,8 @@ set fillchars=fold:·     " improve appearance of folds
 set list
 set listchars=tab:·\ ,trail:—,nbsp:␣,extends:>,precedes:<
 set showbreak=↪
+
+if has('nvim')
+  " Show search/replace results incrementally
+  set inccommand=nosplit
+endif

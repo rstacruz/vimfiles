@@ -1,6 +1,6 @@
 if globpath(&rtp, "plugin/fzf.vim") == "" | finish | endif
 
-nnoremap  <C-p> :GFiles<cr>
+nnoremap  <C-p> :FZF<cr>
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -14,3 +14,5 @@ imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
+
+inoremap <expr> <c-x><c-n> fzf#vim#complete#path("git ls-files \| xargs realpath")
