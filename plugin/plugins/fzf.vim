@@ -16,3 +16,12 @@ imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 inoremap <expr> <c-x><c-n> fzf#vim#complete#path("git ls-files \| xargs realpath")
+
+"" [N] <leader>bb -- FZF: buffers
+"" [N] <leader>bn -- FZF: buffer, next
+"" [N] <leader>bp -- FZF: buffer, prev
+"" [N] <leader>bh -- FZF: history
+nmap <leader>bb :Buffers<CR>
+nmap <leader>bh :History<CR>
+nmap <leader>bn :bnext<CR>
+nmap <leader>bp :bprev<CR>
