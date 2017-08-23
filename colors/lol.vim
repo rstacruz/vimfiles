@@ -208,3 +208,6 @@ hi! link elixirVariable Special " @moduledoc
 hi! link SignifySignChange _normal_200
 hi! link SignifySignAdd _accent_400
 hi! link SignifySignDelete _red
+
+hi! link markdownLinkTextDelimiter Noise
+hi! link markdownLinkDelimiter Noise

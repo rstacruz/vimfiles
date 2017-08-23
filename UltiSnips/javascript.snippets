@@ -13,6 +13,7 @@ snippet :: "flow /*:: ... */"
 endsnippet
 
 snippet meow "meow.js (es6+)" b
+#!/usr/bin/env node
 const cli = require('meow')(\`
 	Usage:
 		$ ${1:yourapp}
@@ -21,27 +22,13 @@ const cli = require('meow')(\`
     -h, --help       show usage information
     -v, --version    print version info and exit
 \`, {
-	boolean: ['help', 'version'],
+	boolean: [
+		'help',
+		'version'
+	],
 	alias: {
-		h: 'help', v: 'version'
-	}
-})
-
-console.log(cli.flags, cli.input)
-endsnippet
-
-snippet meow "meow.js (es5)" b
-var cli = require('meow')([
-	'Usage:',
-	'  $ ${1:yourapp}',
-  '',
-  'Options:',
-  '  -h, --help       show usage information',
-  '  -v, --version    print version info and exit'
-].join('\n'), {
-	boolean: ['help', 'version'],
-	alias: {
-		h: 'help', v: 'version'
+		h: 'help',
+		v: 'version'
 	}
 })
 
