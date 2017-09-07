@@ -12,3 +12,6 @@ set spellfile=~/.vim/spell/en.utf-8.add
 if $VIM_MINIMAL != ''
   set laststatus=0
 endif
+
+" TODO: evaluate if this is ok
+set nonumber

@@ -2,8 +2,20 @@
 " Common
 "
 
-" let g:airline_theme='zenburn'
-let g:airline_theme='raven'
+command! Dark :call <SID>darktheme()
+command! Light :call <SID>lighttheme()
+
+function! s:darktheme()
+  let g:airline_theme='raven'
+  set background=dark
+  color lol
+endfunction
+
+function! s:lighttheme()
+  let g:airline_theme='base16'
+  set background=light
+  color Tomorrow
+endfunction
 
 "
 " Console
@@ -11,11 +23,15 @@ let g:airline_theme='raven'
 
 if !has("gui_running")
   set t_Co=256
-  set background=dark
-  color lol
   hi VertSplit cterm=none ctermbg=none
   hi NonText ctermfg=11
   hi Conceal ctermbg=none ctermfg=1
+endif
+
+if $LIGHT_MODE == '1'
+  Light
+else
+  Dark
 endif
 
 "
