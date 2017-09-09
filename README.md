@@ -6,7 +6,14 @@ vim setup managed by [vim-plug].
 
 ## Install
 
+```sh
+# Clone the repo anywhere. I like putting it in my ~/Config,
+# but it can be anywhere you like.
+git clone https://github.com/rstacruz/vimfiles.git
+cd vimfiles
 ```
+
+```sh
 make link     # symlink to ~/.vim
 make restore  # install vim plugins
 ```
@@ -15,7 +22,7 @@ make restore  # install vim plugins
 
 ## Adding packages
 
-```
+```sh
 vim ~/.vimrc     # add 'Plug 'x/y''
 make install     # update ./bin/install
 ```
@@ -30,13 +37,23 @@ make update
 
 <br>
 
+## Reference
+
+```sh
+make          # same as 'make install'
+make install  # installs vim plugins and creates lockfile
+make help     # show key bindings
+make link     # link the config to ~/.vim and ~/.config/nvim
+make upgrade  # updates plugins (dangerous)
+make restore  # restore from lockfile
+```
+<br>
+
 ## Minimal mode
 
-To make vim startup time faster in git:
+When Vim is started as the Git editor, it defaults to minimal mode where it doesn't load many of the plugins.
 
-```
-git config --global core.editor "env VIM_MINIMAL=1 vim +startinsert"
-```
+To force this behavior elsewhere, you can use `env GIT_DIR='.' vim`.
 
 <br>
 
@@ -45,8 +62,10 @@ git config --global core.editor "env VIM_MINIMAL=1 vim +startinsert"
 In OSX, use MacVim to use a better build of vim with support for Ruby, Python, Lua, and other niceties.
 
 ```sh
-$ brew install macvim --override-system-vim --with-python3 --with-lua --with-luajit
+brew install macvim ---with-override-system-vim --with-python3 --with-lua --with-luajit
 ```
+
+Or use Neovim!
 
 <br>
 

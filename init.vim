@@ -31,12 +31,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " }}}
 
-" Plugins: Ultisnips {{{
-if version >= 704
-  Plug 'SirVer/ultisnips'
-endif
-" }}}
-
 " Plugins: Neovim-only {{{
 if has('nvim')
   Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
@@ -110,6 +104,12 @@ Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 Plug 'romanzolotarev/vim-journal', { 'for': 'journal' }
+" }}}
+
+" Plugins: Ultisnips {{{
+if version >= 704
+  Plug 'SirVer/ultisnips'
+endif
 " }}}
 
 call plug#end()
