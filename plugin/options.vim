@@ -9,8 +9,9 @@ set wig+=node_modules
 set spellfile=~/.vim/spell/en.utf-8.add
 
 " No status bar
-if $VIM_MINIMAL != ''
+if $VIM_MINIMAL != '' || $GIT_DIR != ''
   set laststatus=0
+  startinsert
 endif
 
 " TODO: evaluate if this is ok
