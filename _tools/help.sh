@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
+gitpath=$(git config --get remote.origin.url | sed 's/\.git$//')
+
 echo "*vimfiles*  Vimfiles documentation"
+echo ""
+echo "See: $gitpath"
 echo ""
 echo "=============================================================================="
 echo "KEY BINDINGS                                                     *vimfiles-keys*"
