@@ -30,8 +30,9 @@ make restore
 
 There's magical documentation at:
 
-```
-make help
+```sh
+:Usage
+# or 'make help' in the CLI
 ```
 
 ## Adding packages

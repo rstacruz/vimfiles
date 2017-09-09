@@ -5,7 +5,7 @@ pwd := $(shell pwd -LP)
 default: install
 
 help:
-	@grep -h -E '^\"\"' plugin/*/*.vim plugin/*.vim | sort | sed 's/--/\t/g'
+	@bash _tools/help.sh
 
 # Install into home directory
 link: link-vim link-neovim
