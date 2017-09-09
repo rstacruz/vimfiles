@@ -5,10 +5,10 @@ echo "==========================================================================
 echo "KEY BINDINGS                                                     *vimfiles-keys*"
 echo ""
 grep -h -E '^\"\"' plugin/*/*.vim plugin/*.vim \
-  | sort \
-  | sed 's/--/\t/g' \
   | sed 's/\[N\]/   /g' \
-  | sed 's/^""/    /g' \
-  | awk -F '\t' '{printf "%-30s %s\n", $1, $2}'
+  | sort \
+  | sed 's/: / -- /g' \
+  | sed 's/^"" //g' \
+  | awk -F ' -- ' '{printf "`%-24s` |%s|  %s\n", $1, $2, $3}'
 echo ""
 echo "vim:tw=78:ts=8:ft=help:norl:"
