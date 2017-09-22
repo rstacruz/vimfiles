@@ -12,7 +12,8 @@ function! s:darktheme()
 endfunction
 
 function! s:lighttheme()
-  let g:airline_theme='base16'
+  let g:airline_theme='lucius'
+  let g:airline_theme='tomorrow'
   set background=light
   color lolmono
 endfunction

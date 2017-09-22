@@ -24,7 +24,6 @@ hi! _base_a ctermfg=none ctermbg=none " Base
 hi! _base_b ctermfg=240  ctermbg=none " keywords
 hi! _base_m ctermfg=245  ctermbg=none " Comments/strings
 hi! _base_n ctermfg=254  ctermbg=none " Noise
-hi! link VertSplit _invis
 
 " Second level colors
 hi! link _normal_200 _base_n  " Noise (parentheses, line nums)
@@ -46,9 +45,13 @@ hi! link _accent_200   _base_m         " true, false, nil
 hi! link _accent_900   _base_b        " class names
 
 " Special colors
-hi! _red       ctermfg=Red
+hi! _red       ctermfg=Red cterm=underline
 hi! _highlight cterm=underline
 
+" Heh
+hi! link VertSplit _invis
+hi! StatusLine ctermbg=253 ctermfg=15
+hi! StatusLineNC ctermbg=255 ctermfg=15
 "
 " General colors
 "
@@ -60,6 +63,7 @@ hi! link Noise      _normal_200
 hi! link LineNr     _normal_200
 hi! link Ignore     _normal_200      " ?
 hi! link Search     _highlight " search highlight
+hi! link IncSearch  _highlight " search highlight
 hi! link Todo       _comment_400     " TODO tags
 hi! link Comment    _comment_400     " comments
 hi! link Number     _accent_200   " true, false, 99, 1

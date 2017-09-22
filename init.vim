@@ -27,8 +27,8 @@ endif
 
 " Plugins: Slow plugins {{{
 " Plug 'scrooloose/nerdtree'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " }}}
 
 " Plugins: Neovim-only {{{
@@ -46,21 +46,6 @@ Plug 'tsukkee/unite-tag'
 Plug 'rstacruz/vim-fastunite'
 " }}}
 
-" Plugins: I can live without you {{{
-" Plug 'AndrewRadev/splitjoin.vim'
-" Plug 'ConradIrwin/vim-bracketed-paste'
-" Plug 'junegunn/goyo.vim'
-" Plug 'mattn/emmet-vim', { 'for': ['html'] }
-" Plug 'mhinz/vim-grepper'
-" Plug 'tpope/vim-abolish'
-" Plug 'tpope/vim-endwise'
-" Plug 'tpope/vim-fugitive'
-" Plug 'tpope/vim-repeat'
-" Plug 'whatyouhide/vim-lengthmatters' " highlight 80+ chars
-" Plug 'easymotion/vim-easymotion'
-" Plug 'vim-scripts/restore_view.vim'
-" }}}
-
 " Plugins: All others {{{
 Plug 'craigemery/vim-autotag'
 Plug 'godlygeek/tabular'
@@ -76,6 +61,7 @@ Plug 'rstacruz/vim-opinion'
 Plug 'rstacruz/vim-xtract'
 Plug 'thinca/vim-visualstar'
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
@@ -84,6 +70,21 @@ Plug 'tpope/vim-vinegar'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-projectionist'
 " }}}
+
+" Plugins: I can live without you {{{
+" Plug 'AndrewRadev/splitjoin.vim'
+" Plug 'ConradIrwin/vim-bracketed-paste'
+" Plug 'junegunn/goyo.vim'
+" Plug 'mattn/emmet-vim', { 'for': ['html'] }
+" Plug 'mhinz/vim-grepper'
+" Plug 'tpope/vim-abolish'
+" Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-repeat'
+" Plug 'whatyouhide/vim-lengthmatters' " highlight 80+ chars
+" Plug 'easymotion/vim-easymotion'
+" Plug 'vim-scripts/restore_view.vim'
+" }}}
+
 
 " Plugins: Language specific {{{
 " Plug 'dag/vim-fish'
@@ -96,7 +97,7 @@ Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss', 'less'] }
 " Plug 'mitsuhiko/vim-python-combined', { 'for': 'python' }
 " Plug 'moll/vim-node', { 'for': 'javascript' }
 " Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-" Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 " Plug 'alampros/vim-styled-jsx', { 'for': 'javascript' }
 " Plug 'rstacruz/ledgerdown', { 'rtp': 'vim', 'for': 'ledger' }
 " Plug 'slashmili/alchemist.vim', { 'for': ['elixir', 'ex'] }

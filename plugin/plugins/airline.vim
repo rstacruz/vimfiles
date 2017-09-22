@@ -2,9 +2,10 @@ if globpath(&rtp, "plugin/airline.vim") == ""
   finish
 endif
 
-if !exists('g:airline_symbols')
-let g:airline_symbols = {}
-endif
+let g:airline_powerline_fonts = 1
+" if !exists('g:airline_symbols')
+" let g:airline_symbols = {}
+" endif
 
 " Vim-powerline symbols
 " let g:airline_left_sep = ''
@@ -19,20 +20,19 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-let g:airline_symbols.linenr = '␊'
+" let g:airline_symbols.linenr = '␊'
 
 let g:airline_section_x = '' " no filetype
-" let g:airline_section_z = '%3p%%' " no line number, just percent
-" let g:airline_section_y = g:airline_symbols.linenr . '%4l ⋅%3c' " no utf-8[unix]
-let g:airline_section_z = '%l/%L ·%3v' " line nubers
 let g:airline_section_y = '' " nothing
-let g:airline#extensions#hunks#enabled = 0
+" let g:airline_section_z = '%3p%%' " no line number, just percent
+let g:airline_section_x = '%#__accent_bold#%l/%L%#__restore__# ·%3v'
+let g:airline_section_y = ''
+let g:airline_section_z = ''
 
 " Extensions
-let g:airline#extensions#tagbar#enabled = 1
-let g:airline#extensions#syntastic#enabled = 1
-
-" Disable branch
+let g:airline#extensions#hunks#enabled = 0
+let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#branch#enabled = 0
 
 " Tabline
