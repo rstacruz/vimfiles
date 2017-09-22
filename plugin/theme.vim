@@ -14,7 +14,7 @@ endfunction
 function! s:lighttheme()
   let g:airline_theme='base16'
   set background=light
-  color Tomorrow
+  color lolmono
 endfunction
 
 "

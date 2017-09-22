@@ -1,6 +1,7 @@
 if globpath(&rtp, "plugin/fzf.vim") == "" | finish | endif
 
-nnoremap  <C-p> :FZF<cr>
+"" [N] <C-p> -- FZF: open file
+nnoremap  <C-p> :GFiles<cr>
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)

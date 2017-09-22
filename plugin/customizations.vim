@@ -10,17 +10,6 @@ if !has("gui_running")
 end
 
 "
-" Remove the one-second escape key delay
-" http://stackoverflow.com/questions/12312178/tmux-and-vim-escape-key-being-seen-as-and-having-long-delay
-"
-
-set timeout timeoutlen=1000 ttimeoutlen=100
-
-"
-" List characters
-"
-
-"
 " Save typos
 " http://blog.sanctum.geek.nz/vim-command-typos/
 "
@@ -52,15 +41,6 @@ nnoremap k gk
 
 set fillchars="vert: "
 
-
-"
-" :Hardwrap    -  turns on hardwrapping
-" :Nohardwrap  -  turns it off
-"
-
-command! Hardwrap set fo=want tw=80 nowrap
-command! Nohardwrap set fo=croq wrap linebreak nolist
-
 "
 " Fix slow Ruby editing
 " http://stackoverflow.com/questions/22949067/macvim-quite-slow-when-syntax-is-set-to-ruby
@@ -73,18 +53,6 @@ autocmd Filetype ruby setlocal foldmethod=manual
 "
 
 nmap <Leader>SS :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
-
-"
-" Embiggen
-"
-
-command! Big call <SID>embiggen()
-
-function! s:embiggen()
-  set guifont=Monaco:h20
-  set fullscreen
-  Goyo 80
-endfunction
 
 "
 " Opinion extensions

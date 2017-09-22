@@ -81,6 +81,7 @@ Plug 'whatyouhide/vim-lengthmatters'
 Plug 'w0rp/ale'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-scripts/restore_view.vim'
+Plug 'tpope/vim-projectionist'
 " }}}
 
 " Plugins: Language specific {{{
@@ -95,6 +96,7 @@ Plug 'mitsuhiko/vim-python-combined'
 Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'alampros/vim-styled-jsx', { 'for': 'javascript' }
 Plug 'rstacruz/ledgerdown', { 'rtp': 'vim', 'for': 'ledger' }
 Plug 'slashmili/alchemist.vim', { 'for': ['elixir', 'ex'] }
 Plug 'slim-template/vim-slim', { 'for': ['slim'] }
