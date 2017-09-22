@@ -1,3 +1,23 @@
+#
+# Import
+#
+
+snippet i "import" b
+import ${1/^.*\///} from './${1:···}'$0
+endsnippet
+
+snippet im "import" b
+import ${1/([A-Za-z]+)\s*/\u$1/g} from '${1:···}'$0
+endsnippet
+
+snippet it "import type" b
+import type { $1 } from '$2'$0
+endsnippet
+
+#
+# @flow
+#
+
 snippet flow "@flow"
 /* @flow */
 
@@ -11,6 +31,10 @@ snippet :: "flow /*:: ... */"
   $0
 */
 endsnippet
+
+#
+# Meow
+#
 
 snippet meow "meow.js (es6+)" b
 #!/usr/bin/env node
@@ -33,33 +57,4 @@ const cli = require('meow')(\`
 })
 
 console.log(cli.flags, cli.input)
-endsnippet
-
-snippet u "use strict" b
-'use strict'
-
-endsnippet
-
-snippet r "require" b
-require
-endsnippet
-
-snippet v "var require" b
-var $1 = require('$2')$0
-endsnippet
-
-snippet c "const require" b
-const $1 = require('$2')$0
-endsnippet
-
-snippet i "import" b
-import $1 from './${1:module}'$0
-endsnippet
-
-snippet it "import type" b
-import type { $1 } from '$2'$0
-endsnippet
-
-snippet ir "import react"
-import React from 'react'
 endsnippet

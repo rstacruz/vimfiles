@@ -2,9 +2,9 @@ if globpath(&rtp, "plugin/startify.vim") == ""
   finish
 endif
 
-if globpath(&rtp, "bin/motd") != ""
-  let g:startify_custom_header = split(system("bash " . globpath(&rtp, "bin/motd")), '\n')
-endif
+" if globpath(&rtp, "bin/motd") != ""
+"   let g:startify_custom_header = split(system("bash " . globpath(&rtp, "bin/motd")), '\n')
+" endif
 
 
 let g:startify_files_number           = 10
