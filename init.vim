@@ -89,7 +89,7 @@ Plug 'tpope/vim-projectionist'
 " Plugins: Language specific {{{
 " Plug 'dag/vim-fish'
 Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
-" Plug 'elixir-lang/vim-elixir', { 'for': ['elixir', 'ex'] }
+Plug 'elixir-lang/vim-elixir', { 'for': ['elixir', 'ex', 'exs'] }
 " Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss', 'less'] }
 " Plug 'kchmck/vim-coffee-script', { 'for': ['coffee', 'coffeescript'] }
