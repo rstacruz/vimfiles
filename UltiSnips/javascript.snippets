@@ -3,11 +3,15 @@
 #
 
 snippet i "import" b
-import ${1/^.*\///} from './${1:···}'$0
+import ${2:${1/^.*\///}} from '${1:···}'$0
 endsnippet
 
-snippet im "import" b
-import ${1/([A-Za-z]+)\s*/\u$1/g} from '${1:···}'$0
+snippet i* "import * as" b
+import * as ${2:${1/^.*\///}} from '${1:···}'$0
+endsnippet
+
+snippet r "require" b
+const ${2:${1/^.*\///}} = require('${1:···}')$0
 endsnippet
 
 snippet it "import type" b

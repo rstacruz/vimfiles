@@ -91,3 +91,15 @@ endsnippet
 snippet *** "horizontal rule"
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 endsnippet
+
+snippet ... "Ellipses"
+···
+endsnippet
+
+snippet @ "github username"
+[@$1]: https://github.com/$1
+endsnippet
+
+snippet # "github reference"
+[#$1]: `git config --get remote.origin.url | sed 's/\.git$//'`/issues/$1
+endsnippet
