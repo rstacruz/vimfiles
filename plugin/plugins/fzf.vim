@@ -26,3 +26,12 @@ nmap <leader>bb :Buffers<CR>
 nmap <leader>bh :History<CR>
 nmap <leader>bn :bnext<CR>
 nmap <leader>bp :bprev<CR>
+
+"" [N] <leader>ff -- FZF: All files
+"" [N] <leader>fa -- FZF: Search via ag
+"" [N] <leader>fg -- FZF: Git changed files
+"" [N] <leader>ft -- FZF: Search ctags
+nmap <leader>ff :Files<CR>
+nmap <leader>fg :GFiles?<CR>
+nmap <leader>fa :Ag<CR>
+nmap <leader>ft :Tags<CR>
