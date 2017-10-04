@@ -14,21 +14,27 @@ if !exists('g:startify_bookmarks')
 endif
 
 let g:startify_commands = [
+  \ [ 'Edit notes', ':e __NOTES' ],
   \ ]
 
 let g:startify_list_order = [
-  \ 'commands',
   \ [' → Sessions'],
   \ 'sessions',
   \ [' → LRU'],
   \ 'dir',
+  \ [' → Commands'],
+  \ 'commands',
   \ ]
 
-" \ ['   Sessions:'],
-" \ 'sessions',
-" \ ['   LRU:'],
-" \ 'files',
 " \ [' → Bookmarks'],
 " \ 'bookmarks',
-"
-"
+
+let g:startify_custom_header = [
+  \ "         _",
+  \ "  __   _(_)_ __ ___",
+  \ "  \\ \\ / / | '_ \` _ \\ ",
+  \ '   \ V /| | | | | | |',
+  \ '    \_/ |_|_| |_| |_|',
+  \ '  ',
+  \ ] +
+  \ map(split(system('bash -c "if [ -e ./__NOTES ]; then cat ./__NOTES; fi"'), '\n'), '"   ". v:val')

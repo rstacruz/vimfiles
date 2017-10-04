@@ -15,8 +15,8 @@ let g:ale_fixers = {
 \ ],
 \ }
 
-let g:ale_sign_error = '💥 '
-let g:ale_sign_warning = '💥 '
+let g:ale_sign_error = '! '
+let g:ale_sign_warning = '! '
 
 "" [N] <Leader>af -- Ale: fix syntax issues
 nmap <Leader>af <Plug>(ale_fix)
