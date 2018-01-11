@@ -1,7 +1,7 @@
 snippet travis "travis: node_js"
 language: node_js
 node_js:
-- '4'
+- '8'
 cache:
   directories:
   - node_modules
@@ -23,15 +23,4 @@ cache:
   directories:
   - _deps
   - build
-endsnippet
-
-snippet zuul ".zuul.yml"
-ui: mocha-bdd
-browsers:
-  - name: ie
-    version: 6..latest
-  # - name: firefox
-  #   version: latest
-  # - name: chrome
-  #   version: latest
 endsnippet

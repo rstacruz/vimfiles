@@ -68,7 +68,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'w0rp/ale'
-Plug 'tpope/vim-projectionist'
+" Plug 'tpope/vim-projectionist'
 " }}}
 
 " Plugins: I can live without you {{{

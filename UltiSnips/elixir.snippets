@@ -1,14 +1,34 @@
-snippet @d "doc"
+snippet @doc "doc"
 @doc """
 ${1}
 """$0
 endsnippet
 
-snippet dm "defmodule and doc"
+snippet @moduledoc "@moduledoc"
+@moduledoc ~S"""
+${1}
+"""$0
+endsnippet
+
+snippet defmodule "defmodule and doc"
 defmodule ${1} do
-	@moduledoc """
+	@moduledoc ~S"""
 	${2:...}
 	"""$0
+end
+endsnippet
+
+snippet def "doc and def"
+@doc """
+${2:...}
+"""
+def ${1:my_function} do${0}
+end
+endsnippet
+
+snippet defp "doc and defp"
+# ${2:...}
+defp ${1:my_function()} do${0}
 end
 endsnippet
 
@@ -26,22 +46,6 @@ endsnippet
 
 snippet a "alias"
 alias ${0:My.Module}
-endsnippet
-
-snippet d "doc and def"
-@doc """
-${2:...}
-"""
-def ${1:my_function} do${0}
-end
-endsnippet
-
-snippet dp "doc and defp"
-@doc """
-${2:...}
-"""
-defp ${1:my_function()} do${0}
-end
 endsnippet
 
 snippet puts "IO.puts"
@@ -83,9 +87,9 @@ defmodule ${1/\w+\s*/\u$0/}.Mixfile do
 		 start_permanent: Mix.env == :prod,
 		 source_url: "`git config --get remote.origin.url | sed -e 's/\.git$//'`",
 		 homepage_url: "`git config --get remote.origin.url | sed -e 's/\.git$//'`",
-		 docs: docs,
-		 package: package,
-		 deps: deps]
+		 docs: docs(),
+		 package: package(),
+		 deps: deps()]
 	end
 
 	def application do
@@ -94,7 +98,6 @@ defmodule ${1/\w+\s*/\u$0/}.Mixfile do
 
 	defp deps do
 		[
-			{:earmark, "~> 0.1", only: :dev},
 			{:ex_doc, "~> 0.11", only: :dev}
 		]
 	end

@@ -2,19 +2,19 @@
 # Import
 #
 
-snippet i "import" b
+snippet i "import ··· from '···'" b
 import ${2:${1/^.*\///}} from '${1:···}'$0
 endsnippet
 
-snippet i* "import * as" b
+snippet i* "import * as ···" b
 import * as ${2:${1/^.*\///}} from '${1:···}'$0
 endsnippet
 
-snippet r "require" b
+snippet r "const ··· = require('···')" b
 const ${2:${1/^.*\///}} = require('${1:···}')$0
 endsnippet
 
-snippet it "import type" b
+snippet it "import type { ··· } from '···'" b
 import type { $1 } from '$2'$0
 endsnippet
 
