@@ -15,12 +15,12 @@ link: link-vim link-neovim
 	fi
 
 link-vim:
-	ln -nfs "${pwd}" ~/.vim
+	if [[ ! . -ef ~/.vim ]]; then ln -nfs "${pwd}" ~/.vim; fi
 	ln -nfs "${pwd}/init.vim" ~/.vimrc
 
 link-neovim:
 	mkdir -p ~/.config
-	ln -nfs "${pwd}" ~/.config/nvim
+	if [[ ! . -ef ~/.config/nvim ]]; then ln -nfs "${pwd}" ~/.config/nvim; fi
 
 # Installs plugins, produces lockfile
 install:
