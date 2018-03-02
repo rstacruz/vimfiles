@@ -1,5 +1,5 @@
 lockfile := ./bin/restore
-vim := nvim
+vim := vim
 pwd := $(shell pwd -LP)
 
 default: install
@@ -15,12 +15,12 @@ link: link-vim link-neovim
 	fi
 
 link-vim:
-	if [[ ! . -ef ~/.vim ]]; then ln -nfs "${pwd}" ~/.vim; fi
+	if [ ! . -ef ~/.vim ]; then ln -nfs "${pwd}" ~/.vim; fi
 	ln -nfs "${pwd}/init.vim" ~/.vimrc
 
 link-neovim:
 	mkdir -p ~/.config
-	if [[ ! . -ef ~/.config/nvim ]]; then ln -nfs "${pwd}" ~/.config/nvim; fi
+	if [ ! . -ef ~/.config/nvim ]; then ln -nfs "${pwd}" ~/.config/nvim; fi
 
 # Installs plugins, produces lockfile
 install:
@@ -32,6 +32,6 @@ upgrade:
 
 # Install from lockfile
 restore:
-	vim -S ${lockfile}
+	$(vim) -S ${lockfile}
 
 .PHONY: install link upgrade restore default link-vim link-neovim
