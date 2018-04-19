@@ -5,6 +5,7 @@
 "" [N] <leader>t. -- Terminal: open here
 
 if has("nvim")
+  nnoremap <Leader>' <C-w>n:te<CR>a
   nnoremap <Leader>tn <C-w>n:te<CR>
   nnoremap <Leader>ts <C-w>n:te<CR>
   nnoremap <Leader>tv <C-w>v<C-w>l:te<CR>

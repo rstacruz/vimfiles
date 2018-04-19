@@ -7,7 +7,7 @@ filetype plugin indent on
 call plug#begin('~/.vim/vendor')
 
 " Sensible {{{
-if !has('nvim')
+if !has('nvim') && !exists('g:gui_oni')
   Plug 'tpope/vim-sensible'
 endif
 " }}}
@@ -27,51 +27,58 @@ endif
 
 " Plugins: Slow plugins {{{
 " Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+if !exists('g:gui_oni')
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+endif
 " }}}
 
 " Plugins: Neovim-only {{{
-if has('nvim')
+if has('nvim') && !exists('g:gui_oni')
   Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
 endif
 " }}}
 
 " Plugins: Unite {{{
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'Shougo/unite.vim'
-Plug 'tsukkee/unite-tag'
-" Plug 'tacroe/unite-mark'
-" Plug 'Shougo/unite-outline'
-Plug 'rstacruz/vim-fastunite'
+if !exists('g:gui_oni')
+  Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+  Plug 'Shougo/unite.vim'
+  Plug 'tsukkee/unite-tag'
+  " Plug 'tacroe/unite-mark'
+  " Plug 'Shougo/unite-outline'
+  Plug 'rstacruz/vim-fastunite'
+endif
 " }}}
 
 " Plugins: All others {{{
-Plug 'craigemery/vim-autotag'
-Plug 'godlygeek/tabular'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'justincampbell/vim-eighties'
-Plug 'mhinz/vim-signify'
+if !exists('g:gui_oni')
+  Plug 'craigemery/vim-autotag'
+  Plug 'godlygeek/tabular'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
+  Plug 'justincampbell/vim-eighties'
+  Plug 'mhinz/vim-signify'
+  Plug 'rstacruz/vim-hyperstyle'
+  Plug 'rstacruz/vim-xtract'
+  Plug 'thinca/vim-visualstar'
+  Plug 'tpope/vim-endwise'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-sleuth'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-unimpaired'
+  Plug 'tpope/vim-vinegar'
+endif
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'rstacruz/vim-closer'
-Plug 'rstacruz/vim-hyperstyle'
 Plug 'rstacruz/vim-opinion'
-Plug 'rstacruz/vim-xtract'
-Plug 'thinca/vim-visualstar'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-vinegar'
 Plug 'w0rp/ale'
 " Plug 'tpope/vim-projectionist'
 " }}}
 
 " Plugins: I can live without you {{{
+"
 " Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'ConradIrwin/vim-bracketed-paste'
 " Plug 'junegunn/goyo.vim'
