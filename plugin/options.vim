@@ -23,3 +23,7 @@ set nonumber
 "
 
 set timeout timeoutlen=500 ttimeoutlen=10
+
+if exists('g:gui_oni')
+  set laststatus=0
+endif

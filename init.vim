@@ -114,6 +114,7 @@ Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'wavded/vim-stylus', { 'for': 'stylus' }
+Plug 'irrationalistic/vim-tasks'
 " Plug 'romanzolotarev/vim-journal', { 'for': 'journal' }
 " Plug 'tpope/vim-cucumber', { 'for': 'ruby' }
 " Plug 'jceb/vim-orgmode', { 'for': 'org' }
