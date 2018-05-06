@@ -68,6 +68,7 @@ if !exists('g:gui_oni')
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-vinegar'
+  Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 endif
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'

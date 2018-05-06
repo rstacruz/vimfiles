@@ -1,7 +1,7 @@
 if globpath(&rtp, "plugin/ale.vim") == "" | finish | endif
 
 " Lint hooks
-let g:ale_lint_on_text_changed='never'
+let g:ale_lint_on_text_changed='normal'
 let g:ale_lint_on_insert_leave=1
 let g:ale_lint_on_save=1
 
