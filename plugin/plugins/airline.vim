@@ -58,7 +58,7 @@ let g:airline_section_c = '%t'
 " Shorter text
 let g:airline_mode_map = {
   \ '__' : '-',
-  \ 'n'  : '∴',
+  \ 'n'  : ' ',
   \ 'i'  : 'I',
   \ 'R'  : 'R',
   \ 'c'  : 'C',
