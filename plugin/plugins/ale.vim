@@ -25,6 +25,18 @@ let g:ale_fix_on_save = 1
 let g:ale_sign_error = '! '
 let g:ale_sign_warning = '! '
 
+" Enable completion where available
+let g:ale_completion_enabled = 1
+
 "" [N] <Leader>af -- Ale: fix syntax issues
 nmap <Leader>af <Plug>(ale_fix)
 
+"" [N] <Leader>ev -- Errors: verify ale setup
+"" [N] <Leader>en -- Errors: next
+"" [N] <Leader>ep -- Errors: previous
+"" [N] <Leader>ec -- Errors: clear errors
+nnoremap <Leader>ev :ALEVerify<CR>
+nnoremap <Leader>en :ALENextWrap<CR>
+nnoremap <Leader>ep :ALEPreviousWrap<CR>
+nnoremap <Leader>eN :ALEPreviousWrap<CR>
+nnoremap <Leader>ec :ALEResetBuffer<CR>
