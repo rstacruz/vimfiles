@@ -2,6 +2,7 @@ if globpath(&rtp, "plugin/fzf.vim") == "" | finish | endif
 
 "" [N] <C-p> -- FZF: open file
 nnoremap  <C-p> :GFiles<cr>
+nnoremap <leader>pf :GFiles<cr>
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -20,14 +21,15 @@ inoremap <expr> <c-x><c-n> fzf#vim#complete#path("git ls-files \| xargs realpath
 
 "" [N] <leader>bb -- Buffer: buffers (fzf)
 "" [N] <leader>bh -- Buffer: history (fzf)
-nmap <leader>bb :Buffers<CR>
-nmap <leader>bh :History<CR>
+nnoremap <leader>bb :Buffers<CR>
+nnoremap <leader>bh :History<CR>
 
 "" [N] <leader>ff -- FZF: All files
-"" [N] <leader>fa -- FZF: Search via ag
 "" [N] <leader>fg -- FZF: Git changed files
 "" [N] <leader>ft -- FZF: Search ctags
-nmap <leader>ff :Files<CR>
-nmap <leader>fg :GFiles?<CR>
-nmap <leader>fa :Ag<CR>
-nmap <leader>ft :Tags<CR>
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fg :GFiles?<CR>
+nnoremap <leader>ft :Tags<CR>
+
+"" [N] <leader>/ -- FZF: find in project
+nnoremap <leader>/ :Ag<CR>

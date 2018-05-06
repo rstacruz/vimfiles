@@ -2,7 +2,10 @@ if globpath(&rtp, "plugin/NERD_tree.vim") == ""
   finish
 endif
 
-nnoremap <leader>N :NERDTreeFind<CR>
+" [N] <leader>0 -- open tree
+" [N] <leader>pt -- open tree
+nnoremap <leader>0 :NERDTreeFind<CR>
+nnoremap <leader>pt :NERDTree<CR>
 
 let g:NERDTreeHijackNetrw=1
 let g:NERDTreeWinPos='right'

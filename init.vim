@@ -26,8 +26,8 @@ endif
 " }}}
 
 " Plugins: Slow plugins {{{
-" Plug 'scrooloose/nerdtree'
 if !exists('g:gui_oni')
+  Plug 'scrooloose/nerdtree'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
 endif
