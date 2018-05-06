@@ -7,9 +7,10 @@ command! Light :call <SID>lighttheme()
 command! Guitheme :call <SID>guitheme()
 
 function! s:darktheme()
-  let g:airline_theme='raven'
+  let g:airline_theme='tomorrow'
   set background=dark
-  color lol
+  "color lol
+  color delek
 endfunction
 
 function! s:lighttheme()
