@@ -13,11 +13,9 @@ let g:ale_linters = {
 
 " Fixers
 let g:ale_fixers = {
-\ 'javascript': [
-\   'prettier_standard',
-\   'standard',
-\   'remove_trailing_lines',
-\ ],
+\ 'scss': [ 'prettier' ],
+\ 'css': [ 'prettier' ],
+\ 'javascript': [ 'prettier-eslint' ],
 \ }
 
 " Autofix (https://github.com/w0rp/ale#2ii-fixing)

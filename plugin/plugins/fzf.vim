@@ -25,6 +25,7 @@ inoremap <expr> <c-x><c-n> fzf#vim#complete#path("git ls-files \| xargs realpath
 nmap <leader>bb :Buffers<CR>
 nmap <leader>bh :History<CR>
 nmap <leader>bn :bnext<CR>
+nmap <leader>bd :bdelete<CR>
 nmap <leader>bp :bprev<CR>
 
 "" [N] <leader>ff -- FZF: All files
