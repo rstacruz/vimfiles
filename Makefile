@@ -1,5 +1,5 @@
 lockfile := ./bin/restore
-vim := vim
+vim := nvim
 pwd := $(shell pwd -LP)
 
 default: install
