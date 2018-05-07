@@ -3,6 +3,8 @@
 " C-x C-s -- Save file
 inoremap <C-x><C-s> <Esc>:w<CR>a
 nnoremap <C-x><C-s> :w<CR>
+inoremap <C-a> <Esc>zaa
+nnoremap <C-a> za
 
 " [N] <leader> f e d -- File: edit config
 nnoremap <leader>fed :e ~/.vimrc<CR>
