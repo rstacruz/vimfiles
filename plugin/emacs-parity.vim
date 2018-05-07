@@ -10,6 +10,8 @@ nnoremap <leader>fed :e ~/.vimrc<CR>
 "" [N] <leader>bn -- Buffer: next
 "" [N] <leader>bp -- Buffer: prev
 "" [N] <leader>bd -- Buffer: delete
+"" [N] <leader>bD -- Buffer: delete!
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bd :bdelete<CR>
+nnoremap <leader>bD :bdelete!<CR>
 nnoremap <leader>bp :bprev<CR>

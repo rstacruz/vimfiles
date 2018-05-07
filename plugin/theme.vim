@@ -6,11 +6,18 @@ command! Dark :call <SID>darktheme()
 command! Light :call <SID>lighttheme()
 command! Guitheme :call <SID>guitheme()
 
+" force no background for certain things
+au ColorScheme * hi Normal ctermbg=none
+au ColorScheme * hi SignColumn ctermbg=none
+au ColorScheme * hi FoldColumn ctermbg=none
+au ColorScheme * hi LineNr ctermbg=none
+
 function! s:darktheme()
-  let g:airline_theme='tomorrow'
+  " let g:airline_theme='tomorrow'
+  let g:airline_theme='raven'
   set background=dark
   "color lol
-  color delek
+  color alduin
 endfunction
 
 function! s:lighttheme()

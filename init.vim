@@ -21,8 +21,9 @@ endif
 
 " Plugins: Themes {{{
 " Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
-" Plug 'spf13/vim-colors'
+" Plug 'spf12/vim-colors'
 " Plug 'chriskempson/base16-vim'
+Plug 'flazz/vim-colorschemes'
 " }}}
 
 " Plugins: Slow plugins {{{
@@ -64,6 +65,7 @@ if !exists('g:gui_oni')
   Plug 'thinca/vim-visualstar'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-sleuth'
   Plug 'tpope/vim-surround'
