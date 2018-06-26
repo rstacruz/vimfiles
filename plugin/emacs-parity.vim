@@ -5,6 +5,7 @@ inoremap <C-x><C-s> <Esc>:w<CR>a
 nnoremap <C-x><C-s> :w<CR>
 inoremap <C-a> <Esc>zaa
 nnoremap <C-a> za
+nnoremap <CR> za
 
 " [N] <leader> f e d -- File: edit config
 nnoremap <leader>fed :e ~/.vimrc<CR>
@@ -17,3 +18,7 @@ nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bd :bdelete<CR>
 nnoremap <leader>bD :bdelete!<CR>
 nnoremap <leader>bp :bprev<CR>
+
+" Escape/save
+inoremap <C-s> <Esc>
+noremap <C-s> :w<CR>

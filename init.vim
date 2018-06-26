@@ -12,18 +12,18 @@ if !has('nvim') && !exists('g:gui_oni')
 endif
 " }}}
 
-" Stop here if we're in minimal (Git) mode {{{
-if $VIM_MINIMAL != '' || $GIT_DIR != ''
-  call plug#end()
-  finish
-endif
-" }}}
-
 " Plugins: Themes {{{
 " Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
 " Plug 'spf12/vim-colors'
 " Plug 'chriskempson/base16-vim'
 Plug 'flazz/vim-colorschemes'
+" }}}
+
+" Stop here if we're in minimal (Git) mode {{{
+if $VIM_MINIMAL != '' || $GIT_DIR != ''
+  call plug#end()
+  finish
+endif
 " }}}
 
 " Plugins: Slow plugins {{{
