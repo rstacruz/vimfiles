@@ -61,17 +61,42 @@ To force this behavior elsewhere, you can use `env GIT_DIR='.' vim`.
 
 ## Tips
 
-In OSX, use MacVim to use a better build of vim with support for Ruby, Python, Lua, and other niceties.
-
 ```sh
 brew install macvim ---with-override-system-vim --with-python3 --with-lua --with-luajit
 ```
 
 Or use Neovim!
 
+## Troubleshooting
+
+<details>
+<summary>Make tells me `nvim: command not found`.</summary>
+
+Either install neovim, or use `env vim=vim make` in place of `make`.
+
+</details>
+
+<details>
+<summary>(MacVim) I get Python errors.</summary>
+
+In macOS, use MacVim to use a better build of vim with support for Ruby, Python, Lua, and other niceties.
+
+```sh
+brew install macvim ---with-override-system-vim --with-python3 --with-lua --with-luajit
+```
+
+</details>
+
+<details>
+<summary>(Neovim) I get Python errors.</summary>
+
+See `:help provider-python`.
+
+</details>
+
 ## Thanks
 
-**vimfiles** © 2017+, Rico Sta. Cruz. Released under the [MIT] License.<br>
+**vimfiles** © 2017-2018, Rico Sta. Cruz. Released under the [MIT] License.<br>
 Authored and maintained by Rico Sta. Cruz with help from contributors ([list][contributors]).
 
 > [ricostacruz.com](http://ricostacruz.com) &nbsp;&middot;&nbsp;
@@ -81,5 +106,5 @@ Authored and maintained by Rico Sta. Cruz with help from contributors ([list][co
 [![](https://img.shields.io/github/followers/rstacruz.svg?style=social&label=@rstacruz)](https://github.com/rstacruz) &nbsp;
 [![](https://img.shields.io/twitter/follow/rstacruz.svg?style=social&label=@rstacruz)](https://twitter.com/rstacruz)
 
-[MIT]: http://mit-license.org/
+[mit]: http://mit-license.org/
 [contributors]: http://github.com/rstacruz/vimfiles/contributors
