@@ -13,11 +13,12 @@ au ColorScheme * hi FoldColumn ctermbg=none
 au ColorScheme * hi LineNr ctermbg=none
 
 function! s:darktheme()
-  " let g:airline_theme='tomorrow'
-  let g:airline_theme='raven'
+  "let g:airline_theme='tomorrow'
+  "let g:airline_theme='raven'
   set background=dark
   "color lol
-  color alduin
+  "color alduin
+  color 3dglasses
 endfunction
 
 function! s:lighttheme()
