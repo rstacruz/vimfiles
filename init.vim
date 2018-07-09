@@ -20,7 +20,7 @@ Plug 'flazz/vim-colorschemes'
 " }}}
 
 " Stop here if we're in minimal (Git) mode {{{
-if $VIM_MINIMAL != '' || $GIT_DIR != ''
+if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != ''
   call plug#end()
   finish
 endif
