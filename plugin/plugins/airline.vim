@@ -35,8 +35,8 @@ let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#branch#enabled = 0
 
-" Tabline
-let g:airline#extensions#tabline#enabled = 1
+" Tabline (!)
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#show_tab_type = 0

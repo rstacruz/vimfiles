@@ -6,10 +6,22 @@ syntax on
 filetype plugin indent on
 call plug#begin('~/.vim/vendor')
 
-" Sensible {{{
+" Essentials {{{
 if !has('nvim') && !exists('g:gui_oni')
   Plug 'tpope/vim-sensible'
 endif
+
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'rstacruz/vim-opinion'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 " }}}
 
 " Plugins: Themes {{{
@@ -42,40 +54,29 @@ endif
 " }}}
 
 " Plugins: Unite {{{
-if !exists('g:gui_oni')
-  Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-  Plug 'Shougo/unite.vim'
-  Plug 'tsukkee/unite-tag'
-  " Plug 'tacroe/unite-mark'
-  " Plug 'Shougo/unite-outline'
-  Plug 'rstacruz/vim-fastunite'
-endif
+" if !exists('g:gui_oni')
+"   Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+"   Plug 'Shougo/unite.vim'
+"   Plug 'tsukkee/unite-tag'
+"   " Plug 'tacroe/unite-mark'
+"   " Plug 'Shougo/unite-outline'
+"   Plug 'rstacruz/vim-fastunite'
+" endif
 " }}}
 
 " Plugins: All others {{{
 if !exists('g:gui_oni')
-  Plug 'craigemery/vim-autotag'
+  " Plug 'craigemery/vim-autotag'
   Plug 'godlygeek/tabular'
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
   Plug 'justincampbell/vim-eighties'
   Plug 'mhinz/vim-signify'
   Plug 'rstacruz/vim-hyperstyle'
   Plug 'rstacruz/vim-xtract'
   Plug 'thinca/vim-visualstar'
-  Plug 'tpope/vim-endwise'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-rhubarb'
-  Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-sleuth'
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-unimpaired'
-  Plug 'tpope/vim-vinegar'
 endif
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'rstacruz/vim-closer'
-Plug 'rstacruz/vim-opinion'
 Plug 'w0rp/ale'
 " Plug 'tpope/vim-projectionist'
 " }}}
@@ -106,9 +107,9 @@ Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss', 'less'] }
 " Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 " Plug 'mitsuhiko/vim-python-combined', { 'for': 'python' }
 " Plug 'moll/vim-node', { 'for': 'javascript' }
-" Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-" Plug 'alampros/vim-styled-jsx', { 'for': 'javascript' }
+  Plug 'pangloss/vim-javascript' " { 'for': 'javascript' }
+  Plug 'mxw/vim-jsx' " { 'for': 'javascript' }
+  Plug 'alampros/vim-styled-jsx' " { 'for': 'javascript' }
 " Plug 'rstacruz/ledgerdown', { 'rtp': 'vim', 'for': 'ledger' }
 " Plug 'slashmili/alchemist.vim', { 'for': ['elixir', 'ex'] }
 " Plug 'slim-template/vim-slim', { 'for': ['slim'] }
