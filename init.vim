@@ -22,6 +22,9 @@ Plug 'tpope/vim-unimpaired'
 Plug 'rstacruz/vim-opinion'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'irrationalistic/vim-tasks'
+if !exists('g:gui_oni') | Plug 'justincampbell/vim-eighties' | endif
+if version >= 704 | Plug 'SirVer/ultisnips' | endif
 " }}}
 
 " Plugins: Themes {{{
@@ -68,7 +71,6 @@ endif
 if !exists('g:gui_oni')
   " Plug 'craigemery/vim-autotag'
   Plug 'godlygeek/tabular'
-  Plug 'justincampbell/vim-eighties'
   Plug 'mhinz/vim-signify'
   Plug 'rstacruz/vim-hyperstyle'
   Plug 'rstacruz/vim-xtract'
@@ -118,17 +120,10 @@ Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'wavded/vim-stylus', { 'for': 'stylus' }
-Plug 'irrationalistic/vim-tasks'
 " Plug 'romanzolotarev/vim-journal', { 'for': 'journal' }
 " Plug 'tpope/vim-cucumber', { 'for': 'ruby' }
 " Plug 'jceb/vim-orgmode', { 'for': 'org' }
 " }}}
 "
-" Plugins: Ultisnips {{{
-if version >= 704
-  Plug 'SirVer/ultisnips'
-endif
-" }}}
-
 call plug#end()
 " vim:foldmethod=marker
