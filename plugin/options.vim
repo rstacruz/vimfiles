@@ -24,3 +24,6 @@ set timeout timeoutlen=500 ttimeoutlen=10
 if exists('g:gui_oni')
   set laststatus=0
 endif
+
+" Eh, just always hide statubar
+set laststatus=0

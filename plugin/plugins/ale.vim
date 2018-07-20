@@ -7,7 +7,8 @@ let g:ale_lint_on_save=1
 
 " Linters
 let g:ale_linters = {
-\ 'javascript': ['standard', 'flow'],
+\ 'javascript': ['eslint', 'flow'],
+\ 'javascript.jsx': ['eslint', 'flow'],
 \ 'html': ['htmlhint'],
 \ }
 
@@ -16,6 +17,7 @@ let g:ale_fixers = {
 \ 'scss': [ 'prettier' ],
 \ 'css': [ 'prettier' ],
 \ 'javascript': [ 'prettier-eslint' ],
+\ 'javascript.jsx': [ 'prettier-eslint' ],
 \ }
 
 " Autofix (https://github.com/w0rp/ale#2ii-fixing)

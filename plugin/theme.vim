@@ -14,16 +14,25 @@ au ColorScheme * hi LineNr ctermbg=none
 
 function! s:darktheme()
   "let g:airline_theme='tomorrow'
-  "let g:airline_theme='raven'
+  "let g:airline_theme='term'
+  "let g:airline_theme='atomic'
+  "let g:airline_theme='lucius'
+  let g:airline_theme='zenburn'
   set background=dark
   "color lol
   "color alduin
-  color 3dglasses
+  "color 3dglasses
+  "color black_angus
+  "color Black
+  "color blaquemagick - good
+  color base16-atelierlakeside
+  hi VertSplit ctermbg=none ctermfg=233 cterm=none
+  hi NonText ctermbg=none ctermfg=233 cterm=none
 endfunction
 
 function! s:lighttheme()
   let g:airline_theme='lucius'
-  let g:airline_theme='tomorrow'
+  let g:airline_theme='aurora'
   set background=light
   color lolmono
 endfunction
