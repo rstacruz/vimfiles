@@ -28,6 +28,8 @@ function! s:darktheme()
   color base16-atelierlakeside
   hi VertSplit ctermbg=none ctermfg=233 cterm=none
   hi NonText ctermbg=none ctermfg=233 cterm=none
+  hi Folded ctermbg=none ctermfg=8 cterm=none
+  set fillchars=fold: 
 endfunction
 
 function! s:lighttheme()
