@@ -80,6 +80,12 @@ Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'rstacruz/vim-closer'
 Plug 'w0rp/ale'
+Plug 'autozimu/LanguageClient-neovim', {
+  \ 'branch': 'next',
+  \ 'do': 'bash install.sh',
+  \ }
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'tpope/vim-projectionist'
 " }}}
 

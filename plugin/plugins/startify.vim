@@ -13,18 +13,18 @@ if !exists('g:startify_bookmarks')
   let g:startify_bookmarks = []
 endif
 
-let g:startify_commands = [
-  \ [ 'Edit notes', ':e __NOTES' ],
-  \ ]
+" let g:startify_commands = [
+"   \ [ 'Edit notes', ':e __NOTES' ],
+"   \ ]
 
-let g:startify_list_order = [
-  \ [' → Sessions'],
-  \ 'sessions',
-  \ [' → LRU'],
-  \ 'dir',
-  \ [' → Commands'],
-  \ 'commands',
-  \ ]
+let g:startify_list_order = [ 'dir' ]
+  " \ [' → Sessions'],
+  " \ 'sessions',
+  " \ [' → LRU'],
+  " \ 'dir',
+  " \ [' → Commands'],
+  " \ 'commands',
+  " \ ]
 
 " \ [' → Bookmarks'],
 " \ 'bookmarks',
