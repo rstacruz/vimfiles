@@ -2,20 +2,22 @@
 "" [N] <leader>as -- Apps: show scope
 "" [N] <leader>al -- Apps: show language client
 
-  " Useful for creating color schemes
+  " Useful for creating color schemes!
   nnoremap <Leader>as :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
   nnoremap <leader>al call :LanguageClient_contextMenu()<CR>
 " }}}
 
 " `, e` - Errors {{{
-"" [N] <Leader>ef -- Errors: run formatter
-"" [N] <Leader>ev -- Errors: verify ale setup
-"" [N] <Leader>en -- Errors: next
-"" [N] <Leader>ep -- Errors: previous
-"" [N] <Leader>ec -- Errors: clear errors
+"" [N] <Leader>ef -- Errors: run formatter [ale]
+"" [N] <Leader>eF -- Errors: ale fix suggest [ale]
+"" [N] <Leader>ev -- Errors: verify ale setup [ale]
+"" [N] <Leader>en -- Errors: next [ale]
+"" [N] <Leader>ep -- Errors: previous [ale]
+"" [N] <Leader>ec -- Errors: clear errors [ale]
 
-  if globpath(&rtp, "plugin/ale.vim") != ""
+  if exists(':ALEFix')
     nmap <Leader>ef <Plug>(ale_fix)
+    nnoremap <Leader>eF :ALEFixSuggest<CR>
     nnoremap <Leader>ev :ALEDetail<CR>
     nnoremap <Leader>en :ALENextWrap<CR>
     nnoremap <Leader>ep :ALEPreviousWrap<CR>
@@ -40,7 +42,7 @@
 " `, f` - File {{{
   "" [N] <leader>ff -- Files: All files [fzf]
 
-  if globpath(&rtp, "plugin/fzf.vim") != ""
+  if exists(':Files')
     nnoremap <leader>ff :Files<CR>
   endif
 " }}}
@@ -50,7 +52,7 @@
 "" [N] <leader>fek -- Editor: Open key bindings
 
   nnoremap <leader>fed :e ~/.vimrc<CR>
-  nnoremap <leader>fek :e ~/.vim/plugin/key-bindings.vim<CR>
+  nnoremap <leader>fek :e ~/.vim/after/plugin/key-bindings.vim<CR>
 " }}}
 
 " `, b` - Buffer {{{
@@ -66,14 +68,13 @@ nnoremap <leader>bd :bdelete<CR>
 nnoremap <leader>bD :bdelete!<CR>
 nnoremap <leader>bp :bprev<CR>
 
-if globpath(&rtp, "plugin/fzf.vim") != ""
+if exists(':Buffers')
   nnoremap <leader>bb :Buffers<CR>
   nnoremap <leader>bh :History<CR>
 endif
 " }}}
 
 " `, p` - Project {{{
-"" [N] - -- Open tree
 "" [N] <leader>pr -- Project: show related files (tests, etc)
 "" [N] <leader>pt -- Project: open tree [nerdtree]
 "" [N] <leader>pp -- Project: save session and open project switcher
@@ -82,17 +83,18 @@ endif
 "" [N] <leader>ps -- Project: open tags (symbols) [fzf]
 "" [N] <C-p> -- Project: open file [fzf]
 
-if globpath(&rtp, "plugin/NERD_tree.vim") != ""
+if exists(':NERDTreeFind')
   nnoremap - :NERDTreeFind<CR>
   nnoremap <leader>pt :NERDTree<CR>
   nnoremap <leader>pp :SSave!<CR>
   nnoremap <leader>pP :SClose<CR>
 endif
 
-if globpath(&rtp, "plugin/fzf.vim") != ""
-  nnoremap <Leader>pr :exe 'FZF -q ' . join(split(join(split(expand('%:t:r'), '_'), ''), '-'), '')<CR>
-  nnoremap <leader>pf :GFiles<cr>
+nnoremap <Leader>pr :exe 'FZF -q ' . join(split(join(split(expand('%:t:r'), '_'), ''), '-'), '')<CR>
+
+if exists(':Tag')
   nnoremap <leader>ps :Tag<CR>
+  nnoremap <leader>pf :GFiles<cr>
   nnoremap  <C-p> :GFiles<cr>
 endif
 " }}}
@@ -126,11 +128,11 @@ endif
 "" [N] <leader>gd -- Git: diff [fugitive]
 "" [N] <leader>gb -- Git: blame [fugitive]
 
-if globpath(&rtp, "plugin/fzf.vim") != ""
+if exists(':GFiles')
   nnoremap <leader>gs :GFiles?<CR>
 endif
 
-if globpath(&rtp, "plugin/fugitive.vim") != ""
+if exists(':Gstatus')
   nnoremap <leader>gd :Gdiff<cr>
   nnoremap <leader>gb :Gblame<cr>
   nnoremap <leader>gS :Gstatus<CR>
@@ -142,7 +144,7 @@ endif
 "" [N] <leader>/ -- Find: find in project [fzf]
 "" [N] <leader>* -- Find: find in project from cursor [fzf]
 
-if globpath(&rtp, "plugin/fzf.vim") != ""
+if exists(':Ag')
   nnoremap <leader>/ :Ag<CR>
   nnoremap <leader>* :Ag <C-r><C-w><CR>
 endif
@@ -159,19 +161,32 @@ endif
 " `, m` - Major mode {{{
   "" [N] <leader>mr -- Major: rename this symbol [languageclient]
 
-  if globpath(&rtp, "plugin/LanguageClient.vim") != ""
+  if exists(':LanguageClientStart')
     nnoremap <silent> <leader>mr :call LanguageClient#textDocument_rename()<CR>
   endif
 " }}}
 
 " `g` - Go to {{{
-  "" [N] gh -- Lang: get hint [languageclient]
-  "" [N] gd -- Lang: go to definition [languageclient]
+"" [N] gh -- Go: get hint [languageclient]
+"" [N] gd -- Go: go to definition [languageclient]
+"" [N] gJ -- Go: join multiline statement (like J) [splitjoin]
+"" [N] gS -- Go: split multiline statement [splitjoin]
 
-  if globpath(&rtp, "plugin/LanguageClient.vim") != ""
+  if exists(':SplitjoinJoin')
+    nmap gJ :SplitjoinJoin<cr>
+    nmap gS :SplitjoinSplit<cr>
+  endif
+
+  if exists(':LanguageClientStart')
     nnoremap <silent> gh :call LanguageClient#textDocument_hover()<CR>
     nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
   endif
+" }}}
+
+" `h` - Help {{{
+"" [N] <leader>hk -- Help: key bindings
+
+  nnoremap <silent> <leader>hk :Usage<CR>
 " }}}
 
 " Misc {{{
@@ -197,11 +212,11 @@ endif
   inoremap <C-H> <Esc>:bprev<CR>
   inoremap <C-L> <Esc>:bnext<CR>
   
-  if globpath(&rtp, "plugin/NERD_tree.vim") != ""
+  if exists(':NERDTreeFind')
     nnoremap - :NERDTreeFind<CR>
   endif
   
-  if globpath(&rtp, "plugin/fzf.vim") != ""
+  if exists(':GFiles')
     nmap <leader><tab> <plug>(fzf-maps-n)
     xmap <leader><tab> <plug>(fzf-maps-x)
     omap <leader><tab> <plug>(fzf-maps-o)
@@ -210,5 +225,15 @@ endif
   nnoremap <Enter> za
   nnoremap <S-Enter> zO
   nnoremap <C-Enter> zC
-  " vim:foldmethod=marker
+  " vmap <Enter> <Plug>(EasyAlign)
+  " nmap ga <Plug>(EasyAlign)
+  " nmap gA <Plug>(EasyAlign)ip
+  " [V] E       -- EasyAlign: start easyalign [easyalign]
+  " [V] <Enter> -- EasyAlign: start easyalign [easyalign]
+  " [N] gA      -- Go: align current paragraph [easyalign]
+  " vnoremap E :EasyAlign<space>
+  " vnoremap <Enter> :EasyAlign<space>
+  " nnoremap gA vip:EasyAlign<space>
 " }}}
+
+" vim:foldmethod=marker

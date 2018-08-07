@@ -1,6 +1,7 @@
-if globpath(&rtp, "plugin/splitjoin.vim") == "" | finish | endif
+"" [N] gJ -- Go: join multiline statement (like J) [splitjoin]
+"" [N] gS -- Go: split multiline statement [splitjoin]
 
-"" [N] gJ -- Splitjoin: join multiline statement (like J)
-"" [N] gS -- Splitjoin: split multiline statement
-nmap gJ :SplitjoinJoin<cr>
-nmap gS :SplitjoinSplit<cr>
+if globpath(&rtp, "plugin/splitjoin.vim") != ""
+  nmap gJ :SplitjoinJoin<cr>
+  nmap gS :SplitjoinSplit<cr>
+endif
