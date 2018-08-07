@@ -11,6 +11,9 @@ set spellfile=~/.vim/spell/en.utf-8.add
 " No status bar for git
 if $VIM_MINIMAL != '' || $GIT_DIR != ''
   set laststatus=0
+endif
+
+if $GIT_DIR != ''
   startinsert
 endif
 
@@ -24,6 +27,3 @@ set timeout timeoutlen=500 ttimeoutlen=10
 if exists('g:gui_oni')
   set laststatus=0
 endif
-
-" Eh, just always hide statubar
-set laststatus=0

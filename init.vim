@@ -12,7 +12,6 @@ if !has('nvim') && !exists('g:gui_oni')
 endif
 
 Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -22,6 +21,9 @@ Plug 'tpope/vim-unimpaired'
 Plug 'rstacruz/vim-opinion'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'irrationalistic/vim-tasks'
+if !exists('g:gui_oni') | Plug 'justincampbell/vim-eighties' | endif
+if version >= 704 | Plug 'SirVer/ultisnips' | endif
 " }}}
 
 " Plugins: Themes {{{
@@ -68,7 +70,6 @@ endif
 if !exists('g:gui_oni')
   " Plug 'craigemery/vim-autotag'
   Plug 'godlygeek/tabular'
-  Plug 'justincampbell/vim-eighties'
   Plug 'mhinz/vim-signify'
   Plug 'rstacruz/vim-hyperstyle'
   Plug 'rstacruz/vim-xtract'
@@ -78,6 +79,13 @@ Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'rstacruz/vim-closer'
 Plug 'w0rp/ale'
+Plug 'easymotion/vim-easymotion'
+Plug 'autozimu/LanguageClient-neovim', {
+  \ 'branch': 'next',
+  \ 'do': 'bash install.sh',
+  \ }
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'tpope/vim-projectionist'
 " }}}
 
@@ -92,7 +100,6 @@ Plug 'w0rp/ale'
 " Plug 'tpope/vim-endwise'
 " Plug 'tpope/vim-repeat'
 " Plug 'whatyouhide/vim-lengthmatters' " highlight 80+ chars
-" Plug 'easymotion/vim-easymotion'
 " Plug 'vim-scripts/restore_view.vim'
 " }}}
 
@@ -118,17 +125,10 @@ Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'wavded/vim-stylus', { 'for': 'stylus' }
-Plug 'irrationalistic/vim-tasks'
 " Plug 'romanzolotarev/vim-journal', { 'for': 'journal' }
 " Plug 'tpope/vim-cucumber', { 'for': 'ruby' }
 " Plug 'jceb/vim-orgmode', { 'for': 'org' }
 " }}}
 "
-" Plugins: Ultisnips {{{
-if version >= 704
-  Plug 'SirVer/ultisnips'
-endif
-" }}}
-
 call plug#end()
 " vim:foldmethod=marker

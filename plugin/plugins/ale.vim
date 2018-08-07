@@ -30,8 +30,8 @@ let g:ale_sign_warning = '! '
 " Enable completion where available
 let g:ale_completion_enabled = 1
 
-"" [N] <Leader>af -- Ale: fix syntax issues
-nmap <Leader>af <Plug>(ale_fix)
+"" [N] <Leader>ef -- Ale: fix syntax issues
+nmap <Leader>ef <Plug>(ale_fix)
 
 "" [N] <Leader>ev -- Errors: verify ale setup
 "" [N] <Leader>en -- Errors: next
