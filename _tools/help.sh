@@ -10,7 +10,7 @@ echo "KEY BINDINGS                                                     *vimfiles
 echo ""
 grep -h -E '^\"\"' plugin/*/*.vim plugin/*.vim \
   | sed 's/\[N\]/   /g' \
-  | sort \
+  | sort -V \
   | sed 's/: / -- /g' \
   | sed 's/^"" //g' \
   | awk -F ' -- ' '{printf "`%-24s` |%s|  %s\n", $1, $2, $3}'

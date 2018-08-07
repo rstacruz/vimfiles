@@ -1,6 +1,6 @@
 " `, a` - Apps {{{
-  "" [N] <leader>as -- Apps: show scope
-  "" [N] <leader>al -- Apps: show language client
+"" [N] <leader>as -- Apps: show scope
+"" [N] <leader>al -- Apps: show language client
 
   " Useful for creating color schemes
   nnoremap <Leader>as :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
@@ -8,11 +8,11 @@
 " }}}
 
 " `, e` - Errors {{{
-  "" [N] <Leader>ef -- Errors: run formatter
-  "" [N] <Leader>ev -- Errors: verify ale setup
-  "" [N] <Leader>en -- Errors: next
-  "" [N] <Leader>ep -- Errors: previous
-  "" [N] <Leader>ec -- Errors: clear errors
+"" [N] <Leader>ef -- Errors: run formatter
+"" [N] <Leader>ev -- Errors: verify ale setup
+"" [N] <Leader>en -- Errors: next
+"" [N] <Leader>ep -- Errors: previous
+"" [N] <Leader>ec -- Errors: clear errors
 
   if globpath(&rtp, "plugin/ale.vim") != ""
     nmap <Leader>ef <Plug>(ale_fix)
@@ -25,12 +25,13 @@
 " }}}
 
 " `, .` - Easymotion {{{
+"" [N] <leader>.k -- Jump: to a line above [easymotion]
+"" [N] <leader>.j -- Jump: to a line below [easymotion]
+"" [N] <leader>.w -- Jump: to a word below [easymotion]
+"" [N] <leader>.f -- Jump: to a character above [easymotion]
+"" [N] <leader>.F -- Jump: to a character below [easymotion]
+
   if globpath(&rtp, "plugin/EasyMotion.vim") != ""
-    "" [N] <leader>.k -- Easymotion: jump to a line above
-    "" [N] <leader>.j -- Easymotion: jump to a line below
-    "" [N] <leader>.w -- Easymotion: jump to a word below
-    "" [N] <leader>.f -- Easymotion: jump to a character above
-    "" [N] <leader>.F -- Easymotion: jump to a character below
     nmap <leader>. <Plug>(easymotion-prefix)
     vmap <leader>. <Plug>(easymotion-prefix)
   endif
@@ -45,8 +46,9 @@
 " }}}
 
 " `, f e` - Editor {{{
-  "" [N] <leader>fed -- Editor: Open config
-  "" [N] <leader>fek -- Editor: Open key bindings
+"" [N] <leader>fed -- Editor: Open config
+"" [N] <leader>fek -- Editor: Open key bindings
+
   nnoremap <leader>fed :e ~/.vimrc<CR>
   nnoremap <leader>fek :e ~/.vim/plugin/key-bindings.vim<CR>
 " }}}
@@ -96,13 +98,14 @@ endif
 " }}}
 
 " `, t` - Terminal {{{
+"" [N] <leader>tn -- Terminal: open in new split [neovim]
+"" [N] <leader>ts -- Terminal: open in new split [neovim]
+"" [N] <leader>tv -- Terminal: open in new vertical split [neovim]
+"" [N] <leader>tt -- Terminal: open in new tab [neovim]
+"" [N] <leader>t. -- Terminal: open here [neovim]
+"" [N] <leader>' -- Terminal: open here [neovim]
+
 if has("nvim")
-  "" [N] <leader>tn -- Terminal: open in new split
-  "" [N] <leader>ts -- Terminal: open in new split
-  "" [N] <leader>tv -- Terminal: open in new vertical split
-  "" [N] <leader>tt -- Terminal: open in new tab
-  "" [N] <leader>t. -- Terminal: open here
-  "" [N] <leader>' -- Terminal: open here
   nnoremap <Leader>' <C-w>n:te<CR>a
   nnoremap <Leader>tn <C-w>n:te<CR>
   nnoremap <Leader>ts <C-w>n:te<CR>
