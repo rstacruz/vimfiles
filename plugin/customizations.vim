@@ -49,12 +49,6 @@ set fillchars="vert: "
 autocmd Filetype ruby setlocal foldmethod=manual
 
 "
-" Useful for creating color schemes
-"
-
-nmap <Leader>SS :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
-
-"
 " Opinion extensions
 "
 

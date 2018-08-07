@@ -79,6 +79,7 @@ Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'rstacruz/vim-closer'
 Plug 'w0rp/ale'
+Plug 'easymotion/vim-easymotion'
 Plug 'autozimu/LanguageClient-neovim', {
   \ 'branch': 'next',
   \ 'do': 'bash install.sh',
@@ -99,7 +100,6 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'tpope/vim-endwise'
 " Plug 'tpope/vim-repeat'
 " Plug 'whatyouhide/vim-lengthmatters' " highlight 80+ chars
-" Plug 'easymotion/vim-easymotion'
 " Plug 'vim-scripts/restore_view.vim'
 " }}}
 
