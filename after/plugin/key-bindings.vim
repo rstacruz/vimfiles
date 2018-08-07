@@ -122,20 +122,20 @@ endif
 " }}}
 
 " `, g` - VCS/Git {{{
-"" [N] <leader>gs -- Git: see changed files [fzf]
-"" [N] <leader>gS -- Git: status [fugitive]
+"" [N] <leader>gS -- Git: see changed files [fzf]
+"" [N] <leader>gs -- Git: status [fugitive]
 "" [N] <leader>gc -- Git: commit [fugitive]
 "" [N] <leader>gd -- Git: diff [fugitive]
 "" [N] <leader>gb -- Git: blame [fugitive]
 
 if exists(':GFiles')
-  nnoremap <leader>gs :GFiles?<CR>
+  nnoremap <leader>gS :GFiles?<CR>
 endif
 
-if exists(':Gstatus')
+if 1 " exists(':Gstatus')
   nnoremap <leader>gd :Gdiff<cr>
   nnoremap <leader>gb :Gblame<cr>
-  nnoremap <leader>gS :Gstatus<CR>
+  nnoremap <leader>gs :Gstatus<CR>
   nnoremap <leader>gc :Gcommit<CR>
 endif
 " }}}
