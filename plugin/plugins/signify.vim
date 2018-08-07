@@ -11,5 +11,7 @@ let g:signify_sign_change            = '~'
 let g:signify_sign_delete            = '-'
 let g:signify_sign_delete_first_line = '·'
 
+let g:signify_line_highlight = 0
+
 " Skip for some filetypes
 let g:signify_skip_filetype = { 'taskpaper': 1 }

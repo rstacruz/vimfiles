@@ -29,6 +29,9 @@ function! s:darktheme()
   hi VertSplit ctermbg=none ctermfg=233 cterm=none
   hi NonText ctermbg=none ctermfg=233 cterm=none
   hi Folded ctermbg=none ctermfg=8 cterm=none
+  hi SignifySignAdd ctermbg=none ctermfg=4
+  hi SignifySignDelete ctermbg=none ctermfg=10
+  hi SignifySignChange ctermbg=none ctermfg=8
   set fillchars=fold: 
 endfunction
 
