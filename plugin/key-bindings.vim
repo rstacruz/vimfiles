@@ -43,31 +43,42 @@ nnoremap <leader>fek :e ~/.vim/plugin/key-bindings.vim<CR>
 "" [N] <leader>bp -- Buffer: prev
 "" [N] <leader>bd -- Buffer: delete
 "" [N] <leader>bD -- Buffer: delete!
+"" [N] <leader>bb -- Buffer: buffers (fzf)
+"" [N] <leader>bh -- Buffer: history (fzf)
+
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bd :bdelete<CR>
 nnoremap <leader>bD :bdelete!<CR>
 nnoremap <leader>bp :bprev<CR>
+
+if globpath(&rtp, "plugin/fzf.vim") != ""
+  nnoremap <leader>bb :Buffers<CR>
+  nnoremap <leader>bh :History<CR>
+endif
 " }}}
 
 " `, p` - Project {{{
+"" [N] - -- Open tree
 "" [N] <leader>pr -- Project: show related files (tests, etc)
-nnoremap <Leader>pr :exe 'FZF -q ' . join(split(join(split(expand('%:t:r'), '_'), ''), '-'), '')<CR>
+"" [N] <leader>pt -- Project: open tree [nerdtree]
+"" [N] <leader>pp -- Project: save session and open project switcher
+"" [N] <leader>pP -- Project: discard session and open project switcher
+"" [N] <leader>pf -- Project: open file [fzf]
+"" [N] <leader>ps -- Project: open tags (symbols) [fzf]
+"" [N] <C-p> -- Project: open file [fzf]
 
 if globpath(&rtp, "plugin/NERD_tree.vim") != ""
-  "" [N] - -- Open tree
   nnoremap - :NERDTreeFind<CR>
-
-  " [N] <leader>pt -- Project: open tree
-  " [N] <leader>pp -- Project: save session and open project switcher
-  " [N] <leader>pP -- Project: discard session and open project switcher
   nnoremap <leader>pt :NERDTree<CR>
   nnoremap <leader>pp :SSave!<CR>
   nnoremap <leader>pP :SClose<CR>
 endif
 
 if globpath(&rtp, "plugin/fzf.vim") != ""
-  " [N] <leader>ps -- Project: open tags (symbols)
+  nnoremap <Leader>pr :exe 'FZF -q ' . join(split(join(split(expand('%:t:r'), '_'), ''), '-'), '')<CR>
+  nnoremap <leader>pf :GFiles<cr>
   nnoremap <leader>ps :Tag<CR>
+  nnoremap  <C-p> :GFiles<cr>
 endif
 " }}}
 
@@ -92,8 +103,36 @@ if has("nvim")
 endif
 " }}}
 
+" `, g` - VCS/Git {{{
+"" [N] <leader>gs -- Git: see changed files
+"" [N] <leader>gS -- Git: status
+"" [N] <leader>gc -- Git: commit
+
+if globpath(&rtp, "plugin/fzf.vim") != ""
+  nnoremap <leader>gs :GFiles?<CR>
+endif
+
+if globpath(&rtp, "plugin/fugitive.vim") != ""
+  nnoremap <leader>gS :Gstatus<CR>
+  nnoremap <leader>gc :Gcommit<CR>
+endif
+" }}}
+
+" `, /` - Find {{{
+"" [N] <leader>/ -- Find: find in project
+"" [N] <leader>* -- Find: find in project from cursor
+
+if globpath(&rtp, "plugin/fzf.vim") != ""
+  nnoremap <leader>/ :Ag<CR>
+  nnoremap <leader>* :Ag <C-r><C-w><CR>
+endif
+" }}}
+
 " Misc {{{
-"" [N] <leader>T -- Tab: open a new tab
+"" [N] <leader>T -- Misc: open a new tab
+"" [N] - -- Misc: Open tree
+"" [N] <CR> -- Misc: Open fold
+
 nnoremap <leader>T :tabnew<cr>
 
 " Buffer navigation
@@ -102,12 +141,10 @@ nnoremap <C-L> :bnext<CR>
 inoremap <C-H> <Esc>:bprev<CR>
 inoremap <C-L> <Esc>:bnext<CR>
 
-"" [N] - -- Open tree
 if globpath(&rtp, "plugin/NERD_tree.vim") != ""
   nnoremap - :NERDTreeFind<CR>
 endif
 
-"" [N] <CR> -- Open fold
 nnoremap <Enter> za
 " vim:foldmethod=marker
 " }}}

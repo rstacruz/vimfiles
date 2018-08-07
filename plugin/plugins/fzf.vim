@@ -25,11 +25,9 @@ nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>bh :History<CR>
 
 "" [N] <leader>ff -- FZF: All files
-"" [N] <leader>fg -- FZF: Git changed files
-"" [N] <leader>ft -- FZF: Search ctags
 nnoremap <leader>ff :Files<CR>
-nnoremap <leader>fg :GFiles?<CR>
-nnoremap <leader>ft :Tags<CR>
 
 "" [N] <leader>/ -- FZF: find in project
 nnoremap <leader>/ :Ag<CR>
+nnoremap <leader>* :Ag <C-r><C-w><CR>
+
