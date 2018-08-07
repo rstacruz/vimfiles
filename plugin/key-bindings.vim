@@ -1,50 +1,63 @@
 " `, a` - Apps {{{
-"" [N] <leader>as -- Apps: show scope
-" Useful for creating color schemes
-nmap <Leader>as :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
+  "" [N] <leader>as -- Apps: show scope
+  "" [N] <leader>al -- Apps: show language client
+
+  " Useful for creating color schemes
+  nnoremap <Leader>as :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
+  nnoremap <leader>al call :LanguageClient_contextMenu()<CR>
 " }}}
 
 " `, e` - Errors {{{
-if globpath(&rtp, "plugin/ale.vim") != ""
   "" [N] <Leader>ef -- Errors: run formatter
-  nmap <Leader>ef <Plug>(ale_fix)
-
   "" [N] <Leader>ev -- Errors: verify ale setup
   "" [N] <Leader>en -- Errors: next
   "" [N] <Leader>ep -- Errors: previous
   "" [N] <Leader>ec -- Errors: clear errors
-  nnoremap <Leader>ev :ALEVerify<CR>
-  nnoremap <Leader>en :ALENextWrap<CR>
-  nnoremap <Leader>ep :ALEPreviousWrap<CR>
-  nnoremap <Leader>eN :ALEPreviousWrap<CR>
-  nnoremap <Leader>ec :ALEResetBuffer<CR>
-endif
+
+  if globpath(&rtp, "plugin/ale.vim") != ""
+    nmap <Leader>ef <Plug>(ale_fix)
+    nnoremap <Leader>ev :ALEDetail<CR>
+    nnoremap <Leader>en :ALENextWrap<CR>
+    nnoremap <Leader>ep :ALEPreviousWrap<CR>
+    nnoremap <Leader>eN :ALEPreviousWrap<CR>
+    nnoremap <Leader>ec :ALEResetBuffer<CR>
+  endif
 " }}}
 
 " `, .` - Easymotion {{{
-if globpath(&rtp, "plugin/EasyMotion.vim") != ""
-  "" [N] <leader>.k -- Easymotion: jump to a line above
-  "" [N] <leader>.j -- Easymotion: jump to a line below
-  "" [N] <leader>.f -- Easymotion: jump to a character above
-  "" [N] <leader>.F -- Easymotion: jump to a character below
-  nnoremap <leader>. <Plug>(easymotion-prefix)
-endif
+  if globpath(&rtp, "plugin/EasyMotion.vim") != ""
+    "" [N] <leader>.k -- Easymotion: jump to a line above
+    "" [N] <leader>.j -- Easymotion: jump to a line below
+    "" [N] <leader>.w -- Easymotion: jump to a word below
+    "" [N] <leader>.f -- Easymotion: jump to a character above
+    "" [N] <leader>.F -- Easymotion: jump to a character below
+    nmap <leader>. <Plug>(easymotion-prefix)
+    vmap <leader>. <Plug>(easymotion-prefix)
+  endif
+" }}}
+
+" `, f` - File {{{
+  "" [N] <leader>ff -- Files: All files [fzf]
+
+  if globpath(&rtp, "plugin/fzf.vim") != ""
+    nnoremap <leader>ff :Files<CR>
+  endif
 " }}}
 
 " `, f e` - Editor {{{
-"" [N] <leader>fed -- Editor: Open config
-"" [N] <leader>fek -- Editor: Open key bindings
-nnoremap <leader>fed :e ~/.vimrc<CR>
-nnoremap <leader>fek :e ~/.vim/plugin/key-bindings.vim<CR>
+  "" [N] <leader>fed -- Editor: Open config
+  "" [N] <leader>fek -- Editor: Open key bindings
+  nnoremap <leader>fed :e ~/.vimrc<CR>
+  nnoremap <leader>fek :e ~/.vim/plugin/key-bindings.vim<CR>
 " }}}
 
 " `, b` - Buffer {{{
 "" [N] <leader>bn -- Buffer: next
 "" [N] <leader>bp -- Buffer: prev
-"" [N] <leader>bd -- Buffer: delete
-"" [N] <leader>bD -- Buffer: delete!
-"" [N] <leader>bb -- Buffer: buffers (fzf)
-"" [N] <leader>bh -- Buffer: history (fzf)
+"" [N] <leader>bd -- Buffer: close (delete)
+"" [N] <leader>bD -- Buffer: close all
+"" [N] <leader>bb -- Buffer: buffers [fzf]
+"" [N] <leader>bh -- Buffer: history [fzf]
 
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bd :bdelete<CR>
@@ -104,23 +117,27 @@ endif
 " }}}
 
 " `, g` - VCS/Git {{{
-"" [N] <leader>gs -- Git: see changed files
-"" [N] <leader>gS -- Git: status
-"" [N] <leader>gc -- Git: commit
+"" [N] <leader>gs -- Git: see changed files [fzf]
+"" [N] <leader>gS -- Git: status [fugitive]
+"" [N] <leader>gc -- Git: commit [fugitive]
+"" [N] <leader>gd -- Git: diff [fugitive]
+"" [N] <leader>gb -- Git: blame [fugitive]
 
 if globpath(&rtp, "plugin/fzf.vim") != ""
   nnoremap <leader>gs :GFiles?<CR>
 endif
 
 if globpath(&rtp, "plugin/fugitive.vim") != ""
+  nnoremap <leader>gd :Gdiff<cr>
+  nnoremap <leader>gb :Gblame<cr>
   nnoremap <leader>gS :Gstatus<CR>
   nnoremap <leader>gc :Gcommit<CR>
 endif
 " }}}
 
 " `, /` - Find {{{
-"" [N] <leader>/ -- Find: find in project
-"" [N] <leader>* -- Find: find in project from cursor
+"" [N] <leader>/ -- Find: find in project [fzf]
+"" [N] <leader>* -- Find: find in project from cursor [fzf]
 
 if globpath(&rtp, "plugin/fzf.vim") != ""
   nnoremap <leader>/ :Ag<CR>
@@ -128,23 +145,67 @@ if globpath(&rtp, "plugin/fzf.vim") != ""
 endif
 " }}}
 
+" Fugitive {{{
+  "" [Fugitive] D -- Fugitive: diff
+  "" [Fugitive] dv -- Fugitive: diff vertically
+  "" [Fugitive] cc -- Fugitive: commit
+  "" [Fugitive] ca -- Fugitive: commit amend
+  "" [Fugitive] cA -- Fugitive: commit amend no message
+" }}}
+
+" `, m` - Major mode {{{
+  "" [N] <leader>mr -- Major: rename this symbol [languageclient]
+
+  if globpath(&rtp, "plugin/LanguageClient.vim") != ""
+    nnoremap <silent> <leader>mr :call LanguageClient#textDocument_rename()<CR>
+  endif
+" }}}
+
+" `g` - Go to {{{
+  "" [N] gh -- Lang: get hint [languageclient]
+  "" [N] gd -- Lang: go to definition [languageclient]
+
+  if globpath(&rtp, "plugin/LanguageClient.vim") != ""
+    nnoremap <silent> gh :call LanguageClient#textDocument_hover()<CR>
+    nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+  endif
+" }}}
+
 " Misc {{{
-"" [N] <leader>T -- Misc: open a new tab
-"" [N] - -- Misc: Open tree
-"" [N] <CR> -- Misc: Open fold
+  "" [N] <leader>T -- Misc: open a new tab
+  "" [N] - -- Misc: Open tree
+  "" [N] <Enter> -- Misc: Open fold
+  "" [N] <S-Enter> -- Misc: Open fold recursively
+  "" [N] <C-Enter> -- Misc: Close fold recursively
+  "" [N] <leader><TAB> -- Misc: complete commands [fzf]
+  "" [I] <C-e> -- Misc: expand abbreviation [emmet]
+  "" [V] <C-e> -- Misc: expand abbreviation [emmet]
+  
+  nnoremap <leader>T :tabnew<cr>
 
-nnoremap <leader>T :tabnew<cr>
-
-" Buffer navigation
-nnoremap <C-H> :bprev<CR>
-nnoremap <C-L> :bnext<CR>
-inoremap <C-H> <Esc>:bprev<CR>
-inoremap <C-L> <Esc>:bnext<CR>
-
-if globpath(&rtp, "plugin/NERD_tree.vim") != ""
-  nnoremap - :NERDTreeFind<CR>
-endif
-
-nnoremap <Enter> za
-" vim:foldmethod=marker
+  if globpath(&rtp, "plugin/emmet.vim") != ""
+    imap <C-e> <C-y>,
+    vmap <C-e> <C-y>,
+  endif
+  
+  " Buffer navigation
+  nnoremap <C-H> :bprev<CR>
+  nnoremap <C-L> :bnext<CR>
+  inoremap <C-H> <Esc>:bprev<CR>
+  inoremap <C-L> <Esc>:bnext<CR>
+  
+  if globpath(&rtp, "plugin/NERD_tree.vim") != ""
+    nnoremap - :NERDTreeFind<CR>
+  endif
+  
+  if globpath(&rtp, "plugin/fzf.vim") != ""
+    nmap <leader><tab> <plug>(fzf-maps-n)
+    xmap <leader><tab> <plug>(fzf-maps-x)
+    omap <leader><tab> <plug>(fzf-maps-o)
+  endif
+  
+  nnoremap <Enter> za
+  nnoremap <S-Enter> zO
+  nnoremap <C-Enter> zC
+  " vim:foldmethod=marker
 " }}}

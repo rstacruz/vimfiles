@@ -1,4 +1,4 @@
-if globpath(&rtp, "plugin/easymotion.vim") == "" | finish | endif
+if globpath(&rtp, "plugin/EasyMotion.vim") == "" | finish | endif
 
 " Dvorak mode
 let g:EasyMotion_keys = 'aoeuidhtnspyfgcrlqjkxbmwvzAOEUIDHTNSPYFGCRLQJKXBMWVZ.'
