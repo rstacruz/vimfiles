@@ -12,7 +12,6 @@ if !has('nvim') && !exists('g:gui_oni')
 endif
 
 Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
