@@ -8,9 +8,9 @@ echo ""
 echo "=============================================================================="
 echo "KEY BINDINGS                                                     *vimfiles-keys*"
 echo ""
-grep -h -E '^\"\"' plugin/*/*.vim plugin/*.vim \
+grep -h -E '^\"\"' plugin/*/*.vim plugin/*.vim after/plugin/*.vim \
   | sed 's/\[N\]/   /g' \
-  | sort \
+  | sort -V \
   | sed 's/: / -- /g' \
   | sed 's/^"" //g' \
   | awk -F ' -- ' '{printf "`%-24s` |%s|  %s\n", $1, $2, $3}'

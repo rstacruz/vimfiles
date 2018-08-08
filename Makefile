@@ -4,6 +4,12 @@ pwd := $(shell pwd -LP)
 
 default: install
 
+docs: doc/vimfiles_keys.txt
+
+doc/vimfiles_keys.txt:
+	mkdir -p doc
+	bash _tools/help.sh > $@
+
 help:
 	@bash _tools/help.sh
 

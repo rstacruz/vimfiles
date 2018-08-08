@@ -62,4 +62,7 @@ set showbreak=↪
 if has('nvim')
   " Show search/replace results incrementally
   set inccommand=nosplit
+
+  " Start insert mode automatically on terminal open
+  autocmd TermOpen * startinsert
 endif
