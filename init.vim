@@ -41,7 +41,7 @@ endif
 
 " Plugins: Neovim-only {{{
 if has('nvim') && !exists('g:gui_oni')
-  Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
+" Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
 " Plug 'sbdchd/neoformat'
 endif
 " }}}
@@ -83,7 +83,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plugins: Language specific {{{
 " Plug 'dag/vim-fish'
   Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
-  Plug 'elixir-lang/vim-elixir', { 'for': ['elixir', 'ex', 'exs'] }
+  Plug 'elixir-editors/vim-elixir' ", { 'for': ['elixir', 'ex', 'exs'] }
 " Plug 'groenewege/vim-less', { 'for': 'less' }
   Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss', 'less'] }
 " Plug 'kchmck/vim-coffee-script', { 'for': ['coffee', 'coffeescript'] }

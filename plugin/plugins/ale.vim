@@ -10,6 +10,7 @@ let g:ale_linters = {
 \ 'javascript': ['eslint', 'flow'],
 \ 'javascript.jsx': ['eslint', 'flow'],
 \ 'html': ['htmlhint'],
+\ 'elixir': [],
 \ }
 
 " Fixers
@@ -19,6 +20,7 @@ let g:ale_fixers = {
 \ 'markdown': [ 'prettier' ],
 \ 'javascript': [ 'prettier-eslint' ],
 \ 'javascript.jsx': [ 'prettier-eslint' ],
+\ 'elixir': [ 'mix_format' ],
 \ }
 
 " Autofix (https://github.com/w0rp/ale#2ii-fixing)

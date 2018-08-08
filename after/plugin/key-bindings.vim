@@ -1,10 +1,15 @@
 " `, a` - Apps {{{
 "" [N] <leader>as -- Apps: show scope
 "" [N] <leader>al -- Apps: show language client
+"" [N] <leader>ar -- Apps: ranger [neovim]
 
   " Useful for creating color schemes!
   nnoremap <Leader>as :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
   nnoremap <leader>al call :LanguageClient_contextMenu()<CR>
+
+if has("nvim")
+  nnoremap <Leader>ar <C-w>n:term env EDITOR="nvim -cc split" ranger<CR>
+endif
 " }}}
 
 " `, e` - Errors {{{
@@ -108,7 +113,7 @@ endif
 "" [N] <leader>' -- Terminal: open here [neovim]
 
 if has("nvim")
-  nnoremap <Leader>' <C-w>n:te<CR>a
+  nnoremap <Leader>' <C-w>n:te<CR>
   nnoremap <Leader>tn <C-w>n:te<CR>
   nnoremap <Leader>ts <C-w>n:te<CR>
   nnoremap <Leader>tv <C-w>v<C-w>l:te<CR>

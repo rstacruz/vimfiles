@@ -63,3 +63,6 @@ if has('nvim')
   " Show search/replace results incrementally
   set inccommand=nosplit
 endif
+
+" Start insert mode automatically on terminal open
+autocmd TermOpen * startinsert
