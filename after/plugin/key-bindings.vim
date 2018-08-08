@@ -86,8 +86,8 @@ endif
 if exists(':NERDTreeFind')
   nnoremap - :NERDTreeFind<CR>
   nnoremap <leader>pt :NERDTree<CR>
-  nnoremap <leader>pp :SSave!<CR>
-  nnoremap <leader>pP :SClose<CR>
+  nnoremap <leader>pP :SSave!<CR>
+  nnoremap <leader>pp :SClose<CR>
 endif
 
 nnoremap <Leader>pr :exe 'FZF -q ' . join(split(join(split(expand('%:t:r'), '_'), ''), '-'), '')<CR>
@@ -248,3 +248,10 @@ if exists(':Files')
   imap <c-x><c-l> <plug>(fzf-complete-line)
   inoremap <expr> <c-x><c-n> fzf#vim#complete#path("git ls-files \| xargs realpath")
 endif
+
+"" [N] <C-1> -- Misc: move to left pane
+"" [N] <C-2> -- Misc: move to right pane
+nnoremap <C-1> <C-w>h
+nnoremap <C-2> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-n> <C-w>l
