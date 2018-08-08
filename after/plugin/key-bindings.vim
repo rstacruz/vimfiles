@@ -211,12 +211,6 @@ endif
     vmap <C-e> <C-y>,
   endif
   
-  " Buffer navigation
-  nnoremap <C-H> :bprev<CR>
-  nnoremap <C-L> :bnext<CR>
-  inoremap <C-H> <Esc>:bprev<CR>
-  inoremap <C-L> <Esc>:bnext<CR>
-  
   if exists(':NERDTreeFind')
     nnoremap - :NERDTreeFind<CR>
   endif
@@ -260,3 +254,4 @@ nnoremap <C-1> <C-w>h
 nnoremap <C-2> <C-w>l
 nnoremap <C-h> <C-w>h
 nnoremap <C-n> <C-w>l
+nnoremap <C-l> <C-w>l
