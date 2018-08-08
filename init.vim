@@ -20,7 +20,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'irrationalistic/vim-tasks'
 Plug 'flazz/vim-colorschemes'
-if !exists('g:gui_oni') | Plug 'justincampbell/vim-eighties' | endif
+" if !exists('g:gui_oni') | Plug 'justincampbell/vim-eighties' | endif
 if version >= 704 | Plug 'SirVer/ultisnips' | endif
 " }}}
 
