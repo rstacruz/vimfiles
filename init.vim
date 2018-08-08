@@ -7,10 +7,7 @@ filetype plugin indent on
 call plug#begin('~/.vim/vendor')
 
 " Essentials {{{
-if !has('nvim') && !exists('g:gui_oni')
-  Plug 'tpope/vim-sensible'
-endif
-
+if !has('nvim') && !exists('g:gui_oni') | Plug 'tpope/vim-sensible' | endif
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -22,15 +19,9 @@ Plug 'rstacruz/vim-opinion'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'irrationalistic/vim-tasks'
+Plug 'flazz/vim-colorschemes'
 if !exists('g:gui_oni') | Plug 'justincampbell/vim-eighties' | endif
 if version >= 704 | Plug 'SirVer/ultisnips' | endif
-" }}}
-
-" Plugins: Themes {{{
-" Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
-" Plug 'spf12/vim-colors'
-" Plug 'chriskempson/base16-vim'
-Plug 'flazz/vim-colorschemes'
 " }}}
 
 " Stop here if we're in minimal (Git) mode {{{
@@ -51,30 +42,19 @@ endif
 " Plugins: Neovim-only {{{
 if has('nvim') && !exists('g:gui_oni')
   Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
-  Plug 'sbdchd/neoformat'
+" Plug 'sbdchd/neoformat'
 endif
-" }}}
-
-" Plugins: Unite {{{
-" if !exists('g:gui_oni')
-"   Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-"   Plug 'Shougo/unite.vim'
-"   Plug 'tsukkee/unite-tag'
-"   " Plug 'tacroe/unite-mark'
-"   " Plug 'Shougo/unite-outline'
-"   Plug 'rstacruz/vim-fastunite'
-" endif
 " }}}
 
 " Plugins: All others {{{
 if !exists('g:gui_oni')
-  " Plug 'craigemery/vim-autotag'
   Plug 'godlygeek/tabular'
   Plug 'mhinz/vim-signify'
   Plug 'rstacruz/vim-hyperstyle'
   Plug 'rstacruz/vim-xtract'
   Plug 'thinca/vim-visualstar'
 endif
+
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'rstacruz/vim-closer'
@@ -82,11 +62,8 @@ Plug 'w0rp/ale'
 Plug 'easymotion/vim-easymotion'
 Plug 'autozimu/LanguageClient-neovim', {
   \ 'branch': 'next',
-  \ 'do': 'bash install.sh',
-  \ }
-
+  \ 'do': 'bash install.sh' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'tpope/vim-projectionist'
 " }}}
 
 " Plugins: I can live without you {{{
@@ -103,13 +80,12 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'vim-scripts/restore_view.vim'
 " }}}
 
-
 " Plugins: Language specific {{{
 " Plug 'dag/vim-fish'
-Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
-Plug 'elixir-lang/vim-elixir', { 'for': ['elixir', 'ex', 'exs'] }
+  Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
+  Plug 'elixir-lang/vim-elixir', { 'for': ['elixir', 'ex', 'exs'] }
 " Plug 'groenewege/vim-less', { 'for': 'less' }
-Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss', 'less'] }
+  Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss', 'less'] }
 " Plug 'kchmck/vim-coffee-script', { 'for': ['coffee', 'coffeescript'] }
 " Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 " Plug 'mitsuhiko/vim-python-combined', { 'for': 'python' }
@@ -121,14 +97,14 @@ Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss', 'less'] }
 " Plug 'slashmili/alchemist.vim', { 'for': ['elixir', 'ex'] }
 " Plug 'slim-template/vim-slim', { 'for': ['slim'] }
 " Plug 'tpope/vim-bundler', { 'for': 'ruby' }
-Plug 'tpope/vim-haml', { 'for': 'haml' }
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug 'wavded/vim-stylus', { 'for': 'stylus' }
+  Plug 'tpope/vim-haml', { 'for': 'haml' }
+  Plug 'tpope/vim-rails', { 'for': 'ruby' }
+  Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+  Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 " Plug 'romanzolotarev/vim-journal', { 'for': 'journal' }
 " Plug 'tpope/vim-cucumber', { 'for': 'ruby' }
 " Plug 'jceb/vim-orgmode', { 'for': 'org' }
 " }}}
-"
+
 call plug#end()
 " vim:foldmethod=marker
