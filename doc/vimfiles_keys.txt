@@ -1,0 +1,58 @@
+*vimfiles*  Vimfiles documentation
+
+See: git@github.com:rstacruz/vimfiles
+
+==============================================================================
+KEY BINDINGS                                                     *vimfiles-keys*
+
+`    gJ                  ` |Go|  join multiline statement (like J) [splitjoin]
+`    gS                  ` |Go|  split multiline statement [splitjoin]
+`    gd                  ` |Go|  go to definition [languageclient]
+`    gh                  ` |Go|  get hint [languageclient]
+`    <C-p>               ` |Project|  open file [fzf]
+`    <Leader>eF          ` |Errors|  ale fix suggest [ale]
+`    <Leader>ec          ` |Errors|  clear errors [ale]
+`    <Leader>ef          ` |Errors|  run formatter [ale]
+`    <Leader>en          ` |Errors|  next [ale]
+`    <Leader>ep          ` |Errors|  previous [ale]
+`    <Leader>ev          ` |Errors|  verify ale setup [ale]
+`    <leader>al          ` |Apps|  show language client
+`    <leader>as          ` |Apps|  show scope
+`    <leader>bD          ` |Buffer|  close all
+`    <leader>bb          ` |Buffer|  buffers [fzf]
+`    <leader>bd          ` |Buffer|  close (delete)
+`    <leader>bh          ` |Buffer|  history [fzf]
+`    <leader>bn          ` |Buffer|  next
+`    <leader>bp          ` |Buffer|  prev
+`    <leader>fed         ` |Editor|  Open config
+`    <leader>fek         ` |Editor|  Open key bindings
+`    <leader>gS          ` |Git|  see changed files [fzf]
+`    <leader>gb          ` |Git|  blame [fugitive]
+`    <leader>gc          ` |Git|  commit [fugitive]
+`    <leader>gd          ` |Git|  diff [fugitive]
+`    <leader>gs          ` |Git|  status [fugitive]
+`    <leader>hk          ` |Help|  key bindings
+`    <leader>pP          ` |Project|  discard session and open project switcher
+`    <leader>pf          ` |Project|  open file [fzf]
+`    <leader>pp          ` |Project|  save session and open project switcher
+`    <leader>pr          ` |Project|  show related files (tests, etc)
+`    <leader>ps          ` |Project|  open tags (symbols) [fzf]
+`    <leader>pt          ` |Project|  open tree [nerdtree]
+`    <leader>tn          ` |Terminal|  open in new split [neovim]
+`    <leader>ts          ` |Terminal|  open in new split [neovim]
+`    <leader>tt          ` |Terminal|  open in new tab [neovim]
+`    <leader>tv          ` |Terminal|  open in new vertical split [neovim]
+`    <leader>t.          ` |Terminal|  open here [neovim]
+`    <leader>'           ` |Terminal|  open here [neovim]
+`    <leader>*           ` |Find|  find in project from cursor [fzf]
+`    <leader>.F          ` |Jump|  to a character below [easymotion]
+`    <leader>.f          ` |Jump|  to a character above [easymotion]
+`    <leader>.j          ` |Jump|  to a line below [easymotion]
+`    <leader>.k          ` |Jump|  to a line above [easymotion]
+`    <leader>.w          ` |Jump|  to a word below [easymotion]
+`    <leader>/           ` |Find|  find in project [fzf]
+`[I] <c-x><c-f>          ` |FZF|  complete file
+`[I] <c-x><c-j>          ` |FZF|  complete file (via ag)
+`[:] :Usage              ` |Vimfiles|  show usage information
+
+vim:tw=78:ts=8:ft=help:norl:
