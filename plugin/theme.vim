@@ -4,6 +4,7 @@
 
 command! Dark :call <SID>darktheme()
 command! Light :call <SID>lighttheme()
+command! ThemeOverrides :call <SID>themeoverrides()
 command! Guitheme :call <SID>guitheme()
 
 " force no background for certain things
@@ -14,18 +15,23 @@ au ColorScheme * hi LineNr ctermbg=none
 
 function! s:darktheme()
   "let g:airline_theme='tomorrow'
-  "let g:airline_theme='term'
   "let g:airline_theme='atomic'
   "let g:airline_theme='lucius'
-  let g:airline_theme='zenburn'
+  " transparent bg: zenburn
+  " black bg: term
+  " gray bg: alduin, angr
+  let g:airline_theme='alduin'
   set background=dark
   "color lol
-  "color alduin
+  "color alduin - brownish
   "color 3dglasses
-  "color black_angus
   "color Black
   "color blaquemagick - good
   color base16-atelierlakeside
+  call s:themeoverrides()
+endfunction
+
+function! s:themeoverrides()
   hi VertSplit ctermbg=none ctermfg=233 cterm=none
   hi NonText ctermbg=none ctermfg=233 cterm=none
   hi Folded ctermbg=none ctermfg=8 cterm=none

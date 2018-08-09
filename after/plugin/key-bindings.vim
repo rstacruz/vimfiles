@@ -1,3 +1,5 @@
+" vim:foldmethod=marker
+
 " `, a` - Apps {{{
 "" [N] <leader>as -- Apps: show scope
 "" [N] <leader>al -- Apps: show language client
@@ -152,6 +154,7 @@ endif
 if exists(':Ag')
   nnoremap <leader>/ :Ag<CR>
   nnoremap <leader>* :Ag <C-r><C-w><CR>
+  vnoremap <leader>* y:Ag <C-r>"<C-b><CR>
 endif
 " }}}
 
@@ -194,6 +197,17 @@ endif
   nnoremap <silent> <leader>hk :Usage<CR>
 " }}}
 
+" `, t` - Theme {{{
+"" [N] <leader>Tc -- Theme: change color scheme
+"" [N] <leader>Ta -- Theme: change airline theme
+"" [N] <leader>Td -- Theme: change to default theme
+"" [N] <leader>To -- Theme: run theme overrides
+nnoremap <leader>Tc :color<space>
+nnoremap <leader>Ta :AirlineTheme<space>
+nnoremap <leader>To :ThemeOverrides<CR>
+nnoremap <leader>Td :Dark<CR>
+" }}}
+
 " Misc {{{
   "" [N] <leader>T -- Misc: open a new tab
   "" [N] - -- Misc: Open tree
@@ -233,9 +247,6 @@ endif
   " vnoremap E :EasyAlign<space>
   " vnoremap <Enter> :EasyAlign<space>
   " nnoremap gA vip:EasyAlign<space>
-" }}}
-
-" vim:foldmethod=marker
 
 "" [I] <c-x><c-f> -- FZF: complete file
 "" [I] <c-x><c-j> -- FZF: complete file (via ag)
@@ -255,3 +266,4 @@ nnoremap <C-2> <C-w>l
 nnoremap <C-h> <C-w>h
 nnoremap <C-n> <C-w>l
 nnoremap <C-l> <C-w>l
+" }}}
