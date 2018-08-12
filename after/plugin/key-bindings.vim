@@ -277,3 +277,5 @@ if exists(':ImportJSWord')
   nnoremap <leader>mjg :ImportJSGoto<CR>
 endif
 " }}}
+
+set laststatus=0
