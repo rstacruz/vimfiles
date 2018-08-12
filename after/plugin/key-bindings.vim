@@ -266,4 +266,14 @@ nnoremap <C-2> <C-w>l
 nnoremap <C-h> <C-w>h
 nnoremap <C-n> <C-w>l
 nnoremap <C-l> <C-w>l
+
+" [N] <leader>mjw -- Major-JavaScript: Import module for the variable
+" [N] <leader>mjf -- Major-JavaScript: Fix the file
+" [N] <leader>mjg -- Major-JavaScript: Go to module on cursor
+
+if exists(':ImportJSWord')
+  nnoremap <leader>mjw :ImportJSWord<CR>
+  nnoremap <leader>mjf :ImportJSFix<CR>
+  nnoremap <leader>mjg :ImportJSGoto<CR>
+endif
 " }}}

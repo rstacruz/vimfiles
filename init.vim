@@ -21,33 +21,20 @@ Plug 'junegunn/fzf.vim'
 Plug 'irrationalistic/vim-tasks'
 Plug 'flazz/vim-colorschemes'
 " if !exists('g:gui_oni') | Plug 'justincampbell/vim-eighties' | endif
-if version >= 704 | Plug 'SirVer/ultisnips' | endif
+if version >= 704 && has('python3') | Plug 'SirVer/ultisnips' | endif
 " }}}
 
 " Stop here if we're in minimal (Git) mode {{{
 if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != ''
   call plug#end()
-  finish
 endif
 " }}}
 
-" Plugins: Slow plugins {{{
+" Plugins: More plugins {{{
 if !exists('g:gui_oni')
   Plug 'scrooloose/nerdtree'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-endif
-" }}}
-
-" Plugins: Neovim-only {{{
-if has('nvim') && !exists('g:gui_oni')
-" Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
-" Plug 'sbdchd/neoformat'
-endif
-" }}}
-
-" Plugins: All others {{{
-if !exists('g:gui_oni')
   Plug 'godlygeek/tabular'
   Plug 'mhinz/vim-signify'
   Plug 'rstacruz/vim-hyperstyle'
@@ -59,11 +46,12 @@ Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'rstacruz/vim-closer'
 Plug 'w0rp/ale'
+Plug 'Galooshi/vim-import-js'
 Plug 'easymotion/vim-easymotion'
 Plug 'autozimu/LanguageClient-neovim', {
   \ 'branch': 'next',
   \ 'do': 'bash install.sh' }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+if has('python3') | Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } | endif
 " }}}
 
 " Plugins: I can live without you {{{
