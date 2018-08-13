@@ -9,6 +9,8 @@ KEY BINDINGS                                                     *vimfiles-keys*
 `    gS                  ` |Go|  split multiline statement [splitjoin]
 `    gd                  ` |Go|  go to definition [languageclient]
 `    gh                  ` |Go|  get hint [languageclient]
+`    <C-h>               ` |Misc|  move to left pane
+`    <C-l>               ` |Misc|  move to right pane
 `    <C-p>               ` |Project|  open file [fzf]
 `    <Leader>eF          ` |Errors|  ale fix suggest [ale]
 `    <Leader>ec          ` |Errors|  clear errors [ale]
@@ -16,7 +18,12 @@ KEY BINDINGS                                                     *vimfiles-keys*
 `    <Leader>en          ` |Errors|  next [ale]
 `    <Leader>ep          ` |Errors|  previous [ale]
 `    <Leader>ev          ` |Errors|  verify ale setup [ale]
+`    <leader>Ta          ` |Theme|  change airline theme
+`    <leader>Tc          ` |Theme|  change color scheme
+`    <leader>Td          ` |Theme|  change to default theme
+`    <leader>To          ` |Theme|  run theme overrides
 `    <leader>al          ` |Apps|  show language client
+`    <leader>ar          ` |Apps|  ranger [neovim]
 `    <leader>as          ` |Apps|  show scope
 `    <leader>bD          ` |Buffer|  close all
 `    <leader>bb          ` |Buffer|  buffers [fzf]
@@ -24,8 +31,10 @@ KEY BINDINGS                                                     *vimfiles-keys*
 `    <leader>bh          ` |Buffer|  history [fzf]
 `    <leader>bn          ` |Buffer|  next
 `    <leader>bp          ` |Buffer|  prev
+`    <leader>fec         ` |Editor|  Open commands
 `    <leader>fed         ` |Editor|  Open config
 `    <leader>fek         ` |Editor|  Open key bindings
+`    <leader>feo         ` |Editor|  Open options
 `    <leader>gS          ` |Git|  see changed files [fzf]
 `    <leader>gb          ` |Git|  blame [fugitive]
 `    <leader>gc          ` |Git|  commit [fugitive]
@@ -51,6 +60,7 @@ KEY BINDINGS                                                     *vimfiles-keys*
 `    <leader>.k          ` |Jump|  to a line above [easymotion]
 `    <leader>.w          ` |Jump|  to a word below [easymotion]
 `    <leader>/           ` |Find|  find in project [fzf]
+`    =oef                ` |Errors|  toggle fix-on-save for current buffer [ale]
 `[I] <c-x><c-f>          ` |FZF|  complete file
 `[I] <c-x><c-j>          ` |FZF|  complete file (via ag)
 `[:] :Usage              ` |Vimfiles|  show usage information

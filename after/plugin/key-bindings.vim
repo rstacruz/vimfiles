@@ -21,9 +21,11 @@ endif
 "" [N] <Leader>en -- Errors: next [ale]
 "" [N] <Leader>ep -- Errors: previous [ale]
 "" [N] <Leader>ec -- Errors: clear errors [ale]
+"" [N] =oef -- Errors: toggle fix-on-save for current buffer [ale]
 
   if exists(':ALEFix')
     nmap <Leader>ef <Plug>(ale_fix)
+    nnoremap =oef :ALEToggleFixOnSave<CR>
     nnoremap <Leader>eF :ALEFixSuggest<CR>
     nnoremap <Leader>ev :ALEDetail<CR>
     nnoremap <Leader>en :ALENextWrap<CR>
@@ -57,9 +59,13 @@ endif
 " `, f e` - Editor {{{
 "" [N] <leader>fed -- Editor: Open config
 "" [N] <leader>fek -- Editor: Open key bindings
+"" [N] <leader>fec -- Editor: Open commands
+"" [N] <leader>feo -- Editor: Open options
 
   nnoremap <leader>fed :e ~/.vimrc<CR>
   nnoremap <leader>fek :e ~/.vim/after/plugin/key-bindings.vim<CR>
+  nnoremap <leader>fec :e ~/.vim/plugin/commands.vim<CR>
+  nnoremap <leader>feo :e ~/.vim/after/plugin/options.vim<CR>
 " }}}
 
 " `, b` - Buffer {{{
@@ -259,12 +265,9 @@ if exists(':Files')
   inoremap <expr> <c-x><c-n> fzf#vim#complete#path("git ls-files \| xargs realpath")
 endif
 
-"" [N] <C-1> -- Misc: move to left pane
-"" [N] <C-2> -- Misc: move to right pane
-nnoremap <C-1> <C-w>h
-nnoremap <C-2> <C-w>l
+"" [N] <C-h> -- Misc: move to left pane
+"" [N] <C-l> -- Misc: move to right pane
 nnoremap <C-h> <C-w>h
-nnoremap <C-n> <C-w>l
 nnoremap <C-l> <C-w>l
 
 " [N] <leader>mjw -- Major-JavaScript: Import module for the variable
