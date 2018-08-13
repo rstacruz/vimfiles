@@ -2,6 +2,8 @@
 " Common
 "
 
+"" [:] :Light -- Theme: Light theme
+"" [:] :Dark -- Theme: Dark theme
 command! Dark :call <SID>darktheme()
 command! Light :call <SID>lighttheme()
 command! ThemeOverrides :call <SID>themeoverrides()
