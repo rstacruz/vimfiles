@@ -80,6 +80,7 @@ if has('python3') | Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' 
 " Plug 'moll/vim-node', { 'for': 'javascript' }
   Plug 'pangloss/vim-javascript' " { 'for': 'javascript' }
   Plug 'mxw/vim-jsx' " { 'for': 'javascript' }
+  Plug 'plasticboy/vim-markdown'
   Plug 'alampros/vim-styled-jsx' " { 'for': 'javascript' }
 " Plug 'rstacruz/ledgerdown', { 'rtp': 'vim', 'for': 'ledger' }
 " Plug 'slashmili/alchemist.vim', { 'for': ['elixir', 'ex'] }

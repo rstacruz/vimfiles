@@ -227,6 +227,14 @@ if exists(':ImportJSWord')
   nnoremap <leader>mjg :ImportJSGoto<CR>
 endif
 " }}}
+"
+" `, m m` - Major-Markdown {{{
+" [N] <leader>mmf -- Major-Markdown: format table
+" [N] <leader>mmt -- Major-Markdown: table of contents
+
+nnoremap <leader>mmf :TableFormat<CR>
+nnoremap <leader>mmt :Toc<CR>
+" }}}
 
 " Misc: emacs {{{
 " [NI] <C-x><C-s> -- Misc-emacs: Save file

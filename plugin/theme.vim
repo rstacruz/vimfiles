@@ -38,6 +38,9 @@ function! s:themeoverrides()
   hi SignifySignAdd ctermbg=none ctermfg=4
   hi SignifySignDelete ctermbg=none ctermfg=10
   hi SignifySignChange ctermbg=none ctermfg=8
+  hi Search ctermfg=4 ctermbg=236
+  hi Pmenu ctermfg=4 ctermbg=235
+  hi PmenuSel ctermfg=4 ctermbg=236
   set fillchars=fold: 
 endfunction
 
@@ -66,20 +69,4 @@ endfunction
 
 if !has("gui_running")
   set t_Co=256
-  hi VertSplit cterm=none ctermbg=none
-  hi NonText ctermfg=11
-  hi Conceal ctermbg=none ctermfg=1
 endif
-
-"
-" Macvim
-"
-
-if has("gui_running")
-  Guitheme
-elseif $LIGHT_MODE == '1'
-  Light
-else
-  Dark
-endif
-
