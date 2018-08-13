@@ -32,23 +32,34 @@ function! s:darktheme()
 endfunction
 
 function! s:themeoverrides()
-  hi VertSplit ctermbg=none ctermfg=233 cterm=none
-  hi NonText ctermbg=none ctermfg=233 cterm=none
   hi Folded ctermbg=none ctermfg=8 cterm=none
-  hi SignifySignAdd ctermbg=none ctermfg=4
-  hi SignifySignDelete ctermbg=none ctermfg=10
-  hi SignifySignChange ctermbg=none ctermfg=8
-  hi Search ctermfg=4 ctermbg=236
-  hi Pmenu ctermfg=4 ctermbg=235
-  hi PmenuSel ctermfg=4 ctermbg=236
+  hi SignifySignAdd ctermbg=none ctermfg=80
+  hi SignifySignDelete ctermbg=none ctermfg=160
+  hi SignifySignChange ctermbg=none ctermfg=78
+
+  if &background == 'dark'
+    hi VertSplit ctermbg=none ctermfg=233 cterm=none
+    hi NonText ctermbg=none ctermfg=233 cterm=none
+    hi Search ctermfg=4 ctermbg=236
+    hi Pmenu ctermfg=4 ctermbg=235
+    hi PmenuSel ctermfg=4 ctermbg=236
+  else
+    hi VertSplit ctermbg=none ctermfg=254 cterm=none
+    hi NonText ctermbg=none ctermfg=254 cterm=none
+    hi Search ctermfg=4 ctermbg=254
+    hi Pmenu ctermfg=4 ctermbg=254
+    hi PmenuSel ctermfg=4 ctermbg=253
+  endif
   set fillchars=fold: 
 endfunction
 
 function! s:lighttheme()
   let g:airline_theme='lucius'
   let g:airline_theme='aurora'
+  call s:themeoverrides()
   set background=light
-  color lolmono
+  color base16-atelierlakeside
+  ThemeOverrides
 endfunction
 
 function! s:guitheme()
