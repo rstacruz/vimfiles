@@ -295,6 +295,9 @@ endif
 "" [N] <C-l> -- Misc: move to right pane
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+
+"" [N] =oas -- Misc: toggle signify
+nnoremap =oas :SignifyToggle<CR>
 " }}}
 
 set laststatus=0
