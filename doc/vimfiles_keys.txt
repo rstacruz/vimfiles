@@ -35,6 +35,7 @@ KEY BINDINGS                                                     *vimfiles-keys*
 `    <leader>fed         ` |Editor|  Open config
 `    <leader>fek         ` |Editor|  Open key bindings
 `    <leader>feo         ` |Editor|  Open options
+`    <leader>fep         ` |Editor|  Open plugin config
 `    <leader>gS          ` |Git|  see changed files [fzf]
 `    <leader>gb          ` |Git|  blame [fugitive]
 `    <leader>gc          ` |Git|  commit [fugitive]

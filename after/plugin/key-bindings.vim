@@ -61,11 +61,13 @@ endif
 "" [N] <leader>fek -- Editor: Open key bindings
 "" [N] <leader>fec -- Editor: Open commands
 "" [N] <leader>feo -- Editor: Open options
+"" [N] <leader>fep -- Editor: Open plugin config
 
   nnoremap <leader>fed :e ~/.vimrc<CR>
   nnoremap <leader>fek :e ~/.vim/after/plugin/key-bindings.vim<CR>
   nnoremap <leader>fec :e ~/.vim/plugin/commands.vim<CR>
   nnoremap <leader>feo :e ~/.vim/after/plugin/options.vim<CR>
+  nnoremap <leader>fep :e ~/.vim/plugin/plugins/<CR>
 " }}}
 
 " `, b` - Buffer {{{
@@ -214,6 +216,30 @@ nnoremap <leader>To :ThemeOverrides<CR>
 nnoremap <leader>Td :Dark<CR>
 " }}}
 
+" `, m j` - Major-Javascript {{{
+" [N] <leader>mjw -- Major-JavaScript: Import module for the variable
+" [N] <leader>mjf -- Major-JavaScript: Fix the file
+" [N] <leader>mjg -- Major-JavaScript: Go to module on cursor
+
+if exists(':ImportJSWord')
+  nnoremap <leader>mjw :ImportJSWord<CR>
+  nnoremap <leader>mjf :ImportJSFix<CR>
+  nnoremap <leader>mjg :ImportJSGoto<CR>
+endif
+" }}}
+
+" Misc: emacs {{{
+" [NI] <C-x><C-s> -- Misc-emacs: Save file
+inoremap <C-x><C-s> <Esc>:w<CR>a
+nnoremap <C-x><C-s> :w<CR>
+
+" [NI] <C-s> -- Misc-emacs: Save file
+nnoremap <C-s> :w<CR>
+
+" [N] <CR> -- Misc: Open fold
+nnoremap <CR> za
+" }}}
+
 " Misc {{{
   "" [N] <leader>T -- Misc: open a new tab
   "" [N] - -- Misc: Open tree
@@ -269,16 +295,6 @@ endif
 "" [N] <C-l> -- Misc: move to right pane
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
-
-" [N] <leader>mjw -- Major-JavaScript: Import module for the variable
-" [N] <leader>mjf -- Major-JavaScript: Fix the file
-" [N] <leader>mjg -- Major-JavaScript: Go to module on cursor
-
-if exists(':ImportJSWord')
-  nnoremap <leader>mjw :ImportJSWord<CR>
-  nnoremap <leader>mjf :ImportJSFix<CR>
-  nnoremap <leader>mjg :ImportJSGoto<CR>
-endif
 " }}}
 
 set laststatus=0
