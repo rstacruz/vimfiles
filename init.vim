@@ -1,4 +1,3 @@
-set guicursor=
 set t_Co=256
 set nocompatible
 let g:mapleader=","
@@ -97,3 +96,6 @@ if has('python3') | Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' 
 
 call plug#end()
 " vim:foldmethod=marker
+
+" https://github.com/neovim/neovim/wiki/FAQ#nvim-shows-weird-symbols-2-q-when-changing-modes
+" set guicursor=
