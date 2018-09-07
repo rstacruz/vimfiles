@@ -1,6 +1,6 @@
 set t_Co=256
 set nocompatible
-let g:mapleader=","
+let g:mapleader=" "
 syntax on
 filetype plugin indent on
 call plug#begin('~/.vim/vendor')
@@ -44,6 +44,7 @@ if !exists('g:gui_oni')
 endif
 
 Plug 'liuchengxu/vim-which-key'
+Plug 'shime/vim-livedown'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'rstacruz/vim-closer'
