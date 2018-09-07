@@ -1,4 +1,19 @@
 " vim:foldmethod=marker
+  let g:toggle_key_map = {}
+
+  let g:which_key_map = {
+    \ '/': ['Ag', 'ag-search'],
+    \ '*': ['Ag <C-r><C-w>', 'ag-search-word-in-cursor'],
+    \ }
+
+  let g:which_key_map.a = { 'name': 'Apps...' }
+  let g:which_key_map.b = { 'name': 'Buffer...' }
+  let g:which_key_map.f = { 'name': 'File...' }
+  let g:which_key_map.e = { 'name': 'Errors...' }
+  let g:which_key_map.g = { 'name': 'Git...' }
+  let g:which_key_map.h = { 'name': 'Help...' }
+  let g:which_key_map.m = { 'name': 'Major...' }
+  let g:which_key_map.p = { 'name': 'Project...' }
 
 " `, a` - Apps {{{
 "" [N] <leader>as -- Apps: show scope
@@ -6,8 +21,10 @@
 "" [N] <leader>ar -- Apps: ranger [neovim]
 
   " Useful for creating color schemes!
-  nnoremap <Leader>as :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
+  let g:which_key_map.a.l = ['LanguageClient_contextMenu()', ':LanguageClient_contextMenu()']
   nnoremap <leader>al call :LanguageClient_contextMenu()<CR>
+
+  nnoremap <Leader>as :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
 
 if has("nvim")
   nnoremap <Leader>ar <C-w>n:term env EDITOR="nvim -cc split" ranger<CR>
@@ -24,13 +41,29 @@ endif
 "" [N] =oef -- Errors: toggle fix-on-save for current buffer [ale]
 
   if exists(':ALEFix')
+    let g:which_key_map.e.f = ['ALEFix', 'fix']
     nmap <Leader>ef <Plug>(ale_fix)
+
+    let g:toggle_key_map.e = { 'name': '+errors' }
+    let g:toggle_key_map.e.f = ['ALEToggleFixOnSave', 'toggle-fix-on-save']
     nnoremap =oef :ALEToggleFixOnSave<CR>
+
+    let g:which_key_map.e.F = ['ALEFixSuggest', 'suggest-fixer']
     nnoremap <Leader>eF :ALEFixSuggest<CR>
+
+    let g:which_key_map.e.v = ['ALEDetail', 'show-details']
     nnoremap <Leader>ev :ALEDetail<CR>
+
+    let g:which_key_map.e.n = ['ALENextWrap', 'next-error']
     nnoremap <Leader>en :ALENextWrap<CR>
+
+    let g:which_key_map.e.p = ['ALEPreviousWrap', 'previous-error']
     nnoremap <Leader>ep :ALEPreviousWrap<CR>
+
+    let g:which_key_map.e.N = ['ALEPreviousWrap', 'previous-error']
     nnoremap <Leader>eN :ALEPreviousWrap<CR>
+
+    let g:which_key_map.e.c = ['ALEResetBuffer', 'clear-errors']
     nnoremap <Leader>ec :ALEResetBuffer<CR>
   endif
 " }}}
@@ -52,6 +85,7 @@ endif
   "" [N] <leader>ff -- Files: All files [fzf]
 
   if exists(':Files')
+    let g:which_key_map.f.f = ['Files', 'Find files']
     nnoremap <leader>ff :Files<CR>
   endif
 " }}}
@@ -60,13 +94,24 @@ endif
 "" [N] <leader>fed -- Editor: Open config
 "" [N] <leader>fek -- Editor: Open key bindings
 "" [N] <leader>fec -- Editor: Open commands
-"" [N] <leader>feo -- Editor: Open options
+"" [N] <leader>feo -- Editor: Open vim options
 "" [N] <leader>fep -- Editor: Open plugin config
 
+  let g:which_key_map.f.e = { 'name': '+Customize...' }
+
+  let g:which_key_map.f.e.d = ['e ~/.vimrc', 'edit-vimrc']
   nnoremap <leader>fed :e ~/.vimrc<CR>
+
+  let g:which_key_map.f.e.k = ['e ~/.vim/after/plugin/key-bindings.vim', 'edit-key-bindings']
   nnoremap <leader>fek :e ~/.vim/after/plugin/key-bindings.vim<CR>
+
+  let g:which_key_map.f.e.c = ['e ~/.vim/plugin/commands.vim', 'edit-commands']
   nnoremap <leader>fec :e ~/.vim/plugin/commands.vim<CR>
+
+  let g:which_key_map.f.e.o = ['e ~/.vim/after/plugin/options.vim', 'edit-vim-options']
   nnoremap <leader>feo :e ~/.vim/after/plugin/options.vim<CR>
+
+  let g:which_key_map.f.e.p = ['e ~/.vim/plugin/plugins/', 'edit-plugin-config']
   nnoremap <leader>fep :e ~/.vim/plugin/plugins/<CR>
 " }}}
 
@@ -78,13 +123,23 @@ endif
 "" [N] <leader>bb -- Buffer: buffers [fzf]
 "" [N] <leader>bh -- Buffer: history [fzf]
 
+let g:which_key_map.b.n = [ 'bnext', 'next' ]
 nnoremap <leader>bn :bnext<CR>
+
+let g:which_key_map.b.d = [ 'bdelete', 'close' ]
 nnoremap <leader>bd :bdelete<CR>
+
+let g:which_key_map.b.D = [ 'bdelete!', 'force close' ]
 nnoremap <leader>bD :bdelete!<CR>
+
+let g:which_key_map.b.p = [ 'bdelete!', 'previous' ]
 nnoremap <leader>bp :bprev<CR>
 
 if exists(':Buffers')
+  let g:which_key_map.b.b = [ 'Buffers', 'list buffers...' ]
   nnoremap <leader>bb :Buffers<CR>
+
+  let g:which_key_map.b.h = [ 'HistoryBuffers', 'show history...' ]
   nnoremap <leader>bh :History<CR>
 endif
 " }}}
@@ -123,11 +178,13 @@ endif
 "" [N] <leader>' -- Terminal: open here [neovim]
 
 if has("nvim")
-  nnoremap <Leader>' <C-w>n:te<CR>
-  nnoremap <Leader>tn <C-w>n:te<CR>
-  nnoremap <Leader>ts <C-w>n:te<CR>
-  nnoremap <Leader>tv <C-w>v<C-w>l:te<CR>
-  nnoremap <Leader>tt :tabnew<CR>:te<CR>
+  let g:which_key_map.t = { 'name': '+terminal...' }
+
+  nnoremap <Leader>' <C-w>n:terminal<CR>
+  nnoremap <Leader>tn <C-w>n:terminal<CR>
+  nnoremap <Leader>ts <C-w>n:terminal<CR>
+  nnoremap <Leader>tv <C-w>v<C-w>l:terminal<CR>
+  nnoremap <Leader>tt :tabnew<CR>:terminal<CR>
   nnoremap <Leader>t. :te<CR>
 
   " :h terminal-emulator-input
@@ -210,10 +267,21 @@ endif
 "" [N] <leader>Ta -- Theme: change airline theme
 "" [N] <leader>Td -- Theme: change to default theme
 "" [N] <leader>To -- Theme: run theme overrides
+let g:which_key_map.T = { 'name': 'Theme...' }
+let g:which_key_map.T.c = [ 'color', 'change color scheme' ]
 nnoremap <leader>Tc :color<space>
+
+let g:which_key_map.T.a = [ 'AirlineTheme', 'change airline scheme' ]
 nnoremap <leader>Ta :AirlineTheme<space>
+
+let g:which_key_map.T.o = [ 'ThemeOverrides', 'run theme overrides' ]
 nnoremap <leader>To :ThemeOverrides<CR>
+
+let g:which_key_map.T.d = [ 'Dark', 'dark mode' ]
 nnoremap <leader>Td :Dark<CR>
+
+let g:which_key_map.T.l = [ 'Light', 'light mode' ]
+nnoremap <leader>Tl :Light<CR>
 " }}}
 
 " `, m j` - Major-Javascript {{{
@@ -258,8 +326,6 @@ nnoremap <CR> za
   "" [I] <C-e> -- Misc: expand abbreviation [emmet]
   "" [V] <C-e> -- Misc: expand abbreviation [emmet]
   
-  nnoremap <leader>T :tabnew<cr>
-
   if globpath(&rtp, "plugin/emmet.vim") != ""
     imap <C-e> <C-y>,
     vmap <C-e> <C-y>,
@@ -267,12 +333,6 @@ nnoremap <CR> za
   
   if exists(':NERDTreeFind')
     nnoremap - :NERDTreeFind<CR>
-  endif
-  
-  if exists(':GFiles')
-    nmap <leader><tab> <plug>(fzf-maps-n)
-    xmap <leader><tab> <plug>(fzf-maps-x)
-    omap <leader><tab> <plug>(fzf-maps-o)
   endif
   
   nnoremap <Enter> za
@@ -309,3 +369,10 @@ nnoremap =oas :SignifyToggle<CR>
 " }}}
 
 set laststatus=0
+
+call which_key#register('=', 'g:toggle_key_map')
+
+call which_key#register(',', 'g:which_key_map')
+
+nnoremap <silent> <leader> :WhichKey ','<CR>
+set timeoutlen=100

@@ -7,27 +7,29 @@ call plug#begin('~/.vim/vendor')
 
 " Essentials {{{
 if !has('nvim') && !exists('g:gui_oni') | Plug 'tpope/vim-sensible' | endif
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'rstacruz/vim-opinion'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'irrationalistic/vim-tasks'
-Plug 'flazz/vim-colorschemes'
-" if !exists('g:gui_oni') | Plug 'justincampbell/vim-eighties' | endif
-if version >= 704 && has('python3') | Plug 'SirVer/ultisnips' | endif
-" }}}
 
 " Stop here if we're in minimal (Git) mode {{{
 if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != ''
   call plug#end()
 endif
 " }}}
+
+" if !exists('g:gui_oni') | Plug 'justincampbell/vim-eighties' | endif
+if version >= 704 && has('python3') | Plug 'SirVer/ultisnips' | endif
+" }}}
+
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'rstacruz/vim-opinion'
+Plug 'flazz/vim-colorschemes'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'irrationalistic/vim-tasks'
 
 " Plugins: More plugins {{{
 if !exists('g:gui_oni')
@@ -41,6 +43,7 @@ if !exists('g:gui_oni')
   Plug 'thinca/vim-visualstar'
 endif
 
+Plug 'liuchengxu/vim-which-key'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'rstacruz/vim-closer'
