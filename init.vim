@@ -14,7 +14,7 @@ if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != ''
 endif
 " }}}
 
-" if !exists('g:gui_oni') | Plug 'justincampbell/vim-eighties' | endif
+if !exists('g:gui_oni') | Plug 'justincampbell/vim-eighties' | endif
 if version >= 704 && has('python3') | Plug 'SirVer/ultisnips' | endif
 " }}}
 

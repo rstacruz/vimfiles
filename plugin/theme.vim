@@ -16,20 +16,13 @@ au ColorScheme * hi FoldColumn ctermbg=none
 au ColorScheme * hi LineNr ctermbg=none
 
 function! s:darktheme()
-  "let g:airline_theme='tomorrow'
-  "let g:airline_theme='atomic'
-  "let g:airline_theme='lucius'
-  " transparent bg: zenburn
-  " black bg: term
-  " gray bg: alduin, angr
   let g:airline_theme='alduin'
   set background=dark
-  "color lol
-  "color alduin - brownish
-  "color 3dglasses
-  "color Black
-  "color blaquemagick - good
-  color base16-atelierlakeside
+  if exists('g:gui_oni')
+    color 1989
+  else
+    color base16-atelierlakeside
+  endif
   call s:themeoverrides()
 endfunction
 

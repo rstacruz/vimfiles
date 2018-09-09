@@ -69,8 +69,8 @@ endif
 " Customize
 "
 
-let g:which_key_map.f.e.d = ['e ~/.vimrc', 'edit-vimrc']
-nnoremap <leader>fed :e ~/.vimrc<CR>
+let g:which_key_map.f.e.d = ['cd ~/.config/nvim | e init.vim', 'edit-vimrc']
+nnoremap <leader>fed :cd ~/.config/nvim;<CR>:e ~/.config/nvim/init.vim<CR>
 
 let g:which_key_map.f.e.k = ['e ~/.vim/after/plugin/key-bindings.vim', 'edit-key-bindings']
 nnoremap <leader>fek :e ~/.vim/after/plugin/key-bindings.vim<CR>
