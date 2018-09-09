@@ -14,10 +14,14 @@ set nonumber
 
 " Remove the one-second escape key delay
 " http://stackoverflow.com/questions/12312178/tmux-and-vim-escape-key-being-seen-as-and-having-long-delay
-set timeout timeoutlen=200 ttimeoutlen=10
+set timeout timeoutlen=400 ttimeoutlen=10
 
 " Startinsert on git
 if $GIT_DIR != '' | startinsert | endif
 
 " minimal status bar
 set laststatus=0
+
+" https://superuser.com/a/1090762
+set autoread
+au CursorHold * checktime

@@ -1,6 +1,6 @@
 set t_Co=256
 set nocompatible
-let g:mapleader=" "
+let g:mapleader=","
 syntax on
 filetype plugin indent on
 call plug#begin('~/.vim/vendor')

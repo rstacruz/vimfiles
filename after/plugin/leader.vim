@@ -1,31 +1,32 @@
 let g:toggle_key_map = {}
 
 let g:which_key_map = {}
-let g:which_key_map.a = { 'name': 'Apps > ' }
-let g:which_key_map.b = { 'name': 'Buffer > ' }
-let g:which_key_map.f = { 'name': 'File > ' }
-let g:which_key_map.f.e = { 'name': 'Customize > ' }
-let g:which_key_map.e = { 'name': 'Errors > ' }
-let g:which_key_map.g = { 'name': 'Git > ' }
-let g:which_key_map.h = { 'name': 'Help > ' }
-let g:which_key_map.m = { 'name': 'Major > ' }
-let g:which_key_map.m.j = { 'name': 'JavaScript > ' }
-let g:which_key_map.m.m = { 'name': 'Markdown > ' }
-let g:which_key_map.p = { 'name': 'Project > ' }
-let g:which_key_map.t = { 'name': 'Terminal > ' }
-let g:which_key_map.T = { 'name': 'Theme > ' }
+let g:which_key_map.a = { 'name': '+apps ' }
+let g:which_key_map.b = { 'name': '+buffer ' }
+let g:which_key_map.f = { 'name': '+file ' }
+let g:which_key_map.f.e = { 'name': '+customize ' }
+let g:which_key_map.e = { 'name': '+errors ' }
+let g:which_key_map.g = { 'name': '+git ' }
+let g:which_key_map.h = { 'name': '+help ' }
+let g:which_key_map.m = { 'name': '+major ' }
+let g:which_key_map.m.j = { 'name': '+javascript ' }
+let g:which_key_map.m.m = { 'name': '+markdown ' }
+let g:which_key_map.p = { 'name': '+project ' }
+let g:which_key_map.t = { 'name': '+terminal ' }
+let g:which_key_map.T = { 'name': '+theme ' }
+let g:which_key_map['.'] = { 'name': '+easymotion ' }
 
 "
 " App
 "
 
-let g:which_key_map.a.l = ['LanguageClient_contextMenu()', 'language client: menu']
+let g:which_key_map.a.l = ['LanguageClient_contextMenu()', 'language-client:menu']
 nnoremap <leader>al call :LanguageClient_contextMenu()<CR>
 
-let g:which_key_map.a.s = ['ShowSyntaxStack', 'syntax: show syntax stack']
+let g:which_key_map.a.s = ['ShowSyntaxStack', 'syntax:show-syntax-stack']
 nnoremap <Leader>as :ShowSyntaxStack<CR>
 
-if has("nvim")
+if exists(':terminal')
   let g:which_key_map.a.r = ['OpenRangerSplit', 'ranger']
   nnoremap <Leader>ar :OpenRangerSplit<CR>
 endif
@@ -93,17 +94,17 @@ nnoremap <leader>bn :bnext<CR>
 let g:which_key_map.b.d = [ 'bdelete', 'close' ]
 nnoremap <leader>bd :bdelete<CR>
 
-let g:which_key_map.b.D = [ 'bdelete!', 'force close' ]
+let g:which_key_map.b.D = [ 'bdelete!', 'force-close' ]
 nnoremap <leader>bD :bdelete!<CR>
 
 let g:which_key_map.b.p = [ 'bdelete!', 'previous' ]
 nnoremap <leader>bp :bprev<CR>
 
 if exists(':Buffers')
-  let g:which_key_map.b.b = [ 'Buffers', 'list buffers...' ]
+  let g:which_key_map.b.b = [ 'Buffers', 'list-buffers' ]
   nnoremap <leader>bb :Buffers<CR>
 
-  let g:which_key_map.b.h = [ 'History', 'show history...' ]
+  let g:which_key_map.b.h = [ 'History', 'show-history' ]
   nnoremap <leader>bh :History<CR>
 endif
 
@@ -117,18 +118,18 @@ if exists(':NERDTree')
 endif
 
 if exists(':SClose')
-  let g:which_key_map.p.P = [ 'SSave!', 'save project as...']
+  let g:which_key_map.p.P = [ 'SSave!', 'save-project']
   nnoremap <leader>pP :SSave!<CR>
 
-  let g:which_key_map.p.p = [ 'SClose', 'switch to project']
+  let g:which_key_map.p.p = [ 'SClose', 'switch-to-project']
   nnoremap <leader>pp :SClose<CR>
 endif
 
 if exists(':Tag')
-  let g:which_key_map.p.s = [ 's', 'find symbol...' ]
+  let g:which_key_map.p.s = [ 'Tag', 'find-symbol' ]
   nnoremap <leader>ps :Tag<CR>
 
-  let g:which_key_map.p.f = [ 'f', 'find file...' ]
+  let g:which_key_map.p.f = [ 'GFiles', 'find-file' ]
   nnoremap <leader>pf :GFiles<cr>
 endif
 
@@ -138,20 +139,20 @@ endif
 " Terminal
 "
 "
-if has("nvim")
-  let g:which_key_map["'"] = [ 'split | terminal', 'open terminal' ]
+if exists(':terminal')
+  let g:which_key_map["'"] = [ 'split | terminal', 'open-terminal-split' ]
   nnoremap <Leader>' <C-w>n:terminal<CR>
 
-  let g:which_key_map.t.s = [ 'split | terminal', 'open terminal (hsplit)' ]
+  let g:which_key_map.t.s = [ 'split | terminal', 'open-terminal-split' ]
   nnoremap <Leader>ts <C-w>n:terminal<CR>
 
-  let g:which_key_map.t.v = [ 'vsplit | terminal', 'open terminal (vsplit)' ]
+  let g:which_key_map.t.v = [ 'vsplit | terminal', 'open-terminal-vsplit' ]
   nnoremap <Leader>tv <C-w>v<C-w>l:terminal<CR>
 
-  let g:which_key_map.t.t = [ 'tabnew | terminal', 'open terminal (tab)' ]
+  let g:which_key_map.t.t = [ 'tabnew | terminal', 'open-terminal-tab' ]
   nnoremap <Leader>tt :tabnew<CR>:terminal<CR>
 
-  let g:which_key_map.t['.'] = [ 'terminal', 'open terminal (here)' ]
+  let g:which_key_map.t['.'] = [ 'terminal', 'open-terminal-here' ]
   nnoremap <Leader>t. :terminal<CR>
 endif
 
@@ -160,7 +161,7 @@ endif
 "
 
 if exists(':GFiles')
-  let g:which_key_map.g.S = [ 'GFiles?', 'pick file from status...' ]
+  let g:which_key_map.g.S = [ 'GFiles?', 'pick-file-from-status...' ]
   nnoremap <leader>gS :GFiles?<CR>
 endif
 
@@ -182,26 +183,26 @@ endif
 " Theme
 "
 
-let g:which_key_map.T.c = [ 'color', 'change color scheme' ]
+let g:which_key_map.T.c = [ 'color', 'change-color-scheme' ]
 nnoremap <leader>Tc :color<space>
 
-let g:which_key_map.T.a = [ 'AirlineTheme', 'change airline scheme' ]
+let g:which_key_map.T.a = [ 'AirlineTheme', 'change-airline-scheme' ]
 nnoremap <leader>Ta :AirlineTheme<space>
 
-let g:which_key_map.T.o = [ 'ThemeOverrides', 'run theme overrides' ]
+let g:which_key_map.T.o = [ 'ThemeOverrides', 'run-theme-overrides' ]
 nnoremap <leader>To :ThemeOverrides<CR>
 
-let g:which_key_map.T.d = [ 'Dark', 'dark mode' ]
+let g:which_key_map.T.d = [ 'Dark', 'dark-mode' ]
 nnoremap <leader>Td :Dark<CR>
 
-let g:which_key_map.T.l = [ 'Light', 'light mode' ]
+let g:which_key_map.T.l = [ 'Light', 'light-mode' ]
 nnoremap <leader>Tl :Light<CR>
 
 "
 " Help
 "
 
-let g:which_key_map.h.k = [ 'Usage', 'open keybindings cheatsheet']
+let g:which_key_map.h.k = [ 'Usage', 'open-keybindings-cheatsheet']
 nnoremap <silent> <leader>hk :Usage<CR>
 
 "
@@ -209,7 +210,7 @@ nnoremap <silent> <leader>hk :Usage<CR>
 "
 
 if exists(':Files')
-  let g:which_key_map.f.f = ['Files', 'find files...']
+  let g:which_key_map.f.f = ['Files', 'find-file']
   nnoremap <leader>ff :Files<CR>
 endif
 
@@ -218,7 +219,37 @@ endif
 "
 
 if globpath(&rtp, "plugin/EasyMotion.vim") != ""
-  nmap <leader>. <Plug>(easymotion-prefix)
+  let g:which_key_map['.'].j = ['<Plug>(easymotion-j)', 'line']
+  nmap <leader>.j <Plug>(easymotion-j)
+  let g:which_key_map['.'].k = ['<Plug>(easymotion-k)', 'line-(back)']
+  nmap <leader>.k <Plug>(easymotion-k)
+  let g:which_key_map['.'].w = ['<Plug>(easymotion-w)', 'w']
+  nmap <leader>.w <Plug>(easymotion-w)
+  let g:which_key_map['.'].W = ['<Plug>(easymotion-W)', 'W']
+  nmap <leader>.W <Plug>(easymotion-W)
+  let g:which_key_map['.'].b = ['<Plug>(easymotion-b)', 'b']
+  nmap <leader>.b <Plug>(easymotion-b)
+  let g:which_key_map['.'].B = ['<Plug>(easymotion-B)', 'B']
+  nmap <leader>.B <Plug>(easymotion-b)
+  let g:which_key_map['.'].e = ['<Plug>(easymotion-e)', 'end-of-word']
+  nmap <leader>.e <Plug>(easymotion-e)
+  let g:which_key_map['.'].E = ['<Plug>(easymotion-E)', 'end-of-word-(skip-symbols)']
+  nmap <leader>.E <Plug>(easymotion-E)
+  let g:which_key_map['.'].f = ['<Plug>(easymotion-f)', 'character']
+  nmap <leader>.f <Plug>(easymotion-f)
+  let g:which_key_map['.'].F = ['<Plug>(easymotion-F)', 'character-(back)']
+  nmap <leader>.F <Plug>(easymotion-F)
+  let g:which_key_map['.'].n = ['<Plug>(easymotion-n)', 'search-match']
+  nmap <leader>.n <Plug>(easymotion-n)
+  let g:which_key_map['.'].N = ['<Plug>(easymotion-N)', 'search-match-(back)']
+  nmap <leader>.N <Plug>(easymotion-N)
+  let g:which_key_map['.'].n = ['<Plug>(easymotion-s)', 's']
+  nmap <leader>.s <Plug>(easymotion-s)
+  let g:which_key_map['.'].g = { 'name': 'g' }
+  let g:which_key_map['.'].g.e = ['<Plug>(easymotion-ge)', 'ge']
+  nmap <leader>.ge <Plug>(easymotion-ge)
+  let g:which_key_map['.'].g.E = ['<Plug>(easymotion-gE)', 'gE']
+  nmap <leader>.gE <Plug>(easymotion-gE)
   vmap <leader>. <Plug>(easymotion-prefix)
 endif
 
@@ -227,28 +258,28 @@ endif
 "
 
 if exists(':ImportJSWord')
-  let g:which_key_map.m.j.w = ['ImportJSWord', 'import-js: import module for variable']
+  let g:which_key_map.m.j.w = ['ImportJSWord', 'import-js:import-word']
   nnoremap <leader>mjw :ImportJSWord<CR>
 
-  let g:which_key_map.m.j.f = ['ImportJSFix', 'import-js: fix this file']
+  let g:which_key_map.m.j.f = ['ImportJSFix', 'import-js:fix-this-file']
   nnoremap <leader>mjf :ImportJSFix<CR>
 
-  let g:which_key_map.m.j.g = ['ImportJSGoto', 'import-js: goto module on cursor']
+  let g:which_key_map.m.j.g = ['ImportJSGoto', 'import-js:goto-module-on-cursor']
   nnoremap <leader>mjg :ImportJSGoto<CR>
 endif
 
 if exists(':TableFormat')
-  let g:which_key_map.m.m.f = ['TableFormat', 'format table']
+  let g:which_key_map.m.m.f = ['TableFormat', 'format-table']
   nnoremap <leader>mmf :TableFormat<CR>
 endif
 
 if exists(':Toc')
-  let g:which_key_map.m.m.t = ['Toc', 'update toc']
+  let g:which_key_map.m.m.t = ['Toc', 'update-toc']
   nnoremap <leader>mmt :Toc<CR>
 endif
 
 if exists(':LivedownPreview')
-  let g:which_key_map.m.m.v = ['LivedownPreview', 'open preview']
+  let g:which_key_map.m.m.v = ['LivedownPreview', 'livedown-preview']
   nnoremap <leader>mmv :LivedownPreview<CR>
 endif
 
@@ -264,10 +295,17 @@ endif
 " Done
 "
 
-call which_key#register('=', 'g:toggle_key_map')
-call which_key#register(' ', 'g:which_key_map')
-call which_key#register(',', 'g:which_key_map')
+if exists(':WhichKey')
+  call which_key#register('=', 'g:toggle_key_map')
+  call which_key#register(' ', 'g:which_key_map')
+  call which_key#register(',', 'g:which_key_map')
+end
 
-nnoremap <silent> <leader> :WhichKey '<space>'<CR>
-nnoremap <silent> , :WhichKey '<space>'<CR>
-vnoremap <silent> <leader> :WhichKeyVisual '<space>'<CR>
+if exists(':WhichKey')
+  nunmap ,,
+  " space will open a menu immediately
+  nnoremap <silent> <leader> :WhichKey ','<CR>
+  " , will only open a menu after a delay
+  nnoremap <silent> <space> :WhichKey ','<CR>
+  vnoremap <silent> <leader> :WhichKeyVisual '<space>'<CR>
+end

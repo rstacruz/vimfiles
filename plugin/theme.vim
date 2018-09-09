@@ -38,6 +38,7 @@ function! s:themeoverrides()
   hi SignifySignAdd ctermbg=none ctermfg=80
   hi SignifySignDelete ctermbg=none ctermfg=160
   hi SignifySignChange ctermbg=none ctermfg=78
+  hi link WhichKeySeperator NonText
 
   if &background == 'dark'
     hi VertSplit ctermbg=none ctermfg=233 cterm=none
