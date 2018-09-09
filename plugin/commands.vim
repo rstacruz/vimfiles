@@ -22,3 +22,17 @@ function! s:open_ranger_split()
   split
   terminal env EDITOR='nvim -cc split' ranger
 endfunction
+
+command! MyJournal :call <SID>my_journal()
+
+function! s:my_journal()
+  let journal_path = "~/org/journal"
+  execute "cd " . journal_path
+  let month = substitute(system("date '+%Y-%m'"), '\n\+$', '', '')
+  let today = substitute(system("date '+%Y-%m-%d-%a'"), '\n\+$', '', '')
+  let month_path = "." . "/README." . month . ".md"
+  let today_path = "." . "/" . today . ".md"
+  execute "edit " . today_path
+  vsplit
+  execute "edit " . month_path
+endfunction

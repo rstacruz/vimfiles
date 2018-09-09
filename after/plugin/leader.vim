@@ -23,6 +23,9 @@ let g:which_key_map['.'] = { 'name': '+easymotion ' }
 let g:which_key_map.a.l = ['LanguageClient_contextMenu()', 'language-client:menu']
 nnoremap <leader>al call :LanguageClient_contextMenu()<CR>
 
+let g:which_key_map.a.j = ['MyJournal', 'custom:open-journal']
+nnoremap <leader>al :MyJournal<CR>
+
 let g:which_key_map.a.s = ['ShowSyntaxStack', 'syntax:show-syntax-stack']
 nnoremap <Leader>as :ShowSyntaxStack<CR>
 
