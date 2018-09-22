@@ -2,6 +2,7 @@ let g:toggle_key_map = {}
 
 let g:which_key_map = {}
 let g:which_key_map.a = { 'name': '+apps ' }
+let g:which_key_map.a.v = { 'name': '+vim ' }
 let g:which_key_map.b = { 'name': '+buffer ' }
 let g:which_key_map.f = { 'name': '+file ' }
 let g:which_key_map.f.e = { 'name': '+customize ' }
@@ -28,6 +29,12 @@ nnoremap <leader>al :MyJournal<CR>
 
 let g:which_key_map.a.s = ['ShowSyntaxStack', 'syntax:show-syntax-stack']
 nnoremap <Leader>as :ShowSyntaxStack<CR>
+
+let g:which_key_map.a.n = ['noh', 'noh']
+nnoremap <Leader>an :noh<CR>
+
+let g:which_key_map.a.v.r = ['source %', 'reload-file']
+nnoremap <Leader>avr :source %<CR>
 
 if exists(':terminal')
   let g:which_key_map.a.r = ['OpenRangerSplit', 'ranger']
@@ -116,8 +123,8 @@ endif
 "
 
 if exists(':NERDTree')
-  let g:which_key_map.p.t = [ 'NERDTree', 'tree']
-  nnoremap <leader>pt :NERDTree<CR>
+  let g:which_key_map.p.t = [ 'Gcd | NERDTree', 'tree']
+  nnoremap <leader>pt :Gcd<CR>:NERDTree<CR>
 endif
 
 if exists(':SClose')
@@ -132,8 +139,11 @@ if exists(':Tag')
   let g:which_key_map.p.s = [ 'Tag', 'find-symbol' ]
   nnoremap <leader>ps :Tag<CR>
 
-  let g:which_key_map.p.f = [ 'GFiles', 'find-file' ]
-  nnoremap <leader>pf :GFiles<cr>
+  let g:which_key_map.p.f = [ 'FZF', 'find-file' ]
+  nnoremap <leader>pf :FZF<cr>
+
+  let g:which_key_map.p.F = [ 'GFiles?', 'find-file-from-status' ]
+  nnoremap <leader>pF :GFiles?<CR>
 endif
 
 " nnoremap <Leader>pr :exe 'FZF -q ' . join(split(join(split(expand('%:t:r'), '_'), ''), '-'), '')<CR>
@@ -164,7 +174,7 @@ endif
 "
 
 if exists(':GFiles')
-  let g:which_key_map.g.S = [ 'GFiles?', 'pick-file-from-status...' ]
+  let g:which_key_map.g.S = [ 'GFiles?', 'pick-file-from-status' ]
   nnoremap <leader>gS :GFiles?<CR>
 endif
 
@@ -175,11 +185,14 @@ if 1 " exists(':Gstatus')
   let g:which_key_map.g.b = [ 'Gblame', 'blame' ]
   nnoremap <leader>gb :Gblame<cr>
 
-  let g:which_key_map.g.s = [ 'GFiles?', 'status...' ]
+  let g:which_key_map.g.s = [ 'Gstatus', 'status' ]
   nnoremap <leader>gs :Gstatus<CR>
 
-  let g:which_key_map.g.c = [ 'Gcommit', 'commit...' ]
+  let g:which_key_map.g.c = [ 'Gcommit', 'commit' ]
   nnoremap <leader>gc :Gcommit<CR>
+
+  let g:which_key_map.g.A = [ 'Gcommit --amend', 'commit-amend' ]
+  nnoremap <leader>gc :Gcommit --amend<CR>
 endif
 
 "
@@ -222,13 +235,13 @@ endif
 "
 
 if globpath(&rtp, "plugin/EasyMotion.vim") != ""
-  let g:which_key_map['.'].j = ['<Plug>(easymotion-j)', 'line']
+  let g:which_key_map['.'].j = ['<Plug>(easymotion-j)', 'line:down']
   nmap <leader>.j <Plug>(easymotion-j)
-  let g:which_key_map['.'].k = ['<Plug>(easymotion-k)', 'line-(back)']
+  let g:which_key_map['.'].k = ['<Plug>(easymotion-k)', 'line:up']
   nmap <leader>.k <Plug>(easymotion-k)
-  let g:which_key_map['.'].w = ['<Plug>(easymotion-w)', 'w']
+  let g:which_key_map['.'].w = ['<Plug>(easymotion-w)', 'word:next']
   nmap <leader>.w <Plug>(easymotion-w)
-  let g:which_key_map['.'].W = ['<Plug>(easymotion-W)', 'W']
+  let g:which_key_map['.'].W = ['<Plug>(easymotion-W)', 'word:prev']
   nmap <leader>.W <Plug>(easymotion-W)
   let g:which_key_map['.'].b = ['<Plug>(easymotion-b)', 'b']
   nmap <leader>.b <Plug>(easymotion-b)
@@ -236,17 +249,17 @@ if globpath(&rtp, "plugin/EasyMotion.vim") != ""
   nmap <leader>.B <Plug>(easymotion-b)
   let g:which_key_map['.'].e = ['<Plug>(easymotion-e)', 'end-of-word']
   nmap <leader>.e <Plug>(easymotion-e)
-  let g:which_key_map['.'].E = ['<Plug>(easymotion-E)', 'end-of-word-(skip-symbols)']
+  let g:which_key_map['.'].E = ['<Plug>(easymotion-E)', 'end-of-word:skip-symbols']
   nmap <leader>.E <Plug>(easymotion-E)
-  let g:which_key_map['.'].f = ['<Plug>(easymotion-f)', 'character']
+  let g:which_key_map['.'].f = ['<Plug>(easymotion-f)', 'character:next']
   nmap <leader>.f <Plug>(easymotion-f)
-  let g:which_key_map['.'].F = ['<Plug>(easymotion-F)', 'character-(back)']
+  let g:which_key_map['.'].F = ['<Plug>(easymotion-F)', 'character:prev']
   nmap <leader>.F <Plug>(easymotion-F)
-  let g:which_key_map['.'].n = ['<Plug>(easymotion-n)', 'search-match']
+  let g:which_key_map['.'].n = ['<Plug>(easymotion-n)', 'search-match:next']
   nmap <leader>.n <Plug>(easymotion-n)
-  let g:which_key_map['.'].N = ['<Plug>(easymotion-N)', 'search-match-(back)']
+  let g:which_key_map['.'].N = ['<Plug>(easymotion-N)', 'search-match:prev']
   nmap <leader>.N <Plug>(easymotion-N)
-  let g:which_key_map['.'].n = ['<Plug>(easymotion-s)', 's']
+  let g:which_key_map['.'].s = ['<Plug>(easymotion-s)', 'search']
   nmap <leader>.s <Plug>(easymotion-s)
   let g:which_key_map['.'].g = { 'name': 'g' }
   let g:which_key_map['.'].g.e = ['<Plug>(easymotion-ge)', 'ge']
@@ -284,6 +297,9 @@ endif
 if exists(':LivedownPreview')
   let g:which_key_map.m.m.v = ['LivedownPreview', 'livedown-preview']
   nnoremap <leader>mmv :LivedownPreview<CR>
+
+  let g:which_key_map.m.m.V = ['LivedownKill', 'livedown-kill']
+  nnoremap <leader>mmV :LivedownKill<CR>
 endif
 
 if exists(':Ag')
@@ -305,9 +321,14 @@ if exists(':WhichKey')
 end
 
 if exists(':WhichKey')
+  " Unbind `,,` which does something I forgot.
+  " Map it before unmapping to supress a warning
+  nmap ,, <CR>
   nunmap ,,
+
   " space will open a menu immediately
   nnoremap <silent> <leader> :WhichKey ','<CR>
+
   " , will only open a menu after a delay
   nnoremap <silent> <space> :WhichKey ','<CR>
   vnoremap <silent> <leader> :WhichKeyVisual '<space>'<CR>

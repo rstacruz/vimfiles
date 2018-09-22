@@ -22,38 +22,23 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 " let g:airline_symbols.linenr = '␊'
 
-let g:airline_section_x = '' " no filetype
-let g:airline_section_y = '' " nothing
-" let g:airline_section_z = '%3p%%' " no line number, just percent
-let g:airline_section_x = '%#__accent_bold#%l/%L%#__restore__# ·%3v'
-let g:airline_section_y = ''
-let g:airline_section_z = ''
+function! AirlineInit()
+  let g:airline_section_a = ''
+  let g:airline_section_b = ''
+  let g:airline_section_c = ''
+  let g:airline_section_x = ''
+  let g:airline_section_y = ''
+  " let g:airline_section_gutter = ''
+  let g:airline_section_z = '' " airline#section#create(['mode'])
+endfunction
+autocmd User AirlineAfterInit call AirlineInit()
 
-" Extensions
-let g:airline#extensions#hunks#enabled = 0
-let g:airline#extensions#tagbar#enabled = 0
-let g:airline#extensions#syntastic#enabled = 0
-let g:airline#extensions#branch#enabled = 0
-
-" Tabline (!)
-let g:airline#extensions#tabline#enabled = 0
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#tabline#show_tab_nr = 0
-let g:airline#extensions#tabline#show_tab_type = 0
-let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#tabline#show_splits = 0
-" let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#fnamemod = ':p:t'
-
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
+" No extensions
+let g:airline_extensions = []
 
 " let g:bufferline_show_bufnr = 0
 " let g:bufferline_echo = 0
 " let g:bufferline_modified = ' •'
-let g:airline_section_c = '%t'
 
 " Shorter text
 let g:airline_mode_map = {

@@ -16,7 +16,7 @@ au ColorScheme * hi FoldColumn ctermbg=none
 au ColorScheme * hi LineNr ctermbg=none
 
 function! s:darktheme()
-  let g:airline_theme='alduin'
+  let g:airline_theme='atomic'
   set background=dark
   if exists('g:gui_oni')
     color 1989
@@ -31,20 +31,64 @@ function! s:themeoverrides()
   hi SignifySignAdd ctermbg=none ctermfg=80
   hi SignifySignDelete ctermbg=none ctermfg=160
   hi SignifySignChange ctermbg=none ctermfg=78
+  hi Noise ctermfg=14
+  hi link jsThis StorageClass
+  hi link jsGlobalObjects StorageClass
   hi link WhichKeySeperator NonText
+  " hi jsObjectProp cterm=bold
+  hi Comment cterm=italic
+
+  " Always red
+  hi ErrorMsg ctermbg=none ctermfg=160 cterm=italic
+  hi Error ctermbg=none ctermfg=160 cterm=italic
+
+  " Wild menu
+  hi StatusLine ctermfg=1 ctermbg=none cterm=none gui=none
+  hi StatusLineNC ctermfg=0
 
   if &background == 'dark'
-    hi VertSplit ctermbg=none ctermfg=233 cterm=none
-    hi NonText ctermbg=none ctermfg=233 cterm=none
+    hi Visual ctermbg=233 ctermfg=13
+    hi VertSplit ctermbg=none ctermfg=235 cterm=none
+    hi NonText ctermbg=none ctermfg=235 cterm=none
     hi Search ctermfg=4 ctermbg=236
     hi Pmenu ctermfg=4 ctermbg=235
     hi PmenuSel ctermfg=4 ctermbg=236
+    hi LineNr ctermfg=237
+    hi Noise ctermfg=237
+
+    " green, gray, invisibleish, red, highlighted spans
+    hi DiffAdd ctermfg=65 ctermbg=233
+    hi DiffChange ctermfg=238 ctermbg=233
+    hi DiffDelete ctermfg=235 ctermbg=none
+    hi DiffText ctermfg=254 ctermbg=234 cterm=bold
+    hi CursorLine ctermbg=233
+
+    " single panel diffs
+    hi DiffRemoved ctermfg=160 ctermbg=233
+    hi DiffAdded ctermfg=64 ctermbg=233
+    hi DiffNewFile ctermfg=8 ctermbg=233
+    hi DiffFile ctermfg=8 ctermbg=233
+    hi DiffLine ctermfg=2 ctermbg=233
   else
+    hi Visual ctermbg=254 ctermfg=13
     hi VertSplit ctermbg=none ctermfg=254 cterm=none
     hi NonText ctermbg=none ctermfg=254 cterm=none
     hi Search ctermfg=4 ctermbg=254
     hi Pmenu ctermfg=4 ctermbg=254
     hi PmenuSel ctermfg=4 ctermbg=253
+    hi CursorLine ctermbg=254
+
+    hi DiffAdd ctermfg=65 ctermbg=254
+    hi DiffChange ctermfg=238 ctermbg=254
+    hi DiffDelete ctermfg=235 ctermbg=none
+    hi DiffText ctermfg=234 ctermbg=254 cterm=bold
+
+    " single panel diffs
+    hi DiffRemoved ctermfg=160 ctermbg=254
+    hi DiffAdded ctermfg=64 ctermbg=254
+    hi DiffNewFile ctermfg=8 ctermbg=254
+    hi DiffFile ctermfg=8 ctermbg=254
+    hi DiffLine ctermfg=2 ctermbg=254
   endif
   set fillchars=fold: 
 endfunction
@@ -54,6 +98,8 @@ function! s:lighttheme()
   let g:airline_theme='aurora'
   call s:themeoverrides()
   set background=light
+  " color LightTan
+  " color lightning
   color base16-atelierlakeside
   ThemeOverrides
 endfunction

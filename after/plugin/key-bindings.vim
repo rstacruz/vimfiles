@@ -9,7 +9,7 @@ endif
 
 if exists(':GFiles')
   "" [N] <C-p> -- Project: open file [fzf]
-  nnoremap <C-p> :GFiles<cr>
+  nnoremap <C-p> :FZF<cr>
 endif
 " }}}
 
@@ -60,11 +60,8 @@ endif
 " }}}
 
 " Misc: emacs {{{
-" [NI] <C-x><C-s> -- Misc-emacs: Save file
-inoremap <C-x><C-s> <Esc>:w<CR>a
-nnoremap <C-x><C-s> :w<CR>
-
 " [NI] <C-s> -- Misc-emacs: Save file
+inoremap <C-s> <Esc>:w<CR>a
 nnoremap <C-s> :w<CR>
 
 " [N] <CR> -- Misc: Open fold
@@ -113,5 +110,3 @@ nnoremap <C-l> <C-w>l
 "" [N] =oas -- Misc: toggle signify
 nnoremap =oas :SignifyToggle<CR>
 " }}}
-
-set laststatus=0
