@@ -139,8 +139,8 @@ if exists(':Tag')
   let g:which_key_map.p.s = [ 'Tag', 'find-symbol' ]
   nnoremap <leader>ps :Tag<CR>
 
-  let g:which_key_map.p.f = [ 'FZF', 'find-file' ]
-  nnoremap <leader>pf :FZF<cr>
+  let g:which_key_map.p.f = [ 'FZF!', 'find-file' ]
+  nnoremap <leader>pf :FZF!<cr>
 
   let g:which_key_map.p.F = [ 'GFiles?', 'find-file-from-status' ]
   nnoremap <leader>pF :GFiles?<CR>

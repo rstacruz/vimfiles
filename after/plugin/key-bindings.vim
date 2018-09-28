@@ -9,7 +9,7 @@ endif
 
 if exists(':GFiles')
   "" [N] <C-p> -- Project: open file [fzf]
-  nnoremap <C-p> :FZF<cr>
+  nnoremap <C-p> :FZF!<cr>
 endif
 " }}}
 
