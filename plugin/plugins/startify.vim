@@ -19,10 +19,10 @@ let g:startify_lists = [
   \ ]
 
 let g:startify_custom_header = [
-  \ " ",
-  \ '  ╻ ╻   ╻   ┏┳┓',
-  \ '  ┃┏┛   ┃   ┃┃┃',
-  \ '  ┗┛    ╹   ╹ ╹',
-  \ '  ',
+  \ "  ",
+  \ '   ╻ ╻   ╻   ┏┳┓',
+  \ '   ┃┏┛   ┃   ┃┃┃',
+  \ '   ┗┛    ╹   ╹ ╹',
+  \ '   ',
   \ ] +
   \ map(split(system('bash -c "note=\$PROJECT_NOTES_PATH/\$(basename \$(pwd)).txt; if [ -e \"\$note\" ]; then cat \"\$note\"; fi"'), '\n'), '"   ". v:val')

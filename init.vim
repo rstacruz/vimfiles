@@ -29,6 +29,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
 Plug 'irrationalistic/vim-tasks'
 
 " Plugins: More plugins {{{
@@ -61,7 +62,6 @@ if has('python3') | Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' 
 "
 " Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'ConradIrwin/vim-bracketed-paste'
-" Plug 'junegunn/goyo.vim'
 " Plug 'mattn/emmet-vim', { 'for': ['html'] }
 " Plug 'mhinz/vim-grepper'
 " Plug 'tpope/vim-abolish'
