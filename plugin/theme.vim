@@ -53,8 +53,8 @@ function! s:themeoverrides()
     hi Search ctermfg=4 ctermbg=236
     hi Pmenu ctermfg=4 ctermbg=235
     hi PmenuSel ctermfg=4 ctermbg=236
-    hi LineNr ctermfg=237
-    hi Noise ctermfg=237
+    hi LineNr ctermfg=239
+    hi Noise ctermfg=240
 
     " green, gray, invisibleish, red, highlighted spans
     hi DiffAdd ctermfg=65 ctermbg=233
