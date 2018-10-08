@@ -70,6 +70,7 @@ function! s:themeoverrides()
     hi DiffFile ctermfg=8 ctermbg=233
     hi DiffLine ctermfg=2 ctermbg=233
   else
+    hi Normal ctermfg=none
     hi Visual ctermbg=254 ctermfg=13
     hi VertSplit ctermbg=none ctermfg=254 cterm=none
     hi NonText ctermbg=none ctermfg=254 cterm=none
