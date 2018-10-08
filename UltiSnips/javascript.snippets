@@ -2,6 +2,17 @@
 # Import
 #
 
+snippet ins "inspect" b
+require('util').inspect(${1:...}, { depth: null })$0
+endsnippet
+
+snippet cin "console.log inspect" b
+console.log(
+	'=> $1:',
+	require('util').inspect(${1:...}, { depth: null, colors: true })
+)$0
+endsnippet
+
 snippet i "import ··· from '···'" b
 import ${2:${1/^.*\///}} from '${1:···}'$0
 endsnippet

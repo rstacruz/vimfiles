@@ -1,4 +1,3 @@
-set guicursor=
 set t_Co=256
 set nocompatible
 let g:mapleader=","
@@ -8,46 +7,36 @@ call plug#begin('~/.vim/vendor')
 
 " Essentials {{{
 if !has('nvim') && !exists('g:gui_oni') | Plug 'tpope/vim-sensible' | endif
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'rstacruz/vim-opinion'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'irrationalistic/vim-tasks'
-Plug 'flazz/vim-colorschemes'
-" if !exists('g:gui_oni') | Plug 'justincampbell/vim-eighties' | endif
-if version >= 704 | Plug 'SirVer/ultisnips' | endif
-" }}}
 
 " Stop here if we're in minimal (Git) mode {{{
 if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != ''
   call plug#end()
-  finish
 endif
 " }}}
 
-" Plugins: Slow plugins {{{
+if !exists('g:gui_oni') | Plug 'justincampbell/vim-eighties' | endif
+if version >= 704 && has('python3') | Plug 'SirVer/ultisnips' | endif
+" }}}
+
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'rstacruz/vim-opinion'
+Plug 'flazz/vim-colorschemes'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'irrationalistic/vim-tasks'
+
+" Plugins: More plugins {{{
 if !exists('g:gui_oni')
   Plug 'scrooloose/nerdtree'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-endif
-" }}}
-
-" Plugins: Neovim-only {{{
-if has('nvim') && !exists('g:gui_oni')
-" Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
-" Plug 'sbdchd/neoformat'
-endif
-" }}}
-
-" Plugins: All others {{{
-if !exists('g:gui_oni')
   Plug 'godlygeek/tabular'
   Plug 'mhinz/vim-signify'
   Plug 'rstacruz/vim-hyperstyle'
@@ -55,22 +44,24 @@ if !exists('g:gui_oni')
   Plug 'thinca/vim-visualstar'
 endif
 
+Plug 'liuchengxu/vim-which-key'
+Plug 'shime/vim-livedown'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'rstacruz/vim-closer'
 Plug 'w0rp/ale'
+Plug 'Galooshi/vim-import-js'
 Plug 'easymotion/vim-easymotion'
 Plug 'autozimu/LanguageClient-neovim', {
   \ 'branch': 'next',
   \ 'do': 'bash install.sh' }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+if has('python3') | Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } | endif
 " }}}
 
 " Plugins: I can live without you {{{
 "
 " Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'ConradIrwin/vim-bracketed-paste'
-" Plug 'junegunn/goyo.vim'
 " Plug 'mattn/emmet-vim', { 'for': ['html'] }
 " Plug 'mhinz/vim-grepper'
 " Plug 'tpope/vim-abolish'
@@ -92,6 +83,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'moll/vim-node', { 'for': 'javascript' }
   Plug 'pangloss/vim-javascript' " { 'for': 'javascript' }
   Plug 'mxw/vim-jsx' " { 'for': 'javascript' }
+  Plug 'plasticboy/vim-markdown'
   Plug 'alampros/vim-styled-jsx' " { 'for': 'javascript' }
 " Plug 'rstacruz/ledgerdown', { 'rtp': 'vim', 'for': 'ledger' }
 " Plug 'slashmili/alchemist.vim', { 'for': ['elixir', 'ex'] }
@@ -108,3 +100,6 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 " vim:foldmethod=marker
+
+" https://github.com/neovim/neovim/wiki/FAQ#nvim-shows-weird-symbols-2-q-when-changing-modes
+" set guicursor=

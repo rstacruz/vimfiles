@@ -10,6 +10,8 @@ let g:ale_linters = {
 \ 'javascript': ['eslint', 'flow'],
 \ 'javascript.jsx': ['eslint', 'flow'],
 \ 'html': ['htmlhint'],
+\ 'css': ['stylelint'],
+\ 'scss': ['stylelint'],
 \ 'elixir': [],
 \ }
 

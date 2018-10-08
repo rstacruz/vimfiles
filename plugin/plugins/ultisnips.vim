@@ -1,6 +1,4 @@
-if globpath(&rtp, "plugin/UltiSnips.vim") == ""
-  finish
-endif
+if globpath(&rtp, "plugin/UltiSnips.vim") == "" | finish | endif
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"

@@ -4,7 +4,10 @@ pwd := $(shell pwd -LP)
 
 default: install
 
-docs: doc/vimfiles_keys.txt
+# Update documentation
+doc: doc/vimfiles_keys.txt
+docs:
+	@echo "Try: 'make doc'"
 
 doc/vimfiles_keys.txt:
 	mkdir -p doc
@@ -43,4 +46,4 @@ upgrade:
 restore:
 	$(vim) -S ${lockfile}
 
-.PHONY: install link upgrade restore default link-vim link-neovim
+.PHONY: install link upgrade restore default link-vim link-neovim doc/vimfiles_keys.txt
