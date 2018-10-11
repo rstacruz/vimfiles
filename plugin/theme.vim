@@ -28,9 +28,6 @@ endfunction
 
 function! s:themeoverrides()
   hi Folded ctermbg=none ctermfg=8 cterm=none
-  hi SignifySignAdd ctermbg=none ctermfg=80
-  hi SignifySignDelete ctermbg=none ctermfg=160
-  hi SignifySignChange ctermbg=none ctermfg=78
   hi Noise ctermfg=14
   hi link jsThis StorageClass
   hi link jsGlobalObjects StorageClass
@@ -69,6 +66,11 @@ function! s:themeoverrides()
     hi DiffNewFile ctermfg=8 ctermbg=233
     hi DiffFile ctermfg=8 ctermbg=233
     hi DiffLine ctermfg=2 ctermbg=233
+
+    " sign
+    hi SignifySignAdd ctermbg=none ctermfg=22
+    hi SignifySignDelete ctermbg=none ctermfg=124
+    hi SignifySignChange ctermbg=none ctermfg=237
   else
     hi Normal ctermfg=none
     hi Visual ctermbg=254 ctermfg=13
@@ -90,6 +92,10 @@ function! s:themeoverrides()
     hi DiffNewFile ctermfg=8 ctermbg=254
     hi DiffFile ctermfg=8 ctermbg=254
     hi DiffLine ctermfg=2 ctermbg=254
+
+    hi SignifySignAdd ctermbg=none ctermfg=76
+    hi SignifySignDelete ctermbg=none ctermfg=203
+    hi SignifySignChange ctermbg=none ctermfg=250
   endif
   set fillchars=fold: 
 endfunction

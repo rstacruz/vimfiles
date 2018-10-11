@@ -12,6 +12,9 @@ set spellfile=~/.vim/spell/en.utf-8.add
 " No line numbers by default (=on to enable)
 set nonumber
 
+" hide the scroll position
+set noruler
+
 " Remove the one-second escape key delay
 " http://stackoverflow.com/questions/12312178/tmux-and-vim-escape-key-being-seen-as-and-having-long-delay
 set timeout timeoutlen=75 ttimeoutlen=10
