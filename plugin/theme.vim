@@ -43,6 +43,12 @@ function! s:themeoverrides()
   hi StatusLine ctermfg=1 ctermbg=none cterm=none gui=none
   hi StatusLineNC ctermfg=0
 
+  hi! link mkdInlineURL LineNr
+
+  hi TabLineFill ctermbg=none
+  hi TabLine ctermbg=none ctermfg=240
+  hi TabLineSel ctermbg=none ctermfg=240 cterm=bold
+
   if &background == 'dark'
     hi Visual ctermbg=233 ctermfg=13
     hi VertSplit ctermbg=none ctermfg=235 cterm=none
@@ -50,8 +56,11 @@ function! s:themeoverrides()
     hi Search ctermfg=4 ctermbg=236
     hi Pmenu ctermfg=4 ctermbg=235
     hi PmenuSel ctermfg=4 ctermbg=236
+
     hi LineNr ctermfg=239
     hi Noise ctermfg=240
+    hi TabLine ctermbg=none ctermfg=239
+    hi TabLineSel ctermbg=none ctermfg=1 ctermbg=233 cterm=bold
 
     " green, gray, invisibleish, red, highlighted spans
     hi DiffAdd ctermfg=65 ctermbg=233
@@ -80,6 +89,11 @@ function! s:themeoverrides()
     hi Pmenu ctermfg=4 ctermbg=254
     hi PmenuSel ctermfg=4 ctermbg=253
     hi CursorLine ctermbg=254
+
+    hi LineNr ctermfg=250
+    hi Noise ctermfg=247
+    hi TabLine ctermbg=none ctermfg=250
+    hi TabLineSel ctermbg=none ctermfg=5 ctermbg=0 cterm=bold
 
     hi DiffAdd ctermfg=65 ctermbg=254
     hi DiffChange ctermfg=238 ctermbg=254
