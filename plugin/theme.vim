@@ -1,23 +1,25 @@
 " Color themes
 " {{{
 " higher index = more intense
-let g:dark_colors = {
-  \ 'invis': '235',
-  \ 'mute': ['239', '240'],
-  \ 'highlight_bg': [ '236', '235', '233' ],
-  \ 'highlight_text': ['4', '13'],
-  \ 'signify': { 'add': 22, 'delete': 124, 'change': 237 },
-  \ 'splitdiff': { 'add': 65, 'delete': 235, 'change': 238, 'text': 254 },
-  \ 'diff': { 'removed': 161, 'added': 64, 'file': 8, 'line': 2 }
-  \ }
-let g:light_colors = {
-  \ 'invis': '254',
-  \ 'mute': ['250', '247'],
-  \ 'highlight_bg': [ '254', '254', '253' ],
-  \ 'highlight_text': ['4', '13'],
-  \ 'signify': { 'add': 76, 'delete': 203, 'change': 250 },
-  \ 'splitdiff': { 'add': 65, 'delete': 235, 'change': 238, 'text': 254 },
-  \ 'diff': { 'removed': 161, 'added': 64, 'file': 8, 'line': 2 }
+let g:color_schemes = {
+  \   'dark': {
+  \     'invis': '235',
+  \     'mute': ['239', '240'],
+  \     'highlight_bg': [ '236', '235', '233' ],
+  \     'highlight_text': ['4', '13'],
+  \     'signify': { 'add': 22, 'delete': 124, 'change': 237 },
+  \     'splitdiff': { 'add': 65, 'delete': 235, 'change': 238, 'text': 254 },
+  \     'diff': { 'removed': 161, 'added': 64, 'file': 8, 'line': 2 }
+  \   },
+  \   'light': {
+  \     'invis': '254',
+  \     'mute': ['250', '247'],
+  \     'highlight_bg': [ '254', '254', '253' ],
+  \     'highlight_text': ['4', '13'],
+  \     'signify': { 'add': 76, 'delete': 203, 'change': 250 },
+  \     'splitdiff': { 'add': 65, 'delete': 235, 'change': 238, 'text': 254 },
+  \     'diff': { 'removed': 161, 'added': 64, 'file': 8, 'line': 2 }
+  \   }
   \ }
 " }}}
 
@@ -59,11 +61,7 @@ endfunction " }}}
 
 " Apply overrides (:ThemeOverrides)
 function! s:themeoverrides() " {{{
-  if &background == 'dark'
-    let colors = g:dark_colors
-  else
-    let colors = g:light_colors
-  endif
+  let colors = g:color_schemes[&background]
   set fillchars=fold: 
   call s:themeoverrides_common()
   call s:themeoverrides_custom(colors)
