@@ -23,22 +23,18 @@ let g:airline_right_alt_sep = ''
 " let g:airline_symbols.linenr = '␊'
 
 function! AirlineInit()
-  " let g:airline_section_a = ''
-  " let g:airline_section_b = ''
-  " let g:airline_section_c = ''
-  " let g:airline_section_x = ''
-  " let g:airline_section_y = ''
   " let g:airline_section_gutter = ''
   let g:airline_section_y = g:airline_section_c
-  let g:airline_section_z = ''
-  let g:airline_section_c = ''
-  let g:airline_section_x = ''
-  let g:airline_section_a = '' " usually mode indicator
+  let g:airline_section_c = '' " file, readonly indicator
+  let g:airline_section_x = '' " usually filetype
+  " let g:airline_section_y = '' " file encoding
+  let g:airline_section_z = '' " ruler
+  let g:airline_section_a = '' " usually mode indicator [n/i]
 endfunction
 autocmd User AirlineAfterInit call AirlineInit()
 
 " No extensions
-let g:airline_extensions = []
+let g:airline_extensions = ['ale', 'languageclient', 'quickfix', 'fugitiveline']
 
 " let g:bufferline_show_bufnr = 0
 " let g:bufferline_echo = 0

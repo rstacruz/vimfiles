@@ -23,7 +23,7 @@ set timeout timeoutlen=75 ttimeoutlen=10
 if $GIT_DIR != '' | startinsert | endif
 
 " minimal status bar
-set laststatus=0
+" set laststatus=0
 
 " https://superuser.com/a/1090762
 set autoread
