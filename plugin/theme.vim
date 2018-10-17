@@ -136,6 +136,8 @@ function! s:themeoverrides_custom(colors) " {{{
   exec "hi SignifySignAdd    ctermbg=none ctermfg=".(c.signify.add)
   exec "hi SignifySignDelete ctermbg=none ctermfg=".(c.signify.delete)
   exec "hi SignifySignChange ctermbg=none ctermfg=".(c.signify.change)
+
+  exec "hi StartifyHeader ctermfg=".(c.highlight_text[1])." cterm=italic"
 endfunction " }}}
 
 " GUI theme (:GuiTheme)
