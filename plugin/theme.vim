@@ -1,18 +1,18 @@
-"
-" Common
-"
+" Commands
+" Commands {{{
+  "" [:] :Light -- Theme: Light theme
+  "" [:] :Dark -- Theme: Dark theme
+  command! Dark :call <SID>darktheme()
+  command! Light :call <SID>lighttheme()
+  command! ThemeOverrides :call <SID>themeoverrides()
+  command! Guitheme :call <SID>guitheme()
+" }}}
 
-"" [:] :Light -- Theme: Light theme
-"" [:] :Dark -- Theme: Dark theme
-command! Dark :call <SID>darktheme()
-command! Light :call <SID>lighttheme()
-command! ThemeOverrides :call <SID>themeoverrides()
-command! Guitheme :call <SID>guitheme()
-
-" force no background for certain things
+" Auto-apply overrides
 au ColorScheme * ThemeOverrides
 
-function! s:darktheme()
+" Apply dark theme (:Dark)
+function! s:darktheme() " {{{
   let g:airline_theme='atomic'
   set background=dark
   if exists('g:gui_oni')
@@ -21,9 +21,50 @@ function! s:darktheme()
     color base16-atelierlakeside
   endif
   call s:themeoverrides()
-endfunction
+endfunction " }}}
 
-function! s:themeoverrides_common()
+" Apply light theme (:Light)
+function! s:lighttheme() " {{{
+  call s:themeoverrides()
+  set background=light
+  " color LightTan
+  " color lightning
+  color base16-atelierlakeside
+  ThemeOverrides
+  AirlineTheme base16 " lucius, base16, aurora
+endfunction " }}}
+
+" Apply overrides (:ThemeOverrides)
+function! s:themeoverrides() " {{{
+  if &background == 'dark'
+    " higher index = more intense
+    let colors = {
+      \ 'invis': '235',
+      \ 'mute': ['239', '240'],
+      \ 'highlight_bg': [ '236', '235', '233' ],
+      \ 'highlight_text': ['4', '13'],
+      \ 'signify': { 'add': 22, 'delete': 124, 'change': 237 },
+      \ 'splitdiff': { 'add': 65, 'delete': 235, 'change': 238, 'text': 254 },
+      \ 'diff': { 'removed': 160, 'added': 64, 'file': 8, 'line': 2 }
+      \ }
+  else
+    let colors = {
+      \ 'invis': '254',
+      \ 'mute': ['250', '247'],
+      \ 'highlight_bg': [ '254', '254', '253' ],
+      \ 'highlight_text': ['4', '13'],
+      \ 'signify': { 'add': 76, 'delete': 203, 'change': 250 },
+      \ 'splitdiff': { 'add': 65, 'delete': 235, 'change': 238, 'text': 254 },
+      \ 'diff': { 'removed': 160, 'added': 64, 'file': 8, 'line': 2 }
+      \ }
+  endif
+  set fillchars=fold: 
+  call s:themeoverrides_common()
+  call s:themeoverrides_custom(colors)
+endfunction " }}}
+
+" [private] Common overrides for all occasions
+function! s:themeoverrides_common() " {{{
   hi Normal ctermbg=none ctermfg=none
   hi SignColumn ctermbg=none
   hi FoldColumn ctermbg=none
@@ -48,91 +89,51 @@ function! s:themeoverrides_common()
   hi! link mkdInlineURL LineNr
 
   hi TabLineFill ctermbg=none
-  hi TabLine ctermbg=none ctermfg=240
-  hi TabLineSel ctermbg=none ctermfg=240 cterm=bold
-endfunction
+endfunction " }}}
 
-function! s:themeoverrides()
-  call s:themeoverrides_common()
-  if &background == 'dark'
-    let mute_700="239"
-    let mute_800="240"
-    let bg_highlight="233"
+" [private] Custom overrides, depending on background
+function! s:themeoverrides_custom(colors) " {{{
+  let c = a:colors
 
-    hi Visual    ctermbg=233 ctermfg=13
-    hi VertSplit ctermbg=none ctermfg=235 cterm=none
-    hi NonText   ctermbg=none ctermfg=235 cterm=none
-    hi Search    ctermfg=4 ctermbg=236
-    hi Pmenu     ctermfg=4 ctermbg=235
-    hi PmenuSel  ctermfg=4 ctermbg=236
+  " highlights
+  exec "hi Visual     ctermbg=".(c.highlight_bg[1])."  ctermfg=".(c.highlight_text[1])
+  exec "hi VertSplit  ctermbg=none ctermfg=".(c.invis)." cterm=none"
+  exec "hi NonText    ctermbg=none ctermfg=".(c.invis)." cterm=none"
+  exec "hi Search     ctermfg=".(c.highlight_text[0])." ctermbg=".(c.highlight_bg[1])
+  exec "hi CursorLine ctermbg=".(c.highlight_bg[0])
 
-    exec "hi LineNr     ctermfg=".mute_700
-    exec "hi Noise      ctermfg=".mute_800
-    exec "hi TabLine    ctermbg=none ctermfg=".mute_700
-    exec "hi TabLineSel ctermbg=none ctermfg=1 ctermbg=".mute_700." cterm=bold"
+  " popup
+  exec "hi Pmenu     ctermfg=".(c.highlight_text[0])." ctermbg=".(c.highlight_bg[1])
+  exec "hi PmenuSel  ctermfg=".(c.highlight_text[0])." ctermbg=".(c.highlight_bg[2])
 
-    " green, gray, invisibleish, red, highlighted spans
-    hi DiffAdd ctermfg=65 ctermbg=233
-    hi DiffChange ctermfg=238 ctermbg=233
-    hi DiffDelete ctermfg=235 ctermbg=none
-    hi DiffText ctermfg=254 ctermbg=234 cterm=bold
-    exec "hi CursorLine ctermbg=".bg_highlight
+  " mutes
+  exec "hi LineNr     ctermfg=".(c.mute[0])
+  exec "hi Noise      ctermfg=".(c.mute[1])
 
-    " single panel diffs
-    exec "hi DiffRemoved ctermfg=160 ctermbg=".bg_highlight
-    exec "hi DiffAdded   ctermfg=64  ctermbg=".bg_highlight
-    exec "hi DiffNewFile ctermfg=8   ctermbg=".bg_highlight
-    exec "hi DiffFile    ctermfg=8   ctermbg=".bg_highlight
-    exec "hi DiffLine    ctermfg=2   ctermbg=".bg_highlight
+  " tab line
+  exec "hi TabLine    ctermbg=none ctermfg=".(c.mute[1])
+  exec "hi TabLineSel ctermbg=".(c.highlight_bg[1])." ctermfg=".(c.highlight_text[1])." cterm=none"
 
-    " sign
-    hi SignifySignAdd ctermbg=none ctermfg=22
-    hi SignifySignDelete ctermbg=none ctermfg=124
-    hi SignifySignChange ctermbg=none ctermfg=237
-  else
-    hi Visual ctermbg=254 ctermfg=13
-    hi VertSplit ctermbg=none ctermfg=254 cterm=none
-    hi NonText ctermbg=none ctermfg=254 cterm=none
-    hi Search ctermfg=4 ctermbg=254
-    hi Pmenu ctermfg=4 ctermbg=254
-    hi PmenuSel ctermfg=4 ctermbg=253
-    hi CursorLine ctermbg=254
+  " green, gray, invisibleish, red, highlighted spans
+  exec "hi DiffAdd    ctermfg=".(c.splitdiff.add   )." ctermbg=".(c.highlight_bg[1])
+  exec "hi DiffChange ctermfg=".(c.splitdiff.change)." ctermbg=".(c.highlight_bg[1])
+  exec "hi DiffDelete ctermfg=".(c.splitdiff.delete)." ctermbg=none"
+  exec "hi DiffText   ctermfg=".(c.splitdiff.text  )." ctermbg=".(c.highlight_text[0])." cterm=bold"
 
-    hi LineNr ctermfg=250
-    hi Noise ctermfg=247
-    hi TabLine ctermbg=none ctermfg=250
-    hi TabLineSel ctermbg=none ctermfg=5 ctermbg=0 cterm=bold
+  " single panel diffs
+  exec "hi DiffRemoved ctermfg=".(c.diff.removed)." ctermbg=".(c.highlight_bg[1])
+  exec "hi DiffAdded   ctermfg=".(c.diff.added  )." ctermbg=".(c.highlight_bg[1])
+  exec "hi DiffNewFile ctermfg=".(c.diff.file   )." ctermbg=".(c.highlight_bg[1])
+  exec "hi DiffFile    ctermfg=".(c.diff.file   )." ctermbg=".(c.highlight_bg[1])
+  exec "hi DiffLine    ctermfg=".(c.diff.line   )." ctermbg=".(c.highlight_bg[1])
 
-    hi DiffAdd ctermfg=65 ctermbg=254
-    hi DiffChange ctermfg=238 ctermbg=254
-    hi DiffDelete ctermfg=235 ctermbg=none
-    hi DiffText ctermfg=234 ctermbg=254 cterm=bold
+  exec "hi SignifySignAdd    ctermbg=none ctermfg=".(c.signify.add)
+  exec "hi SignifySignDelete ctermbg=none ctermfg=".(c.signify.delete)
+  exec "hi SignifySignChange ctermbg=none ctermfg=".(c.signify.change)
+endfunction " }}}
 
-    " single panel diffs
-    hi DiffRemoved ctermfg=160 ctermbg=254
-    hi DiffAdded ctermfg=64 ctermbg=254
-    hi DiffNewFile ctermfg=8 ctermbg=254
-    hi DiffFile ctermfg=8 ctermbg=254
-    hi DiffLine ctermfg=2 ctermbg=254
-
-    hi SignifySignAdd ctermbg=none ctermfg=76
-    hi SignifySignDelete ctermbg=none ctermfg=203
-    hi SignifySignChange ctermbg=none ctermfg=250
-  endif
-  set fillchars=fold: 
-endfunction
-
-function! s:lighttheme()
-  call s:themeoverrides()
-  set background=light
-  " color LightTan
-  " color lightning
-  color base16-atelierlakeside
-  ThemeOverrides
-  AirlineTheme base16 " lucius, base16, aurora
-endfunction
-
-function! s:guitheme()
+" GUI theme (:GuiTheme)
+function! s:guitheme() " {{{
   set transparency=0
   set guioptions=
   set guioptions+=g " gray menu items
@@ -142,12 +143,6 @@ function! s:guitheme()
   set antialias
   let g:airline_theme='base16'
   set guifont=Iosevka\ Medium:h16 linespace=-1
-endfunction
+endfunction " }}}
 
-"
-" Console
-"
-
-if !has("gui_running")
-  set t_Co=256
-endif
+" vim:foldmethod=syntax
