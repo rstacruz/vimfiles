@@ -30,10 +30,10 @@ function! AirlineInit()
   " let g:airline_section_y = ''
   " let g:airline_section_gutter = ''
   let g:airline_section_y = g:airline_section_c
-  let g:airline_section_z = g:airline_section_a
+  let g:airline_section_z = ''
   let g:airline_section_c = ''
   let g:airline_section_x = ''
-  let g:airline_section_a = ''
+  let g:airline_section_a = '' " usually mode indicator
 endfunction
 autocmd User AirlineAfterInit call AirlineInit()
 

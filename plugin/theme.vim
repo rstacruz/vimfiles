@@ -45,7 +45,7 @@ function! s:themeoverrides() " {{{
       \ 'highlight_text': ['4', '13'],
       \ 'signify': { 'add': 22, 'delete': 124, 'change': 237 },
       \ 'splitdiff': { 'add': 65, 'delete': 235, 'change': 238, 'text': 254 },
-      \ 'diff': { 'removed': 160, 'added': 64, 'file': 8, 'line': 2 }
+      \ 'diff': { 'removed': 161, 'added': 64, 'file': 8, 'line': 2 }
       \ }
   else
     let colors = {
@@ -55,7 +55,7 @@ function! s:themeoverrides() " {{{
       \ 'highlight_text': ['4', '13'],
       \ 'signify': { 'add': 76, 'delete': 203, 'change': 250 },
       \ 'splitdiff': { 'add': 65, 'delete': 235, 'change': 238, 'text': 254 },
-      \ 'diff': { 'removed': 160, 'added': 64, 'file': 8, 'line': 2 }
+      \ 'diff': { 'removed': 161, 'added': 64, 'file': 8, 'line': 2 }
       \ }
   endif
   set fillchars=fold: 
@@ -79,8 +79,8 @@ function! s:themeoverrides_common() " {{{
   hi Comment cterm=italic
 
   " Always red
-  hi ErrorMsg ctermbg=none ctermfg=160 cterm=italic
-  hi Error ctermbg=none ctermfg=160 cterm=italic
+  hi ErrorMsg ctermbg=none ctermfg=161 cterm=italic
+  hi Error ctermbg=none ctermfg=161 cterm=none
 
   " Wild menu
   hi StatusLine ctermfg=1 ctermbg=none cterm=none gui=none
@@ -100,7 +100,13 @@ function! s:themeoverrides_custom(colors) " {{{
   exec "hi VertSplit  ctermbg=none ctermfg=".(c.invis)." cterm=none"
   exec "hi NonText    ctermbg=none ctermfg=".(c.invis)." cterm=none"
   exec "hi Search     ctermfg=".(c.highlight_text[0])." ctermbg=".(c.highlight_bg[1])
-  exec "hi CursorLine ctermbg=".(c.highlight_bg[0])
+
+  exec "hi CursorLine   ctermbg=".(c.highlight_bg[0])
+  exec "hi CursorLineNr ctermbg=none ctermfg=".(c.highlight_text[1])
+
+  " ale errors
+  exec "hi SpellBad ctermbg=".(c.highlight_bg[0])." cterm=italic,underline ctermfg=".(c.highlight_text[1])
+  exec "hi SpellBad ctermbg=".(c.highlight_bg[0])." cterm=italic ctermfg=161"
 
   " popup
   exec "hi Pmenu     ctermfg=".(c.highlight_text[0])." ctermbg=".(c.highlight_bg[1])
