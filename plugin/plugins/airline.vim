@@ -23,13 +23,17 @@ let g:airline_right_alt_sep = ''
 " let g:airline_symbols.linenr = '␊'
 
 function! AirlineInit()
-  let g:airline_section_a = ''
-  let g:airline_section_b = ''
+  " let g:airline_section_a = ''
+  " let g:airline_section_b = ''
+  " let g:airline_section_c = ''
+  " let g:airline_section_x = ''
+  " let g:airline_section_y = ''
+  " let g:airline_section_gutter = ''
+  let g:airline_section_y = g:airline_section_c
+  let g:airline_section_z = g:airline_section_a
   let g:airline_section_c = ''
   let g:airline_section_x = ''
-  let g:airline_section_y = ''
-  " let g:airline_section_gutter = ''
-  let g:airline_section_z = '' " airline#section#create(['mode'])
+  let g:airline_section_a = ''
 endfunction
 autocmd User AirlineAfterInit call AirlineInit()
 

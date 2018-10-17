@@ -59,7 +59,6 @@ if has('python3') | Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' 
 " }}}
 
 " Plugins: I can live without you {{{
-"
 " Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'ConradIrwin/vim-bracketed-paste'
 " Plug 'mattn/emmet-vim', { 'for': ['html'] }
@@ -71,32 +70,8 @@ if has('python3') | Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' 
 " Plug 'vim-scripts/restore_view.vim'
 " }}}
 
-" Plugins: Language specific {{{
-" Plug 'dag/vim-fish'
-  Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
-  Plug 'elixir-editors/vim-elixir' ", { 'for': ['elixir', 'ex', 'exs'] }
-" Plug 'groenewege/vim-less', { 'for': 'less' }
-  Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss', 'less'] }
-" Plug 'kchmck/vim-coffee-script', { 'for': ['coffee', 'coffeescript'] }
-" Plug 'ledger/vim-ledger', { 'for': 'ledger' }
-" Plug 'mitsuhiko/vim-python-combined', { 'for': 'python' }
-" Plug 'moll/vim-node', { 'for': 'javascript' }
-  Plug 'pangloss/vim-javascript' " { 'for': 'javascript' }
-  Plug 'mxw/vim-jsx' " { 'for': 'javascript' }
-  Plug 'plasticboy/vim-markdown'
-  Plug 'alampros/vim-styled-jsx' " { 'for': 'javascript' }
-" Plug 'rstacruz/ledgerdown', { 'rtp': 'vim', 'for': 'ledger' }
-" Plug 'slashmili/alchemist.vim', { 'for': ['elixir', 'ex'] }
-" Plug 'slim-template/vim-slim', { 'for': ['slim'] }
-" Plug 'tpope/vim-bundler', { 'for': 'ruby' }
-  Plug 'tpope/vim-haml', { 'for': 'haml' }
+  Plug 'sheerun/vim-polyglot'
   Plug 'tpope/vim-rails', { 'for': 'ruby' }
-  Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-  Plug 'wavded/vim-stylus', { 'for': 'stylus' }
-" Plug 'romanzolotarev/vim-journal', { 'for': 'journal' }
-" Plug 'tpope/vim-cucumber', { 'for': 'ruby' }
-" Plug 'jceb/vim-orgmode', { 'for': 'org' }
-" }}}
 
 call plug#end()
 " vim:foldmethod=marker

@@ -10,10 +10,7 @@ command! ThemeOverrides :call <SID>themeoverrides()
 command! Guitheme :call <SID>guitheme()
 
 " force no background for certain things
-au ColorScheme * hi Normal ctermbg=none
-au ColorScheme * hi SignColumn ctermbg=none
-au ColorScheme * hi FoldColumn ctermbg=none
-au ColorScheme * hi LineNr ctermbg=none
+au ColorScheme * ThemeOverrides
 
 function! s:darktheme()
   let g:airline_theme='atomic'
@@ -26,7 +23,12 @@ function! s:darktheme()
   call s:themeoverrides()
 endfunction
 
-function! s:themeoverrides()
+function! s:themeoverrides_common()
+  hi Normal ctermbg=none ctermfg=none
+  hi SignColumn ctermbg=none
+  hi FoldColumn ctermbg=none
+  hi LineNr ctermbg=none
+
   hi Folded ctermbg=none ctermfg=8 cterm=none
   hi Noise ctermfg=14
   hi link jsThis StorageClass
@@ -41,47 +43,53 @@ function! s:themeoverrides()
 
   " Wild menu
   hi StatusLine ctermfg=1 ctermbg=none cterm=none gui=none
-  hi StatusLineNC ctermfg=0
+  hi StatusLineNC ctermfg=0 ctermbg=none
 
   hi! link mkdInlineURL LineNr
 
   hi TabLineFill ctermbg=none
   hi TabLine ctermbg=none ctermfg=240
   hi TabLineSel ctermbg=none ctermfg=240 cterm=bold
+endfunction
 
+function! s:themeoverrides()
+  call s:themeoverrides_common()
   if &background == 'dark'
-    hi Visual ctermbg=233 ctermfg=13
-    hi VertSplit ctermbg=none ctermfg=235 cterm=none
-    hi NonText ctermbg=none ctermfg=235 cterm=none
-    hi Search ctermfg=4 ctermbg=236
-    hi Pmenu ctermfg=4 ctermbg=235
-    hi PmenuSel ctermfg=4 ctermbg=236
+    let mute_700="239"
+    let mute_800="240"
+    let bg_highlight="233"
 
-    hi LineNr ctermfg=239
-    hi Noise ctermfg=240
-    hi TabLine ctermbg=none ctermfg=239
-    hi TabLineSel ctermbg=none ctermfg=1 ctermbg=233 cterm=bold
+    hi Visual    ctermbg=233 ctermfg=13
+    hi VertSplit ctermbg=none ctermfg=235 cterm=none
+    hi NonText   ctermbg=none ctermfg=235 cterm=none
+    hi Search    ctermfg=4 ctermbg=236
+    hi Pmenu     ctermfg=4 ctermbg=235
+    hi PmenuSel  ctermfg=4 ctermbg=236
+
+    exec "hi LineNr     ctermfg=".mute_700
+    exec "hi Noise      ctermfg=".mute_800
+    exec "hi TabLine    ctermbg=none ctermfg=".mute_700
+    exec "hi TabLineSel ctermbg=none ctermfg=1 ctermbg=".mute_700." cterm=bold"
 
     " green, gray, invisibleish, red, highlighted spans
     hi DiffAdd ctermfg=65 ctermbg=233
     hi DiffChange ctermfg=238 ctermbg=233
     hi DiffDelete ctermfg=235 ctermbg=none
     hi DiffText ctermfg=254 ctermbg=234 cterm=bold
-    hi CursorLine ctermbg=233
+    exec "hi CursorLine ctermbg=".bg_highlight
 
     " single panel diffs
-    hi DiffRemoved ctermfg=160 ctermbg=233
-    hi DiffAdded ctermfg=64 ctermbg=233
-    hi DiffNewFile ctermfg=8 ctermbg=233
-    hi DiffFile ctermfg=8 ctermbg=233
-    hi DiffLine ctermfg=2 ctermbg=233
+    exec "hi DiffRemoved ctermfg=160 ctermbg=".bg_highlight
+    exec "hi DiffAdded   ctermfg=64  ctermbg=".bg_highlight
+    exec "hi DiffNewFile ctermfg=8   ctermbg=".bg_highlight
+    exec "hi DiffFile    ctermfg=8   ctermbg=".bg_highlight
+    exec "hi DiffLine    ctermfg=2   ctermbg=".bg_highlight
 
     " sign
     hi SignifySignAdd ctermbg=none ctermfg=22
     hi SignifySignDelete ctermbg=none ctermfg=124
     hi SignifySignChange ctermbg=none ctermfg=237
   else
-    hi Normal ctermfg=none
     hi Visual ctermbg=254 ctermfg=13
     hi VertSplit ctermbg=none ctermfg=254 cterm=none
     hi NonText ctermbg=none ctermfg=254 cterm=none
@@ -115,14 +123,13 @@ function! s:themeoverrides()
 endfunction
 
 function! s:lighttheme()
-  let g:airline_theme='lucius'
-  let g:airline_theme='aurora'
   call s:themeoverrides()
   set background=light
   " color LightTan
   " color lightning
   color base16-atelierlakeside
   ThemeOverrides
+  AirlineTheme base16 " lucius, base16, aurora
 endfunction
 
 function! s:guitheme()

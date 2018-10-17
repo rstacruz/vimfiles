@@ -1,4 +1,4 @@
-snippet optparse "options parsing"
+snippet opt "options parsing"
 while [[ "\$1" =~ ^- && ! "\$1" == "--" ]]; do case \$1 in
   -V | --version )
     echo version
@@ -25,4 +25,8 @@ case "\$1" in
     echo "Usage: \$0 {start|stop|ssh}"
     ;;
 esac
+endsnippet
+
+snippet DIR
+DIR="${0%/*}"
 endsnippet
