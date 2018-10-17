@@ -1,5 +1,28 @@
+" Color themes
+" {{{
+" higher index = more intense
+let g:dark_colors = {
+  \ 'invis': '235',
+  \ 'mute': ['239', '240'],
+  \ 'highlight_bg': [ '236', '235', '233' ],
+  \ 'highlight_text': ['4', '13'],
+  \ 'signify': { 'add': 22, 'delete': 124, 'change': 237 },
+  \ 'splitdiff': { 'add': 65, 'delete': 235, 'change': 238, 'text': 254 },
+  \ 'diff': { 'removed': 161, 'added': 64, 'file': 8, 'line': 2 }
+  \ }
+let g:light_colors = {
+  \ 'invis': '254',
+  \ 'mute': ['250', '247'],
+  \ 'highlight_bg': [ '254', '254', '253' ],
+  \ 'highlight_text': ['4', '13'],
+  \ 'signify': { 'add': 76, 'delete': 203, 'change': 250 },
+  \ 'splitdiff': { 'add': 65, 'delete': 235, 'change': 238, 'text': 254 },
+  \ 'diff': { 'removed': 161, 'added': 64, 'file': 8, 'line': 2 }
+  \ }
+" }}}
+
 " Commands
-" Commands {{{
+" {{{
   "" [:] :Light -- Theme: Light theme
   "" [:] :Dark -- Theme: Dark theme
   command! Dark :call <SID>darktheme()
@@ -37,26 +60,9 @@ endfunction " }}}
 " Apply overrides (:ThemeOverrides)
 function! s:themeoverrides() " {{{
   if &background == 'dark'
-    " higher index = more intense
-    let colors = {
-      \ 'invis': '235',
-      \ 'mute': ['239', '240'],
-      \ 'highlight_bg': [ '236', '235', '233' ],
-      \ 'highlight_text': ['4', '13'],
-      \ 'signify': { 'add': 22, 'delete': 124, 'change': 237 },
-      \ 'splitdiff': { 'add': 65, 'delete': 235, 'change': 238, 'text': 254 },
-      \ 'diff': { 'removed': 161, 'added': 64, 'file': 8, 'line': 2 }
-      \ }
+    let colors = g:dark_colors
   else
-    let colors = {
-      \ 'invis': '254',
-      \ 'mute': ['250', '247'],
-      \ 'highlight_bg': [ '254', '254', '253' ],
-      \ 'highlight_text': ['4', '13'],
-      \ 'signify': { 'add': 76, 'delete': 203, 'change': 250 },
-      \ 'splitdiff': { 'add': 65, 'delete': 235, 'change': 238, 'text': 254 },
-      \ 'diff': { 'removed': 161, 'added': 64, 'file': 8, 'line': 2 }
-      \ }
+    let colors = g:light_colors
   endif
   set fillchars=fold: 
   call s:themeoverrides_common()
@@ -153,4 +159,4 @@ function! s:guitheme() " {{{
   set guifont=Iosevka\ Medium:h16 linespace=-1
 endfunction " }}}
 
-" vim:foldmethod=syntax
+" vim:foldmethod=marker
