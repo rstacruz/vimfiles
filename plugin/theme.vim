@@ -13,7 +13,7 @@ let g:color_schemes = {
   \   },
   \   'light': {
   \     'invis': '254',
-  \     'mute': ['250', '247'],
+  \     'mute': ['250', '245'],
   \     'highlight_bg': [ '254', '254', '253' ],
   \     'highlight_text': ['4', '13'],
   \     'signify': { 'add': 76, 'delete': 203, 'change': 250 },
@@ -80,7 +80,6 @@ function! s:themeoverrides_common() " {{{
   hi link jsGlobalObjects StorageClass
   hi link WhichKeySeperator NonText
   " hi jsObjectProp cterm=bold
-  hi Comment cterm=italic
 
   " Always red
   hi ErrorMsg ctermbg=none ctermfg=161 cterm=italic
@@ -107,6 +106,8 @@ function! s:themeoverrides_custom(colors) " {{{
 
   exec "hi CursorLine   ctermbg=".(c.highlight_bg[0])
   exec "hi CursorLineNr ctermbg=none ctermfg=".(c.highlight_text[1])
+
+  exec "hi Comment cterm=italic ctermbg=none ctermfg=".(c.mute[1])
 
   " ale errors
   exec "hi SpellBad ctermbg=".(c.highlight_bg[0])." cterm=italic,underline ctermfg=".(c.highlight_text[1])

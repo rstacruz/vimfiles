@@ -52,6 +52,7 @@ Plug 'rstacruz/vim-closer'
 Plug 'w0rp/ale'
 Plug 'Galooshi/vim-import-js'
 Plug 'easymotion/vim-easymotion'
+Plug 'mzlogin/vim-markdown-toc'
 Plug 'autozimu/LanguageClient-neovim', {
   \ 'branch': 'next',
   \ 'do': 'bash install.sh' }
