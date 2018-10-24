@@ -19,6 +19,8 @@ let g:startify_lists = [
   \ ]
 
 if $MINIMAL_PROMPT != ''
+  let g:startify_custom_header = [ '' ]
+else
   let g:startify_custom_header = [
     \ "  ",
     \ '   ╻ ╻   ╻   ┏┳┓',
