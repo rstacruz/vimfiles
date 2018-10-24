@@ -22,8 +22,10 @@ set timeout timeoutlen=500 ttimeoutlen=10
 " Startinsert on git
 if $GIT_DIR != '' | startinsert | endif
 
-" minimal status bar
-" set laststatus=0
+" minimal status bar for small windows
+if $MINIMAL_PROMPT != ''
+  set laststatus=0
+endif
 
 " https://superuser.com/a/1090762
 set autoread

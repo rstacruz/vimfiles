@@ -18,11 +18,13 @@ let g:startify_lists = [
   \ { 'type': 'sessions',  'header': ['   Saved sessions'] },
   \ ]
 
-let g:startify_custom_header = [
-  \ "  ",
-  \ '   ╻ ╻   ╻   ┏┳┓',
-  \ '   ┃┏┛   ┃   ┃┃┃',
-  \ '   ┗┛    ╹   ╹ ╹',
-  \ '   ',
-  \ ] +
-  \ map(split(system('bash -c "note=\$PROJECT_NOTES_PATH/\$(basename \$(pwd)).txt; if [ -e \"\$note\" ]; then cat \"\$note\"; fi"'), '\n'), '"   ". v:val')
+if $MINIMAL_PROMPT != ''
+  let g:startify_custom_header = [
+    \ "  ",
+    \ '   ╻ ╻   ╻   ┏┳┓',
+    \ '   ┃┏┛   ┃   ┃┃┃',
+    \ '   ┗┛    ╹   ╹ ╹',
+    \ '   ',
+    \ ] +
+    \ map(split(system('bash -c "note=\$PROJECT_NOTES_PATH/\$(basename \$(pwd)).txt; if [ -e \"\$note\" ]; then cat \"\$note\"; fi"'), '\n'), '"   ". v:val')
+endif

@@ -20,8 +20,8 @@ let g:ale_fixers = {
 \ 'scss': [ 'prettier' ],
 \ 'css': [ 'prettier' ],
 \ 'markdown': [ 'prettier' ],
-\ 'javascript': [ 'prettier-eslint' ],
-\ 'javascript.jsx': [ 'prettier-eslint' ],
+\ 'javascript': [ 'prettier-eslint', 'prettier' ],
+\ 'javascript.jsx': [ 'prettier-eslint', 'prettier' ],
 \ 'elixir': [ 'mix_format' ],
 \ }
 
