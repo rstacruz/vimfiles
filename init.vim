@@ -50,9 +50,10 @@ Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'rstacruz/vim-closer'
 Plug 'w0rp/ale'
+Plug 'lambdalisue/suda.vim'
 Plug 'Galooshi/vim-import-js'
 Plug 'easymotion/vim-easymotion'
-Plug 'mzlogin/vim-markdown-toc'
+" Plug 'mzlogin/vim-markdown-toc'
 Plug 'autozimu/LanguageClient-neovim', {
   \ 'branch': 'next',
   \ 'do': 'bash install.sh' }
@@ -71,6 +72,7 @@ if has('python3') | Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' 
 " Plug 'vim-scripts/restore_view.vim'
 " }}}
 
+  let g:polyglot_disabled = ['markdown', 'md']
   Plug 'sheerun/vim-polyglot'
   Plug 'tpope/vim-rails', { 'for': 'ruby' }
 
