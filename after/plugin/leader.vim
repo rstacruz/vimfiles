@@ -1,6 +1,8 @@
+" vim:foldmethod=marker
 let g:toggle_key_map = {}
-
 let g:which_key_map = {}
+
+" Top-level menu {{{
 let g:which_key_map.a = { 'name': '+apps ' }
 let g:which_key_map.a.v = { 'name': '+vim ' }
 let g:which_key_map.b = { 'name': '+buffer ' }
@@ -17,9 +19,8 @@ let g:which_key_map.t = { 'name': '+terminal ' }
 let g:which_key_map.T = { 'name': '+theme ' }
 let g:which_key_map['.'] = { 'name': '+easymotion ' }
 
-"
-" App
-"
+" }}}
+" [a] App {{{
 
 let g:which_key_map.a.l = ['LanguageClient_contextMenu()', 'language-client:menu']
 nnoremap <leader>al call :LanguageClient_contextMenu()<CR>
@@ -41,9 +42,8 @@ if exists(':terminal')
   nnoremap <Leader>ar :OpenRangerSplit<CR>
 endif
 
-"
-" Error
-"
+" }}}
+" [e] Error {{{
 
 if exists(':ALEFix')
   let g:which_key_map.e.f = ['ALEFix', 'fix']
@@ -72,9 +72,8 @@ if exists(':ALEFix')
   nnoremap <Leader>ec :ALEResetBuffer<CR>
 endif
 
-"
-" Customize
-"
+" }}}
+" [fe] Customize {{{
 
 let g:which_key_map.f.e.d = ['cd ~/.config/nvim | e init.vim', 'edit-vimrc']
 nnoremap <leader>fed :cd ~/.config/nvim;<CR>:e ~/.config/nvim/init.vim<CR>
@@ -94,9 +93,8 @@ nnoremap <leader>feo :e ~/.vim/after/plugin/options.vim<CR>
 let g:which_key_map.f.e.p = ['e ~/.vim/plugin/plugins/', 'edit-plugin-config']
 nnoremap <leader>fep :e ~/.vim/plugin/plugins/<CR>
 
-"
-" Buffer
-"
+" }}}
+" [b] Buffer {{{
 
 let g:which_key_map.b.n = [ 'bnext', 'next' ]
 nnoremap <leader>bn :bnext<CR>
@@ -118,9 +116,8 @@ if exists(':Buffers')
   nnoremap <leader>bh :History<CR>
 endif
 
-"
-" Project
-"
+" }}}
+" [p] Project {{{
 
 if exists(':NERDTree')
   let g:which_key_map.p.t = [ 'Gcd | NERDTree', 'tree']
@@ -139,8 +136,8 @@ if exists(':Tag')
   let g:which_key_map.p.s = [ 'Tag', 'find-symbol' ]
   nnoremap <leader>ps :Tag<CR>
 
-  let g:which_key_map.p.f = [ 'FZF!', 'find-file' ]
-  nnoremap <leader>pf :FZF!<cr>
+  let g:which_key_map.p.f = [ 'GFiles', 'find-file' ]
+  nnoremap <leader>pf :GFiles<cr>
 
   let g:which_key_map.p.F = [ 'GFiles?', 'find-file-from-status' ]
   nnoremap <leader>pF :GFiles?<CR>
@@ -148,9 +145,8 @@ endif
 
 " nnoremap <Leader>pr :exe 'FZF -q ' . join(split(join(split(expand('%:t:r'), '_'), ''), '-'), '')<CR>
 
-"
-" Terminal
-"
+" }}}
+" ['] Terminal {{{
 "
 if exists(':terminal')
   let g:which_key_map["'"] = [ 'split | terminal', 'open-terminal-split' ]
@@ -169,9 +165,8 @@ if exists(':terminal')
   nnoremap <Leader>t. :terminal<CR>
 endif
 
-"
-" Git
-"
+" }}}
+" [g] Git {{{
 
 if exists(':GFiles')
   let g:which_key_map.g.S = [ 'GFiles?', 'pick-file-from-status' ]
@@ -195,9 +190,8 @@ if 1 " exists(':Gstatus')
   nnoremap <leader>gc :Gcommit --amend<CR>
 endif
 
-"
-" Theme
-"
+" }}}
+" [T] Theme {{{
 
 let g:which_key_map.T.c = [ 'color', 'change-color-scheme' ]
 nnoremap <leader>Tc :color<space>
@@ -214,25 +208,28 @@ nnoremap <leader>Td :Dark<CR>
 let g:which_key_map.T.l = [ 'Light', 'light-mode' ]
 nnoremap <leader>Tl :Light<CR>
 
-"
-" Help
-"
+" }}}
+" [h] Help {{{
 
 let g:which_key_map.h.k = [ 'Usage', 'open-keybindings-cheatsheet']
 nnoremap <silent> <leader>hk :Usage<CR>
 
-"
-" Files
-"
+" }}}
+" [f] Files {{{
 
 if exists(':Files')
   let g:which_key_map.f.f = ['Files', 'find-file']
   nnoremap <leader>ff :Files<CR>
 endif
 
-"
-" Misc
-"
+let g:which_key_map.f.s = ['w', 'save']
+nnoremap <leader>fs :w<CR>
+
+let g:which_key_map.f.S = ['w suda://%', 'save-using-sudo']
+nnoremap <leader>fS :w suda://%<CR>
+
+" }}}
+" [.] EasyMotion {{{
 
 if globpath(&rtp, "plugin/EasyMotion.vim") != ""
   let g:which_key_map['.'].j = ['<Plug>(easymotion-j)', 'line:down']
@@ -269,9 +266,8 @@ if globpath(&rtp, "plugin/EasyMotion.vim") != ""
   vmap <leader>. <Plug>(easymotion-prefix)
 endif
 
-"
-" JavaScirpt
-"
+" }}}
+" [mj] JavaScript {{{
 
 if exists(':ImportJSWord')
   let g:which_key_map.m.j.w = ['ImportJSWord', 'import-js:import-word']
@@ -283,6 +279,9 @@ if exists(':ImportJSWord')
   let g:which_key_map.m.j.g = ['ImportJSGoto', 'import-js:goto-module-on-cursor']
   nnoremap <leader>mjg :ImportJSGoto<CR>
 endif
+
+" }}}
+" [mm] Markdown {{{
 
 if exists(':TableFormat')
   let g:which_key_map.m.m.f = ['TableFormat', 'format-table']
@@ -302,6 +301,9 @@ if exists(':LivedownPreview')
   nnoremap <leader>mmV :LivedownKill<CR>
 endif
 
+" }}}
+" [/*] Search {{{
+
 if exists(':Ag')
   let g:which_key_map['/'] = [ 'Ag', 'grep' ]
   nnoremap <leader>/ :Ag<CR>
@@ -310,9 +312,8 @@ if exists(':Ag')
   vnoremap <leader>* y:Ag <C-r>"<C-b><CR>
 endif
 
-"
-" Done
-"
+" }}}
+" Done {{{
 
 if exists(':WhichKey')
   call which_key#register('=', 'g:toggle_key_map')
@@ -333,3 +334,6 @@ if exists(':WhichKey')
   nnoremap <silent> <space> :WhichKey ','<CR>
   vnoremap <silent> <leader> :WhichKeyVisual '<space>'<CR>
 end
+
+nnoremap <Tab> :GFiles?<CR>
+" }}}

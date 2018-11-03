@@ -1,21 +1,43 @@
-"
-" Common
-"
+" Color themes
+" {{{
+" higher index = more intense
+let g:color_schemes = {
+  \   'dark': {
+  \     'invis': '235',
+  \     'mute': ['239', '240'],
+  \     'highlight_bg': [ '236', '235', '233' ],
+  \     'highlight_text': ['4', '13'],
+  \     'signify': { 'add': 22, 'delete': 124, 'change': 237 },
+  \     'splitdiff': { 'add': 65, 'delete': 235, 'change': 238, 'text': 254 },
+  \     'diff': { 'removed': 161, 'added': 64, 'file': 8, 'line': 2 }
+  \   },
+  \   'light': {
+  \     'invis': '254',
+  \     'mute': ['250', '245'],
+  \     'highlight_bg': [ '254', '254', '253' ],
+  \     'highlight_text': ['4', '13'],
+  \     'signify': { 'add': 76, 'delete': 203, 'change': 250 },
+  \     'splitdiff': { 'add': 65, 'delete': 235, 'change': 238, 'text': 254 },
+  \     'diff': { 'removed': 161, 'added': 64, 'file': 8, 'line': 2 }
+  \   }
+  \ }
+" }}}
 
-"" [:] :Light -- Theme: Light theme
-"" [:] :Dark -- Theme: Dark theme
-command! Dark :call <SID>darktheme()
-command! Light :call <SID>lighttheme()
-command! ThemeOverrides :call <SID>themeoverrides()
-command! Guitheme :call <SID>guitheme()
+" Commands
+" {{{
+  "" [:] :Light -- Theme: Light theme
+  "" [:] :Dark -- Theme: Dark theme
+  command! Dark :call <SID>darktheme()
+  command! Light :call <SID>lighttheme()
+  command! ThemeOverrides :call <SID>themeoverrides()
+  command! Guitheme :call <SID>guitheme()
+" }}}
 
-" force no background for certain things
-au ColorScheme * hi Normal ctermbg=none
-au ColorScheme * hi SignColumn ctermbg=none
-au ColorScheme * hi FoldColumn ctermbg=none
-au ColorScheme * hi LineNr ctermbg=none
+" Auto-apply overrides
+au ColorScheme * ThemeOverrides
 
-function! s:darktheme()
+" Apply dark theme (:Dark)
+function! s:darktheme() " {{{
   let g:airline_theme='atomic'
   set background=dark
   if exists('g:gui_oni')
@@ -24,88 +46,107 @@ function! s:darktheme()
     color base16-atelierlakeside
   endif
   call s:themeoverrides()
-endfunction
+endfunction " }}}
 
-function! s:themeoverrides()
-  hi Folded ctermbg=none ctermfg=8 cterm=none
-  hi SignifySignAdd ctermbg=none ctermfg=80
-  hi SignifySignDelete ctermbg=none ctermfg=160
-  hi SignifySignChange ctermbg=none ctermfg=78
-  hi Noise ctermfg=14
-  hi link jsThis StorageClass
-  hi link jsGlobalObjects StorageClass
-  hi link WhichKeySeperator NonText
-  " hi jsObjectProp cterm=bold
-  hi Comment cterm=italic
-
-  " Always red
-  hi ErrorMsg ctermbg=none ctermfg=160 cterm=italic
-  hi Error ctermbg=none ctermfg=160 cterm=italic
-
-  " Wild menu
-  hi StatusLine ctermfg=1 ctermbg=none cterm=none gui=none
-  hi StatusLineNC ctermfg=0
-
-  if &background == 'dark'
-    hi Visual ctermbg=233 ctermfg=13
-    hi VertSplit ctermbg=none ctermfg=235 cterm=none
-    hi NonText ctermbg=none ctermfg=235 cterm=none
-    hi Search ctermfg=4 ctermbg=236
-    hi Pmenu ctermfg=4 ctermbg=235
-    hi PmenuSel ctermfg=4 ctermbg=236
-    hi LineNr ctermfg=237
-    hi Noise ctermfg=237
-
-    " green, gray, invisibleish, red, highlighted spans
-    hi DiffAdd ctermfg=65 ctermbg=233
-    hi DiffChange ctermfg=238 ctermbg=233
-    hi DiffDelete ctermfg=235 ctermbg=none
-    hi DiffText ctermfg=254 ctermbg=234 cterm=bold
-    hi CursorLine ctermbg=233
-
-    " single panel diffs
-    hi DiffRemoved ctermfg=160 ctermbg=233
-    hi DiffAdded ctermfg=64 ctermbg=233
-    hi DiffNewFile ctermfg=8 ctermbg=233
-    hi DiffFile ctermfg=8 ctermbg=233
-    hi DiffLine ctermfg=2 ctermbg=233
-  else
-    hi Normal ctermfg=none
-    hi Visual ctermbg=254 ctermfg=13
-    hi VertSplit ctermbg=none ctermfg=254 cterm=none
-    hi NonText ctermbg=none ctermfg=254 cterm=none
-    hi Search ctermfg=4 ctermbg=254
-    hi Pmenu ctermfg=4 ctermbg=254
-    hi PmenuSel ctermfg=4 ctermbg=253
-    hi CursorLine ctermbg=254
-
-    hi DiffAdd ctermfg=65 ctermbg=254
-    hi DiffChange ctermfg=238 ctermbg=254
-    hi DiffDelete ctermfg=235 ctermbg=none
-    hi DiffText ctermfg=234 ctermbg=254 cterm=bold
-
-    " single panel diffs
-    hi DiffRemoved ctermfg=160 ctermbg=254
-    hi DiffAdded ctermfg=64 ctermbg=254
-    hi DiffNewFile ctermfg=8 ctermbg=254
-    hi DiffFile ctermfg=8 ctermbg=254
-    hi DiffLine ctermfg=2 ctermbg=254
-  endif
-  set fillchars=fold: 
-endfunction
-
-function! s:lighttheme()
-  let g:airline_theme='lucius'
-  let g:airline_theme='aurora'
+" Apply light theme (:Light)
+function! s:lighttheme() " {{{
   call s:themeoverrides()
   set background=light
   " color LightTan
   " color lightning
   color base16-atelierlakeside
   ThemeOverrides
-endfunction
+  AirlineTheme base16 " lucius, base16, aurora
+endfunction " }}}
 
-function! s:guitheme()
+" Apply overrides (:ThemeOverrides)
+function! s:themeoverrides() " {{{
+  let colors = g:color_schemes[&background]
+  set fillchars=fold: 
+  call s:themeoverrides_common()
+  call s:themeoverrides_custom(colors)
+endfunction " }}}
+
+" [private] Common overrides for all occasions
+function! s:themeoverrides_common() " {{{
+  hi Normal ctermbg=none ctermfg=none
+  hi SignColumn ctermbg=none
+  hi FoldColumn ctermbg=none
+  hi LineNr ctermbg=none
+
+  hi Folded ctermbg=none ctermfg=8 cterm=none
+  hi Noise ctermfg=14
+  hi link jsThis StorageClass
+  hi link jsGlobalObjects StorageClass
+  hi link WhichKeySeperator NonText
+  " hi jsObjectProp cterm=bold
+
+  " Always red
+  hi ErrorMsg ctermbg=none ctermfg=161 cterm=italic
+  hi Error ctermbg=none ctermfg=161 cterm=none
+
+  " Wild menu
+  hi StatusLine ctermfg=1 ctermbg=none cterm=none gui=none
+  hi StatusLineNC ctermfg=0 ctermbg=none
+
+  hi! link mkdInlineURL LineNr
+
+  hi TabLineFill ctermbg=none
+endfunction " }}}
+
+" [private] Custom overrides, depending on background
+function! s:themeoverrides_custom(colors) " {{{
+  let c = a:colors
+
+  " highlights
+  exec "hi Visual     ctermbg=".(c.highlight_bg[1])."  ctermfg=".(c.highlight_text[1])
+  exec "hi VertSplit  ctermbg=none ctermfg=".(c.invis)." cterm=none"
+  exec "hi NonText    ctermbg=none ctermfg=".(c.invis)." cterm=none"
+  exec "hi Search     ctermfg=".(c.highlight_text[0])." ctermbg=".(c.highlight_bg[1])
+
+  exec "hi CursorLine   ctermbg=".(c.highlight_bg[0])
+  exec "hi CursorLineNr ctermbg=none ctermfg=".(c.highlight_text[1])
+
+  exec "hi Comment cterm=italic ctermbg=none ctermfg=".(c.mute[1])
+
+  " ale errors
+  exec "hi SpellBad ctermbg=".(c.highlight_bg[0])." cterm=italic,underline ctermfg=".(c.highlight_text[1])
+  exec "hi SpellBad ctermbg=".(c.highlight_bg[0])." cterm=italic ctermfg=161"
+
+  " popup
+  exec "hi Pmenu     ctermfg=".(c.highlight_text[0])." ctermbg=".(c.highlight_bg[1])
+  exec "hi PmenuSel  ctermfg=".(c.highlight_text[0])." ctermbg=".(c.highlight_bg[2])
+
+  " mutes
+  exec "hi LineNr     ctermfg=".(c.mute[0])
+  exec "hi Noise      ctermfg=".(c.mute[1])
+
+  " tab line
+  exec "hi TabLine    ctermbg=none ctermfg=".(c.mute[1])
+  exec "hi TabLineSel ctermbg=".(c.highlight_bg[1])." ctermfg=".(c.highlight_text[1])." cterm=none"
+
+  " green, gray, invisibleish, red, highlighted spans
+  exec "hi DiffAdd    ctermfg=".(c.splitdiff.add   )." ctermbg=".(c.highlight_bg[1])
+  exec "hi DiffChange ctermfg=".(c.splitdiff.change)." ctermbg=".(c.highlight_bg[1])
+  exec "hi DiffDelete ctermfg=".(c.splitdiff.delete)." ctermbg=none"
+  exec "hi DiffText   ctermfg=".(c.splitdiff.text  )." ctermbg=".(c.highlight_text[0])." cterm=bold"
+
+  " single panel diffs
+  exec "hi DiffRemoved ctermfg=".(c.diff.removed)." ctermbg=".(c.highlight_bg[1])
+  exec "hi DiffAdded   ctermfg=".(c.diff.added  )." ctermbg=".(c.highlight_bg[1])
+  exec "hi DiffNewFile ctermfg=".(c.diff.file   )." ctermbg=".(c.highlight_bg[1])
+  exec "hi DiffFile    ctermfg=".(c.diff.file   )." ctermbg=".(c.highlight_bg[1])
+  exec "hi DiffLine    ctermfg=".(c.diff.line   )." ctermbg=".(c.highlight_bg[1])
+
+  exec "hi SignifySignAdd    ctermbg=none ctermfg=".(c.signify.add)
+  exec "hi SignifySignDelete ctermbg=none ctermfg=".(c.signify.delete)
+  exec "hi SignifySignChange ctermbg=none ctermfg=".(c.signify.change)
+
+  exec "hi StartifyHeader ctermfg=".(c.highlight_text[1])." cterm=italic"
+endfunction " }}}
+
+" GUI theme (:GuiTheme)
+function! s:guitheme() " {{{
   set transparency=0
   set guioptions=
   set guioptions+=g " gray menu items
@@ -115,12 +156,6 @@ function! s:guitheme()
   set antialias
   let g:airline_theme='base16'
   set guifont=Iosevka\ Medium:h16 linespace=-1
-endfunction
+endfunction " }}}
 
-"
-" Console
-"
-
-if !has("gui_running")
-  set t_Co=256
-endif
+" vim:foldmethod=marker

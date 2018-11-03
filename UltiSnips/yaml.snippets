@@ -24,3 +24,34 @@ cache:
   - _deps
   - build
 endsnippet
+
+snippet dc "docker-compose.yml"
+# This is a docker manifest for development, NOT production.
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    volumes:
+      - .:/app
+    ports:
+      - '25600:25600'
+    environment:
+      DATABASE_URL: 'postgres://postgres:postgres@db/slerp_dev'
+      PORT: '25600'
+    command: ["yarn", "develop", "--host", "0.0.0.0", "--port", "25600"]
+
+  db:
+    image: postgresql:10
+    volumes:
+      - 'pgdata:/var/lib/postgresql/data'
+    ports:
+      - '5432'
+    environment:
+      POSTGRES_PASSWORD: postgres
+
+volumes:
+  pgdata:
+endsnippet

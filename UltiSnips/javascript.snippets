@@ -53,23 +53,33 @@ endsnippet
 
 snippet meow "meow.js (es6+)" b
 #!/usr/bin/env node
-const cli = require('meow')(\`
-	Usage:
-		$ ${1:yourapp}
+const Meow = require('meow')
 
-  Options:
-    -h, --help       show usage information
-    -v, --version    print version info and exit
-\`, {
-	boolean: [
-		'help',
-		'version'
-	],
-	alias: {
-		h: 'help',
-		v: 'version'
-	}
-})
+function cli() {
+	return Meow(
+		\`
+		Usage: 
+			$ ${process.argv[1]} [options]
 
-console.log(cli.flags, cli.input)
+		Options:
+			-h, --help        show usage information
+			-v, --version     print version info and exit
+	\`,
+		{
+			flags: {
+				help: { type: 'boolean', alias: 'h' },
+				version: { type: 'boolean', alias: 'v' },
+				force: { type: 'boolean', alias: 'f' }
+			}
+		}
+	)
+}
+
+function run() {
+	const { flags, input } = cli()
+	console.log(flags, input)
+}
+
+// module.exports = run()
+run()
 endsnippet
