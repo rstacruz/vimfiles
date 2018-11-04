@@ -30,7 +30,12 @@ Plug 'tpope/vim-unimpaired'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
-Plug 'irrationalistic/vim-tasks'
+" Plug 'irrationalistic/vim-tasks'
+
+" `vib` - select in any 'block'. works with any ( { [ triggers.
+" `viq` - select in any 'quote'
+" `via` - select in 'argument'
+Plug 'wellle/targets.vim'
 
 " Plugins: More plugins {{{
 if !exists('g:gui_oni')
