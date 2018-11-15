@@ -87,6 +87,3 @@ call plug#end()
 
 " https://github.com/neovim/neovim/wiki/FAQ#nvim-shows-weird-symbols-2-q-when-changing-modes
 " set guicursor=
-
-set exrc
-set secure
