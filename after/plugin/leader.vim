@@ -335,5 +335,6 @@ if exists(':WhichKey')
   vnoremap <silent> <leader> :WhichKeyVisual '<space>'<CR>
 end
 
-nnoremap <Tab> :GFiles?<CR>
+nnoremap <leader><Tab> :GFiles?<CR>
+nnoremap <leader>,<Tab> :FZF<CR>
 " }}}

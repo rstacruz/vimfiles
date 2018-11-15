@@ -56,6 +56,7 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'rstacruz/vim-closer'
 Plug 'w0rp/ale'
 Plug 'lambdalisue/suda.vim'
+Plug 'thinca/vim-localrc'
 Plug 'Galooshi/vim-import-js'
 Plug 'easymotion/vim-easymotion'
 " Plug 'mzlogin/vim-markdown-toc'
@@ -86,3 +87,6 @@ call plug#end()
 
 " https://github.com/neovim/neovim/wiki/FAQ#nvim-shows-weird-symbols-2-q-when-changing-modes
 " set guicursor=
+
+set exrc
+set secure
