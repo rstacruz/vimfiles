@@ -78,7 +78,7 @@ if has('python3') | Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' 
 " Plug 'vim-scripts/restore_view.vim'
 " }}}
 
-  let g:polyglot_disabled = ['markdown', 'md']
+  " let g:polyglot_disabled = ['markdown', 'md']
   Plug 'sheerun/vim-polyglot'
   Plug 'tpope/vim-rails', { 'for': 'ruby' }
 

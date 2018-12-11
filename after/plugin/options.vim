@@ -27,6 +27,12 @@ if $MINIMAL_PROMPT != ''
   set laststatus=0
 endif
 
+" minimal status
+set laststatus=0
+
 " https://superuser.com/a/1090762
 set autoread
 au CursorHold * checktime
+
+" Use old regex engine
+set re=1

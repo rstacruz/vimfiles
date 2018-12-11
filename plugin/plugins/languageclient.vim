@@ -16,12 +16,19 @@ endif
 
 " yarn global add flow-language-server
 " https://github.com/flowtype/flow-language-server
-if executable('flow-language-server')
-  let g:LanguageClient_serverCommands = extend(g:LanguageClient_serverCommands, {
-    \ 'javascript': ['flow-language-server', '--stdio', '--try-flow-bin'],
-    \ 'javascript.jsx': ['flow-language-server', '--stdio', '--try-flow-bin'],
-    \ })
-endif
+" if executable('flow-language-server')
+"   let g:LanguageClient_serverCommands = extend(g:LanguageClient_serverCommands, {
+"     \ 'javascript': ['flow-language-server', '--stdio', '--try-flow-bin'],
+"     \ 'javascript.jsx': ['flow-language-server', '--stdio', '--try-flow-bin'],
+"     \ })
+" endif
 
 " \ 'javascript': ['javascript-typescript-stdio'],
 " \ 'javascript.jsx': ['javascript-typescript-stdio'],
+"
+if executable('javascript-typescript-stdio')
+  let g:LanguageClient_serverCommands = extend(g:LanguageClient_serverCommands, {
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ })
+endif

@@ -25,6 +25,9 @@ let g:which_key_map['.'] = { 'name': '+easymotion ' }
 let g:which_key_map.a.l = ['LanguageClient_contextMenu()', 'language-client:menu']
 nnoremap <leader>al call :LanguageClient_contextMenu()<CR>
 
+let g:which_key_map.a['8']= ['EightiesToggle', 'eenable']
+nnoremap <leader>a8 :EightiesToggle<CR>
+
 let g:which_key_map.a.j = ['MyJournal', 'custom:open-journal']
 nnoremap <leader>al :MyJournal<CR>
 
@@ -222,6 +225,9 @@ if exists(':Files')
   nnoremap <leader>ff :Files<CR>
 endif
 
+let g:which_key_map.f.y = ['ShowFilePath', 'show-file-path']
+nnoremap <leader>fy :ShowFilePath<CR>
+
 let g:which_key_map.f.s = ['w', 'save']
 nnoremap <leader>fs :w<CR>
 
@@ -337,4 +343,23 @@ end
 
 nnoremap <leader><Tab> :GFiles?<CR>
 nnoremap <leader>,<Tab> :FZF<CR>
+" }}}
+
+" {{{
+command! EightiesToggle call s:EightiesToggle()
+function! s:EightiesToggle()
+  if g:eighties_enabled == 1
+    EightiesDisable
+    echomsg "x Eighties disabled; panes will no longer auto-resize."
+  else
+    EightiesEnable
+    EightiesResize
+    echomsg "✓ Eighties enabled! panes will auto-resize."
+  endif
+endfunction
+
+command! ShowFilePath call s:ShowFilePath()
+function! s:ShowFilePath()
+  echomsg expand("%:t") . " (" . expand("%:p") . ")"
+endfunction
 " }}}
