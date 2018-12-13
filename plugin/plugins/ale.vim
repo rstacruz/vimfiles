@@ -3,18 +3,15 @@ if globpath(&rtp, "plugin/ale.vim") == "" | finish | endif
 " Lint hooks
 let g:ale_lint_on_text_changed='normal'
 let g:ale_lint_on_insert_leave=1
-let g:ale_use_global_executables=0
 let g:ale_lint_on_save=1
 
 " Linters
 let g:ale_linters = {
-\ 'javascript': ['eslint', 'flow'],
-\ 'javascript.jsx': ['eslint', 'flow'],
-\ 'html': ['htmlhint'],
-\ 'css': ['stylelint'],
-\ 'scss': ['stylelint'],
-\ 'elixir': [],
+\ 'javascript': ['eslint', 'flow-language-server'],
+\ 'javascript.jsx': ['eslint', 'flow-language-server'],
 \ }
+" \ 'javascript': ['eslint', 'flow-language-server', 'tsserver'],
+" \ 'javascript.jsx': ['eslint', 'flow-language-server', 'tsserver'],
 
 " Fixers
 let g:ale_fixers = {
@@ -35,3 +32,12 @@ let g:ale_sign_warning = '⊙ '
 
 " Enable completion where available
 let g:ale_completion_enabled = 1
+
+" :help ale-compeletion-completeopt-bug
+set completeopt=menu,menuone,preview,noselect,noinsert
+
+" Parity with vscode
+nnoremap gh :ALEHover<CR>
+nnoremap gd :ALEGoToDefinition<CR>
+nnoremap gD :ALEGoToDefinitionInTab<CR>
+nnoremap g* :ALEFindReferences<CR>

@@ -1,3 +1,5 @@
+if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != '' | finish | endif
+
 command! ALEToggleFixOnSave call <SID>ale_toggle_fix_on_save()
 
 " Toggles fix_on_save for the current buffer.

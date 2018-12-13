@@ -1,3 +1,5 @@
+if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != '' | finish | endif
+
 " vim:foldmethod=marker
 
 "" [N] <leader>.f -- Jump: to a character above [easymotion]
@@ -110,3 +112,6 @@ nnoremap <C-l> <C-w>l
 "" [N] =oas -- Misc: toggle signify
 nnoremap =oas :SignifyToggle<CR>
 " }}}
+
+" Like `gf` but opens in a split
+nnoremap gs <C-w>f<C-w>L

@@ -7,10 +7,11 @@ call plug#begin('~/.vim/vendor')
 
 " Essentials {{{
 if !has('nvim') && !exists('g:gui_oni') | Plug 'tpope/vim-sensible' | endif
+Plug 'flazz/vim-colorschemes'
 
-" Stop here if we're in minimal (Git) mode {{{
 if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != ''
   call plug#end()
+  finish
 endif
 " }}}
 
@@ -24,7 +25,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'rstacruz/vim-opinion'
-Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -60,10 +60,10 @@ Plug 'thinca/vim-localrc'
 Plug 'Galooshi/vim-import-js'
 Plug 'easymotion/vim-easymotion'
 " Plug 'mzlogin/vim-markdown-toc'
-Plug 'autozimu/LanguageClient-neovim', {
-  \ 'branch': 'next',
-  \ 'do': 'bash install.sh' }
-if has('python3') | Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } | endif
+" Plug 'autozimu/LanguageClient-neovim', {
+"   \ 'branch': 'next',
+"   \ 'do': 'bash install.sh' }
+" if has('python3') | Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } | endif
 " }}}
 
 " Plugins: I can live without you {{{

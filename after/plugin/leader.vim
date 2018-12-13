@@ -1,3 +1,5 @@
+if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != '' | finish | endif
+
 " vim:foldmethod=marker
 let g:toggle_key_map = {}
 let g:which_key_map = {}
@@ -17,6 +19,7 @@ let g:which_key_map.m.m = { 'name': '+markdown ' }
 let g:which_key_map.p = { 'name': '+project ' }
 let g:which_key_map.t = { 'name': '+terminal ' }
 let g:which_key_map.T = { 'name': '+theme ' }
+let g:which_key_map.w = { 'name': '+window ' }
 let g:which_key_map['.'] = { 'name': '+easymotion ' }
 
 " }}}
@@ -25,11 +28,8 @@ let g:which_key_map['.'] = { 'name': '+easymotion ' }
 let g:which_key_map.a.l = ['LanguageClient_contextMenu()', 'language-client:menu']
 nnoremap <leader>al call :LanguageClient_contextMenu()<CR>
 
-let g:which_key_map.a['8']= ['EightiesToggle', 'eenable']
-nnoremap <leader>a8 :EightiesToggle<CR>
-
 let g:which_key_map.a.j = ['MyJournal', 'custom:open-journal']
-nnoremap <leader>al :MyJournal<CR>
+nnoremap <leader>aj :MyJournal<CR>
 
 let g:which_key_map.a.s = ['ShowSyntaxStack', 'syntax:show-syntax-stack']
 nnoremap <Leader>as :ShowSyntaxStack<CR>
@@ -59,8 +59,11 @@ if exists(':ALEFix')
   let g:which_key_map.e.F = ['ALEFixSuggest', 'suggest-fixer']
   nnoremap <Leader>eF :ALEFixSuggest<CR>
 
-  let g:which_key_map.e.v = ['ALEDetail', 'show-details']
-  nnoremap <Leader>ev :ALEDetail<CR>
+  let g:which_key_map.e.v = ['ALEInfo', 'show-info']
+  nnoremap <Leader>ev :ALEInfo<CR>
+
+  let g:which_key_map.e.V = ['ALEDetail', 'show-details']
+  nnoremap <Leader>eV :ALEDetail<CR>
 
   let g:which_key_map.e.n = ['ALENextWrap', 'next-error']
   nnoremap <Leader>en :ALENextWrap<CR>
@@ -363,3 +366,9 @@ function! s:ShowFilePath()
   echomsg expand("%:t") . " (" . expand("%:p") . ")"
 endfunction
 " }}}
+"
+let g:which_key_map.w.t = ['tabnew', 'new-tab']
+nnoremap <leader>wt :tabnew<CR>
+
+let g:which_key_map.w['8']= ['EightiesToggle', 'eighties:toggle']
+nnoremap <leader>w8 :EightiesToggle<CR>

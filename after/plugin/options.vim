@@ -1,3 +1,5 @@
+if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != '' | finish | endif
+
 if !has('gui_running')
   set t_Co=256
 endif
