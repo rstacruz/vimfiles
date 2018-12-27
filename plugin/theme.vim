@@ -74,7 +74,7 @@ function! s:themeoverrides_common() " {{{
   hi FoldColumn ctermbg=none
   hi LineNr ctermbg=none
 
-  hi Folded ctermbg=none ctermfg=8 cterm=none
+  hi Folded ctermbg=none ctermfg=1 cterm=none
   hi Noise ctermfg=14
   hi link jsThis StorageClass
   hi link jsGlobalObjects StorageClass
