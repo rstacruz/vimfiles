@@ -11,6 +11,9 @@ function! s:Ag(query)
   set filetype=help
 
   if line('$') != 1
+    " Highlight currenty query
+    let @/=a:query
+
     " Lines
     silent %s#^\d\+:#  &  #g
 
@@ -20,9 +23,6 @@ function! s:Ag(query)
     " Move cursor to top, renome 2 lines
     normal gg
     normal "_2dd
-
-    " Highlight currenty query
-    let @/=a:query
   else
     normal o
     exec "normal a     No results found for `" . a:query . "`"
