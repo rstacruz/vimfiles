@@ -161,6 +161,9 @@ if exists(':terminal')
   let g:which_key_map.t.s = [ 'split | terminal', 'open-terminal-split' ]
   nnoremap <Leader>ts <C-w>n:terminal<CR>
 
+  let g:which_key_map.t.n = [ 'split | terminal', 'open-terminal-split' ]
+  nnoremap <Leader>tn <C-w>n:terminal<CR>
+
   let g:which_key_map.t.v = [ 'vsplit | terminal', 'open-terminal-vsplit' ]
   nnoremap <Leader>tv <C-w>v<C-w>l:terminal<CR>
 
