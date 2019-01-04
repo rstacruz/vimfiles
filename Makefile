@@ -2,7 +2,11 @@ lockfile := ./bin/restore
 vim := nvim
 pwd := $(shell pwd -LP)
 
-default: install
+default:
+	@echo
+	@echo "Makefile targets:"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' Makefile | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m  %-20s\033[0m %s\n", $$1, $$2}'
+	@echo
 
 # Update documentation
 doc: doc/vimfiles_keys.txt
@@ -13,11 +17,10 @@ doc/vimfiles_keys.txt:
 	mkdir -p doc
 	bash _tools/help.sh > $@
 
-help:
+help: ## Print key bindings
 	@bash _tools/help.sh
 
-# Install into home directory
-link: link-vim link-neovim
+link: link-vim link-neovim ## Link cwd to ~/.vim and ~/.config/nvim
 	@if [ ! -d ~/.vim/vendor ]; then \
 		echo "\n\033[32;1m→ NOTE:\033[0m run ':PlugInstall' in Vim to install plugins."; \
 		echo "  (alternatively, use 'make install')"; \
@@ -34,16 +37,13 @@ link-neovim:
 	@echo "==> ~/.config/nvim"
 	@if [ ! . -ef ~/.config/nvim ]; then ln -nfs "${pwd}" ~/.config/nvim; fi
 
-# Installs plugins, produces lockfile
-install:
+install: ## Runs :PlugInstall (installs plugins & make lockfile)
 	$(vim) +PlugInstall +PlugClean +"PlugSnapshot ${lockfile}" +qa
 
-# Updates plugins, vim-plug, and show changes
-upgrade:
+upgrade: ## Runs :PlugUpdate (updates plugins)
 	$(vim) +PlugUpdate +PlugUpgrade +PlugClean +"PlugSnapshot ${lockfile}" +PlugDiff
 
-# Install from lockfile
-restore:
+restore: ## Install from lockfile
 	$(vim) -S ${lockfile}
 
 .PHONY: install link upgrade restore default link-vim link-neovim doc/vimfiles_keys.txt
