@@ -3,6 +3,10 @@ set nocompatible
 let g:mapleader=","
 syntax on
 filetype plugin indent on
+
+" https://github.com/neovim/neovim/wiki/FAQ#nvim-shows-weird-symbols-2-q-when-changing-modes
+if $TMUX != '' | set guicursor= | endif
+
 call plug#begin('~/.vim/vendor')
 
 " Essentials {{{
@@ -49,6 +53,7 @@ if !exists('g:gui_oni')
   Plug 'thinca/vim-visualstar'
 endif
 
+Plug 'alok/notational-fzf-vim'
 Plug 'liuchengxu/vim-which-key'
 Plug 'shime/vim-livedown'
 Plug 'mhinz/vim-startify'
@@ -84,6 +89,3 @@ Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 " vim:foldmethod=marker
-
-" https://github.com/neovim/neovim/wiki/FAQ#nvim-shows-weird-symbols-2-q-when-changing-modes
-" set guicursor=

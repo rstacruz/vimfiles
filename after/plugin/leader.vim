@@ -31,11 +31,14 @@ nnoremap <leader>al call :LanguageClient_contextMenu()<CR>
 let g:which_key_map.a.j = ['MyJournal', 'custom:open-journal']
 nnoremap <leader>aj :MyJournal<CR>
 
+let g:which_key_map.a.n = ['NV', 'notational-fzf']
+nnoremap <leader>an :NV<CR>
+
 let g:which_key_map.a.s = ['ShowSyntaxStack', 'syntax:show-syntax-stack']
 nnoremap <Leader>as :ShowSyntaxStack<CR>
 
-let g:which_key_map.a.n = ['noh', 'noh']
-nnoremap <Leader>an :noh<CR>
+" let g:which_key_map.a.n = ['noh', 'noh']
+" nnoremap <Leader>an :noh<CR>
 
 let g:which_key_map.a.v.r = ['source %', 'reload-file']
 nnoremap <Leader>avr :source %<CR>
