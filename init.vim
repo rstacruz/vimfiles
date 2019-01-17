@@ -47,6 +47,7 @@ if !exists('g:gui_oni')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'godlygeek/tabular'
+  Plug 'plasticboy/vim-markdown'
   Plug 'mhinz/vim-signify'
   Plug 'rstacruz/vim-hyperstyle'
   Plug 'rstacruz/vim-xtract'
@@ -83,7 +84,7 @@ Plug 'easymotion/vim-easymotion'
 " Plug 'vim-scripts/restore_view.vim'
 " }}}
 
-  " let g:polyglot_disabled = ['markdown', 'md']
+  let g:polyglot_disabled = ['markdown', 'md']
   Plug 'sheerun/vim-polyglot'
   Plug 'tpope/vim-rails', { 'for': 'ruby' }
 
