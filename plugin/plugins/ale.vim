@@ -9,6 +9,7 @@ let g:ale_lint_on_save=1
 let g:ale_linters = {
 \ 'javascript': ['eslint', 'flow-language-server'],
 \ 'javascript.jsx': ['eslint', 'flow-language-server'],
+\ 'typescript': ['eslint', 'tsserver'],
 \ }
 " \ 'javascript': ['eslint', 'flow-language-server', 'tsserver'],
 " \ 'javascript.jsx': ['eslint', 'flow-language-server', 'tsserver'],
@@ -18,6 +19,7 @@ let g:ale_fixers = {
 \ 'scss': [ 'prettier' ],
 \ 'css': [ 'prettier' ],
 \ 'markdown': [ 'prettier' ],
+\ 'typescript': [ 'prettier' ],
 \ 'javascript': [ 'prettier-eslint', 'prettier' ],
 \ 'javascript.jsx': [ 'prettier-eslint', 'prettier' ],
 \ 'elixir': [ 'mix_format' ],
