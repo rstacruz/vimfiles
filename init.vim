@@ -84,7 +84,7 @@ Plug 'easymotion/vim-easymotion'
 " Plug 'vim-scripts/restore_view.vim'
 " }}}
 
-  let g:polyglot_disabled = ['markdown', 'md']
+  let g:polyglot_disabled = ['markdown', 'md', 'liquid']
   Plug 'sheerun/vim-polyglot'
   Plug 'tpope/vim-rails', { 'for': 'ruby' }
 
