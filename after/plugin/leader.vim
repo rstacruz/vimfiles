@@ -131,6 +131,10 @@ endif
 if exists(':NERDTree')
   let g:which_key_map.p.t = [ 'Gcd | NERDTree', 'tree']
   nnoremap <leader>pt :Gcd<CR>:NERDTree<CR>
+
+  " btw, use `-` instead
+  let g:which_key_map.p.T = [ 'Gcd | NERDTreeFind', 'tree-find']
+  nnoremap <leader>pT :Gcd<CR>:NERDTreeFind<CR>
 endif
 
 if exists(':SClose')
