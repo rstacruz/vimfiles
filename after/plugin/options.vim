@@ -1,3 +1,6 @@
+" Startinsert on git
+if $GIT_AUTHOR_DATE != '' | startinsert | endif
+
 if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != '' | finish | endif
 
 if !has('gui_running')
@@ -20,9 +23,6 @@ set noruler
 " Remove the one-second escape key delay
 " http://stackoverflow.com/questions/12312178/tmux-and-vim-escape-key-being-seen-as-and-having-long-delay
 set timeout timeoutlen=200 ttimeoutlen=10
-
-" Startinsert on git
-if $GIT_DIR != '' | startinsert | endif
 
 " minimal status bar for small windows
 if $MINIMAL_PROMPT != ''
