@@ -74,6 +74,11 @@ function! s:themeoverrides_common() " {{{
   hi FoldColumn ctermbg=none
   hi LineNr ctermbg=none
 
+  hi link EasyMotionTarget2First EasyMotionTargetDefault
+  hi link EasyMotionTarget2FirstDefault EasyMotionTargetDefault
+  hi link EasyMotionTarget2Second EasyMotionTargetDefault
+  hi link EasyMotionTarget2SecondDefault EasyMotionTargetDefault
+
   hi Folded ctermbg=none ctermfg=1 cterm=none
   hi Noise ctermfg=14
   hi link jsThis StorageClass
