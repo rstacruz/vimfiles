@@ -251,37 +251,45 @@ nnoremap <leader>fS :w suda://%<CR>
 " [.] EasyMotion {{{
 
 if globpath(&rtp, "plugin/EasyMotion.vim") != ""
-  let g:which_key_map['.'].j = ['<Plug>(easymotion-j)', 'line:down']
-  nmap <leader>.j <Plug>(easymotion-j)
-  let g:which_key_map['.'].k = ['<Plug>(easymotion-k)', 'line:up']
-  nmap <leader>.k <Plug>(easymotion-k)
-  let g:which_key_map['.'].w = ['<Plug>(easymotion-w)', 'word:next']
-  nmap <leader>.w <Plug>(easymotion-w)
-  let g:which_key_map['.'].W = ['<Plug>(easymotion-W)', 'word:prev']
-  nmap <leader>.W <Plug>(easymotion-W)
-  let g:which_key_map['.'].b = ['<Plug>(easymotion-b)', 'b']
-  nmap <leader>.b <Plug>(easymotion-b)
-  let g:which_key_map['.'].B = ['<Plug>(easymotion-B)', 'B']
-  nmap <leader>.B <Plug>(easymotion-b)
-  let g:which_key_map['.'].e = ['<Plug>(easymotion-e)', 'end-of-word']
-  nmap <leader>.e <Plug>(easymotion-e)
-  let g:which_key_map['.'].E = ['<Plug>(easymotion-E)', 'end-of-word:skip-symbols']
-  nmap <leader>.E <Plug>(easymotion-E)
-  let g:which_key_map['.'].f = ['<Plug>(easymotion-f)', 'character:next']
-  nmap <leader>.f <Plug>(easymotion-f)
-  let g:which_key_map['.'].F = ['<Plug>(easymotion-F)', 'character:prev']
-  nmap <leader>.F <Plug>(easymotion-F)
-  let g:which_key_map['.'].n = ['<Plug>(easymotion-n)', 'search-match:next']
-  nmap <leader>.n <Plug>(easymotion-n)
-  let g:which_key_map['.'].N = ['<Plug>(easymotion-N)', 'search-match:prev']
-  nmap <leader>.N <Plug>(easymotion-N)
-  let g:which_key_map['.'].s = ['<Plug>(easymotion-s)', 'search']
-  nmap <leader>.s <Plug>(easymotion-s)
-  let g:which_key_map['.'].g = { 'name': 'g' }
-  let g:which_key_map['.'].g.e = ['<Plug>(easymotion-ge)', 'ge']
-  nmap <leader>.ge <Plug>(easymotion-ge)
-  let g:which_key_map['.'].g.E = ['<Plug>(easymotion-gE)', 'gE']
-  nmap <leader>.gE <Plug>(easymotion-gE)
+  let g:which_key_map['.'].p = ['<Plug>(easymotion-bd-w)', 'find-word']
+  nmap <leader>.p <Plug>(easymotion-bd-w)
+  let g:which_key_map['.'].w = ['<Plug>(easymotion-bd-w)', 'find-word']
+  nmap <leader>.w <Plug>(easymotion-bd-w)
+  let g:which_key_map['.'].e = ['<Plug>(easymotion-bd-e)', 'find-word-end']
+  nmap <leader>.e <Plug>(easymotion-bd-e)
+  let g:which_key_map['.'].f = ['<Plug>(easymotion-bd-f)', 'find-char']
+  nmap <leader>.f <Plug>(easymotion-bd-f)
+  " let g:which_key_map['.'].j = ['<Plug>(easymotion-j)', 'line:down']
+  " nmap <leader>.j <Plug>(easymotion-j)
+  " let g:which_key_map['.'].k = ['<Plug>(easymotion-k)', 'line:up']
+  " nmap <leader>.k <Plug>(easymotion-k)
+  " let g:which_key_map['.'].w = ['<Plug>(easymotion-w)', 'word:next']
+  " nmap <leader>.w <Plug>(easymotion-w)
+  " let g:which_key_map['.'].W = ['<Plug>(easymotion-W)', 'word:prev']
+  " nmap <leader>.W <Plug>(easymotion-W)
+  " let g:which_key_map['.'].b = ['<Plug>(easymotion-b)', 'b']
+  " nmap <leader>.b <Plug>(easymotion-b)
+  " let g:which_key_map['.'].B = ['<Plug>(easymotion-B)', 'B']
+  " nmap <leader>.B <Plug>(easymotion-b)
+  " let g:which_key_map['.'].e = ['<Plug>(easymotion-e)', 'end-of-word']
+  " nmap <leader>.e <Plug>(easymotion-e)
+  " let g:which_key_map['.'].E = ['<Plug>(easymotion-E)', 'end-of-word:skip-symbols']
+  " nmap <leader>.E <Plug>(easymotion-E)
+  " let g:which_key_map['.'].f = ['<Plug>(easymotion-f)', 'character:next']
+  " nmap <leader>.f <Plug>(easymotion-f)
+  " let g:which_key_map['.'].F = ['<Plug>(easymotion-F)', 'character:prev']
+  " nmap <leader>.F <Plug>(easymotion-F)
+  " let g:which_key_map['.'].n = ['<Plug>(easymotion-n)', 'search-match:next']
+  " nmap <leader>.n <Plug>(easymotion-n)
+  " let g:which_key_map['.'].N = ['<Plug>(easymotion-N)', 'search-match:prev']
+  " nmap <leader>.N <Plug>(easymotion-N)
+  " let g:which_key_map['.'].s = ['<Plug>(easymotion-s)', 'search']
+  " nmap <leader>.s <Plug>(easymotion-s)
+  " let g:which_key_map['.'].g = { 'name': 'g' }
+  " let g:which_key_map['.'].g.e = ['<Plug>(easymotion-ge)', 'ge']
+  " nmap <leader>.ge <Plug>(easymotion-ge)
+  " let g:which_key_map['.'].g.E = ['<Plug>(easymotion-gE)', 'gE']
+  " nmap <leader>.gE <Plug>(easymotion-gE)
   vmap <leader>. <Plug>(easymotion-prefix)
 endif
 
