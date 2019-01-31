@@ -1,8 +1,11 @@
 if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != '' | finish | endif
 
+"
+" Toggles fix_on_save for the current buffer
+"
+
 command! ALEToggleFixOnSave call <SID>ale_toggle_fix_on_save()
 
-" Toggles fix_on_save for the current buffer.
 function! s:ale_toggle_fix_on_save()
   if exists('b:ale_fix_on_save') && b:ale_fix_on_save == '0'
     let b:ale_fix_on_save=1
@@ -12,30 +15,52 @@ function! s:ale_toggle_fix_on_save()
   echo "b:ale_fix_on_save = " . b:ale_fix_on_save
 endfunction
 
+"
+" Show syntax stack on cursor
+"
+
 command! ShowSyntaxStack :call <SID>show_syntax_stack()
 
 function! s:show_syntax_stack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
 
-command! OpenRangerSplit :call <SID>open_ranger_split()
+"
+" Helps convert CSSnext/PostCSS syntax into Sass
+"
 
-function! s:open_ranger_split()
-  split
-  terminal env EDITOR='nvim -cc split' ranger
-endfunction
+command! CssToScss call s:CssToScss()
+function! s:CssToScss()
+  set gdefault
 
-command! MyJournal :call <SID>my_journal()
+  " `--xyz: {` => `@mixin xyz() {`
+  silent! %s/  --\(.*\): {$/@mixin \1 {
 
-function! s:my_journal()
-  let journal_path = "~/org/journal"
-  execute "cd " . journal_path
-  let week = substitute(system("date '+%Y-W%U'"), '\n\+$', '', '')
-  " let month = substitute(system("date '+%Y-%m'"), '\n\+$', '', '')
-  " let today = substitute(system("date '+%Y-%m-%d-%a'"), '\n\+$', '', '')
-  " let month_path = "." . "/README." . month . ".md"
-  let week_path = "." . "/" . week . ".md"
-  execute "edit " . week_path
-  " vsplit
-  " execute "edit " . month_path
+  " `--xyz: abc` => `$xyz: abc;`
+  silent! %s/  --\(.*\): \(.*\)$/  \$\1: \2
+
+  " `var(--xxx)` => `$xxx`
+  silent! %s/var(--\([^)]*\))/\$\1
+
+  " `@media (--xxx)` => `@media #{$xxx}`
+  silent! %s/@media (--\([^)]*\))/@media #{\$\1}
+
+  " `@custom-media`
+  silent! %s/@custom-media --\([^)]*\) (width > \(.*\));/\$\1: "min-width: #{\2 + .1px}";
+  silent! %s/@custom-media --\([^)]*\) (width < \(.*\));/\$\1: "max-width: #{\2 - .1px}";
+  silent! %s/@custom-media --\([^)]*\) (\(.*\));/\$\1: "\2";
+
+  " `@apply --xxx;` => `@include xxx;`
+  silent! %s/@apply --/@include /
+
+  " color mods
+  silent! %s/color-mod(\([^ ]\+\) alpha(-\(\d\+\)%))/fade-out(\1, .\2)
+  silent! %s/color-mod(\([^ ]\+\) alpha(+\(\d\+\)%))/fade-in(\1, .\2)
+  silent! %s/color-mod(\([^ ]\+\) alpha(\(\d\+\)%))/change-color(\1, $alpha: .\2)
+  silent! %s/color-mod(\([^ ]\+\) lightness(-\(\d\+\)%))/darken(\1, .\2)
+  silent! %s/color-mod(\([^ ]\+\) lightness(+\(\d\+\)%))/lighten(\1, .\2)
+  silent! %s/color-mod(\([^ ]\+\) lightenss(\(\d\+\)%))/change-color(\1, $lightness: .\2)
+
+  " highlight things that should be edited
+  let @/=":root\\|color-mod\\|--\\|@custom-media"
 endfunction
