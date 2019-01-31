@@ -1,9 +1,13 @@
 if globpath(&rtp, "plugin/ale.vim") == "" | finish | endif
 
-" Lint hooks
+" Lint/fix hooks
 let g:ale_lint_on_text_changed='normal'
 let g:ale_lint_on_insert_leave=1
 let g:ale_lint_on_save=1
+let g:ale_fix_on_save = 1
+
+" Enable completion where available
+let g:ale_completion_enabled = 1
 
 " Linters
 let g:ale_linters = {
@@ -24,15 +28,9 @@ let g:ale_fixers = {
 \ 'elixir': [ 'mix_format' ],
 \ }
 
-" Autofix (https://github.com/w0rp/ale#2ii-fixing)
-let g:ale_fix_on_save = 1
-
 " Signs
 let g:ale_sign_error = '━ '
 let g:ale_sign_warning = '─ '
-
-" Enable completion where available
-let g:ale_completion_enabled = 1
 
 " :help ale-compeletion-completeopt-bug
 set completeopt=menu,menuone,preview,noselect,noinsert
