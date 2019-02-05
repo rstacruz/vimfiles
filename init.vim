@@ -41,6 +41,8 @@ Plug 'junegunn/goyo.vim'
 " `via` - select in 'argument'
 Plug 'wellle/targets.vim'
 
+Plug 'embear/vim-localvimrc'
+
 " Plugins: More plugins {{{
 if !exists('g:gui_oni')
   Plug 'scrooloose/nerdtree'
