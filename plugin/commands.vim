@@ -64,3 +64,12 @@ function! s:CssToScss()
   " highlight things that should be edited
   let @/=":root\\|color-mod\\|--\\|@custom-media"
 endfunction
+
+"
+" Converts an indented Markdown code block into code fences.
+"
+
+command! MarkdownCodify call s:MarkdownCodify()
+function! s:MarkdownCodify()
+  !$HOME/.vim/scripts/markdown-codify
+endfunction
