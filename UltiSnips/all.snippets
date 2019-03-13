@@ -58,13 +58,6 @@ snippet .tab "⇥ (tab key)"
 ⇥
 endsnippet
 
-snippet /* "/* Block comment */
-/*
- * ${1}
- */
-${0}
-endsnippet
-
 snippet /** "/** Doc comment */"
 /**
  * ${1}
@@ -72,11 +65,17 @@ snippet /** "/** Doc comment */"
 ${0}
 endsnippet
 
-
 snippet // "// Line comment"
 //
 // ${1}
 //
+${0}
+endsnippet
+
+snippet /* "/* Block comment */"
+/*
+ * ${1}
+ */
 ${0}
 endsnippet
 
@@ -114,4 +113,11 @@ snippet .table "Ansi table"
 ├──────────────────────────┤
 │                          │
 └──────────────────────────┘
+endsnippet
+
+snippet command "Command"
+command! ${1:MyCommand} call s:$1()
+function! s:$1()
+  $0
+endfunction
 endsnippet

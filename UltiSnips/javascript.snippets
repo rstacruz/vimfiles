@@ -83,3 +83,22 @@ function run() {
 // module.exports = run()
 run()
 endsnippet
+
+
+snippet spawn "Node.js spawn"
+const ${2:proc} = spawn(${1:'ls', ['-lh', '/usr']})
+
+$2.stdout.on('data', (data) => {
+  console.log(`stdout: ${data}`)
+})
+
+$2.stderr.on('data', (data) => {
+  console.log(`stderr: ${data}`)
+})
+
+$2.on('close', (code) => {
+  if (code !== 0) {
+    console.log(`ps process exited with code ${code}`)
+  }
+})
+endsnippet

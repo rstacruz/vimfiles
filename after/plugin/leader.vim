@@ -1,9 +1,12 @@
+if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != '' | finish | endif
+
 " vim:foldmethod=marker
 let g:toggle_key_map = {}
 let g:which_key_map = {}
 
 " Top-level menu {{{
 let g:which_key_map.a = { 'name': '+apps ' }
+let g:which_key_map.a.c = { 'name': '+cartographer ' }
 let g:which_key_map.a.v = { 'name': '+vim ' }
 let g:which_key_map.b = { 'name': '+buffer ' }
 let g:which_key_map.f = { 'name': '+file ' }
@@ -17,22 +20,26 @@ let g:which_key_map.m.m = { 'name': '+markdown ' }
 let g:which_key_map.p = { 'name': '+project ' }
 let g:which_key_map.t = { 'name': '+terminal ' }
 let g:which_key_map.T = { 'name': '+theme ' }
+let g:which_key_map.w = { 'name': '+window ' }
 let g:which_key_map['.'] = { 'name': '+easymotion ' }
 
 " }}}
 " [a] App {{{
 
-let g:which_key_map.a.l = ['LanguageClient_contextMenu()', 'language-client:menu']
-nnoremap <leader>al call :LanguageClient_contextMenu()<CR>
+let g:which_key_map.a.n = ['NV', 'notational-fzf']
+nnoremap <leader>an :NV<CR>
 
-let g:which_key_map.a.j = ['MyJournal', 'custom:open-journal']
-nnoremap <leader>al :MyJournal<CR>
+let g:which_key_map.a.c.f = ['lua require("cartographer").files()', 'files']
+nnoremap <leader>acf :lua require("cartographer").files()<CR>
+
+let g:which_key_map.a.c.p = ['lua require("cartographer").project()', 'project']
+nnoremap <leader>acp :lua require("cartographer").project()<CR>
 
 let g:which_key_map.a.s = ['ShowSyntaxStack', 'syntax:show-syntax-stack']
 nnoremap <Leader>as :ShowSyntaxStack<CR>
 
-let g:which_key_map.a.n = ['noh', 'noh']
-nnoremap <Leader>an :noh<CR>
+" let g:which_key_map.a.n = ['noh', 'noh']
+" nnoremap <Leader>an :noh<CR>
 
 let g:which_key_map.a.v.r = ['source %', 'reload-file']
 nnoremap <Leader>avr :source %<CR>
@@ -56,8 +63,11 @@ if exists(':ALEFix')
   let g:which_key_map.e.F = ['ALEFixSuggest', 'suggest-fixer']
   nnoremap <Leader>eF :ALEFixSuggest<CR>
 
-  let g:which_key_map.e.v = ['ALEDetail', 'show-details']
-  nnoremap <Leader>ev :ALEDetail<CR>
+  let g:which_key_map.e.v = ['ALEInfo', 'show-info']
+  nnoremap <Leader>ev :ALEInfo<CR>
+
+  let g:which_key_map.e.V = ['ALEDetail', 'show-details']
+  nnoremap <Leader>eV :ALEDetail<CR>
 
   let g:which_key_map.e.n = ['ALENextWrap', 'next-error']
   nnoremap <Leader>en :ALENextWrap<CR>
@@ -122,6 +132,10 @@ endif
 if exists(':NERDTree')
   let g:which_key_map.p.t = [ 'Gcd | NERDTree', 'tree']
   nnoremap <leader>pt :Gcd<CR>:NERDTree<CR>
+
+  " btw, use `-` instead
+  let g:which_key_map.p.T = [ 'Gcd | NERDTreeFind', 'tree-find']
+  nnoremap <leader>pT :Gcd<CR>:NERDTreeFind<CR>
 endif
 
 if exists(':SClose')
@@ -154,6 +168,9 @@ if exists(':terminal')
 
   let g:which_key_map.t.s = [ 'split | terminal', 'open-terminal-split' ]
   nnoremap <Leader>ts <C-w>n:terminal<CR>
+
+  let g:which_key_map.t.n = [ 'split | terminal', 'open-terminal-split' ]
+  nnoremap <Leader>tn <C-w>n:terminal<CR>
 
   let g:which_key_map.t.v = [ 'vsplit | terminal', 'open-terminal-vsplit' ]
   nnoremap <Leader>tv <C-w>v<C-w>l:terminal<CR>
@@ -222,6 +239,9 @@ if exists(':Files')
   nnoremap <leader>ff :Files<CR>
 endif
 
+let g:which_key_map.f.y = ['ShowFilePath', 'show-file-path']
+nnoremap <leader>fy :ShowFilePath<CR>
+
 let g:which_key_map.f.s = ['w', 'save']
 nnoremap <leader>fs :w<CR>
 
@@ -232,37 +252,45 @@ nnoremap <leader>fS :w suda://%<CR>
 " [.] EasyMotion {{{
 
 if globpath(&rtp, "plugin/EasyMotion.vim") != ""
-  let g:which_key_map['.'].j = ['<Plug>(easymotion-j)', 'line:down']
-  nmap <leader>.j <Plug>(easymotion-j)
-  let g:which_key_map['.'].k = ['<Plug>(easymotion-k)', 'line:up']
-  nmap <leader>.k <Plug>(easymotion-k)
-  let g:which_key_map['.'].w = ['<Plug>(easymotion-w)', 'word:next']
-  nmap <leader>.w <Plug>(easymotion-w)
-  let g:which_key_map['.'].W = ['<Plug>(easymotion-W)', 'word:prev']
-  nmap <leader>.W <Plug>(easymotion-W)
-  let g:which_key_map['.'].b = ['<Plug>(easymotion-b)', 'b']
-  nmap <leader>.b <Plug>(easymotion-b)
-  let g:which_key_map['.'].B = ['<Plug>(easymotion-B)', 'B']
-  nmap <leader>.B <Plug>(easymotion-b)
-  let g:which_key_map['.'].e = ['<Plug>(easymotion-e)', 'end-of-word']
-  nmap <leader>.e <Plug>(easymotion-e)
-  let g:which_key_map['.'].E = ['<Plug>(easymotion-E)', 'end-of-word:skip-symbols']
-  nmap <leader>.E <Plug>(easymotion-E)
-  let g:which_key_map['.'].f = ['<Plug>(easymotion-f)', 'character:next']
-  nmap <leader>.f <Plug>(easymotion-f)
-  let g:which_key_map['.'].F = ['<Plug>(easymotion-F)', 'character:prev']
-  nmap <leader>.F <Plug>(easymotion-F)
-  let g:which_key_map['.'].n = ['<Plug>(easymotion-n)', 'search-match:next']
-  nmap <leader>.n <Plug>(easymotion-n)
-  let g:which_key_map['.'].N = ['<Plug>(easymotion-N)', 'search-match:prev']
-  nmap <leader>.N <Plug>(easymotion-N)
-  let g:which_key_map['.'].s = ['<Plug>(easymotion-s)', 'search']
-  nmap <leader>.s <Plug>(easymotion-s)
-  let g:which_key_map['.'].g = { 'name': 'g' }
-  let g:which_key_map['.'].g.e = ['<Plug>(easymotion-ge)', 'ge']
-  nmap <leader>.ge <Plug>(easymotion-ge)
-  let g:which_key_map['.'].g.E = ['<Plug>(easymotion-gE)', 'gE']
-  nmap <leader>.gE <Plug>(easymotion-gE)
+  let g:which_key_map['.'].p = ['<Plug>(easymotion-bd-w)', 'find-word']
+  nmap <leader>.p <Plug>(easymotion-bd-w)
+  let g:which_key_map['.'].w = ['<Plug>(easymotion-bd-w)', 'find-word']
+  nmap <leader>.w <Plug>(easymotion-bd-w)
+  let g:which_key_map['.'].e = ['<Plug>(easymotion-bd-e)', 'find-word-end']
+  nmap <leader>.e <Plug>(easymotion-bd-e)
+  let g:which_key_map['.'].f = ['<Plug>(easymotion-bd-f)', 'find-char']
+  nmap <leader>.f <Plug>(easymotion-bd-f)
+  " let g:which_key_map['.'].j = ['<Plug>(easymotion-j)', 'line:down']
+  " nmap <leader>.j <Plug>(easymotion-j)
+  " let g:which_key_map['.'].k = ['<Plug>(easymotion-k)', 'line:up']
+  " nmap <leader>.k <Plug>(easymotion-k)
+  " let g:which_key_map['.'].w = ['<Plug>(easymotion-w)', 'word:next']
+  " nmap <leader>.w <Plug>(easymotion-w)
+  " let g:which_key_map['.'].W = ['<Plug>(easymotion-W)', 'word:prev']
+  " nmap <leader>.W <Plug>(easymotion-W)
+  " let g:which_key_map['.'].b = ['<Plug>(easymotion-b)', 'b']
+  " nmap <leader>.b <Plug>(easymotion-b)
+  " let g:which_key_map['.'].B = ['<Plug>(easymotion-B)', 'B']
+  " nmap <leader>.B <Plug>(easymotion-b)
+  " let g:which_key_map['.'].e = ['<Plug>(easymotion-e)', 'end-of-word']
+  " nmap <leader>.e <Plug>(easymotion-e)
+  " let g:which_key_map['.'].E = ['<Plug>(easymotion-E)', 'end-of-word:skip-symbols']
+  " nmap <leader>.E <Plug>(easymotion-E)
+  " let g:which_key_map['.'].f = ['<Plug>(easymotion-f)', 'character:next']
+  " nmap <leader>.f <Plug>(easymotion-f)
+  " let g:which_key_map['.'].F = ['<Plug>(easymotion-F)', 'character:prev']
+  " nmap <leader>.F <Plug>(easymotion-F)
+  " let g:which_key_map['.'].n = ['<Plug>(easymotion-n)', 'search-match:next']
+  " nmap <leader>.n <Plug>(easymotion-n)
+  " let g:which_key_map['.'].N = ['<Plug>(easymotion-N)', 'search-match:prev']
+  " nmap <leader>.N <Plug>(easymotion-N)
+  " let g:which_key_map['.'].s = ['<Plug>(easymotion-s)', 'search']
+  " nmap <leader>.s <Plug>(easymotion-s)
+  " let g:which_key_map['.'].g = { 'name': 'g' }
+  " let g:which_key_map['.'].g.e = ['<Plug>(easymotion-ge)', 'ge']
+  " nmap <leader>.ge <Plug>(easymotion-ge)
+  " let g:which_key_map['.'].g.E = ['<Plug>(easymotion-gE)', 'gE']
+  " nmap <leader>.gE <Plug>(easymotion-gE)
   vmap <leader>. <Plug>(easymotion-prefix)
 endif
 
@@ -335,5 +363,31 @@ if exists(':WhichKey')
   vnoremap <silent> <leader> :WhichKeyVisual '<space>'<CR>
 end
 
-nnoremap <Tab> :GFiles?<CR>
+nnoremap <leader><Tab> :GFiles?<CR>
+nnoremap <leader>,<Tab> :FZF<CR>
 " }}}
+
+" {{{
+command! EightiesToggle call s:EightiesToggle()
+function! s:EightiesToggle()
+  if g:eighties_enabled == 1
+    EightiesDisable
+    echomsg "x Eighties disabled; panes will no longer auto-resize."
+  else
+    EightiesEnable
+    EightiesResize
+    echomsg "✓ Eighties enabled! panes will auto-resize."
+  endif
+endfunction
+
+command! ShowFilePath call s:ShowFilePath()
+function! s:ShowFilePath()
+  echomsg expand("%:t") . " (" . expand("%:p") . ")"
+endfunction
+" }}}
+"
+let g:which_key_map.w.t = ['tabnew', 'new-tab']
+nnoremap <leader>wt :tabnew<CR>
+
+let g:which_key_map.w['8']= ['EightiesToggle', 'eighties:toggle']
+nnoremap <leader>w8 :EightiesToggle<CR>

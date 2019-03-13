@@ -7,7 +7,7 @@ call deoplete#custom#option({
   \ })
 
 " https://github.com/Shougo/deoplete.nvim/issues/298
-set completeopt-=preview
+" set completeopt-=preview
 
 " https://github.com/mhartington/deoplete-typescript#experimental-javascript-support
 " let g:deoplete#sources#tss#javascript_support = 1

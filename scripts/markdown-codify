@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Convert indented Markdown code into fenced Markdown code.
+
+lang=${1:-js}
+echo "\`\`\`${lang}"
+cat /dev/stdin \
+  | sed 's/^    //g' \
+  | sed "s/^$/\`\`\`\n\n\`\`\`${lang}/g"
+echo '```'

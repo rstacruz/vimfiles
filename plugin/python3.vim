@@ -1,3 +1,5 @@
+if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != '' | finish | endif
+
 " Assumes:
 "    brew install python
 "    brew install python3

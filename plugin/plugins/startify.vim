@@ -2,7 +2,7 @@ if globpath(&rtp, "plugin/startify.vim") == ""
   finish
 endif
 
-let g:startify_files_number           = 5
+let g:startify_files_number           = 18
 let g:startify_relative_path          = 1
 let g:startify_change_to_dir          = 1
 let g:startify_session_autoload       = 1

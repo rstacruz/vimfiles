@@ -1,3 +1,5 @@
+if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != '' | finish | endif
+
 "" [:] :Usage -- Vimfiles: show usage information
 command! Usage call <SID>help()
 

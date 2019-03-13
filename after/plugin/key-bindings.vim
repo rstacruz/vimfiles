@@ -1,3 +1,5 @@
+if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != '' | finish | endif
+
 " vim:foldmethod=marker
 
 "" [N] <leader>.f -- Jump: to a character above [easymotion]
@@ -7,9 +9,9 @@ if exists(':NERDTreeFind')
   nnoremap - :NERDTreeFind<CR>
 endif
 
-if exists(':GFiles')
+if exists(':Files')
   "" [N] <C-p> -- Project: open file [fzf]
-  nnoremap <C-p> :GFiles<cr>
+  nnoremap <C-p> :Files<cr>
 endif
 " }}}
 
@@ -110,3 +112,6 @@ nnoremap <C-l> <C-w>l
 "" [N] =oas -- Misc: toggle signify
 nnoremap =oas :SignifyToggle<CR>
 " }}}
+
+" Like `gf` but opens in a split
+nnoremap gs <C-w>f<C-w>L

@@ -14,6 +14,14 @@ if executable('css-languageserver')
   \ })
 endif
 
+" yarn global add javascript-typescript-stdio
+if executable('javascript-typescript-stdio')
+  let g:LanguageClient_serverCommands = extend(g:LanguageClient_serverCommands, {
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ })
+endif
+
 " yarn global add flow-language-server
 " https://github.com/flowtype/flow-language-server
 if executable('flow-language-server')
@@ -23,5 +31,3 @@ if executable('flow-language-server')
     \ })
 endif
 
-" \ 'javascript': ['javascript-typescript-stdio'],
-" \ 'javascript.jsx': ['javascript-typescript-stdio'],
