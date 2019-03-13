@@ -9,9 +9,9 @@ if exists(':NERDTreeFind')
   nnoremap - :NERDTreeFind<CR>
 endif
 
-if exists(':GFiles')
+if exists(':Files')
   "" [N] <C-p> -- Project: open file [fzf]
-  nnoremap <C-p> :GFiles<cr>
+  nnoremap <C-p> :Files<cr>
 endif
 " }}}
 

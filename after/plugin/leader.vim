@@ -6,6 +6,7 @@ let g:which_key_map = {}
 
 " Top-level menu {{{
 let g:which_key_map.a = { 'name': '+apps ' }
+let g:which_key_map.a.c = { 'name': '+cartographer ' }
 let g:which_key_map.a.v = { 'name': '+vim ' }
 let g:which_key_map.b = { 'name': '+buffer ' }
 let g:which_key_map.f = { 'name': '+file ' }
@@ -25,14 +26,14 @@ let g:which_key_map['.'] = { 'name': '+easymotion ' }
 " }}}
 " [a] App {{{
 
-let g:which_key_map.a.l = ['LanguageClient_contextMenu()', 'language-client:menu']
-nnoremap <leader>al call :LanguageClient_contextMenu()<CR>
-
-let g:which_key_map.a.j = ['MyJournal', 'custom:open-journal']
-nnoremap <leader>aj :MyJournal<CR>
-
 let g:which_key_map.a.n = ['NV', 'notational-fzf']
 nnoremap <leader>an :NV<CR>
+
+let g:which_key_map.a.c.f = ['lua require("cartographer").files()', 'files']
+nnoremap <leader>acf :lua require("cartographer").files()<CR>
+
+let g:which_key_map.a.c.p = ['lua require("cartographer").project()', 'project']
+nnoremap <leader>acp :lua require("cartographer").project()<CR>
 
 let g:which_key_map.a.s = ['ShowSyntaxStack', 'syntax:show-syntax-stack']
 nnoremap <Leader>as :ShowSyntaxStack<CR>

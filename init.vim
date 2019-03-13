@@ -23,6 +23,8 @@ if !exists('g:gui_oni') | Plug 'justincampbell/vim-eighties' | endif
 if version >= 704 && has('python3') | Plug 'SirVer/ultisnips' | endif
 " }}}
 
+Plug 'Vigemus/impromptu.nvim'
+Plug 'Vigemus/cartographer.nvim'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rhubarb'
