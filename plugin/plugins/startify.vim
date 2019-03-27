@@ -3,11 +3,9 @@ if globpath(&rtp, "plugin/startify.vim") == ""
 endif
 
 let g:startify_files_number           = 18
-let g:startify_relative_path          = 1
-let g:startify_change_to_dir          = 1
-let g:startify_session_autoload       = 1
-let g:startify_session_persistence    = 0
-let g:startify_session_delete_buffers = 1
+
+" Update session automatically as you exit vim
+let g:startify_session_persistence    = 1
 
 if !exists('g:startify_bookmarks')
   let g:startify_bookmarks = []
