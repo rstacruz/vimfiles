@@ -73,6 +73,7 @@ function! s:themeoverrides_common() " {{{
   hi SignColumn ctermbg=none
   hi FoldColumn ctermbg=none
   hi LineNr ctermbg=none
+  hi MatchParen ctermbg=none ctermfg=none cterm=underline
 
   hi link EasyMotionTarget2First EasyMotionTargetDefault
   hi link EasyMotionTarget2FirstDefault EasyMotionTargetDefault

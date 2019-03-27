@@ -88,15 +88,15 @@ endsnippet
 snippet spawn "Node.js spawn"
 const ${2:proc} = spawn(${1:'ls', ['-lh', '/usr']})
 
-$1.stdout.on('data', (data) => {
+$2.stdout.on('data', (data) => {
   console.log(`stdout: ${data}`)
 })
 
-$1.stderr.on('data', (data) => {
+$2.stderr.on('data', (data) => {
   console.log(`stderr: ${data}`)
 })
 
-$1.on('close', (code) => {
+$2.on('close', (code) => {
   if (code !== 0) {
     console.log(`ps process exited with code ${code}`)
   }
