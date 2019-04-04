@@ -23,3 +23,9 @@ nnoremap gh :ALEHover<CR>
 nnoremap gd :ALEGoToDefinition<CR>
 nnoremap gD :ALEGoToDefinitionInTab<CR>
 nnoremap g* :ALEFindReferences<CR>
+
+let g:ale_fixers = {
+      \ 'typescript': ['prettier', 'tslint'],
+      \ 'javascript': ['prettier', 'eslint'],
+      \ 'markdown': ['prettier']
+      \ }
