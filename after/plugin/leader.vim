@@ -58,7 +58,8 @@ if exists(':ALEFix')
 
   let g:toggle_key_map.e = { 'name': '+errors' }
   let g:toggle_key_map.e.f = ['ALEToggleFixOnSave', 'toggle-fix-on-save']
-  nnoremap =oef :ALEToggleFixOnSave<CR>
+  nnoremap =of :ALEToggleFixOnSave<CR>
+  nnoremap yof :ALEToggleFixOnSave<CR>
 
   let g:which_key_map.e.F = ['ALEFixSuggest', 'suggest-fixer']
   nnoremap <Leader>eF :ALEFixSuggest<CR>
