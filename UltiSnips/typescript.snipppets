@@ -1,0 +1,7 @@
+snippet ins "inspect" b
+require('util').inspect(${1:...}, { depth: null })$0
+endsnippet
+
+snippet cins "inspect" b
+console.log("$1", require('util').inspect(${1:...}, { depth: null }))$0
+endsnippet

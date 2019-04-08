@@ -27,5 +27,8 @@ nnoremap g* :ALEFindReferences<CR>
 let g:ale_fixers = {
       \ 'typescript': ['prettier', 'tslint'],
       \ 'javascript': ['prettier', 'eslint'],
+      \ 'css': ['prettier', 'stylelint'],
+      \ 'sass': ['prettier', 'stylelint'],
+      \ 'scss': ['prettier', 'stylelint'],
       \ 'markdown': ['prettier']
       \ }

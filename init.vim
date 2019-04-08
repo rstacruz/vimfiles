@@ -12,6 +12,7 @@ call plug#begin('~/.vim/vendor')
 " Essentials {{{
 if !has('nvim') && !exists('g:gui_oni') | Plug 'tpope/vim-sensible' | endif
 Plug 'flazz/vim-colorschemes'
+" Plug 'dylanaraps/wal.vim'
 
 if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != ''
   call plug#end()
@@ -19,12 +20,12 @@ if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != ''
 endif
 " }}}
 
-if !exists('g:gui_oni') | Plug 'justincampbell/vim-eighties' | endif
+" if !exists('g:gui_oni') | Plug 'justincampbell/vim-eighties' | endif
 if version >= 704 && has('python3') | Plug 'SirVer/ultisnips' | endif
 " }}}
 
-Plug 'Vigemus/impromptu.nvim'
-Plug 'Vigemus/cartographer.nvim'
+" Plug 'Vigemus/impromptu.nvim'
+" Plug 'Vigemus/cartographer.nvim'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rhubarb'
@@ -48,8 +49,8 @@ Plug 'embear/vim-localvimrc'
 " Plugins: More plugins {{{
 if !exists('g:gui_oni')
   Plug 'scrooloose/nerdtree'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
+  " Plug 'vim-airline/vim-airline'
+  " Plug 'vim-airline/vim-airline-themes'
   Plug 'godlygeek/tabular'
   Plug 'plasticboy/vim-markdown'
   Plug 'mhinz/vim-signify'
@@ -58,7 +59,7 @@ if !exists('g:gui_oni')
   Plug 'thinca/vim-visualstar'
 endif
 
-Plug 'alok/notational-fzf-vim'
+" Plug 'alok/notational-fzf-vim'
 Plug 'liuchengxu/vim-which-key'
 Plug 'shime/vim-livedown'
 Plug 'mhinz/vim-startify'
