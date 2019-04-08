@@ -18,17 +18,25 @@ let g:ale_sign_warning = '─ '
 " :help ale-compeletion-completeopt-bug
 set completeopt=menu,menuone,preview,noselect,noinsert
 
-" Inspired by vscode-vim's key bindings
-nnoremap gh :ALEHover<CR>
-nnoremap gd :ALEGoToDefinition<CR>
-nnoremap gD :ALEGoToDefinitionInTab<CR>
-nnoremap g* :ALEFindReferences<CR>
+let g:ale_fixers = {}
 
-let g:ale_fixers = {
-      \ 'typescript': ['prettier', 'tslint'],
-      \ 'javascript': ['prettier', 'eslint'],
-      \ 'css': ['prettier', 'stylelint'],
-      \ 'sass': ['prettier', 'stylelint'],
-      \ 'scss': ['prettier', 'stylelint'],
-      \ 'markdown': ['prettier']
-      \ }
+if !exists(':CocCommand')
+  let g:ale_fixers = {
+    \ 'typescript': ['prettier', 'tslint'],
+    \ 'javascript': ['prettier', 'eslint'],
+    \ 'css': ['prettier', 'stylelint'],
+    \ 'sass': ['prettier', 'stylelint'],
+    \ 'scss': ['prettier', 'stylelint'],
+    \ 'markdown': ['prettier']
+    \ }
+
+  " Inspired by vscode-vim's key bindings
+  nnoremap gh :ALEHover<CR>
+  nnoremap gd :ALEGoToDefinition<CR>
+  nnoremap gD :ALEGoToDefinitionInTab<CR>
+  nnoremap g* :ALEFindReferences<CR>
+
+  let g:ale_fix_on_save = 0
+  let g:ale_completion_enabled = 0
+endif
+

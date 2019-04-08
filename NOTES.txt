@@ -262,6 +262,19 @@ Tern for JavaScript.
     :TernRename    rename variable in cursor
 
 ------------------------------------------------------------------------------
+*coc.nvim*
+
+Language server support
+
+    :CocCommand    run commands (eg, tsserver.organizeImports)
+    :CocConfig     configure coc (using json)
+
+    gd    Go to definition
+    gi    Go to implementation
+    gr    Go to references
+    gy    Go to types
+
+------------------------------------------------------------------------------
 ALSO SEE                                                           *x-alsosee*
 
   https://github.com/terryma/dotfiles/blob/master/.vimrc

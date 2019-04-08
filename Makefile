@@ -37,13 +37,16 @@ link-neovim:
 	@echo "==> ~/.config/nvim"
 	@if [ ! . -ef ~/.config/nvim ]; then ln -nfs "${pwd}" ~/.config/nvim; fi
 
-install: ## Runs :PlugInstall (installs plugins & make lockfile)
+install: ## Runs :PlugInstall (installs plugins & make lockfile) [alias: i]
 	$(vim) +PlugInstall +PlugClean +"PlugSnapshot ${lockfile}" +qa
 
-upgrade: ## Runs :PlugUpdate (updates plugins)
+upgrade: ## Runs :PlugUpdate (updates plugins) [alias: u]
 	$(vim) +PlugUpdate +PlugUpgrade +PlugClean +"PlugSnapshot ${lockfile}" +PlugDiff
 
 restore: ## Install from lockfile
 	$(vim) -S ${lockfile}
+
+i: install
+u: upgrade
 
 .PHONY: install link upgrade restore default link-vim link-neovim doc/vimfiles_keys.txt

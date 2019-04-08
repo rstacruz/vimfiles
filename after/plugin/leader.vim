@@ -6,6 +6,7 @@ let g:which_key_map = {}
 
 " Top-level menu {{{
 let g:which_key_map.a = { 'name': '+apps ' }
+let g:which_key_map.c = { 'name': '+coc ' }
 let g:which_key_map.a.c = { 'name': '+cartographer ' }
 let g:which_key_map.a.v = { 'name': '+vim ' }
 let g:which_key_map.b = { 'name': '+buffer ' }
@@ -346,7 +347,6 @@ endif
 
 if exists(':WhichKey')
   call which_key#register('=', 'g:toggle_key_map')
-  call which_key#register(' ', 'g:which_key_map')
   call which_key#register(',', 'g:which_key_map')
 end
 
@@ -392,3 +392,18 @@ nnoremap <leader>wt :tabnew<CR>
 
 let g:which_key_map.w['8']= ['EightiesToggle', 'eighties:toggle']
 nnoremap <leader>w8 :EightiesToggle<CR>
+
+if exists(':CocList')
+  nnoremap <silent> <leader>ca  :<C-u>CocList diagnostics<cr>
+  nnoremap <silent> <leader>ce  :<C-u>CocList extensions<cr>
+  nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
+  nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
+  nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
+  nnoremap <silent> <leader>cj  :<C-u>CocNext<CR>
+  nnoremap <silent> <leader>ck  :<C-u>CocPrev<CR>
+  nnoremap <silent> <leader>cp  :<C-u>CocListResume<CR>
+
+  nmap <leader>cr  <Plug>(coc-rename)
+  nmap <leader>cf  <Plug>(coc-format-selected)
+  vmap <leader>cf  <Plug>(coc-format-selected)
+endif

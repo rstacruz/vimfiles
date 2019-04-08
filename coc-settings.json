@@ -1,0 +1,7 @@
+{
+  // Require .prettierrc
+  "prettier.requireConfig": true,
+
+  // Run prettier (and others)
+  "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown", "javascript", "javascriptreact", "typescript", "typescriptreact"]
+}

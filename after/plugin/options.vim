@@ -32,6 +32,7 @@ endif
 " minimal status
 set laststatus=0
 
+" Autoreload when changing from disk
 " https://superuser.com/a/1090762
 set autoread
 au CursorHold * checktime
