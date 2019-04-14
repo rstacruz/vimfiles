@@ -115,3 +115,6 @@ nnoremap =oas :SignifyToggle<CR>
 
 " Like `gf` but opens in a split
 nnoremap gs <C-w>f<C-w>L
+
+" open a new tab
+nnoremap g# :tabnew<CR>
