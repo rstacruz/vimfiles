@@ -101,16 +101,43 @@ function! s:themeoverrides_common() " {{{
 
   " https://github.com/bagrat/vim-buffet
   hi! BuffetCurrentBuffer ctermbg=none ctermfg=2
-  hi! BuffetActiveBuffer ctermbg=none
+  hi! BuffetActiveBuffer ctermbg=none ctermfg=8
   hi! BuffetBuffer ctermbg=none
   hi! BuffetTrunc ctermbg=none ctermfg=4
   hi! BuffetTab ctermbg=none ctermfg=4
   " other separtors and stuff. I think these
   " represent separators (eg, current/buffer/buffer
+  hi! BuffetBufferActiveBuffer ctermbg=none
   hi! BuffetBufferCurrentBuffer ctermbg=none
+  hi! BuffetBufferEnd ctermbg=none
+  hi! BuffetBufferRightTrunc ctermbg=none
+  hi! BuffetBufferTab ctermbg=none
+  hi! BuffetBufferBuffer ctermbg=none
+
+  hi! BuffetRightTruncEnd ctermbg=none
+  hi! BuffetRightTruncTab ctermbg=none
+
+  hi! BuffetTabEnd ctermbg=none
+
+  hi! BuffetLeftTruncActiveBuffer ctermbg=none
+  hi! BuffetLeftTruncCurrentBuffer ctermbg=none
+  hi! BuffetLeftTruncBuffer ctermbg=none
+
+  hi! BuffetActiveBufferActiveBuffer ctermbg=none
+  hi! BuffetActiveBufferCurrentBuffer ctermbg=none
+  hi! BuffetActiveBufferEnd ctermbg=none
+  hi! BuffetActiveBufferRightTrunc ctermbg=none
+  hi! BuffetActiveBufferTab ctermbg=none
+  hi! BuffetActiveBufferBuffer ctermbg=none
+
+  hi! BuffetCurrentBufferActiveBuffer ctermbg=none
   hi! BuffetCurrentBufferEnd ctermbg=none
+  hi! BuffetCurrentBufferRightTrunc ctermbg=none
+  hi! BuffetCurrentBufferTab ctermbg=none
   hi! BuffetCurrentBufferBuffer ctermbg=none
+  hi! BuffetTabBuffer ctermbg=none
   hi! BuffetTabCurrentBuffer ctermbg=none
+  hi! BuffetTabActiveBuffer ctermbg=none
 endfunction " }}}
 
 " [private] Custom overrides, depending on background

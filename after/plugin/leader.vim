@@ -93,8 +93,8 @@ nnoremap <leader>fed :cd ~/.config/nvim;<CR>:e ~/.config/nvim/init.vim<CR>
 let g:which_key_map.f.e.k = ['e ~/.vim/after/plugin/key-bindings.vim', 'edit-key-bindings']
 nnoremap <leader>fek :e ~/.vim/after/plugin/key-bindings.vim<CR>
 
-let g:which_key_map.f.e.t = ['e ~/.vim/after/plugin/theme.vim', 'edit-theme-overrides']
-nnoremap <leader>fet :e ~/.vim/after/plugin/theme.vim<CR>
+let g:which_key_map.f.e.t = ['e ~/.vim/plugin/theme.vim', 'edit-theme-overrides']
+nnoremap <leader>fet :e ~/.vim/plugin/theme.vim<CR>
 
 let g:which_key_map.f.e.l = ['e ~/.vim/after/plugin/leader.vim', 'edit-leader-bindings']
 nnoremap <leader>fel :e ~/.vim/after/plugin/leader.vim<CR>
@@ -114,14 +114,14 @@ nnoremap <leader>fep :e ~/.vim/plugin/plugins/<CR>
 let g:which_key_map.b.n = [ 'bnext', 'next' ]
 nnoremap <leader>bn :bnext<CR>
 
-let g:which_key_map.b.d = [ 'bdelete', 'close' ]
-nnoremap <leader>bd :bdelete<CR>
+let g:which_key_map.b.x = [ 'bdelete', 'close' ]
+nnoremap <leader>bx :bdelete<CR>
 
-let g:which_key_map.b.D = [ 'bdelete!', 'force-close' ]
-nnoremap <leader>bD :bdelete!<CR>
+let g:which_key_map.b.X = [ 'bdelete!', 'force-close' ]
+nnoremap <leader>bX :bdelete!<CR>
 
-let g:which_key_map.b.x = [ 'bdelete!', 'force-close' ]
-nnoremap <leader>bx :bdelete!<CR>
+let g:which_key_map.b['!'] = [ 'Bonly', 'close-others' ]
+nnoremap <leader>b! :Bonly<CR>
 
 let g:which_key_map.b.p = [ 'bdelete!', 'previous' ]
 nnoremap <leader>bp :bprev<CR>
