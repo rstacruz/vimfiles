@@ -73,3 +73,5 @@ command! MarkdownCodify call s:MarkdownCodify()
 function! s:MarkdownCodify()
   !$HOME/.vim/scripts/markdown-codify
 endfunction
+
+command! Gcd exec 'cd' fnameescape(fnamemodify(finddir('.git', escape(expand('%:p:h'), ' ') . ';'), ':h'))

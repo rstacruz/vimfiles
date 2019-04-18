@@ -395,14 +395,27 @@ nnoremap <leader>w8 :EightiesToggle<CR>
 
 if exists(':CocList')
   nnoremap <silent> <leader>ca  :<C-u>CocList diagnostics<cr>
-  nnoremap <silent> <leader>ce  :<C-u>CocList extensions<cr>
-  nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
-  nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
   nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
+  "nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
+
+  " list commands available in tsserver (and others)
+  nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
+
+  " navigate?
   nnoremap <silent> <leader>cj  :<C-u>CocNext<CR>
   nnoremap <silent> <leader>ck  :<C-u>CocPrev<CR>
-  nnoremap <silent> <leader>cp  :<C-u>CocListResume<CR>
+  " nnoremap <silent> <leader>cp  :<C-u>CocListResume<CR>
 
+  " restart when tsserver gets wonky
+  nnoremap <silent> <leader>cR  :<C-u>CocRestart<CR>
+
+  " view all errors
+  nnoremap <silent> <leader>cl  :<C-u>CocList locationlist<CR>
+
+  " enable or disable extensions
+  nnoremap <silent> <leader>ce  :<C-u>CocList extensions<cr>
+
+  " rename the current word in the cursor
   nmap <leader>cr  <Plug>(coc-rename)
   nmap <leader>cf  <Plug>(coc-format-selected)
   vmap <leader>cf  <Plug>(coc-format-selected)

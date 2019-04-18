@@ -5,8 +5,9 @@ if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != '' | finish | endif
 "" [N] <leader>.f -- Jump: to a character above [easymotion]
 "" [N] <leader>.F -- Jump: to a character below [easymotion]
 
-if exists(':NERDTreeFind')
+if exists(':NERDTree')
   nnoremap - :NERDTreeFind<CR>
+  nnoremap _ :NERDTreeVCS<CR>
 endif
 
 if exists(':Files')
@@ -118,3 +119,4 @@ nnoremap gs <C-w>f<C-w>L
 
 " open a new tab
 nnoremap g# :tabnew<CR>
+nnoremap g* :GG <C-R><C-W><CR>
