@@ -394,11 +394,15 @@ let g:which_key_map.w['8']= ['EightiesToggle', 'eighties:toggle']
 nnoremap <leader>w8 :EightiesToggle<CR>
 
 if exists(':CocList')
+<<<<<<< HEAD
+  nnoremap <silent> <leader>ca  :<C-u>CocList diagnostics<cr>
+=======
   " nnoremap <silent> <leader>ca  :<C-u>CocList diagnostics<cr>
   " nnoremap <silent> <leader>ce  :<C-u>CocList extensions<cr>
   nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
   nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
   nnoremap <silent> <leader>cl  :<C-u>CocList locationlist<cr>
+>>>>>>> Update
   nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
   "nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
 
