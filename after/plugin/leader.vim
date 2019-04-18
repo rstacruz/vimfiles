@@ -93,6 +93,9 @@ nnoremap <leader>fed :cd ~/.config/nvim;<CR>:e ~/.config/nvim/init.vim<CR>
 let g:which_key_map.f.e.k = ['e ~/.vim/after/plugin/key-bindings.vim', 'edit-key-bindings']
 nnoremap <leader>fek :e ~/.vim/after/plugin/key-bindings.vim<CR>
 
+let g:which_key_map.f.e.t = ['e ~/.vim/after/plugin/theme.vim', 'edit-theme-overrides']
+nnoremap <leader>fet :e ~/.vim/after/plugin/theme.vim<CR>
+
 let g:which_key_map.f.e.l = ['e ~/.vim/after/plugin/leader.vim', 'edit-leader-bindings']
 nnoremap <leader>fel :e ~/.vim/after/plugin/leader.vim<CR>
 
@@ -116,6 +119,9 @@ nnoremap <leader>bd :bdelete<CR>
 
 let g:which_key_map.b.D = [ 'bdelete!', 'force-close' ]
 nnoremap <leader>bD :bdelete!<CR>
+
+let g:which_key_map.b.x = [ 'bdelete!', 'force-close' ]
+nnoremap <leader>bx :bdelete!<CR>
 
 let g:which_key_map.b.p = [ 'bdelete!', 'previous' ]
 nnoremap <leader>bp :bprev<CR>
@@ -395,7 +401,7 @@ nnoremap <leader>w8 :EightiesToggle<CR>
 
 if exists(':CocList')
   " nnoremap <silent> <leader>ca  :<C-u>CocList diagnostics<cr>
-  " nnoremap <silent> <leader>ce  :<C-u>CocList extensions<cr>
+  nnoremap <silent> <leader>cx  :<C-u>CocList extensions<cr>
   nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
   nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
   nnoremap <silent> <leader>cl  :<C-u>CocList locationlist<cr>

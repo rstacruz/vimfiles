@@ -120,3 +120,8 @@ nnoremap gs <C-w>f<C-w>L
 " open a new tab
 nnoremap g# :tabnew<CR>
 nnoremap g* :GG <C-R><C-W><CR>
+
+" https://github.com/bagrat/vim-buffet#recommendations-and-faq
+noremap <Tab> :bn<CR>
+noremap <S-Tab> :bp<CR>
+noremap <C-t> :tabnew split<CR>

@@ -60,6 +60,7 @@ if !exists('g:gui_oni')
 endif
 
 " Plug 'alok/notational-fzf-vim'
+Plug 'bagrat/vim-buffet'
 Plug 'liuchengxu/vim-which-key'
 Plug 'shime/vim-livedown'
 Plug 'mhinz/vim-startify'

@@ -98,6 +98,19 @@ function! s:themeoverrides_common() " {{{
   hi! link mkdInlineURL LineNr
 
   hi TabLineFill ctermbg=none
+
+  " https://github.com/bagrat/vim-buffet
+  hi! BuffetCurrentBuffer ctermbg=none ctermfg=2
+  hi! BuffetActiveBuffer ctermbg=none
+  hi! BuffetBuffer ctermbg=none
+  hi! BuffetTrunc ctermbg=none ctermfg=4
+  hi! BuffetTab ctermbg=none ctermfg=4
+  " other separtors and stuff. I think these
+  " represent separators (eg, current/buffer/buffer
+  hi! BuffetBufferCurrentBuffer ctermbg=none
+  hi! BuffetCurrentBufferEnd ctermbg=none
+  hi! BuffetCurrentBufferBuffer ctermbg=none
+  hi! BuffetTabCurrentBuffer ctermbg=none
 endfunction " }}}
 
 " [private] Custom overrides, depending on background
