@@ -209,7 +209,7 @@ if 1 " exists(':Gstatus')
   nnoremap <leader>gs :Gstatus<CR>
 
   let g:which_key_map.g.c = [ 'Gcommit', 'commit' ]
-  nnoremap <leader>gc :Gcommit<CR>
+  nnoremap <leader>gc :Gcommit -v<CR>
 
   let g:which_key_map.g.A = [ 'Gcommit --amend', 'commit-amend' ]
   nnoremap <leader>gc :Gcommit --amend<CR>
