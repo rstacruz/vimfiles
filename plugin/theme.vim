@@ -56,7 +56,7 @@ function! s:lighttheme() " {{{
   " color lightning
   color base16-atelierlakeside
   ThemeOverrides
-  AirlineTheme base16 " lucius, base16, aurora
+  " AirlineTheme base16 " lucius, base16, aurora
 endfunction " }}}
 
 " Apply overrides (:ThemeOverrides)

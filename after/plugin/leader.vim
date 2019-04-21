@@ -46,8 +46,8 @@ let g:which_key_map.a.v.r = ['source %', 'reload-file']
 nnoremap <Leader>avr :source %<CR>
 
 if exists(':terminal')
-  let g:which_key_map.a.r = ['OpenRangerSplit', 'ranger']
-  nnoremap <Leader>ar :OpenRangerSplit<CR>
+  let g:which_key_map.a.r = ['ranger', 'ranger']
+  nnoremap <Leader>ar :terminal env EDITOR="nvr -s" ranger<CR>
 endif
 
 " }}}
