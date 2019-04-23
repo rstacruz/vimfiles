@@ -75,3 +75,28 @@ function! s:MarkdownCodify()
 endfunction
 
 command! Gcd exec 'cd' fnameescape(fnamemodify(finddir('.git', escape(expand('%:p:h'), ' ') . ';'), ':h'))
+
+"
+" Prompt the user to run something in the terminal.
+" Use this as an alternative to `:term`
+"
+
+function! s:TerminalPrompt()
+  call inputsave()
+  let command = input('Enter command: ')
+  call inputrestore()
+  new
+  exec "term " . command
+endfunction
+
+command! TerminalPrompt call s:TerminalPrompt()
+
+function! s:TerminalPromptSplit()
+  call inputsave()
+  let command = input('Enter command: ')
+  call inputrestore()
+  new
+  exec "term " . command
+endfunction
+
+command! TerminalPromptSplit call s:TerminalPromptSplit()

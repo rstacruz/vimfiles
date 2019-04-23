@@ -47,7 +47,10 @@ nnoremap <Leader>avr :source %<CR>
 
 if exists(':terminal')
   let g:which_key_map.a.r = ['ranger', 'ranger']
-  nnoremap <Leader>ar :terminal env EDITOR="nvr -s" ranger<CR>
+  nnoremap <Leader>ar :new<CR><C-w>_:terminal env EDITOR="nvr -s" ranger<CR>
+
+  let g:which_key_map.a.t = ['tig', 'tig']
+  nnoremap <Leader>at :new<CR><C-w>_:terminal env EDITOR="nvr -s --remote-wait" tig<CR>
 endif
 
 " }}}
@@ -114,6 +117,9 @@ nnoremap <leader>fep :e ~/.vim/plugin/plugins/<CR>
 let g:which_key_map.b.n = [ 'bnext', 'next' ]
 nnoremap <leader>bn :bnext<CR>
 
+let g:which_key_map.b.N = [ 'bnext!', 'next!' ]
+nnoremap <leader>bN :bnext!<CR>
+
 let g:which_key_map.b.x = [ 'bdelete', 'close' ]
 nnoremap <leader>bx :bdelete<CR>
 
@@ -172,22 +178,22 @@ endif
 "
 if exists(':terminal')
   let g:which_key_map["'"] = [ 'split | terminal', 'open-terminal-split' ]
-  nnoremap <Leader>' <C-w>n:terminal<CR>
+  nnoremap <Leader>' :TerminalPromptSplit<CR>
 
   let g:which_key_map.t.s = [ 'split | terminal', 'open-terminal-split' ]
-  nnoremap <Leader>ts <C-w>n:terminal<CR>
+  nnoremap <Leader>ts :TerminalPromptSplit<CR>
 
   let g:which_key_map.t.n = [ 'split | terminal', 'open-terminal-split' ]
-  nnoremap <Leader>tn <C-w>n:terminal<CR>
+  nnoremap <Leader>tn :TerminalPromptSplit<CR>
 
   let g:which_key_map.t.v = [ 'vsplit | terminal', 'open-terminal-vsplit' ]
-  nnoremap <Leader>tv <C-w>v<C-w>l:terminal<CR>
+  nnoremap <Leader>tv <C-w>v<C-w>l:TerminalPrompt<CR>
 
   let g:which_key_map.t.t = [ 'tabnew | terminal', 'open-terminal-tab' ]
-  nnoremap <Leader>tt :tabnew<CR>:terminal<CR>
+  nnoremap <Leader>tt :tabnew<CR>:TerminalPrompt<CR>
 
-  let g:which_key_map.t['.'] = [ 'terminal', 'open-terminal-here' ]
-  nnoremap <Leader>t. :terminal<CR>
+  " let g:which_key_map.t['.'] = [ 'terminal', 'open-terminal-here' ]
+  " nnoremap <Leader>t. :TerminalPrompt<CR>
 endif
 
 " }}}
@@ -212,7 +218,7 @@ if 1 " exists(':Gstatus')
   nnoremap <leader>gc :Gcommit -v<CR>
 
   let g:which_key_map.g.A = [ 'Gcommit --amend', 'commit-amend' ]
-  nnoremap <leader>gc :Gcommit --amend<CR>
+  nnoremap <leader>gA :Gcommit --amend -v<CR>
 endif
 
 " }}}
