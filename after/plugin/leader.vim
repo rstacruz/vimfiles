@@ -47,7 +47,7 @@ nnoremap <Leader>avr :source %<CR>
 
 if exists(':terminal')
   let g:which_key_map.a.r = ['ranger', 'ranger']
-  nnoremap <Leader>ar :new<CR><C-w>_:terminal env EDITOR="nvr -s" ranger<CR>
+  nnoremap <Leader>ar :terminal env EDITOR="nvr -s" ranger --selectfile="%"<CR>
 
   let g:which_key_map.a.t = ['tig', 'tig']
   nnoremap <Leader>at :new<CR><C-w>_:terminal env EDITOR="nvr -s --remote-wait" tig<CR>
@@ -120,6 +120,12 @@ nnoremap <leader>bn :bnext<CR>
 let g:which_key_map.b.N = [ 'bnext!', 'next!' ]
 nnoremap <leader>bN :bnext!<CR>
 
+let g:which_key_map.b.d = [ 'bdelete', 'close' ]
+nnoremap <leader>bd :bdelete<CR>
+
+let g:which_key_map.b.D = [ 'bdelete!', 'force-close' ]
+nnoremap <leader>bD :bdelete!<CR>
+
 let g:which_key_map.b.x = [ 'bdelete', 'close' ]
 nnoremap <leader>bx :bdelete<CR>
 
@@ -129,8 +135,11 @@ nnoremap <leader>bX :bdelete!<CR>
 let g:which_key_map.b['!'] = [ 'Bonly', 'close-others' ]
 nnoremap <leader>b! :Bonly<CR>
 
-let g:which_key_map.b.p = [ 'bdelete!', 'previous' ]
+let g:which_key_map.b.p = [ 'bprev', 'previous' ]
 nnoremap <leader>bp :bprev<CR>
+
+let g:which_key_map.b.t = [ 'b term://', 'open-previous-terminal' ]
+nnoremap <leader>bt :b term://<CR>a
 
 if exists(':Buffers')
   let g:which_key_map.b.b = [ 'Buffers', 'list-buffers' ]

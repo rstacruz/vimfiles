@@ -64,5 +64,10 @@ if has('nvim')
   set inccommand=nosplit
 
   " Start insert mode automatically on terminal open
-  autocmd TermOpen * startinsert
+  " augroup custom_term
+  "   autocmd!
+	autocmd TermOpen * startinsert
+  autocmd TermOpen * setlocal buflisted
+	" autocmd TermOpen * setlocal bufhidden=hide
+  " augroup END
 endif
