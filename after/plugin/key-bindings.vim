@@ -126,5 +126,5 @@ noremap <Tab> :bn<CR>
 noremap <S-Tab> :bp<CR>
 noremap <C-t> :tabnew split<CR>
 
-" Close the current window
-nnoremap <C-w><C-w> :hide<CR>
+" Close the current buffer
+nnoremap <C-w><C-w> :bdelete<CR>
