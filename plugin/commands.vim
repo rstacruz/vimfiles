@@ -100,3 +100,21 @@ function! s:TerminalPromptSplit()
 endfunction
 
 command! TerminalPromptSplit call s:TerminalPromptSplit()
+
+"
+" Open ranger
+"
+
+function! s:Ranger()
+  let cmd = "env EDITOR='nvr -s' ranger"
+
+  " Select the current file if possible
+  let fname = expand('%')
+  if $fname != ""
+    let cmd = cmd . " --selectfile='" . fname . "'"
+  endif
+
+  exec "terminal " . cmd
+endfunction
+
+command! Ranger call s:Ranger()
