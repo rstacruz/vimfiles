@@ -42,7 +42,7 @@ Plug 'junegunn/goyo.vim'
 " `vib` - select in any 'block'. works with any ( { [ triggers.
 " `viq` - select in any 'quote'
 " `via` - select in 'argument'
-Plug 'wellle/targets.vim'
+"Plug 'wellle/targets.vim'
 
 Plug 'embear/vim-localvimrc'
 
@@ -74,10 +74,10 @@ Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tslint', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'} " mru and stuff
-Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'} " color highlighting
 Plug 'lambdalisue/suda.vim'
 " Plug 'thinca/vim-localrc'
-Plug 'Galooshi/vim-import-js'
+" Plug 'Galooshi/vim-import-js'
 Plug 'easymotion/vim-easymotion'
 " Plug 'mzlogin/vim-markdown-toc'
 " Plug 'autozimu/LanguageClient-neovim', {
