@@ -4,7 +4,7 @@
 let g:color_schemes = {
   \   'dark': {
   \     'invis': '235',
-  \     'mute': ['239', '240'],
+  \     'mute': ['239', '244'],
   \     'highlight_bg': [ '236', '235', '233' ],
   \     'highlight_text': ['4', '13'],
   \     'signify': { 'add': 22, 'delete': 124, 'change': 237 },
