@@ -47,10 +47,13 @@ nnoremap <Leader>avr :source %<CR>
 
 if exists(':terminal')
   let g:which_key_map.a.r = ['ranger', 'ranger']
-  nnoremap <Leader>ar :terminal env EDITOR="nvr -s" ranger --selectfile="%"<CR>
+  nnoremap <Leader>ar :Ranger<CR>
 
   let g:which_key_map.a.t = ['tig', 'tig']
   nnoremap <Leader>at :new<CR><C-w>_:terminal env EDITOR="nvr -s --remote-wait" tig<CR>
+
+  let g:which_key_map.a.n = ['nnn', 'nnn']
+  nnoremap <Leader>an :new<CR><C-w>_:terminal env EDITOR="nvr -s --remote-wait" nnn<CR>
 endif
 
 " }}}
