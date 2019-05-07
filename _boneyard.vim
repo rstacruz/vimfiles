@@ -50,3 +50,6 @@
 
 " -- Never felt like using it
 " Plug 'easymotion/vim-easymotion'
+
+" -- So slow :(
+" Plug 'SirVer/ultisnips'

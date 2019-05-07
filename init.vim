@@ -17,7 +17,6 @@ if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != ''
   finish
 endif
 
-Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rhubarb'
