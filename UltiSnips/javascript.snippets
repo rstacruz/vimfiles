@@ -14,37 +14,11 @@ console.log(
 endsnippet
 
 snippet i "import ··· from '···'" b
-import ${2:${1/^.*\///}} from '${1:···}'$0
+import ${2:React} from '${1:react}'$0
 endsnippet
 
 snippet i* "import * as ···" b
-import * as ${2:${1/^.*\///}} from '${1:···}'$0
-endsnippet
-
-snippet r "const ··· = require('···')" b
-const ${2:${1/^.*\///}} = require('${1:···}')$0
-endsnippet
-
-snippet it "import type { ··· } from '···'" b
-import type { $1 } from '$2'$0
-endsnippet
-
-#
-# @flow
-#
-
-snippet flow "@flow"
-/* @flow */
-
-/*::
-  $0
-*/
-endsnippet
-
-snippet :: "flow /*:: ... */"
-/*::
-  $0
-*/
+import * as ${2:React} from '${1:react}'$0
 endsnippet
 
 #
@@ -84,7 +58,6 @@ function run() {
 run()
 endsnippet
 
-
 snippet spawn "Node.js spawn"
 const ${2:proc} = spawn(${1:'ls', ['-lh', '/usr']})
 
@@ -103,6 +76,6 @@ $2.on('close', (code) => {
 })
 endsnippet
 
-snippet cins "inspect" b
-console.log("$1", require('util').inspect(${1:...}, { depth: null }))$0
+snippet react "React"
+import React from 'react'
 endsnippet

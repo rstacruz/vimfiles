@@ -15,5 +15,27 @@
     "javascriptreact",
     "typescript",
     "typescriptreact"
-  ]
+  ],
+
+  "eslint.filetypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact"
+  ],
+
+  // Gutter symbols
+  "diagnostic.errorSign": "▬",
+  "diagnostic.warningSign": "▪",
+  "diagnostic.infoSign": "▪",
+  "diagnostic.hintSign": "⋅",
+
+  // When true, check the current line, not the current position.
+  "diagnostic.checkCurrentLine": true,
+
+  // Hmm?
+  "suggest.maxPreviewWidth": 80,
+  "suggest.enablePreview": true,
+  "suggest.echodocSupport": true,
+  "suggest.maxCompleteItemCount": 20
 }

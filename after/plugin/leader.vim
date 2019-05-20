@@ -424,6 +424,10 @@ if exists(':CocList')
   nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
   nnoremap <silent> <leader>cl  :<C-u>CocList locationlist<cr>
   nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
+  nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
+  nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
+  nnoremap <silent> <leader>cl  :<C-u>CocList locationlist<cr>
+  nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
   "nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
 
   " list commands available in tsserver (and others)
