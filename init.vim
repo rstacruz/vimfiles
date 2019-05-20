@@ -46,7 +46,7 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'rstacruz/vim-closer'
 
 " Plug 'Shougo/denite.nvim' " fuzzy finding?
-Plug 'Shougo/echodoc.vim' " show documentation in cmd line
+" Plug 'Shougo/echodoc.vim' " show documentation in cmd line
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
