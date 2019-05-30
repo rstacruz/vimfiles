@@ -6,7 +6,7 @@ if $VIM_MINIMAL != '' || $GIT_AUTHOR_DATE != '' | finish | endif
 "" [N] <leader>.F -- Jump: to a character below [easymotion]
 
 if exists(':NERDTree')
-  nnoremap - :NERDTreeFind<CR>
+  nnoremap - :Gcd<CR>:NERDTreeFind<CR>
   nnoremap _ :NERDTreeVCS<CR>
 endif
 
