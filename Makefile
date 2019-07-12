@@ -20,10 +20,10 @@ doc/vimfiles_keys.txt:
 help: ## Print key bindings
 	@bash _tools/help.sh
 
-link: link-vim link-neovim ## Link cwd to ~/.vim and ~/.config/nvim
+link: link-vim link-neovim ## Link cwd to ~/.vim and ~/.config/nvim [alias: l]
 	@if [ ! -d ~/.vim/vendor ]; then \
-		echo "\n\033[32;1m→ NOTE:\033[0m run ':PlugInstall' in Vim to install plugins."; \
-		echo "  (alternatively, use 'make install')"; \
+		echo -e "\n\033[32;1m→ NOTE:\033[0m run ':PlugInstall' in Vim to install plugins."; \
+		echo -e "  (alternatively, use 'make install')"; \
 	fi
 
 link-vim:
@@ -46,6 +46,7 @@ upgrade: ## Runs :PlugUpdate (updates plugins) [alias: u]
 restore: ## Install from lockfile
 	$(vim) -S ${lockfile}
 
+l: link
 i: install
 u: upgrade
 
