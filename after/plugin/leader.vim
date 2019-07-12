@@ -27,9 +27,6 @@ let g:which_key_map['.'] = { 'name': '+easymotion ' }
 " }}}
 " [a] App {{{
 
-let g:which_key_map.a.n = ['NV', 'notational-fzf']
-nnoremap <leader>an :NV<CR>
-
 let g:which_key_map.a.c.f = ['lua require("cartographer").files()', 'files']
 nnoremap <leader>acf :lua require("cartographer").files()<CR>
 
@@ -38,6 +35,9 @@ nnoremap <leader>acp :lua require("cartographer").project()<CR>
 
 let g:which_key_map.a.s = ['ShowSyntaxStack', 'syntax:show-syntax-stack']
 nnoremap <Leader>as :ShowSyntaxStack<CR>
+
+let g:which_key_map.a.g = ['Goyo', 'goyo:toggle']
+nnoremap <Leader>ag :Goyo<CR>
 
 " let g:which_key_map.a.n = ['noh', 'noh']
 " nnoremap <Leader>an :noh<CR>
