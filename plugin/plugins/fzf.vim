@@ -3,9 +3,11 @@ if executable('ag')
   let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 endif
 
+let $FZF_DEFAULT_OPTS = '--border --reverse --preview-window=up:8'
+
 " pacman -S highlight
 if executable('highlight')
-  let $FZF_DEFAULT_OPTS = '--preview "highlight -O ansi --force {}" --reverse'
+  let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . ' --preview "highlight -O ansi --force {}"'
 else
-  let $FZF_DEFAULT_OPTS = '--preview "head -n100 {}" --reverse'
+  let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . ' --preview "head -n100 {}" --reverse'
 endif
