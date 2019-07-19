@@ -3,7 +3,9 @@ if executable('ag')
   let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 endif
 
-let $FZF_DEFAULT_OPTS = '--border --reverse --preview-window=up:8'
+" --exact means 'mobihe' will *not* match 'mobile_helper'. You need to type
+" 'mobi he' instead.
+let $FZF_DEFAULT_OPTS = '--border --reverse --preview-window=up:8 --exact'
 
 " pacman -S highlight
 if executable('highlight')
@@ -18,11 +20,11 @@ endif
 command! -bang -nargs=* Ag
   \ call fzf#vim#ag(<q-args>,
   \  <bang>0 ? fzf#vim#with_preview('up:60%')
-  \          : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \          : fzf#vim#with_preview('right:40%:hidden', '?'),
   \  <bang>0)
 
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>,
   \  <bang>0 ? fzf#vim#with_preview('up:60%')
-  \          : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \          : fzf#vim#with_preview('right:40%', '?'),
   \  <bang>0)

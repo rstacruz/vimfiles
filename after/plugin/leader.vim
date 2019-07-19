@@ -370,6 +370,8 @@ if exists(':Ag')
 
   nnoremap <leader>* :Ag <C-r><C-w><CR>
   vnoremap <leader>* y:Ag <C-r>"<C-b><CR>
+  nnoremap <leader>& :Ag! <C-r><C-w><CR>
+  vnoremap <leader>& y:Ag! <C-r>"<C-b><CR>
 endif
 
 " }}}
