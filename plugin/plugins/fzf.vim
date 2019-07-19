@@ -11,3 +11,18 @@ if executable('highlight')
 else
   let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . ' --preview "head -n100 {}" --reverse'
 endif
+
+" Overrides
+" See :help fzf-vim-advanced-customization
+" Press ? to enable preview
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \  <bang>0 ? fzf#vim#with_preview('up:60%')
+  \          : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \  <bang>0)
+
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>,
+  \  <bang>0 ? fzf#vim#with_preview('up:60%')
+  \          : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \  <bang>0)

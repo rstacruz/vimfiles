@@ -36,6 +36,12 @@ nnoremap <leader>acp :lua require("cartographer").project()<CR>
 let g:which_key_map.a.s = ['ShowSyntaxStack', 'syntax:show-syntax-stack']
 nnoremap <Leader>as :ShowSyntaxStack<CR>
 
+let g:which_key_map.a.a = ['Ag!', 'ag:search']
+nnoremap <Leader>aa :Ag!<CR>
+
+let g:which_key_map.a.a = ['Ag!', 'ag:search']
+nnoremap <Leader>aA :Ag! <C-r><C-w><CR>
+
 let g:which_key_map.a.g = ['Goyo', 'goyo:toggle']
 nnoremap <Leader>ag :Goyo<CR>
 
