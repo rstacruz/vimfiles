@@ -118,3 +118,15 @@ function! s:Ranger()
 endfunction
 
 command! Ranger call s:Ranger()
+
+command! ShowFilePath call s:ShowFilePath()
+function! s:ShowFilePath()
+  echomsg expand("%")
+  let @+ = expand("%")
+endfunction
+
+command! ShowFilePathAndLine call s:ShowFilePathAndLine()
+function! s:ShowFilePathAndLine()
+  echomsg expand("%") . ":" . line(".")
+  let @+ = expand("%") . ":" . line(".")
+endfunction

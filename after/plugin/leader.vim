@@ -36,14 +36,14 @@ nnoremap <leader>acp :lua require("cartographer").project()<CR>
 let g:which_key_map.a.s = ['ShowSyntaxStack', 'syntax:show-syntax-stack']
 nnoremap <Leader>as :ShowSyntaxStack<CR>
 
-let g:which_key_map.a.a = ['Ag!', 'ag:search']
-nnoremap <Leader>aa :Ag!<CR>
+let g:which_key_map.a.g = ['Ag!', 'ag:search']
+nnoremap <Leader>ag :Ag!<CR>
 
-let g:which_key_map.a.a = ['Ag!', 'ag:search']
-nnoremap <Leader>aA :Ag! <C-r><C-w><CR>
+let g:which_key_map.a.G = ['Ag!', 'ag:search']
+nnoremap <Leader>aG :Ag! <C-r><C-w><CR>
 
-let g:which_key_map.a.g = ['Goyo', 'goyo:toggle']
-nnoremap <Leader>ag :Goyo<CR>
+let g:which_key_map.a.z = ['Goyo', 'goyo:toggle']
+nnoremap <Leader>az :Goyo<CR>
 
 " let g:which_key_map.a.n = ['noh', 'noh']
 " nnoremap <Leader>an :noh<CR>
@@ -271,8 +271,11 @@ if exists(':Files')
   nnoremap <leader>ff :Files<CR>
 endif
 
-let g:which_key_map.f.y = ['ShowFilePath', 'show-file-path']
-nnoremap <leader>fy :ShowFilePath<CR>
+let g:which_key_map.f.y = ['Gcd | ShowFilePath', 'show-file-path']
+nnoremap <leader>fy :Gcd<CR>:ShowFilePath<CR>
+
+let g:which_key_map.f.Y = ['Gcd | ShowFilePathAndLine', 'show-file-path-and-line']
+nnoremap <leader>fY :Gcd<CR>:ShowFilePathAndLine<CR>
 
 let g:which_key_map.f.s = ['w', 'save']
 nnoremap <leader>fs :w<CR>
@@ -411,11 +414,6 @@ function! s:EightiesToggle()
     EightiesResize
     echomsg "✓ Eighties enabled! panes will auto-resize."
   endif
-endfunction
-
-command! ShowFilePath call s:ShowFilePath()
-function! s:ShowFilePath()
-  echomsg expand("%:t") . " (" . expand("%:p") . ")"
 endfunction
 " }}}
 "
