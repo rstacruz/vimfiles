@@ -18,6 +18,7 @@ let g:which_key_map.h = { 'name': '+help ' }
 let g:which_key_map.m = { 'name': '+major ' }
 let g:which_key_map.m.j = { 'name': '+javascript ' }
 let g:which_key_map.m.m = { 'name': '+markdown ' }
+let g:which_key_map.m.r = { 'name': '+rust ' }
 let g:which_key_map.p = { 'name': '+project ' }
 let g:which_key_map.t = { 'name': '+terminal ' }
 let g:which_key_map.T = { 'name': '+theme ' }
@@ -365,6 +366,18 @@ if exists(':LivedownPreview')
 endif
 
 " }}}
+" [mr] Rust {{{
+
+if exists(':RustInfo')
+  let g:which_key_map.m.r.h = ['RustTest', 'test-here']
+  nnoremap <leader>mrh :RustTest<CR>
+
+  let g:which_key_map.m.r.t = ['RustTest', 'test-all']
+  nnoremap <leader>mrt :RustTest!<CR>
+
+  let g:which_key_map.m.r.f = ['RustFmt', 'format']
+  nnoremap <leader>mrf :RustFormat<CR>
+endif
 " [/*] Search {{{
 
 if exists(':Ag')
