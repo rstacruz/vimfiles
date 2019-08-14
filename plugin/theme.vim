@@ -13,7 +13,7 @@ let g:color_schemes = {
   \   },
   \   'light': {
   \     'invis': '254',
-  \     'mute': ['250', '245'],
+  \     'mute': ['246', '245'],
   \     'highlight_bg': [ '254', '254', '253' ],
   \     'highlight_text': ['4', '13'],
   \     'signify': { 'add': 76, 'delete': 203, 'change': 250 },
