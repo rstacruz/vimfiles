@@ -46,8 +46,12 @@ upgrade: ## Runs :PlugUpdate (updates plugins) [alias: u]
 restore: ## Install from lockfile
 	$(vim) -S ${lockfile}
 
+coc-rebuild: ## Rebuild coc plugins [alias: coc]
+	bash -c 'for fn in vendor/coc-*; do (cd $$fn; pwd; yarn); done'
+
 l: link
 i: install
 u: upgrade
+coc: coc-rebuild
 
 .PHONY: install link upgrade restore default link-vim link-neovim doc/vimfiles_keys.txt
