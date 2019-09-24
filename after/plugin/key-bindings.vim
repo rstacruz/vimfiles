@@ -161,3 +161,7 @@ let g:coc_snippet_prev = '<c-k>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" can't map ctrl-dot so this is the next best thing
+nnoremap <leader>. :CocAction<CR>
+vnoremap <leader>. :CocAction<CR>
