@@ -5,7 +5,7 @@ endif
 
 " --exact means 'mobihe' will *not* match 'mobile_helper'. You need to type
 " 'mobi he' instead.
-let $FZF_DEFAULT_OPTS = '--border --reverse --preview-window=up:8 --exact'
+let $FZF_DEFAULT_OPTS = '--border --reverse --preview-window=up:8'
 
 " pacman -S highlight
 if executable('highlight')
