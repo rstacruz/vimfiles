@@ -1,6 +1,6 @@
 {
   // Require .prettierrc
-  "prettier.requireConfig": true,
+  // "prettier.requireConfig": true,
 
   // Tslint on save
   "tslint.enable": true,
