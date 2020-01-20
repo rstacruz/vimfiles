@@ -8,7 +8,7 @@ nnoremap <S-Enter> zO
 nnoremap <C-Enter> zC
 
 if exists(':Files')
-  nnoremap <C-p> :Files<cr>
+  nnoremap <C-p> :Gcd<cr>:Files<cr>
 endif
 
 nnoremap <C-s> :w<cr>

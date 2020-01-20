@@ -1,18 +1,23 @@
 let g:mapleader=","
 call plug#begin('~/.config/nvim/vendor')
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'rstatcruz/vim-opinion'
-Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mhinz/vim-startify'
+Plug 'preservim/nerdtree'
+Plug 'rstatcruz/vim-opinion'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 
-" Internal modules
+" Coc
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
+
+" Home-made modules
 Plug '~/.config/nvim/modules/dynamic-theme'
 Plug '~/.config/nvim/modules/save-typos'
 Plug '~/.config/nvim/modules/ctrl-c-ctrl-v'
