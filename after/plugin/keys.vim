@@ -12,3 +12,15 @@ if exists(':Files')
 endif
 
 nnoremap <C-s> :w<cr>
+
+nnoremap <leader>bb :Buffers<cr>
+nnoremap <tab> :bnext<cr>
+nnoremap <s-tab> :bprev<cr>
+
+if exists(':EasyAlign')
+  " Start interactive EasyAlign in visual mode (e.g. vipga)
+  xmap ga <Plug>(EasyAlign)
+
+  " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+  nmap ga <Plug>(EasyAlign)
+endif

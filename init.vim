@@ -2,6 +2,7 @@ let g:mapleader=","
 call plug#begin('~/.config/nvim/vendor')
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'mhinz/vim-startify'
 Plug 'preservim/nerdtree'
 Plug 'rstatcruz/vim-opinion'
@@ -14,8 +15,6 @@ Plug 'tpope/vim-unimpaired'
 
 " Coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
 
 " Home-made modules
 Plug '~/.config/nvim/modules/dynamic-theme'
