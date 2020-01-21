@@ -12,6 +12,15 @@ function! s:darktheme()
   hi! Visual   cterm=none      ctermbg=238
   hi! Error    ctermbg=52      ctermfg=199
 
+  " --- a/xyz.txt <--- diffFile
+  " +++ b/xyz.txt
+  " @@ -12,6 +12,9 @@ function! s:darktheme()
+  " ^---------------^ ^---------------------^
+  " diffLine          diffSubname
+
+  hi! diffAdded   ctermfg=40  ctermbg=22
+  hi! diffRemoved ctermfg=196 ctermbg=52
+
   call s:overrides()
 endfunction
 
@@ -38,7 +47,7 @@ function! s:overrides()
   " Overrides to things I don't like
   hi! CursorLine cterm=none
 
-  " Also: Statement Number Comment Identifier Constant Type PreProc
+  " Also: Statement Comment(8) Identifier Constant(1) Type PreProc
 
   " Link to common styles
   hi! link LineNr       Gray
@@ -59,10 +68,10 @@ function! s:overrides()
 
   hi! link gitcommitFirstLine     Normal
   hi! link gitcommitSummary       Normal
-  hi! link gitcommitBranch        Number
+  hi! link gitcommitBranch        Constant
   hi! link gitcommitHeader        Comment
   hi! link gitcommitSelectedType  Statement
-  hi! link gitcommitSelectedFile  Number
+  hi! link gitcommitSelectedFile  Constant
   hi! link gitcommitDiscardedType Statement
   hi! link gitcommitDiscardedFile Comment
   hi! link gitcommitDiff          Comment
@@ -70,8 +79,11 @@ function! s:overrides()
   hi! link diffFile Statement
 
   hi! link NerdTreeOpenable Gray
-  hi! link NerdTreeDir      Number
+  hi! link NerdTreeDir      Constant
   hi! link NerdTreeDirSlash Gray
   hi! link NerdTreeCWD      Gray
 
+  hi! link diffLine Constant
+  hi! link diffSubname Gray
+  hi! link diffFile Constant
 endfunction
