@@ -9,6 +9,7 @@ Plug 'rstatcruz/vim-opinion'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
@@ -20,6 +21,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug '~/.config/nvim/modules/dynamic-theme'
 Plug '~/.config/nvim/modules/save-typos'
 Plug '~/.config/nvim/modules/ctrl-c-ctrl-v'
+Plug '~/.config/nvim/modules/git-grep'
 
 if $GIT_AUTHOR_DATE != '' || $VIM_MINIMAL != ''
   call plug#end()
