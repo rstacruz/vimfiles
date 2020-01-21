@@ -3,6 +3,11 @@ nnoremap <S-Enter> zO
 nnoremap <C-Enter> zC
 nnoremap <C-s> :w<cr>
 
+if exists(':term')
+  nnoremap <leader>' :split<CR>:resize 20<CR>:term<CR>
+  tnoremap <A-c> <C-\><C-n>
+endif
+
 if exists(':NERDTree')
   nnoremap - :Gcd<CR>:NERDTreeFind<CR>
   nnoremap _ :NERDTreeVCS<CR>

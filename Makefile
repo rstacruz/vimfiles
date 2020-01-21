@@ -1,3 +1,4 @@
+setup: link install
 install:
 	nvim +PlugInstall +PlugClean +qa
 update:

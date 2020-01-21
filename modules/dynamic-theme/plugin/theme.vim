@@ -29,7 +29,7 @@ function! s:darktheme()
   " Diff in git commits
   hi! diffRemoved ctermfg=196 ctermbg=52
 
-  hi! Pmenu ctermbg=237 ctermfg=1
+  hi! Pmenu ctermbg=237 ctermfg=7
 
   hi! StatusLine   cterm=none ctermbg=234 ctermfg=1
   hi! StatusLineNC cterm=none ctermbg=234 ctermfg=236
