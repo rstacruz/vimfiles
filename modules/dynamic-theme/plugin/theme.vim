@@ -5,6 +5,7 @@ command! Light :call <SID>lighttheme()
 function! s:darktheme()
   set background=dark
   color peachpuff
+  call s:overrides()
 
   hi! Invis    cterm=none      ctermbg=none ctermfg=232
   hi! NonText  cterm=none      ctermbg=none ctermfg=232
@@ -21,20 +22,19 @@ function! s:darktheme()
   hi! diffAdded   ctermfg=40  ctermbg=22
   hi! diffRemoved ctermfg=196 ctermbg=52
 
-  call s:overrides()
+  hi! Pmenu ctermbg=237 ctermfg=1
 endfunction
 
 function! s:lighttheme()
   set background=light
   color peachpuff
+  call s:overrides()
 
   hi! Invis    cterm=none      ctermbg=none ctermfg=254
   hi! NonText  cterm=none      ctermbg=none ctermfg=254
   hi! Selected cterm=underline ctermbg=253
   hi! Visual   cterm=none      ctermbg=253
   hi! Error    ctermbg=213     ctermfg=52
-
-  call s:overrides()
 endfunction
 
 function! s:overrides()
@@ -43,9 +43,11 @@ function! s:overrides()
   hi! Underline  ctermbg=none ctermfg=none cterm=underline
   hi! Gray       cterm=none   ctermfg=8
   hi! ItalicGray cterm=none   ctermfg=8
+  hi! CocUnderline cterm=underline
 
   " Overrides to things I don't like
   hi! CursorLine cterm=none
+  hi! Pmenu ctermbg=1
 
   " Also: Statement Comment(8) Identifier Constant(1) Type PreProc
 
@@ -64,7 +66,6 @@ function! s:overrides()
   hi! link Search     Selected
   hi! link IncSearch  Selected
   hi! link VisualNC   Visual
-  hi! link Pmenu      Visual
 
   hi! link gitcommitFirstLine     Normal
   hi! link gitcommitSummary       Normal
@@ -86,4 +87,9 @@ function! s:overrides()
   hi! link diffLine Constant
   hi! link diffSubname Gray
   hi! link diffFile Constant
+
+  hi! link CocHintSign Statement
+  hi! link CocInfoSign Statement
+  hi! link CocWarningSign Type
+  hi! link CocErrorSign Error
 endfunction
