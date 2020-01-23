@@ -2,10 +2,60 @@ nnoremap <Enter> za
 nnoremap <S-Enter> zO
 nnoremap <C-Enter> zC
 nnoremap <C-s> :w<cr>
+inoremap <C-s> <esc>:w<cr>
+
+" Open config
+nnoremap <leader>fek :tabnew<cr>:e ~/.config/nvim/after/plugin/keys.vim<cr>
+nnoremap <leader>fec :tabnew<cr>:e ~/.config/nvim/after/plugin/customizations.vim<cr>
+nnoremap <leader>fei :tabnew<cr>:e ~/.config/nvim/init.vim<cr>
+
+if exists(':Gstatus')
+  nnoremap <leader>gs :tabnew<cr>:Gstatus<cr><C-W>o
+  nnoremap <leader>gts :tabnew<cr>:term tig status<cr>
+  nnoremap <leader>gc :Gcommit -v<cr>:set nonumber<cr>a
+  " nnoremap <leader>gl :Glog<cr>
+  nnoremap <leader>gb :Gblame<cr>
+  nnoremap <leader>go :Gbrowse<cr>
+  nnoremap <leader>gO :Gbrowse!<cr>
+endif
+
+if exists(':GV')
+  nnoremap <leader>gl :GV<cr>
+endif
+
+if exists(':Buffers')
+  nnoremap <leader>bb :Buffers<cr>
+endif
+
+if exists(':tabclose')
+  nnoremap <leader>tc :tabclose<cr>
+  nnoremap <leader>tn :tabnew<cr>:Startify<cr>
+endif
+
+if exists(':Startify')
+  nnoremap <leader>sc :tabonly<cr>:StartifyReset<cr>
+  " nnoremap <leader>sc :tabonly<cr>:SClose<cr>
+  " nnoremap <leader>st :only<cr>:Startify<cr>
+  " nnoremap <leader>sT :tabonly<cr>:only<cr>:Startify<cr>
+endif
+
+if exists(':q')
+  nnoremap <leader>qa :qa<CR>
+  nnoremap <leader>qA :qa!<CR>
+  nnoremap <leader>qc :cq!<CR>
+endif
+
+if exists(':Quickterm')
+  nnoremap <leader>' :Quickterm<CR>
+endif
 
 if exists(':term')
-  nnoremap <leader>' :split<CR>:resize 20<CR>:term<CR>
-  tnoremap <A-c> <C-\><C-n>
+  " Different ways to escape
+  tnoremap <C-b><C-n> <C-\><C-n>
+  tnoremap <C-]> <C-\><C-n>
+  tnoremap <C-[> <C-\><C-n>
+
+  tnoremap <C-b><C-x> <C-\><C-n>:q!<CR>
 endif
 
 if exists(':NERDTree')
@@ -13,18 +63,13 @@ if exists(':NERDTree')
   nnoremap _ :NERDTreeVCS<CR>
 endif
 
-if exists(':Gstatus')
-  nnoremap <leader>gs :Gstatus<cr>
-  nnoremap <leader>gc :Gcommit -v<cr>:set nonumber<cr>a
-  nnoremap <leader>gl :Glog<cr>
-  nnoremap <leader>gb :Gblame<cr>
-  nnoremap <leader>go :Gbrowse<cr>
-  nnoremap <leader>gO :Gbrowse!<cr>
-end
+if exists(':GG')
+  nnoremap <leader>*  :SG <C-r><C-w><CR>
+  vnoremap <leader>*  y:SG <C-r>"<C-b><CR>
+endif
 
 if exists(':Files')
   nnoremap <C-p>      :Gcd<cr>:Files<cr>
-  nnoremap <leader>bb :Buffers<cr>
   nnoremap <tab>      :bnext<cr>
   nnoremap <s-tab>    :bprev<cr>
   nnoremap <leader>/  :Ag<cr>

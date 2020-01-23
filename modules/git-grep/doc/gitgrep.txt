@@ -1,0 +1,25 @@
+*gitgrep*  Git grep
+
+---------------------------------------------------------------------------------------
+COMMANDS                                                             *gitgrep-commands*
+                                                                                  *:GG*
+>
+    :GG [<query>]
+<
+Perform a search for `<query>`. If the query isn't given, it will re-perform
+the last query.
+
+>
+    :TG [<query>]
+    :SG [<query>]
+    :VG [<query>]
+<
+Same as `:GG`. However, `:TG` opens in a new tab, `:SG` opens in a horizontal split,
+and `:VG` opens in a vertical split.
+
+---------------------------------------------------------------------------------------
+EXAMPLE CONFIG
+>
+    nnoremap <leader>*  :GG <C-r><C-w><CR>
+    vnoremap <leader>*  y:GG <C-r>"<C-b><CR>
+<

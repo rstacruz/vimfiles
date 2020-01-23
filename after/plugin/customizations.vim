@@ -9,4 +9,19 @@ if has('nvim')
   au TermOpen * startinsert
 endif
 
-au BufNewfile,BufRead COMMIT_EDITMSG setlocal nonumber norelativenumber
+au BufNewfile,BufRead COMMIT_EDITMSG startinsert
+
+" No status when editing Git commit messages
+if $GIT_AUTHOR_DATE != ''
+  set laststatus=0
+  set nonumber
+  set norelativenumber
+endif
+
+" No line numbers on git status
+au FileType fugitive setlocal nonumber norelativenumber
+
+" Close terminal
+if has('nvim')
+  au TermClose *tig* silent bwipe! | silent close
+endif

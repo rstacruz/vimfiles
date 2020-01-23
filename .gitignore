@@ -1,3 +1,6 @@
 .netrwhist
+tags
 vendor
 sessions
+/bookmarks
+!/bookmarks/README.md

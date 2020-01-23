@@ -1,0 +1,15 @@
+*quickterm.txt*  Quick terminal
+
+---------------------------------------------------------------------------------------
+COMMANDS                                                           *quickterm-commands*
+                                                                           *:Quickterm*
+>
+    :Quickterm
+<
+Opens a terminal.
+
+---------------------------------------------------------------------------------------
+EXAMPLE CONFIG                                               *quickterm-example-config*
+>
+    nnoremap <leader>' :Quickterm<CR>
+<
