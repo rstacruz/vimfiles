@@ -1,6 +1,6 @@
 " Git grep
-command! -nargs=* GG call gitgrep#run('max', <q-args>)
-command! -nargs=* VG call gitgrep#run('v', <q-args>)
-command! -nargs=* SG call gitgrep#run('s', <q-args>)
-command! -nargs=* TG call gitgrep#run('t', <q-args>)
+command! -bang -nargs=* GG call gitgrep#run('m', <bang>0, <q-args>)
+command! -bang -nargs=* VG call gitgrep#run('v', <bang>0, <q-args>)
+command! -bang -nargs=* SG call gitgrep#run('s', <bang>0, <q-args>)
+command! -bang -nargs=* TG call gitgrep#run('t', <bang>0, <q-args>)
 
