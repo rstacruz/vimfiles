@@ -12,6 +12,8 @@ endif
 au BufNewfile,BufRead COMMIT_EDITMSG startinsert
 au BufNewfile,BufRead COMMIT_EDITMSG setlocal nonumber norelativenumber
 au BufNewfile,BufRead COMMIT_EDITMSG setlocal statusline=──\ Git\ commit\ message\ ──
+au BufNewfile,BufRead COMMIT_EDITMSG inoremap <buffer> <C-s> <Esc>:wq<cr>
+au BufNewfile,BufRead COMMIT_EDITMSG noremap <buffer> <C-s> :wq<cr>
 
 " No status when editing Git commit messages
 if $GIT_AUTHOR_DATE != ''
