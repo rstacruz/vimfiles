@@ -4,3 +4,4 @@ vendor
 sessions
 /bookmarks
 !/bookmarks/README.md
+/spell
