@@ -10,6 +10,8 @@ if has('nvim')
 endif
 
 au BufNewfile,BufRead COMMIT_EDITMSG startinsert
+au BufNewfile,BufRead COMMIT_EDITMSG setlocal nonumber norelativenumber
+au BufNewfile,BufRead COMMIT_EDITMSG setlocal statusline=──\ Git\ commit\ message\ ──
 
 " No status when editing Git commit messages
 if $GIT_AUTHOR_DATE != ''
@@ -23,7 +25,7 @@ au FileType fugitive setlocal nonumber norelativenumber
 
 " Close terminal
 if has('nvim')
-  au TermClose *tig* silent bwipe! | silent close
+  au TermClose *tig* silent bwipe!
 endif
 
 set cursorline

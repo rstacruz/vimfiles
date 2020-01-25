@@ -14,7 +14,7 @@ if !has('g:quickterm_position')
 endif
 
 
-function! quickterm#open()
+function! quickterm#activate()
   " see if there's already an open buffer
   let buf = bufnr(g:quickterm_name)
   let win = bufwinnr(buf)
@@ -48,5 +48,7 @@ endfunction
 function! quickterm#bind_buffer_keys()
   " Hide window
   tnoremap <buffer> <C-]> <C-\><C-n>:q<cr>
+  tnoremap <buffer> <C-/> <C-\><C-n>:q<cr>
   nnoremap <buffer> <C-]> :q<cr>
+  nnoremap <buffer> <C-/> :q<cr>
 endfunction

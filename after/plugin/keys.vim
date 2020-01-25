@@ -19,7 +19,7 @@ nnoremap <leader>fet :tabnew<cr>:e ~/.config/nvim/init.vim<cr>
 if exists(':Gstatus')
   nnoremap <leader>gs :tabnew<cr>:Gstatus<cr><C-W>o
   nnoremap <leader>gts :tabnew<cr>:term tig status<cr>
-  nnoremap <leader>gc :Gcommit -v<cr>:set nonumber<cr>a
+  nnoremap <leader>gc :Gcommit -v<cr>
   " nnoremap <leader>gl :Glog<cr>
   nnoremap <leader>gb :Gblame<cr>
   nnoremap <leader>go :Gbrowse<cr>
@@ -63,6 +63,7 @@ if exists(':term')
   tnoremap <C-[> <C-\><C-n>
 
   tnoremap <C-b><C-x> <C-\><C-n>:q!<CR>
+  nnoremap <leader>t. :term<CR>
 endif
 
 if exists(':NERDTree')
