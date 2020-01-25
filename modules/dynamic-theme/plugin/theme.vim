@@ -13,7 +13,9 @@ function! s:darktheme()
   hi! Error      ctermbg=52      ctermfg=199
   hi! muted      ctermbg=none    ctermfg=239
   hi! selected   cterm=underline ctermbg=238 ctermfg=4
-  hi! CursorLine ctermbg=237
+
+  hi! CursorLine   cterm=none ctermbg=237
+  hi! CursorLineNr cterm=none ctermbg=237 ctermfg=4
 
   " --- a/xyz.txt <--- diffFile
   " +++ b/xyz.txt
@@ -47,7 +49,9 @@ function! s:lighttheme()
   hi! Error      ctermbg=213     ctermfg=52
   hi! muted      ctermbg=none    ctermfg=251
   hi! selected   cterm=underline ctermbg=253 ctermfg=4
-  hi! CursorLine ctermbg=253
+
+  hi! CursorLine   cterm=none ctermbg=253
+  hi! CursorLineNr cterm=none ctermbg=253 ctermfg=1
 
   hi! DiffAdd     ctermfg=22 ctermbg=40
   hi! DiffChange  ctermfg=17 ctermbg=39
@@ -66,7 +70,8 @@ function! s:overrides()
   hi! CocUnderline cterm=underline
 
   " Overrides to things I don't like
-  hi! CursorLine cterm=none
+  hi! CursorLine   cterm=none ctermbg=253
+  hi! CursorLineNr cterm=none ctermbg=253 ctermfg=1
   hi! Pmenu ctermbg=1
 
   " Also: Statement Comment(8) Identifier Constant(1) Type PreProc

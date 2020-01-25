@@ -25,3 +25,5 @@ au FileType fugitive setlocal nonumber norelativenumber
 if has('nvim')
   au TermClose *tig* silent bwipe! | silent close
 endif
+
+set cursorline
