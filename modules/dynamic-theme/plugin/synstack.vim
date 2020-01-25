@@ -1,4 +1,5 @@
 command! Syn :call <SID>synstack()
+
 function! s:synstack()
   if !exists("*synstack")
     return
