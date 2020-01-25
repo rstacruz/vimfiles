@@ -1,7 +1,3 @@
-if !exists('g:startify_x_use_toilet')
-  let g:startify_x_use_toilet = 0
-endif
-
 if !exists('g:startify_x_shortcut_length')
   let g:startify_x_shortcut_length = 2
 endif
@@ -38,11 +34,7 @@ endfunction " }}}
 function! startify_x#set_banner() " {{{
   let project_dir = fnamemodify(getcwd(), ':t')
 
-  if executable('toilet') && exists('g:startify_x_use_toilet') && g:startify_x_use_toilet == 1
-    let g:startify_custom_header = startify_x#draw_header_with_toilet(project_dir)
-  else
-    let g:startify_custom_header = startify_x#draw_header(project_dir)
-  endif
+  let g:startify_custom_header = startify_x#draw_header(project_dir)
 
   let g:startify_custom_footer =
     \ startify#pad(startify_x#get_footer())
@@ -74,14 +66,6 @@ function! startify_x#draw_header(str) " {{{
     \ '┃  ' . a:str . '  ┃',
     \ '┗' . repeat('━', strlen(a:str) + 4) . '┛'
     \ ])
-endfunction " }}}
-
-" Draws the header with Toilet
-function! startify_x#draw_header_with_toilet(str) " {{{
-  return
-    \ [ '' ] +
-    \ startify#pad(split(system('echo '.str.' | toilet -f future'), '\n')) +
-    \ [ '' ]
 endfunction " }}}
 
 " Generates a banner from an file/dir path
