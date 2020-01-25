@@ -85,7 +85,7 @@ if exists(':q')
 endif
 
 if exists(':Quickterm')
-  let g:which_key_map["'"] = 'Open terminal'
+  let g:which_key_map["'"] = 'Terminal'
   nnoremap <leader>' :Quickterm<CR>
 endif
 
