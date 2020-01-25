@@ -18,7 +18,7 @@ endif
 
 " Open config
 let g:which_key_map.f.e.k = 'Edit keys'
-let g:which_key_map.f.e.c = 'Edit customizations'
+let g:which_key_map.f.e.c = 'Customizations'
 let g:which_key_map.f.e.i = 'Edit init.vim'
 let g:which_key_map.f.e.t = 'Edit theme'
 nnoremap <leader>fek :tabnew<cr>:e ~/.config/nvim/after/plugin/keys.vim<cr>
@@ -177,3 +177,6 @@ nnoremap <F4> :cnext<CR>
 nnoremap <S-F2> :lclose<CR>
 nnoremap <S-F3> :lprev<CR>
 nnoremap <S-F4> :lnext<CR>
+
+let g:which_key_map.f.y = 'Copy path to clipboard'
+nnoremap <leader>fy :let @+=@% \| echo @%<cr>
