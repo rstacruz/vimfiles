@@ -140,11 +140,13 @@ function! s:overrides() " {{{
   hi! link TabLine     StatusLineNC
   hi! link TabLineSel  StatusLine
 
-  hi! link StartifySlash   Muted
   hi! link StartifyBracket Muted
-  hi! link StartifyPath    Comment
-  hi! link StartifySpecial Constant
   hi! link StartifyFooter  Muted
+  hi! link StartifyHeader  Title
+  hi! link StartifyPath    Comment
+  hi! link StartifySection Title
+  hi! link StartifySlash   Muted
+  hi! link StartifySpecial Constant
 
   " The '-- INSERT --' mode line
   hi! link ModeMsg Invis

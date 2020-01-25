@@ -31,4 +31,4 @@ endif
 set cursorline " highlight current line
 set linebreak  " lbr: break on words
 
-au! User GoyoEnter nested setlocal wrap linebreak
+au BufNewfile,BufRead *.md setlocal wrap linebreak

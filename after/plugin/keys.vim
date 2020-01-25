@@ -14,7 +14,7 @@ endif
 nnoremap <leader>fek :tabnew<cr>:e ~/.config/nvim/after/plugin/keys.vim<cr>
 nnoremap <leader>fec :tabnew<cr>:e ~/.config/nvim/after/plugin/customizations.vim<cr>
 nnoremap <leader>fei :tabnew<cr>:e ~/.config/nvim/init.vim<cr>
-nnoremap <leader>fet :tabnew<cr>:e ~/.config/nvim/modules/dynamic-theme/plugin/theme.vim<cr>
+nnoremap <leader>fet :tabnew<cr>:e ~/.config/nvim/modules/dynamic-theme/autoload/dyntheme.vim<cr>
 
 if exists(':Gstatus')
   nnoremap <leader>gs :tabnew<cr>:Gstatus<cr><C-W>o
@@ -72,9 +72,9 @@ if exists(':NERDTree')
 endif
 
 if exists(':GG')
-  nnoremap <leader>/  :VG<space>
-  nnoremap <leader>*  :VG <C-r><C-w><CR>
-  vnoremap <leader>*  y:VG <C-r>"<C-b><CR>
+  nnoremap <leader>/  :VG!<space>
+  nnoremap <leader>*  :VG! <C-r><C-w><CR>
+  vnoremap <leader>*  y:VG! <C-r>"<C-b><CR>
 endif
 
 if exists(':Files')
@@ -82,6 +82,10 @@ if exists(':Files')
   nnoremap <tab>      :bnext<cr>
   nnoremap <s-tab>    :bprev<cr>
 endif
+
+if exists(':Goyo')
+  nmap <leader>zg :Goyo<cr>:echo "Zen mode"<cr>
+end
 
 if exists(':EasyAlign')
   " Start interactive EasyAlign in visual mode (e.g. vipga)
