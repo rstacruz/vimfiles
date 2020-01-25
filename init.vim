@@ -8,11 +8,12 @@ end
 call plug#begin(vim . '/vendor')
 
 " Home-made modules
-Plug vim . '/modules/dynamic-theme'
-Plug vim . '/modules/save-typos'
 Plug vim . '/modules/ctrl-c-ctrl-v'
+Plug vim . '/modules/dynamic-theme'
 Plug vim . '/modules/git-grep'
+Plug vim . '/modules/jk-on-wrap'
 Plug vim . '/modules/quickterm'
+Plug vim . '/modules/save-typos'
 Plug vim . '/modules/startify-switcher'
 
 " Core plugins

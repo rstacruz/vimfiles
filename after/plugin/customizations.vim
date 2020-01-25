@@ -28,4 +28,5 @@ if has('nvim')
   au TermClose *tig* silent bwipe!
 endif
 
-set cursorline
+set cursorline " highlight current line
+set linebreak  " lbr: break on words
