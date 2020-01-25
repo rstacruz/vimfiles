@@ -1,3 +1,9 @@
+let g:which_key_map = {}
+let g:which_key_map.f = { 'name': '+File' }
+let g:which_key_map.f.e = { 'name': '+Settings' }
+let g:which_key_map.k = { 'name': '+Editor' }
+let g:which_key_g = {}
+
 nnoremap <Enter> za
 nnoremap <S-Enter> zO
 nnoremap <C-Enter> zC
@@ -11,12 +17,29 @@ else
 endif
 
 " Open config
+let g:which_key_map.f.e.k = 'Edit keys'
+let g:which_key_map.f.e.c = 'Edit customizations'
+let g:which_key_map.f.e.i = 'Edit init.vim'
+let g:which_key_map.f.e.t = 'Edit theme'
 nnoremap <leader>fek :tabnew<cr>:e ~/.config/nvim/after/plugin/keys.vim<cr>
 nnoremap <leader>fec :tabnew<cr>:e ~/.config/nvim/after/plugin/customizations.vim<cr>
 nnoremap <leader>fei :tabnew<cr>:e ~/.config/nvim/init.vim<cr>
 nnoremap <leader>fet :tabnew<cr>:e ~/.config/nvim/modules/dynamic-theme/autoload/dyntheme.vim<cr>
 
 if exists(':Gstatus')
+  let g:which_key_map.g = {
+    \ 'name': '+Git',
+    \ 'b': 'Blame',
+    \ 'c': 'Commit...',
+    \ 'l': 'Show log',
+    \ 'o': 'Open in browser',
+    \ 'O': 'Copy URL to clipboard',
+    \ 's': 'Status',
+    \ }
+  let g:which_key_map.g.t = {
+    \ 'name': '+Tig',
+    \ 's': 'Status',
+    \ }
   nnoremap <leader>gs :tabnew<cr>:Gstatus<cr><C-W>o
   nnoremap <leader>gts :tabnew<cr>:term tig status<cr>
   nnoremap <leader>gc :Gcommit -v<cr>
@@ -31,28 +54,38 @@ if exists(':GV')
 endif
 
 if exists(':Buffers')
-  nnoremap <leader>bb :Buffers<cr>
+  let g:which_key_map.k.b = 'List buffers'
+  nnoremap <leader>kb :Buffers<cr>
 endif
 
 if exists(':tabclose')
+  let g:which_key_map.t = {
+    \ 'name': '+Tabs',
+    \ 'n': 'New tab',
+    \ 'c': 'Close tab',
+    \ '.': 'Open terminal',
+    \ }
   nnoremap <leader>tc :tabclose<cr>
   nnoremap <leader>tn :tabnew<cr>:Startify<cr>
 endif
 
 if exists(':Startify')
-  nnoremap <leader>sc :tabonly<cr>:StartifyReset<cr>
+  let g:which_key_map.k.w = 'Close all'
+  nnoremap <leader>kw :tabonly<cr>:StartifyReset<cr>
   " nnoremap <leader>sc :tabonly<cr>:SClose<cr>
   " nnoremap <leader>st :only<cr>:Startify<cr>
   " nnoremap <leader>sT :tabonly<cr>:only<cr>:Startify<cr>
 endif
 
 if exists(':q')
-  nnoremap <leader>qa :qa<CR>
-  nnoremap <leader>qA :qa!<CR>
-  nnoremap <leader>qc :cq!<CR>
+  let g:which_key_map.f.x = 'Quit vim...'
+  let g:which_key_map.f.X = 'Quit vim!'
+  nnoremap <leader>fx :qa<CR>
+  nnoremap <leader>fX :qa!<CR>
 endif
 
 if exists(':Quickterm')
+  let g:which_key_map["'"] = 'Open terminal'
   nnoremap <leader>' :Quickterm<CR>
 endif
 
@@ -72,6 +105,8 @@ if exists(':NERDTree')
 endif
 
 if exists(':GG')
+  let g:which_key_map['*'] = 'Search'
+  let g:which_key_map['/'] = 'Search...'
   nnoremap <leader>/  :VG!<space>
   nnoremap <leader>*  :VG! <C-r><C-w><CR>
   vnoremap <leader>*  y:VG! <C-r>"<C-b><CR>
@@ -84,7 +119,8 @@ if exists(':Files')
 endif
 
 if exists(':Goyo')
-  nmap <leader>zg :Goyo<cr>:echo "Zen mode"<cr>
+  let g:which_key_map.k.z = 'Toggle zen mode'
+  nmap <leader>kz :Goyo<cr>:echo "Zen mode"<cr>
 end
 
 if exists(':EasyAlign')
@@ -95,6 +131,15 @@ if exists(':EasyAlign')
 endif
 
 if exists(':CocAction')
+  let g:which_key_map.c = {
+    \ 'name': '+COC',
+    \ 'c': 'Show commands',
+    \ 'd': 'Show errors',
+    \ 'f': 'Format',
+    \ 'r': 'Rename symbol...',
+    \ 'a': 'Actions',
+    \ }
+
   " https://github.com/neoclide/coc.nvim#example-vim-configuration
   inoremap <silent><expr> <c-space> coc#refresh()
 

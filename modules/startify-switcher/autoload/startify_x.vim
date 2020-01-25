@@ -48,6 +48,7 @@ function! startify_x#set_banner() " {{{
     \ startify#pad(startify_x#get_footer())
 endfunction " }}}
 
+" Sets Startify's custom footer
 function! startify_x#get_footer() " {{{
   let result = []
 
@@ -63,18 +64,16 @@ function! startify_x#get_footer() " {{{
   endif
 
   return result
-endfunction
+endfunction " }}}
 
 " Draws the header with Vimscript
 function! startify_x#draw_header(str) " {{{
   return
-    \ [ '' ] +
     \ startify#pad([
     \ '┏' . repeat('━', strlen(a:str) + 4) . '┓',
     \ '┃  ' . a:str . '  ┃',
     \ '┗' . repeat('━', strlen(a:str) + 4) . '┛'
-    \ ]) +
-    \ [ '' ]
+    \ ])
 endfunction " }}}
 
 " Draws the header with Toilet

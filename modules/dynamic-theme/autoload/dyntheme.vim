@@ -150,4 +150,10 @@ function! s:overrides() " {{{
 
   " The '-- INSERT --' mode line
   hi! link ModeMsg Invis
+
+  " Group = +thing...
+  hi! link WhichKeySeperator Muted
+  hi! link WhichKey Title
+  hi! link WhichKeyGroup Keyword
+  hi! link WhichKey SpecialKey
 endfunction " }}}

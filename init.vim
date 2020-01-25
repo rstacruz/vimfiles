@@ -35,6 +35,7 @@ Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree'
+Plug 'liuchengxu/vim-which-key'
 Plug 'sheerun/vim-polyglot'
 Plug 'thinca/vim-visualstar'
 Plug 'tpope/vim-commentary'
