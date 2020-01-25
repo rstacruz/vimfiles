@@ -13,6 +13,7 @@ Plug vim . '/modules/save-typos'
 Plug vim . '/modules/ctrl-c-ctrl-v'
 Plug vim . '/modules/git-grep'
 Plug vim . '/modules/quickterm'
+Plug vim . '/modules/startify-switcher'
 
 " Core plugins
 Plug 'rstacruz/vim-opinion'

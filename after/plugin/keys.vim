@@ -114,6 +114,7 @@ if exists(':CocAction')
   nmap <leader>cr <Plug>(coc-rename)
   xmap <leader>cr <Plug>(coc-rename)
 
+  nnoremap <leader>cc :CocCommand<CR>
   nnoremap <leader>cd :CocList diagnostics<CR>
 endif
 
