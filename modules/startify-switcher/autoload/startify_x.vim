@@ -10,9 +10,14 @@ if !exists('gstartify_x_icon_folder')
   let g:startify_x_icon_folder = ''
 endif
 
-if !exists('gstartify_x_icon_file')
+if !exists('g:startify_x_icon_file')
   let g:startify_x_icon_file = ''
   " let g:startify_x_icon_file = ''
+endif
+
+if !exists('g:startify_x_days_since_plug_update_threshold')
+  " Set to -1 to disable
+  let g:startify_x_days_since_plug_update_threshold = 7
 endif
 
 " Returns the vim version string
@@ -40,8 +45,25 @@ function! startify_x#set_banner() " {{{
   endif
 
   let g:startify_custom_footer =
-    \ startify#pad([ startify_x#get_vim_version() ])
+    \ startify#pad(startify_x#get_footer())
 endfunction " }}}
+
+function! startify_x#get_footer() " {{{
+  let result = []
+
+  let version_msg = startify_x#get_vim_version() 
+  let result += [version_msg]
+
+  " Check for last vim-plug update
+  if g:startify_x_days_since_plug_update_threshold != -1
+    let days = startify_x#plug#get_days_since_last_update()
+    if days >= g:startify_x_days_since_plug_update_threshold
+      let result += ['' . days . ' days since last vim-plug update']
+    endif
+  endif
+
+  return result
+endfunction
 
 " Draws the header with Vimscript
 function! startify_x#draw_header(str) " {{{
