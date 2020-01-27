@@ -100,7 +100,7 @@ if exists(':term')
 endif
 
 if exists(':NERDTree')
-  nnoremap - :Gcd<CR>:NERDTreeFind<CR>
+  nnoremap - :Gcd<CR>:silent! NERDTreeFind<CR>
   nnoremap _ :NERDTreeVCS<CR>
 endif
 
