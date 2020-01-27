@@ -1,8 +1,13 @@
 function! startify_x#git#get_branch() " {{{
-  return trim(system('git rev-parse --abbrev-ref HEAD'))
+  let output = system('git rev-parse --abbrev-ref HEAD')
+  if v:shell_error
+    return ''
+  endif
+  return trim(output)
 endfunction " }}}
 
 function! startify_x#git#is_dirty() " {{{
-  return trim(system('git diff --shortstat')) != ''
+  let output = system('git diff --shortstat')
+  return v:shell_error == 0 && trim(output) != ''
 endfunction " }}}
 

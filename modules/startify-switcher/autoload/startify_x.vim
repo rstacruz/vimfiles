@@ -28,6 +28,7 @@ endfunction " }}}
 " Sets Startify's custom header/footer
 function! startify_x#set_banner() " {{{
   let project_dir = fnamemodify(getcwd(), ':t')
+  if project_dir == '' | let project_dir = '/' | endif
 
   let g:startify_custom_header = startify_x#draw_header(project_dir)
 
