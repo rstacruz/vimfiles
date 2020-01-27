@@ -25,17 +25,18 @@ if $GIT_AUTHOR_DATE != '' || $VIM_MINIMAL != ''
   finish
 endif
 
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/gv.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-slash'
+Plug 'liuchengxu/vim-which-key'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree'
-Plug 'liuchengxu/vim-which-key'
 Plug 'sheerun/vim-polyglot'
 Plug 'thinca/vim-visualstar'
 Plug 'tpope/vim-commentary'

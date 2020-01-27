@@ -15,7 +15,7 @@ let g:which_key_sep = '·'
 let g:which_key_floating_opts = { 'col': '-3', 'row': '+2', 'width': '+3' }
 
 " Exit with , (the leader key)
-let g:which_key_exit = ['\<C-[>', '\<Esc>', ',']
+let g:which_key_exit = ['<C-[>', '<Esc>', ',']
 
 " Make it more compact
 let g:which_key_hspace = 2

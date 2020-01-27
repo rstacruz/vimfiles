@@ -2,7 +2,9 @@ let g:which_key_map = {}
 let g:which_key_map.f = { 'name': '+File' }
 let g:which_key_map.f.e = { 'name': '+Settings' }
 let g:which_key_map.k = { 'name': '+Editor' }
-let g:which_key_g = {}
+let g:which_key_map.g = { 'name': '+Git' }
+let g:which_key_map.t = { 'name': '+Tabs' }
+let g:which_key_map.c = { 'name': '+COC' }
 
 nnoremap <Enter> za
 nnoremap <S-Enter> zO
@@ -27,29 +29,24 @@ nnoremap <leader>fei :tabnew<cr>:e ~/.config/nvim/init.vim<cr>
 nnoremap <leader>fet :tabnew<cr>:e ~/.config/nvim/modules/dynamic-theme/autoload/dyntheme.vim<cr>
 
 if exists(':Gstatus')
-  let g:which_key_map.g = {
-    \ 'name': '+Git',
-    \ 'b': 'Blame',
-    \ 'c': 'Commit...',
-    \ 'l': 'Show log',
-    \ 'o': 'Open in browser',
-    \ 'O': 'Copy URL to clipboard',
-    \ 's': 'Status',
-    \ }
-  let g:which_key_map.g.t = {
-    \ 'name': '+Tig',
-    \ 's': 'Status',
-    \ }
+  let g:which_key_map.g.s = 'Status'
+  let g:which_key_map.g.c = 'Commit'
+  let g:which_key_map.g.b = 'Blame'
+  let g:which_key_map.g.o = 'Open in GitHub'
+  let g:which_key_map.g.O = 'Copy GitHub URL'
+
+  let g:which_key_map.g.t = { 'name': '+Tig' }
+  let g:which_key_map.g.t.s = 'Status'
   nnoremap <leader>gs :tabnew<cr>:Gstatus<cr><C-W>o
   nnoremap <leader>gts :tabnew<cr>:term tig status<cr>
   nnoremap <leader>gc :Gcommit -v<cr>
-  " nnoremap <leader>gl :Glog<cr>
   nnoremap <leader>gb :Gblame<cr>
   nnoremap <leader>go :Gbrowse<cr>
   nnoremap <leader>gO :Gbrowse!<cr>
 endif
 
 if exists(':GV')
+  let g:which_key_map.g.l = 'Log'
   nnoremap <leader>gl :GV<cr>
 endif
 
@@ -59,12 +56,9 @@ if exists(':Buffers')
 endif
 
 if exists(':tabclose')
-  let g:which_key_map.t = {
-    \ 'name': '+Tabs',
-    \ 'n': 'New tab',
-    \ 'c': 'Close tab',
-    \ '.': 'Open terminal',
-    \ }
+  let g:which_key_map.t.n = 'New tab'
+  let g:which_key_map.t.c = 'Close tab'
+  let g:which_key_map.t['.'] = 'Open terminal'
   nnoremap <leader>tc :tabclose<cr>
   nnoremap <leader>tn :tabnew<cr>:Startify<cr>
 endif
@@ -72,9 +66,6 @@ endif
 if exists(':Startify')
   let g:which_key_map.k.w = 'Close all'
   nnoremap <leader>kw :tabonly<cr>:StartifyReset<cr>
-  " nnoremap <leader>sc :tabonly<cr>:SClose<cr>
-  " nnoremap <leader>st :only<cr>:Startify<cr>
-  " nnoremap <leader>sT :tabonly<cr>:only<cr>:Startify<cr>
 endif
 
 if exists(':q')
@@ -131,14 +122,11 @@ if exists(':EasyAlign')
 endif
 
 if exists(':CocAction')
-  let g:which_key_map.c = {
-    \ 'name': '+COC',
-    \ 'c': 'Show commands',
-    \ 'd': 'Show errors',
-    \ 'f': 'Format',
-    \ 'r': 'Rename symbol...',
-    \ 'a': 'Actions',
-    \ }
+  let g:which_key_map.c.c = 'Show commands'
+  let g:which_key_map.c.d = 'Show errors'
+  let g:which_key_map.c.f = 'Format'
+  let g:which_key_map.c.r = 'Rename symbol...'
+  let g:which_key_map.c.a = 'Actions'
 
   " https://github.com/neoclide/coc.nvim#example-vim-configuration
   inoremap <silent><expr> <c-space> coc#refresh()
@@ -178,5 +166,13 @@ nnoremap <S-F2> :lclose<CR>
 nnoremap <S-F3> :lprev<CR>
 nnoremap <S-F4> :lnext<CR>
 
-let g:which_key_map.f.y = 'Copy path to clipboard'
 nnoremap <leader>fy :let @+=@% \| echo @%<cr>
+
+augroup keys
+  autocmd FileType markdown nnoremap <buffer> <leader>mv :MarkdownPreview<cr>
+augroup END
+
+" For autocmds
+let g:which_key_labels = {
+  \ 'MarkdownPreview': 'Markdown preview',
+  \ }

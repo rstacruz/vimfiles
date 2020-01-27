@@ -100,6 +100,7 @@ function! gitgrep#run(win_mode, bang, query) " {{{
   endif
 
   " Prevent it from being written, and other stuff
+  " (Setting the filetype will bind buffer keys)
   silent! setlocal
     \ nocursorcolumn nobuflisted foldcolumn=0
     \ nolist nonumber norelativenumber nospell noswapfile signcolumn=no
@@ -155,7 +156,6 @@ function! gitgrep#prepare_window(win_mode) " {{{
     " set buffer name
     exe 'file ' . g:gitgrep_window
     let b:gitgrep_buffer = 1
-    call gitgrep#bind_buffer_keys()
     return 0
   elseif win == -1
     " Old buffer, new window (reuse the old buffer)
