@@ -66,7 +66,7 @@ function! startify_x#to_banner(target) " {{{
   let abspath = resolve(expand(a:target))
   let basename = fnamemodify(a:target, ':t')
   let len = g:startify_x_shortcut_length - 1
-  let shortcut = tolower(substitute(basename[0:len], '[^a-zA-Z0-9]', '', 'g'))
+  let shortcut = substitute(basename[0:len], '[^a-zA-Z0-9]', '', 'g')
 
   if isdir
     let label = g:startify_x_icon_folder . '  ' . basename . '/'
