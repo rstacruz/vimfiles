@@ -7,3 +7,10 @@ command! -bang -nargs=* TG call gitgrep#run('t', <bang>0, <q-args>)
 augroup gitgrep
   autocmd FileType gitgrep call gitgrep#bind_buffer_keys()
 augroup END
+
+" junegunn/vim-slash
+if globpath(&rtp, "plugin/slash.vim") != ""
+  augroup gitgrep_slash
+    autocmd FileType gitgrep autocmd! slash CursorMoved,CursorMovedI *
+  augroup END
+endif

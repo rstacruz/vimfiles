@@ -10,12 +10,14 @@ if has('nvim')
 endif
 
 augroup customisations
-  au FileType gitcommit startinsert
-  au FileType gitcommit setlocal nonumber norelativenumber
+  au FileType gitcommit,pullrequest startinsert
+  au FileType gitcommit,pullrequest setlocal nonumber norelativenumber
+  au FileType gitcommit,pullrequest inoremap <buffer> <C-s> <Esc>:wq<cr>
+  au FileType gitcommit,pullrequest noremap <buffer> <C-s> :wq<cr>
   au FileType gitcommit setlocal statusline=──\ Git\ commit\ message\ ──
-  au FileType gitcommit inoremap <buffer> <C-s> <Esc>:wq<cr>
-  au FileType gitcommit noremap <buffer> <C-s> :wq<cr>
+  au FileType pullrequest setlocal statusline=──\ Git\ pull\ request\ ──
   au FileType markdown setlocal wrap linebreak nonumber norelativenumber
+  au FileType yaml setlocal foldmethod=indent
 augroup END
 
 " No status when editing Git commit messages
