@@ -31,6 +31,7 @@ nnoremap <leader>fet :tabnew<cr>:e ~/.config/nvim/modules/dynamic-theme/autoload
 if exists(':Gstatus')
   let g:which_key_map.g.s = 'Status'
   let g:which_key_map.g.c = 'Commit'
+  let g:which_key_map.g.C = 'Add and commit'
   let g:which_key_map.g.b = 'Blame'
   let g:which_key_map.g.o = 'Open in GitHub'
   let g:which_key_map.g.O = 'Copy GitHub URL'
@@ -40,6 +41,7 @@ if exists(':Gstatus')
   nnoremap <leader>gs :tabnew<cr>:Gstatus<cr><C-W>o
   nnoremap <leader>gts :tabnew<cr>:term tig status<cr>
   nnoremap <leader>gc :Gcommit -v<cr>
+  nnoremap <leader>gC :Gcommit -av<cr>
   nnoremap <leader>gb :Gblame<cr>
   nnoremap <leader>go :Gbrowse<cr>
   nnoremap <leader>gO :Gbrowse!<cr>
