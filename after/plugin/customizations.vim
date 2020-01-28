@@ -9,11 +9,14 @@ if has('nvim')
   au TermOpen * startinsert
 endif
 
-au BufNewfile,BufRead COMMIT_EDITMSG startinsert
-au BufNewfile,BufRead COMMIT_EDITMSG setlocal nonumber norelativenumber
-au BufNewfile,BufRead COMMIT_EDITMSG setlocal statusline=──\ Git\ commit\ message\ ──
-au BufNewfile,BufRead COMMIT_EDITMSG inoremap <buffer> <C-s> <Esc>:wq<cr>
-au BufNewfile,BufRead COMMIT_EDITMSG noremap <buffer> <C-s> :wq<cr>
+augroup customisations
+  au FileType gitcommit startinsert
+  au FileType gitcommit setlocal nonumber norelativenumber
+  au FileType gitcommit setlocal statusline=──\ Git\ commit\ message\ ──
+  au FileType gitcommit inoremap <buffer> <C-s> <Esc>:wq<cr>
+  au FileType gitcommit noremap <buffer> <C-s> :wq<cr>
+  au FileType markdown setlocal wrap linebreak nonumber norelativenumber
+augroup END
 
 " No status when editing Git commit messages
 if $GIT_AUTHOR_DATE != ''
@@ -32,5 +35,3 @@ endif
 
 set cursorline " highlight current line
 set linebreak  " lbr: break on words
-
-au BufNewfile,BufRead *.md setlocal wrap linebreak
