@@ -50,6 +50,8 @@ function! dyntheme#dark_theme() " {{{
 
   hi! StatusLine   cterm=none ctermbg=234 ctermfg=1
   hi! StatusLineNC cterm=none ctermbg=234 ctermfg=236
+
+  hi! Gray ctermfg=239
 endfunction " }}}
 
 " Light theme
@@ -65,15 +67,17 @@ function! dyntheme#light_theme() " {{{
   hi! muted      ctermbg=none    ctermfg=251
   hi! selected   cterm=underline ctermbg=253 ctermfg=4
 
-  hi! CursorLine   cterm=none ctermbg=253
-  hi! CursorLineNr cterm=none ctermbg=253 ctermfg=1
+  hi! CursorLine   cterm=none ctermbg=255
+  hi! CursorLineNr cterm=none ctermbg=255 ctermfg=1
 
   hi! DiffAdd     ctermfg=22 ctermbg=40
-  hi! DiffChange  ctermfg=17 ctermbg=39
+  hi! DiffChange  ctermfg=17 ctermbg=252
   hi! DiffDelete  ctermfg=52 ctermbg=196
 
-  hi! link StatusLine   Gray
-  hi! link StatusLineNC Invis
+  hi! StatusLine   cterm=none ctermbg=254 ctermfg=1
+  hi! StatusLineNC cterm=none ctermbg=254 ctermfg=254
+
+  hi! Gray ctermfg=248
 endfunction " }}}
 
 " Overrides
@@ -154,6 +158,7 @@ function! s:overrides() " {{{
   " Group = +thing...
   hi! link WhichKeySeperator Muted
   hi! link WhichKey Title
+  hi! link WhichKeyFloat CursorLine
   hi! link WhichKeyGroup Keyword
   hi! link WhichKey SpecialKey
 endfunction " }}}
