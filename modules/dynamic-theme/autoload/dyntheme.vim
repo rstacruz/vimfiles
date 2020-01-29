@@ -51,7 +51,7 @@ function! dyntheme#dark_theme() " {{{
   hi! StatusLine   cterm=none ctermbg=234 ctermfg=1
   hi! StatusLineNC cterm=none ctermbg=234 ctermfg=236
 
-  hi! Gray ctermfg=239
+  hi! Gray ctermfg=242
 endfunction " }}}
 
 " Light theme
