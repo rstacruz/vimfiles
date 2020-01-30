@@ -150,6 +150,10 @@ if exists(':CocAction')
   xmap <leader>ca <Plug>(coc-codeaction-selected)
   nmap <leader>ca <Plug>(coc-codeaction-selected)
 
+  " like ctrl-dot in vscode
+  vnoremap g0 :CocAction<cr>
+  nnoremap g0 :CocAction<cr>
+
   " Rename
   nmap <leader>cr <Plug>(coc-rename)
   xmap <leader>cr <Plug>(coc-rename)
