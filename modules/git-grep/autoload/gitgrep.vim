@@ -28,7 +28,7 @@ endif
 
 " Store the last known search here
 if !exists('g:gitgrep_last_query')
-  let g:gitgrep_last_query = ''
+  let g:gitgrep_last_query = {'keywords': '', 'win_mode': '', 'ignorecase': -1}
 endif
 
 if !exists('g:gitgrep_keep_focus')
@@ -36,13 +36,17 @@ if !exists('g:gitgrep_keep_focus')
 endif
 
 " The main entrypoint
-function! gitgrep#run(win_mode, bang, query) " {{{
+function! gitgrep#run(win_mode, keywords, options) " {{{
+  let ignorecase = get(a:options, 'ignorecase', 0)
+  let focusonly = get(a:options, 'focusonly', 0)
+  let force = get(a:options, 'force', 0)
+
   " What invoked it
   let source = winnr()
 
   " Get query
-  if a:query == ''
-    if g:gitgrep_last_query == ''
+  if a:keywords == ''
+    if g:gitgrep_last_query['keywords'] == ''
       echo "What do you want to search for?"
       return
     else
@@ -51,15 +55,15 @@ function! gitgrep#run(win_mode, bang, query) " {{{
     end
   else
     " New query
-    let query = a:query
+    let query = { 'keywords': a:keywords, 'ignorecase': ignorecase, 'win_mode': a:win_mode }
   endif
 
   " Open and focus on the window
-  let window_mode = gitgrep#prepare_window(a:win_mode)
+  let window_mode = gitgrep#prepare_window(a:win_mode, { 'focusonly': focusonly })
   if window_mode > 0
-    if g:gitgrep_last_query == query
+    if g:gitgrep_last_query['keywords'] == query['keywords'] && force != 1
       " If it's just refocusing, and the query hasn't changed,
-      " don't do anything
+      " don't do anything. TODO: account for ignorecase
       return
     else
       " Otherwise, clear out the entire buffer
@@ -69,10 +73,10 @@ function! gitgrep#run(win_mode, bang, query) " {{{
   endif
 
   " Perform an git grep search
-  let escaped_query = shellescape(a:query)
+  let escaped_query = shellescape(query['keywords'])
 
   let grep_params = ''
-  if a:bang == 1
+  if query['ignorecase'] == 1
     let grep_params = '-i '
   endif
 
@@ -94,9 +98,9 @@ function! gitgrep#run(win_mode, bang, query) " {{{
     normal "_2dd
 
     " Highlight currenty query
-    let @/ = query
+    let @/ = query['keywords']
   else
-    exec "normal a!    No results found for `" . query . "`"
+    exec "normal a!    No results found for `" . query['keywords'] . "`"
   endif
 
   " Prevent it from being written, and other stuff
@@ -111,7 +115,7 @@ function! gitgrep#run(win_mode, bang, query) " {{{
   endif
 
   " Finally, let it be picked up later
-  let g:gitgrep_last_query = a:query
+  let g:gitgrep_last_query = query
 endfunction " }}}
 
 " Opens a window and focuses on it
@@ -140,18 +144,29 @@ function gitgrep#open_window(win_mode) " {{{
   endif
 endfunction " }}}
 
+" Returns the buffer and window. Can return -1's
+"
+"     let [buf, win] = gitgrep#get_current_window()
+"
+function! gitgrep#get_current_window() " {{{
+  let buf = bufnr(g:gitgrep_window)
+  let win = bufwinnr(buf)
+  return [buf, win]
+endfunction "}}}
+
 " Opens a window, or focuses if it's already there
-function! gitgrep#prepare_window(win_mode) " {{{
+function! gitgrep#prepare_window(win_mode, options) " {{{
   " Returns...
+  "  - `-1` if it did nothing
   "  - `0` if it's a new window
   "  - `1` if it's a new window & existing buffer
   "  - `2` if it's an existing window & existing buffer
-
-  let buf = bufnr(g:gitgrep_window)
-  let win = bufwinnr(buf)
+  let [buf, win] = gitgrep#get_current_window()
+  let focusonly = get(a:options, 'focusonly', 0)
 
   if buf == -1
     " New buffer/window
+    if focusonly == 1 | return -1 | endif
     call gitgrep#open_window(a:win_mode)
     " set buffer name
     exe 'file ' . g:gitgrep_window
@@ -159,6 +174,7 @@ function! gitgrep#prepare_window(win_mode) " {{{
     return 0
   elseif win == -1
     " Old buffer, new window (reuse the old buffer)
+    if focusonly == 1 | return -1 | endif
     call gitgrep#open_window(a:win_mode)
     exe 'b ' . buf
     return 1
@@ -173,6 +189,7 @@ endfunction " }}}
 function! gitgrep#bind_buffer_keys() " {{{
   nnoremap <silent> <buffer> <cr> :call gitgrep#navigate('open')<cr>
   nnoremap <silent> <buffer> f    :call gitgrep#toggle_follow_cursor()<cr>
+  nnoremap <silent> <buffer> R    :call gitgrep#refresh()<cr>
   autocmd CursorMoved <buffer> call gitgrep#on_cursor_move()
 endfunction " }}}
 
@@ -257,4 +274,8 @@ function gitgrep#toggle_follow_cursor() " {{{
     echo "Follow cursor [on] - experimental!"
     let b:follow_cursor = 1
   end
+endfunction " }}}
+
+function gitgrep#refresh() " {{{
+  call gitgrep#run('', '', { 'force': 1, 'focusonly': 1 })
 endfunction " }}}

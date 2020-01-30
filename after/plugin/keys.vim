@@ -34,7 +34,7 @@ if exists(':Gstatus')
   let g:which_key_map.g.C = 'Add and commit'
   let g:which_key_map.g.b = 'Blame'
   let g:which_key_map.g.o = 'Open in GitHub'
-  let g:which_key_map.g.O = 'Copy GitHub URL'
+  let g:which_key_map.g.y = 'Copy GitHub URL'
 
   let g:which_key_map.g.t = { 'name': '+Tig' }
   let g:which_key_map.g.t.s = 'Status'
@@ -44,7 +44,7 @@ if exists(':Gstatus')
   nnoremap <leader>gC :Gcommit -av<cr>
   nnoremap <leader>gb :Gblame<cr>
   nnoremap <leader>go :Gbrowse<cr>
-  nnoremap <leader>gO :Gbrowse!<cr>
+  nnoremap <leader>gy :Gbrowse!<cr>
 endif
 
 if exists(':GV')
