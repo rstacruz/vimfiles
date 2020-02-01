@@ -141,7 +141,7 @@ if exists(':CocAction')
   nmap <silent> gr <Plug>(coc-references)
 
   " Hover
-  nnoremap <silent> gh :call CocAction('doHover')<CR>
+  nnoremap <silent> gh :call CocActionAsync('highlight')<CR>:call CocAction('doHover')<CR>
 
   " format region
   xmap <leader>cf <Plug>(coc-format-selected)

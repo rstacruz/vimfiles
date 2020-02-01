@@ -161,4 +161,7 @@ function! s:overrides() " {{{
   hi! link WhichKeyFloat CursorLine
   hi! link WhichKeyGroup Keyword
   hi! link WhichKey SpecialKey
+
+  " Coc's CocActionAsync('highlight')
+  hi! link CocHighlightText CursorLine
 endfunction " }}}

@@ -14,3 +14,8 @@ let g:coc_snippet_prev = '<c-k>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
+" Highlight symbol under cursor on CursorHold
+augroup CocEx
+  au!
+  au CursorHold * silent call CocActionAsync('highlight')
+augroup END
