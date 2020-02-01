@@ -164,4 +164,10 @@ function! s:overrides() " {{{
 
   " Coc's CocActionAsync('highlight')
   hi! link CocHighlightText CursorLine
+
+  " Clap's top
+  " https://github.com/liuchengxu/vim-clap#change-highlights
+  hi! link ClapSpinner Error
+  hi! link ClapInput Error
+  hi! link ClapSearchText Error
 endfunction " }}}

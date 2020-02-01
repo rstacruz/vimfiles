@@ -52,7 +52,15 @@ if exists(':GV')
   nnoremap <leader>gl :GV<cr>
 endif
 
-if exists(':Buffers')
+if exists(':Clap')
+  let g:which_key_map.k.b = 'List buffers'
+  nnoremap <leader>kb :Clap buffers<cr>
+
+  let g:which_key_map.f.r = 'Recent files'
+  let g:which_key_map.f.f = 'Files'
+  nnoremap <leader>fr :Clap history<cr>
+  nnoremap <leader>ff :Clap files<cr>
+elseif exists(':Buffers')
   let g:which_key_map.k.b = 'List buffers'
   nnoremap <leader>kb :Buffers<cr>
 endif
