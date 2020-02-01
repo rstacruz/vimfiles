@@ -46,6 +46,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'wellle/context.vim'
 
 let g:coc_global_extensions = [
   \ 'coc-tsserver',

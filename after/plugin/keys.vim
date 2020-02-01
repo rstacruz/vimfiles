@@ -184,3 +184,8 @@ augroup END
 let g:which_key_labels = {
   \ 'MarkdownPreview': 'Markdown preview',
   \ }
+
+if exists(':ContextToggle')
+  let g:which_key_map.k.c = 'Toggle context'
+  nnoremap <leader>kc :ContextToggle<cr>
+endif
