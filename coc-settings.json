@@ -54,6 +54,8 @@
   "diagnostic.infoSign": "▪",
   "diagnostic.hintSign": "⋅",
 
-  "solargraph.useBundler": true
+  "solargraph.useBundler": true,
+
+  "snippets.userSnippetsDirectory": "~/.config/nvim/ultisnips"
 }
 

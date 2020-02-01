@@ -129,6 +129,7 @@ if exists(':CocAction')
   let g:which_key_map.c.f = 'Format'
   let g:which_key_map.c.r = 'Rename symbol...'
   let g:which_key_map.c.a = 'Actions'
+  let g:which_key_map.c.s = 'Edit snippets'
 
   " https://github.com/neoclide/coc.nvim#example-vim-configuration
   inoremap <silent><expr> <c-space> coc#refresh()
@@ -160,6 +161,7 @@ if exists(':CocAction')
 
   nnoremap <leader>cc :CocCommand<CR>
   nnoremap <leader>cd :CocList diagnostics<CR>
+  nnoremap <leader>cs :CocList snippets<CR>
 endif
 
 " Quickfix

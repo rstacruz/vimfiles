@@ -203,7 +203,7 @@ endfunction " }}}
 function! gitgrep#navigate(mode) " {{{
   " TODO: this is being double-called, lets optimise that
   " only operate on the gitgrep buffer
-  if b:gitgrep_buffer != 1 | return | endif
+  if get(b:, 'gitgrep_buffer', 0) != 1 | return | endif
 
   let old_g = @g
   let follow_cursor = exists('b:follow_cursor') && b:follow_cursor == 1
@@ -265,7 +265,7 @@ endfunction " }}}
 
 function gitgrep#toggle_follow_cursor() " {{{
   " only operate on the gitgrep buffer
-  if b:gitgrep_buffer != 1 | return | endif
+  if get(b:, 'gitgrep_buffer', 0) != 1 | return | endif
 
   if exists('b:follow_cursor') && b:follow_cursor == 1
     echo "Follow cursor [off]"

@@ -3,7 +3,7 @@ if globpath(&rtp, "autoload/which_key.vim") == "" | finish | endif
 call which_key#register(',', 'g:which_key_map')
 call which_key#register('g', 'g:which_key_g')
 
-set timeoutlen=50
+set timeoutlen=200
 
 nnoremap <silent> <leader> :<c-u>WhichKey ','<CR>
 vnoremap <silent> <leader> :<c-u>WhichKeyVisual ','<CR>
