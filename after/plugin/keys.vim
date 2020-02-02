@@ -60,6 +60,7 @@ if exists(':Clap')
   let g:which_key_map.f.f = 'Files'
   nnoremap <leader>fr :Clap history<cr>
   nnoremap <leader>ff :Clap files<cr>
+  nnoremap <C-p> :Clap files<cr>
 elseif exists(':Buffers')
   let g:which_key_map.k.b = 'List buffers'
   nnoremap <leader>kb :Buffers<cr>
@@ -113,8 +114,7 @@ if exists(':GG')
   vnoremap <leader>*  y:VG! <C-r>"<C-b><CR>
 endif
 
-if exists(':Files')
-  nnoremap <C-p>      :Gcd<cr>:Files<cr>
+if exists(':bnext')
   nnoremap <tab>      :bnext<cr>
   nnoremap <s-tab>    :bprev<cr>
 endif
