@@ -69,7 +69,6 @@ endif
 if exists(':tabclose')
   let g:which_key_map.t.n = 'New tab'
   let g:which_key_map.t.c = 'Close tab'
-  let g:which_key_map.t['.'] = 'Open terminal'
   nnoremap <leader>tc :tabclose<cr>
   nnoremap <leader>tn :tabnew<cr>:Startify<cr>
 endif
@@ -98,7 +97,15 @@ if exists(':term')
   tnoremap <C-[> <C-\><C-n>
 
   tnoremap <C-b><C-x> <C-\><C-n>:q!<CR>
+
+  let g:which_key_map.t['.'] = 'Open terminal'
+  let g:which_key_map.t.t = 'Terminal (tab)'
+  let g:which_key_map.t.s = 'Terminal (split)'
+  let g:which_key_map.t.v = 'Terminal (vert)'
   nnoremap <leader>t. :term<CR>
+  nnoremap <leader>tt :tabnew<CR>:term<CR>
+  nnoremap <leader>ts :split<CR>:term<CR>
+  nnoremap <leader>tv :vsplit<CR>:term<CR>
 endif
 
 if exists(':NERDTree')
