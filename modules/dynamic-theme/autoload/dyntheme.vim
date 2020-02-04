@@ -1,3 +1,19 @@
+if !has('g:dyntheme_dark_theme')
+  if exists('g:started_by_firenvim')
+    let g:dyntheme_dark_theme = 'default'
+  else
+    let g:dyntheme_dark_theme = 'peachpuff'
+  endif
+endif
+
+if !has('g:dyntheme_light_theme')
+  if exists('g:started_by_firenvim')
+    let g:dyntheme_dark_theme = 'default'
+  else
+    let g:dyntheme_light_theme = 'peachpuff'
+  endif
+endif
+
 function! s:is_light()
   " Don't bother if there's no xrdb
   if !filereadable($HOME.'/.cache/wal/colors') | return 0 | endif
@@ -24,7 +40,7 @@ endfunction
 " Dark theme
 function! dyntheme#dark_theme() " {{{
   set background=dark
-  color peachpuff
+  exe 'color ' . g:dyntheme_dark_theme
   call s:overrides()
 
   hi! Invis      cterm=none      ctermbg=none ctermfg=232
@@ -57,7 +73,7 @@ endfunction " }}}
 " Light theme
 function! dyntheme#light_theme() " {{{
   set background=light
-  color peachpuff
+  exe 'color ' . g:dyntheme_light_theme
   call s:overrides()
 
   hi! Invis      cterm=none      ctermbg=none ctermfg=254
