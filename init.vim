@@ -8,6 +8,7 @@ end
 call plug#begin(vim . '/vendor')
 
 " Home-made modules
+Plug vim . '/modules/auto-cursorline'
 Plug vim . '/modules/ctrl-c-ctrl-v'
 Plug vim . '/modules/dynamic-theme'
 Plug vim . '/modules/git-grep'
