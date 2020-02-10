@@ -1,4 +1,4 @@
-if $TMUX != ''
-  set guicursor=
-endif
+" if $TMUX != ''
+"   set guicursor=
+" endif
 

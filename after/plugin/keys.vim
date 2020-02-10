@@ -32,6 +32,7 @@ if exists(':Gstatus')
   let g:which_key_map.g.s = 'Status'
   let g:which_key_map.g.c = 'Commit'
   let g:which_key_map.g.C = 'Add and commit'
+  let g:which_key_map.g.A = 'Amend commit'
   let g:which_key_map.g.b = 'Blame'
   let g:which_key_map.g.o = 'Open in GitHub'
   let g:which_key_map.g.y = 'Copy GitHub URL'
@@ -42,6 +43,7 @@ if exists(':Gstatus')
   nnoremap <leader>gts :tabnew<cr>:term tig status<cr>
   nnoremap <leader>gc :Gcommit -v<cr>
   nnoremap <leader>gC :Gcommit -av<cr>
+  nnoremap <leader>gA :Gcommit --amend -av<cr>
   nnoremap <leader>gb :Gblame<cr>
   nnoremap <leader>go :Gbrowse<cr>
   nnoremap <leader>gy :Gbrowse!<cr>
