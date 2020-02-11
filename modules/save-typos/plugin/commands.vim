@@ -10,5 +10,3 @@ cabbrev QA! qa!
 
 cabbrev WQ wq
 cabbrev Wq wq
-
-cabbrev wq w<br>bd
