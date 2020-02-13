@@ -98,6 +98,10 @@ function! gitgrep#run(win_mode, keywords, options) " {{{
     normal "_2dd
 
     " Highlight currenty query
+    call clearmatches()
+    call matchadd('Search', (query['ignorecase'] == 1 ? '\c' : '') . query['keywords'])
+
+    " Also allow pressing 'n' to move to next match
     let @/ = query['keywords']
   else
     exec "normal a!    No results found for `" . query['keywords'] . "`"
@@ -205,7 +209,8 @@ function! gitgrep#navigate(mode) " {{{
   " only operate on the gitgrep buffer
   if get(b:, 'gitgrep_buffer', 0) != 1 | return | endif
 
-  let old_g = @g
+  let old_g_value = getreg('g')
+  let old_g_type = getregtype('g')
   let old_default_register = @"
   let follow_cursor = exists('b:follow_cursor') && b:follow_cursor == 1
 
@@ -256,7 +261,7 @@ function! gitgrep#navigate(mode) " {{{
   endif
 
   " restore old register
-  let @g = old_g
+  call setreg('g', old_g_value, old_g_type)
 
   " to make `p` work as usual, we'll set @" as the last register that was used
   let @" = old_default_register
