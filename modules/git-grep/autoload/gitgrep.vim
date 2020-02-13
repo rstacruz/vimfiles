@@ -206,6 +206,7 @@ function! gitgrep#navigate(mode) " {{{
   if get(b:, 'gitgrep_buffer', 0) != 1 | return | endif
 
   let old_g = @g
+  let old_default_register = @"
   let follow_cursor = exists('b:follow_cursor') && b:follow_cursor == 1
 
   " keep track of original cursor location
@@ -256,6 +257,9 @@ function! gitgrep#navigate(mode) " {{{
 
   " restore old register
   let @g = old_g
+
+  " to make `p` work as usual, we'll set @" as the last register that was used
+  let @" = old_default_register
 
   " Turn off follow cursor mode
   if a:mode == 'open'
