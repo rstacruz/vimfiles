@@ -62,7 +62,8 @@ function! dyntheme#dark_theme() " {{{
   " Diff in git commits
   hi! diffRemoved ctermfg=196 ctermbg=52
 
-  hi! Pmenu ctermbg=237 ctermfg=7
+  hi! Pmenu    ctermbg=234 ctermfg=8
+  hi! PmenuSel ctermbg=236 ctermfg=7
 
   hi! StatusLine   cterm=none ctermbg=234 ctermfg=1
   hi! StatusLineNC cterm=none ctermbg=234 ctermfg=236
@@ -92,6 +93,9 @@ function! dyntheme#light_theme() " {{{
 
   hi! StatusLine   cterm=none ctermbg=254 ctermfg=1
   hi! StatusLineNC cterm=none ctermbg=254 ctermfg=254
+
+  hi! Pmenu    ctermbg=254 ctermfg=8
+  hi! PmenuSel ctermbg=236 ctermfg=7
 
   hi! Gray ctermfg=248
 endfunction " }}}
@@ -183,7 +187,10 @@ function! s:overrides() " {{{
 
   " Clap's top
   " https://github.com/liuchengxu/vim-clap#change-highlights
-  hi! link ClapSpinner Error
-  hi! link ClapInput Error
-  hi! link ClapSearchText Error
+  hi! link ClapSpinner Pmenu
+  hi! link ClapInput Pmenu
+  hi! link ClapSearchText Pmenu
+
+  " Currently selected line
+  hi! link ClapCurrentSelection PmenuSel
 endfunction " }}}
