@@ -26,7 +26,7 @@ let g:which_key_map.f.e.t = 'Edit theme'
 nnoremap <leader>fek :tabnew<cr>:e ~/.config/nvim/after/plugin/keys.vim<cr>
 nnoremap <leader>fec :tabnew<cr>:e ~/.config/nvim/after/plugin/customizations.vim<cr>
 nnoremap <leader>fei :tabnew<cr>:e ~/.config/nvim/init.vim<cr>
-nnoremap <leader>fet :tabnew<cr>:e ~/.config/nvim/modules/dynamic-theme/autoload/dyntheme.vim<cr>
+nnoremap <leader>fet :tabnew<cr>:e ~/.config/nvim/modules/dynamic-theme/color/dyntheme.vim<cr>
 
 if exists(':Gstatus')
   let g:which_key_map.g.s = 'Status'

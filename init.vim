@@ -16,6 +16,7 @@ Plug vim . '/modules/jk-on-wrap'
 Plug vim . '/modules/quickterm'
 Plug vim . '/modules/save-typos'
 Plug vim . '/modules/startify-switcher'
+Plug vim . '/modules/synstack'
 
 " Core plugins
 Plug 'rstacruz/vim-opinion'
@@ -26,8 +27,8 @@ if $GIT_AUTHOR_DATE != '' || $VIM_MINIMAL != ''
   finish
 endif
 
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+" Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 " Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 " Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
