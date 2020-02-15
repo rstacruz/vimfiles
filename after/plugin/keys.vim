@@ -60,8 +60,11 @@ if exists(':Clap')
 
   let g:which_key_map.f.r = 'Recent files'
   let g:which_key_map.f.f = 'Files'
+  let g:which_key_map.f.g = 'Modified files'
   nnoremap <leader>fr :Clap history<cr>
   nnoremap <leader>ff :Clap files<cr>
+  nnoremap <leader>fg :Clap git_diff_files<cr>
+
   nnoremap <C-p> :Clap files<cr>
 elseif exists(':Buffers')
   let g:which_key_map.k.b = 'List buffers'
