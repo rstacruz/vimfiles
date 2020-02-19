@@ -223,3 +223,19 @@ function keys#switch_to_term()
 
   exe win 'wincmd w'
 endfunction
+
+" Kinda like ctrl-1 and ctrl-2
+let g:which_key_map.1 = 'which_key_ignore'
+let g:which_key_map.2 = 'which_key_ignore'
+let g:which_key_map.3 = 'which_key_ignore'
+let g:which_key_map.4 = 'which_key_ignore'
+
+nnoremap <S-F1> <C-w>t
+nnoremap <S-F2> <C-w>t<C-w>w
+nnoremap <S-F3> <C-w>t<C-w>w<C-w>w
+nnoremap <S-F4> <C-w>t<C-w>w<C-w>w<C-w>w
+
+nnoremap <leader>1 <C-w>t
+nnoremap <leader>2 <C-w>t<C-w>w
+nnoremap <leader>3 <C-w>t<C-w>w<C-w>w
+nnoremap <leader>4 <C-w>t<C-w>w<C-w>w<C-w>w
