@@ -110,7 +110,11 @@ if exists(':term')
   nnoremap <leader>t. :term<CR>
   nnoremap <leader>tt :tabnew<CR>:term<CR>
   nnoremap <leader>ts :split<CR>:term<CR>
-  nnoremap <leader>tv :vsplit<CR>:term<CR>
+  nnoremap <leader>tv :vsplit<CR><C-w>l:term<CR>
+
+  " Term repeat thing
+  let g:which_key_map.t.r = 'Repeat command'
+  nnoremap <leader>tr :w<cr>:call keys#switch_to_term()<cr><C-\><C-n>a<Up><CR><C-\><C-n><C-w>p
 endif
 
 if exists(':NERDTree')
@@ -209,3 +213,13 @@ if exists(':ContextToggle')
   let g:which_key_map.k.c = 'Toggle context'
   nnoremap <leader>kc :ContextToggle<cr>
 endif
+
+function keys#switch_to_term()
+  let buf = bufnr('term')
+  if buf == -1 | return | endif
+
+  let win = bufwinnr(buf)
+  if win == -1 | return | endif
+
+  exe win 'wincmd w'
+endfunction
