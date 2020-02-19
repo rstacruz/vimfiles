@@ -1,15 +1,20 @@
 snippet opts
-while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case "$1" in
-	-V | --version )
-		echo $version
-		exit
-		;;
-	-s | --string )
-		shift; string=$1
-		;;
-	-f | --flag )
-		flag=1
-		;;
-esac; shift; done
-if [[ "$1" == '--' ]]; then shift; fi
+while true; do
+	case "${1:-}" in
+		-m | --multi) multi=1; shift ;;
+		-f | --file) file="$2"; shift 2 ;;
+		*) break ;;
+	esac
+done
+endsnippet
+
+snippet getopts
+while getopts "m:f" key; do
+	case $key in
+		m) multi=1 ;;
+		f) file=$OPTARG ;;
+		${0}
+	esac
+done
+shift $((OPTIND-1))
 endsnippet
