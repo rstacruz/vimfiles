@@ -93,6 +93,8 @@ endif
 if exists(':Quickterm')
   let g:which_key_map["'"] = 'Terminal'
   nnoremap <leader>' :Quickterm<CR>
+  " Like vscode
+  nnoremap <C-j> :Quickterm<CR>
 endif
 
 if exists(':term')
