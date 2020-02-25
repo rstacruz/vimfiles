@@ -10,7 +10,8 @@
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
+    "ruby"
   ],
 
   // Show docs and preview next to auto-completion
@@ -55,7 +56,11 @@
   "diagnostic.infoSign": "▪",
   "diagnostic.hintSign": "⋅",
 
-  "solargraph.useBundler": true,
+  // "solargraph.useBundler": true,
+  "solargraph.autoformat": true,
+  "solargraph.formatting": true,
+  "solargraph.diagnostics": true,
+  "solargraph.hover": true,
 
   "snippets.userSnippetsDirectory": "~/.config/nvim/ultisnips"
 }
