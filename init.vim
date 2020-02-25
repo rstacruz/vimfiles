@@ -1,4 +1,5 @@
 let g:mapleader=","
+let g:maplocalleader="<Space>"
 if has('nvim')
   let vim = stdpath('config')
 else
@@ -20,6 +21,7 @@ Plug vim . '/modules/synstack'
 
 " Core plugins
 Plug 'rstacruz/vim-opinion'
+Plug 'freitass/todo.txt-vim'
 
 " Don't load the other plugins
 if $GIT_AUTHOR_DATE != '' || $VIM_MINIMAL != ''
