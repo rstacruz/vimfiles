@@ -1,8 +1,8 @@
 snippet opts
 while true; do
-	case "${1:-}" in
+	case "\${1:-}" in
 		-m | --multi) multi=1; shift ;;
-		-f | --file) file="$2"; shift 2 ;;
+		-f | --file) file="\$2"; shift 2 ;;
 		*) break ;;
 	esac
 done
@@ -22,4 +22,8 @@ endsnippet
 snippet dir
 # https://gist.github.com/olegch/1730673
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+endsnippet
+
+snippet split "Split a string to parts"
+IFS=' ' read -r -a parts <<< "$input"
 endsnippet
