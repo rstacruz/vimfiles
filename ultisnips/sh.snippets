@@ -18,3 +18,8 @@ while getopts "m:f" key; do
 done
 shift $((OPTIND-1))
 endsnippet
+
+snippet dir
+# https://gist.github.com/olegch/1730673
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+endsnippet

@@ -35,7 +35,6 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/gv.vim'
 Plug 'junegunn/vim-easy-align'
 " Plug 'junegunn/vim-slash'
-Plug 'liuchengxu/vim-clap'
 Plug 'liuchengxu/vim-which-key'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
@@ -51,6 +50,10 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'wellle/context.vim'
+
+if has('nvim')
+  Plug 'liuchengxu/vim-clap'
+endif
 
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
