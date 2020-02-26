@@ -5,12 +5,12 @@ function! SetDiff3Bindings()
   nnoremap <leader>3 :diffget 3<cr>]c
 
   " Previous/next
-  nnoremap ] ]c
-  nnoremap [ [c
+  nnoremap ) ]c
+  nnoremap ( [c
 endfunction
 
 if &diff
   echomsg "Diff3 bindings on"
+  call SetDiff3Bindings()
   autocmd BufWinEnter * setlocal number
-  autocmd BufWinEnter * call SetDiff3Bindings()
 endif
