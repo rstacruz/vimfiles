@@ -236,12 +236,13 @@ nnoremap <F1> <C-w>t
 nnoremap <F2> <C-w>t<C-w>w
 nnoremap <F3> <C-w>t<C-w>w<C-w>w
 nnoremap <F4> <C-w>t<C-w>w<C-w>w<C-w>w
-nnoremap <S-F1> <C-w>t
-nnoremap <S-F2> <C-w>t<C-w>w
-nnoremap <S-F3> <C-w>t<C-w>w<C-w>w
-nnoremap <S-F4> <C-w>t<C-w>w<C-w>w<C-w>w
+nnoremap <F5> <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
+
+nnoremap <S-F1> gt
+nnoremap <S-F2> gT
 
 nnoremap <leader>1 <C-w>t
 nnoremap <leader>2 <C-w>t<C-w>w
 nnoremap <leader>3 <C-w>t<C-w>w<C-w>w
 nnoremap <leader>4 <C-w>t<C-w>w<C-w>w<C-w>w
+nnoremap <leader>5 <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
