@@ -119,6 +119,16 @@ if exists(':term')
   nnoremap <leader>tr :w<cr>:call keys#switch_to_term()<cr><C-\><C-n>a<Up><CR><C-\><C-n><C-w>p
 endif
 
+" vim-test
+if exists(':TestNearest')
+  let g:which_key_map.s = { 'name': 'Test' }
+  nmap <silent> <leader>sn :TestNearest<CR><C-\><C-n><C-W>p
+  nmap <silent> <leader>sf :TestFile<CR><C-\><C-n><C-W>p
+  nmap <silent> <leader>sl :TestLast<CR><C-\><C-n><C-w>p
+  " nmap <silent> <leader>sv :TestVisit<CR>
+  " nmap <silent> <leader>ss :TestSuite<CR><C-W>p
+endif
+
 if exists(':NERDTree')
   nnoremap - :Gcd<CR>:silent! NERDTreeFind<CR>
   nnoremap _ :NERDTreeVCS<CR>
