@@ -122,9 +122,12 @@ endif
 " vim-test
 if exists(':TestNearest')
   let g:which_key_map.s = { 'name': 'Test' }
+  let g:which_key_map.s.n = 'Test nearest'
+  let g:which_key_map.s.f = 'Test this file'
+  let g:which_key_map.s.r = 'Rerun last test'
   nmap <silent> <leader>sn :TestNearest<CR><C-\><C-n><C-W>p
   nmap <silent> <leader>sf :TestFile<CR><C-\><C-n><C-W>p
-  nmap <silent> <leader>sl :TestLast<CR><C-\><C-n><C-w>p
+  nmap <silent> <leader>sr :TestLast<CR><C-\><C-n><C-w>p
   " nmap <silent> <leader>sv :TestVisit<CR>
   " nmap <silent> <leader>ss :TestSuite<CR><C-W>p
 endif
@@ -250,6 +253,12 @@ nnoremap <F2> <C-w>t<C-w>w
 nnoremap <F3> <C-w>t<C-w>w<C-w>w
 nnoremap <F4> <C-w>t<C-w>w<C-w>w<C-w>w
 nnoremap <F5> <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
+
+tnoremap <F1> <C-\><C-n><C-w>t
+tnoremap <F2> <C-\><C-n><C-w>t<C-w>w
+tnoremap <F3> <C-\><C-n><C-w>t<C-w>w<C-w>w
+tnoremap <F4> <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w
+tnoremap <F5> <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
 
 nnoremap <S-F1> gt
 nnoremap <S-F2> gT
