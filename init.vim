@@ -53,7 +53,6 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'wellle/context.vim'
-Plug 'christoomey/vim-tmux-navigator'
 
 if has('nvim')
   Plug 'liuchengxu/vim-clap'
