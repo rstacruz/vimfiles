@@ -125,8 +125,8 @@ if exists(':TestNearest')
   let g:which_key_map.s.n = 'Test nearest'
   let g:which_key_map.s.f = 'Test this file'
   let g:which_key_map.s.r = 'Rerun last test'
-  nmap <silent> <leader>sn :TestNearest<CR><C-\><C-n><C-W>p
-  nmap <silent> <leader>sf :TestFile<CR><C-\><C-n><C-W>p
+  nmap <silent> <leader>sn :TestNearest<CR><C-\><C-n><C-w>p
+  nmap <silent> <leader>sf :TestFile<CR><C-\><C-n><C-w>p
   nmap <silent> <leader>sr :TestLast<CR><C-\><C-n><C-w>p
   " nmap <silent> <leader>sv :TestVisit<CR>
   " nmap <silent> <leader>ss :TestSuite<CR><C-W>p

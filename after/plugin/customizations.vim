@@ -11,7 +11,7 @@ endif
 
 augroup customisations
   au FileType gitcommit,pullrequest startinsert
-  au FileType gitcommit,pullrequest setlocal nonumber norelativenumber
+  au FileType gitcommit,pullrequest setlocal nonumber norelativenumber nowrap
   au FileType gitcommit,pullrequest inoremap <buffer> <C-s> <Esc>:wq<cr>
   au FileType gitcommit,pullrequest noremap <buffer> <C-s> :wq<cr>
   au FileType gitcommit setlocal statusline=──\ Git\ commit\ message\ ──
