@@ -59,11 +59,13 @@ if has('nvim')
 endif
 
 let g:coc_global_extensions = [
-  \ 'coc-tsserver',
-  \ 'coc-prettier',
+  \ 'coc-css',
   \ 'coc-json',
+  \ 'coc-prettier',
   \ 'coc-snippets',
   \ 'coc-solargraph',
+  \ 'coc-tailwindcss',
+  \ 'coc-tsserver',
   \ ]
 
 call plug#end()
