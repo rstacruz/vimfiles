@@ -58,7 +58,9 @@ endif
 
 if exists(':Clap')
   let g:which_key_map.k.b = 'List buffers'
+  let g:which_key_map.k.h = 'History'
   nnoremap <leader>kb :Clap buffers<cr>
+  nnoremap <leader>kh :Clap history<cr>
 
   let g:which_key_map.f.r = 'Recent files'
   let g:which_key_map.f.f = 'Files'
@@ -142,9 +144,9 @@ endif
 if exists(':GG')
   let g:which_key_map['*'] = 'Search'
   let g:which_key_map['/'] = 'Search...'
-  nnoremap <leader>/  :VG!<space>
-  nnoremap <leader>*  :VG! <C-r><C-w><CR>
-  vnoremap <leader>*  y:VG! <C-r>"<C-b><CR>
+  nnoremap <leader>/  :GG!<space>
+  nnoremap <leader>*  :GG! <C-r><C-w><CR>
+  vnoremap <leader>*  y:GG! <C-r>"<C-b><CR>
 endif
 
 if exists(':bnext')

@@ -23,15 +23,6 @@ the last query.
 
 If a `!` is given, then the search will be case-insensitive.
 
-                                                                            *:TG* *:SG* *:VG*
->
-    :TG [<query>]
-    :SG [<query>]
-    :VG [<query>]
-<
-Same as |:GG|. However, |:TG| opens in a new tab, |:SG| opens in a horizontal split,
-and |:VG| opens in a vertical split.
-
 =======================================================================================
 CONFIGURATION                                                     *gitgrep-configuration*
                                                                *g:gitgrep_use_cursorline*
@@ -40,23 +31,36 @@ CONFIGURATION                                                     *gitgrep-confi
 <
 If set to `1`, the current line in the search results will be highlighted.
 
+                                                                  *g:gitgrep_window_mode*
+>
+    let g:gitgrep_window_mode = 'vertical'
+<
+Changes the way the Gitgrep window appears. Valid values are:
+
+    'vertical'      Vertical split (default)
+    'split'         Horizontal split
+    'max'           Maximized split
+    'tab'           New tab
+
                                                           *g:gitgrep_horizontal_position*
 >
     let g:gitgrep_horizontal_position = 'bottom'
 <
-Sets the position of |:SG|. Can be set to either 'top' or 'bottom'.
+Sets the position of when `g:gitgrep_window_mode` is set to 'split'.
+Can be set to either 'top' or 'bottom'.
 
                                                             *g:gitgrep_vertical_position*
 >
     let g:gitgrep_vertical_position = 'right'
 <
-Sets the position of |:VG|. Can be set to either 'left' or 'right'.
+Sets the position of when `g:gitgrep_window_mode` is set to 'vertical'.
+Can be set to either 'left' or 'right'.
 
                                                                        *g:gitgrep_height*
 >
     let g:gitgrep_height = 30
 <
-Sets the height of the |:SG| split. Has no effect to |:GG| and other commands.
+Sets the height of the window when `g:gitgrep_window_mode` is set to 'split'.
 
 =======================================================================================
 KEY BINDINGS                                                               *gitgrep-keys*
@@ -69,9 +73,9 @@ These keys are available in the gitgrep window:
 =======================================================================================
 EXAMPLE CONFIG                                                          *gitgrep-example*
 >
-    nnoremap <leader>/  :VG!<space>
-    nnoremap <leader>*  :VG! <C-r><C-w><CR>
-    vnoremap <leader>*  y:VG! <C-r>"<C-b><CR>
+    nnoremap <leader>/  :GG!<space>
+    nnoremap <leader>*  :GG! <C-r><C-w><CR>
+    vnoremap <leader>*  y:GG! <C-r>"<C-b><CR>
 <
 =======================================================================================
 vim:tw=78:ts=8:noet:ft=help:norl:

@@ -26,6 +26,11 @@ if !exists('g:gitgrep_height')
   let g:gitgrep_height = 30
 endif
 
+  " `winmode` can be [vertical]split, [split], [tab] or [max]imised
+if !exists('g:gitgrep_window_mode')
+  let g:gitgrep_window_mode = 'vertical'
+endif
+
 " Store the last known search here
 if !exists('g:gitgrep_last_query')
   let g:gitgrep_last_query = {'keywords': '', 'win_mode': '', 'ignorecase': -1}
@@ -41,6 +46,12 @@ function! gitgrep#run(win_mode, keywords, options) " {{{
   let focusonly = get(a:options, 'focusonly', 0)
   let force = get(a:options, 'force', 0)
 
+  if a:win_mode == ''
+    let win_mode = g:gitgrep_window_mode
+  else
+    let win_mode = a:win_mode
+  endif
+
   " What invoked it
   let source = winnr()
 
@@ -55,11 +66,11 @@ function! gitgrep#run(win_mode, keywords, options) " {{{
     end
   else
     " New query
-    let query = { 'keywords': a:keywords, 'ignorecase': ignorecase, 'win_mode': a:win_mode }
+    let query = { 'keywords': a:keywords, 'ignorecase': ignorecase, 'win_mode': win_mode }
   endif
 
   " Open and focus on the window
-  let window_mode = gitgrep#prepare_window(a:win_mode, { 'focusonly': focusonly })
+  let window_mode = gitgrep#prepare_window(win_mode, { 'focusonly': focusonly })
   if window_mode > 0
     if g:gitgrep_last_query['keywords'] == query['keywords'] && force != 1
       " If it's just refocusing, and the query hasn't changed,
@@ -124,24 +135,24 @@ endfunction " }}}
 
 " Opens a window and focuses on it
 function gitgrep#open_window(win_mode) " {{{
-  " `winmode` can be [v]ertical, [s]plit, [t]ab or [max]imised
-  let mode = a:win_mode == '' ? 'm' : a:win_mode
+  " `winmode` can be [vertical], [split], [tab] or [max]imised
+  let mode = a:win_mode == '' ? 'max' : a:win_mode
 
   " save the referer window for splits
   let referer = winnr()
 
-  if mode == 'v'
+  if mode =~? '^v' " vertical
     let pos = g:gitgrep_vertical_position == 'right' ? 'botright' : 'topleft'
     exe 'vert ' . pos . ' new'
     let b:referer = referer
-  elseif mode == 't'
+  elseif mode =~? '^t' " tab
     tabnew
-  elseif mode == 's'
+  elseif mode =~? '^s' " split
     let pos = g:gitgrep_horizontal_position == 'bottom' ? 'bot' : 'top'
     exe '' . pos . ' new'
     exe 'resize ' . g:gitgrep_height
     let b:referer = referer
-  elseif mode == 'm'
+  elseif mode =~? 'm' " maximized
     " always opens on top
     exe 'top new'
     resize
