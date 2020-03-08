@@ -62,6 +62,9 @@
   "solargraph.diagnostics": true,
   "solargraph.hover": true,
 
-  "snippets.userSnippetsDirectory": "~/.config/nvim/ultisnips"
+  "snippets.userSnippetsDirectory": "~/.config/nvim/ultisnips",
+
+  // CSS: it can't process things like @apply, so it's probably better that it's off
+  "css.validate": false
 }
 
