@@ -20,7 +20,9 @@
   "signature.preferShownAbove": true,
 
   // Omg
-  // "codeLens.enable": true,
+  "codeLens.enable": true,
+  "typescript.implementationsCodeLens.enable": false,
+  "typescript.referencesCodeLens.enable": false,
 
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
