@@ -5,3 +5,4 @@ sessions
 /bookmarks
 !/bookmarks/README.md
 /spell
+/autoload/plug.vim.old
