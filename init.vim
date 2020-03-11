@@ -22,6 +22,7 @@ Plug vim . '/modules/synstack'
 " Core plugins
 Plug 'rstacruz/vim-opinion'
 Plug 'freitass/todo.txt-vim'
+Plug 'cweagans/vim-taskpaper'
 
 " Don't load the other plugins
 if $GIT_AUTHOR_DATE != '' || $VIM_MINIMAL != ''
