@@ -19,10 +19,24 @@ Plug vim . '/modules/save-typos'
 Plug vim . '/modules/startify-switcher'
 Plug vim . '/modules/synstack'
 
-" Core plugins
-Plug 'rstacruz/vim-opinion'
-Plug 'freitass/todo.txt-vim'
+" Plugins available in minimal mode
 Plug 'cweagans/vim-taskpaper'
+Plug 'freitass/todo.txt-vim'
+Plug 'preservim/nerdtree'
+Plug 'rstacruz/vim-opinion'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+if has('nvim')
+  Plug 'liuchengxu/vim-clap'
+endif
 
 " Don't load the other plugins
 if $GIT_AUTHOR_DATE != '' || $VIM_MINIMAL != ''
@@ -42,22 +56,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'liuchengxu/vim-which-key'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'preservim/nerdtree'
-Plug 'sheerun/vim-polyglot'
 Plug 'thinca/vim-visualstar'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
 Plug 'wellle/context.vim'
-
-if has('nvim')
-  Plug 'liuchengxu/vim-clap'
-endif
 
 let g:coc_global_extensions = [
   \ 'coc-css',
