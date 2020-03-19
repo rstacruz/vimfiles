@@ -79,6 +79,10 @@ function! s:base_overrides() " {{{
   hi! link StartifySlash   Muted
   hi! link StartifySpecial Constant
 
+  hi! link taskpaperComment   Constant
+  hi! link taskpaperCancelled Muted
+  hi! link taskpaperListItem  Keyword
+
   " The '-- INSERT --' mode line
   hi! link ModeMsg Invis
 
