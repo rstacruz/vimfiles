@@ -55,6 +55,7 @@ augroup CtrlB
   au!
   au WinEnter term://* startinsert
   au TermOpen,TermEnter * startinsert
+  au TermEnter term://*/bin/fish set statusline=Command\ line
 augroup END
 
 noremap <C-j> <C-w>j
