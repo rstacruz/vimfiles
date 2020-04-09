@@ -16,7 +16,7 @@ tnoremap <C-b><C-s> <C-\><C-n>:new<CR><Esc><C-w>r:term<CR>
 tnoremap <C-b><C-v> <C-\><C-n>:vnew<CR><Esc><C-w>r:term<CR>
 tnoremap <C-b><C-t> <C-\><C-n>:tabnew<CR><Esc>:term<CR>
 tnoremap <C-b>c     <C-\><C-n>:tabnew<CR><Esc>:term<CR>
-  
+
 " Kill
 nnoremap <C-b><C-x> :bwipeout!<CR>
 tnoremap <C-b><C-x> <C-\><C-n>:bwipeout!<CR>
@@ -57,8 +57,3 @@ augroup CtrlB
   au TermOpen,TermEnter * startinsert
   au TermEnter term://*/bin/fish set statusline=Command\ line
 augroup END
-
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-h> <C-w>h
-noremap <C-l> <C-w>l
