@@ -69,4 +69,6 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ ]
 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()

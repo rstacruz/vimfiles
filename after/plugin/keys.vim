@@ -79,7 +79,7 @@ if exists(':tabclose')
   let g:which_key_map.t.n = 'New tab'
   let g:which_key_map.t.c = 'Close tab'
   nnoremap <leader>tc :tabclose<cr>
-  nnoremap <leader>tn :tabnew<cr>:Startify<cr>
+  nnoremap <leader>tn :tabnew<cr><Esc>:Startify<cr>
 endif
 
 if exists(':Startify')
@@ -107,16 +107,14 @@ if exists(':term')
   tnoremap <C-]> <C-\><C-n>
   tnoremap <C-[> <C-\><C-n>
 
-  tnoremap <C-b><C-x> <C-\><C-n>:q!<CR>
-
   let g:which_key_map.t['.'] = 'Open terminal'
-  let g:which_key_map.t.t = 'Terminal (tab)'
-  let g:which_key_map.t.s = 'Terminal (split)'
-  let g:which_key_map.t.v = 'Terminal (vert)'
-  nnoremap <leader>t. :term<CR>
-  nnoremap <leader>tt :tabnew<CR>:term<CR>
-  nnoremap <leader>ts :split<CR>:term<CR>
-  nnoremap <leader>tv :vsplit<CR><C-w>l:term<CR>
+"   let g:which_key_map.t.t = 'Terminal (tab)'
+"   let g:which_key_map.t.s = 'Terminal (split)'
+"   let g:which_key_map.t.v = 'Terminal (vert)'
+"   nnoremap <leader>t. :term<CR>
+"   nnoremap <leader>tt :tabnew<CR><Esc>:term<CR>
+"   nnoremap <leader>ts :split<CR><Esc>:term<CR>
+"   nnoremap <leader>tv :vsplit<CR><C-w>l:term<CR>
 
   " Term repeat thing
   let g:which_key_map.t.r = 'Repeat command'
@@ -149,10 +147,14 @@ if exists(':GG')
   vnoremap <leader>*  y:GG! <C-r>"<C-b><CR>
 endif
 
-if exists(':bnext')
-  nnoremap <tab>      :bnext<cr>
-  nnoremap <s-tab>    :bprev<cr>
-endif
+" if exists(':bnext')
+"   nnoremap <tab>      :bnext<cr>
+"   nnoremap <s-tab>    :bprev<cr>
+" endif
+
+" Switch focus
+nnoremap <tab>      <C-w>w
+nnoremap <s-tab>    <C-w>W
 
 if exists(':Goyo')
   let g:which_key_map.k.z = 'Toggle zen mode'
