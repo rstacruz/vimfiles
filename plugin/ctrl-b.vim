@@ -40,6 +40,10 @@ tnoremap <C-b><C-j> <C-\><C-n><C-w>j
 tnoremap <C-b><C-k> <C-\><C-n><C-w>k
 tnoremap <C-b><C-h> <C-\><C-n><C-w>h
 tnoremap <C-b><C-l> <C-\><C-n><C-w>l
+tnoremap <C-b>J <C-\><C-n><C-w>J
+tnoremap <C-b>K <C-\><C-n><C-w>K
+tnoremap <C-b>H <C-\><C-n><C-w>H
+tnoremap <C-b>L <C-\><C-n><C-w>L
 
 " Make ctrl-w commands work inside terminals
 tnoremap <C-w><C-j> <C-\><C-n><C-w>j
@@ -50,6 +54,10 @@ tnoremap <C-w>j <C-\><C-n><C-w>j
 tnoremap <C-w>k <C-\><C-n><C-w>k
 tnoremap <C-w>h <C-\><C-n><C-w>h
 tnoremap <C-w>l <C-\><C-n><C-w>l
+tnoremap <C-w>J <C-\><C-n><C-w>J
+tnoremap <C-w>K <C-\><C-n><C-w>K
+tnoremap <C-w>H <C-\><C-n><C-w>H
+tnoremap <C-w>L <C-\><C-n><C-w>L
 
 augroup CtrlB
   au!
