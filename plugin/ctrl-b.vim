@@ -34,6 +34,10 @@ nnoremap <C-b><C-j> <C-w>j
 nnoremap <C-b><C-k> <C-w>k
 nnoremap <C-b><C-h> <C-w>h
 nnoremap <C-b><C-l> <C-w>l
+nnoremap <C-b>J <C-w>J
+nnoremap <C-b>K <C-w>K
+nnoremap <C-b>H <C-w>H
+nnoremap <C-b>L <C-w>L
 
 " Arrows (in terminal)
 tnoremap <C-b><C-j> <C-\><C-n><C-w>j
