@@ -38,6 +38,8 @@ if exists(':Gstatus')
   let g:which_key_map.g.b = 'Blame'
   let g:which_key_map.g.o = 'Open in GitHub'
   let g:which_key_map.g.y = 'Copy GitHub URL'
+  let g:which_key_map.g.d = 'cd to Git root'
+  let g:which_key_map.g.D = 'cd to Git root (global)'
 
   let g:which_key_map.g.t = { 'name': '+Tig' }
   let g:which_key_map.g.t.s = 'Status'
@@ -49,6 +51,8 @@ if exists(':Gstatus')
   nnoremap <leader>gb :Gblame<cr>
   nnoremap <leader>go :Gbrowse<cr>
   nnoremap <leader>gy :Gbrowse!<cr>
+  nnoremap <leader>gd :Glcd<cr>
+  nnoremap <leader>gD :Gcd<cr>
 endif
 
 if exists(':GV')
@@ -135,8 +139,8 @@ if exists(':TestNearest')
 endif
 
 if exists(':NERDTree')
-  nnoremap - :Gcd<CR>:silent! NERDTreeFind<CR>
-  nnoremap _ :NERDTreeVCS<CR>
+  nnoremap - :silent! NERDTreeFind<CR>
+  nnoremap _ :Glcd<CR>:silent! NERDTreeFind<CR>
 endif
 
 if exists(':GG')
