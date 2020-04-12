@@ -1,5 +1,6 @@
 let g:which_key_map = {}
 let g:which_key_map.f = { 'name': '+File' }
+let g:which_key_map.a = { 'name': '+Apps' }
 let g:which_key_map.f.e = { 'name': '+Settings' }
 let g:which_key_map.k = { 'name': '+Editor' }
 let g:which_key_map.g = { 'name': '+Git' }
@@ -41,10 +42,7 @@ if exists(':Gstatus')
   let g:which_key_map.g.d = 'cd to Git root'
   let g:which_key_map.g.D = 'cd to Git root (global)'
 
-  let g:which_key_map.g.t = { 'name': '+Tig' }
-  let g:which_key_map.g.t.s = 'Status'
   nnoremap <leader>gs :tabnew<cr>:Gstatus<cr><C-W>o
-  nnoremap <leader>gts :tabnew<cr>:term tig status<cr>
   nnoremap <leader>gc :Gcommit -v<cr>
   nnoremap <leader>gC :Gcommit -av<cr>
   nnoremap <leader>gA :Gcommit --amend -av<cr>
@@ -127,7 +125,7 @@ endif
 
 " vim-test
 if exists(':TestNearest')
-  let g:which_key_map.s = { 'name': 'Test' }
+  let g:which_key_map.s = { 'name': '+Test' }
   let g:which_key_map.s.n = 'Test nearest'
   let g:which_key_map.s.f = 'Test this file'
   let g:which_key_map.s.r = 'Rerun last test'
@@ -170,6 +168,29 @@ if exists(':EasyAlign')
   xmap ga <Plug>(EasyAlign)
   " Start interactive EasyAlign for a motion/text object (e.g. gaip)
   nmap ga <Plug>(EasyAlign)
+endif
+
+if exists(':term')
+  if executable('nnn')
+    let g:which_key_map.a.n = 'nnn'
+    let g:which_key_map.a.N = 'which_key_ignore'
+    nnoremap <silent> <leader>an :term EDITOR=e nnn<CR>
+    nnoremap <silent> <leader>aN :tabnew<CR><Esc>:term nnn<CR>
+  endif
+
+  if executable('tig')
+    let g:which_key_map.a.s = 'tig status'
+    let g:which_key_map.a.S = 'which_key_ignore'
+    nnoremap <silent> <leader>as :term tig status<CR>
+    nnoremap <silent> <leader>aS :tabnew<CR><Esc>:term tig status<CR>
+  endif
+
+  if executable('ranger')
+    let g:which_key_map.a.r = 'ranger'
+    let g:which_key_map.a.R = 'which_key_ignore'
+    nnoremap <silent> <leader>ar :term ranger<CR>
+    nnoremap <silent> <leader>aR :tabnew<CR><Esc>:term ranger<CR>
+  endif
 endif
 
 if exists(':CocAction')
@@ -248,6 +269,7 @@ function keys#switch_to_term()
 
   exe win 'wincmd w'
 endfunction
+
 
 " Kinda like ctrl-1 and ctrl-2
 let g:which_key_map.1 = 'which_key_ignore'
