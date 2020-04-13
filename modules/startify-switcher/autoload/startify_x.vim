@@ -48,12 +48,12 @@ endfunction " }}}
 
 " Draws the header with Vimscript
 function! startify_x#draw_header(str) " {{{
-  let branch = startify_x#git#get_branch()
-  let dirty = startify_x#git#is_dirty() ? ' ·' : ''
+  " let branch = startify_x#git#get_branch()
+  " let dirty = startify_x#git#is_dirty() ? ' ·' : ''
   return
     \ startify#pad([
     \ '┏' . repeat('━', strlen(a:str) + 4) . '┓',
-    \ '┃  ' . a:str . '  ┃  ' . branch . dirty,
+    \ '┃  ' . a:str . '  ┃  ',
     \ '┗' . repeat('━', strlen(a:str) + 4) . '┛',
     \ ])
 endfunction " }}}
