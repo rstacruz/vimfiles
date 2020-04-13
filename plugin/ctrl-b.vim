@@ -67,5 +67,5 @@ augroup CtrlB
   au!
   au WinEnter term://* startinsert
   au TermOpen,TermEnter * startinsert
-  au TermEnter term://*/bin/fish set statusline=Terminal
+  " au TermEnter term://*/bin/fish set statusline=Terminal
 augroup END

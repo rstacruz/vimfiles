@@ -1,6 +1,7 @@
 "let g:airline_theme='biogoo'
 "let g:airline_theme='base16_atelierdune'
-let g:airline_theme='zenburn'
+"let g:airline_theme='zenburn'
+let g:airline_theme='base16color'
 
 " No branch
 let g:airline_section_b=''
