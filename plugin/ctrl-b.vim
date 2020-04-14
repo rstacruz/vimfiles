@@ -69,3 +69,8 @@ augroup CtrlB
   au TermOpen,TermEnter * startinsert
   " au TermEnter term://*/bin/fish set statusline=Terminal
 augroup END
+
+augroup TermRename
+  au!
+  au TermEnter term://*/bin/fish exe 'file Shell\ (' . b:terminal_job_id . ')'
+augroup END
