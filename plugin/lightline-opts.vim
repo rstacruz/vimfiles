@@ -43,4 +43,5 @@ let g:lightline.mode_map =
   \   't': 'TERM',
   \ }
 
-let g:lightline.colorscheme = 'deus'
+" let g:lightline.colorscheme = 'deus'
+let g:lightline.colorscheme = 'darcula'
