@@ -63,6 +63,9 @@ tnoremap <C-w>K <C-\><C-n><C-w>K
 tnoremap <C-w>H <C-\><C-n><C-w>H
 tnoremap <C-w>L <C-\><C-n><C-w>L
 
+" Escape
+tnoremap <C-b><C-e> <Esc>
+
 augroup CtrlB
   au!
   au WinEnter term://* startinsert

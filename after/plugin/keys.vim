@@ -248,11 +248,13 @@ nnoremap <leader>fy :let @+=@% \| echo @%<cr>
 
 augroup keys
   autocmd FileType markdown nnoremap <buffer> <leader>mv :MarkdownPreview<cr>
+  autocmd FileType markdown nnoremap <buffer> <leader>mp :call mdip#MarkdownClipboardImage()<cr>
 augroup END
 
 " For autocmds
 let g:which_key_labels = {
   \ 'MarkdownPreview': 'Markdown preview',
+  \ 'call mdip#MarkdownClipboardImage()': 'Paste image',
   \ }
 
 if exists(':ContextToggle')

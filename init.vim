@@ -72,4 +72,5 @@ let g:coc_global_extensions = [
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'itchyny/lightline.vim'
+Plug 'ferrine/md-img-paste.vim'
 call plug#end()
