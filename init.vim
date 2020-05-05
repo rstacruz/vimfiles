@@ -39,7 +39,7 @@ if has('nvim')
 endif
 
 " Don't load the other plugins
-if $GIT_AUTHOR_DATE != '' || $VIM_MINIMAL != ''
+if $GIT_EXEC_PATH != '' || $VIM_MINIMAL != ''
   call plug#end()
   finish
 endif

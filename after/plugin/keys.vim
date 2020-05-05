@@ -11,7 +11,7 @@ nnoremap <Enter> za
 nnoremap <S-Enter> zO
 nnoremap <C-Enter> zC
 
-if $GIT_AUTHOR_DATE != ''
+if $GIT_EXEC_PATH != ''
   nnoremap <C-s> :wq<cr>
   inoremap <C-s> <esc>:wq<cr>
 else
@@ -214,8 +214,8 @@ if exists(':CocAction')
   nnoremap <silent> gh :call CocActionAsync('highlight')<CR>:call CocAction('doHover')<CR>
 
   " format region
-  xmap <leader>cf <Plug>(coc-format-selected)
-  nmap <leader>cf <Plug>(coc-format-selected)
+  nnoremap <leader>cf :call CocAction('format')<CR>
+  vmap <leader>cf <Plug>(coc-format-selected)
 
   " code action
   xmap <leader>ca <Plug>(coc-codeaction-selected)

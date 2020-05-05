@@ -11,7 +11,7 @@
     "javascriptreact",
     "typescript",
     "typescriptreact",
-    "ruby"
+    // "ruby"
   ],
 
   // Show docs and preview next to auto-completion

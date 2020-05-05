@@ -11,14 +11,14 @@ if has('nvim')
 endif
 
 augroup customisations
-  au FileType gitcommit,pullrequest startinsert
-  au FileType gitcommit,pullrequest setlocal nonumber norelativenumber nowrap
-  if $GIT_AUTHOR_DATE != ''
-    au FileType gitcommit,pullrequest inoremap <buffer> <C-s> <Esc>:wq<cr>
-    au FileType gitcommit,pullrequest noremap <buffer> <C-s> :wq<cr>
+  au FileType gitcommit,pullrequest,gitrebase startinsert
+  au FileType gitcommit,pullrequest,gitrebase setlocal nonumber norelativenumber nowrap
+  if $GIT_EXEC_PATH != ''
+    au FileType gitcommit,pullrequest,gitrebase inoremap <buffer> <C-s> <Esc>:wq<cr>
+    au FileType gitcommit,pullrequest,gitrebase noremap <buffer> <C-s> :wq<cr>
   else
-    au FileType gitcommit,pullrequest inoremap <buffer> <C-s> <Esc>:w<cr>:bwipeout!<cr>
-    au FileType gitcommit,pullrequest noremap <buffer> <C-s> :w<cr>:bwipeout!<cr>
+    au FileType gitcommit,pullrequest,gitrebase inoremap <buffer> <C-s> <Esc>:w<cr>:bwipeout!<cr>
+    au FileType gitcommit,pullrequest,gitrebase noremap <buffer> <C-s> :w<cr>:bwipeout!<cr>
   end
   au FileType gitcommit setlocal statusline=──\ Git\ commit\ message\ ──
   au FileType pullrequest setlocal statusline=──\ Git\ pull\ request\ ──
@@ -27,10 +27,8 @@ augroup customisations
 augroup END
 
 " No status when editing Git commit messages
-if $GIT_AUTHOR_DATE != ''
+if $GIT_EXEC_PATH != ''
   set laststatus=0
-  set nonumber
-  set norelativenumber
 endif
 
 " No line numbers on git status
