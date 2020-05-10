@@ -40,3 +40,6 @@ if has('nvim')
 endif
 
 set linebreak  " lbr: break on words
+
+" Markdown tools
+command! MarkdownRemoveAnnotations normal :%s/^###\n\n//<CR>:%s/^<!-- {.*\n\n//<CR>
