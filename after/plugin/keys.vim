@@ -37,7 +37,7 @@ if exists(':Gstatus')
   let g:which_key_map.g.C = 'Add and commit'
   let g:which_key_map.g.A = 'Amend commit'
   let g:which_key_map.g.b = 'Blame'
-  let g:which_key_map.g.o = 'Open in GitHub'
+  let g:which_key_map.g.h = 'Open in GitHub'
   let g:which_key_map.g.y = 'Copy GitHub URL'
   let g:which_key_map.g.d = 'cd to Git root'
   let g:which_key_map.g.D = 'cd to Git root (global)'
@@ -47,10 +47,13 @@ if exists(':Gstatus')
   nnoremap <leader>gC :Gcommit -av<cr>
   nnoremap <leader>gA :Gcommit --amend -av<cr>
   nnoremap <leader>gb :Gblame<cr>
-  nnoremap <leader>go :Gbrowse<cr>
+  nnoremap <leader>gh :Gbrowse<cr>
   nnoremap <leader>gy :Gbrowse!<cr>
   nnoremap <leader>gd :Glcd<cr>
   nnoremap <leader>gD :Gcd<cr>
+
+  vnoremap <leader>gh :Gbrowse<cr>
+  vnoremap <leader>gy :Gbrowse!<cr>
 endif
 
 if exists(':GV')
@@ -109,7 +112,9 @@ if exists(':term')
   tnoremap <C-]> <C-\><C-n>
   tnoremap <C-[> <C-\><C-n>
 
-  let g:which_key_map.t['.'] = 'Open terminal'
+  let g:which_key_map['.'] = 'Terminal here'
+  nnoremap <silent> <leader>. :term<CR>
+
 "   let g:which_key_map.t.t = 'Terminal (tab)'
 "   let g:which_key_map.t.s = 'Terminal (split)'
 "   let g:which_key_map.t.v = 'Terminal (vert)'
@@ -168,6 +173,17 @@ if exists(':EasyAlign')
   xmap ga <Plug>(EasyAlign)
   " Start interactive EasyAlign for a motion/text object (e.g. gaip)
   nmap ga <Plug>(EasyAlign)
+endif
+
+if exists(':bnext')
+  let g:which_key_map.b = { 'name': '+Buffer' } 
+  let g:which_key_map.b.n = 'Next buffer'
+  let g:which_key_map.b.p = 'Previous buffer'
+  nnoremap <silent> <leader>bp :bprev<CR>
+  nnoremap <silent> <leader>bn :bnext<CR>
+
+  let g:which_key_map.b.l = 'List buffers'
+  nnoremap <silent> <leader>bl :Clap buffers<cr>
 endif
 
 if exists(':term')
@@ -244,7 +260,8 @@ nnoremap <S-F2> :lclose<CR>
 nnoremap <S-F3> :lprev<CR>
 nnoremap <S-F4> :lnext<CR>
 
-nnoremap <leader>fy :let @+=@% \| echo @%<cr>
+let g:which_key_map.f.y = 'Copy current path'
+nnoremap <leader>fy :let @+=@% \| echo '[' .  getcwd() . '] → ' . @%<cr>
 
 augroup keys
   autocmd FileType markdown nnoremap <buffer> <leader>mv :MarkdownPreview<cr>
