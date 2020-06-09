@@ -2,6 +2,7 @@
 set shortmess+=c
 set noruler
 set nonumber
+set noshowmode " no -- INSERT -- in the status line
 
 if has('nvim')
   " no line number in :term

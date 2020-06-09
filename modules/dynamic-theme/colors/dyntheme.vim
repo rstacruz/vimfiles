@@ -14,13 +14,12 @@ function! s:base_overrides() " {{{
   hi! Underline    ctermbg=none ctermfg=none cterm=underline
   hi! Gray         cterm=none   ctermfg=8
   hi! ItalicGray   cterm=none   ctermfg=8
-  hi! CocUnderline cterm=underline
 
   " Overrides to things I don't like
   hi SpellBad cterm=underline ctermbg=none ctermfg=1
   hi! Pmenu ctermbg=1
 
-  " Also: Statement Comment(8) Identifier Constant(1) Type PreProc
+  " Also: Statement(3) Comment(8) Identifier(6) Constant(1) Type(2) PreProc(5)
 
   " Link to common styles
   hi! link LineNr       Gray
@@ -37,6 +36,11 @@ function! s:base_overrides() " {{{
   hi! link IncSearch  selected
   hi! link VisualNC   Visual
 
+  hi! link jsObjectKey SpecialKey
+  hi! link jsOperator Gray
+  hi! link jsArrowFunction Gray
+
+  " Git commit
   hi! link gitcommitFirstLine     Normal
   hi! link gitcommitSummary       Normal
   hi! link gitcommitBranch        Constant
@@ -47,30 +51,35 @@ function! s:base_overrides() " {{{
   hi! link gitcommitDiscardedFile Comment
   hi! link gitcommitDiff          Comment
 
-  hi! link diffFile Statement
+  " Diff
+  hi! link diffLine    Constant
+  hi! link diffSubname Gray
+  hi! link diffFile    Constant
+  hi! link diffAdded   DiffAdd
 
+  " Nerd tree
   hi! link NerdTreeOpenable Gray
   hi! link NerdTreeDir      Constant
   hi! link NerdTreeDirSlash Gray
   hi! link NerdTreeCWD      Gray
 
-  hi! link diffLine    Constant
-  hi! link diffSubname Gray
-  hi! link diffFile    Constant
-
+  " coc
   hi! link CocHintSign    Statement
   hi! link CocInfoSign    Statement
   hi! link CocWarningSign Type
   hi! link CocErrorSign   Error
   hi! link CocCodeLens    Muted
+  hi! CocUnderline cterm=underline
 
-  hi! link diffAdded   DiffAdd
+  " Fugitive
   hi! link fugitiveHunk   Muted
 
+  " Tab line
   hi! link TabLineFill StatusLineNC
   hi! link TabLine     StatusLineNC
   hi! link TabLineSel  StatusLine
 
+  " Startify
   hi! link StartifyBracket Muted
   hi! link StartifyFooter  Muted
   hi! link StartifyHeader  Title
@@ -79,12 +88,13 @@ function! s:base_overrides() " {{{
   hi! link StartifySlash   Muted
   hi! link StartifySpecial Constant
 
+  " Taskpaper
   hi! link taskpaperComment   Constant
   hi! link taskpaperCancelled Muted
   hi! link taskpaperListItem  Keyword
 
   " The '-- INSERT --' mode line
-  hi! link ModeMsg Invis
+  hi! link ModeMsg Muted
 
   " Group = +thing...
   hi! link WhichKeySeperator Muted
@@ -101,6 +111,17 @@ function! s:base_overrides() " {{{
   hi! link ClapSpinner Pmenu
   hi! link ClapInput Pmenu
   hi! link ClapSearchText Pmenu
+  hi! link ClapPreview CursorLine
+  hi! link ClapFuzzyMatches2 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches3 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches4 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches5 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches6 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches7 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches8 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches9 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches10 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches11 ClapFuzzyMatches1
 
   " Currently selected line
   hi! link ClapCurrentSelection PmenuSel
@@ -139,7 +160,7 @@ function! s:light_overrides() " {{{
   hi! Invis      cterm=none      ctermbg=none ctermfg=254
   hi! NonText    cterm=none      ctermbg=none ctermfg=254
   hi! Visual     cterm=none      ctermbg=253
-  hi! Error      ctermbg=213     ctermfg=52
+  hi! Error      ctermbg=210     ctermfg=52
   hi! muted      ctermbg=none    ctermfg=251
   hi! selected   cterm=underline ctermbg=253 ctermfg=4
 
@@ -153,14 +174,18 @@ function! s:light_overrides() " {{{
   hi! StatusLine   cterm=none ctermbg=254 ctermfg=1
   hi! StatusLineNC cterm=none ctermbg=254 ctermfg=254
 
-  hi! Pmenu    ctermbg=254 ctermfg=8
-  hi! PmenuSel ctermbg=236 ctermfg=7
+  hi! Pmenu    ctermbg=254 ctermfg=4
+  hi! PmenuSel ctermbg=4   ctermfg=0
 
   hi! Gray ctermfg=248
 
   " File is the filename, Fuzzy is the highlight
   hi! ClapFile ctermfg=8
-  hi! ClapFuzzyMatches1 ctermfg=1 cterm=underline
+  hi! ClapFuzzyMatches1 ctermfg=3 cterm=underline
+  hi! ClapDefaultPreview ctermbg=255
+
+  " So dark text can still show up right
+  hi! ClapCurrentSelection ctermbg=253 ctermfg=7
 endfunction " }}}
 
 if &background ==# 'dark'
