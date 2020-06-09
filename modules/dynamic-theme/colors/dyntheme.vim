@@ -157,6 +157,10 @@ function! s:light_overrides() " {{{
   hi! PmenuSel ctermbg=236 ctermfg=7
 
   hi! Gray ctermfg=248
+
+  " File is the filename, Fuzzy is the highlight
+  hi! ClapFile ctermfg=8
+  hi! ClapFuzzyMatches1 ctermfg=1 cterm=underline
 endfunction " }}}
 
 if &background ==# 'dark'
