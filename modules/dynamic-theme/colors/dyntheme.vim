@@ -122,6 +122,26 @@ function! s:base_overrides() " {{{
   hi! link ClapFuzzyMatches9 ClapFuzzyMatches1
   hi! link ClapFuzzyMatches10 ClapFuzzyMatches1
   hi! link ClapFuzzyMatches11 ClapFuzzyMatches1
+<<<<<<< HEAD
+=======
+  hi! link ClapFuzzyMatches12 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches13 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches14 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches15 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches16 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches17 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches18 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches19 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches20 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches21 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches22 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches23 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches24 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches25 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches26 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches27 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches28 ClapFuzzyMatches1
+  hi! link ClapFuzzyMatches29 ClapFuzzyMatches1
 
   " Currently selected line
   hi! link ClapCurrentSelection PmenuSel
