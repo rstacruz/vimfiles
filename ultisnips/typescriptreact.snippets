@@ -24,15 +24,19 @@
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
-snippet import "Import react" b
+snippet import React "import React from 'react'" b
 import React from 'react'
+endsnippet
+
+snippet import CSS "import CSS from './x.module.css'" b
+import CSS from '$1.module.css'
 endsnippet
 
 snippet react_component "React component template" b
 import React from 'react'
 import CSS from './$1.module.css'
 
-interface Props {
+type Props = {
 	title: string
 }
 
@@ -47,8 +51,8 @@ const ${1} = (props: Props) => {
 export default ${1}
 endsnippet
 
-snippet Props "interface Props" b
-interface Props {
+snippet type_props "interface Props" b
+type Props = {
 	children: React.ReactNode
 	className?: string
 }
