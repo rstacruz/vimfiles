@@ -122,8 +122,6 @@ function! s:base_overrides() " {{{
   hi! link ClapFuzzyMatches9 ClapFuzzyMatches1
   hi! link ClapFuzzyMatches10 ClapFuzzyMatches1
   hi! link ClapFuzzyMatches11 ClapFuzzyMatches1
-<<<<<<< HEAD
-=======
   hi! link ClapFuzzyMatches12 ClapFuzzyMatches1
   hi! link ClapFuzzyMatches13 ClapFuzzyMatches1
   hi! link ClapFuzzyMatches14 ClapFuzzyMatches1
