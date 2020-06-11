@@ -38,7 +38,8 @@ if exists(':Gstatus')
   let g:which_key_map.g.A = 'Amend commit'
   let g:which_key_map.g.b = 'Blame'
   let g:which_key_map.g.h = 'Open in GitHub'
-  let g:which_key_map.g.y = 'Copy GitHub URL'
+  let g:which_key_map.g.H = 'Copy GitHub URL'
+  let g:which_key_map.g.y = 'which_key_ignore'
   let g:which_key_map.g.d = 'cd to Git root'
   let g:which_key_map.g.D = 'cd to Git root (global)'
 
@@ -48,6 +49,7 @@ if exists(':Gstatus')
   nnoremap <leader>gA :Gcommit --amend -av<cr>
   nnoremap <leader>gb :Gblame<cr>
   nnoremap <leader>gh :Gbrowse<cr>
+  nnoremap <leader>gH :Gbrowse!<cr>
   nnoremap <leader>gy :Gbrowse!<cr>
   nnoremap <leader>gd :Glcd<cr>
   nnoremap <leader>gD :Gcd<cr>
@@ -263,6 +265,9 @@ nnoremap <S-F4> :lnext<CR>
 let g:which_key_map.f.y = 'Copy current path'
 nnoremap <leader>fy :let @+=@% \| echo '[' .  getcwd() . '] → ' . @%<cr>
 
+let g:which_key_map.f.Y = 'Copy full path'
+nnoremap <leader>fY :let @+=expand('%:p') \| echo '→ ' . expand('%:p')<cr>
+
 augroup keys
   autocmd FileType markdown nnoremap <buffer> <leader>mv :MarkdownPreview<cr>
   autocmd FileType markdown nnoremap <buffer> <leader>mp :call mdip#MarkdownClipboardImage()<cr>
@@ -304,12 +309,21 @@ nnoremap <F2> <C-w>t<C-w>w
 nnoremap <F3> <C-w>t<C-w>w<C-w>w
 nnoremap <F4> <C-w>t<C-w>w<C-w>w<C-w>w
 nnoremap <F5> <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
+nnoremap <F6> <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w<C-w>w
+
+inoremap <F1> <Esc><C-w>t
+inoremap <F2> <Esc><C-w>t<C-w>w
+inoremap <F3> <Esc><C-w>t<C-w>w<C-w>w
+inoremap <F4> <Esc><C-w>t<C-w>w<C-w>w<C-w>w
+inoremap <F5> <Esc><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
+inoremap <F6> <Esc><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w<C-w>w
 
 tnoremap <F1> <C-\><C-n><C-w>t
 tnoremap <F2> <C-\><C-n><C-w>t<C-w>w
 tnoremap <F3> <C-\><C-n><C-w>t<C-w>w<C-w>w
 tnoremap <F4> <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w
 tnoremap <F5> <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
+tnoremap <F6> <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w<C-w>w
 
 nnoremap <S-F1> gt
 nnoremap <S-F2> gT
@@ -319,3 +333,19 @@ nnoremap <leader>2 <C-w>t<C-w>w
 nnoremap <leader>3 <C-w>t<C-w>w<C-w>w
 nnoremap <leader>4 <C-w>t<C-w>w<C-w>w<C-w>w
 nnoremap <leader>5 <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
+
+nnoremap <C-b>1 <C-w>t
+nnoremap <C-b>2 <C-w>t<C-w>w
+nnoremap <C-b>3 <C-w>t<C-w>w<C-w>w
+nnoremap <C-b>4 <C-w>t<C-w>w<C-w>w<C-w>w
+nnoremap <C-b>5 <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
+inoremap <C-b>1 <Esc><C-w>t
+inoremap <C-b>2 <Esc><C-w>t<C-w>w
+inoremap <C-b>3 <Esc><C-w>t<C-w>w<C-w>w
+inoremap <C-b>4 <Esc><C-w>t<C-w>w<C-w>w<C-w>w
+inoremap <C-b>5 <Esc><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
+tnoremap <C-b>1 <C-\><C-n><C-w>t
+tnoremap <C-b>2 <C-\><C-n><C-w>t<C-w>w
+tnoremap <C-b>3 <C-\><C-n><C-w>t<C-w>w<C-w>w
+tnoremap <C-b>4 <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w
+tnoremap <C-b>5 <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w

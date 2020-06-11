@@ -31,6 +31,9 @@ function! s:base_overrides() " {{{
   hi! link Comment      ItalicGray
   hi! link ErrorMsg     Error
 
+  " Ruby string symbols
+  hi! link Delimiter    Gray
+
   hi! link MatchParen Underline
   hi! link Search     selected
   hi! link IncSearch  selected
@@ -143,6 +146,9 @@ function! s:base_overrides() " {{{
 
   " Currently selected line
   hi! link ClapCurrentSelection PmenuSel
+
+  " Ruby
+  hi! link rubySymbol Type
 endfunction " }}}
 
 function! s:dark_overrides() " {{{
