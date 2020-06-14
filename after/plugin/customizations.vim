@@ -43,4 +43,13 @@ endif
 set linebreak  " lbr: break on words
 
 " Markdown tools
-command! MarkdownRemoveAnnotations normal :%s/^###\n\n//<CR>:%s/^<!-- {.*\n\n//<CR>
+function! MkdnRemoveAnnotations()
+  silent! %s/^###\n\n//
+  silent! %s/^<!-- {.*\n\n//
+endfunction
+
+" In the rstacruz/til blog
+function! MkdnConvertFigures()
+  silent! %s#<figure class='cover'>\n\(.*\)\n</figure>#<Figure cover>\r\1\r</Figure>#g
+  silent! %s#<figure class='table'>\n\(.*\)\n</figure>#<Figure table>\r\1\r</Figure>#g
+endfunction
