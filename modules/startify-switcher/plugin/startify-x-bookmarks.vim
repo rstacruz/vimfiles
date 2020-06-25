@@ -16,7 +16,7 @@ function! s:get_bookmark_commands()
   let globs = globpath(bookmarks_path, '*', 0, 1)
   let paths = filter(globs, "fnamemodify(v:val, ':t') != 'README.md'")
   " Let's use 'lcd' so multiple tabs can have different projects
-  let commands = map(paths, "startify_x#to_banner(v:val)")
+  let commands = map(paths, "startify_x#to_banner(v:val, v:key)")
   return commands
 endfunction
 

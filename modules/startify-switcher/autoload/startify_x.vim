@@ -60,13 +60,18 @@ endfunction " }}}
 
 " Generates a banner from an file/dir path
 " startify_x#to_banner('/path/to/project')
-function! startify_x#to_banner(target) " {{{
+function! startify_x#to_banner(target, index) " {{{
   let isdir = isdirectory(a:target)
 
   let abspath = resolve(expand(a:target))
   let basename = fnamemodify(a:target, ':t')
   let len = g:startify_x_shortcut_length - 1
-  let shortcut = substitute(basename[0:len], '[^a-zA-Z0-9]', '', 'g')
+
+  " Shortcut based on prefix [nvim => nv]
+  " let shortcut = substitute(basename[0:len], '[^a-zA-Z0-9]', '', 'g')
+
+  " Shortcut based on index [nvim => b1]
+  let shortcut = "b" . (a:index + 1)
 
   if isdir
     let label = g:startify_x_icon_folder . '  ' . basename . '/'

@@ -43,9 +43,8 @@ let g:lightline.mode_map =
   \   't': 'TERM',
   \ }
 
-function s:set_light()
-  let g:lightline.colorscheme = 'PaperColor'
-  let g:lightline.colorscheme = 'one'
+function s:set_theme(theme)
+  let g:lightline.colorscheme = a:theme
   if exists('*lightline#init')
     call lightline#init()
     call lightline#colorscheme()
@@ -53,14 +52,20 @@ function s:set_light()
   endif
 endfunction
 
+function s:set_light()
+  " call s:set_theme('one')
+  " call s:set_theme('PaperColor')
+  call s:set_theme('nord')
+endfunction
+
 function s:set_dark()
-  let g:lightline.colorscheme = 'darcula'
-  if exists('*lightline#init')
-    call lightline#init()
-    call lightline#colorscheme()
-    call lightline#update()
-  endif
+  " call s:set_theme('darcula')
+  " call s:set_theme('wombat')
+  " call s:set_theme('selenized_dark')
+  call s:set_theme('nord')
 endfunction
 
 autocmd User DynthemeLight call s:set_light()
 autocmd User DynthemeDark call s:set_dark()
+
+command! -nargs=1 LightlineTheme call s:set_theme('<args>')

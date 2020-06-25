@@ -194,6 +194,7 @@ function! s:light_overrides() " {{{
   hi! DiffAdd     ctermfg=22 ctermbg=40
   hi! DiffChange  ctermfg=17 ctermbg=252
   hi! DiffDelete  ctermfg=52 ctermbg=196
+  hi! DiffText    ctermbg=0
 
   hi! StatusLine   cterm=none ctermbg=254 ctermfg=1
   hi! StatusLineNC cterm=none ctermbg=254 ctermfg=254

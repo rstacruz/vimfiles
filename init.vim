@@ -44,6 +44,7 @@ if $GIT_EXEC_PATH != '' || $VIM_MINIMAL != ''
   finish
 endif
 
+Plug 'arithran/vim-delete-hidden-buffers'
 " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 " Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}

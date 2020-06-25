@@ -349,3 +349,10 @@ tnoremap <C-b>2 <C-\><C-n><C-w>t<C-w>w
 tnoremap <C-b>3 <C-\><C-n><C-w>t<C-w>w<C-w>w
 tnoremap <C-b>4 <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w
 tnoremap <C-b>5 <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
+
+nnoremap <C-w>1 <C-w>t
+nnoremap <C-w>2 <C-w>t<C-w>w
+nnoremap <C-w>3 <C-w>t<C-w>w<C-w>w
+nnoremap <C-w>4 <C-w>t<C-w>w<C-w>w<C-w>w
+nnoremap <C-w>5 <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
+nnoremap <C-w>6 <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w<C-w>w
