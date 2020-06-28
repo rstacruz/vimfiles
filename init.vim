@@ -68,6 +68,7 @@ let g:coc_global_extensions = [
   \ 'coc-solargraph',
   \ 'coc-tailwindcss',
   \ 'coc-tsserver',
+  \ 'coc-emmet',
   \ ]
 
 " Plug 'vim-airline/vim-airline'
