@@ -6,6 +6,7 @@ let g:which_key_map.k = { 'name': '+Editor' }
 let g:which_key_map.g = { 'name': '+Git' }
 let g:which_key_map.t = { 'name': '+Tabs' }
 let g:which_key_map.c = { 'name': '+COC' }
+let g:which_key_map.w = { 'name': '+Window' }
 
 nnoremap <Enter> za
 nnoremap <S-Enter> zO
@@ -191,23 +192,19 @@ endif
 if exists(':term')
   if executable('nnn')
     let g:which_key_map.a.n = 'nnn'
-    let g:which_key_map.a.N = 'which_key_ignore'
-    nnoremap <silent> <leader>an :term EDITOR=e nnn<CR>
-    nnoremap <silent> <leader>aN :tabnew<CR><Esc>:term nnn<CR>
+    nnoremap <silent> <leader>an :tabnew<CR><Esc>:term nnn<CR>
   endif
 
   if executable('tig')
+    let g:which_key_map.a.t = 'tig log'
     let g:which_key_map.a.s = 'tig status'
-    let g:which_key_map.a.S = 'which_key_ignore'
-    nnoremap <silent> <leader>as :term tig status<CR>
-    nnoremap <silent> <leader>aS :tabnew<CR><Esc>:term tig status<CR>
+    nnoremap <silent> <leader>at :tabnew<CR><Esc>:term tig<CR>
+    nnoremap <silent> <leader>as :tabnew<CR><Esc>:term tig status<CR>
   endif
 
   if executable('ranger')
     let g:which_key_map.a.r = 'ranger'
-    let g:which_key_map.a.R = 'which_key_ignore'
-    nnoremap <silent> <leader>ar :term ranger<CR>
-    nnoremap <silent> <leader>aR :tabnew<CR><Esc>:term ranger<CR>
+    nnoremap <silent> <leader>ar :tabnew<CR><Esc>:term ranger<CR>
   endif
 endif
 
@@ -294,6 +291,20 @@ function keys#switch_to_term()
   exe win 'wincmd w'
 endfunction
 
+let g:which_key_map.w.h = 'Focus left'
+let g:which_key_map.w.j = 'Focus down'
+let g:which_key_map.w.k = 'Focus up'
+let g:which_key_map.w.l = 'Focus right'
+let g:which_key_map.w.n = 'New'
+let g:which_key_map.w.s = 'Split'
+let g:which_key_map.w.v = 'Split (vertical)'
+nnoremap <leader>wh <C-w>h
+nnoremap <leader>wj <C-w>j
+nnoremap <leader>wk <C-w>k
+nnoremap <leader>wl <C-w>l
+nnoremap <leader>wn <C-w>n
+nnoremap <leader>ws <C-w>s
+nnoremap <leader>wv <C-w>v
 
 " Kinda like ctrl-1 and ctrl-2
 let g:which_key_map.1 = 'which_key_ignore'
@@ -358,7 +369,12 @@ nnoremap <C-w>5 <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
 nnoremap <C-w>6 <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w<C-w>w
 
 " Right side smash
-inoremap =\ <Esc>
-inoremap \= <Esc>
-tnoremap =\ <C-\><Esc>
-tnoremap \= <C-\><Esc>
+" inoremap =\ <Esc>
+" inoremap \= <Esc>
+" tnoremap =\ <C-\><Esc>
+" tnoremap \= <C-\><Esc>
+
+" Quick access to command line with ;.
+" Press ; twice for the old behaviour.
+nnoremap ; :
+nnoremap ;; ;
