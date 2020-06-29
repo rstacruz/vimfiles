@@ -202,7 +202,7 @@ function! s:light_overrides() " {{{
   hi! Pmenu    ctermbg=254 ctermfg=4
   hi! PmenuSel ctermbg=4   ctermfg=0
 
-  hi! Gray ctermfg=248
+  hi! Gray ctermfg=246
 
   " File is the filename, Fuzzy is the highlight
   hi! ClapFile ctermfg=8

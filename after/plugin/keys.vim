@@ -180,16 +180,16 @@ if exists(':EasyAlign')
   nmap ga <Plug>(EasyAlign)
 endif
 
-if exists(':bnext')
-  let g:which_key_map.b = { 'name': '+Buffer' } 
-  let g:which_key_map.b.n = 'Next buffer'
-  let g:which_key_map.b.p = 'Previous buffer'
-  nnoremap <silent> <leader>bp :bprev<CR>
-  nnoremap <silent> <leader>bn :bnext<CR>
+" if exists(':bnext')
+"   let g:which_key_map.b = { 'name': '+Buffer' } 
+"   let g:which_key_map.b.n = 'Next buffer'
+"   let g:which_key_map.b.p = 'Previous buffer'
+"   nnoremap <silent> <leader>bp :bprev<CR>
+"   nnoremap <silent> <leader>bn :bnext<CR>
 
-  let g:which_key_map.b.l = 'List buffers'
-  nnoremap <silent> <leader>bl :Clap buffers<cr>
-endif
+"   let g:which_key_map.b.l = 'List buffers'
+"   nnoremap <silent> <leader>bl :Clap buffers<cr>
+" endif
 
 if exists(':term')
   if executable('nnn')

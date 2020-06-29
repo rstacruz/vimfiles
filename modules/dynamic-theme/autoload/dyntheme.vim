@@ -1,6 +1,7 @@
 function! dyntheme#is_light()
-  if filereadable($HOME.'/.cache/light') | return 1 | endif
-  if !filereadable($HOME.'/.cache/wal/colors') | return 0 | endif
+  let cachedir = dyntheme#get_cachedir()
+  if filereadable(cachedir . '/light') | return 1 | endif
+  if !filereadable(cachedir . '/wal/colors') | return 0 | endif
   let bgcolor = system("cat ".$HOME."/.cache/wal/colors | head -n 1")
   if matchstr(bgcolor, '#[efEF]') != "" | return 1 | endif
   return 0
@@ -16,9 +17,25 @@ function! dyntheme#restore_theme() " {{{
   endif
 endfunction " }}}
 
+function! dyntheme#get_cachedir() " {{{
+  if $XDG_CACHE_DIR != '' | return $XDG_CACHE_DIR | endif
+  return $HOME . '/.cache'
+endfunction
+
+function! dyntheme#persist_dark() " {{{
+  let cachedir = dyntheme#get_cachedir()
+  call delete('' . cachedir . '/light')
+endfunction " }}}
+
+function! dyntheme#persist_light() " {{{
+  let cachedir = dyntheme#get_cachedir()
+  call writefile([''], cachedir . '/light')
+endfunction " }}}
+
 function! dyntheme#dark_theme() " {{{
   set bg=dark
   color dyntheme
+  call dyntheme#persist_dark()
   doautocmd User DynthemeChange
   doautocmd User DynthemeDark
 endfunction
@@ -26,6 +43,7 @@ endfunction
 function! dyntheme#light_theme() " {{{
   set bg=light
   color dyntheme
+  call dyntheme#persist_light()
   doautocmd User DynthemeChange
   doautocmd User DynthemeLight
 endfunction
