@@ -84,10 +84,12 @@ elseif exists(':Buffers')
 endif
 
 if exists(':tabclose')
+  let g:which_key_map.t.s = 'Shell in new tab'
   let g:which_key_map.t.n = 'New tab'
   let g:which_key_map.t.c = 'Close tab'
   nnoremap <leader>tc :tabclose<cr>
   nnoremap <leader>tn :tabnew<cr><Esc>:Startify<cr>
+  nnoremap <leader>ts :tabnew<cr><Esc>:term<cr>
 endif
 
 if exists(':Startify')
@@ -192,7 +194,7 @@ endif
 if exists(':term')
   if executable('nnn')
     let g:which_key_map.a.n = 'nnn'
-    nnoremap <silent> <leader>an :tabnew<CR><Esc>:term nnn<CR>
+    nnoremap <silent> <leader>an :tabnew<CR><Esc>:term env EDITOR=nvr nnn<CR>
   endif
 
   if executable('tig')
@@ -296,15 +298,25 @@ let g:which_key_map.w.j = 'Focus down'
 let g:which_key_map.w.k = 'Focus up'
 let g:which_key_map.w.l = 'Focus right'
 let g:which_key_map.w.n = 'New'
-let g:which_key_map.w.s = 'Split'
-let g:which_key_map.w.v = 'Split (vertical)'
 nnoremap <leader>wh <C-w>h
 nnoremap <leader>wj <C-w>j
 nnoremap <leader>wk <C-w>k
 nnoremap <leader>wl <C-w>l
 nnoremap <leader>wn <C-w>n
-nnoremap <leader>ws <C-w>s
-nnoremap <leader>wv <C-w>v
+
+" ,ws is just like ,t
+let g:which_key_map.w.s = { 'name': '+Split-horiz' }
+let g:which_key_map.w.v = { 'name': '+Split-vert' }
+
+let g:which_key_map.w.s.s = 'Shell'
+let g:which_key_map.w.v.s = 'Shell'
+nnoremap <leader>wss <C-w>s:term<CR>
+nnoremap <leader>wvs <C-w>v<C-w>l:term<CR>
+
+let g:which_key_map.w.s['.'] = 'Split editor'
+let g:which_key_map.w.v['.'] = 'Split editor'
+nnoremap <leader>ws. <C-w>s
+nnoremap <leader>wv. <C-w>v<C-w>l
 
 " Kinda like ctrl-1 and ctrl-2
 let g:which_key_map.1 = 'which_key_ignore'
