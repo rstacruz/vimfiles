@@ -44,19 +44,20 @@ if $GIT_EXEC_PATH != '' || $VIM_MINIMAL != ''
   finish
 endif
 
-Plug 'arithran/vim-delete-hidden-buffers'
 " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 " Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 " Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/vim-slash'
+Plug 'arithran/vim-delete-hidden-buffers'
 Plug 'janko/vim-test'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/gv.vim'
 Plug 'junegunn/vim-easy-align'
-" Plug 'junegunn/vim-slash'
 Plug 'liuchengxu/vim-which-key'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'thinca/vim-visualstar'
 Plug 'wellle/context.vim'
 

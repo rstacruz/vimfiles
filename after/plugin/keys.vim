@@ -356,3 +356,9 @@ nnoremap <C-w>3 <C-w>t<C-w>w<C-w>w
 nnoremap <C-w>4 <C-w>t<C-w>w<C-w>w<C-w>w
 nnoremap <C-w>5 <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
 nnoremap <C-w>6 <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w<C-w>w
+
+" Right side smash
+inoremap =\ <Esc>
+inoremap \= <Esc>
+tnoremap =\ <C-\><Esc>
+tnoremap \= <C-\><Esc>
