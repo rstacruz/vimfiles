@@ -1,3 +1,10 @@
+let g:which_key_g = {}
+let g:which_key_g['%'] = 'Go to block start/end'
+let g:which_key_g.c = 'Comment'
+let g:which_key_g.cc = 'Comment line'
+let g:which_key_g.a = 'Align'
+let g:which_key_g.x = 'which_key_ignore'
+
 let g:which_key_map = {}
 let g:which_key_map.f = { 'name': '+File' }
 let g:which_key_map.a = { 'name': '+Apps' }
@@ -65,14 +72,14 @@ if exists(':GV')
 endif
 
 if exists(':Clap')
-  let g:which_key_map.k.b = 'List buffers'
+  let g:which_key_map.k.b = 'List buffers...'
   let g:which_key_map.k.h = 'History'
   nnoremap <leader>kb :Clap buffers<cr>
   nnoremap <leader>kh :Clap history<cr>
 
-  let g:which_key_map.f.r = 'Recent files'
-  let g:which_key_map.f.f = 'Files'
-  let g:which_key_map.f.g = 'Modified files'
+  let g:which_key_map.f.r = 'List recent files...'
+  let g:which_key_map.f.f = 'List files...'
+  let g:which_key_map.f.g = 'List modified files...'
   nnoremap <leader>fr :Clap history<cr>
   nnoremap <leader>ff :Clap files<cr>
   nnoremap <leader>fg :Clap git_diff_files<cr>
@@ -165,8 +172,9 @@ endif
 " endif
 
 " Switch focus
-nnoremap <tab>      <C-w>w
-nnoremap <s-tab>    <C-w>W
+" not a good thing to remap because it is also used as <C-i>
+" nnoremap <tab>      <C-w>w
+" nnoremap <s-tab>    <C-w>W
 
 if exists(':Goyo')
   let g:which_key_map.k.z = 'Toggle zen mode'
@@ -222,23 +230,26 @@ if exists(':CocAction')
   inoremap <silent><expr> <c-space> coc#refresh()
 
   " Go to...
+  let g:which_key_g.d = 'Coc: go to definition'
+  let g:which_key_g.y = 'Coc: type definition'
+  let g:which_key_g.i = 'Coc: implementation'
+  let g:which_key_g.r = 'Coc: references'
   nmap <silent> gd <Plug>(coc-definition)
   nmap <silent> gy <Plug>(coc-type-definition)
   nmap <silent> gi <Plug>(coc-implementation)
   nmap <silent> gr <Plug>(coc-references)
 
   " Hover
+  let g:which_key_g.h = 'Coc: hover'
   nnoremap <silent> gh :call CocActionAsync('highlight')<CR>:call CocAction('doHover')<CR>
 
   " format region
+  let g:which_key_g.f = 'Coc: format'
   nnoremap <leader>cf :call CocAction('format')<CR>
   vmap <leader>cf <Plug>(coc-format-selected)
 
-  " code action
-  xmap <leader>ca <Plug>(coc-codeaction-selected)
-  nmap <leader>ca <Plug>(coc-codeaction-selected)
-
   " like ctrl-dot in vscode
+  let g:which_key_g.0 = 'Coc: action...'
   vnoremap g0 :CocAction<cr>
   nnoremap g0 :CocAction<cr>
 
