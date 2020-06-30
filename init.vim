@@ -61,15 +61,17 @@ Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'thinca/vim-visualstar'
 Plug 'wellle/context.vim'
 
+Plug 'SirVer/ultisnips'
+
 let g:coc_global_extensions = [
   \ 'coc-css',
   \ 'coc-json',
   \ 'coc-prettier',
-  \ 'coc-snippets',
   \ 'coc-solargraph',
   \ 'coc-tailwindcss',
   \ 'coc-tsserver',
   \ 'coc-emmet',
+  \ 'coc-ultisnips',
   \ ]
 
 " Plug 'vim-airline/vim-airline'

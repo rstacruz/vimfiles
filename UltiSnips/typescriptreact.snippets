@@ -1,0 +1,54 @@
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+extends javascript
+
+snippet ir "import React from 'react'" b
+import React from 'react'
+
+endsnippet
+
+snippet ic "import CSS from './x.module.css'" b
+import CSS from './`!p snip.rv = snip.basename`.module.css'
+
+endsnippet
+
+snippet rfc "React component (function Hello { ... })" b
+function ${1:`!p snip.rv = snip.basename`}(props: {}) {
+	return (
+		<div className={CSS.root}>
+			<pre>{JSON.stringify(props, null, 2)}</pre>
+		</div>
+	)
+}
+endsnippet
+
+snippet crn "children?: React.ReactNode" b
+children?: React.ReactNode
+endsnippet
+
+
+# snippet .rfc "React component template (full file)" b
+# import React from 'react'
+# import CSS from './$1.module.css'
+
+# type Props = {
+# 	title: string
+# }
+
+# const ${1:`!p snip.rv = snip.basename`} = (props: Props) => {
+# 	return (
+# 		<div className={CSS.root}>
+# 			<pre>{JSON.stringify(props, null, 2)}</pre>
+# 		</div>
+# 	)
+# }
+
+# export default $1
+# endsnippet
+
+# snippet tp "interface Props" b
+# type Props = {
+# 	children: React.ReactNode
+# 	className?: string
+# }
+
+# endsnippet

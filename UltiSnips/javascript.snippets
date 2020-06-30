@@ -1,0 +1,29 @@
+# https://github.com/honza/vim-snippets/blob/master/UltiSnips/javascript_react.snippets
+# https://github.com/honza/vim-snippets/blob/master/UltiSnips/javascript.snippets
+
+snippet ed "export default" b
+export default $0
+endsnippet
+
+snippet ex "export" b
+export $0
+endsnippet
+
+snippet x[ "export { ... }" b
+export { $0 }
+endsnippet
+
+snippet fn "function () {}" b
+function ${1:name}() { $0
+}
+endsnippet
+
+snippet re "return" b
+return $0
+endsnippet
+
+snippet r[ "return (...)" b
+return (
+	$0
+)
+endsnippet

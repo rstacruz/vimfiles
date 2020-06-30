@@ -1,0 +1,17 @@
+snippet canary "Canary version"
+"0.0.0.#{\`git show-ref HEAD\`.strip[0..8]}".freeze
+endsnippet
+
+snippet frozen-string-literal "frozen_string_literal: true" b
+# frozen_string_literal: true
+
+endsnippet
+
+snippet fsl "frozen_string_literal: true" b
+# frozen_string_literal: true
+
+endsnippet
+
+snippet pry "binding.pry" b
+binding.pry
+endsnippet
