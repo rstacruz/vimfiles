@@ -10,8 +10,9 @@ nnoremap <silent> <leader> :<c-u>WhichKey ','<CR>
 vnoremap <silent> <leader> :<c-u>WhichKeyVisual ','<CR>
 
 " Map for <g>
-nnoremap <silent> g :<c-u>WhichKey 'g'<CR>
-vnoremap <silent> g :<c-u>WhichKeyVisual 'g'<CR>
+" messes with gf, meh
+" nnoremap <silent> g :<c-u>WhichKey 'g'<CR>
+" vnoremap <silent> g :<c-u>WhichKeyVisual 'g'<CR>
 
 " Default is  →
 let g:which_key_sep = '·'
