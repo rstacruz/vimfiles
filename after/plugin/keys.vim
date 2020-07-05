@@ -155,7 +155,7 @@ endif
 
 if exists(':NERDTree')
   nnoremap _ :silent! NERDTreeFind<CR>
-  nnoremap - :exec 'e '.expand('%:h')<CR>
+  nnoremap <silent> - :exec 'e '.expand('%:h')<CR>
   " nnoremap _ :Glcd<CR>:silent! NERDTreeFind<CR>
 endif
 

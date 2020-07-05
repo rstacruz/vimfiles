@@ -44,11 +44,6 @@ if $GIT_EXEC_PATH != '' || $VIM_MINIMAL != ''
   finish
 endif
 
-" Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-" Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
-" Plug 'junegunn/fzf.vim'
-" Plug 'junegunn/vim-slash'
 Plug 'arithran/vim-delete-hidden-buffers'
 Plug 'janko/vim-test'
 Plug 'junegunn/goyo.vim'
@@ -57,11 +52,13 @@ Plug 'junegunn/vim-easy-align'
 Plug 'liuchengxu/vim-which-key'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+Plug 'SirVer/ultisnips'
 Plug 'thinca/vim-visualstar'
 Plug 'wellle/context.vim'
 
-Plug 'SirVer/ultisnips'
+if has('nvim')
+  Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+endif
 
 let g:coc_global_extensions = [
   \ 'coc-css',
@@ -74,8 +71,14 @@ let g:coc_global_extensions = [
   \ 'coc-ultisnips',
   \ ]
 
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
 Plug 'itchyny/lightline.vim'
 Plug 'ferrine/md-img-paste.vim'
 call plug#end()
+
+" Used to use, but don't anymore:
+" Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+" Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+" Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/vim-slash'
+
