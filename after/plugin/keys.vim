@@ -154,8 +154,9 @@ if exists(':TestNearest')
 endif
 
 if exists(':NERDTree')
-  nnoremap - :silent! NERDTreeFind<CR>
-  nnoremap _ :Glcd<CR>:silent! NERDTreeFind<CR>
+  nnoremap _ :silent! NERDTreeFind<CR>
+  nnoremap - :exec 'e '.expand('%:h')<CR>
+  " nnoremap _ :Glcd<CR>:silent! NERDTreeFind<CR>
 endif
 
 if exists(':GG')
