@@ -55,14 +55,14 @@ endfunction
 function s:set_light()
   " call s:set_theme('one')
   " call s:set_theme('PaperColor')
-  call s:set_theme('nord')
+  call s:set_theme('one')
 endfunction
 
 function s:set_dark()
   " call s:set_theme('darcula')
   " call s:set_theme('wombat')
   " call s:set_theme('selenized_dark')
-  call s:set_theme('nord')
+  call s:set_theme('powerline')
 endfunction
 
 autocmd User DynthemeLight call s:set_light()
