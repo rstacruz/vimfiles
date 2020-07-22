@@ -178,6 +178,8 @@ function! s:dark_overrides() " {{{
   hi! StatusLineNC cterm=none ctermbg=234 ctermfg=236
 
   hi! Gray ctermfg=242
+
+  hi! VertSplit ctermbg=234 ctermfg=234
 endfunction " }}}
 
 function! s:light_overrides() " {{{

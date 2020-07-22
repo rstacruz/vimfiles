@@ -1,7 +1,7 @@
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 set noruler
-" set nonumber
+set nonumber
 set noshowmode " no -- INSERT -- in the status line
 
 if has('nvim')

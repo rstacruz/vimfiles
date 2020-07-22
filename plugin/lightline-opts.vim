@@ -62,7 +62,7 @@ function s:set_dark()
   " call s:set_theme('darcula')
   " call s:set_theme('wombat')
   " call s:set_theme('selenized_dark')
-  call s:set_theme('powerline')
+  call s:set_theme('powerlineish')
 endfunction
 
 autocmd User DynthemeLight call s:set_light()
