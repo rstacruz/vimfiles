@@ -54,8 +54,7 @@ endfunction
 
 function s:set_light()
   " call s:set_theme('one')
-  " call s:set_theme('PaperColor')
-  call s:set_theme('one')
+  call s:set_theme('PaperColor')
 endfunction
 
 function s:set_dark()
