@@ -154,7 +154,7 @@ if exists(':TestNearest')
 endif
 
 if exists(':CHADopen')
-  nnoremap _ :silent! :CHADopen<CR>
+  nnoremap _ :silent! :Glcd<CR>:CHADopen<CR>
   nnoremap <silent> - :CHADopen<CR>
   " nnoremap _ :Glcd<CR>:silent! NERDTreeFind<CR>
 elseif exists(':NERDTree')
