@@ -22,7 +22,8 @@ Plug vim . '/modules/synstack'
 " Plugins available in minimal mode
 Plug 'cweagans/vim-taskpaper'
 Plug 'freitass/todo.txt-vim'
-Plug 'preservim/nerdtree'
+" Plug 'preservim/nerdtree'
+Plug 'ms-jpq/chadtree', { 'branch': 'chad', 'do': ':UpdateRemotePlugins' }
 Plug 'rstacruz/vim-opinion'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'

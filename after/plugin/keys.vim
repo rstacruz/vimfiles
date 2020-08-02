@@ -153,7 +153,11 @@ if exists(':TestNearest')
   " nmap <silent> <leader>ss :TestSuite<CR><C-W>p
 endif
 
-if exists(':NERDTree')
+if exists(':CHADopen')
+  nnoremap _ :silent! :CHADopen<CR>
+  nnoremap <silent> - :CHADopen<CR>
+  " nnoremap _ :Glcd<CR>:silent! NERDTreeFind<CR>
+elseif exists(':NERDTree')
   nnoremap _ :silent! NERDTreeFind<CR>
   nnoremap <silent> - :exec 'e '.expand('%:h')<CR>
   " nnoremap _ :Glcd<CR>:silent! NERDTreeFind<CR>
