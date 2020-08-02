@@ -36,14 +36,14 @@ function! dyntheme#dark_theme() " {{{
   set bg=dark
   color dyntheme
   call dyntheme#persist_dark()
-  doautocmd User DynthemeChange
-  doautocmd User DynthemeDark
+  silent! doautocmd User DynthemeChange
+  silent! doautocmd User DynthemeDark
 endfunction
 
 function! dyntheme#light_theme() " {{{
   set bg=light
   color dyntheme
   call dyntheme#persist_light()
-  doautocmd User DynthemeChange
-  doautocmd User DynthemeLight
+  silent! doautocmd User DynthemeChange
+  silent! doautocmd User DynthemeLight
 endfunction
