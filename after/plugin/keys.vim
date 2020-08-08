@@ -364,15 +364,23 @@ tnoremap <F4> <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w
 tnoremap <F5> <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
 tnoremap <F6> <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w<C-w>w
 
-nnoremap <S-F1> gt
-nnoremap <S-F2> gT
+" Switch panes
+nnoremap [1 <C-w>t
+nnoremap [2 <C-w>t<C-w>w
+nnoremap [3 <C-w>t<C-w>w<C-w>w
+nnoremap [4 <C-w>t<C-w>w<C-w>w<C-w>w
+nnoremap [5 <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
+nnoremap [6 <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w<C-w>w
+nnoremap [0 <C-w>b
 
-nnoremap <leader>1 <C-w>t
-nnoremap <leader>2 <C-w>t<C-w>w
-nnoremap <leader>3 <C-w>t<C-w>w<C-w>w
-nnoremap <leader>4 <C-w>t<C-w>w<C-w>w<C-w>w
-nnoremap <leader>5 <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
+" Switch tabs
+nnoremap ]1 1gt
+nnoremap ]2 2gt
+nnoremap ]3 3gt
+nnoremap ]4 4gt
+nnoremap ]5 5gt
 
+" Switch panes
 nnoremap <C-b>1 <C-w>t
 nnoremap <C-b>2 <C-w>t<C-w>w
 nnoremap <C-b>3 <C-w>t<C-w>w<C-w>w
