@@ -365,13 +365,20 @@ tnoremap <F5> <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
 tnoremap <F6> <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w<C-w>w
 
 " Switch panes
-nnoremap [1 <C-w>t
-nnoremap [2 <C-w>t<C-w>w
-nnoremap [3 <C-w>t<C-w>w<C-w>w
-nnoremap [4 <C-w>t<C-w>w<C-w>w<C-w>w
-nnoremap [5 <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
-nnoremap [6 <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w<C-w>w
 nnoremap [0 <C-w>b
+nnoremap [1 :1wincmd w<cr>
+nnoremap [2 :2wincmd w<cr>
+nnoremap [3 :3wincmd w<cr>
+nnoremap [4 :4wincmd w<cr>
+nnoremap [5 :5wincmd w<cr>
+nnoremap [6 :6wincmd w<cr>
+nnoremap <C-w>1 :1wincmd w<cr>
+nnoremap <C-w>2 :2wincmd w<cr>
+nnoremap <C-w>3 :3wincmd w<cr>
+nnoremap <C-w>4 :4wincmd w<cr>
+nnoremap <C-w>5 :5wincmd w<cr>
+nnoremap <C-w>6 :6wincmd w<cr>
+
 
 " Switch tabs
 nnoremap ]1 1gt
@@ -396,13 +403,6 @@ tnoremap <C-b>2 <C-\><C-n><C-w>t<C-w>w
 tnoremap <C-b>3 <C-\><C-n><C-w>t<C-w>w<C-w>w
 tnoremap <C-b>4 <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w
 tnoremap <C-b>5 <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
-
-nnoremap <C-w>1 <C-w>t
-nnoremap <C-w>2 <C-w>t<C-w>w
-nnoremap <C-w>3 <C-w>t<C-w>w<C-w>w
-nnoremap <C-w>4 <C-w>t<C-w>w<C-w>w<C-w>w
-nnoremap <C-w>5 <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
-nnoremap <C-w>6 <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w<C-w>w
 
 " Right side smash
 " inoremap =\ <Esc>
