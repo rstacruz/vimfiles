@@ -53,3 +53,8 @@ function! MkdnConvertFigures()
   silent! %s#<figure class='cover'>\n\(.*\)\n</figure>#<Figure cover>\r\1\r</Figure>#g
   silent! %s#<figure class='table'>\n\(.*\)\n</figure>#<Figure table>\r\1\r</Figure>#g
 endfunction
+
+function! GitNotesSync()
+  tabnew
+  term
+endfunction
