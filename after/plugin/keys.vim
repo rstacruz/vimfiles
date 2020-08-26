@@ -343,41 +343,42 @@ let g:which_key_map.5 = 'which_key_ignore'
 let g:which_key_map.6 = 'which_key_ignore'
 let g:which_key_map.7 = 'which_key_ignore'
 
-nnoremap <F1> <C-w>t
-nnoremap <F2> <C-w>t<C-w>w
-nnoremap <F3> <C-w>t<C-w>w<C-w>w
-nnoremap <F4> <C-w>t<C-w>w<C-w>w<C-w>w
-nnoremap <F5> <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
-nnoremap <F6> <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w<C-w>w
+nnoremap <F1> :1wincmd w<cr>
+nnoremap <F2> :2wincmd w<cr>
+nnoremap <F3> :3wincmd w<cr>
+nnoremap <F4> :4wincmd w<cr>
+nnoremap <F5> :5wincmd w<cr>
+nnoremap <F6> :6wincmd w<cr>
 
-inoremap <F1> <Esc><C-w>t
-inoremap <F2> <Esc><C-w>t<C-w>w
-inoremap <F3> <Esc><C-w>t<C-w>w<C-w>w
-inoremap <F4> <Esc><C-w>t<C-w>w<C-w>w<C-w>w
-inoremap <F5> <Esc><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
-inoremap <F6> <Esc><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w<C-w>w
+inoremap <F1> <Esc>:1wincmd w<cr>
+inoremap <F2> <Esc>:2wincmd w<cr>
+inoremap <F3> <Esc>:4wincmd w<cr>
+inoremap <F4> <Esc>:4wincmd w<cr>
+inoremap <F5> <Esc>:5wincmd w<cr>
+inoremap <F6> <Esc>:6wincmd w<cr>
 
-tnoremap <F1> <C-\><C-n><C-w>t
-tnoremap <F2> <C-\><C-n><C-w>t<C-w>w
-tnoremap <F3> <C-\><C-n><C-w>t<C-w>w<C-w>w
-tnoremap <F4> <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w
-tnoremap <F5> <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
-tnoremap <F6> <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w<C-w>w
+tnoremap <F1> <C-\><C-n>:1wincmd w<cr>
+tnoremap <F2> <C-\><C-n>:2wincmd w<cr>
+tnoremap <F3> <C-\><C-n>:3wincmd w<cr>
+tnoremap <F4> <C-\><C-n>:4wincmd w<cr>
+tnoremap <F5> <C-\><C-n>:5wincmd w<cr>
+tnoremap <F6> <C-\><C-n>:6wincmd w<cr>
 
 " Switch panes
-nnoremap [0 <C-w>b
-nnoremap [1 :1wincmd w<cr>
-nnoremap [2 :2wincmd w<cr>
-nnoremap [3 :3wincmd w<cr>
-nnoremap [4 :4wincmd w<cr>
-nnoremap [5 :5wincmd w<cr>
-nnoremap [6 :6wincmd w<cr>
-nnoremap <C-w>1 :1wincmd w<cr>
-nnoremap <C-w>2 :2wincmd w<cr>
-nnoremap <C-w>3 :3wincmd w<cr>
-nnoremap <C-w>4 :4wincmd w<cr>
-nnoremap <C-w>5 :5wincmd w<cr>
-nnoremap <C-w>6 :6wincmd w<cr>
+nnoremap <silent> <leader>0 <C-w>b
+nnoremap <silent> <leader>1 :1wincmd w<cr>
+nnoremap <silent> <leader>2 :2wincmd w<cr>
+nnoremap <silent> <leader>3 :3wincmd w<cr>
+nnoremap <silent> <leader>4 :4wincmd w<cr>
+nnoremap <silent> <leader>5 :5wincmd w<cr>
+nnoremap <silent> <leader>6 :6wincmd w<cr>
+nnoremap <silent> <C-w>0 <C-w>b
+nnoremap <silent> <C-w>1 :silent 1wincmd w<cr>
+nnoremap <silent> <C-w>2 :silent 2wincmd w<cr>
+nnoremap <silent> <C-w>3 :silent 3wincmd w<cr>
+nnoremap <silent> <C-w>4 :silent 4wincmd w<cr>
+nnoremap <silent> <C-w>5 :silent 5wincmd w<cr>
+nnoremap <silent> <C-w>6 :silent 6wincmd w<cr>
 
 
 " Switch tabs
