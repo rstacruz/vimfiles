@@ -96,6 +96,9 @@ function! s:base_overrides() " {{{
   hi! link taskpaperCancelled Muted
   hi! link taskpaperListItem  Keyword
 
+  " HTML/Markdown
+  hi! link htmlLink Constant
+
   " The '-- INSERT --' mode line
   hi! link ModeMsg Muted
 
