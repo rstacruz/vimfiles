@@ -78,16 +78,23 @@ if exists(':Clap')
   nnoremap <leader>kh :Clap history<cr>
 
   let g:which_key_map.f.r = 'List recent files...'
-  let g:which_key_map.f.f = 'List files...'
   let g:which_key_map.f.g = 'List modified files...'
   nnoremap <leader>fr :Clap history<cr>
-  nnoremap <leader>ff :Clap files<cr>
   nnoremap <leader>fg :Clap git_diff_files<cr>
 
   nnoremap <C-p> :Clap files<cr>
 elseif exists(':Buffers')
   let g:which_key_map.k.b = 'List buffers'
   nnoremap <leader>kb :Buffers<cr>
+endif
+
+if exists('*OpenOrCreateFile')
+  let g:which_key_map.f.f = 'Open or create file'
+  nnoremap <silent> <leader>ff :call OpenOrCreateFile()<cr>
+
+  " Overrides gF, which normally accounts for line numbers
+  nnoremap <silent> gF :call OpenOrCreateFile()<cr>
+  nnoremap <silent> <C-w>F :call OpenOrCreateFile('split')<cr>
 endif
 
 if exists(':tabclose')

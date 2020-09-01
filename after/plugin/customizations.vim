@@ -55,7 +55,9 @@ function! MkdnConvertFigures()
   silent! %s#<figure class='table'>\n\(.*\)\n</figure>#<Figure table>\r\1\r</Figure>#g
 endfunction
 
-function! GitNotesSync()
-  tabnew
-  term
+" Like 'gf' but creates a file if it's not there
+function! OpenOrCreateFile(...)
+  let fname=expand('%:h') . '/' . expand('<cfile>')
+  let cmd=(a:0 == '' ? 'e' : a:0)
+  silent! exec cmd . ' ' . fname
 endfunction
