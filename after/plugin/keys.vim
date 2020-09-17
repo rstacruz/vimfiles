@@ -82,10 +82,14 @@ if exists(':Clap')
   nnoremap <leader>fr :Clap history<cr>
   nnoremap <leader>fg :Clap git_diff_files<cr>
 
-  nnoremap <C-p> :Clap files<cr>
+  " nnoremap <C-p> :Clap files<cr>
 elseif exists(':Buffers')
   let g:which_key_map.k.b = 'List buffers'
   nnoremap <leader>kb :Buffers<cr>
+endif
+
+if exists(':FZF')
+  nnoremap <C-p> :FZF<cr>
 endif
 
 if exists('*OpenOrCreateFile')
