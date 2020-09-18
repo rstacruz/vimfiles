@@ -28,11 +28,11 @@ Plug 'rstacruz/vim-opinion'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-fugitive' " git extensions
+Plug 'tpope/vim-rhubarb' " enable :Gbrowse for Git
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-unimpaired' " 'yon' to toggle line numbers, and more
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 if has('nvim')
