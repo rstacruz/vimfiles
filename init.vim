@@ -21,7 +21,7 @@ Plug vim . '/modules/synstack'
 
 " Plugins available in minimal mode
 Plug 'cweagans/vim-taskpaper'
-Plug 'freitass/todo.txt-vim'
+" Plug 'freitass/todo.txt-vim'
 " Plug 'preservim/nerdtree'
 Plug 'ms-jpq/chadtree', { 'branch': 'chad', 'do': ':UpdateRemotePlugins' }
 Plug 'rstacruz/vim-opinion'
@@ -46,20 +46,20 @@ if $GIT_EXEC_PATH != '' || $VIM_MINIMAL != ''
 endif
 
 Plug 'arithran/vim-delete-hidden-buffers'
-Plug 'janko/vim-test'
+" Plug 'janko/vim-test'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/gv.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'liuchengxu/vim-which-key'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'thinca/vim-visualstar'
 Plug 'wellle/context.vim'
 
-if has('nvim')
-  Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
-endif
+" if has('nvim')
+"   Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+" endif
 
 let g:coc_global_extensions = [
   \ 'coc-css',
