@@ -79,7 +79,7 @@ call plug#end()
 " Used to use, but don't anymore:
 " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-" Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
-" Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+Plug 'junegunn/fzf.vim'
 " Plug 'junegunn/vim-slash'
 
