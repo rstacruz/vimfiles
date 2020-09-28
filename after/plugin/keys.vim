@@ -353,6 +353,7 @@ let g:which_key_map.4 = 'which_key_ignore'
 let g:which_key_map.5 = 'which_key_ignore'
 let g:which_key_map.6 = 'which_key_ignore'
 let g:which_key_map.7 = 'which_key_ignore'
+let g:which_key_map.0 = 'which_key_ignore'
 
 nnoremap <F1> :1wincmd w<cr>
 nnoremap <F2> :2wincmd w<cr>

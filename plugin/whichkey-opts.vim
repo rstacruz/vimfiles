@@ -3,7 +3,7 @@ if globpath(&rtp, "autoload/which_key.vim") == "" | finish | endif
 call which_key#register(',', 'g:which_key_map')
 call which_key#register('g', 'g:which_key_g')
 
-set timeoutlen=200
+set timeoutlen=20
 
 " Map for leader
 nnoremap <silent> <leader> :<c-u>WhichKey ','<CR>
@@ -31,4 +31,4 @@ let g:which_key_fallback_to_native_key = 1
 
 " Vertical mode
 let g:which_key_floating_opts = { 'col': '-3', 'row': '+2', 'width': '30' }
-let g:which_key_vertical = 1
+let g:which_key_vertical = 0
