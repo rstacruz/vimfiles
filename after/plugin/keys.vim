@@ -424,6 +424,5 @@ tnoremap <C-b>5 <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
 " tnoremap \= <C-\><Esc>
 
 " Quick access to command line with ;.
-" Press ; twice for the old behaviour.
 nnoremap ; :
-nnoremap ;; ;
+nnoremap \; ;
