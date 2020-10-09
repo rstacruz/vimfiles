@@ -58,6 +58,6 @@ endfunction
 " Like 'gf' but creates a file if it's not there
 function! OpenOrCreateFile(...)
   let fname=expand('%:h') . '/' . expand('<cfile>')
-  let cmd=(a:0 == '' ? 'e' : a:0)
+  let cmd=(a:0 == '' ? 'e' : 'split')
   silent! exec cmd . ' ' . fname
 endfunction

@@ -95,6 +95,8 @@ endif
 if exists('*OpenOrCreateFile')
   let g:which_key_map.f.f = 'Open or create file'
   nnoremap <silent> <leader>ff :call OpenOrCreateFile()<cr>
+  let g:which_key_map.f.F = 'Open or create file (split)'
+  nnoremap <silent> <leader>fF :call OpenOrCreateFile('split')<cr>
 
   " Overrides gF, which normally accounts for line numbers
   nnoremap <silent> gF :call OpenOrCreateFile()<cr>
