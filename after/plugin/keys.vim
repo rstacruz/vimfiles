@@ -425,4 +425,5 @@ tnoremap <C-b>5 <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
 
 " Quick access to command line with ;.
 nnoremap ; :
-nnoremap \; ;
+let g:which_key_map[';'] = 'which_key_ignore'
+nnoremap <leader>; ;
