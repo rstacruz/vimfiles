@@ -26,6 +26,7 @@ augroup customisations
   au FileType markdown setlocal wrap linebreak nonumber norelativenumber
   au FileType yaml setlocal foldmethod=indent
   au FileType taskpaper setlocal isfname+=32,[,],' ts=2 wrap
+  au! BufRead,BufNewFile *.ttxt setfiletype taskpaper
 augroup END
 
 " No status when editing Git commit messages
