@@ -89,7 +89,7 @@ elseif exists(':Buffers')
 endif
 
 if exists(':FZF')
-  nnoremap <C-p> :FZF<cr>
+  nnoremap <C-p> :Files<cr>
 endif
 
 if exists('*OpenOrCreateFile')
