@@ -259,7 +259,8 @@ if exists(':CocAction')
 
   " Hover
   let g:which_key_g.h = 'Coc: hover'
-  nnoremap <silent> gh :call CocActionAsync('highlight')<CR>:call CocAction('doHover')<CR>
+  " nnoremap <silent> gh :call CocActionAsync('highlight')<CR>:call CocAction('soHover')<CR>
+  nnoremap <silent> gh :call CocActionAsync('doHover')<CR>
 
   " format region
   let g:which_key_g.f = 'Coc: format'
