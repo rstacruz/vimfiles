@@ -7,6 +7,13 @@ else
 end
 
 call plug#begin(vim . '/vendor')
+Plug 'sheerun/vim-polyglot'
+
+" Don't load the other plugins for git commit
+if $GIT_EXEC_PATH != ''
+  call plug#end()
+  finish
+endif
 
 " Home-made modules
 Plug vim . '/modules/auto-cursorline'
@@ -25,7 +32,6 @@ Plug 'cweagans/vim-taskpaper'
 " Plug 'preservim/nerdtree'
 Plug 'ms-jpq/chadtree', { 'branch': 'chad', 'do': ':UpdateRemotePlugins' }
 Plug 'rstacruz/vim-opinion'
-Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive' " git extensions
@@ -35,14 +41,14 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired' " 'yon' to toggle line numbers, and more
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-if has('nvim')
-  Plug 'liuchengxu/vim-clap'
-endif
-
 " Don't load the other plugins
-if $GIT_EXEC_PATH != '' || $VIM_MINIMAL != ''
+if $VIM_MINIMAL != ''
   call plug#end()
   finish
+endif
+
+if has('nvim')
+  Plug 'liuchengxu/vim-clap'
 endif
 
 Plug 'arithran/vim-delete-hidden-buffers'
