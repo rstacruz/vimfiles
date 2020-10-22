@@ -25,8 +25,11 @@ augroup customisations
   au FileType pullrequest setlocal statusline=──\ Git\ pull\ request\ ──
   au FileType markdown setlocal wrap linebreak nonumber norelativenumber
   au FileType yaml setlocal foldmethod=indent
+  " Allow spaces in filenames to 'gf' inside taskpaper files
   au FileType taskpaper setlocal isfname+=32,[,],' ts=2 wrap
   au! BufRead,BufNewFile *.ttxt setfiletype taskpaper
+  " Allow auto-completion of beancount accounts (eg, Assets:Bank-Stuff)
+  au! BufRead,BufNewFile *.beancount setlocal iskeyword+=-,58
 augroup END
 
 " No status when editing Git commit messages
