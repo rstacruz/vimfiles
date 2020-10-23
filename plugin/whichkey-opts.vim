@@ -1,7 +1,6 @@
 if globpath(&rtp, "autoload/which_key.vim") == "" | finish | endif
 
 call which_key#register(',', 'g:which_key_map')
-call which_key#register('g', 'g:which_key_g')
 
 set timeoutlen=100
 
