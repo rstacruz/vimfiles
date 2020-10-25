@@ -235,6 +235,7 @@ if exists(':CocAction')
   let g:which_key_map.c.f = 'Format'
   let g:which_key_map.c.r = 'Rename symbol...'
   let g:which_key_map.c.a = 'Actions'
+  let g:which_key_map.c.h = 'Show hover'
   let g:which_key_map.c.s = 'Edit snippets'
 
   " https://github.com/neoclide/coc.nvim#example-vim-configuration
@@ -249,6 +250,7 @@ if exists(':CocAction')
 
   " Hover
   nnoremap <silent> gh :call CocActionAsync('doHover')<CR>
+  nnoremap <silent> <leader>ch :call CocActionAsync('doHover')<CR>
 
   " format region
   nnoremap <leader>cf :call CocAction('format')<CR>
@@ -257,11 +259,14 @@ if exists(':CocAction')
   " like ctrl-dot in vscode
   vnoremap g0 :CocAction<cr>
   nnoremap g0 :CocAction<cr>
+  vnoremap gA :CocAction<cr>
+  nnoremap gA :CocAction<cr>
 
   " Rename
   nmap <leader>cr <Plug>(coc-rename)
   xmap <leader>cr <Plug>(coc-rename)
 
+  nnoremap <leader>ca :CocAction<CR>
   nnoremap <leader>cc :CocCommand<CR>
   nnoremap <leader>cd :CocList diagnostics<CR>
   nnoremap <leader>cs :CocList snippets<CR>

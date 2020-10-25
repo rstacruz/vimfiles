@@ -60,8 +60,10 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 " Plug 'SirVer/ultisnips'
+Plug 'nathangrigg/vim-beancount'
 Plug 'thinca/vim-visualstar'
 Plug 'wellle/context.vim'
+
 
 " if has('nvim')
 "   Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
