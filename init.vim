@@ -84,6 +84,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'ferrine/md-img-paste.vim'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
+Plug 't9md/vim-choosewin'
 call plug#end()
 
 " Used to use, but don't anymore:

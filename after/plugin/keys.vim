@@ -421,3 +421,16 @@ tnoremap <C-b>5 <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
 nnoremap ; :
 let g:which_key_map[';'] = 'which_key_ignore'
 nnoremap <leader>; ;
+
+" https://vim.fandom.com/wiki/Using_vim_as_calculator
+ino <C-A> <C-O>y^<End> = <C-R>=<C-R>0<CR>
+
+if exists(':ChooseWin')
+  nmap <C-b>q <Plug>(choosewin)
+
+  let g:which_key_map.s = 'Switch to...'
+  let g:which_key_map.p = 'Switch to...'
+  nmap <leader>s <Plug>(choosewin)
+  nmap <leader>p <Plug>(choosewin)
+  nmap <Tab> <Plug>(choosewin)
+endif
