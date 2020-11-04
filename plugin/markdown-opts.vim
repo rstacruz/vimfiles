@@ -1,3 +1,6 @@
+" https://github.com/plasticboy/vim-markdown
+" This uses vim-markdown rather than vim-polyglot since folding and other
+" features work better there.
 let g:vim_markdown_fenced_languages = [
   \ 'ini=dosini',
   \ 'viml=vim',
@@ -7,11 +10,7 @@ let g:vim_markdown_fenced_languages = [
   \ 'js=javascriptreact',
   \ ]
 
-" https://github.com/plasticboy/vim-markdown
 let g:vim_markdown_conceal = 1
 let g:vim_markdown_conceal_code_blocks = 0
 
-augroup Vim
-  au!
-  au BufEnter *.md setlocal conceallevel=2
-augroup END
+let g:vim_markdown_folding_style_pythonic = 1

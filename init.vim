@@ -7,7 +7,9 @@ else
 end
 
 call plug#begin(vim . '/vendor')
+let g:polyglot_disabled = ['markdown']
 Plug 'sheerun/vim-polyglot'
+Plug 'plasticboy/vim-markdown'
 
 " Don't load the other plugins for git commit
 if $GIT_EXEC_PATH != ''
