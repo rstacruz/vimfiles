@@ -26,7 +26,7 @@ augroup customisations
   au FileType markdown setlocal wrap linebreak nonumber norelativenumber
   au FileType yaml setlocal foldmethod=indent
   " Allow spaces in filenames to 'gf' inside taskpaper files
-  au FileType taskpaper setlocal isfname+=32,[,],' ts=2 wrap
+  au FileType taskpaper setlocal isfname+=32,[,],' ts=2 nowrap
   au! BufRead,BufNewFile *.ttxt setfiletype taskpaper
   " Allow auto-completion of beancount accounts (eg, Assets:Bank-Stuff)
   au! BufRead,BufNewFile *.beancount setlocal iskeyword+=-,58
