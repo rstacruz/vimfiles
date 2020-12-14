@@ -76,4 +76,7 @@ augroup abbreviations
   au FileType text,markdown iabbrev <buffer> CMD ⌘
   au FileType text,markdown iabbrev <buffer> SPC ␣
   au FileType text,markdown iabbrev <buffer> BSPC ⌫
+  au FileType text,markdown iabbrev <buffer> ENT ↵
+  au FileType text,markdown iabbrev <buffer> ESC ⎋
+  " http://xahlee.info/comp/unicode_computing_symbols.html
 augroup END
