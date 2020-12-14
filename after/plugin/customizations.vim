@@ -65,3 +65,15 @@ function! OpenOrCreateFile(...)
   let cmd=(a:0 == '' ? 'e' : 'split')
   silent! exec cmd . ' ' . fname
 endfunction
+
+" Typo corrections
+augroup abbreviations
+  au FileType typescript,typescriptreact iabbrev <buffer> conts const
+  au FileType typescript,typescriptreact iabbrev <buffer> improt import
+  au FileType text,markdown iabbrev <buffer> SFT ⇧
+  au FileType text,markdown iabbrev <buffer> TAB ↹
+  au FileType text,markdown iabbrev <buffer> OPT ⌥
+  au FileType text,markdown iabbrev <buffer> CMD ⌘
+  au FileType text,markdown iabbrev <buffer> SPC ␣
+  au FileType text,markdown iabbrev <buffer> BSPC ⌫
+augroup END
