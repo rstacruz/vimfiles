@@ -72,11 +72,15 @@ augroup abbreviations
   au FileType typescript,typescriptreact iabbrev <buffer> improt import
   au FileType text,markdown iabbrev <buffer> SFT ⇧
   au FileType text,markdown iabbrev <buffer> TAB ↹
+  au FileType text,markdown iabbrev <buffer> FTAB ⇥
+  au FileType text,markdown iabbrev <buffer> BTAB ⇤
+  au FileType text,markdown iabbrev <buffer> CTL ⌃
   au FileType text,markdown iabbrev <buffer> OPT ⌥
   au FileType text,markdown iabbrev <buffer> CMD ⌘
   au FileType text,markdown iabbrev <buffer> SPC ␣
-  au FileType text,markdown iabbrev <buffer> BSPC ⌫
+  au FileType text,markdown iabbrev <buffer> BKS ⌫
   au FileType text,markdown iabbrev <buffer> ENT ↵
   au FileType text,markdown iabbrev <buffer> ESC ⎋
   " http://xahlee.info/comp/unicode_computing_symbols.html
+  " https://hub.espanso.org/packages/mac-symbols/
 augroup END
