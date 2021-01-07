@@ -1,5 +1,11 @@
-let g:choosewin_label = 'HTNGCRMWVZQJK'
-let g:choosewin_tablabel = 'AOEUID34567890'
+" Dvorak
+" let g:choosewin_label = 'HTNGCRMWVZQJK'
+" let g:choosewin_tablabel = 'AOEUID34567890'
+
+" Colemak
+let g:choosewin_label = 'NEILUYKHOVDCXZ'
+let g:choosewin_tablabel = 'ARSTGM34567890'
+
 let g:choosewin_overlay_enable = 1
 let g:choosewin_overlay_font_size = 'auto'
 let g:choosewin_return_on_single_win = 1
