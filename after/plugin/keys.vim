@@ -257,8 +257,6 @@ if exists(':CocAction')
   vmap <leader>cf <Plug>(coc-format-selected)
 
   " like ctrl-dot in vscode
-  vnoremap g0 :CocAction<cr>
-  nnoremap g0 :CocAction<cr>
   vnoremap gA :CocAction<cr>
   nnoremap gA :CocAction<cr>
 
@@ -314,10 +312,10 @@ function keys#switch_to_term()
   exe win 'wincmd w'
 endfunction
 
-let g:which_key_map.w.h = 'Focus left'
-let g:which_key_map.w.j = 'Focus down'
-let g:which_key_map.w.k = 'Focus up'
-let g:which_key_map.w.l = 'Focus right'
+let g:which_key_map.w.h = 'Focus <-'
+let g:which_key_map.w.j = 'Focus ↓'
+let g:which_key_map.w.k = 'Focus ↑'
+let g:which_key_map.w.l = 'Focus →'
 let g:which_key_map.w.n = 'New'
 nnoremap <leader>wh <C-w>h
 nnoremap <leader>wj <C-w>j
@@ -325,19 +323,39 @@ nnoremap <leader>wk <C-w>k
 nnoremap <leader>wl <C-w>l
 nnoremap <leader>wn <C-w>n
 
-" ,ws is just like ,t
-let g:which_key_map.w.s = { 'name': '+Split-horiz' }
-let g:which_key_map.w.v = { 'name': '+Split-vert' }
+let g:which_key_map.w.H = 'Move <-'
+let g:which_key_map.w.J = 'Move ↓'
+let g:which_key_map.w.K = 'Move ↑'
+let g:which_key_map.w.L = 'Move →'
+nnoremap <leader>wH <C-w>H
+nnoremap <leader>wJ <C-w>J
+nnoremap <leader>wK <C-w>K
+nnoremap <leader>wL <C-w>L
 
-let g:which_key_map.w.s.s = 'Shell'
-let g:which_key_map.w.v.s = 'Shell'
-nnoremap <leader>wss <C-w>s:term<CR>
-nnoremap <leader>wvs <C-w>v<C-w>l:term<CR>
+let g:which_key_map.w.s = 'Split'
+let g:which_key_map.w.v = 'Split vert'
+nnoremap <leader>ws <C-w>s
+nnoremap <leader>wv <C-w>v
 
-let g:which_key_map.w.s['.'] = 'Split editor'
-let g:which_key_map.w.v['.'] = 'Split editor'
-nnoremap <leader>ws. <C-w>s
-nnoremap <leader>wv. <C-w>v<C-w>l
+let g:which_key_map['h'] = { 'name': 'Switch to...' }
+let g:which_key_map['h'].a = 'Win 1'
+let g:which_key_map['h'].r = 'Win 2'
+let g:which_key_map['h'].s = 'Win 3'
+let g:which_key_map['h'].t = 'Win 4'
+let g:which_key_map['h'].g = 'Win 5'
+let g:which_key_map['h'].z = 'Win 6'
+let g:which_key_map['h'].x = 'Win 7'
+let g:which_key_map['h'].c = 'Win 8'
+let g:which_key_map['h'].d = 'Win 9'
+nnoremap <silent> <leader>ha :1wincmd w<cr>
+nnoremap <silent> <leader>hr :2wincmd w<cr>
+nnoremap <silent> <leader>hs :3wincmd w<cr>
+nnoremap <silent> <leader>ht :4wincmd w<cr>
+nnoremap <silent> <leader>hg :5wincmd w<cr>
+nnoremap <silent> <leader>hz :6wincmd w<cr>
+nnoremap <silent> <leader>hx :7wincmd w<cr>
+nnoremap <silent> <leader>hc :8wincmd w<cr>
+nnoremap <silent> <leader>hd :9wincmd w<cr>
 
 " Kinda like ctrl-1 and ctrl-2
 let g:which_key_map.1 = 'which_key_ignore'
@@ -385,14 +403,6 @@ nnoremap <silent> <C-w>3 :silent 3wincmd w<cr>
 nnoremap <silent> <C-w>4 :silent 4wincmd w<cr>
 nnoremap <silent> <C-w>5 :silent 5wincmd w<cr>
 nnoremap <silent> <C-w>6 :silent 6wincmd w<cr>
-
-
-" Switch tabs
-nnoremap ]1 1gt
-nnoremap ]2 2gt
-nnoremap ]3 3gt
-nnoremap ]4 4gt
-nnoremap ]5 5gt
 
 " Switch panes
 nnoremap <C-b>1 <C-w>t
