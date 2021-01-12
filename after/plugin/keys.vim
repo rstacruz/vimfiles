@@ -8,9 +8,8 @@ let g:which_key_map.t = { 'name': '+Tabs' }
 let g:which_key_map.c = { 'name': '+COC' }
 let g:which_key_map.w = { 'name': '+Window' }
 
-nnoremap <Enter> za
-nnoremap <S-Enter> zO
-nnoremap <C-Enter> zC
+" Make it easier to navigate panes
+nnoremap <CR> <C-w>
 
 if $GIT_EXEC_PATH != ''
   nnoremap <C-s> :wq<cr>
@@ -337,36 +336,6 @@ let g:which_key_map.w.v = 'Split vert'
 nnoremap <leader>ws <C-w>s
 nnoremap <leader>wv <C-w>v
 
-let g:which_key_map['h'] = { 'name': 'Switch to...' }
-let g:which_key_map['h'].a = 'Win 1'
-let g:which_key_map['h'].r = 'Win 2'
-let g:which_key_map['h'].s = 'Win 3'
-let g:which_key_map['h'].t = 'Win 4'
-let g:which_key_map['h'].g = 'Win 5'
-let g:which_key_map['h'].z = 'Win 6'
-let g:which_key_map['h'].x = 'Win 7'
-let g:which_key_map['h'].c = 'Win 8'
-let g:which_key_map['h'].d = 'Win 9'
-nnoremap <silent> <leader>ha :1wincmd w<cr>
-nnoremap <silent> <leader>hr :2wincmd w<cr>
-nnoremap <silent> <leader>hs :3wincmd w<cr>
-nnoremap <silent> <leader>ht :4wincmd w<cr>
-nnoremap <silent> <leader>hg :5wincmd w<cr>
-nnoremap <silent> <leader>hz :6wincmd w<cr>
-nnoremap <silent> <leader>hx :7wincmd w<cr>
-nnoremap <silent> <leader>hc :8wincmd w<cr>
-nnoremap <silent> <leader>hd :9wincmd w<cr>
-
-" Kinda like ctrl-1 and ctrl-2
-let g:which_key_map.1 = 'which_key_ignore'
-let g:which_key_map.2 = 'which_key_ignore'
-let g:which_key_map.3 = 'which_key_ignore'
-let g:which_key_map.4 = 'which_key_ignore'
-let g:which_key_map.5 = 'which_key_ignore'
-let g:which_key_map.6 = 'which_key_ignore'
-let g:which_key_map.7 = 'which_key_ignore'
-let g:which_key_map.0 = 'which_key_ignore'
-
 nnoremap <F1> :1wincmd w<cr>
 nnoremap <F2> :2wincmd w<cr>
 nnoremap <F3> :3wincmd w<cr>
@@ -389,6 +358,20 @@ tnoremap <F5> <C-\><C-n>:5wincmd w<cr>
 tnoremap <F6> <C-\><C-n>:6wincmd w<cr>
 
 " Switch panes
+let g:which_key_map['0'] = 'which_key_ignore'
+let g:which_key_map['1'] = 'which_key_ignore'
+let g:which_key_map['2'] = 'which_key_ignore'
+let g:which_key_map['3'] = 'which_key_ignore'
+let g:which_key_map['4'] = 'which_key_ignore'
+let g:which_key_map['5'] = 'which_key_ignore'
+let g:which_key_map['6'] = 'which_key_ignore'
+let g:which_key_map['7'] = 'which_key_ignore'
+let g:which_key_map['8'] = 'which_key_ignore'
+let g:which_key_map['9'] = 'which_key_ignore'
+let g:which_key_map['<Left>']  = 'which_key_ignore'
+let g:which_key_map['<Right>'] = 'which_key_ignore'
+let g:which_key_map['<Up>']    = 'which_key_ignore'
+let g:which_key_map['<Down>']  = 'which_key_ignore'
 nnoremap <silent> <leader>0 <C-w>b
 nnoremap <silent> <leader>1 :1wincmd w<cr>
 nnoremap <silent> <leader>2 :2wincmd w<cr>
@@ -396,6 +379,14 @@ nnoremap <silent> <leader>3 :3wincmd w<cr>
 nnoremap <silent> <leader>4 :4wincmd w<cr>
 nnoremap <silent> <leader>5 :5wincmd w<cr>
 nnoremap <silent> <leader>6 :6wincmd w<cr>
+nnoremap <silent> <leader>7 :7wincmd w<cr>
+nnoremap <silent> <leader>8 :8wincmd w<cr>
+nnoremap <silent> <leader>9 :9wincmd w<cr>
+nnoremap <silent> <leader><Right> :silent wincmd l<cr>
+nnoremap <silent> <leader><Left>  :silent wincmd h<cr>
+nnoremap <silent> <leader><Up>    :silent wincmd k<cr>
+nnoremap <silent> <leader><Down>  :silent wincmd j<cr>
+
 nnoremap <silent> <C-w>0 <C-w>b
 nnoremap <silent> <C-w>1 :silent 1wincmd w<cr>
 nnoremap <silent> <C-w>2 :silent 2wincmd w<cr>
@@ -404,43 +395,10 @@ nnoremap <silent> <C-w>4 :silent 4wincmd w<cr>
 nnoremap <silent> <C-w>5 :silent 5wincmd w<cr>
 nnoremap <silent> <C-w>6 :silent 6wincmd w<cr>
 
-" Switch panes
-nnoremap <C-b>1 <C-w>t
-nnoremap <C-b>2 <C-w>t<C-w>w
-nnoremap <C-b>3 <C-w>t<C-w>w<C-w>w
-nnoremap <C-b>4 <C-w>t<C-w>w<C-w>w<C-w>w
-nnoremap <C-b>5 <C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
-inoremap <C-b>1 <Esc><C-w>t
-inoremap <C-b>2 <Esc><C-w>t<C-w>w
-inoremap <C-b>3 <Esc><C-w>t<C-w>w<C-w>w
-inoremap <C-b>4 <Esc><C-w>t<C-w>w<C-w>w<C-w>w
-inoremap <C-b>5 <Esc><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
-tnoremap <C-b>1 <C-\><C-n><C-w>t
-tnoremap <C-b>2 <C-\><C-n><C-w>t<C-w>w
-tnoremap <C-b>3 <C-\><C-n><C-w>t<C-w>w<C-w>w
-tnoremap <C-b>4 <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w
-tnoremap <C-b>5 <C-\><C-n><C-w>t<C-w>w<C-w>w<C-w>w<C-w>w
-
-" Right side smash
-" inoremap =\ <Esc>
-" inoremap \= <Esc>
-" tnoremap =\ <C-\><Esc>
-" tnoremap \= <C-\><Esc>
-
-" Quick access to command line with ;.
-nnoremap ; :
-let g:which_key_map[';'] = 'which_key_ignore'
-nnoremap <leader>; ;
-
-" https://vim.fandom.com/wiki/Using_vim_as_calculator
-ino <C-A> <C-O>y^<End> = <C-R>=<C-R>0<CR>
-
 if exists(':ChooseWin')
   nmap <C-b>q <Plug>(choosewin)
 
   let g:which_key_map.s = 'Switch to...'
-  let g:which_key_map.p = 'Switch to...'
   nmap <leader>s <Plug>(choosewin)
-  nmap <leader>p <Plug>(choosewin)
   nmap <Tab> <Plug>(choosewin)
 endif
