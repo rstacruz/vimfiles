@@ -6,7 +6,6 @@ let g:which_key_map.k = { 'name': '+Editor' }
 let g:which_key_map.g = { 'name': '+Git' }
 let g:which_key_map.t = { 'name': '+Tabs' }
 let g:which_key_map.c = { 'name': '+COC' }
-let g:which_key_map.w = { 'name': '+Window' }
 
 " Make it easier to navigate panes
 nnoremap <CR> <C-w>
@@ -141,8 +140,8 @@ if exists(':term')
 "   nnoremap <leader>tv :vsplit<CR><C-w>l:term<CR>
 
   " Term repeat thing
-  let g:which_key_map.t.r = 'Repeat command'
-  nnoremap <leader>tr :w<cr>:call keys#switch_to_term()<cr><C-\><C-n>a<Up><CR><C-\><C-n><C-w>p
+    let g:which_key_map.t.r = 'Repeat command'
+    nnoremap <leader>tr :w<cr>:call keys#switch_to_term()<cr><C-\><C-n>a<Up><CR><C-\><C-n><C-w>p
 endif
 
 " vim-test
@@ -311,31 +310,6 @@ function keys#switch_to_term()
   exe win 'wincmd w'
 endfunction
 
-let g:which_key_map.w.h = 'Focus <-'
-let g:which_key_map.w.j = 'Focus ↓'
-let g:which_key_map.w.k = 'Focus ↑'
-let g:which_key_map.w.l = 'Focus →'
-let g:which_key_map.w.n = 'New'
-nnoremap <leader>wh <C-w>h
-nnoremap <leader>wj <C-w>j
-nnoremap <leader>wk <C-w>k
-nnoremap <leader>wl <C-w>l
-nnoremap <leader>wn <C-w>n
-
-let g:which_key_map.w.H = 'Move <-'
-let g:which_key_map.w.J = 'Move ↓'
-let g:which_key_map.w.K = 'Move ↑'
-let g:which_key_map.w.L = 'Move →'
-nnoremap <leader>wH <C-w>H
-nnoremap <leader>wJ <C-w>J
-nnoremap <leader>wK <C-w>K
-nnoremap <leader>wL <C-w>L
-
-let g:which_key_map.w.s = 'Split'
-let g:which_key_map.w.v = 'Split vert'
-nnoremap <leader>ws <C-w>s
-nnoremap <leader>wv <C-w>v
-
 nnoremap <F1> :1wincmd w<cr>
 nnoremap <F2> :2wincmd w<cr>
 nnoremap <F3> :3wincmd w<cr>
@@ -368,10 +342,10 @@ let g:which_key_map['6'] = 'which_key_ignore'
 let g:which_key_map['7'] = 'which_key_ignore'
 let g:which_key_map['8'] = 'which_key_ignore'
 let g:which_key_map['9'] = 'which_key_ignore'
-let g:which_key_map['<Left>']  = 'which_key_ignore'
-let g:which_key_map['<Right>'] = 'which_key_ignore'
 let g:which_key_map['<Up>']    = 'which_key_ignore'
 let g:which_key_map['<Down>']  = 'which_key_ignore'
+let g:which_key_map['<Left>']  = 'which_key_ignore'
+let g:which_key_map['<Right>'] = 'which_key_ignore'
 nnoremap <silent> <leader>0 <C-w>b
 nnoremap <silent> <leader>1 :1wincmd w<cr>
 nnoremap <silent> <leader>2 :2wincmd w<cr>
@@ -382,18 +356,10 @@ nnoremap <silent> <leader>6 :6wincmd w<cr>
 nnoremap <silent> <leader>7 :7wincmd w<cr>
 nnoremap <silent> <leader>8 :8wincmd w<cr>
 nnoremap <silent> <leader>9 :9wincmd w<cr>
-nnoremap <silent> <leader><Right> :silent wincmd l<cr>
-nnoremap <silent> <leader><Left>  :silent wincmd h<cr>
 nnoremap <silent> <leader><Up>    :silent wincmd k<cr>
 nnoremap <silent> <leader><Down>  :silent wincmd j<cr>
-
-nnoremap <silent> <C-w>0 <C-w>b
-nnoremap <silent> <C-w>1 :silent 1wincmd w<cr>
-nnoremap <silent> <C-w>2 :silent 2wincmd w<cr>
-nnoremap <silent> <C-w>3 :silent 3wincmd w<cr>
-nnoremap <silent> <C-w>4 :silent 4wincmd w<cr>
-nnoremap <silent> <C-w>5 :silent 5wincmd w<cr>
-nnoremap <silent> <C-w>6 :silent 6wincmd w<cr>
+nnoremap <silent> <leader><Left>  :silent wincmd h<cr>
+nnoremap <silent> <leader><Right> :silent wincmd l<cr>
 
 if exists(':ChooseWin')
   nmap <C-b>q <Plug>(choosewin)
