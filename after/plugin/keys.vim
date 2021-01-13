@@ -310,26 +310,26 @@ function keys#switch_to_term()
   exe win 'wincmd w'
 endfunction
 
-nnoremap <F1> :1wincmd w<cr>
-nnoremap <F2> :2wincmd w<cr>
-nnoremap <F3> :3wincmd w<cr>
-nnoremap <F4> :4wincmd w<cr>
-nnoremap <F5> :5wincmd w<cr>
-nnoremap <F6> :6wincmd w<cr>
+" nnoremap <F1> :1wincmd w<cr>
+" nnoremap <F2> :2wincmd w<cr>
+" nnoremap <F3> :3wincmd w<cr>
+" nnoremap <F4> :4wincmd w<cr>
+" nnoremap <F5> :5wincmd w<cr>
+" nnoremap <F6> :6wincmd w<cr>
 
-inoremap <F1> <Esc>:1wincmd w<cr>
-inoremap <F2> <Esc>:2wincmd w<cr>
-inoremap <F3> <Esc>:4wincmd w<cr>
-inoremap <F4> <Esc>:4wincmd w<cr>
-inoremap <F5> <Esc>:5wincmd w<cr>
-inoremap <F6> <Esc>:6wincmd w<cr>
+" inoremap <F1> <Esc>:1wincmd w<cr>
+" inoremap <F2> <Esc>:2wincmd w<cr>
+" inoremap <F3> <Esc>:4wincmd w<cr>
+" inoremap <F4> <Esc>:4wincmd w<cr>
+" inoremap <F5> <Esc>:5wincmd w<cr>
+" inoremap <F6> <Esc>:6wincmd w<cr>
 
-tnoremap <F1> <C-\><C-n>:1wincmd w<cr>
-tnoremap <F2> <C-\><C-n>:2wincmd w<cr>
-tnoremap <F3> <C-\><C-n>:3wincmd w<cr>
-tnoremap <F4> <C-\><C-n>:4wincmd w<cr>
-tnoremap <F5> <C-\><C-n>:5wincmd w<cr>
-tnoremap <F6> <C-\><C-n>:6wincmd w<cr>
+" tnoremap <F1> <C-\><C-n>:1wincmd w<cr>
+" tnoremap <F2> <C-\><C-n>:2wincmd w<cr>
+" tnoremap <F3> <C-\><C-n>:3wincmd w<cr>
+" tnoremap <F4> <C-\><C-n>:4wincmd w<cr>
+" tnoremap <F5> <C-\><C-n>:5wincmd w<cr>
+" tnoremap <F6> <C-\><C-n>:6wincmd w<cr>
 
 " Switch panes
 let g:which_key_map['0'] = 'which_key_ignore'
@@ -366,5 +366,5 @@ if exists(':ChooseWin')
 
   let g:which_key_map.s = 'Switch to...'
   nmap <leader>s <Plug>(choosewin)
-  nmap <Tab> <Plug>(choosewin)
+  " nmap <Tab> <Plug>(choosewin)
 endif
