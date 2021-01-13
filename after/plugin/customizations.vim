@@ -84,3 +84,11 @@ augroup abbreviations
   " http://xahlee.info/comp/unicode_computing_symbols.html
   " https://hub.espanso.org/packages/mac-symbols/
 augroup END
+
+if exists('g:GuiLoaded')
+  set guifont=JuliaMono:h13
+  colorscheme tokyonight
+  GuiTabline 0
+  let g:lightline = {'colorscheme' : 'tokyonight'}
+  LightlineTheme tokyonight
+endif
