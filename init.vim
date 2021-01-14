@@ -83,7 +83,6 @@ let g:coc_global_extensions = [
   \ ]
 
 Plug 'itchyny/lightline.vim'
-Plug 'ferrine/md-img-paste.vim'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 't9md/vim-choosewin'
@@ -93,6 +92,11 @@ call plug#end()
 
 " Used to use, but don't anymore:
 " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 " Plug 'junegunn/vim-slash'
 
+" :MarkdownPreview opens in your browser
+" <leader>mv
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+
+" <leader>mp
+Plug 'ferrine/md-img-paste.vim'
