@@ -87,7 +87,9 @@ Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 't9md/vim-choosewin'
 
+" Themes for GUI vims
 Plug 'ghifarit53/tokyonight-vim'
+Plug 'ghifarit53/daycula-vim'
 call plug#end()
 
 " Used to use, but don't anymore:
