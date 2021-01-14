@@ -92,3 +92,8 @@ if exists('g:GuiLoaded')
   let g:lightline = {'colorscheme' : 'tokyonight'}
   LightlineTheme tokyonight
 endif
+
+" https://github.com/qvacua/vimr/wiki
+if has('gui_vimr')
+  colorscheme tokyonight
+endif
