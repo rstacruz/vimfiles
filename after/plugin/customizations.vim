@@ -96,4 +96,5 @@ endif
 " https://github.com/qvacua/vimr/wiki
 if has('gui_vimr')
   colorscheme tokyonight
+  LightlineTheme tokyonight
 endif

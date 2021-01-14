@@ -47,3 +47,10 @@ function! dyntheme#light_theme() " {{{
   silent! doautocmd User DynthemeChange
   silent! doautocmd User DynthemeLight
 endfunction
+
+function! dyntheme#gui_theme() " {{{
+  set bg=dark
+  color dyntheme
+  silent! doautocmd User DynthemeChange
+  silent! doautocmd User DynthemeDark
+endfunction
