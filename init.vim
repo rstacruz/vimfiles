@@ -90,6 +90,7 @@ Plug 't9md/vim-choosewin'
 " Themes for GUI vims
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'ghifarit53/daycula-vim'
+Plug 'equt/paper.vim'
 call plug#end()
 
 " Used to use, but don't anymore:

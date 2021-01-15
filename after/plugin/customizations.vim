@@ -87,14 +87,29 @@ augroup END
 
 if exists('g:GuiLoaded')
   set guifont=JuliaMono:h13
-  colorscheme tokyonight
   GuiTabline 0
-  let g:lightline = {'colorscheme' : 'tokyonight'}
+  colorscheme tokyonight
   LightlineTheme tokyonight
 endif
 
 " https://github.com/qvacua/vimr/wiki
 if has('gui_vimr')
+  colorscheme paper
+  LightlineTheme paper
+  set background=light
+endif
+
+function! LightPaper()
+  colorscheme paper
+  LightlineTheme paper
+  set background=light
+endfunction
+
+command! LightPaper call LightPaper()
+
+function! DarkTokyo()
   colorscheme tokyonight
   LightlineTheme tokyonight
-endif
+endfunction
+
+command! DarkTokyo call DarkTokyo()
