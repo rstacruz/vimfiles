@@ -331,35 +331,50 @@ endfunction
 " tnoremap <F5> <C-\><C-n>:5wincmd w<cr>
 " tnoremap <F6> <C-\><C-n>:6wincmd w<cr>
 
-" Switch panes
-let g:which_key_map['0'] = 'which_key_ignore'
-let g:which_key_map['1'] = 'which_key_ignore'
-let g:which_key_map['2'] = 'which_key_ignore'
-let g:which_key_map['3'] = 'which_key_ignore'
-let g:which_key_map['4'] = 'which_key_ignore'
-let g:which_key_map['5'] = 'which_key_ignore'
-let g:which_key_map['6'] = 'which_key_ignore'
-let g:which_key_map['7'] = 'which_key_ignore'
-let g:which_key_map['8'] = 'which_key_ignore'
-let g:which_key_map['9'] = 'which_key_ignore'
-let g:which_key_map['<Up>']    = 'which_key_ignore'
-let g:which_key_map['<Down>']  = 'which_key_ignore'
-let g:which_key_map['<Left>']  = 'which_key_ignore'
-let g:which_key_map['<Right>'] = 'which_key_ignore'
-nnoremap <silent> <leader>0 <C-w>b
-nnoremap <silent> <leader>1 :1wincmd w<cr>
-nnoremap <silent> <leader>2 :2wincmd w<cr>
-nnoremap <silent> <leader>3 :3wincmd w<cr>
-nnoremap <silent> <leader>4 :4wincmd w<cr>
-nnoremap <silent> <leader>5 :5wincmd w<cr>
-nnoremap <silent> <leader>6 :6wincmd w<cr>
-nnoremap <silent> <leader>7 :7wincmd w<cr>
-nnoremap <silent> <leader>8 :8wincmd w<cr>
-nnoremap <silent> <leader>9 :9wincmd w<cr>
-nnoremap <silent> <leader><Up>    :silent wincmd k<cr>
-nnoremap <silent> <leader><Down>  :silent wincmd j<cr>
-nnoremap <silent> <leader><Left>  :silent wincmd h<cr>
-nnoremap <silent> <leader><Right> :silent wincmd l<cr>
+" " Switch panes
+" let g:which_key_map['0'] = 'which_key_ignore'
+" let g:which_key_map['1'] = 'which_key_ignore'
+" let g:which_key_map['2'] = 'which_key_ignore'
+" let g:which_key_map['3'] = 'which_key_ignore'
+" let g:which_key_map['4'] = 'which_key_ignore'
+" let g:which_key_map['5'] = 'which_key_ignore'
+" let g:which_key_map['6'] = 'which_key_ignore'
+" let g:which_key_map['7'] = 'which_key_ignore'
+" let g:which_key_map['8'] = 'which_key_ignore'
+" let g:which_key_map['9'] = 'which_key_ignore'
+" let g:which_key_map['<Up>']    = 'which_key_ignore'
+" let g:which_key_map['<Down>']  = 'which_key_ignore'
+" let g:which_key_map['<Left>']  = 'which_key_ignore'
+" let g:which_key_map['<Right>'] = 'which_key_ignore'
+" nnoremap <silent> <leader>0 <C-w>b
+" nnoremap <silent> <leader>1 :1wincmd w<cr>
+" nnoremap <silent> <leader>2 :2wincmd w<cr>
+" nnoremap <silent> <leader>3 :3wincmd w<cr>
+" nnoremap <silent> <leader>4 :4wincmd w<cr>
+" nnoremap <silent> <leader>5 :5wincmd w<cr>
+" nnoremap <silent> <leader>6 :6wincmd w<cr>
+" nnoremap <silent> <leader>7 :7wincmd w<cr>
+" nnoremap <silent> <leader>8 :8wincmd w<cr>
+" nnoremap <silent> <leader>9 :9wincmd w<cr>
+" nnoremap <silent> <leader><Up>    :silent wincmd k<cr>
+" nnoremap <silent> <leader><Down>  :silent wincmd j<cr>
+" nnoremap <silent> <leader><Left>  :silent wincmd h<cr>
+" nnoremap <silent> <leader><Right> :silent wincmd l<cr>
+
+nnoremap <silent> <Tab>0 <C-w>b
+nnoremap <silent> <Tab>1 :1wincmd w<cr>
+nnoremap <silent> <Tab>2 :2wincmd w<cr>
+nnoremap <silent> <Tab>3 :3wincmd w<cr>
+nnoremap <silent> <Tab>4 :4wincmd w<cr>
+nnoremap <silent> <Tab>5 :5wincmd w<cr>
+nnoremap <silent> <Tab>6 :6wincmd w<cr>
+nnoremap <silent> <Tab>7 :7wincmd w<cr>
+nnoremap <silent> <Tab>8 :8wincmd w<cr>
+nnoremap <silent> <Tab>9 :9wincmd w<cr>
+nnoremap <silent> <Tab><Up>    :silent wincmd k<cr>
+nnoremap <silent> <Tab><Down>  :silent wincmd j<cr>
+nnoremap <silent> <Tab><Left>  :silent wincmd h<cr>
+nnoremap <silent> <Tab><Right> :silent wincmd l<cr>
 
 if exists(':ChooseWin')
   nmap <C-b>q <Plug>(choosewin)
