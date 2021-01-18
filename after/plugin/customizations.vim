@@ -3,6 +3,8 @@ set shortmess+=c
 set noruler
 set nonumber
 set noshowmode " no -- INSERT -- in the status line
+set ttimeoutlen=20 " for escape
+set timeoutlen=400 " for tab combos
 
 if has('nvim')
   " no line number in :term

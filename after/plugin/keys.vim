@@ -361,20 +361,29 @@ endfunction
 " nnoremap <silent> <leader><Left>  :silent wincmd h<cr>
 " nnoremap <silent> <leader><Right> :silent wincmd l<cr>
 
-nnoremap <silent> <Tab>0 <C-w>b
-nnoremap <silent> <Tab>1 :1wincmd w<cr>
-nnoremap <silent> <Tab>2 :2wincmd w<cr>
-nnoremap <silent> <Tab>3 :3wincmd w<cr>
-nnoremap <silent> <Tab>4 :4wincmd w<cr>
-nnoremap <silent> <Tab>5 :5wincmd w<cr>
-nnoremap <silent> <Tab>6 :6wincmd w<cr>
-nnoremap <silent> <Tab>7 :7wincmd w<cr>
-nnoremap <silent> <Tab>8 :8wincmd w<cr>
-nnoremap <silent> <Tab>9 :9wincmd w<cr>
-nnoremap <silent> <Tab><Up>    :silent wincmd k<cr>
-nnoremap <silent> <Tab><Down>  :silent wincmd j<cr>
-nnoremap <silent> <Tab><Left>  :silent wincmd h<cr>
-nnoremap <silent> <Tab><Right> :silent wincmd l<cr>
+nnoremap <silent> <cr>0 <C-w>b
+nnoremap <silent> <cr>1 :1wincmd w<cr>
+nnoremap <silent> <cr>2 :2wincmd w<cr>
+nnoremap <silent> <cr>3 :3wincmd w<cr>
+nnoremap <silent> <cr>4 :4wincmd w<cr>
+nnoremap <silent> <cr>5 :5wincmd w<cr>
+nnoremap <silent> <cr>6 :6wincmd w<cr>
+nnoremap <silent> <cr>7 :7wincmd w<cr>
+nnoremap <silent> <cr>8 :8wincmd w<cr>
+nnoremap <silent> <cr>9 :9wincmd w<cr>
+nnoremap <silent> <cr>, :Buffers<cr>
+nnoremap <silent> <cr>. gt
+nnoremap <silent> <cr><Up>    :silent wincmd k<cr>
+nnoremap <silent> <cr><Down>  :silent wincmd j<cr>
+nnoremap <silent> <cr><Left>  :silent wincmd h<cr>
+nnoremap <silent> <cr><Right> :silent wincmd l<cr>
+nnoremap <silent> <cr>n :silent wincmd n<cr>
+nnoremap <silent> <cr>v :silent wincmd v<cr>
+nnoremap <silent> <cr>s :silent wincmd s<cr>
+nnoremap <silent> <cr>0<Up>    :silent wincmd K<cr>
+nnoremap <silent> <cr>0<Down>  :silent wincmd J<cr>
+nnoremap <silent> <cr>0<Left>  :silent wincmd H<cr>
+nnoremap <silent> <cr>0<Right> :silent wincmd L<cr>
 
 if exists(':ChooseWin')
   nmap <C-b>q <Plug>(choosewin)
