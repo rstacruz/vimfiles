@@ -7,9 +7,6 @@ let g:which_key_map.g = { 'name': '+Git' }
 let g:which_key_map.t = { 'name': '+Tabs' }
 let g:which_key_map.c = { 'name': '+COC' }
 
-" Make it easier to navigate panes
-nnoremap <CR> <C-w>
-
 if $GIT_EXEC_PATH != ''
   nnoremap <C-s> :wq<cr>
   inoremap <C-s> <esc>:wq<cr>
@@ -361,6 +358,8 @@ endfunction
 " nnoremap <silent> <leader><Left>  :silent wincmd h<cr>
 " nnoremap <silent> <leader><Right> :silent wincmd l<cr>
 
+nnoremap <silent> <cr> <C-w>
+nnoremap <silent> <cr><cr> za
 nnoremap <silent> <cr>0 <C-w>b
 nnoremap <silent> <cr>1 :1wincmd w<cr>
 nnoremap <silent> <cr>2 :2wincmd w<cr>
