@@ -360,7 +360,6 @@ endfunction
 
 nnoremap <silent> <cr> <C-w>
 nnoremap <silent> <cr><cr> za
-nnoremap <silent> <cr>0 <C-w>b
 nnoremap <silent> <cr>1 :1wincmd w<cr>
 nnoremap <silent> <cr>2 :2wincmd w<cr>
 nnoremap <silent> <cr>3 :3wincmd w<cr>
@@ -371,7 +370,8 @@ nnoremap <silent> <cr>7 :7wincmd w<cr>
 nnoremap <silent> <cr>8 :8wincmd w<cr>
 nnoremap <silent> <cr>9 :9wincmd w<cr>
 nnoremap <silent> <cr>, :Buffers<cr>
-nnoremap <silent> <cr>. gt
+nnoremap <silent> <cr><Home>  gT
+nnoremap <silent> <cr><End>   gt
 nnoremap <silent> <cr><Up>    :silent wincmd k<cr>
 nnoremap <silent> <cr><Down>  :silent wincmd j<cr>
 nnoremap <silent> <cr><Left>  :silent wincmd h<cr>
