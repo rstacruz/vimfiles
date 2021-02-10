@@ -383,6 +383,7 @@ nnoremap <silent> <cr>0<Up>    :silent wincmd K<cr>
 nnoremap <silent> <cr>0<Down>  :silent wincmd J<cr>
 nnoremap <silent> <cr>0<Left>  :silent wincmd H<cr>
 nnoremap <silent> <cr>0<Right> :silent wincmd L<cr>
+nnoremap <silent> <cr>0t       :silent tabnew<cr>
 
 if exists(':ChooseWin')
   nmap <C-b>q <Plug>(choosewin)

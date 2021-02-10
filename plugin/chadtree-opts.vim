@@ -10,5 +10,4 @@ let g:chadtree_settings = {
   \   'smaller': ['<'],
   \   'bigger': ['>'],
   \ },
-  \ 'open_left': 0,
   \ }

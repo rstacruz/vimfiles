@@ -31,8 +31,9 @@ Plug vim . '/modules/synstack'
 " Plugins available in minimal mode
 Plug 'cweagans/vim-taskpaper'
 " Plug 'freitass/todo.txt-vim'
-" Plug 'preservim/nerdtree'
-Plug 'ms-jpq/chadtree', { 'branch': 'chad', 'do': ':UpdateRemotePlugins' }
+Plug 'preservim/nerdtree'
+" Plug 'ms-jpq/chadtree', { 'branch': 'chad', 'do': ':UpdateRemotePlugins' } -
+" ^-- has the .git/index.lock bug
 Plug 'rstacruz/vim-opinion'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
