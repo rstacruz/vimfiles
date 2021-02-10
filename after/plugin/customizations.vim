@@ -501,9 +501,11 @@ inoremap .,hn ├
 inoremap .,he ┼
 inoremap .,hi ┤
 inoremap .,ho ─
+inoremap .,hO ┄
 inoremap .,hh └
 inoremap .,h, ┴
 inoremap .,h. ┘
+inoremap .,hM ┆
 
 " j l u y .    ┌ ┬ ┐
 " m n e i o  │ ├ ┼ ┤ ─
