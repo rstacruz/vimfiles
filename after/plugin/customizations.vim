@@ -480,32 +480,31 @@ endfunction
 
 command! DarkTokyo call DarkTokyo()
 
-" [d]ashes
-inoremap .,dm —
-inoremap .,dn –
-" [b]ullets
-inoremap .,b. ·
-inoremap .,bo ●
-inoremap .,bO ○
+" [d]ots and [d]ashes
+inoremap #$md —
+inoremap #$nd –
+inoremap #$b. ·
+inoremap #$bo ●
+inoremap #$bO ○
 " [a]rrow
-inoremap .,ai →
-inoremap .,an ←
-inoremap .,au ↑
-inoremap .,ae ↓
+inoremap #$ai →
+inoremap #$an ←
+inoremap #$au ↑
+inoremap #$ae ↓
 " box chars
-inoremap .,hl ┌
-inoremap .,hu ┬
-inoremap .,hy ┐
-inoremap .,hm │
-inoremap .,hn ├
-inoremap .,he ┼
-inoremap .,hi ┤
-inoremap .,ho ─
-inoremap .,hO ┄
-inoremap .,hh └
-inoremap .,h, ┴
-inoremap .,h. ┘
-inoremap .,hM ┆
+inoremap @#l ┌
+inoremap @#u ┬
+inoremap @#y ┐
+inoremap @#m │
+inoremap @#n ├
+inoremap @#e ┼
+inoremap @#i ┤
+inoremap @#o ─
+inoremap @#O ┄
+inoremap @#h └
+inoremap @#, ┴
+inoremap @#. ┘
+inoremap @#M ┆
 
 " j l u y .    ┌ ┬ ┐
 " m n e i o  │ ├ ┼ ┤ ─
