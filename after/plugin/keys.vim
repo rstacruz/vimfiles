@@ -51,6 +51,7 @@ if exists(':Gstatus')
   nnoremap <leader>gD :Gcd<cr>
 
   vnoremap <leader>gh :Gbrowse<cr>
+  vnoremap <leader>gH :Gbrowse!<cr>
   vnoremap <leader>gy :Gbrowse!<cr>
 endif
 
