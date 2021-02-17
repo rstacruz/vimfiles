@@ -68,26 +68,6 @@ function! OpenOrCreateFile(...)
   silent! exec cmd . ' ' . fname
 endfunction
 
-" Typo corrections
-augroup abbreviations
-  au FileType typescript,typescriptreact iabbrev <buffer> conts const
-  au FileType typescript,typescriptreact iabbrev <buffer> improt import
-  au FileType text,markdown,c iabbrev <buffer> _sft ⇧
-  au FileType text,markdown,c iabbrev <buffer> _tab ↹
-  au FileType text,markdown,c iabbrev <buffer> _ftab ⇥
-  au FileType text,markdown,c iabbrev <buffer> _btab ⇤
-  au FileType text,markdown,c iabbrev <buffer> _ctl ⌃
-  au FileType text,markdown,c iabbrev <buffer> _opt ⌥
-  au FileType text,markdown,c iabbrev <buffer> _cmd ⌘
-  au FileType text,markdown,c iabbrev <buffer> _spc ␣
-  au FileType text,markdown,c iabbrev <buffer> _bks ⌫
-  au FileType text,markdown,c iabbrev <buffer> _ent ↵
-  au FileType text,markdown,c iabbrev <buffer> _esc ⎋
-  au FileType text,markdown,c iabbrev <buffer> _fdel ⌦
-  " http://xahlee.info/comp/unicode_computing_symbols.html
-  " https://hub.espanso.org/packages/mac-symbols/
-augroup END
-
 if exists('g:GuiLoaded')
   set guifont=JuliaMono:h13
   GuiTabline 0
@@ -188,26 +168,6 @@ function! OpenOrCreateFile(...)
   let cmd=(a:0 == '' ? 'e' : 'split')
   silent! exec cmd . ' ' . fname
 endfunction
-
-" Typo corrections
-augroup abbreviations
-  au FileType typescript,typescriptreact iabbrev <buffer> conts const
-  au FileType typescript,typescriptreact iabbrev <buffer> improt import
-  au FileType text,markdown,c iabbrev <buffer> _sft ⇧
-  au FileType text,markdown,c iabbrev <buffer> _tab ↹
-  au FileType text,markdown,c iabbrev <buffer> _ftab ⇥
-  au FileType text,markdown,c iabbrev <buffer> _btab ⇤
-  au FileType text,markdown,c iabbrev <buffer> _ctl ⌃
-  au FileType text,markdown,c iabbrev <buffer> _opt ⌥
-  au FileType text,markdown,c iabbrev <buffer> _cmd ⌘
-  au FileType text,markdown,c iabbrev <buffer> _spc ␣
-  au FileType text,markdown,c iabbrev <buffer> _bks ⌫
-  au FileType text,markdown,c iabbrev <buffer> _ent ↵
-  au FileType text,markdown,c iabbrev <buffer> _esc ⎋
-  au FileType text,markdown,c iabbrev <buffer> _fdel ⌦
-  " http://xahlee.info/comp/unicode_computing_symbols.html
-  " https://hub.espanso.org/packages/mac-symbols/
-augroup END
 
 if exists('g:GuiLoaded')
   set guifont=JuliaMono:h13
@@ -431,26 +391,6 @@ function! OpenOrCreateFile(...)
   silent! exec cmd . ' ' . fname
 endfunction
 
-" Typo corrections
-augroup abbreviations
-  au FileType typescript,typescriptreact iabbrev <buffer> conts const
-  au FileType typescript,typescriptreact iabbrev <buffer> improt import
-  au FileType text,markdown,c iabbrev <buffer> _sft ⇧
-  au FileType text,markdown,c iabbrev <buffer> _tab ↹
-  au FileType text,markdown,c iabbrev <buffer> _ftab ⇥
-  au FileType text,markdown,c iabbrev <buffer> _btab ⇤
-  au FileType text,markdown,c iabbrev <buffer> _ctl ⌃
-  au FileType text,markdown,c iabbrev <buffer> _opt ⌥
-  au FileType text,markdown,c iabbrev <buffer> _cmd ⌘
-  au FileType text,markdown,c iabbrev <buffer> _spc ␣
-  au FileType text,markdown,c iabbrev <buffer> _bks ⌫
-  au FileType text,markdown,c iabbrev <buffer> _ent ↵
-  au FileType text,markdown,c iabbrev <buffer> _esc ⎋
-  au FileType text,markdown,c iabbrev <buffer> _fdel ⌦
-  " http://xahlee.info/comp/unicode_computing_symbols.html
-  " https://hub.espanso.org/packages/mac-symbols/
-augroup END
-
 if exists('g:GuiLoaded')
   set guifont=JuliaMono:h13
   GuiTabline 0
@@ -510,5 +450,74 @@ inoremap @#M ┆
 " m n e i o  │ ├ ┼ ┤ ─
 " k h , . .    └ ┴ ┘
 
+" Typo corrections
+augroup abbreviations
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> conts const
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> classname className
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> classNmae className
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> classnmae className
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> improt import
 
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> iM  import
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> eX  export
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> cN  className
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> rE  return
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> fN  function
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> cL  class
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> cO  const
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> rE  return
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> eL  else
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> eI  else if
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> eX  export
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> cLo console.log
 
+  au FileType ruby iabbrev <buffer> mO module
+  au FileType ruby iabbrev <buffer> eX extend
+  au FileType ruby iabbrev <buffer> eXs extends
+  au FileType ruby iabbrev <buffer> cL class
+  au FileType ruby iabbrev <buffer> dS describe
+  au FileType ruby iabbrev <buffer> aA attr_accessor
+  au FileType ruby iabbrev <buffer> aW attr_writer
+  au FileType ruby iabbrev <buffer> aR attr_reader
+  au FileType ruby iabbrev <buffer> rE return
+
+  au FileType css,scss iabbrev <buffer> bA  border-radius:
+  au FileType css,scss iabbrev <buffer> dB  display: block;
+  au FileType css,scss iabbrev <buffer> dF  display: flex;
+  au FileType css,scss iabbrev <buffer> dI  display: inline;
+  au FileType css,scss iabbrev <buffer> diB display: inline-block;
+  au FileType css,scss iabbrev <buffer> fB  font-weight: bold;
+  au FileType css,scss iabbrev <buffer> fI  font-style: italic;
+  au FileType css,scss iabbrev <buffer> hE  height:
+  au FileType css,scss iabbrev <buffer> lH  line-height:
+  au FileType css,scss iabbrev <buffer> mA  margin:
+  au FileType css,scss iabbrev <buffer> mB  margin-bottom:
+  au FileType css,scss iabbrev <buffer> mL  margin-left:
+  au FileType css,scss iabbrev <buffer> mR  margin-right:
+  au FileType css,scss iabbrev <buffer> mT  margin-top:
+  au FileType css,scss iabbrev <buffer> oP  opacity:
+  au FileType css,scss iabbrev <buffer> pA  padding:
+  au FileType css,scss iabbrev <buffer> pB  padding-bottom:
+  au FileType css,scss iabbrev <buffer> pL  padding-left:
+  au FileType css,scss iabbrev <buffer> poA position: absolute;
+  au FileType css,scss iabbrev <buffer> poF position: fixed;
+  au FileType css,scss iabbrev <buffer> poR position: relative;
+  au FileType css,scss iabbrev <buffer> pR  padding-right:
+  au FileType css,scss iabbrev <buffer> pT  padding-top:
+  au FileType css,scss iabbrev <buffer> wI  width:
+
+  au FileType text,markdown,c iabbrev <buffer> sfT ⇧
+  au FileType text,markdown,c iabbrev <buffer> taB ↹
+  au FileType text,markdown,c iabbrev <buffer> ftB ⇥
+  au FileType text,markdown,c iabbrev <buffer> btB ⇤
+  au FileType text,markdown,c iabbrev <buffer> ctL ⌃
+  au FileType text,markdown,c iabbrev <buffer> opT ⌥
+  au FileType text,markdown,c iabbrev <buffer> cmD ⌘
+  au FileType text,markdown,c iabbrev <buffer> spC ␣
+  au FileType text,markdown,c iabbrev <buffer> bkS ⌫
+  au FileType text,markdown,c iabbrev <buffer> enT ↵
+  au FileType text,markdown,c iabbrev <buffer> esC ⎋
+  au FileType text,markdown,c iabbrev <buffer> deL ⌦
+  " http://xahlee.info/comp/unicode_computing_symbols.html
+  " https://hub.espanso.org/packages/mac-symbols/
+augroup END

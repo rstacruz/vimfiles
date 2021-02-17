@@ -83,5 +83,5 @@ augroup TermRename
 augroup END
 
 " Just like screen
-nmap <C-a> <C-b>
-nmap <C-a><C-a> <C-a>
+" nmap <C-a> <C-b>
+" nmap <C-a><C-a> <C-a>

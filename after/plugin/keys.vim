@@ -393,3 +393,6 @@ if exists(':ChooseWin')
   nmap <leader>s <Plug>(choosewin)
   " nmap <Tab> <Plug>(choosewin)
 endif
+
+vnoremap gs :s~~
+nnoremap gs :%s~~
