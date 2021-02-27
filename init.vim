@@ -55,18 +55,18 @@ if has('nvim')
 endif
 
 Plug 'arithran/vim-delete-hidden-buffers'
-" Plug 'janko/vim-test'
+Plug 'justinmk/vim-sneak'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/gv.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'liuchengxu/vim-which-key'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
-" Plug 'SirVer/ultisnips'
 Plug 'nathangrigg/vim-beancount'
 Plug 'thinca/vim-visualstar'
 Plug 'wellle/context.vim'
-
+" Plug 'janko/vim-test'
+" Plug 'SirVer/ultisnips'
 
 " if has('nvim')
 "   Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
