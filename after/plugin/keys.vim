@@ -50,8 +50,6 @@ if exists(':Gstatus')
   nnoremap <leader>gd :Glcd<cr>
   nnoremap <leader>gD :Gcd<cr>
 
-  vnoremap <leader>gh :Gbrowse<cr>
-  vnoremap <leader>gH :Gbrowse!<cr>
   vnoremap <leader>gy :Gbrowse!<cr>
 endif
 
@@ -105,6 +103,9 @@ if exists(':Startify')
   let g:which_key_map.k.w = 'Close all'
   nnoremap <leader>kw :tabonly<cr>:StartifyReset<cr>
 endif
+
+let g:which_key_map.f.r = 'Revert file'
+nnoremap <leader>fr :e!<CR>
 
 if exists(':q')
   let g:which_key_map.f.x = 'Quit vim...'

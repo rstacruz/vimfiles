@@ -471,14 +471,16 @@ augroup abbreviations
   au FileType javascript,typescript,typescriptreact iabbrev <buffer> eX  export
   au FileType javascript,typescript,typescriptreact iabbrev <buffer> cLo console.log
 
-  au FileType ruby iabbrev <buffer> mO module
-  au FileType ruby iabbrev <buffer> eX extend
-  au FileType ruby iabbrev <buffer> eXs extends
+  au FileType ruby iabbrev <buffer> aA attr_accessor
+  au FileType ruby iabbrev <buffer> aR attr_reader
+  au FileType ruby iabbrev <buffer> aW attr_writer
   au FileType ruby iabbrev <buffer> cL class
   au FileType ruby iabbrev <buffer> dS describe
-  au FileType ruby iabbrev <buffer> aA attr_accessor
-  au FileType ruby iabbrev <buffer> aW attr_writer
-  au FileType ruby iabbrev <buffer> aR attr_reader
+  au FileType ruby iabbrev <buffer> eX extend
+  au FileType ruby iabbrev <buffer> eXs extends
+  au FileType ruby iabbrev <buffer> fS # frozen_string_literal: trun
+  au FileType ruby iabbrev <buffer> iN include
+  au FileType ruby iabbrev <buffer> mO module
   au FileType ruby iabbrev <buffer> rE return
 
   au FileType css,scss iabbrev <buffer> bA  border-radius:
