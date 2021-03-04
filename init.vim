@@ -21,7 +21,6 @@ endif
 Plug vim . '/modules/auto-cursorline'
 Plug vim . '/modules/ctrl-c-ctrl-v'
 Plug vim . '/modules/dynamic-theme'
-Plug vim . '/modules/git-grep'
 Plug vim . '/modules/jk-on-wrap'
 Plug vim . '/modules/quickterm'
 Plug vim . '/modules/save-typos'
@@ -56,6 +55,7 @@ endif
 
 Plug 'arithran/vim-delete-hidden-buffers'
 Plug 'justinmk/vim-sneak'
+Plug 'rstacruz/vim-gitgrep'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/gv.vim'
 Plug 'junegunn/vim-easy-align'
