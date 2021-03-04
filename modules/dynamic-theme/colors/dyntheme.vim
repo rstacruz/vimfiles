@@ -152,6 +152,10 @@ function! s:base_overrides() " {{{
 
   " Ruby
   hi! link rubySymbol Type
+
+  " Sneak
+  highlight Sneak ctermfg=0 ctermbg=4
+  highlight SneakScope ctermfg=0 ctermbg=5
 endfunction " }}}
 
 function! s:dark_overrides() " {{{
