@@ -15,6 +15,12 @@ else
   inoremap <C-s> <esc>:w<cr>
 endif
 
+" File
+let g:which_key_map.f.s = 'Save'
+let g:which_key_map.f.S = 'Save without formatting'
+nnoremap <leader>fs :w<cr>
+nnoremap <leader>fS :noa w<cr>
+
 " Open config
 let g:which_key_map.f.e.k = 'Edit keys'
 let g:which_key_map.f.e.c = 'Customizations'
@@ -64,10 +70,11 @@ if exists(':Clap')
   nnoremap <leader>kb :Clap buffers<cr>
   nnoremap <leader>kh :Clap history<cr>
 
-  let g:which_key_map.f.r = 'List recent files...'
-  let g:which_key_map.f.g = 'List modified files...'
-  nnoremap <leader>fr :Clap history<cr>
-  nnoremap <leader>fg :Clap git_diff_files<cr>
+  let g:which_key_map[';'] = 'List buffers...'
+  nnoremap <leader>; :Clap buffers<cr>
+
+  " let g:which_key_map.f.g = 'List modified files...'
+  " nnoremap <leader>fg :Clap git_diff_files<cr>
 
   " nnoremap <C-p> :Clap files<cr>
 elseif exists(':Buffers')
@@ -390,8 +397,8 @@ nnoremap <silent> <cr>0t       :silent tabnew<cr>
 if exists(':ChooseWin')
   nmap <C-b>q <Plug>(choosewin)
 
-  let g:which_key_map.s = 'Switch to...'
-  nmap <leader>s <Plug>(choosewin)
+  " let g:which_key_map.s = 'Switch to...'
+  " nmap <leader>s <Plug>(choosewin)
   " nmap <Tab> <Plug>(choosewin)
 endif
 
