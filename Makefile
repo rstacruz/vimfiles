@@ -4,7 +4,7 @@ install:
 update:
 	nvim +PlugInstall +CocUpdateSync +PlugUpdate +PlugUpgrade +PlugClean +PlugDiff
 link:
-	ln -nfs ~/.config/nvim ~/.vim
+	if [[ ! -d ~/.vim ]]; then ln -nfs ~/.config/nvim ~/.vim; fi
 	ln -nfs ~/.config/nvim/init.vim ~/.vimrc
 i: install
 u: update
