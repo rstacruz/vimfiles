@@ -17,12 +17,15 @@ let g:fzf_action = {
 
 " See: `:h fzf-starting-fzf-in-neovim-floating-window`
 
+let g:fzf_preview_window = ['right:70%', 'ctrl-/']
+
 if has('nvim')
-  let $FZF_DEFAULT_OPTS .= ' --border --margin=0,2'
+  let $FZF_DEFAULT_OPTS .= ' --border --margin=2,0 --padding=0,2'
+  " let $FZF_DEFAULT_OPTS .= '--margin=3,2'
 
   function! FloatingFZF()
-    let width = float2nr(&columns * 0.9)
-    let height = float2nr(&lines * 0.6)
+    let width = float2nr(&columns * 1)
+    let height = float2nr(&lines * 0.8)
     let opts = { 'relative': 'editor',
                \ 'row': (&lines - height) / 2,
                \ 'col': (&columns - width) / 2,

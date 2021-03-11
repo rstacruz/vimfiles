@@ -1,11 +1,12 @@
 let g:which_key_map = {}
 let g:which_key_map.f = { 'name': '+File' }
-let g:which_key_map.a = { 'name': '+Apps' }
+" let g:which_key_map.a = { 'name': '+Apps' }
 let g:which_key_map.f.e = { 'name': '+Settings' }
 let g:which_key_map.k = { 'name': '+Editor' }
 let g:which_key_map.g = { 'name': '+Git' }
 let g:which_key_map.t = { 'name': '+Tabs' }
-let g:which_key_map.c = { 'name': '+COC' }
+let g:which_key_map.c = { 'name': '+Code' }
+let g:which_key_map.w = { 'name': '+Window' }
 
 if $GIT_EXEC_PATH != ''
   nnoremap <C-s> :wq<cr>
@@ -20,6 +21,37 @@ let g:which_key_map.f.s = 'Save'
 let g:which_key_map.f.S = 'Save without formatting'
 nnoremap <leader>fs :w<cr>
 nnoremap <leader>fS :noa w<cr>
+
+" Window
+let g:which_key_map.w.q = 'Close window'
+let g:which_key_map.w.Q = 'Close everything'
+nnoremap <silent> <leader>wq <C-w>q<CR>
+nnoremap <silent> <leader>wQ :bufdo bwipe!<CR>
+
+let g:which_key_map.w.h = 'Focus ←'
+let g:which_key_map.w.j = 'Focus ↓'
+let g:which_key_map.w.k = 'Focus ↑'
+let g:which_key_map.w.l = 'Focus →'
+nnoremap <silent> <leader>wh <C-w>h<CR>
+nnoremap <silent> <leader>wj <C-w>j<CR>
+nnoremap <silent> <leader>wk <C-w>k<CR>
+nnoremap <silent> <leader>wl <C-w>l<CR>
+
+let g:which_key_map.w.n = 'New'
+let g:which_key_map.w.s = 'Split horiz'
+let g:which_key_map.w.v = 'Split vert'
+nnoremap <silent> <leader>wn <C-w>n<CR>
+nnoremap <silent> <leader>ws <C-w>s<CR>
+nnoremap <silent> <leader>wv <C-w>v<CR>
+
+let g:which_key_map.w.H = 'which_key_ignore'
+let g:which_key_map.w.J = 'which_key_ignore'
+let g:which_key_map.w.K = 'which_key_ignore'
+let g:which_key_map.w.L = 'which_key_ignore'
+nnoremap <silent> <leader>wH <C-w>H<CR>
+nnoremap <silent> <leader>wJ <C-w>J<CR>
+nnoremap <silent> <leader>wK <C-w>K<CR>
+nnoremap <silent> <leader>wL <C-w>L<CR>
 
 " Open config
 let g:which_key_map.f.e.k = 'Edit keys'
@@ -55,8 +87,15 @@ if exists(':Gstatus')
   nnoremap <leader>gy :Gbrowse!<cr>
   nnoremap <leader>gd :Glcd<cr>
   nnoremap <leader>gD :Gcd<cr>
-
   vnoremap <leader>gy :Gbrowse!<cr>
+endif
+
+if exists(':Magit')
+  " Automatically bound by the plugin
+  let g:which_key_map.M = 'which_key_ignore'
+
+  let g:which_key_map.g.m = 'Magit...'
+  nnoremap <leader>gm :Magit<cr>
 endif
 
 if exists(':GV')
@@ -64,22 +103,24 @@ if exists(':GV')
   nnoremap <leader>gl :GV<cr>
 endif
 
-if exists(':Clap')
-  let g:which_key_map.k.b = 'List buffers...'
-  let g:which_key_map.k.h = 'History'
-  nnoremap <leader>kb :Clap buffers<cr>
-  nnoremap <leader>kh :Clap history<cr>
+" if exists(':Clap')
+"   let g:which_key_map.k.b = 'List buffers...'
+"   let g:which_key_map.k.h = 'History'
+"   nnoremap <leader>kb :Clap buffers<cr>
+"   nnoremap <leader>kh :Clap history<cr>
 
-  let g:which_key_map[';'] = 'List buffers...'
-  nnoremap <leader>; :Clap buffers<cr>
+"   let g:which_key_map[';'] = 'List buffers...'
+"   nnoremap <leader>; :Clap buffers<cr>
 
-  " let g:which_key_map.f.g = 'List modified files...'
-  " nnoremap <leader>fg :Clap git_diff_files<cr>
+"   " let g:which_key_map.f.g = 'List modified files...'
+"   " nnoremap <leader>fg :Clap git_diff_files<cr>
 
-  " nnoremap <C-p> :Clap files<cr>
-elseif exists(':Buffers')
+"   " nnoremap <C-p> :Clap files<cr>
+if exists(':Buffers')
   let g:which_key_map.k.b = 'List buffers'
+  let g:which_key_map.k.b = 'History'
   nnoremap <leader>kb :Buffers<cr>
+  nnoremap <leader>kh :History<cr>
 endif
 
 if exists(':FZF')
@@ -114,12 +155,12 @@ endif
 let g:which_key_map.f.r = 'Revert file'
 nnoremap <leader>fr :e!<CR>
 
-if exists(':q')
-  let g:which_key_map.f.x = 'Quit vim...'
-  let g:which_key_map.f.X = 'Quit vim!'
-  nnoremap <leader>fx :qa<CR>
-  nnoremap <leader>fX :qa!<CR>
-endif
+" if exists(':q')
+"   let g:which_key_map.f.x = 'Quit vim...'
+"   let g:which_key_map.f.X = 'Quit vim!'
+"   nnoremap <leader>fx :qa<CR>
+"   nnoremap <leader>fX :qa!<CR>
+" endif
 
 if exists(':Quickterm')
   let g:which_key_map["'"] = 'Terminal'
@@ -163,12 +204,12 @@ if exists(':TestNearest')
   " nmap <silent> <leader>ss :TestSuite<CR><C-W>p
 endif
 
-if exists(':CHADopen')
-  nnoremap _ :silent! :Glcd<CR>:CHADopen<CR>
-  nnoremap <silent> - :CHADopen<CR>
+" if exists(':CHADopen')
+"   nnoremap _ :silent! :Glcd<CR>:CHADopen<CR>
+"   nnoremap <silent> - :CHADopen<CR>
   " nnoremap _ :Glcd<CR>:silent! NERDTreeFind<CR>
-elseif exists(':NERDTree')
-  nnoremap _ :silent! NERDTreeFind<CR>
+if exists(':NERDTree')
+  nnoremap <silent> _ :NERDTreeFind<CR>
   nnoremap <silent> - :exec 'e '.expand('%:h')<CR>
   " nnoremap _ :Glcd<CR>:silent! NERDTreeFind<CR>
 endif
@@ -180,11 +221,6 @@ if exists(':GG')
   nnoremap <leader>*  :GG! <C-r><C-w><CR>
   vnoremap <leader>*  y:GG! <C-r>"<C-b><CR>
 endif
-
-" if exists(':bnext')
-"   nnoremap <tab>      :bnext<cr>
-"   nnoremap <s-tab>    :bprev<cr>
-" endif
 
 " Switch focus
 " not a good thing to remap because it is also used as <C-i>
@@ -214,24 +250,22 @@ endif
 "   nnoremap <silent> <leader>bl :Clap buffers<cr>
 " endif
 
-if exists(':term')
-  if executable('nnn')
-    let g:which_key_map.a.n = 'nnn'
-    nnoremap <silent> <leader>an :tabnew<CR><Esc>:term env EDITOR=nvr nnn<CR>
-  endif
-
-  if executable('tig')
-    let g:which_key_map.a.t = 'tig log'
-    let g:which_key_map.a.s = 'tig status'
-    nnoremap <silent> <leader>at :tabnew<CR><Esc>:term tig<CR>
-    nnoremap <silent> <leader>as :tabnew<CR><Esc>:term tig status<CR>
-  endif
-
-  if executable('ranger')
-    let g:which_key_map.a.r = 'ranger'
-    nnoremap <silent> <leader>ar :tabnew<CR><Esc>:term ranger<CR>
-  endif
-endif
+" if exists(':term')
+"   if executable('nnn')
+"     let g:which_key_map.a.n = 'nnn'
+"     nnoremap <silent> <leader>an :tabnew<CR><Esc>:term env EDITOR=nvr nnn<CR>
+"   endif
+"   if executable('tig')
+"     let g:which_key_map.a.t = 'tig log'
+"     let g:which_key_map.a.s = 'tig status'
+"     nnoremap <silent> <leader>at :tabnew<CR><Esc>:term tig<CR>
+"     nnoremap <silent> <leader>as :tabnew<CR><Esc>:term tig status<CR>
+"   endif
+"   if executable('ranger')
+"     let g:which_key_map.a.r = 'ranger'
+"     nnoremap <silent> <leader>ar :tabnew<CR><Esc>:term ranger<CR>
+"   endif
+" endif
 
 if exists(':CocAction')
   let g:which_key_map.c.c = 'Show commands'

@@ -29,10 +29,7 @@ Plug vim . '/modules/synstack'
 
 " Plugins available in minimal mode
 Plug 'cweagans/vim-taskpaper'
-" Plug 'freitass/todo.txt-vim'
 Plug 'preservim/nerdtree'
-" Plug 'ms-jpq/chadtree', { 'branch': 'chad', 'do': ':UpdateRemotePlugins' } -
-" ^-- has the .git/index.lock bug
 Plug 'rstacruz/vim-opinion'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
@@ -49,24 +46,18 @@ if $VIM_MINIMAL != ''
   finish
 endif
 
-if has('nvim')
-  Plug 'liuchengxu/vim-clap'
-endif
-
 Plug 'arithran/vim-delete-hidden-buffers'
-Plug 'justinmk/vim-sneak'
 Plug 'rstacruz/vim-gitgrep'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/gv.vim'
 Plug 'junegunn/vim-easy-align'
+Plug 'jreybert/vimagit'
 Plug 'liuchengxu/vim-which-key'
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathangrigg/vim-beancount'
 Plug 'thinca/vim-visualstar'
 Plug 'wellle/context.vim'
-" Plug 'janko/vim-test'
-" Plug 'SirVer/ultisnips'
 
 " if has('nvim')
 "   Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
@@ -97,6 +88,16 @@ call plug#end()
 " Used to use, but don't anymore:
 " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 " Plug 'junegunn/vim-slash'
+" Plug 'freitass/todo.txt-vim'
+" Plug 'ms-jpq/chadtree', { 'branch': 'chad', 'do': ':UpdateRemotePlugins' }
+" ^-- has the .git/index.lock bug
+" Plug 'justinmk/vim-sneak'
+" ^-- dunno, just not useful
+"   Plug 'liuchengxu/vim-clap'
+" ^-- fzf does it as well, and doesn't colour-shift
+" Plug 'janko/vim-test'
+" ^-- only useful for ruby and I'd rather up-enter
+" Plug 'SirVer/ultisnips'
 
 " :MarkdownPreview opens in your browser
 " <leader>mv
