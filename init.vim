@@ -48,6 +48,7 @@ endif
 
 Plug 'arithran/vim-delete-hidden-buffers'
 Plug 'rstacruz/vim-gitgrep'
+Plug 'rstacruz/vim-closer'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/gv.vim'
 Plug 'junegunn/vim-easy-align'

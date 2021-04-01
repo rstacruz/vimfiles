@@ -19,8 +19,10 @@ endif
 " File
 let g:which_key_map.f.s = 'Save'
 let g:which_key_map.f.S = 'Save without formatting'
+let g:which_key_map.f.a = 'Save'
 nnoremap <leader>fs :w<cr>
 nnoremap <leader>fS :noa w<cr>
+nnoremap <leader>fa :w<cr>
 
 " Window
 let g:which_key_map.w.q = 'Close window'
