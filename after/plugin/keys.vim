@@ -25,12 +25,17 @@ else
 endif
 
 " File
-let g:which_key_map.f.s = 'Save'
-let g:which_key_map.f.S = 'Save without formatting'
+let g:which_key_map.f.s = 'Save without formatting'
 let g:which_key_map.f.a = 'Save'
-nnoremap <leader>fs :w<cr>
-nnoremap <leader>fS :noa w<cr>
+nnoremap <leader>fs :noa w<cr>
 nnoremap <leader>fa :w<cr>
+
+let g:which_key_map.f.q = 'Quit vim'
+nnoremap <leader>fq :qa<cr>
+
+let g:which_key_map.f.Q = { 'name': 'Quit vim...' }
+let g:which_key_map.f.Q.Q = 'Force-quit vim'
+nnoremap <leader>fQQ :cq<cr>
 
 " Window
 let g:which_key_map.w.q = 'Close window'
