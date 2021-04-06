@@ -1,3 +1,11 @@
+" g customisations
+vnoremap gs :s~~
+nnoremap gs :%s~~
+
+" Folding
+nnoremap + za
+
+" Which key
 let g:which_key_map = {}
 let g:which_key_map.f = { 'name': '+File' }
 " let g:which_key_map.a = { 'name': '+Apps' }
@@ -437,6 +445,3 @@ if exists(':ChooseWin')
   " nmap <leader>s <Plug>(choosewin)
   " nmap <Tab> <Plug>(choosewin)
 endif
-
-vnoremap gs :s~~
-nnoremap gs :%s~~
