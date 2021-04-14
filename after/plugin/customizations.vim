@@ -278,4 +278,12 @@ augroup abbreviations
   au FileType text,markdown,c iabbrev <buffer> deL ⌦
   " http://xahlee.info/comp/unicode_computing_symbols.html
   " https://hub.espanso.org/packages/mac-symbols/
+
+  au FileType text,markdown,taskpaper iabbrev <buffer> wK ♔
+  au FileType text,markdown,taskpaper iabbrev <buffer> wQ ♕
+  au FileType text,markdown,taskpaper iabbrev <buffer> wR ♖
+  au FileType text,markdown,taskpaper iabbrev <buffer> wN ♘
+  au FileType text,markdown,taskpaper iabbrev <buffer> wB ♗
+  au FileType text,markdown,taskpaper iabbrev <buffer> wP ♙
 augroup END
+
