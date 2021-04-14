@@ -279,6 +279,13 @@ augroup abbreviations
   " http://xahlee.info/comp/unicode_computing_symbols.html
   " https://hub.espanso.org/packages/mac-symbols/
 
+  "	♔ ♕ ♖ ♗ ♘ ♙ ◇ · ♚ ♛ ♜ ♝ ♞ ♟ ◆
+  au FileType text,markdown,taskpaper iabbrev <buffer> bK ♚ 
+  au FileType text,markdown,taskpaper iabbrev <buffer> bQ ♛
+  au FileType text,markdown,taskpaper iabbrev <buffer> bR ♜
+  au FileType text,markdown,taskpaper iabbrev <buffer> bN ♞
+  au FileType text,markdown,taskpaper iabbrev <buffer> bB ♝
+  au FileType text,markdown,taskpaper iabbrev <buffer> bP ♟
   au FileType text,markdown,taskpaper iabbrev <buffer> wK ♔
   au FileType text,markdown,taskpaper iabbrev <buffer> wQ ♕
   au FileType text,markdown,taskpaper iabbrev <buffer> wR ♖
