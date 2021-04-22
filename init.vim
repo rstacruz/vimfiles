@@ -47,6 +47,7 @@ if $VIM_MINIMAL != ''
 endif
 
 Plug 'arithran/vim-delete-hidden-buffers'
+Plug 'tpope/vim-dispatch'
 Plug 'rstacruz/vim-gitgrep'
 Plug 'rstacruz/vim-closer'
 Plug 'junegunn/goyo.vim'

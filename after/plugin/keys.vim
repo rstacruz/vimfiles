@@ -42,6 +42,9 @@ let g:which_key_map.w.Q = 'Close everything'
 nnoremap <silent> <leader>wq <C-w>q<CR>
 nnoremap <silent> <leader>wQ :bufdo bwipe!<CR>
 
+let g:which_key_map.w.q = 'Close others'
+nnoremap <silent> <leader>wo <C-w>o<CR>
+
 let g:which_key_map.w.h = 'Focus ←'
 let g:which_key_map.w.j = 'Focus ↓'
 let g:which_key_map.w.k = 'Focus ↑'
@@ -102,6 +105,13 @@ if exists(':Gstatus')
   nnoremap <leader>gd :Glcd<cr>
   nnoremap <leader>gD :Gcd<cr>
   vnoremap <leader>gy :Gbrowse!<cr>
+
+  if exists(':Dispatch')
+    let g:which_key_map.g.p = 'Push'
+    let g:which_key_map.g.P = 'Push (force)'
+    nnoremap <leader>gp :Dispatch git push<cr>
+    nnoremap <leader>gP :Dispatch git push --force-with-lease<cr>
+  endif
 endif
 
 if exists(':Magit')
