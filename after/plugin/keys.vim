@@ -1,5 +1,6 @@
 " close
 nnoremap <Backspace> <C-w>q
+nnoremap <Del> :bwipe!<CR>
 
 " g customisations
 vnoremap gs :s~~
