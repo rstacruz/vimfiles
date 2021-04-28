@@ -1,3 +1,6 @@
+" close
+nnoremap <Backspace> <C-w>q
+
 " g customisations
 vnoremap gs :s~~
 nnoremap gs :%s~~

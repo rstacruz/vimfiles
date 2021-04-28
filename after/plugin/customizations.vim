@@ -293,4 +293,3 @@ augroup abbreviations
   au FileType text,markdown,taskpaper iabbrev <buffer> wB ♗
   au FileType text,markdown,taskpaper iabbrev <buffer> wP ♙
 augroup END
-
