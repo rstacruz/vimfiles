@@ -89,8 +89,7 @@ if exists(':Gstatus')
   let g:which_key_map.g.A = 'Amend commit'
   let g:which_key_map.g.b = 'Blame'
   let g:which_key_map.g.h = 'Open in GitHub'
-  let g:which_key_map.g.H = 'Copy GitHub URL'
-  let g:which_key_map.g.y = 'which_key_ignore'
+  let g:which_key_map.g.y = 'Copy GitHub URL'
   let g:which_key_map.g.d = 'cd to Git root'
   let g:which_key_map.g.D = 'cd to Git root (global)'
 
@@ -100,7 +99,6 @@ if exists(':Gstatus')
   nnoremap <leader>gA :Gcommit --amend -av<cr>
   nnoremap <leader>gb :Gblame<cr>
   nnoremap <leader>gh :Gbrowse<cr>
-  nnoremap <leader>gH :Gbrowse!<cr>
   nnoremap <leader>gy :Gbrowse!<cr>
   nnoremap <leader>gd :Glcd<cr>
   nnoremap <leader>gD :Gcd<cr>
@@ -109,8 +107,10 @@ if exists(':Gstatus')
   if exists(':Dispatch')
     let g:which_key_map.g.p = 'Push'
     let g:which_key_map.g.P = 'Push (force)'
+    let g:which_key_map.g.H = 'Open pull request'
     nnoremap <leader>gp :Dispatch git push<cr>
-    nnoremap <leader>gP :Dispatch git push --force-with-lease<cr>
+    nnoremap <leader>gP :Dispatch git push --force-with-lease --set-upstream origin (git rev-parse --abbrev-ref HEAD)<cr>
+    nnoremap <leader>gH :Dispatch gh pr view --web<cr>
   endif
 endif
 
