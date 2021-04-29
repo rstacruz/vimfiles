@@ -42,11 +42,12 @@ let g:which_key_map.q.q = 'Quit vim'
 let g:which_key_map.q.Q = 'Quit vim (force)'
 let g:which_key_map.q.w = 'Close window'
 let g:which_key_map.q.W = 'Close window (force)'
-nnoremap <leader>qa :qa<cr>
+let g:which_key_map.q.o = 'Close others'
 nnoremap <leader>qq :qa<cr>
 nnoremap <leader>qQ :cq<cr>
 nnoremap <leader>qw :q<cr>
 nnoremap <leader>qW :bwipe!<cr>
+nnoremap <leader>qo <C-w>o<cr>
 
 if exists(':Startify')
   let g:which_key_map.q.a = 'Close all'
@@ -105,21 +106,23 @@ if exists(':Gstatus')
   let g:which_key_map.g.C = 'Add and commit'
   let g:which_key_map.g.A = 'Amend commit'
   let g:which_key_map.g.b = 'Blame'
-  let g:which_key_map.g.h = 'Open in GitHub'
-  let g:which_key_map.g.y = 'Copy GitHub URL'
-  let g:which_key_map.g.d = 'cd to Git root'
-  let g:which_key_map.g.D = 'cd to Git root (global)'
+  let g:which_key_map.g.h = 'GitHub: open in browser'
+  let g:which_key_map.g.y = 'GitHub: Copy URL'
+  let g:which_key_map.g.d = 'cd to Git root (global)'
+  let g:which_key_map.g.D = 'cd to Git root (local)'
 
   nnoremap <leader>gs :tabnew<cr>:Gstatus<cr><C-W>o
-  nnoremap <leader>gc :Gcommit -v<cr>
-  nnoremap <leader>gC :Gcommit -av<cr>
-  nnoremap <leader>gA :Gcommit --amend -av<cr>
-  nnoremap <leader>gb :Gblame<cr>
-  nnoremap <leader>gh :Gbrowse<cr>
-  nnoremap <leader>gy :Gbrowse!<cr>
-  nnoremap <leader>gd :Glcd<cr>
-  nnoremap <leader>gD :Gcd<cr>
-  vnoremap <leader>gy :Gbrowse!<cr>
+  nnoremap <leader>gc :Git commit -v<cr>
+  nnoremap <leader>gC :Git commit -av<cr>
+  nnoremap <leader>gA :Git commit --amend -av<cr>
+  nnoremap <leader>gb :Git blame<cr>
+  nnoremap <leader>gh :GBrowse<cr>
+  nnoremap <leader>gy :GBrowse!<cr>
+  nnoremap <leader>gd :Gcd<cr>
+  nnoremap <leader>gD :Glcd<cr>
+
+  vnoremap <leader>gh :GBrowse<cr>
+  vnoremap <leader>gy :GBrowse!<cr>
 
   if exists(':Dispatch')
     let g:which_key_map.g.p = 'Push'
