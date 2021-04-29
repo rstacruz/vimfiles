@@ -1,6 +1,8 @@
 " close
 nnoremap <Backspace> <C-w>q
 nnoremap <Del> :bwipe!<CR>
+nnoremap <S-Del> :qa<CR>
+nnoremap <S-Del><S-Del> :qa!<CR>
 
 " g customisations
 vnoremap gs :s~~
@@ -11,14 +13,15 @@ nnoremap + za
 
 " Which key
 let g:which_key_map = {}
-let g:which_key_map.f = { 'name': '+File' }
+let g:which_key_map.f = { 'name': '+File     ▶' }
 " let g:which_key_map.a = { 'name': '+Apps' }
-let g:which_key_map.f.e = { 'name': '+Settings' }
-let g:which_key_map.k = { 'name': '+Editor' }
-let g:which_key_map.g = { 'name': '+Git' }
-let g:which_key_map.t = { 'name': '+Tabs' }
-let g:which_key_map.c = { 'name': '+Code' }
-let g:which_key_map.w = { 'name': '+Window' }
+let g:which_key_map.f.e = { 'name': '+Settings  ▶' }
+let g:which_key_map.k = { 'name': '+Editor   ▶' }
+let g:which_key_map.g = { 'name': '+Git      ▶' }
+let g:which_key_map.t = { 'name': '+Tabs     ▶' }
+let g:which_key_map.c = { 'name': '+Code     ▶' }
+let g:which_key_map.w = { 'name': '+Window   ▶' }
+let g:which_key_map.q = { 'name': '+Quit     ▶' }
 
 if $GIT_EXEC_PATH != ''
   nnoremap <C-s> :wq<cr>
@@ -34,11 +37,21 @@ let g:which_key_map.f.a = 'Save'
 nnoremap <leader>fs :noa w<cr>
 nnoremap <leader>fa :w<cr>
 
-let g:which_key_map.f.q = 'Quit vim'
-nnoremap <leader>fq :qa<cr>
+" Close
+let g:which_key_map.q.q = 'Quit vim'
+let g:which_key_map.q.Q = 'Quit vim (force)'
+let g:which_key_map.q.w = 'Close window'
+let g:which_key_map.q.W = 'Close window (force)'
+nnoremap <leader>qa :qa<cr>
+nnoremap <leader>qq :qa<cr>
+nnoremap <leader>qQ :cq<cr>
+nnoremap <leader>qw :q<cr>
+nnoremap <leader>qW :bwipe!<cr>
 
-let g:which_key_map.f.Q = 'Force-quit vim'
-nnoremap <leader>fQ :cq<cr>
+if exists(':Startify')
+  let g:which_key_map.q.a = 'Close all'
+  nnoremap <leader>qa :tabonly<cr>:StartifyReset<cr>
+endif
 
 " Window
 let g:which_key_map.w.q = 'Close window'
