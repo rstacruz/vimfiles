@@ -60,6 +60,9 @@ let g:which_key_map.w.Q = 'Close everything'
 nnoremap <silent> <leader>wq <C-w>q<CR>
 nnoremap <silent> <leader>wQ :bufdo bwipe!<CR>
 
+let g:which_key_map.w['_'] = 'Zoom'
+nnoremap <silent> <leader>w_ <C-w>_<CR>
+
 let g:which_key_map.w.q = 'Close others'
 nnoremap <silent> <leader>wo <C-w>o<CR>
 
