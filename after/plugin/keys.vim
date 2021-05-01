@@ -181,8 +181,8 @@ if exists(':tabclose')
   let g:which_key_map.t.n = 'New tab'
   let g:which_key_map.t.c = 'Close tab'
   nnoremap <leader>tc :tabclose<cr>
-  nnoremap <leader>tn :tabnew<cr>Startify<cr>
-  nnoremap <leader>t. :tabnew<cr>term<cr>
+  nnoremap <leader>tn :tabnew<cr>:Startify<cr>
+  nnoremap <leader>t. :tabnew<cr>:term<cr>
 endif
 
 let g:which_key_map.f.r = 'Revert file'
