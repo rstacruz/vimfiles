@@ -11,6 +11,15 @@ nnoremap gs :%s~~
 " Folding
 nnoremap + za
 
+" Ctrl-s
+if $GIT_EXEC_PATH != ''
+  nnoremap <C-s> :wq<cr>
+  inoremap <C-s> <esc>:wq<cr>
+else
+  nnoremap <C-s> :w<cr>
+  inoremap <C-s> <esc>:w<cr>
+endif
+
 " Which key
 let g:which_key_map = {}
 let g:which_key_map.f = { 'name': '+File     ▶' }
@@ -22,14 +31,6 @@ let g:which_key_map.t = { 'name': '+Tabs     ▶' }
 let g:which_key_map.c = { 'name': '+Code     ▶' }
 let g:which_key_map.w = { 'name': '+Window   ▶' }
 let g:which_key_map.q = { 'name': '+Quit     ▶' }
-
-if $GIT_EXEC_PATH != ''
-  nnoremap <C-s> :wq<cr>
-  inoremap <C-s> <esc>:wq<cr>
-else
-  nnoremap <C-s> :w<cr>
-  inoremap <C-s> <esc>:w<cr>
-endif
 
 " File
 let g:which_key_map.f.s = 'Save without formatting'
@@ -105,19 +106,17 @@ nnoremap <leader>fet :tabnew<cr>:e ~/.config/nvim/modules/dynamic-theme/color/dy
 
 if exists(':Gstatus')
   let g:which_key_map.g.s = 'Status'
-  let g:which_key_map.g.c = 'Commit'
-  let g:which_key_map.g.C = 'Commit -a (add)'
-  let g:which_key_map.g.A = 'Commit --amend -a (amend)'
+  let g:which_key_map.g.c = 'Commit -a (add)'
+  let g:which_key_map.g.a = 'Commit --amend -a (amend)'
   let g:which_key_map.g.b = 'Blame'
   let g:which_key_map.g.h = 'GitHub: open in browser'
   let g:which_key_map.g.y = 'GitHub: Copy URL'
   let g:which_key_map.g.d = 'cd to Git root (global)'
   let g:which_key_map.g.D = 'cd to Git root (local)'
 
-  nnoremap <leader>gs :tabnew<cr>:Gstatus<cr><C-W>o
-  nnoremap <leader>gc :Git commit -v<cr>
-  nnoremap <leader>gC :Git commit -av<cr>
-  nnoremap <leader>gA :Git commit --amend -av<cr>
+  nnoremap <leader>gs :tab Git<cr>
+  nnoremap <leader>gc :tab Git commit -av<cr>
+  nnoremap <leader>ga :tab Git commit --amend -av<cr>
   nnoremap <leader>gb :Git blame<cr>
   nnoremap <leader>gh :GBrowse<cr>
   nnoremap <leader>gy :GBrowse!<cr>
@@ -135,14 +134,6 @@ if exists(':Gstatus')
     nnoremap <leader>gP :Dispatch git push --force-with-lease --set-upstream origin (git rev-parse --abbrev-ref HEAD)<cr>
     nnoremap <leader>gH :Dispatch gh pr view --web<cr>
   endif
-endif
-
-if exists(':Magit')
-  " Automatically bound by the plugin
-  let g:which_key_map.M = 'which_key_ignore'
-
-  let g:which_key_map.g.m = 'Magit...'
-  nnoremap <leader>gm :Magit<cr>
 endif
 
 if exists(':GV')
@@ -354,6 +345,11 @@ if exists(':CocAction')
   nnoremap <leader>cd :CocList diagnostics<CR>
   nnoremap <leader>cs :CocList snippets<CR>
 endif
+
+" Macros
+let g:which_key_map.c.m = { 'name': '+Macros' }
+let g:which_key_map.c.m.f = 'JS arrow-func to func-decl'
+nnoremap <leader>cmf ^/const<cr>cwfunction<esc>f=xxf=xxx^
 
 " Quickfix
 nnoremap <F2> :cclose<CR>
