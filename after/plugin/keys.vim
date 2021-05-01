@@ -38,13 +38,13 @@ nnoremap <leader>fs :noa w<cr>
 nnoremap <leader>fa :w<cr>
 
 " Close
-let g:which_key_map.q.q = 'Quit vim'
-let g:which_key_map.q.Q = 'Quit vim (force)'
+let g:which_key_map.q.x = 'Exit vim'
+let g:which_key_map.q.X = 'Exit vim (force)'
 let g:which_key_map.q.w = 'Close window'
 let g:which_key_map.q.W = 'Close window (force)'
 let g:which_key_map.q.o = 'Close others'
-nnoremap <leader>qq :qa<cr>
-nnoremap <leader>qQ :cq<cr>
+nnoremap <leader>qx :qa<cr>
+nnoremap <leader>qX :cq<cr>
 nnoremap <leader>qw :q<cr>
 nnoremap <leader>qW :bwipe!<cr>
 nnoremap <leader>qo <C-w>o<cr>
