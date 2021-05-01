@@ -51,8 +51,8 @@ nnoremap <leader>qs :wq<cr>
 nnoremap <leader>qo <C-w>o<cr>
 
 if exists(':Startify')
-  let g:which_key_map.q.a = 'Close all'
-  nnoremap <leader>qa :tabonly<cr>:StartifyReset<cr>
+  let g:which_key_map.q.r = 'Close all (reset workspace)'
+  nnoremap <leader>qr :tabonly<cr>:StartifyReset<cr>
 endif
 
 " Window
@@ -181,13 +181,8 @@ if exists(':tabclose')
   let g:which_key_map.t.n = 'New tab'
   let g:which_key_map.t.c = 'Close tab'
   nnoremap <leader>tc :tabclose<cr>
-  nnoremap <leader>tn :tabnew<cr><Esc>:Startify<cr>
-  nnoremap <leader>ts :tabnew<cr><Esc>:term<cr>
-endif
-
-if exists(':Startify')
-  let g:which_key_map.k.w = 'Close all'
-  nnoremap <leader>kw :tabonly<cr>:StartifyReset<cr>
+  nnoremap <leader>tn :tab Startify<cr>
+  nnoremap <leader>ts :tab term<cr>
 endif
 
 let g:which_key_map.f.r = 'Revert file'
