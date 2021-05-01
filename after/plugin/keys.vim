@@ -38,15 +38,15 @@ nnoremap <leader>fs :noa w<cr>
 nnoremap <leader>fa :w<cr>
 
 " Close
-let g:which_key_map.q.x = 'Exit vim'
-let g:which_key_map.q.X = 'Exit vim (force)'
+let g:which_key_map.q.X = 'Exit vim'
 let g:which_key_map.q.w = 'Close window'
-let g:which_key_map.q.W = 'Close window (force)'
+let g:which_key_map.q.x = 'Close window (force)'
+let g:which_key_map.q.s = 'Save and close'
 let g:which_key_map.q.o = 'Close others'
-nnoremap <leader>qx :qa<cr>
 nnoremap <leader>qX :cq<cr>
 nnoremap <leader>qw :q<cr>
-nnoremap <leader>qW :bwipe!<cr>
+nnoremap <leader>qx :bwipe!<cr>
+nnoremap <leader>qs :wq<cr>
 nnoremap <leader>qo <C-w>o<cr>
 
 if exists(':Startify')
@@ -106,8 +106,8 @@ nnoremap <leader>fet :tabnew<cr>:e ~/.config/nvim/modules/dynamic-theme/color/dy
 if exists(':Gstatus')
   let g:which_key_map.g.s = 'Status'
   let g:which_key_map.g.c = 'Commit'
-  let g:which_key_map.g.C = 'Add and commit'
-  let g:which_key_map.g.A = 'Amend commit'
+  let g:which_key_map.g.C = 'Commit -a (add)'
+  let g:which_key_map.g.A = 'Commit --amend -a (amend)'
   let g:which_key_map.g.b = 'Blame'
   let g:which_key_map.g.h = 'GitHub: open in browser'
   let g:which_key_map.g.y = 'GitHub: Copy URL'
