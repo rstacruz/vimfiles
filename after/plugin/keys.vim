@@ -177,12 +177,12 @@ if exists('*OpenOrCreateFile')
 endif
 
 if exists(':tabclose')
-  let g:which_key_map.t.s = 'Shell in new tab'
+  let g:which_key_map.t['.'] = 'Shell in new tab'
   let g:which_key_map.t.n = 'New tab'
   let g:which_key_map.t.c = 'Close tab'
   nnoremap <leader>tc :tabclose<cr>
-  nnoremap <leader>tn :tab Startify<cr>
-  nnoremap <leader>ts :tab term<cr>
+  nnoremap <leader>tn :tabnew<cr>Startify<cr>
+  nnoremap <leader>t. :tabnew<cr>term<cr>
 endif
 
 let g:which_key_map.f.r = 'Revert file'
