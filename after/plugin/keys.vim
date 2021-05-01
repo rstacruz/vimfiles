@@ -39,12 +39,12 @@ nnoremap <leader>fs :noa w<cr>
 nnoremap <leader>fa :w<cr>
 
 " Close
-let g:which_key_map.q.X = 'Exit vim'
+let g:which_key_map.q.q = 'Quit vim'
 let g:which_key_map.q.w = 'Close window'
 let g:which_key_map.q.x = 'Close window (force)'
 let g:which_key_map.q.s = 'Save and close'
 let g:which_key_map.q.o = 'Close others'
-nnoremap <leader>qX :cq<cr>
+nnoremap <leader>qq :cq<cr>
 nnoremap <leader>qw :q<cr>
 nnoremap <leader>qx :bwipe!<cr>
 nnoremap <leader>qs :wq<cr>
@@ -187,13 +187,6 @@ endif
 
 let g:which_key_map.f.r = 'Revert file'
 nnoremap <leader>fr :e!<CR>
-
-" if exists(':q')
-"   let g:which_key_map.f.x = 'Quit vim...'
-"   let g:which_key_map.f.X = 'Quit vim!'
-"   nnoremap <leader>fx :qa<CR>
-"   nnoremap <leader>fX :qa!<CR>
-" endif
 
 if exists(':Quickterm')
   let g:which_key_map["'"] = 'Terminal'
@@ -345,10 +338,11 @@ endif
 let g:which_key_map.c.m = { 'name': '+Macros' }
 let g:which_key_map.c.m.f = 'JS arrow-func to func-decl'
 nnoremap <leader>cmf ^/const<cr>cwfunction<esc>f=xxf=xxx^
+let g:which_key_map.c.m.d = 'Date (Sun 1 Apr)'
+nnoremap <leader>cmd a<C-r>=strftime('%a %e %b')<cr>
 
 " Quickfix
 nnoremap <F2> :cclose<CR>
-nnoremap <F3> :cprev<CR>
 nnoremap <F4> :cnext<CR>
 
 " Location list
