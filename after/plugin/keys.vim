@@ -1,5 +1,5 @@
 " close
-nnoremap <Backspace> <C-w>q
+nnoremap <Backspace> :WhichKey ',q'<CR>
 nnoremap <Del> :bwipe!<CR>
 nnoremap <S-Del> :qa<CR>
 nnoremap <S-Del><S-Del> :qa!<CR>
@@ -41,11 +41,13 @@ nnoremap <leader>fa :w<cr>
 " Close
 let g:which_key_map.q.q = 'Quit vim'
 let g:which_key_map.q.w = 'Close window'
+let g:which_key_map.q.y = 'which_key_ignore' " convenience for colemak
 let g:which_key_map.q.x = 'Close window (force)'
 let g:which_key_map.q.s = 'Save and close'
 let g:which_key_map.q.o = 'Close others'
 nnoremap <leader>qq :cq<cr>
 nnoremap <leader>qw :q<cr>
+nnoremap <leader>qy :q<cr>
 nnoremap <leader>qx :bwipe!<cr>
 nnoremap <leader>qs :wq<cr>
 nnoremap <leader>qo <C-w>o<cr>
@@ -107,21 +109,21 @@ nnoremap <leader>fet :tabnew<cr>:e ~/.config/nvim/modules/dynamic-theme/color/dy
 if exists(':Gstatus')
   let g:which_key_map.g.s = 'Status'
   let g:which_key_map.g.c = 'Commit -a (add)'
-  let g:which_key_map.g.a = 'Commit --amend -a (amend)'
+  let g:which_key_map.g.A = 'Commit --amend -a (amend)'
   let g:which_key_map.g.b = 'Blame'
   let g:which_key_map.g.h = 'GitHub: open in browser'
   let g:which_key_map.g.y = 'GitHub: Copy URL'
-  let g:which_key_map.g.d = 'cd to Git root (global)'
-  let g:which_key_map.g.D = 'cd to Git root (local)'
+  let g:which_key_map.g.d = 'cd to Git root (local)'
+  let g:which_key_map.g.D = 'cd to Git root (global)'
 
   nnoremap <leader>gs :tab Git<cr>
-  nnoremap <leader>gc :tab Git commit -av<cr>
-  nnoremap <leader>ga :tab Git commit --amend -av<cr>
+  nnoremap <leader>gc :Git add --all \| tab Git commit -v<cr>
+  nnoremap <leader>gA :Git add --all \| tab Git commit --amend -v<cr>
   nnoremap <leader>gb :Git blame<cr>
   nnoremap <leader>gh :GBrowse<cr>
   nnoremap <leader>gy :GBrowse!<cr>
-  nnoremap <leader>gd :Gcd<cr>
-  nnoremap <leader>gD :Glcd<cr>
+  nnoremap <leader>gd :Glcd<cr>
+  nnoremap <leader>gD :Gcd<cr>
 
   vnoremap <leader>gh :GBrowse<cr>
   vnoremap <leader>gy :GBrowse!<cr>

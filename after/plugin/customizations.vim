@@ -5,6 +5,7 @@ set nonumber
 set noshowmode " no -- INSERT -- in the status line
 set ttimeoutlen=20 " for escape
 set timeoutlen=400 " for tab combos
+set laststatus=1 " no statusbar if there's only one window
 
 if has('nvim')
   " no line number in :term
@@ -213,18 +214,23 @@ augroup abbreviations
   au FileType javascript,typescript,typescriptreact iabbrev <buffer> classNmae className
   au FileType javascript,typescript,typescriptreact iabbrev <buffer> classnmae className
   au FileType javascript,typescript,typescriptreact iabbrev <buffer> improt import
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> porps props
 
-  au FileType javascript,typescript,typescriptreact iabbrev <buffer> iM  import
-  au FileType javascript,typescript,typescriptreact iabbrev <buffer> eX  export
-  au FileType javascript,typescript,typescriptreact iabbrev <buffer> cN  className
-  au FileType javascript,typescript,typescriptreact iabbrev <buffer> rE  return
-  au FileType javascript,typescript,typescriptreact iabbrev <buffer> fN  function
-  au FileType javascript,typescript,typescriptreact iabbrev <buffer> cL  class
-  au FileType javascript,typescript,typescriptreact iabbrev <buffer> cO  const
-  au FileType javascript,typescript,typescriptreact iabbrev <buffer> rE  return
-  au FileType javascript,typescript,typescriptreact iabbrev <buffer> eL  else
-  au FileType javascript,typescript,typescriptreact iabbrev <buffer> eI  else if
-  au FileType javascript,typescript,typescriptreact iabbrev <buffer> eX  export
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> Xf export function
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> Im import
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> Co const
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> Re return
+  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> iM  import
+  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> eX  export
+  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> cN  className
+  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> rE  return
+  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> fN  function
+  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> cL  class
+  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> cO  const
+  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> rE  return
+  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> eL  else
+  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> eI  else if
+  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> eX  export
   au FileType javascript,typescript,typescriptreact iabbrev <buffer> cLo console.log
 
   au FileType ruby iabbrev <buffer> aA attr_accessor
