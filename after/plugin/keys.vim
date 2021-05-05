@@ -58,6 +58,30 @@ if exists(':Startify')
 endif
 
 " Window
+let g:which_key_map.w.t = 'Go to top-left'
+let g:which_key_map.w.b = 'Go to bot-right'
+nnoremap <silent> <leader>wt <C-w>t<CR>
+nnoremap <silent> <leader>wb <C-w>b<CR>
+
+let g:which_key_map.w['1'] = 'Go to window 1'
+let g:which_key_map.w['2'] = 'Go to window 2'
+let g:which_key_map.w['3'] = 'Go to window 3'
+let g:which_key_map.w['4'] = 'which_key_ignore'
+let g:which_key_map.w['5'] = 'which_key_ignore'
+let g:which_key_map.w['6'] = 'which_key_ignore'
+let g:which_key_map.w['7'] = 'which_key_ignore'
+let g:which_key_map.w['8'] = 'which_key_ignore'
+let g:which_key_map.w['9'] = 'which_key_ignore'
+nnoremap <silent> <leader>w1 :1wincmd w<cr>
+nnoremap <silent> <leader>w2 :2wincmd w<cr>
+nnoremap <silent> <leader>w3 :3wincmd w<cr>
+nnoremap <silent> <leader>w4 :4wincmd w<cr>
+nnoremap <silent> <leader>w5 :5wincmd w<cr>
+nnoremap <silent> <leader>w6 :6wincmd w<cr>
+nnoremap <silent> <leader>w7 :7wincmd w<cr>
+nnoremap <silent> <leader>w8 :8wincmd w<cr>
+nnoremap <silent> <leader>w9 :9wincmd w<cr>
+
 let g:which_key_map.w.q = 'Close window'
 let g:which_key_map.w.Q = 'Close everything'
 nnoremap <silent> <leader>wq <C-w>q<CR>
@@ -107,34 +131,39 @@ nnoremap <leader>fes :tabnew<cr>:e ~/.config/nvim/ultisnips<cr>
 nnoremap <leader>fet :tabnew<cr>:e ~/.config/nvim/modules/dynamic-theme/color/dyntheme.vim<cr>
 
 if exists(':Gstatus')
+  let g:which_key_map.g.h = { 'name': '+GitHub...' }
   let g:which_key_map.g.s = 'Status'
   let g:which_key_map.g.c = 'Commit -a (add)'
   let g:which_key_map.g.A = 'Commit --amend -a (amend)'
   let g:which_key_map.g.b = 'Blame'
-  let g:which_key_map.g.h = 'GitHub: open in browser'
-  let g:which_key_map.g.y = 'GitHub: Copy URL'
   let g:which_key_map.g.d = 'cd to Git root (local)'
   let g:which_key_map.g.D = 'cd to Git root (global)'
+  let g:which_key_map.g.y = 'GitHub: Copy URL'
 
   nnoremap <leader>gs :tab Git<cr>
   nnoremap <leader>gc :Git add --all \| tab Git commit -v<cr>
   nnoremap <leader>gA :Git add --all \| tab Git commit --amend -v<cr>
   nnoremap <leader>gb :Git blame<cr>
-  nnoremap <leader>gh :GBrowse<cr>
-  nnoremap <leader>gy :GBrowse!<cr>
   nnoremap <leader>gd :Glcd<cr>
   nnoremap <leader>gD :Gcd<cr>
 
-  vnoremap <leader>gh :GBrowse<cr>
+  let g:which_key_map.g.h['.'] = 'Open in GitHub'
+  nnoremap <leader>gh. :GBrowse<cr>
+  vnoremap <leader>gh. :GBrowse<cr>
+
+  nnoremap <leader>gy :GBrowse!<cr>
   vnoremap <leader>gy :GBrowse!<cr>
 
   if exists(':Dispatch')
     let g:which_key_map.g.p = 'Push'
     let g:which_key_map.g.P = 'Push (force)'
-    let g:which_key_map.g.H = 'Open pull request'
     nnoremap <leader>gp :Dispatch git push<cr>
     nnoremap <leader>gP :Dispatch git push --force-with-lease --set-upstream origin (git rev-parse --abbrev-ref HEAD)<cr>
-    nnoremap <leader>gH :Dispatch gh pr view --web<cr>
+
+    let g:which_key_map.g.h.p = 'Open pull request'
+    let g:which_key_map.g.h.P = 'Create pull request'
+    nnoremap <leader>ghP :tabnew<cr>:term gh pr create<cr>
+    nnoremap <leader>ghp :Dispatch gh pr view --web<cr>
   endif
 endif
 
