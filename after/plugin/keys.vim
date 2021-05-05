@@ -66,7 +66,7 @@ nnoremap <silent> <leader>wQ :bufdo bwipe!<CR>
 let g:which_key_map.w['_'] = 'Zoom'
 nnoremap <silent> <leader>w_ <C-w>_<CR>
 
-let g:which_key_map.w.q = 'Close others'
+let g:which_key_map.w.o = 'Close others'
 nnoremap <silent> <leader>wo <C-w>o<CR>
 
 let g:which_key_map.w.h = 'Focus ←'

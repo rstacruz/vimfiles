@@ -8,6 +8,8 @@ let g:which_key_timeout = 0
 " Map for leader
 nnoremap <silent> <leader> :<c-u>WhichKey ','<CR>
 vnoremap <silent> <leader> :<c-u>WhichKeyVisual ','<CR>
+nnoremap <silent> <space> :<c-u>WhichKey ','<CR>
+vnoremap <silent> <space> :<c-u>WhichKeyVisual ','<CR>
 
 " Map for <g>
 " messes with gf, meh
