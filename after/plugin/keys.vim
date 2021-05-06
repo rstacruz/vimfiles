@@ -1,5 +1,5 @@
 " close
-nnoremap <Backspace> :WhichKey ',q'<CR>
+nnoremap <Backspace> :q<CR>
 nnoremap <Del> :bwipe!<CR>
 nnoremap <S-Del> :qa<CR>
 nnoremap <S-Del><S-Del> :qa!<CR>
@@ -31,6 +31,9 @@ let g:which_key_map.t = { 'name': '+Tabs     ▶' }
 let g:which_key_map.c = { 'name': '+Code     ▶' }
 let g:which_key_map.w = { 'name': '+Window   ▶' }
 let g:which_key_map.q = { 'name': '+Quit     ▶' }
+
+nnoremap <leader><space> :Files<CR>
+nnoremap <leader>, :Files<CR>
 
 " File
 let g:which_key_map.f.s = 'Save without formatting'
