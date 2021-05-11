@@ -112,6 +112,11 @@ nnoremap <silent> <leader>wn <C-w>n<CR>
 nnoremap <silent> <leader>ws <C-w>s<CR>
 nnoremap <silent> <leader>wv <C-w>v<CR>
 
+let g:which_key_map.w.S = 'Split horiz and refocus'
+let g:which_key_map.w.V = 'Split vert and refocus'
+nnoremap <silent> <leader>wS <C-w>s<CR><C-w>j<CR>
+nnoremap <silent> <leader>wV <C-w>v<CR><C-w>l<CR>
+
 let g:which_key_map.w.H = 'which_key_ignore'
 let g:which_key_map.w.J = 'which_key_ignore'
 let g:which_key_map.w.K = 'which_key_ignore'
@@ -247,8 +252,9 @@ if exists(':term')
 "   nnoremap <leader>tv :vsplit<CR><C-w>l:term<CR>
 
   " Term repeat thing
-    let g:which_key_map.t.r = 'Repeat command'
-    nnoremap <leader>tr :w<cr>:call keys#switch_to_term()<cr><C-\><C-n>a<Up><CR><C-\><C-n><C-w>p
+    let g:which_key_map.t.r = 'Repeat command in last term'
+    " nnoremap <leader>tr :w<cr>:call keys#switch_to_term()<cr><C-\><C-n>a<Up><CR><C-\><C-n><C-w>p
+    nnoremap <leader>tr :w<cr><C-w>p<C-\><C-n>a<Up><CR><C-\><C-n><C-w>p
 endif
 
 " vim-test
