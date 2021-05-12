@@ -59,6 +59,7 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathangrigg/vim-beancount'
 Plug 'thinca/vim-visualstar'
 Plug 'wellle/context.vim'
+Plug 'jrudess/vim-foldtext'
 
 " if has('nvim')
 "   Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
