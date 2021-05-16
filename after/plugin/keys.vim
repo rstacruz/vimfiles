@@ -1,8 +1,6 @@
 " close
-nnoremap <Backspace> :q<CR>
-nnoremap <Del> :bwipe!<CR>
-nnoremap <S-Del> :qa<CR>
-nnoremap <S-Del><S-Del> :qa!<CR>
+nnoremap <Del> :q<CR>
+nnoremap <S-Del> :bwipe!<CR>
 
 " g customisations
 vnoremap gs :s~~
