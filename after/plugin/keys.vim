@@ -28,6 +28,7 @@ let g:which_key_map.g = { 'name': '+Git      ▶' }
 let g:which_key_map.t = { 'name': '+Tabs     ▶' }
 let g:which_key_map.c = { 'name': '+Code     ▶' }
 let g:which_key_map.w = { 'name': '+Window   ▶' }
+let g:which_key_map.p = { 'name': '+Pick     ▶' }
 let g:which_key_map.q = { 'name': '+Quit     ▶' }
 
 nnoremap <leader><space> :Files<CR>
@@ -192,14 +193,14 @@ endif
 
 "   " nnoremap <C-p> :Clap files<cr>
 if exists(':Buffers')
-  let g:which_key_map.k.b = 'List buffers'
-  let g:which_key_map.k.b = 'History'
-  nnoremap <leader>kb :Buffers<cr>
-  nnoremap <leader>kh :History<cr>
+  let g:which_key_map.p.b = 'Buffers...'
+  nnoremap <leader>pb :Buffers<cr>
 endif
 
 if exists(':FZF')
   nnoremap <C-p> :Files<cr>
+  let g:which_key_map.p.f = 'Files...'
+  nnoremap <leader>pf :Files<cr>
 endif
 
 if exists('*OpenOrCreateFile')
