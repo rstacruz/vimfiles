@@ -299,3 +299,9 @@ augroup abbreviations
   au FileType text,markdown,taskpaper iabbrev <buffer> wB ♗
   au FileType text,markdown,taskpaper iabbrev <buffer> wP ♙
 augroup END
+
+" Neovide
+if exists('g:neovide')
+  let g:neovide_cursor_animation_length=0.04
+  set guifont=Iosevka:h20
+end
