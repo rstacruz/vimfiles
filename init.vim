@@ -61,6 +61,7 @@ Plug 'thinca/vim-visualstar'
 Plug 'wellle/context.vim'
 Plug 'jrudess/vim-foldtext'
 Plug 'vimwiki/vimwiki'
+Plug 'airblade/vim-gitgutter'
 
 " if has('nvim')
 "   Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
