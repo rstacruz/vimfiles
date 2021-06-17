@@ -26,7 +26,7 @@ augroup customisations
   end
   au FileType gitcommit setlocal statusline=──\ Git\ commit\ message\ ──
   au FileType pullrequest setlocal statusline=──\ Git\ pull\ request\ ──
-  au FileType markdown setlocal wrap linebreak nonumber norelativenumber
+  au FileType markdown setlocal wrap linebreak nonumber norelativenumber isfname+=32
   au FileType yaml setlocal foldmethod=indent
   " isfname: Allow spaces in filenames to 'gf' inside taskpaper files
   " Allow spaces in filenames to 'gf' inside taskpaper files
