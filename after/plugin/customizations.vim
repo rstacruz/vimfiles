@@ -178,35 +178,6 @@ if exists('g:GuiLoaded')
   LightlineTheme tokyonight
 endif
 
-inoremap #$md —
-inoremap #$nd –
-inoremap #$b. ·
-inoremap #$bo ●
-inoremap #$bO ○
-" [a]rrow
-inoremap #$ai →
-inoremap #$an ←
-inoremap #$au ↑
-inoremap #$ae ↓
-" box chars
-inoremap @#l ┌
-inoremap @#u ┬
-inoremap @#y ┐
-inoremap @#m │
-inoremap @#n ├
-inoremap @#e ┼
-inoremap @#i ┤
-inoremap @#o ─
-inoremap @#O ┄
-inoremap @#h └
-inoremap @#, ┴
-inoremap @#. ┘
-inoremap @#M ┆
-
-" j l u y .    ┌ ┬ ┐
-" m n e i o  │ ├ ┼ ┤ ─
-" k h , . .    └ ┴ ┘
-
 " Typo corrections
 augroup abbreviations
   au FileType javascript,typescript,typescriptreact iabbrev <buffer> conts const
@@ -305,3 +276,22 @@ if exists('g:neovide')
   let g:neovide_cursor_animation_length=0.04
   set guifont=Iosevka:h20
 end
+
+" Box drawing characters
+inoremap ^%( ·
+inoremap ^%: ●
+inoremap ^%) ○
+" j l u y .    ┌ ┬ ┐
+" m n e i o  │ ├ ┼ ┤ ─
+" k h , . .    └ ┴ ┘
+inoremap ^$< ┌
+inoremap ^$= ┬
+inoremap ^$> ┐
+inoremap ^$( ├
+inoremap ^$: ┼
+inoremap ^$) ┤
+inoremap ^$* └
+inoremap ^$- ┴
+inoremap ^$+ ┘
+inoremap ^$} ─
+inoremap ^${ │
