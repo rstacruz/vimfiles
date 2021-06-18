@@ -491,6 +491,8 @@ nnoremap <silent> <cr><Up>    :silent wincmd k<cr>
 nnoremap <silent> <cr><Down>  :silent wincmd j<cr>
 nnoremap <silent> <cr><Left>  :silent wincmd h<cr>
 nnoremap <silent> <cr><Right> :silent wincmd l<cr>
+nnoremap <silent> <cr>t :silent tabnew<cr>
+nnoremap <silent> <cr>T :silent tabnew<cr>:term<cr>
 nnoremap <silent> <cr>n :silent wincmd n<cr>
 nnoremap <silent> <cr>v :silent wincmd v<cr>
 nnoremap <silent> <cr>s :silent wincmd s<cr>
