@@ -1,6 +1,7 @@
 if globpath(&rtp, "autoload/which_key.vim") == "" | finish | endif
 
 call which_key#register(',', 'g:which_key_map')
+call which_key#register('<CR>', 'g:which_key_cr')
 
 set timeoutlen=100
 let g:which_key_timeout = 0
@@ -36,7 +37,7 @@ let g:which_key_hspace = 2
 let g:which_key_fallback_to_native_key = 1
 
 " Vertical mode
-let g:which_key_vertical = 1
+let g:which_key_vertical = 0
 
 " Folders first
 let g:which_key_group_dicts = 'start'

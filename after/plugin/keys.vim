@@ -473,17 +473,41 @@ tnoremap <F6> <C-\><C-n>:6wincmd w<cr>
 " nnoremap <silent> <leader><Left>  :silent wincmd h<cr>
 " nnoremap <silent> <leader><Right> :silent wincmd l<cr>
 
-nnoremap <silent> <cr> <C-w>
-nnoremap <silent> <cr><cr> za
+" Which key for enter
+let g:which_key_cr = {
+  \ '1': 'Pane 1',
+  \ '2': 'Pane 2',
+  \ '3': 'Pane 3',
+  \ '4': 'Pane 4',
+  \ '5': 'Pane 5',
+  \ '6': 'Pane 6',
+  \ '9': 'Pane 9',
+  \ 'n': 'New',
+  \ 'o': 'Only',
+  \ 's': 'Split horiz',
+  \ 't': 'Tab',
+  \ 'T': 'Terminal',
+  \ 'v': 'Split vert',
+  \ '<Home>': 'Prev tab',
+  \ '<End>': 'Next tab',
+  \ '<Up>': 'Focus ↑',
+  \ '<Down>': 'Focus ↓',
+  \ '<Left>': 'Focus ←',
+  \ '<Right>': 'Focus →',
+  \ '<BS>': 'Close',
+  \ 'J': 'Move ↑',
+  \ 'K': 'Move ↓',
+  \ 'H': 'Move ←',
+  \ 'L': 'Move →',
+  \ }
+
+nnoremap <silent> <cr><Space> za
 nnoremap <silent> <cr>1 :1wincmd w<cr>
 nnoremap <silent> <cr>2 :2wincmd w<cr>
 nnoremap <silent> <cr>3 :3wincmd w<cr>
 nnoremap <silent> <cr>4 :4wincmd w<cr>
 nnoremap <silent> <cr>5 :5wincmd w<cr>
 nnoremap <silent> <cr>6 :6wincmd w<cr>
-nnoremap <silent> <cr>7 :7wincmd w<cr>
-nnoremap <silent> <cr>8 :8wincmd w<cr>
-nnoremap <silent> <cr>9 :9wincmd w<cr>
 nnoremap <silent> <cr>, :Buffers<cr>
 nnoremap <silent> <cr><Home>  gT
 nnoremap <silent> <cr><End>   gt
@@ -491,16 +515,19 @@ nnoremap <silent> <cr><Up>    :silent wincmd k<cr>
 nnoremap <silent> <cr><Down>  :silent wincmd j<cr>
 nnoremap <silent> <cr><Left>  :silent wincmd h<cr>
 nnoremap <silent> <cr><Right> :silent wincmd l<cr>
-nnoremap <silent> <cr>t :silent tabnew<cr>
+nnoremap <silent> <cr>t :silent tabnew<cr>:Startify<cr>
 nnoremap <silent> <cr>T :silent tabnew<cr>:term<cr>
 nnoremap <silent> <cr>n :silent wincmd n<cr>
+nnoremap <silent> <cr>o :silent wincmd o<cr>
 nnoremap <silent> <cr>v :silent wincmd v<cr>
 nnoremap <silent> <cr>s :silent wincmd s<cr>
-nnoremap <silent> <cr>0<Up>    :silent wincmd K<cr>
-nnoremap <silent> <cr>0<Down>  :silent wincmd J<cr>
-nnoremap <silent> <cr>0<Left>  :silent wincmd H<cr>
-nnoremap <silent> <cr>0<Right> :silent wincmd L<cr>
-nnoremap <silent> <cr>0t       :silent tabnew<cr>
+nnoremap <silent> <cr>K :silent wincmd K<cr>
+nnoremap <silent> <cr>J :silent wincmd J<cr>
+nnoremap <silent> <cr>H :silent wincmd H<cr>
+nnoremap <silent> <cr>L :silent wincmd L<cr>
+nnoremap <silent> <cr><BS> :silent wincmd q<cr>
+
+nnoremap <silent> <CR> :exec ":WhichKey '\<CR\>'"<CR>
 
 if exists(':ChooseWin')
   nmap <C-b>q <Plug>(choosewin)
