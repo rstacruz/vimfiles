@@ -486,7 +486,6 @@ let g:which_key_cr = {
   \ 'o': 'Only',
   \ 's': 'Split horiz',
   \ 't': 'Tab',
-  \ 'T': 'Terminal',
   \ 'v': 'Split vert',
   \ '<Home>': 'Prev tab',
   \ '<End>': 'Next tab',
@@ -495,10 +494,13 @@ let g:which_key_cr = {
   \ '<Left>': 'Focus ←',
   \ '<Right>': 'Focus →',
   \ '<BS>': 'Close',
+  \ 'H': 'Move ←',
   \ 'J': 'Move ↑',
   \ 'K': 'Move ↓',
-  \ 'H': 'Move ←',
   \ 'L': 'Move →',
+  \ 'S': 'Terminal →',
+  \ 'T': 'Terminal tab',
+  \ 'V': 'Terminal ↓',
   \ }
 
 nnoremap <silent> <cr><Space> za
@@ -519,8 +521,10 @@ nnoremap <silent> <cr>t :silent tabnew<cr>:Startify<cr>
 nnoremap <silent> <cr>T :silent tabnew<cr>:term<cr>
 nnoremap <silent> <cr>n :silent wincmd n<cr>
 nnoremap <silent> <cr>o :silent wincmd o<cr>
-nnoremap <silent> <cr>v :silent wincmd v<cr>
-nnoremap <silent> <cr>s :silent wincmd s<cr>
+nnoremap <silent> <cr>v :silent wincmd v<cr><C-w>l
+nnoremap <silent> <cr>S :silent wincmd S<cr><C-w>j:term<cr>
+nnoremap <silent> <cr>V :silent wincmd v<cr><C-w>l:term<cr>
+nnoremap <silent> <cr>s :silent wincmd s<cr><C-w>j
 nnoremap <silent> <cr>K :silent wincmd K<cr>
 nnoremap <silent> <cr>J :silent wincmd J<cr>
 nnoremap <silent> <cr>H :silent wincmd H<cr>
