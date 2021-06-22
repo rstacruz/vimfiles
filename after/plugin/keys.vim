@@ -64,6 +64,8 @@ let g:which_key_map.w.t = 'Go to top-left'
 let g:which_key_map.w.b = 'Go to bot-right'
 nnoremap <silent> <leader>wt <C-w>t<CR>
 nnoremap <silent> <leader>wb <C-w>b<CR>
+nnoremap <silent> <leader>wv :silent wincmd v<cr><C-w>l
+nnoremap <silent> <leader>ws :silent wincmd s<cr><C-w>j
 
 let g:which_key_map.w['1'] = 'Go to window 1'
 let g:which_key_map.w['2'] = 'Go to window 2'
@@ -108,13 +110,13 @@ let g:which_key_map.w.n = 'New'
 let g:which_key_map.w.s = 'Split horiz'
 let g:which_key_map.w.v = 'Split vert'
 nnoremap <silent> <leader>wn <C-w>n<CR>
-nnoremap <silent> <leader>ws <C-w>s<CR>
-nnoremap <silent> <leader>wv <C-w>v<CR>
+nnoremap <silent> <leader>ws <C-w>s<CR><C-w>j
+nnoremap <silent> <leader>wv <C-w>v<CR><C-w>l
 
-let g:which_key_map.w.S = 'Split horiz and refocus'
-let g:which_key_map.w.V = 'Split vert and refocus'
-nnoremap <silent> <leader>wS <C-w>s<CR><C-w>j<CR>
-nnoremap <silent> <leader>wV <C-w>v<CR><C-w>l<CR>
+let g:which_key_map.w.S = 'Terminal (horiz)'
+let g:which_key_map.w.V = 'Terminal (vert)'
+nnoremap <silent> <leader>wV :silent wincmd v<cr><C-w>l:term<cr>
+nnoremap <silent> <leader>wS :silent wincmd s<cr><C-w>j:term<cr>
 
 let g:which_key_map.w.H = 'which_key_ignore'
 let g:which_key_map.w.J = 'which_key_ignore'
@@ -522,9 +524,9 @@ nnoremap <silent> <cr>T :silent tabnew<cr>:term<cr>
 nnoremap <silent> <cr>n :silent wincmd n<cr>
 nnoremap <silent> <cr>o :silent wincmd o<cr>
 nnoremap <silent> <cr>v :silent wincmd v<cr><C-w>l
-nnoremap <silent> <cr>S :silent wincmd S<cr><C-w>j:term<cr>
 nnoremap <silent> <cr>V :silent wincmd v<cr><C-w>l:term<cr>
 nnoremap <silent> <cr>s :silent wincmd s<cr><C-w>j
+nnoremap <silent> <cr>S :silent wincmd s<cr><C-w>j:term<cr>
 nnoremap <silent> <cr>K :silent wincmd K<cr>
 nnoremap <silent> <cr>J :silent wincmd J<cr>
 nnoremap <silent> <cr>H :silent wincmd H<cr>
