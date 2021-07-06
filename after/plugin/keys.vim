@@ -40,6 +40,11 @@ let g:which_key_map.f.a = 'Save'
 nnoremap <leader>fs :noa w<cr>
 nnoremap <leader>fa :w<cr>
 
+if exists(':FloatermToggle')
+  let g:which_key_map.f.b = 'Browse...'
+  nnoremap <leader>fb :FloatermNew --title=ranger ranger<cr>
+endif
+
 " Close
 let g:which_key_map.q.q = 'Quit vim'
 let g:which_key_map.q.w = 'Close window'
@@ -228,11 +233,16 @@ endif
 let g:which_key_map.f.r = 'Revert file'
 nnoremap <leader>fr :e!<CR>
 
-if exists(':Quickterm')
+" if exists(':Quickterm')
+"   let g:which_key_map["'"] = 'Terminal'
+"   nnoremap <leader>' :Quickterm<CR>
+"   " Like vscode
+"   nnoremap <C-j> :Quickterm<CR>
+" endif
+
+if exists(':FloatermToggle')
   let g:which_key_map["'"] = 'Terminal'
-  nnoremap <leader>' :Quickterm<CR>
-  " Like vscode
-  nnoremap <C-j> :Quickterm<CR>
+  nnoremap <leader>' :FloatermToggle<CR>
 endif
 
 if exists(':term')
