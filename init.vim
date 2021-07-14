@@ -82,7 +82,6 @@ let g:coc_global_extensions = [
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
-Plug 't9md/vim-choosewin'
 
 " Themes for GUI vims
 Plug 'ghifarit53/tokyonight-vim'
@@ -91,6 +90,7 @@ Plug 'equt/paper.vim'
 call plug#end()
 
 " Used to use, but don't anymore:
+" Plug 't9md/vim-choosewin'
 " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 " Plug 'junegunn/vim-slash'
 " Plug 'freitass/todo.txt-vim'
@@ -106,7 +106,7 @@ call plug#end()
 
 " :MarkdownPreview opens in your browser
 " <leader>mv
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 " <leader>mp
 Plug 'ferrine/md-img-paste.vim'

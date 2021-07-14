@@ -299,3 +299,5 @@ inoremap ^%< ╭
 inoremap ^%> ╮
 inoremap ^%* ╰
 inoremap ^%+ ╯
+
+
