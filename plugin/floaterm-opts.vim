@@ -5,3 +5,6 @@ let g:floaterm_borderchars = "─│─│╭╮╯╰"
 
 " when doing git commit, open a new tab
 let g:floaterm_opener = 'tabe'
+
+" close after exit
+let g:floaterm_autoclose = 1

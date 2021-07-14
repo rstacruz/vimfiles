@@ -60,7 +60,7 @@ Plug 'nathangrigg/vim-beancount'
 Plug 'thinca/vim-visualstar'
 Plug 'wellle/context.vim'
 Plug 'jrudess/vim-foldtext'
-Plug 'vimwiki/vimwiki'
+" Plug 'vimwiki/vimwiki'
 Plug 'airblade/vim-gitgutter'
 
 if has('nvim')

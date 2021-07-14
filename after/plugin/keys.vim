@@ -177,7 +177,7 @@ if exists(':Gstatus')
     let g:which_key_map.g.h.p = 'Open pull request'
     let g:which_key_map.g.h.P = 'Create pull request'
     nnoremap <leader>ghP :FloatermNew gh pr create<cr>
-    nnoremap <leader>ghp :Dispatch gh pr view --web<cr>
+    nnoremap <leader>ghp :FloatermNew gh pr view --web<cr>
   endif
 endif
 
@@ -499,13 +499,14 @@ let g:which_key_cr = {
   \ 's': 'Split horiz',
   \ 't': 'Tab',
   \ 'v': 'Split vert',
+  \ 'x': 'Close',
+  \ 'X': 'Force-close',
   \ '<Home>': 'Prev tab',
   \ '<End>': 'Next tab',
   \ '<Up>': 'Focus ↑',
   \ '<Down>': 'Focus ↓',
   \ '<Left>': 'Focus ←',
   \ '<Right>': 'Focus →',
-  \ '<BS>': 'Close',
   \ 'H': 'Move ←',
   \ 'J': 'Move ↑',
   \ 'K': 'Move ↓',
@@ -516,7 +517,7 @@ let g:which_key_cr = {
   \ }
 
 nnoremap <silent> <cr><Space> za
-nnoremap <silent> <cr><Esc> :FloatermToggle<cr>
+nnoremap <silent> <cr>9 :FloatermToggle<cr>
 nnoremap <silent> <cr>1 :1wincmd w<cr>
 nnoremap <silent> <cr>2 :2wincmd w<cr>
 nnoremap <silent> <cr>3 :3wincmd w<cr>
@@ -542,7 +543,8 @@ nnoremap <silent> <cr>K :silent wincmd K<cr>
 nnoremap <silent> <cr>J :silent wincmd J<cr>
 nnoremap <silent> <cr>H :silent wincmd H<cr>
 nnoremap <silent> <cr>L :silent wincmd L<cr>
-nnoremap <silent> <cr><BS> :silent wincmd q<cr>
+nnoremap <silent> <cr>x :q<cr>
+nnoremap <silent> <cr>X :bwipe!<cr>
 
 nnoremap <silent> <CR> :exec ":WhichKey '\<CR\>'"<CR>
 

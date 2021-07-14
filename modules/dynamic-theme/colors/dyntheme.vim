@@ -188,6 +188,7 @@ function! s:dark_overrides() " {{{
 
   " hi! VertSplit ctermbg=234 ctermfg=234
   hi! VertSplit ctermfg=237 ctermbg=none cterm=none
+  hi! FloatermBorder ctermfg=6 ctermbg=none
 endfunction " }}}
 
 function! s:light_overrides() " {{{
