@@ -13,7 +13,7 @@
 | `<enter>` `t`          | New tab                            |
 | `<enter>` `home/end`   | Change tab                         |
 |                        |                                    |
-| `<enter>` `9`          | New terminal (float)               |
+| `<enter>` `<esc>`      | New terminal (float)               |
 | `<enter>` `S/V/T`      | New terminal (split, vert, tab)    |
 | `<enter>` `s/v`        | Split window (horiz, vert)         |
 

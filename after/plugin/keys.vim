@@ -493,7 +493,7 @@ let g:which_key_cr = {
   \ '4': 'Pane 4',
   \ '5': 'Pane 5',
   \ '6': 'Pane 6',
-  \ '9': 'Pane 9',
+  \ '9': 'which_key_ignore',
   \ 'n': 'New',
   \ 'o': 'Only',
   \ 's': 'Split horiz',
@@ -501,6 +501,7 @@ let g:which_key_cr = {
   \ 'v': 'Split vert',
   \ 'x': 'Close',
   \ 'X': 'Force-close',
+  \ '<Esc>': 'Terminal',
   \ '<Home>': 'Prev tab',
   \ '<End>': 'Next tab',
   \ '<Up>': 'Focus ↑',
@@ -517,6 +518,7 @@ let g:which_key_cr = {
   \ }
 
 nnoremap <silent> <cr><Space> za
+nnoremap <silent> <cr><Esc> :FloatermToggle<cr>
 nnoremap <silent> <cr>9 :FloatermToggle<cr>
 nnoremap <silent> <cr>1 :1wincmd w<cr>
 nnoremap <silent> <cr>2 :2wincmd w<cr>
