@@ -64,8 +64,11 @@ Plug 'jrudess/vim-foldtext'
 Plug 'airblade/vim-gitgutter'
 
 if has('nvim')
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'voldikss/vim-floaterm'
+endif
+
+if has('nvim-0.5')
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 endif
 
 let g:coc_global_extensions = [
