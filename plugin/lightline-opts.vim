@@ -53,19 +53,19 @@ function s:set_theme(theme)
 endfunction
 
 function s:update_theme()
-  if exists('g:GuiLoaded')
-    if &background ==# 'dark'
-      call s:set_theme('ayu_dark')
-      " ayu_dark, tokyonight
-    else
-      call s:set_theme('one')
-    endif
+  if g:colors_name == 'paper'
+    call s:set_theme('paper')
+  elseif g:colors_name == 'daycula'
+    call s:set_theme('daycula')
+  elseif g:colors_name == 'github'
+    call s:set_theme('paper')
+  elseif exists('g:GuiLoaded') && if &background ==# 'dark'
+    call s:set_theme('ayu_dark')
+    " ayu_dark, tokyonight
+  elseif &background ==# 'dark'
+    call s:set_theme('darcula')
   else
-    if &background ==# 'dark'
-      call s:set_theme('darcula')
-    else
-      call s:set_theme('one')
-    endif
+    call s:set_theme('one')
   endif
 endfunction
 

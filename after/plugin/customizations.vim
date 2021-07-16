@@ -74,11 +74,11 @@ endfunction
 if exists('g:GuiLoaded')
   " set guifont=JuliaMono:h13
   " set guifont=JetBrains\ Mono:h14:w60
-  GuiFont! Iosevka:h16.5:w60
+  GuiFont! Iosevka:h16.5:w57
   GuiTabline 0
-  GuiLinespace -2
+  GuiLinespace -333
   colorscheme challenger_deep
-  " also: paper, iceberg, challenger_deep
+  " also: paper, iceberg, challenger_deep, github
 endif
 
 " Gui: Neovide

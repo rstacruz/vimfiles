@@ -87,11 +87,12 @@ Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 
 " GUI themes and colorschemes
+Plug 'challenger-deep-theme/vim'
 Plug 'cocopon/iceberg.vim'
+Plug 'cormacrelf/vim-colors-github'
 Plug 'equt/paper.vim'
 Plug 'ghifarit53/daycula-vim'
 Plug 'ghifarit53/tokyonight-vim'
-Plug 'challenger-deep-theme/vim'
 Plug 'lifepillar/vim-colortemplate'
 call plug#end()
 
