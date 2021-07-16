@@ -86,13 +86,13 @@ Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 
-" Themes for GUI vims
-Plug 'ghifarit53/tokyonight-vim'
-Plug 'ghifarit53/daycula-vim'
+" GUI themes and colorschemes
+Plug 'cocopon/iceberg.vim'
 Plug 'equt/paper.vim'
+Plug 'ghifarit53/daycula-vim'
+Plug 'ghifarit53/tokyonight-vim'
+Plug 'challenger-deep-theme/vim'
 Plug 'lifepillar/vim-colortemplate'
-let g:wwdc16_transp_bg = 1
-Plug 'lifepillar/vim-wwdc16-theme'
 call plug#end()
 
 " Used to use, but don't anymore:

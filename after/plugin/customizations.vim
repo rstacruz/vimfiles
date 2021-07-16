@@ -73,10 +73,12 @@ endfunction
 " Gui: neovim-qt
 if exists('g:GuiLoaded')
   " set guifont=JuliaMono:h13
-  set guifont=JetBrains\ Mono:h14:w60
+  " set guifont=JetBrains\ Mono:h14:w60
+  GuiFont! Iosevka:h16.5:w60
   GuiTabline 0
-  GuiLinespace -1
-  colorscheme paper
+  GuiLinespace -2
+  colorscheme challenger_deep
+  " also: paper, iceberg, challenger_deep
 endif
 
 " Gui: Neovide

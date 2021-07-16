@@ -53,14 +53,19 @@ function s:set_theme(theme)
 endfunction
 
 function s:update_theme()
-  if &background ==# 'dark'
-    call s:set_theme('darcula')
-    " call s:set_theme('wombat')
-    " call s:set_theme('selenized_dark')
-    " call s:set_theme('powerlineish')
+  if exists('g:GuiLoaded')
+    if &background ==# 'dark'
+      call s:set_theme('ayu_dark')
+      " ayu_dark, tokyonight
+    else
+      call s:set_theme('one')
+    endif
   else
-    call s:set_theme('one')
-    " call s:set_theme('PaperColor')
+    if &background ==# 'dark'
+      call s:set_theme('darcula')
+    else
+      call s:set_theme('one')
+    endif
   endif
 endfunction
 
