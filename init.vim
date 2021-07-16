@@ -21,6 +21,7 @@ endif
 Plug vim . '/modules/auto-cursorline'
 Plug vim . '/modules/ctrl-c-ctrl-v'
 Plug vim . '/modules/dynamic-theme'
+Plug vim . '/modules/lolcolor'
 Plug vim . '/modules/jk-on-wrap'
 Plug vim . '/modules/quickterm'
 Plug vim . '/modules/save-typos'
@@ -60,7 +61,6 @@ Plug 'nathangrigg/vim-beancount'
 Plug 'thinca/vim-visualstar'
 Plug 'wellle/context.vim'
 Plug 'jrudess/vim-foldtext'
-" Plug 'vimwiki/vimwiki'
 Plug 'airblade/vim-gitgutter'
 
 if has('nvim')
@@ -90,6 +90,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'ghifarit53/daycula-vim'
 Plug 'equt/paper.vim'
+Plug 'lifepillar/vim-colortemplate'
+let g:wwdc16_transp_bg = 1
+Plug 'lifepillar/vim-wwdc16-theme'
 call plug#end()
 
 " Used to use, but don't anymore:
@@ -106,6 +109,7 @@ call plug#end()
 " Plug 'janko/vim-test'
 " ^-- only useful for ruby and I'd rather up-enter
 " Plug 'SirVer/ultisnips'
+" Plug 'vimwiki/vimwiki'
 
 " :MarkdownPreview opens in your browser
 " <leader>mv

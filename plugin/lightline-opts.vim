@@ -52,19 +52,18 @@ function s:set_theme(theme)
   endif
 endfunction
 
-function s:set_light()
-  call s:set_theme('one')
-  " call s:set_theme('PaperColor')
+function s:update_theme()
+  if &background ==# 'dark'
+    call s:set_theme('darcula')
+    " call s:set_theme('wombat')
+    " call s:set_theme('selenized_dark')
+    " call s:set_theme('powerlineish')
+  else
+    call s:set_theme('one')
+    " call s:set_theme('PaperColor')
+  endif
 endfunction
 
-function s:set_dark()
-  call s:set_theme('darcula')
-  " call s:set_theme('wombat')
-  " call s:set_theme('selenized_dark')
-  " call s:set_theme('powerlineish')
-endfunction
-
-autocmd User DynthemeLight call s:set_light()
-autocmd User DynthemeDark call s:set_dark()
+autocmd ColorScheme * call s:update_theme()
 
 command! -nargs=1 LightlineTheme call s:set_theme('<args>')
