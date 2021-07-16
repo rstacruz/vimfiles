@@ -2,36 +2,30 @@ let g:lightline = {}
 
 let g:lightline.active =
   \ {
-  \   'left': [
-  \     [],
-  \     [ 'readonly', 'filename' ],
-  \   ],
+  \   'left': [ [], [], ['mode'] ],
   \   'right': [
-  \     [ 'mode', 'paste' ],
-  \     [],
-  \     [ 'percent', 'lineinfo', 'modified' ],
+  \     [ 'filename' ], [],
+  \     [ 'readonly', 'modified', 'lineinfo', 'paste' ]
   \   ]
   \ }
+  " \     [ 'percent' ],
 
 let g:lightline.inactive =
   \ {
-  \   'left': [
-  \     [],
-  \     [ 'filename' ]
-  \   ],
-  \   'right': []
+  \   'left': [],
+  \   'right': [ [ 'filename' ] ],
   \ }
 
 let g:lightline.subseparator =
-  \ { 'left': '·', 'right': '' }
+  \ { 'left': '', 'right': '' }
 
 let g:lightline.separator =
-  \ { 'left': '  ', 'right': '' }
+  \ { 'left': '', 'right': '' }
 
 let g:lightline.mode_map =
   \ {
-  \   'n' : '',
-  \   'i' : 'INS',
+  \   'n' : '   ',
+  \   'i' : '   ',
   \   'R' : 'R',
   \   'v' : 'VIS',
   \   'V' : 'V-LINE',
@@ -59,7 +53,7 @@ function s:update_theme()
     call s:set_theme('daycula')
   elseif g:colors_name == 'github'
     call s:set_theme('paper')
-  elseif exists('g:GuiLoaded') && if &background ==# 'dark'
+  elseif exists('g:GuiLoaded') && &background ==# 'dark'
     call s:set_theme('ayu_dark')
     " ayu_dark, tokyonight
   elseif &background ==# 'dark'

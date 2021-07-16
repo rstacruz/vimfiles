@@ -76,8 +76,8 @@ if exists('g:GuiLoaded')
   " set guifont=JetBrains\ Mono:h14:w60
   GuiFont! Iosevka:h16.5:w57
   GuiTabline 0
-  GuiLinespace -333
-  colorscheme challenger_deep
+  GuiLinespace -3
+  colorscheme paper
   " also: paper, iceberg, challenger_deep, github
 endif
 
