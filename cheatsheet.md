@@ -87,8 +87,3 @@
 | `yog`  | Git gutter (custom)   |
 
 These features are provided by [vim-unimpaired](https://github.com/tpope/vim-unimpaired).
-
-```vimscript
-:TSInstallInfo   " list all languages
-:TSInstall javascript bash jsdoc json jsonc html beancount dockerfile ruby yaml
-```
