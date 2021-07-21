@@ -6,6 +6,7 @@ set noshowmode " no -- INSERT -- in the status line
 set ttimeoutlen=20 " for escape
 set timeoutlen=400 " for tab combos
 set laststatus=1 " no statusbar if there's only one window
+let &fcs='eob: ' " hide tildes (https://github.com/neovim/neovim/issues/2067#issuecomment-398283872)
 
 if has('nvim')
   " no line number in :term
@@ -26,7 +27,7 @@ augroup customisations
   end
   au FileType gitcommit setlocal statusline=──\ Git\ commit\ message\ ──
   au FileType pullrequest setlocal statusline=──\ Git\ pull\ request\ ──
-  au FileType markdown setlocal wrap linebreak nonumber norelativenumber isfname+=32
+  au FileType markdown setlocal wrap linebreak nonumber norelativenumber isfname+=32 conceallevel=2
   au FileType yaml setlocal foldmethod=indent
   " isfname: Allow spaces in filenames to 'gf' inside taskpaper files
   " Allow spaces in filenames to 'gf' inside taskpaper files
@@ -242,4 +243,7 @@ inoremap ^%> ╮
 inoremap ^%* ╰
 inoremap ^%+ ╯
 
-
+" disable by default
+if exists(':GitGutterDisable')
+  GitGutterDisable
+endif

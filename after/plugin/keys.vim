@@ -81,7 +81,7 @@ let g:which_key_map.w['6'] = 'which_key_ignore'
 let g:which_key_map.w['7'] = 'which_key_ignore'
 let g:which_key_map.w['8'] = 'which_key_ignore'
 let g:which_key_map.w['9'] = 'which_key_ignore'
-nnoremap <silent> <leader>w1 :1wincmd w<cr>
+nnoremap <silent> <leader>w1 :wincmd t<cr>
 nnoremap <silent> <leader>w2 :2wincmd w<cr>
 nnoremap <silent> <leader>w3 :3wincmd w<cr>
 nnoremap <silent> <leader>w4 :4wincmd w<cr>
@@ -89,7 +89,7 @@ nnoremap <silent> <leader>w5 :5wincmd w<cr>
 nnoremap <silent> <leader>w6 :6wincmd w<cr>
 nnoremap <silent> <leader>w7 :7wincmd w<cr>
 nnoremap <silent> <leader>w8 :8wincmd w<cr>
-nnoremap <silent> <leader>w9 :9wincmd w<cr>
+nnoremap <silent> <leader>w9 :wincmd b<cr>
 
 let g:which_key_map.w.q = 'Close window'
 let g:which_key_map.w.Q = 'Close everything'
@@ -490,10 +490,10 @@ let g:which_key_cr = {
   \ '1': 'Pane 1',
   \ '2': 'Pane 2',
   \ '3': 'Pane 3',
-  \ '4': 'Pane 4',
-  \ '5': 'Pane 5',
-  \ '6': 'Pane 6',
-  \ '9': 'which_key_ignore',
+  \ '4': 'which_key_ignore',
+  \ '5': 'which_key_ignore',
+  \ '6': 'which_key_ignore',
+  \ '9': 'Pane 9',
   \ 'n': 'New',
   \ 'o': 'Only',
   \ 's': 'Split horiz',
@@ -520,8 +520,8 @@ let g:which_key_cr = {
 
 nnoremap <silent> <cr><Space> za
 nnoremap <silent> <cr><Esc> :FloatermToggle<cr>
-nnoremap <silent> <cr>9 :FloatermToggle<cr>
-nnoremap <silent> <cr>1 :1wincmd w<cr>
+nnoremap <silent> <cr>9 :wincmd b<cr>
+nnoremap <silent> <cr>1 :wincmd t<cr>
 nnoremap <silent> <cr>2 :2wincmd w<cr>
 nnoremap <silent> <cr>3 :3wincmd w<cr>
 nnoremap <silent> <cr>4 :4wincmd w<cr>
