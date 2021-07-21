@@ -62,6 +62,7 @@ Plug 'thinca/vim-visualstar'
 Plug 'wellle/context.vim'
 Plug 'jrudess/vim-foldtext'
 Plug 'airblade/vim-gitgutter'
+Plug 'rstacruz/vim-xtract'
 
 if has('nvim')
   Plug 'voldikss/vim-floaterm'

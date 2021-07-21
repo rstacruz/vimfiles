@@ -515,6 +515,7 @@ let g:which_key_cr = {
   \ 'S': 'Terminal →',
   \ 'T': 'Terminal tab',
   \ 'V': 'Terminal ↓',
+  \ 'z': 'Zen mode',
   \ }
 
 nnoremap <silent> <cr><Space> za
@@ -547,6 +548,7 @@ nnoremap <silent> <cr>H :silent wincmd H<cr>
 nnoremap <silent> <cr>L :silent wincmd L<cr>
 nnoremap <silent> <cr>x :q<cr>
 nnoremap <silent> <cr>X :bwipe!<cr>
+nnoremap <silent> <cr>z :Goyo<cr>
 
 nnoremap <silent> <CR> :exec ":WhichKey '\<CR\>'"<CR>
 
