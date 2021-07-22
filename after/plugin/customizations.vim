@@ -1,3 +1,6 @@
+" vim:fdm=marker,foldmarker=‹‹,››
+" Basic custo ‹‹
+
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 set noruler
@@ -8,12 +11,18 @@ set timeoutlen=400 " for tab combos
 set laststatus=1 " no statusbar if there's only one window
 let &fcs='eob: ' " hide tildes (https://github.com/neovim/neovim/issues/2067#issuecomment-398283872)
 
+" ›› ───────────────────────────────────────────────────────────────────────────────
+" Terminal customisations ‹‹
+
 if has('nvim')
   " no line number in :term
   " https://github.com/neovim/neovim/issues/6832#issuecomment-305507194
   au TermOpen * setlocal nonumber norelativenumber nocursorline
   au TermOpen * startinsert
 endif
+
+" ›› ───────────────────────────────────────────────────────────────────────────────
+" Filetype customisations ‹‹
 
 augroup customisations
   au FileType gitcommit,pullrequest,gitrebase startinsert
@@ -52,7 +61,9 @@ endif
 
 set linebreak  " lbr: break on words
 
-" Markdown tools
+" ›› ───────────────────────────────────────────────────────────────────────────────
+" Markdown tools ‹‹
+
 function! MkdnRemoveAnnotations()
   silent! %s/^###\n\n//
   silent! %s/^<!-- {.*\n\n//
@@ -70,6 +81,9 @@ function! OpenOrCreateFile(...)
   let cmd=(a:0 == '' ? 'e' : 'split')
   silent! exec cmd . ' ' . fname
 endfunction
+
+" ›› ───────────────────────────────────────────────────────────────────────────────
+" GUI fonts and colours ‹‹
 
 " Gui: neovim-qt
 if exists('g:GuiLoaded')
@@ -110,6 +124,9 @@ endfunction
 
 command! DarkTokyo call DarkTokyo()
 
+" ›› ───────────────────────────────────────────────────────────────────────────────
+" ... ‹‹
+
 " Abbreviations
 iabbrev "::md" —
 " don't give |ins-completion-menu| messages.
@@ -127,7 +144,14 @@ if has('nvim')
   au TermOpen * startinsert
 endif
 
-" Typo corrections
+" disable by default
+if exists(':GitGutterDisable')
+  GitGutterDisable
+endif
+
+" ›› ───────────────────────────────────────────────────────────────────────────────
+" Typo corrections ‹‹
+
 augroup abbreviations
   au FileType javascript,typescript,typescriptreact iabbrev <buffer> conts const
   au FileType javascript,typescript,typescriptreact iabbrev <buffer> classname className
@@ -220,6 +244,9 @@ augroup abbreviations
   au FileType text,markdown,taskpaper iabbrev <buffer> wP ♙
 augroup END
 
+" ›› ───────────────────────────────────────────────────────────────────────────────
+" Box drawing chars ‹‹
+
 " Box drawing characters
 inoremap ^%( ·
 inoremap ^%: ●
@@ -243,7 +270,16 @@ inoremap ^%> ╮
 inoremap ^%* ╰
 inoremap ^%+ ╯
 
-" disable by default
-if exists(':GitGutterDisable')
-  GitGutterDisable
-endif
+" ›› ───────────────────────────────────────────────────────────────────────────────
+" Theme overrides ‹‹
+
+function s:add_theme_overrides()
+  " if &background ==# 'dark' | ... | endif
+  hi Normal ctermbg=none
+  hi NonText ctermbg=none
+  hi EndOfBuffer ctermbg=none
+endfunction
+
+autocmd ColorScheme * call s:add_theme_overrides()
+
+" ›› ───────────────────────────────────────────────────────────────────────────────
