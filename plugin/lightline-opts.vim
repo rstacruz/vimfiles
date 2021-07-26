@@ -1,5 +1,15 @@
 let g:lightline = {}
 
+" no tab number
+let g:lightline.tab = {
+    \ 'active': [ 'filename' ],
+    \ 'inactive': [ 'filename' ] }
+
+" no close button
+let g:lightline.tabline = {
+    \ 'left': [ [ 'tabs' ] ],
+    \ 'right': [ ] }
+
 let g:lightline.active =
   \ {
   \   'left': [ [], [], ['mode'] ],
@@ -52,14 +62,14 @@ function s:update_theme()
   elseif g:colors_name == 'daycula'
     call s:set_theme('daycula')
   elseif g:colors_name == 'github'
-    call s:set_theme('paper')
+    call s:set_theme('ayu_light')
   elseif exists('g:GuiLoaded') && &background ==# 'dark'
     call s:set_theme('ayu_dark')
     " ayu_dark, tokyonight
   elseif &background ==# 'dark'
     call s:set_theme('darcula')
   else
-    call s:set_theme('one')
+    call s:set_theme('ayu_light')
   endif
 endfunction
 

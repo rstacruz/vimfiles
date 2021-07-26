@@ -1,4 +1,4 @@
-" vim:fdm=marker,foldmarker=‹‹,››
+" vim:fdm=marker:foldmarker=‹‹,››
 " Basic custo ‹‹
 
 " don't give |ins-completion-menu| messages.
@@ -188,31 +188,6 @@ augroup abbreviations
   au FileType ruby iabbrev <buffer> iN include
   au FileType ruby iabbrev <buffer> mO module
   au FileType ruby iabbrev <buffer> rE return
-
-  au FileType css,scss iabbrev <buffer> bA  border-radius:
-  au FileType css,scss iabbrev <buffer> dB  display: block;
-  au FileType css,scss iabbrev <buffer> dF  display: flex;
-  au FileType css,scss iabbrev <buffer> dI  display: inline;
-  au FileType css,scss iabbrev <buffer> diB display: inline-block;
-  au FileType css,scss iabbrev <buffer> fB  font-weight: bold;
-  au FileType css,scss iabbrev <buffer> fI  font-style: italic;
-  au FileType css,scss iabbrev <buffer> hE  height:
-  au FileType css,scss iabbrev <buffer> lH  line-height:
-  au FileType css,scss iabbrev <buffer> mA  margin:
-  au FileType css,scss iabbrev <buffer> mB  margin-bottom:
-  au FileType css,scss iabbrev <buffer> mL  margin-left:
-  au FileType css,scss iabbrev <buffer> mR  margin-right:
-  au FileType css,scss iabbrev <buffer> mT  margin-top:
-  au FileType css,scss iabbrev <buffer> oP  opacity:
-  au FileType css,scss iabbrev <buffer> pA  padding:
-  au FileType css,scss iabbrev <buffer> pB  padding-bottom:
-  au FileType css,scss iabbrev <buffer> pL  padding-left:
-  au FileType css,scss iabbrev <buffer> poA position: absolute;
-  au FileType css,scss iabbrev <buffer> poF position: fixed;
-  au FileType css,scss iabbrev <buffer> poR position: relative;
-  au FileType css,scss iabbrev <buffer> pR  padding-right:
-  au FileType css,scss iabbrev <buffer> pT  padding-top:
-  au FileType css,scss iabbrev <buffer> wI  width:
 
   au FileType text,markdown,c iabbrev <buffer> sfT ⇧
   au FileType text,markdown,c iabbrev <buffer> taB ↹

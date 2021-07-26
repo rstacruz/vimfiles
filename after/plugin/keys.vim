@@ -171,13 +171,13 @@ if exists(':Gstatus')
   if exists(':Dispatch')
     let g:which_key_map.g.p = 'Push'
     let g:which_key_map.g.P = 'Push (force)'
-    nnoremap <leader>gp :Dispatch git push<cr>
-    nnoremap <leader>gP :Dispatch git push --force-with-lease --set-upstream origin (git rev-parse --abbrev-ref HEAD)<cr>
+    nnoremap <leader>gp :FloatermNew --height=10 --title=git\ push... git push<cr>
+    nnoremap <leader>gP :FloatermNew --height=10 --title=git\ push... git push --force-with-lease --set-upstream origin (git rev-parse --abbrev-ref HEAD)<cr>
 
     let g:which_key_map.g.h.p = 'Open pull request'
     let g:which_key_map.g.h.P = 'Create pull request'
     nnoremap <leader>ghP :FloatermNew gh pr create<cr>
-    nnoremap <leader>ghp :FloatermNew gh pr view --web<cr>
+    nnoremap <leader>ghp :FloatermNew --height=3 gh pr view --web<cr>
   endif
 endif
 
