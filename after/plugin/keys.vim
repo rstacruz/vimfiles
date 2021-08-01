@@ -2,6 +2,9 @@
 nnoremap <Del> :q<CR>
 nnoremap <S-Del> :bwipe!<CR>
 
+" copy entire buffer
+nnoremap <silent> <C-c> :%y+<CR>
+
 " g customisations
 vnoremap gs :s~~
 nnoremap gs :%s~~
