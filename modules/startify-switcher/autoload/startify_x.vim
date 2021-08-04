@@ -2,7 +2,7 @@ if !exists('g:startify_x_shortcut_length')
   let g:startify_x_shortcut_length = 2
 endif
 
-if !exists('gstartify_x_icon_folder')
+if !exists('g:startify_x_icon_folder')
   if has('gui_vimr')
     let g:startify_x_icon_folder = ''
   else

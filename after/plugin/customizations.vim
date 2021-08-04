@@ -206,3 +206,8 @@ endfunction
 autocmd ColorScheme * call s:add_theme_overrides()
 " }}}
 
+" :Z {{{
+autocmd User ZChangedDir StartifySetBanner
+autocmd User ZChangedDir Startify
+" }}}
+

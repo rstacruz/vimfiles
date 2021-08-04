@@ -17,7 +17,6 @@ call plug#begin(vim . '/vendor')
 let g:polyglot_disabled = ['markdown']
 Plug 'sheerun/vim-polyglot'
 Plug 'plasticboy/vim-markdown'
-Plug 'alampros/vim-styled-jsx'
 " }}}
 
 " Don't load the other plugins for git commit
@@ -33,6 +32,7 @@ Plug vim . '/modules/quickterm'
 Plug vim . '/modules/save-typos'
 Plug vim . '/modules/startify-switcher'
 Plug vim . '/modules/synstack'
+Plug vim . '/modules/cd-z'
 " }}}
 
 " Plugins available in minimal mode {{{
