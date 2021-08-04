@@ -13,15 +13,17 @@ end
 
 call plug#begin(vim . '/vendor')
 
-" Language plugins
+" Language plugins {{{
 let g:polyglot_disabled = ['markdown']
 Plug 'sheerun/vim-polyglot'
 Plug 'plasticboy/vim-markdown'
+Plug 'alampros/vim-styled-jsx'
+" }}}
 
 " Don't load the other plugins for git commit
 if $GIT_EXEC_PATH != '' | call plug#end() | finish | endif
 
-" Home-made modules
+" Home-made modules {{{
 Plug vim . '/modules/auto-cursorline'
 Plug vim . '/modules/ctrl-c-ctrl-v'
 Plug vim . '/modules/dynamic-theme'
@@ -31,8 +33,9 @@ Plug vim . '/modules/quickterm'
 Plug vim . '/modules/save-typos'
 Plug vim . '/modules/startify-switcher'
 Plug vim . '/modules/synstack'
+" }}}
 
-" Plugins available in minimal mode
+" Plugins available in minimal mode {{{
 Plug 'cweagans/vim-taskpaper'
 Plug 'preservim/nerdtree'
 Plug 'rstacruz/vim-opinion'
@@ -48,11 +51,12 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'liuchengxu/vim-which-key'
 Plug 'mhinz/vim-startify'
+" }}}
 
 " Don't load the other plugins
 if $VIM_MINIMAL != '' | call plug#end() | finish | endif
 
-" Most plugins
+" Most plugins {{{
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-dispatch'
 Plug 'rstacruz/vim-closer'
@@ -68,8 +72,9 @@ Plug 'ferrine/md-img-paste.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
+" }}}
 
-" Requires nvim
+" Requires nvim {{{
 if has('nvim')
   Plug 'voldikss/vim-floaterm'
 endif
@@ -78,8 +83,9 @@ endif
 if has('nvim-0.5')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 endif
+" }}}
 
-" GUI themes and colorschemes
+" GUI themes and colorschemes {{{
 Plug 'challenger-deep-theme/vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'cormacrelf/vim-colors-github'
@@ -87,8 +93,9 @@ Plug 'equt/paper.vim'
 Plug 'ghifarit53/daycula-vim'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'lifepillar/vim-colortemplate'
+" }}}
 
-" Coc extensions
+" Coc extensions {{{
 let g:coc_global_extensions = [
   \ 'coc-css',
   \ 'coc-json',
@@ -99,6 +106,8 @@ let g:coc_global_extensions = [
   \ 'coc-emmet',
   \ 'coc-ultisnips',
   \ ]
+" Coc extensions }}}
 
 " Bye
+" vim:foldmethod=marker
 call plug#end()

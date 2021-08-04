@@ -1,6 +1,6 @@
-" vim:fdm=marker:foldmarker=‹‹,››
-" Basic custo ‹‹
+" vim:fdm=marker:foldmarker={{{,}}}
 
+" Basic custo {{{
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 set noruler
@@ -10,20 +10,18 @@ set ttimeoutlen=20 " for escape
 set timeoutlen=400 " for tab combos
 set laststatus=1 " no statusbar if there's only one window
 let &fcs='eob: ' " hide tildes (https://github.com/neovim/neovim/issues/2067#issuecomment-398283872)
+" }}}
 
-" ›› ───────────────────────────────────────────────────────────────────────────────
-" Terminal customisations ‹‹
-
+" Terminal customisations {{{
 if has('nvim')
   " no line number in :term
   " https://github.com/neovim/neovim/issues/6832#issuecomment-305507194
   au TermOpen * setlocal nonumber norelativenumber nocursorline
   au TermOpen * startinsert
 endif
+" }}}
 
-" ›› ───────────────────────────────────────────────────────────────────────────────
-" Filetype customisations ‹‹
-
+" Filetype customisations {{{
 augroup customisations
   au FileType gitcommit,pullrequest,gitrebase startinsert
   au FileType gitcommit,pullrequest,gitrebase setlocal nonumber norelativenumber nowrap
@@ -60,10 +58,9 @@ if has('nvim')
 endif
 
 set linebreak  " lbr: break on words
+" }}}
 
-" ›› ───────────────────────────────────────────────────────────────────────────────
-" Markdown tools ‹‹
-
+" Markdown tools {{{
 function! MkdnRemoveAnnotations()
   silent! %s/^###\n\n//
   silent! %s/^<!-- {.*\n\n//
@@ -81,11 +78,9 @@ function! OpenOrCreateFile(...)
   let cmd=(a:0 == '' ? 'e' : 'split')
   silent! exec cmd . ' ' . fname
 endfunction
+" }}}
 
-" ›› ───────────────────────────────────────────────────────────────────────────────
-" GUI fonts and colours ‹‹
-
-" Gui: neovim-qt
+" Gui: neovim-qt {{{
 if exists('g:GuiLoaded')
   " set guifont=JuliaMono:h13
   " set guifont=JetBrains\ Mono:h14:w60
@@ -95,64 +90,31 @@ if exists('g:GuiLoaded')
   colorscheme paper
   " also: paper, iceberg, challenger_deep, github
 endif
+" }}}
 
-" Gui: Neovide
+" Gui: Neovide {{{
 if exists('g:neovide')
   let g:neovide_cursor_animation_length=0.04
   set guifont=Iosevka:h20
 end
+" }}}
 
+" Gui: vimr {{{
 " https://github.com/qvacua/vimr/wiki
 if has('gui_vimr')
   colorscheme paper
   LightlineTheme paper
   set background=light
 endif
-
-function! LightPaper()
-  colorscheme paper
-  LightlineTheme paper
-  set background=light
-endfunction
-
-command! LightPaper call LightPaper()
-
-function! DarkTokyo()
-  colorscheme tokyonight
-  LightlineTheme tokyonight
-endfunction
-
-command! DarkTokyo call DarkTokyo()
-
-" ›› ───────────────────────────────────────────────────────────────────────────────
-" ... ‹‹
-
-" Abbreviations
-iabbrev "::md" —
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-set noruler
-set nonumber
-set noshowmode " no -- INSERT -- in the status line
-set ttimeoutlen=20 " for escape
-set timeoutlen=400 " for tab combos
-
-if has('nvim')
-  " no line number in :term
-  " https://github.com/neovim/neovim/issues/6832#issuecomment-305507194
-  au TermOpen * setlocal nonumber norelativenumber nocursorline
-  au TermOpen * startinsert
-endif
+" }}}
 
 " disable by default
 if exists(':GitGutterDisable')
   GitGutterDisable
 endif
 
-" ›› ───────────────────────────────────────────────────────────────────────────────
-" Typo corrections ‹‹
-
-augroup abbreviations
+" iabbrev: Typo corrections {{{
+augroup abbreviations_typos
   au FileType javascript,typescript,typescriptreact iabbrev <buffer> conts const
   au FileType javascript,typescript,typescriptreact iabbrev <buffer> classname className
   au FileType javascript,typescript,typescriptreact iabbrev <buffer> classNmae className
@@ -176,19 +138,11 @@ augroup abbreviations
   " au FileType javascript,typescript,typescriptreact iabbrev <buffer> eI  else if
   " au FileType javascript,typescript,typescriptreact iabbrev <buffer> eX  export
   au FileType javascript,typescript,typescriptreact iabbrev <buffer> cLo console.log
+augroup END
+" }}}
 
-  au FileType ruby iabbrev <buffer> aA attr_accessor
-  au FileType ruby iabbrev <buffer> aR attr_reader
-  au FileType ruby iabbrev <buffer> aW attr_writer
-  au FileType ruby iabbrev <buffer> cL class
-  au FileType ruby iabbrev <buffer> dS describe
-  au FileType ruby iabbrev <buffer> eX extend
-  au FileType ruby iabbrev <buffer> eXs extends
-  au FileType ruby iabbrev <buffer> fS # frozen_string_literal: trun
-  au FileType ruby iabbrev <buffer> iN include
-  au FileType ruby iabbrev <buffer> mO module
-  au FileType ruby iabbrev <buffer> rE return
-
+" iabbrev: symbols ⌘ ⌦ {{{
+augroup abbreviations_symbols
   au FileType text,markdown,c iabbrev <buffer> sfT ⇧
   au FileType text,markdown,c iabbrev <buffer> taB ↹
   au FileType text,markdown,c iabbrev <buffer> ftB ⇥
@@ -218,17 +172,12 @@ augroup abbreviations
   au FileType text,markdown,taskpaper iabbrev <buffer> wB ♗
   au FileType text,markdown,taskpaper iabbrev <buffer> wP ♙
 augroup END
+" }}}
 
-" ›› ───────────────────────────────────────────────────────────────────────────────
-" Box drawing chars ‹‹
-
-" Box drawing characters
+" inoremap: Box drawing chars {{{
 inoremap ^%( ·
 inoremap ^%: ●
 inoremap ^%) ○
-" j l u y .    ┌ ┬ ┐
-" m n e i o  │ ├ ┼ ┤ ─
-" k h , . .    └ ┴ ┘
 inoremap ^$< ┌
 inoremap ^$= ┬
 inoremap ^$> ┐
@@ -244,10 +193,9 @@ inoremap ^%< ╭
 inoremap ^%> ╮
 inoremap ^%* ╰
 inoremap ^%+ ╯
+" }}}
 
-" ›› ───────────────────────────────────────────────────────────────────────────────
-" Theme overrides ‹‹
-
+" Theme overrides {{{
 function s:add_theme_overrides()
   " if &background ==# 'dark' | ... | endif
   hi Normal ctermbg=none
@@ -256,5 +204,5 @@ function s:add_theme_overrides()
 endfunction
 
 autocmd ColorScheme * call s:add_theme_overrides()
+" }}}
 
-" ›› ───────────────────────────────────────────────────────────────────────────────
