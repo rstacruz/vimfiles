@@ -43,6 +43,9 @@ let g:which_key_map.f.a = 'Save'
 nnoremap <leader>fs :noa w<cr>
 nnoremap <leader>fa :w<cr>
 
+let g:which_key_map.z = 'Go to project...'
+nnoremap <leader>z :Z<Space>
+
 if exists(':FloatermToggle')
   let g:which_key_map.f.b = 'Browse...'
   nnoremap <leader>fb :FloatermNew --title=ranger ranger<cr>
