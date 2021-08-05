@@ -5,7 +5,7 @@ function! s:build_quickfix_list(lines)
   cc
 endfunction
 
-" - `:Ag hello` to searrch
+" - `:Ag hello` to search
 " - `alt-a alt-q` to move to quickfix
 " - f3/f4 to navigate quickfix
 let g:fzf_action = {

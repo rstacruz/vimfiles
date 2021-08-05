@@ -34,9 +34,6 @@ let g:which_key_map.w = { 'name': '+Window   ▶' }
 let g:which_key_map.p = { 'name': '+Pick     ▶' }
 let g:which_key_map.q = { 'name': '+Quit     ▶' }
 
-nnoremap <leader><space> :Files<CR>
-nnoremap <leader>, :Files<CR>
-
 " File
 let g:which_key_map.f.s = 'Save without formatting'
 let g:which_key_map.f.a = 'Save'
@@ -211,9 +208,9 @@ if exists(':Buffers')
 endif
 
 if exists(':FZF')
-  nnoremap <C-p> :Files<cr>
+  nnoremap <C-p> :GFiles<cr>
   let g:which_key_map.p.f = 'Files...'
-  nnoremap <leader>pf :Files<cr>
+  nnoremap <leader>pf :GFiles<cr>
 endif
 
 if exists('*OpenOrCreateFile')

@@ -92,6 +92,7 @@ Plug 'cormacrelf/vim-colors-github'
 Plug 'equt/paper.vim'
 Plug 'ghifarit53/daycula-vim'
 Plug 'ghifarit53/tokyonight-vim'
+Plug 'joshdick/onedark.vim'
 Plug 'lifepillar/vim-colortemplate'
 " }}}
 

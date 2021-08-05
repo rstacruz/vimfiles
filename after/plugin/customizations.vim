@@ -42,6 +42,9 @@ augroup customisations
   au! BufRead,BufNewFile *.ttxt setfiletype taskpaper
   " Allow auto-completion of beancount accounts (eg, Assets:Bank-Stuff)
   au! BufRead,BufNewFile *.beancount setlocal iskeyword+=-,58
+
+  " treesitter-based folding where supported
+  au FileType typescript,typescriptreact,javascript,javascriptreact,css,json,markdown setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
 augroup END
 
 " No status when editing Git commit messages
@@ -96,6 +99,8 @@ endif
 if exists('g:neovide')
   let g:neovide_cursor_animation_length=0.04
   set guifont=Iosevka:h20
+  colorscheme challenger_deep
+  set background=dark
 end
 " }}}
 
