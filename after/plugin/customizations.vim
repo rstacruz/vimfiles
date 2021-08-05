@@ -102,8 +102,7 @@ end
 " Gui: vimr {{{
 " https://github.com/qvacua/vimr/wiki
 if has('gui_vimr')
-  colorscheme paper
-  LightlineTheme paper
+  colorscheme github
   set background=light
 endif
 " }}}
