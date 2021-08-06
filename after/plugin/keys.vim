@@ -1,3 +1,5 @@
+" vim:fdm=marker:foldmarker={{{,}}}:foldlevel=0
+
 " close
 nnoremap <Del> :q<CR>
 nnoremap <S-Del> :bwipe!<CR>
@@ -5,14 +7,39 @@ nnoremap <S-Del> :bwipe!<CR>
 " copy entire buffer
 nnoremap <silent> <C-c> :%y+<CR>
 
-" g customisations
+" Folding
+nnoremap + za
+" i[s]olate: Close all folds, expect the ones for this
+" zM(close all) zv(open here) zz(center on screen)
+nnoremap <silent> zs zMzv
+
+" [g] g customisations {{{
 vnoremap gs :s~~
 nnoremap gs :%s~~
 
-" Folding
-nnoremap + za
+if exists(':EasyAlign')
+  " Start interactive EasyAlign in visual mode (e.g. vipga)
+  xmap ga <Plug>(EasyAlign)
+  " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+  nmap ga <Plug>(EasyAlign)
+endif
+" }}}
 
-" Ctrl-s
+" [yo] Unimpaired-style toggles {{{
+if exists(':GitGutterToggle')
+  nnoremap <silent> yog :GitGutterToggle<cr>
+  nnoremap <silent> cog :GitGutterToggle<cr>
+endif
+" }}}
+
+" [-] NERDtree {{{
+if exists(':NERDTree')
+  nnoremap <silent> _ :NERDTreeFind<CR>
+  nnoremap <silent> - :NERDTree<CR>
+endif
+" }}}
+
+" [ctrl-s] Save {{{
 if $GIT_EXEC_PATH != ''
   nnoremap <C-s> :wq<cr>
   inoremap <C-s> <esc>:wq<cr>
@@ -20,8 +47,20 @@ else
   nnoremap <C-s> :w<cr>
   inoremap <C-s> <esc>:w<cr>
 endif
+" }}}
 
-" Which key
+" [f1...f12] fn keys {{{
+" Quickfix
+nnoremap <F2> :cclose<CR>
+nnoremap <F4> :cnext<CR>
+
+" Location list
+nnoremap <S-F2> :lclose<CR>
+nnoremap <S-F3> :lprev<CR>
+nnoremap <S-F4> :lnext<CR>
+" }}}
+
+" [leader] Top-level maps {{{
 let g:which_key_map = {}
 let g:which_key_map.f = { 'name': '+File     ▶' }
 " let g:which_key_map.a = { 'name': '+Apps' }
@@ -34,21 +73,11 @@ let g:which_key_map.w = { 'name': '+Window   ▶' }
 let g:which_key_map.p = { 'name': '+Pick     ▶' }
 let g:which_key_map.q = { 'name': '+Quit     ▶' }
 
-" File
-let g:which_key_map.f.s = 'Save without formatting'
-let g:which_key_map.f.a = 'Save'
-nnoremap <leader>fs :noa w<cr>
-nnoremap <leader>fa :w<cr>
-
 let g:which_key_map.z = 'Go to project...'
 nnoremap <leader>z :Z<Space>
+" }}}
 
-if exists(':FloatermToggle')
-  let g:which_key_map.f.b = 'Browse...'
-  nnoremap <leader>fb :FloatermNew --title=ranger ranger<cr>
-endif
-
-" Close
+" [leader-q] Close {{{
 let g:which_key_map.q.q = 'Quit vim'
 let g:which_key_map.q.w = 'Close window'
 let g:which_key_map.q.y = 'which_key_ignore' " convenience for colemak
@@ -66,8 +95,9 @@ if exists(':Startify')
   let g:which_key_map.q.r = 'Close all (reset workspace)'
   nnoremap <leader>qr :tabonly<cr>:StartifyReset<cr>
 endif
+" }}}
 
-" Window
+" [leader-w] Window {{{
 let g:which_key_map.w.t = 'Go to top-left'
 let g:which_key_map.w.b = 'Go to bot-right'
 nnoremap <silent> <leader>wt <C-w>t<CR>
@@ -134,8 +164,9 @@ nnoremap <silent> <leader>wH <C-w>H<CR>
 nnoremap <silent> <leader>wJ <C-w>J<CR>
 nnoremap <silent> <leader>wK <C-w>K<CR>
 nnoremap <silent> <leader>wL <C-w>L<CR>
+" }}}
 
-" Open config
+" [leader-fe] Config {{{
 let g:which_key_map.f.e.k = 'Edit keys'
 let g:which_key_map.f.e.c = 'Customizations'
 let g:which_key_map.f.e.i = 'Edit init.vim'
@@ -146,7 +177,9 @@ nnoremap <leader>fec :tabnew<cr>:e ~/.config/nvim/after/plugin/customizations.vi
 nnoremap <leader>fei :tabnew<cr>:e ~/.config/nvim/init.vim<cr>
 nnoremap <leader>fes :tabnew<cr>:e ~/.config/nvim/ultisnips<cr>
 nnoremap <leader>fet :tabnew<cr>:e ~/.config/nvim/modules/dynamic-theme/color/dyntheme.vim<cr>
+" }}}
 
+" [leader-g] Git {{{
 if exists(':Gstatus')
   let g:which_key_map.g.h = { 'name': '+GitHub...' }
   let g:which_key_map.g.s = 'Status'
@@ -188,20 +221,9 @@ if exists(':GV')
   let g:which_key_map.g.l = 'Log'
   nnoremap <leader>gl :GV<cr>
 endif
+" }}}
 
-" if exists(':Clap')
-"   let g:which_key_map.k.b = 'List buffers...'
-"   let g:which_key_map.k.h = 'History'
-"   nnoremap <leader>kb :Clap buffers<cr>
-"   nnoremap <leader>kh :Clap history<cr>
-
-"   let g:which_key_map[';'] = 'List buffers...'
-"   nnoremap <leader>; :Clap buffers<cr>
-
-"   " let g:which_key_map.f.g = 'List modified files...'
-"   " nnoremap <leader>fg :Clap git_diff_files<cr>
-
-"   " nnoremap <C-p> :Clap files<cr>
+" [leader-p] Pick {{{
 if exists(':Buffers')
   let g:which_key_map.p.b = 'Buffers...'
   nnoremap <leader>pb :Buffers<cr>
@@ -211,6 +233,18 @@ if exists(':FZF')
   nnoremap <C-p> :GFiles<cr>
   let g:which_key_map.p.f = 'Files...'
   nnoremap <leader>pf :GFiles<cr>
+endif
+" }}}
+
+" [leader-f] File {{{
+let g:which_key_map.f.s = 'Save without formatting'
+let g:which_key_map.f.a = 'Save'
+nnoremap <leader>fs :noa w<cr>
+nnoremap <leader>fa :w<cr>
+
+if exists(':FloatermToggle')
+  let g:which_key_map.f.b = 'Browse...'
+  nnoremap <leader>fb :FloatermNew --title=ranger ranger<cr>
 endif
 
 if exists('*OpenOrCreateFile')
@@ -248,30 +282,14 @@ nnoremap <leader>fr :e!<CR>
 "   nnoremap <leader>' <Esc>:FloatermToggle<CR> -- see enter-esc
 " endif
 
-if exists(':term')
-  " Different ways to escape
-  tnoremap <C-b><C-n> <C-\><C-n>
-  tnoremap <C-]> <C-\><C-n>
-  tnoremap <C-[> <C-\><C-n>
+let g:which_key_map.f.y = 'Copy current path'
+nnoremap <leader>fy :let @+=@% \| echo '[' .  getcwd() . '] → ' . @%<cr>
 
-  let g:which_key_map['.'] = 'Terminal here'
-  nnoremap <silent> <leader>. :term<CR>
+let g:which_key_map.f.Y = 'Copy full path'
+nnoremap <leader>fY :let @+=expand('%:p') \| echo '→ ' . expand('%:p')<cr>
+" }}}
 
-"   let g:which_key_map.t.t = 'Terminal (tab)'
-"   let g:which_key_map.t.s = 'Terminal (split)'
-"   let g:which_key_map.t.v = 'Terminal (vert)'
-"   nnoremap <leader>t. :term<CR>
-"   nnoremap <leader>tt :tabnew<CR><Esc>:term<CR>
-"   nnoremap <leader>ts :split<CR><Esc>:term<CR>
-"   nnoremap <leader>tv :vsplit<CR><C-w>l:term<CR>
-
-  " Term repeat thing
-    let g:which_key_map.t.r = 'Repeat command in last term'
-    " nnoremap <leader>tr :w<cr>:call keys#switch_to_term()<cr><C-\><C-n>a<Up><CR><C-\><C-n><C-w>p
-    nnoremap <leader>tr :w<cr><C-w>p<C-\><C-n>a<Up><CR><C-\><C-n><C-w>p
-endif
-
-" vim-test
+" [leader-s] vim-test {{{
 if exists(':TestNearest')
   let g:which_key_map.s = { 'name': '+Test' }
   let g:which_key_map.s.n = 'Test nearest'
@@ -283,18 +301,9 @@ if exists(':TestNearest')
   " nmap <silent> <leader>sv :TestVisit<CR>
   " nmap <silent> <leader>ss :TestSuite<CR><C-W>p
 endif
+" }}}
 
-" if exists(':CHADopen')
-"   nnoremap _ :silent! :Glcd<CR>:CHADopen<CR>
-"   nnoremap <silent> - :CHADopen<CR>
-  " nnoremap _ :Glcd<CR>:silent! NERDTreeFind<CR>
-if exists(':NERDTree')
-  nnoremap <silent> _ :NERDTreeFind<CR>
-  nnoremap <silent> - :NERDTree<CR>
-  " nnoremap <silent> - :exec 'e '.expand('%:h')<CR>
-  " nnoremap _ :Glcd<CR>:silent! NERDTreeFind<CR>
-endif
-
+" [leader-*/] Search {{{
 if exists(':GG')
   let g:which_key_map['*'] = 'Search'
   let g:which_key_map['/'] = 'Search...'
@@ -302,52 +311,21 @@ if exists(':GG')
   nnoremap <leader>*  :GG! <C-r><C-w><CR>
   vnoremap <leader>*  y:GG! <C-r>"<C-b><CR>
 endif
+" }}}
 
-" Switch focus
-" not a good thing to remap because it is also used as <C-i>
-" nnoremap <tab>      <C-w>w
-" nnoremap <s-tab>    <C-w>W
-
+" [leader-k] Editor {{{
 if exists(':Goyo')
   let g:which_key_map.k.z = 'Toggle zen mode'
   nmap <leader>kz :Goyo<cr>:echo "Zen mode"<cr>
 end
 
-if exists(':EasyAlign')
-  " Start interactive EasyAlign in visual mode (e.g. vipga)
-  xmap ga <Plug>(EasyAlign)
-  " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-  nmap ga <Plug>(EasyAlign)
+if exists(':ContextToggle')
+  let g:which_key_map.k.c = 'Toggle context'
+  nnoremap <leader>kc :ContextToggle<cr>
 endif
+" }}}
 
-" if exists(':bnext')
-"   let g:which_key_map.b = { 'name': '+Buffer' } 
-"   let g:which_key_map.b.n = 'Next buffer'
-"   let g:which_key_map.b.p = 'Previous buffer'
-"   nnoremap <silent> <leader>bp :bprev<CR>
-"   nnoremap <silent> <leader>bn :bnext<CR>
-
-"   let g:which_key_map.b.l = 'List buffers'
-"   nnoremap <silent> <leader>bl :Clap buffers<cr>
-" endif
-
-" if exists(':term')
-"   if executable('nnn')
-"     let g:which_key_map.a.n = 'nnn'
-"     nnoremap <silent> <leader>an :tabnew<CR><Esc>:term env EDITOR=nvr nnn<CR>
-"   endif
-"   if executable('tig')
-"     let g:which_key_map.a.t = 'tig log'
-"     let g:which_key_map.a.s = 'tig status'
-"     nnoremap <silent> <leader>at :tabnew<CR><Esc>:term tig<CR>
-"     nnoremap <silent> <leader>as :tabnew<CR><Esc>:term tig status<CR>
-"   endif
-"   if executable('ranger')
-"     let g:which_key_map.a.r = 'ranger'
-"     nnoremap <silent> <leader>ar :tabnew<CR><Esc>:term ranger<CR>
-"   endif
-" endif
-
+" [leader-c] Coc {{{
 if exists(':CocAction')
   let g:which_key_map.c.c = 'Show commands'
   let g:which_key_map.c.d = 'Show errors'
@@ -388,107 +366,29 @@ if exists(':CocAction')
   nnoremap <leader>cd :CocList diagnostics<CR>
   nnoremap <leader>cs :CocList snippets<CR>
 endif
+" }}}
 
-" Macros
+" [leader-cm] Macros {{{
 let g:which_key_map.c.m = { 'name': '+Macros' }
 let g:which_key_map.c.m.f = 'JS arrow-func to func-decl'
 nnoremap <leader>cmf ^/const<cr>cwfunction<esc>f=xxf=xxx^
 let g:which_key_map.c.m.d = 'Date (Sun 1 Apr)'
 nnoremap <leader>cmd a<C-r>=strftime('%a %e %b')<cr>
+" }}}
 
-" Quickfix
-nnoremap <F2> :cclose<CR>
-nnoremap <F4> :cnext<CR>
+" [leader-.] Terminal {{{
+if exists(':term')
+  " Different ways to escape
+  tnoremap <C-b><C-n> <C-\><C-n>
+  tnoremap <C-]> <C-\><C-n>
+  tnoremap <C-[> <C-\><C-n>
 
-" Location list
-nnoremap <S-F2> :lclose<CR>
-nnoremap <S-F3> :lprev<CR>
-nnoremap <S-F4> :lnext<CR>
-
-let g:which_key_map.f.y = 'Copy current path'
-nnoremap <leader>fy :let @+=@% \| echo '[' .  getcwd() . '] → ' . @%<cr>
-
-let g:which_key_map.f.Y = 'Copy full path'
-nnoremap <leader>fY :let @+=expand('%:p') \| echo '→ ' . expand('%:p')<cr>
-
-augroup keys
-  autocmd FileType markdown nnoremap <buffer> <leader>mv :MarkdownPreview<cr>
-  autocmd FileType markdown nnoremap <buffer> <leader>mp :call mdip#MarkdownClipboardImage()<cr>
-augroup END
-
-" For autocmds
-let g:which_key_labels = {
-  \ 'MarkdownPreview': 'Markdown preview',
-  \ 'call mdip#MarkdownClipboardImage()': 'Paste image',
-  \ }
-
-if exists(':ContextToggle')
-  let g:which_key_map.k.c = 'Toggle context'
-  nnoremap <leader>kc :ContextToggle<cr>
+  let g:which_key_map['.'] = 'Terminal here'
+  nnoremap <silent> <leader>. :term<CR>
 endif
+" }}}
 
-function keys#switch_to_term()
-  let buf = bufnr('term')
-  if buf == -1 | return | endif
-
-  let win = bufwinnr(buf)
-  if win == -1 | return | endif
-
-  exe win 'wincmd w'
-endfunction
-
-" nnoremap <F1> :1wincmd w<cr>
-" nnoremap <F2> :2wincmd w<cr>
-" nnoremap <F3> :3wincmd w<cr>
-" nnoremap <F4> :4wincmd w<cr>
-" nnoremap <F5> :5wincmd w<cr>
-" nnoremap <F6> :6wincmd w<cr>
-
-" inoremap <F1> <Esc>:1wincmd w<cr>
-" inoremap <F2> <Esc>:2wincmd w<cr>
-" inoremap <F3> <Esc>:4wincmd w<cr>
-" inoremap <F4> <Esc>:4wincmd w<cr>
-" inoremap <F5> <Esc>:5wincmd w<cr>
-" inoremap <F6> <Esc>:6wincmd w<cr>
-
-" tnoremap <F1> <C-\><C-n>:1wincmd w<cr>
-" tnoremap <F2> <C-\><C-n>:2wincmd w<cr>
-" tnoremap <F3> <C-\><C-n>:3wincmd w<cr>
-" tnoremap <F4> <C-\><C-n>:4wincmd w<cr>
-" tnoremap <F5> <C-\><C-n>:5wincmd w<cr>
-" tnoremap <F6> <C-\><C-n>:6wincmd w<cr>
-
-" " Switch panes
-" let g:which_key_map['0'] = 'which_key_ignore'
-" let g:which_key_map['1'] = 'which_key_ignore'
-" let g:which_key_map['2'] = 'which_key_ignore'
-" let g:which_key_map['3'] = 'which_key_ignore'
-" let g:which_key_map['4'] = 'which_key_ignore'
-" let g:which_key_map['5'] = 'which_key_ignore'
-" let g:which_key_map['6'] = 'which_key_ignore'
-" let g:which_key_map['7'] = 'which_key_ignore'
-" let g:which_key_map['8'] = 'which_key_ignore'
-" let g:which_key_map['9'] = 'which_key_ignore'
-" let g:which_key_map['<Up>']    = 'which_key_ignore'
-" let g:which_key_map['<Down>']  = 'which_key_ignore'
-" let g:which_key_map['<Left>']  = 'which_key_ignore'
-" let g:which_key_map['<Right>'] = 'which_key_ignore'
-" nnoremap <silent> <leader>0 <C-w>b
-" nnoremap <silent> <leader>1 :1wincmd w<cr>
-" nnoremap <silent> <leader>2 :2wincmd w<cr>
-" nnoremap <silent> <leader>3 :3wincmd w<cr>
-" nnoremap <silent> <leader>4 :4wincmd w<cr>
-" nnoremap <silent> <leader>5 :5wincmd w<cr>
-" nnoremap <silent> <leader>6 :6wincmd w<cr>
-" nnoremap <silent> <leader>7 :7wincmd w<cr>
-" nnoremap <silent> <leader>8 :8wincmd w<cr>
-" nnoremap <silent> <leader>9 :9wincmd w<cr>
-" nnoremap <silent> <leader><Up>    :silent wincmd k<cr>
-" nnoremap <silent> <leader><Down>  :silent wincmd j<cr>
-" nnoremap <silent> <leader><Left>  :silent wincmd h<cr>
-" nnoremap <silent> <leader><Right> :silent wincmd l<cr>
-
-" Which key for enter
+" [enter] window {{{
 let g:which_key_cr = {
   \ '1': 'Pane 1',
   \ '2': 'Pane 2',
@@ -554,16 +454,17 @@ nnoremap <silent> <cr>X :bwipe!<cr>
 nnoremap <silent> <cr>z :Goyo<cr>
 
 nnoremap <silent> <CR> :exec ":WhichKey '\<CR\>'"<CR>
+" }}}
 
-if exists(':ChooseWin')
-  nmap <C-b>q <Plug>(choosewin)
+" markdown? {{{
+augroup keys
+  autocmd FileType markdown nnoremap <buffer> <leader>mv :MarkdownPreview<cr>
+  autocmd FileType markdown nnoremap <buffer> <leader>mp :call mdip#MarkdownClipboardImage()<cr>
+augroup END
 
-  " let g:which_key_map.s = 'Switch to...'
-  " nmap <leader>s <Plug>(choosewin)
-  " nmap <Tab> <Plug>(choosewin)
-endif
-
-if exists(':GitGutterToggle')
-  nnoremap <silent> yog :GitGutterToggle<cr>
-  nnoremap <silent> cog :GitGutterToggle<cr>
-endif
+" For autocmds
+let g:which_key_labels = {
+  \ 'MarkdownPreview': 'Markdown preview',
+  \ 'call mdip#MarkdownClipboardImage()': 'Paste image',
+  \ }
+" }}}
