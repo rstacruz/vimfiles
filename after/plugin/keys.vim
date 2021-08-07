@@ -233,6 +233,8 @@ if exists(':FZF')
   nnoremap <C-p> :GFiles<cr>
   let g:which_key_map.p.f = 'Files...'
   nnoremap <leader>pf :GFiles<cr>
+  let g:which_key_map.p.s = 'Git status...'
+  nnoremap <leader>ps :GFiles?<cr>
 endif
 " }}}
 

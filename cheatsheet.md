@@ -1,6 +1,6 @@
 # Vim customisations cheatsheet
 
-### Nav layer bindings
+### `Enter` - Nav layer bindings
 
 | Key                    | Description                        |
 | ---------------------- | ---------------------------------- |
@@ -17,7 +17,7 @@
 | `<enter>` `S/V/T`      | New terminal (split, vert, tab)    |
 | `<enter>` `s/v`        | Split window (horiz, vert)         |
 
-### File...
+### `f` - File...
 
 | Key             | Description             |
 | --------------- | ----------------------- |
@@ -29,7 +29,7 @@
 | `<leader>` `fY` | Copy path (full)        |
 | `<leader>` `fb` | Browse (ranger)         |
 
-### Git...
+### `g` - Git...
 
 | Key              | Description         |
 | ---------------- | ------------------- |
@@ -45,7 +45,7 @@
 | `<leader>` `ghp` | Open pull request   |
 | `<leader>` `ghP` | Create pull request |
 
-### Settings...
+### `fe` - Settings...
 
 | Key              | Description         |
 | ---------------- | ------------------- |
@@ -53,7 +53,7 @@
 | `<leader>` `fei` | Edit init.vim       |
 | `<leader>` `fek` | Edit key bindings   |
 
-### Close...
+### `q` - Close...
 
 | Key             | Description                 |
 | --------------- | --------------------------- |
@@ -61,12 +61,13 @@
 | `<leader>` `qr` | Reset workspace (close all) |
 | `<leader>` `qx` | Close window (force)        |
 
-### Pick...
+### `p` - Pick...
 
 | Key             | Description         |
 | --------------- | ------------------- |
 | `<leader>` `pf` | Files... (`ctrl-p`) |
 | `<leader>` `pb` | Buffers...          |
+| `<leader>` `ps` | Git status...       |
 
 ### Other...
 
@@ -75,7 +76,7 @@
 | `<leader>` `*`  | Search word in project |
 | `<leader>` `mp` | Markdown image paste   |
 
-### Toggle features
+### `yo` - Toggle features
 
 | Toggle | Description           |
 | ------ | --------------------- |
