@@ -63,11 +63,12 @@
 
 ### `p` - Pick...
 
-| Key             | Description         |
-| --------------- | ------------------- |
-| `<leader>` `pf` | Files... (`ctrl-p`) |
-| `<leader>` `pb` | Buffers...          |
-| `<leader>` `ps` | Git status...       |
+| Key             | Description             |
+| --------------- | ----------------------- |
+| `<leader>` `pf` | Files... (`ctrl-p`)     |
+| `<leader>` `pb` | Buffers...              |
+| `<leader>` `p*` | Search for this word... |
+| `<leader>` `ps` | Git status...           |
 
 ### Other...
 

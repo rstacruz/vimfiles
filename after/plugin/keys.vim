@@ -235,6 +235,10 @@ if exists(':FZF')
   nnoremap <leader>pf :GFiles<cr>
   let g:which_key_map.p.s = 'Git status...'
   nnoremap <leader>ps :GFiles?<cr>
+  let g:which_key_map.p['.'] = 'Search in this file...'
+  nnoremap <leader>p. :BLines<cr>
+  let g:which_key_map.p['*'] = 'Search for this word...'
+  nnoremap <leader>p* :BLines <C-r><C-w><cr>
 endif
 " }}}
 
