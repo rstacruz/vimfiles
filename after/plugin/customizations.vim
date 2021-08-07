@@ -87,7 +87,7 @@ endfunction
 if exists('g:GuiLoaded')
   " set guifont=JuliaMono:h13
   " set guifont=JetBrains\ Mono:h14:w60
-  GuiFont! Iosevka:h16.5:w57
+  GuiFont! Iosevka:h13.5:w57
   GuiTabline 0
   GuiLinespace -3
   colorscheme paper
