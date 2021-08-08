@@ -235,6 +235,8 @@ if exists(':FZF')
   nnoremap <leader>pf :GFiles<cr>
   let g:which_key_map.p.s = 'Git status...'
   nnoremap <leader>ps :GFiles?<cr>
+  let g:which_key_map.pw = 'Switch to window...'
+  nnoremap <leader>pw :Windows<cr>
   let g:which_key_map.p['.'] = 'Search in this file...'
   nnoremap <leader>p. :BLines<cr>
   let g:which_key_map.p['*'] = 'Search for this word...'
@@ -339,7 +341,7 @@ if exists(':CocAction')
   let g:which_key_map.c.r = 'Rename symbol...'
   let g:which_key_map.c.a = 'Actions'
   let g:which_key_map.c.h = 'Show hover'
-  let g:which_key_map.c.s = 'Edit snippets'
+  let g:which_key_map.c.s = 'Symbols...'
 
   " https://github.com/neoclide/coc.nvim#example-vim-configuration
   inoremap <silent><expr> <c-space> coc#refresh()
@@ -370,7 +372,7 @@ if exists(':CocAction')
   nnoremap <leader>ca :CocAction<CR>
   nnoremap <leader>cc :CocCommand<CR>
   nnoremap <leader>cd :CocList diagnostics<CR>
-  nnoremap <leader>cs :CocList snippets<CR>
+  nnoremap <leader>cs :CocList symbols<CR>
 endif
 " }}}
 
