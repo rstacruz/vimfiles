@@ -70,6 +70,14 @@
 | `<leader>` `p*` | Search for this word... |
 | `<leader>` `ps` | Git status...           |
 
+### `k` - Editor...
+
+| Key             | Description            |
+| --------------- | ---------------------- |
+| `<leader>` `ka` | Toggle autofold        |
+| `<leader>` `kc` | Toggle showing context |
+| `<leader>` `kz` | Zen mode               |
+
 ### Other...
 
 | Key             | Description            |
@@ -89,3 +97,10 @@
 | `yog`  | Git gutter (custom)   |
 
 These features are provided by [vim-unimpaired](https://github.com/tpope/vim-unimpaired).
+
+## Commands
+
+```
+:Vista ctags   - open outline sidebar (markdown)
+:Vista coc     - open outline sidebar (js)
+```

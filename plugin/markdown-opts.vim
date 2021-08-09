@@ -29,6 +29,9 @@ let g:vim_markdown_follow_anchor = 1
 " I dunno but its cool
 let g:vim_markdown_folding_style_pythonic = 1
 
+" Let tree-sitter handle it
+" let g:vim_markdown_folding_disabled = 1
+
 " Disable auto-inserting bullet points
 " https://github.com/plasticboy/vim-markdown#do-not-automatically-insert-bulletpoints
 let g:vim_markdown_auto_insert_bullets = 0

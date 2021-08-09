@@ -10,8 +10,9 @@ nnoremap <silent> <C-c> :%y+<CR>
 " Folding
 nnoremap + za
 " i[s]olate: Close all folds, expect the ones for this
-" zM(close all) zv(open here) zz(center on screen)
 nnoremap <silent> zs zMzv
+" i[s]olate: Close all folds, then recursively open this one
+nnoremap <silent> zS zMzO
 
 " [g] g customisations {{{
 vnoremap gs :s~~
@@ -325,6 +326,11 @@ endif
 if exists(':Goyo')
   let g:which_key_map.k.z = 'Toggle zen mode'
   nmap <leader>kz :Goyo<cr>:echo "Zen mode"<cr>
+end
+
+if exists(':Autofold')
+  let g:which_key_map.k.a = 'Toggle autofold'
+  nmap <leader>ka :Autofold<cr>
 end
 
 if exists(':ContextToggle')

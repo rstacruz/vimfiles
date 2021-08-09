@@ -23,6 +23,7 @@ Plug 'plasticboy/vim-markdown'
 if $GIT_EXEC_PATH != '' | call plug#end() | finish | endif
 
 " Home-made modules {{{
+Plug vim . '/modules/autofold'
 Plug vim . '/modules/auto-cursorline'
 Plug vim . '/modules/ctrl-c-ctrl-v'
 Plug vim . '/modules/dynamic-theme'
@@ -50,6 +51,7 @@ Plug 'rstacruz/vim-gitgrep'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'liuchengxu/vim-which-key'
+Plug 'liuchengxu/vista.vim'
 Plug 'mhinz/vim-startify'
 " }}}
 
