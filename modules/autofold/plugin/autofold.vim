@@ -3,17 +3,18 @@ command! AutofoldDisable call s:autofold_disable()
 command! Autofold call s:autofold_toggle()
 
 function! s:autofold_enable()
-  normal zMzv
-  if get(b:, 'autofold', 0) == 1 | call s:autofold_disable() | endif
-  let b:autofold = 1
-  let b:autofold_cmd = 'zMzv'
+  if get(b:, 'autofold_mode', 0) != 0 | call s:autofold_disable() | endif
+  setlocal foldlevel=0
+  normal zxzv
+  let b:autofold_mode = 1
+  let b:autofold_cmd = 'zxzv'
   augroup autofold
-    autocmd CursorMoved <buffer> silent! normal b:autofold_cmd
+    autocmd CursorMoved <buffer> silent! exe "normal " . b:autofold_cmd
   augroup END
 endfunction
 
 function! s:autofold_disable()
-  if get(b:, 'autofold', 0) == 0 | return | endif
+  if get(b:, 'autofold_mode', 0) == 0 | return | endif
   let b:autofold = 0
   augroup autofold
     autocmd! CursorMoved <buffer>
@@ -21,7 +22,7 @@ function! s:autofold_disable()
 endfunction
 
 function! s:autofold_toggle()
-  if get(b:, 'autofold', 0) == 0
+  if get(b:, 'autofold_mode', 0) == 0
     echomsg "Autofold [on]"
     call s:autofold_enable()
   else

@@ -11,8 +11,8 @@ nnoremap <silent> <C-c> :%y+<CR>
 nnoremap + za
 " i[s]olate: Close all folds, expect the ones for this
 nnoremap <silent> zs zMzv
-" i[s]olate: Close all folds, then recursively open this one
-nnoremap <silent> zS zMzO
+" isolate: Close all folds, then recursively open this one
+nnoremap <silent> zg zMzO
 
 " [g] g customisations {{{
 vnoremap gs :s~~
