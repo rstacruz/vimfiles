@@ -205,11 +205,11 @@ if exists(':Gstatus')
   nnoremap <leader>gy :GBrowse!<cr>
   vnoremap <leader>gy :GBrowse!<cr>
 
-  if exists(':Dispatch')
+  if exists(':FloatermNew')
     let g:which_key_map.g.p = 'Push'
     let g:which_key_map.g.P = 'Push (force)'
-    nnoremap <leader>gp :FloatermNew --height=10 --title=git\ push... git push<cr>
-    nnoremap <leader>gP :FloatermNew --height=10 --title=git\ push... git push --force-with-lease --set-upstream origin (git rev-parse --abbrev-ref HEAD)<cr>
+    nnoremap <leader>gp :exec "FloatermNew --autoclose=1 --height=10 --width=50 --title=push... --position=right git push" \| wincmd p<cr>
+    nnoremap <leader>gP :exec "FloatermNew --autoclose=1 --height=10 --width=50 --title=push... --position=right git push --force-with-lease --set-upstream origin (git rev-parse --abbrev-ref HEAD)" \| wincmd p<cr>
 
     let g:which_key_map.g.h.p = 'Open pull request'
     let g:which_key_map.g.h.P = 'Create pull request'
