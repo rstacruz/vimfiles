@@ -126,22 +126,17 @@ augroup abbreviations_typos
   au FileType javascript,typescript,typescriptreact iabbrev <buffer> improt import
   au FileType javascript,typescript,typescriptreact iabbrev <buffer> porps props
 
-  au FileType javascript,typescript,typescriptreact iabbrev <buffer> Xf export function
-  au FileType javascript,typescript,typescriptreact iabbrev <buffer> Im import
-  au FileType javascript,typescript,typescriptreact iabbrev <buffer> Co const
-  au FileType javascript,typescript,typescriptreact iabbrev <buffer> Re return
-  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> iM  import
-  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> eX  export
-  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> cN  className
-  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> rE  return
-  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> fN  function
-  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> cL  class
-  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> cO  const
-  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> rE  return
-  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> eL  else
-  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> eI  else if
-  " au FileType javascript,typescript,typescriptreact iabbrev <buffer> eX  export
-  au FileType javascript,typescript,typescriptreact iabbrev <buffer> cLo console.log
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> iM  import
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> eX  export
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> eF  export function
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> cN  className
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> rE  return
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> fN  function
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> aF  async function
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> rE  return
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> eX  export
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> sJ  style jsx
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> cL  console.log
 augroup END
 " }}}
 
