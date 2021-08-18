@@ -137,6 +137,7 @@ augroup abbreviations_typos
   au FileType javascript,typescript,typescriptreact iabbrev <buffer> eX  export
   au FileType javascript,typescript,typescriptreact iabbrev <buffer> sJ  style jsx
   au FileType javascript,typescript,typescriptreact iabbrev <buffer> cL  console.log
+  au FileType javascript,typescript,typescriptreact iabbrev <buffer> uI  require('util').inspect
 augroup END
 " }}}
 
