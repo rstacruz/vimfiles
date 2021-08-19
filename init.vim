@@ -63,7 +63,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-dispatch'
 Plug 'rstacruz/vim-closer'
 Plug 'junegunn/gv.vim'
-Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathangrigg/vim-beancount'
 Plug 'thinca/vim-visualstar'
 Plug 'wellle/context.vim'
@@ -75,6 +74,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'Asheq/close-buffers.vim'
 " }}}
 
 " Requires nvim {{{

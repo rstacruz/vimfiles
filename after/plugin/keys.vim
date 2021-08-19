@@ -13,7 +13,7 @@ nnoremap _ zMzO
 " i[s]olate: Close all folds, expect the ones for this
 nnoremap <silent> zs zMzv
 " isolate: Close all folds, then recursively open this one
-nnoremap <silent> zg zMzO
+nnoremap <silent> zg zMzvzczO
 
 " [g] g customisations {{{
 vnoremap gs :s~~
