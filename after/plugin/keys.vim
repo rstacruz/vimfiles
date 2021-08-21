@@ -9,6 +9,7 @@ nnoremap <silent> <C-c> :%y+<CR>
 
 " Folding
 nnoremap + za
+nnoremap _ zMzO
 " i[s]olate: Close all folds, expect the ones for this
 nnoremap <silent> zs zMzv
 " isolate: Close all folds, then recursively open this one
@@ -35,8 +36,7 @@ endif
 
 " [-] NERDtree {{{
 if exists(':NERDTree')
-  nnoremap <silent> _ :NERDTreeFind<CR>
-  nnoremap <silent> - :NERDTree<CR>
+  nnoremap <silent> - :NERDTreeFind<CR>
 endif
 " }}}
 
