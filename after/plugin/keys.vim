@@ -72,29 +72,29 @@ let g:which_key_map.t = { 'name': '+Tabs     ▶' }
 let g:which_key_map.c = { 'name': '+Code     ▶' }
 let g:which_key_map.w = { 'name': '+Window   ▶' }
 let g:which_key_map.p = { 'name': '+Pick     ▶' }
-let g:which_key_map.q = { 'name': '+Quit     ▶' }
+let g:which_key_map.x = { 'name': '+eXit     ▶' }
 
 let g:which_key_map.z = 'Go to project...'
 nnoremap <leader>z :Z<Space>
 " }}}
 
 " [leader-q] Close {{{
-let g:which_key_map.q.q = 'Quit vim'
-let g:which_key_map.q.w = 'Close window'
-let g:which_key_map.q.y = 'which_key_ignore' " convenience for colemak
-let g:which_key_map.q.x = 'Close window (force)'
-let g:which_key_map.q.s = 'Save and close'
-let g:which_key_map.q.o = 'Close others'
-nnoremap <leader>qq :cq<cr>
-nnoremap <leader>qw :q<cr>
-nnoremap <leader>qy :q<cr>
-nnoremap <leader>qx :bwipe!<cr>
-nnoremap <leader>qs :wq<cr>
-nnoremap <leader>qo <C-w>o<cr>
+let g:which_key_map.x.q = 'Quit vim'
+let g:which_key_map.x.w = 'Close window'
+let g:which_key_map.x.y = 'which_key_ignore' " convenience for colemak
+let g:which_key_map.x.x = 'Close window (force)'
+let g:which_key_map.x.s = 'Save and close'
+let g:which_key_map.x.o = 'Close others'
+nnoremap <leader>xq :cq<cr>
+nnoremap <leader>xw :q<cr>
+nnoremap <leader>xy :q<cr>
+nnoremap <leader>xx :bwipe!<cr>
+nnoremap <leader>xs :wq<cr>
+nnoremap <leader>xo <C-w>o<cr>
 
 if exists(':Startify')
-  let g:which_key_map.q.r = 'Close all (reset workspace)'
-  nnoremap <leader>qr :tabonly<cr>:StartifyReset<cr>
+  let g:which_key_map.x.r = 'Close all (reset workspace)'
+  nnoremap <leader>xr :tabonly<cr>:StartifyReset<cr>
 endif
 " }}}
 
