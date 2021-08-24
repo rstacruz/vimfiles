@@ -6,7 +6,14 @@ if !exists('g:z_data_path')
   endif
 endif
 
-function! s:cd_to_z(input)
+" When true, will trigger autocmd instead
+if !exists('g:z_autocmd')
+  let g:z_autocmd = 0
+endif
+
+function! s:cd_to_z(input, options)
+  let bang = get(a:options, 'bang', 0)
+
   if !filereadable(g:z_data_path)
     echomsg "Can't read Z data file. Is fish-z or zsh-z installed?"
     return
@@ -17,10 +24,41 @@ function! s:cd_to_z(input)
   let cmd = "awk -F'|' " . shellescape(awk_script) . " " . data_path .
     \ " | sort -rn | head -n 1 | cut -d' ' -f2-"
 
-  let result = system(cmd)
-  exec "cd " . result
-  doautocmd User ZChangedDir
+  let result = trim(system(cmd))
+  if result == ""
+    echomsg "! No results found for '" . a:input . "'"
+    return
+  endif
+
+  if bang
+    echomsg "→  cd [" . result . "]"
+    exec "cd " . result
+    if g:z_autocmd == 1
+      doautocmd User ZChangedDirBang
+    else
+      call s:on_open_bang(result)
+    end
+  else
+    echomsg "→  lcd [" . result . "]"
+    exec "lcd " . result
+    if g:z_autocmd == 1
+      doautocmd User ZChangedDir
+    else
+      call s:on_open(result)
+    end
+  end
 endfunction
 
-command! -nargs=1 Z call s:cd_to_z(<q-args>)
+function! s:on_open(cwd)
+  e .
+endfunction
+
+function! s:on_open_bang(cwd)
+  e .
+  silent wincmd o
+  silent tabonly
+endfunction
+
+command! -bang -nargs=1 Z call s:cd_to_z(<q-args>, { 'bang': <bang>0 })
+command! -nargs=1 ZZ call s:cd_to_z(<q-args>, { 'bang': 1 })
 

@@ -90,7 +90,7 @@ if exists('g:GuiLoaded')
   GuiFont! Iosevka:h13.5:w57
   GuiTabline 0
   GuiLinespace -3
-  colorscheme paper
+  colorscheme dracula
   " also: paper, iceberg, challenger_deep, github
 endif
 " }}}
@@ -207,7 +207,7 @@ autocmd ColorScheme * call s:add_theme_overrides()
 " }}}
 
 " :Z {{{
-autocmd User ZChangedDir tabonly
-autocmd User ZChangedDir StartifyReset
+autocmd User ZChangedDirBang tabonly
+autocmd User ZChangedDirBang StartifyReset
 " }}}
 

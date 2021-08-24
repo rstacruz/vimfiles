@@ -61,6 +61,10 @@ function s:update_theme()
     call s:set_theme('paper')
   elseif g:colors_name == 'daycula'
     call s:set_theme('daycula')
+  elseif g:colors_name == 'dracula'
+    call s:set_theme('dracula')
+  elseif g:colors_name == 'palenight'
+    call s:set_theme('dracula')
   elseif g:colors_name == 'github'
     call s:set_theme('ayu_light')
   elseif exists('g:GuiLoaded') && &background ==# 'dark'

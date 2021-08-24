@@ -31,4 +31,8 @@ Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'junegunn/vim-slash'
 Plug 'SirVer/ultisnips'
 Plug 'freitass/todo.txt-vim'
+
+" Themes
+Plug 'ghifarit53/daycula-vim'
+Plug 'joshdick/onedark.vim'
 ```
