@@ -103,4 +103,12 @@ These features are provided by [vim-unimpaired](https://github.com/tpope/vim-uni
 ```
 :Vista ctags   - open outline sidebar (markdown)
 :Vista coc     - open outline sidebar (js)
+
+:ALEHover
+:ALEFindReferences
+:ALERename
+:ALECodeAction
+:ALEGoToDefinition
+:ALENext
+:ALEPrevious
 ```

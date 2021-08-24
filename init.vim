@@ -74,6 +74,7 @@ Plug 'ferrine/md-img-paste.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
+Plug 'dense-analysis/ale'
 " }}}
 
 " Requires nvim {{{
