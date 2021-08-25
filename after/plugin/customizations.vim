@@ -201,7 +201,11 @@ function s:add_theme_overrides()
   hi Normal ctermbg=none
   hi NonText ctermbg=none
   hi EndOfBuffer ctermbg=none
-  hi! link FloatermBorder VertSplit
+  hi! link FloatermBorder NonText
+
+  if g:colors_name == 'github'
+    hi! link VertSplit NonText
+  endif
 endfunction
 
 autocmd ColorScheme * call s:add_theme_overrides()
