@@ -80,14 +80,12 @@ nnoremap <leader>z :Z<Space>
 
 " [leader-q] Close {{{
 let g:which_key_map.x.q = 'Quit vim'
-let g:which_key_map.x.w = 'Close window'
-let g:which_key_map.x.y = 'which_key_ignore' " convenience for colemak
+let g:which_key_map.x.c = 'Close window'
 let g:which_key_map.x.x = 'Close window (force)'
 let g:which_key_map.x.s = 'Save and close'
 let g:which_key_map.x.o = 'Close others'
 nnoremap <leader>xq :cq<cr>
-nnoremap <leader>xw :q<cr>
-nnoremap <leader>xy :q<cr>
+nnoremap <leader>xc :q<cr>
 nnoremap <leader>xx :bwipe!<cr>
 nnoremap <leader>xs :wq<cr>
 nnoremap <leader>xo <C-w>o<cr>

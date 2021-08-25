@@ -53,13 +53,15 @@
 | `<leader>` `fei` | Edit init.vim       |
 | `<leader>` `fek` | Edit key bindings   |
 
-### `q` - Close...
+### `x` - Close...
 
 | Key             | Description                 |
 | --------------- | --------------------------- |
-| `<leader>` `qq` | Quit vim                    |
-| `<leader>` `qr` | Reset workspace (close all) |
-| `<leader>` `qx` | Close window (force)        |
+| `<leader>` `xx` | Close window (force)        |
+| `<leader>` `xc` | Close window                |
+| `<leader>` `xs` | Close window (save)         |
+| `<leader>` `xq` | Quit vim                    |
+| `<leader>` `xr` | Reset workspace (close all) |
 
 ### `p` - Pick...
 
