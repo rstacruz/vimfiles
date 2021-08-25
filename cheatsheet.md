@@ -100,10 +100,15 @@ These features are provided by [vim-unimpaired](https://github.com/tpope/vim-uni
 
 ## Commands
 
-```
+```sh
+# Vista
 :Vista ctags   - open outline sidebar (markdown)
 :Vista coc     - open outline sidebar (js)
 
+# Close buffers
+:Bdelete! hidden
+
+# ALE
 :ALEHover
 :ALEFindReferences
 :ALERename
