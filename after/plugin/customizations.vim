@@ -235,7 +235,7 @@ autocmd ColorScheme * call s:add_theme_overrides()
 " }}}
 
 " :Z {{{
-autocmd User ZChangedDirBang tabonly
-autocmd User ZChangedDirBang StartifyReset
+autocmd User ZChangedDirGlobal tabonly
+autocmd User ZChangedDirGlobal StartifyReset
 " }}}
 

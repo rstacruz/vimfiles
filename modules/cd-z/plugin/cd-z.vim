@@ -31,20 +31,22 @@ function! s:cd_to_z(input, options)
   endif
 
   if bang
-    echomsg "→  cd [" . result . "]"
-    exec "cd " . result
-    if g:z_autocmd == 1
-      doautocmd User ZChangedDirBang
-    else
-      call s:on_open_bang(result)
-    end
-  else
     echomsg "→  lcd [" . result . "]"
     exec "lcd " . result
     if g:z_autocmd == 1
+      doautocmd User ZChangedDirLocal
       doautocmd User ZChangedDir
     else
       call s:on_open(result)
+    end
+  else
+    echomsg "→  cd [" . result . "]"
+    exec "cd " . result
+    if g:z_autocmd == 1
+      doautocmd User ZChangedDirGlobal
+      doautocmd User ZChangedDir
+    else
+      call s:on_open_bang(result)
     end
   end
 endfunction
