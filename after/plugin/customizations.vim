@@ -45,6 +45,15 @@ augroup customisations
 
   " treesitter-based folding where supported
   au FileType typescript,typescriptreact,javascript,javascriptreact,css,json,markdown setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
+
+  " beancount
+  au FileType beancount nnoremap <buffer> <leader>= :AlignCommodity<CR>
+  au FileType beancount vnoremap <buffer> <leader>= :AlignCommodity<CR>
+
+  " startify/nerdtree
+  au FileType startify,nerdtree nnoremap <buffer> z :Z<space>
+  au FileType startify,nerdtree nnoremap <buffer> Z :ZZ<space>
+  au FileType startify,nerdtree nnoremap <buffer> , :ZZ<space>
 augroup END
 
 " No status when editing Git commit messages
@@ -99,8 +108,8 @@ endif
 if exists('g:neovide')
   let g:neovide_cursor_animation_length=0.04
   set guifont=Iosevka:h20
-  colorscheme challenger_deep
-  set background=dark
+  colorscheme dracula
+  " set background=dark
 end
 " }}}
 
