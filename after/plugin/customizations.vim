@@ -214,6 +214,11 @@ function s:add_theme_overrides()
 
   if g:colors_name == 'github'
     hi! link VertSplit NonText
+  elseif g:colors_name == 'dracula'
+    hi! Normal guibg=#191920
+    hi! CursorLine guibg=#242432
+    hi! DraculaBoundary guifg=#242432 guibg=none
+    hi! link FloatermBorder Comment
   endif
 endfunction
 

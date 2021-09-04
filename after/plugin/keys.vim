@@ -75,7 +75,9 @@ let g:which_key_map.p = { 'name': '+Pick     ▶' }
 let g:which_key_map.x = { 'name': '+eXit     ▶' }
 
 let g:which_key_map.z = 'Go to project...'
+let g:which_key_map.Z = 'which_key_ignore'
 nnoremap <leader>z :Z<Space>
+nnoremap <leader>Z :ZZ<Space>
 " }}}
 
 " [leader-q] Close {{{
