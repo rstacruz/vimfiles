@@ -113,6 +113,14 @@ if exists('g:neovide')
 end
 " }}}
 
+" Gui: goneovim {{{
+if exists('g:goneovim')
+  set guifont=Iosevka:h14
+  colorscheme dracula
+  " set background=dark
+end
+" }}}
+
 " Gui: vimr {{{
 " https://github.com/qvacua/vimr/wiki
 if has('gui_vimr')
