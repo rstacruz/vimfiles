@@ -54,6 +54,7 @@ augroup customisations
   au FileType startify,nerdtree nnoremap <buffer> z :Z<space>
   au FileType startify,nerdtree nnoremap <buffer> Z :ZZ<space>
   au FileType startify,nerdtree nnoremap <buffer> , :ZZ<space>
+  au FileType startify,nerdtree nnoremap <buffer> . :term<cr>
 augroup END
 
 " No status when editing Git commit messages
