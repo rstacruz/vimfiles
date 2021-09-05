@@ -228,6 +228,8 @@ function s:add_theme_overrides()
     hi! CursorLine guibg=#242432
     hi! DraculaBoundary guifg=#242432 guibg=none
     hi! link FloatermBorder Comment
+    hi! link VertSplit Comment
+    hi! link EndOfBuffer Normal
   endif
 endfunction
 

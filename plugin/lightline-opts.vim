@@ -47,6 +47,12 @@ let g:lightline.mode_map =
   \   't': 'TERM',
   \ }
 
+"      
+let g:lightline['separator'] = {'left': "", 'right': ""}
+" let g:lightline['separator'] = { 'left': '▓░', 'right': '░▓' }
+let g:lightline['separator'] = { 'left': '', 'right': '░▒▓' }
+let g:lightline['subseparator'] = {'left': "", 'right': ""}
+
 function s:set_theme(theme)
   let g:lightline.colorscheme = a:theme
   if exists('*lightline#init')
