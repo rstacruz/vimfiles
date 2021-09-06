@@ -12,7 +12,7 @@ set laststatus=1 " no statusbar if there's only one window
 let &fcs='eob: ' " hide tildes (https://github.com/neovim/neovim/issues/2067#issuecomment-398283872)
 " }}}
 
-" Terminal customisations {{{
+" TermOpen customisations {{{
 if has('nvim')
   " no line number in :term
   " https://github.com/neovim/neovim/issues/6832#issuecomment-305507194
@@ -21,8 +21,8 @@ if has('nvim')
 endif
 " }}}
 
-" Filetype customisations {{{
-augroup customisations
+" Filetype: git {{{
+augroup customisations_git
   au FileType gitcommit,pullrequest,gitrebase startinsert
   au FileType gitcommit,pullrequest,gitrebase setlocal nonumber norelativenumber nowrap
   if $GIT_EXEC_PATH != ''
@@ -34,27 +34,43 @@ augroup customisations
   end
   au FileType gitcommit setlocal statusline=──\ Git\ commit\ message\ ──
   au FileType pullrequest setlocal statusline=──\ Git\ pull\ request\ ──
+augroup END
+" }}}
+
+" Filetype: nerdtree/startify {{{
+augroup customisations_nerd
+  au FileType startify,nerdtree nnoremap <buffer> z :Z<space>
+  au FileType startify,nerdtree nnoremap <buffer> Z :ZZ<space>
+  au FileType startify,nerdtree nnoremap <buffer> , :Z<space>
+  au FileType startify,nerdtree nnoremap <buffer> . :term<cr>
+augroup END
+" }}}
+
+" Filetype: tree-sitter folding {{{
+augroup customisations_treesitter
+  " treesitter-based folding where supported
+  au FileType typescript,typescriptreact,javascript,javascriptreact,css,json,markdown setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
+augroup END
+" }}}
+
+" Filetype: beancount {{{
+augroup customisations_beancount
+  " Allow auto-completion of beancount accounts (eg, Assets:Bank-Stuff)
+  au FileType beancount setlocal iskeyword+=-,58
+
+  au FileType beancount nnoremap <buffer> <leader>= :AlignCommodity<CR>
+  au FileType beancount vnoremap <buffer> <leader>= :AlignCommodity<CR>
+augroup END
+" }}}
+
+" Filetype: others {{{
+augroup customisations
   au FileType markdown setlocal wrap linebreak nonumber norelativenumber isfname+=32 conceallevel=2
   au FileType yaml setlocal foldmethod=indent
   " isfname: Allow spaces in filenames to 'gf' inside taskpaper files
   " Allow spaces in filenames to 'gf' inside taskpaper files
   au FileType taskpaper setlocal isfname+=32,[,],' ts=2 nowrap foldmethod=indent
   au! BufRead,BufNewFile *.ttxt setfiletype taskpaper
-  " Allow auto-completion of beancount accounts (eg, Assets:Bank-Stuff)
-  au! BufRead,BufNewFile *.beancount setlocal iskeyword+=-,58
-
-  " treesitter-based folding where supported
-  au FileType typescript,typescriptreact,javascript,javascriptreact,css,json,markdown setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
-
-  " beancount
-  au FileType beancount nnoremap <buffer> <leader>= :AlignCommodity<CR>
-  au FileType beancount vnoremap <buffer> <leader>= :AlignCommodity<CR>
-
-  " startify/nerdtree
-  au FileType startify,nerdtree nnoremap <buffer> z :Z<space>
-  au FileType startify,nerdtree nnoremap <buffer> Z :ZZ<space>
-  au FileType startify,nerdtree nnoremap <buffer> , :ZZ<space>
-  au FileType startify,nerdtree nnoremap <buffer> . :term<cr>
 augroup END
 
 " No status when editing Git commit messages
@@ -91,43 +107,6 @@ function! OpenOrCreateFile(...)
   let cmd=(a:0 == '' ? 'e' : 'split')
   silent! exec cmd . ' ' . fname
 endfunction
-" }}}
-
-" Gui: neovim-qt {{{
-if exists('g:GuiLoaded')
-  " set guifont=JuliaMono:h13
-  " set guifont=JetBrains\ Mono:h14:w60
-  GuiFont! Iosevka:h13.5:w57
-  GuiTabline 0
-  GuiLinespace -3
-  colorscheme dracula
-  " also: paper, iceberg, challenger_deep, github
-endif
-" }}}
-
-" Gui: Neovide {{{
-if exists('g:neovide')
-  let g:neovide_cursor_animation_length=0.04
-  set guifont=Iosevka:h20
-  colorscheme dracula
-  " set background=dark
-end
-" }}}
-
-" Gui: goneovim {{{
-if exists('g:goneovim')
-  set guifont=Iosevka:h14
-  colorscheme dracula
-  " set background=dark
-end
-" }}}
-
-" Gui: vimr {{{
-" https://github.com/qvacua/vimr/wiki
-if has('gui_vimr')
-  colorscheme github
-  set background=light
-endif
 " }}}
 
 " disable by default
@@ -239,5 +218,42 @@ autocmd ColorScheme * call s:add_theme_overrides()
 " :Z {{{
 autocmd User ZChangedDirGlobal tabonly
 autocmd User ZChangedDirGlobal StartifyReset
+" }}}
+
+" Gui: neovim-qt {{{
+if exists('g:GuiLoaded')
+  " set guifont=JuliaMono:h13
+  " set guifont=JetBrains\ Mono:h14:w60
+  GuiFont! Iosevka:h13.5:w57
+  GuiTabline 0
+  GuiLinespace -3
+  colorscheme dracula
+  " also: paper, iceberg, challenger_deep, github
+endif
+" }}}
+
+" Gui: Neovide {{{
+if exists('g:neovide')
+  let g:neovide_cursor_animation_length=0.04
+  set guifont=Iosevka:h20
+  colorscheme dracula
+  " set background=dark
+end
+" }}}
+
+" Gui: goneovim {{{
+if exists('g:goneovim')
+  set guifont=Iosevka:h14
+  colorscheme dracula
+  " set background=dark
+end
+" }}}
+
+" Gui: vimr {{{
+" https://github.com/qvacua/vimr/wiki
+if has('gui_vimr')
+  colorscheme github
+  set background=light
+endif
 " }}}
 

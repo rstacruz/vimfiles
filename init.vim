@@ -111,6 +111,7 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-emmet',
   \ 'coc-ultisnips',
+  \ 'coc-react-refactor',
   \ ]
 " Coc extensions }}}
 
