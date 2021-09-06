@@ -345,7 +345,9 @@ if exists(':CocAction')
   let g:which_key_map.c.d = 'Show errors'
   let g:which_key_map.c.f = 'Format'
   let g:which_key_map.c.r = 'Rename symbol...'
-  let g:which_key_map.c.a = 'Actions'
+  let g:which_key_map.c.R = 'Refactor...'
+  let g:which_key_map.c.a = 'Actions (selected)...'
+  let g:which_key_map.c.A = 'Actions (file)...'
   let g:which_key_map.c.h = 'Show hover'
   let g:which_key_map.c.s = 'Symbols...'
 
@@ -367,15 +369,14 @@ if exists(':CocAction')
   nnoremap <leader>cf :call CocAction('format')<CR>
   vmap <leader>cf <Plug>(coc-format-selected)
 
-  " like ctrl-dot in vscode
-  vnoremap gA :CocAction<cr>
-  nnoremap gA :CocAction<cr>
-
-  " Rename
   nmap <leader>cr <Plug>(coc-rename)
   xmap <leader>cr <Plug>(coc-rename)
-
-  nnoremap <leader>ca :CocAction<CR>
+  nmap <leader>cR <Plug>(coc-refactor)
+  xmap <leader>cR <Plug>(coc-refactor)
+  nmap <leader>ca <Plug>(coc-codeaction-cursor)
+  xmap <leader>ca <Plug>(coc-codeaction-selected)
+  nmap <leader>cA <Plug>(coc-codeaction)
+  xmap <leader>cA <Plug>(coc-codeaction)
   nnoremap <leader>cc :CocCommand<CR>
   nnoremap <leader>cd :CocList diagnostics<CR>
   nnoremap <leader>cs :CocList symbols<CR>
