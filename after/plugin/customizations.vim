@@ -227,7 +227,7 @@ if exists('g:GuiLoaded')
   GuiFont! Iosevka:h13.5:w57
   GuiTabline 0
   GuiLinespace -3
-  colorscheme dracula
+  colorscheme embark
   " also: paper, iceberg, challenger_deep, github
 endif
 " }}}
