@@ -233,7 +233,7 @@ endif
 if exists(':FZF')
   nnoremap <C-p> :GFiles<cr>
   let g:which_key_map.p.f = 'Files...'
-  nnoremap <leader>pf :GFiles<cr>
+  nnoremap <leader>pf :Files<cr>
   let g:which_key_map.p.s = 'Git status...'
   nnoremap <leader>ps :GFiles?<cr>
   let g:which_key_map.pw = 'Switch to window...'
