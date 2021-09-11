@@ -208,6 +208,8 @@ function s:add_theme_overrides()
     hi! link mkdLink mkdInlineURL
   elseif g:colors_name == 'onedark'
     hi! link mkdLink mkdInlineURL
+  elseif g:colors_name == 'zenbones'
+    hi! Folded ctermbg=none
   elseif g:colors_name == 'github'
     hi! link VertSplit NonText
     hi! link EndOfBuffer Normal

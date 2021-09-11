@@ -75,6 +75,8 @@ function s:update_theme()
     call s:set_theme('tokyonight')
   elseif g:colors_name == 'onedark'
     call s:set_theme('onedark')
+  elseif g:colors_name == 'zenbones'
+    call s:set_theme('zenbones')
   elseif g:colors_name == 'github' && &background ==# 'dark'
     call s:set_theme('github')
   elseif g:colors_name == 'github' && &background ==# 'light'

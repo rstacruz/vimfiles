@@ -100,6 +100,7 @@ Plug 'equt/paper.vim'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'lifepillar/vim-colortemplate'
+Plug 'mcchrish/zenbones.nvim'
 " }}}
 
 " Coc extensions {{{
