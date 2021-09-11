@@ -200,7 +200,15 @@ function s:add_theme_overrides()
   hi EndOfBuffer ctermbg=none
   hi! link FloatermBorder NonText
 
-  if g:colors_name == 'github'
+  if g:colors_name == 'embark'
+    hi! link mkdLink htmlLink
+  elseif g:colors_name == 'challenger_deep'
+    hi! link mkdLink htmlLink
+  elseif g:colors_name == 'tokyonight'
+    hi! link mkdLink mkdInlineURL
+  elseif g:colors_name == 'onedark'
+    hi! link mkdLink mkdInlineURL
+  elseif g:colors_name == 'github'
     hi! link VertSplit NonText
     hi! link EndOfBuffer Normal
   elseif g:colors_name == 'dracula'

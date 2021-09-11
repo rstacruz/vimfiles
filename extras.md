@@ -35,4 +35,5 @@ Plug 'freitass/todo.txt-vim'
 " Themes
 Plug 'ghifarit53/daycula-vim'
 Plug 'joshdick/onedark.vim'
+Plug 'cocopon/iceberg.vim'
 ```

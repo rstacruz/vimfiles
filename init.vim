@@ -91,13 +91,14 @@ endif
 
 " GUI themes and colorschemes {{{
 Plug 'challenger-deep-theme/vim', {'as': 'challenger-deep-theme-vim'}
-Plug 'dracula/vim', {'as': 'dracula-vim'}
 Plug 'cocopon/iceberg.vim'
 Plug 'cormacrelf/vim-colors-github'
-Plug 'equt/paper.vim'
-Plug 'ghifarit53/tokyonight-vim'
+Plug 'dracula/vim', {'as': 'dracula-vim'}
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'embark-theme/vim', {'as': 'embark-theme-vim'}
+Plug 'equt/paper.vim'
+Plug 'ghifarit53/tokyonight-vim'
+Plug 'joshdick/onedark.vim'
 Plug 'lifepillar/vim-colortemplate'
 " }}}
 
