@@ -201,6 +201,9 @@ function s:add_theme_overrides()
   hi! link FloatermBorder NonText
 
   if g:colors_name == 'embark'
+    hi! link mkdBlockQuote String
+    hi! link mkdCodeStart NonText
+    hi! link mkdCodeEnd NonText
     hi! link mkdLink htmlLink
   elseif g:colors_name == 'challenger_deep'
     hi! link mkdLink htmlLink
@@ -217,9 +220,12 @@ function s:add_theme_overrides()
     hi! Normal guibg=#191920
     hi! CursorLine guibg=#242432
     hi! DraculaBoundary guifg=#242432 guibg=none
-    hi! link FloatermBorder Comment
-    hi! link VertSplit Comment
     hi! link EndOfBuffer Normal
+    hi! link FloatermBorder Comment
+    hi! link mkdBlockQuote String
+    hi! link mkdCodeEnd Comment
+    hi! link mkdCodeStart Comment
+    hi! link VertSplit Comment
   endif
 endfunction
 
