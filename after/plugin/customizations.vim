@@ -274,3 +274,7 @@ if has('gui_vimr')
 endif
 " }}}
 
+" vim-unimpared: use `co` {{{
+" https://github.com/tpope/vim-unimpaired/issues/150
+nmap co yo
+" }}}
