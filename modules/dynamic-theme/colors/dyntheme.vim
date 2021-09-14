@@ -159,8 +159,8 @@ function! s:base_overrides() " {{{
 endfunction " }}}
 
 function! s:dark_overrides() " {{{
-  hi! Invis      cterm=none      ctermbg=none ctermfg=232
-  hi! NonText    cterm=none      ctermbg=none ctermfg=232
+  hi! Invis      cterm=none      ctermbg=none ctermfg=239
+  hi! NonText    cterm=none      ctermbg=none ctermfg=239
   hi! Visual     cterm=none      ctermbg=238
   hi! Error      ctermbg=52      ctermfg=199
   hi! muted      ctermbg=none    ctermfg=239
