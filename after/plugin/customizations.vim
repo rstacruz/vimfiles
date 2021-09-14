@@ -155,6 +155,10 @@ augroup abbreviations_symbols
   " http://xahlee.info/comp/unicode_computing_symbols.html
   " https://hub.espanso.org/packages/mac-symbols/
 
+  " symbols
+  au FileType text,markdown iabbrev <buffer> oK ✓
+  au FileType text,markdown iabbrev <buffer> tF ∴
+
   "	♔ ♕ ♖ ♗ ♘ ♙ ◇ · ♚ ♛ ♜ ♝ ♞ ♟ ◆
   au FileType text,markdown,taskpaper iabbrev <buffer> bK ♚ 
   au FileType text,markdown,taskpaper iabbrev <buffer> bQ ♛
@@ -200,22 +204,29 @@ function s:add_theme_overrides()
   hi EndOfBuffer ctermbg=none
   hi! link FloatermBorder NonText
 
+  hi! link mkdCodeStart NonText
+  hi! link mkdCodeEnd NonText
+  hi! link mkdCodeDelimiter NonText
+  hi! link mkdBlockQuote String
+  hi! link mkdCode Keyword
+  " hi! link mkdLink htmlLink
+  hi! link mkdLink mkdInlineURL
+
   if g:colors_name == 'embark'
-    hi! link mkdBlockQuote String
-    hi! link mkdCodeStart NonText
-    hi! link mkdCodeEnd NonText
-    hi! link mkdLink htmlLink
+    " ...
   elseif g:colors_name == 'challenger_deep'
-    hi! link mkdLink htmlLink
+    " ...
   elseif g:colors_name == 'tokyonight'
-    hi! link mkdLink mkdInlineURL
+    " ...
   elseif g:colors_name == 'onedark'
-    hi! link mkdLink mkdInlineURL
+    " ...
   elseif g:colors_name == 'zenbones'
     hi! Folded ctermbg=none
   elseif g:colors_name == 'github'
     hi! link VertSplit NonText
     hi! link EndOfBuffer Normal
+  elseif g:colors_name == 'zenbones'
+    " ...
   elseif g:colors_name == 'dracula'
     hi! Normal guibg=#191920
     hi! CursorLine guibg=#242432
