@@ -73,6 +73,8 @@ function s:update_theme()
     call s:set_theme('palenight')
   elseif g:colors_name == 'embark'
     call s:set_theme('tokyonight')
+  elseif g:colors_name == 'nightfly'
+    call s:set_theme('nightfly')
   elseif g:colors_name == 'onedark'
     call s:set_theme('onedark')
   elseif g:colors_name == 'zenbones'

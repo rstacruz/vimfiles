@@ -90,6 +90,7 @@ endif
 " }}}
 
 " GUI themes and colorschemes {{{
+Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'challenger-deep-theme/vim', {'as': 'challenger-deep-theme-vim'}
 Plug 'cocopon/iceberg.vim'
 Plug 'cormacrelf/vim-colors-github'
