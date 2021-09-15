@@ -100,6 +100,17 @@
 
 These features are provided by [vim-unimpaired](https://github.com/tpope/vim-unimpaired).
 
+## Insert mode shortcuts
+
+| Toggle | Description                   |
+| ------ | ----------------------------- |
+| `;di`  | Date ISO (2021-09-02)         |
+| `;dl`  | Date local (Wed 15 Sep)       |
+| `;dw`  | Date weekday (2021-09-15 Wed) |
+|        |                               |
+| `;ok`  | ✓                             |
+| `;::`  | ∷                             |
+
 ## Commands
 
 ```sh

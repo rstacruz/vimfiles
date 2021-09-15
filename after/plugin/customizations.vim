@@ -154,46 +154,16 @@ augroup abbreviations_symbols
   au FileType text,markdown,c iabbrev <buffer> deL ⌦
   " http://xahlee.info/comp/unicode_computing_symbols.html
   " https://hub.espanso.org/packages/mac-symbols/
-
-  " symbols
-  au FileType text,markdown iabbrev <buffer> oK ✓
-  au FileType text,markdown iabbrev <buffer> tF ∴
-
-  "	♔ ♕ ♖ ♗ ♘ ♙ ◇ · ♚ ♛ ♜ ♝ ♞ ♟ ◆
-  au FileType text,markdown,taskpaper iabbrev <buffer> bK ♚ 
-  au FileType text,markdown,taskpaper iabbrev <buffer> bQ ♛
-  au FileType text,markdown,taskpaper iabbrev <buffer> bR ♜
-  au FileType text,markdown,taskpaper iabbrev <buffer> bN ♞
-  au FileType text,markdown,taskpaper iabbrev <buffer> bB ♝
-  au FileType text,markdown,taskpaper iabbrev <buffer> bP ♟
-  au FileType text,markdown,taskpaper iabbrev <buffer> wK ♔
-  au FileType text,markdown,taskpaper iabbrev <buffer> wQ ♕
-  au FileType text,markdown,taskpaper iabbrev <buffer> wR ♖
-  au FileType text,markdown,taskpaper iabbrev <buffer> wN ♘
-  au FileType text,markdown,taskpaper iabbrev <buffer> wB ♗
-  au FileType text,markdown,taskpaper iabbrev <buffer> wP ♙
 augroup END
 " }}}
 
-" inoremap: Box drawing chars {{{
-inoremap ^%( ·
-inoremap ^%: ●
-inoremap ^%) ○
-inoremap ^$< ┌
-inoremap ^$= ┬
-inoremap ^$> ┐
-inoremap ^$( ├
-inoremap ^$: ┼
-inoremap ^$) ┤
-inoremap ^$* └
-inoremap ^$- ┴
-inoremap ^$+ ┘
-inoremap ^$} ─
-inoremap ^${ │
-inoremap ^%< ╭
-inoremap ^%> ╮
-inoremap ^%* ╰
-inoremap ^%+ ╯
+" inoremap: Dates and symbols {{{
+augroup insert_dates
+  au FileType text,markdown,c inoremap ;di <C-r>=strftime("%Y-%m-%d")<CR>
+  au FileType text,markdown,c inoremap ;dw <C-r>=strftime("%Y-%m-%d %a")<CR>
+  au FileType text,markdown,c inoremap ;dl <C-r>=strftime("%a %e %b")<CR>
+  au FileType text,markdown,c inoremap ;ok ✓
+  au FileType text,markdown,c inoremap ;:: ∷
 " }}}
 
 " Theme overrides {{{
