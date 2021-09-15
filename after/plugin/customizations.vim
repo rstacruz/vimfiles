@@ -184,10 +184,15 @@ function s:add_theme_overrides()
   hi! link mkdHeading NonText
   hi! link mkdBold NonText
   hi! link mkdItalic NonText
-  hi! link mkdListItem NonText
+  hi! link mkdListItem Special
   hi! link mkdCodeStart NonText
   hi! link mkdCodeEnd NonText
   hi! link mkdCodeDelimiter NonText
+
+  " headings
+  hi! link htmlH1 String
+  hi! link htmlH2 Special
+  hi! link htmlH3 String
 
   " curly
   hi! CocUnderline gui=undercurl
@@ -225,10 +230,6 @@ function s:add_theme_overrides()
       " todo: diffRemoved diffAdded
     endif
     hi! VertSplit guibg=none
-    " headings are a bit wonky
-    hi! link htmlH1 String
-    hi! link htmlH2 String
-    hi! link htmlH3 String
     hi! link NonText Comment
   elseif g:colors_name == 'dracula'
     hi! Normal guibg=#191920
