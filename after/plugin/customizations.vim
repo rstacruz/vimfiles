@@ -224,9 +224,10 @@ function s:add_theme_overrides()
       hi! Statement guifg=#ccccff gui=bold
     else
       " new accent colour
-      hi! Constant  guifg=#008844
-      hi! Comment   guifg=#505080 gui=italic
-      hi! Statement guifg=#323242 gui=bold
+      hi! Constant  ctermfg=63   guifg=#008844
+      hi! Comment   ctermfg=61   guifg=#505080 gui=italic
+      hi! Statement ctermfg=none guifg=#323242 gui=bold
+      hi! Visual    ctermfg=none ctermbg=254
       " todo: diffRemoved diffAdded
     endif
     hi! VertSplit guibg=none
