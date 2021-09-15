@@ -159,7 +159,7 @@ augroup END
 
 " inoremap: Dates and symbols {{{
 augroup insert_dates
-  au FileType text,markdown,c inoremap ;di _<C-r>=strftime("%Y-%m-%d")<CR>
+  au FileType text,markdown,c inoremap ;di _<C-r>=strftime("%Y-%m-%d")<CR>_
   au FileType text,markdown,c inoremap ;dw <C-r>=strftime("%Y-%m-%d %a")<CR>
   au FileType text,markdown,c inoremap ;dl <C-r>=strftime("%a %e %b")<CR>
   au FileType text,markdown,c inoremap ;ok ✓
