@@ -216,31 +216,35 @@ function s:add_theme_overrides()
   elseif g:colors_name == 'paramount'
     if &background ==# 'dark'
       " cold background
-      hi! Normal guibg=#19192a
+      hi! Normal     guibg=#19192a
       hi! CursorLine guibg=#1c1c38
       " new accent colour
-      hi! Constant guifg=#40ff80
-      hi! Comment guifg=#505080
+      hi! Constant  guifg=#40ff80
+      hi! Comment   guifg=#505080
       hi! Statement guifg=#ccccff gui=bold
     else
       " new accent colour
-      hi! Constant guifg=#008844
-      hi! Comment guifg=#505080 gui=italic
+      hi! Constant  guifg=#008844
+      hi! Comment   guifg=#505080 gui=italic
       hi! Statement guifg=#323242 gui=bold
       " todo: diffRemoved diffAdded
     endif
     hi! VertSplit guibg=none
-    hi! link NonText Comment
+    hi! link NonText          Comment
+    hi! link Directory        Statement
+    hi! link NERDTreeCWD      Constant
+    hi! link NERDTreeClosable Constant
+    hi! link NERDTreeOpenable Constant
   elseif g:colors_name == 'dracula'
-    hi! Normal guibg=#191920
-    hi! CursorLine guibg=#242432
+    hi! Normal          guibg=#191920
+    hi! CursorLine      guibg=#242432
     hi! DraculaBoundary guifg=#242432 guibg=none
-    hi! link EndOfBuffer Normal
+    hi! link EndOfBuffer    Normal
     hi! link FloatermBorder Comment
-    hi! link mkdBlockQuote String
-    hi! link mkdCodeEnd Comment
-    hi! link mkdCodeStart Comment
-    hi! link VertSplit Comment
+    hi! link mkdBlockQuote  String
+    hi! link mkdCodeEnd     Comment
+    hi! link mkdCodeStart   Comment
+    hi! link VertSplit      Comment
   endif
 endfunction
 
