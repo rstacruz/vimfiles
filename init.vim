@@ -102,6 +102,7 @@ Plug 'ghifarit53/tokyonight-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'lifepillar/vim-colortemplate'
 Plug 'mcchrish/zenbones.nvim'
+Plug 'owickstrom/vim-colors-paramount'
 " }}}
 
 " Coc extensions {{{

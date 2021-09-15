@@ -159,7 +159,7 @@ augroup END
 
 " inoremap: Dates and symbols {{{
 augroup insert_dates
-  au FileType text,markdown,c inoremap ;di _<C-r>=strftime("%Y-%m-%d")<CR>_
+  au FileType text,markdown,c inoremap ;di _<C-r>=strftime("%Y-%m-%d")<CR>
   au FileType text,markdown,c inoremap ;dw <C-r>=strftime("%Y-%m-%d %a")<CR>
   au FileType text,markdown,c inoremap ;dl <C-r>=strftime("%a %e %b")<CR>
   au FileType text,markdown,c inoremap ;ok ✓
@@ -174,18 +174,27 @@ function s:add_theme_overrides()
   hi EndOfBuffer ctermbg=none
   hi! link FloatermBorder NonText
 
-  hi! link mkdCodeStart NonText
-  hi! link mkdCodeEnd NonText
-  hi! link mkdCodeDelimiter NonText
-  hi! link mkdBlockQuote String
+  hi! link mkdBlockQuote Number
   hi! link mkdCode Keyword
-  " hi! link mkdLink htmlLink
   hi! link mkdLink mkdInlineURL
   hi! link htmlBold String
   hi! link htmlItalic Comment
 
+  " bullets and delimiters
+  hi! link mkdHeading NonText
+  hi! link mkdBold NonText
+  hi! link mkdItalic NonText
+  hi! link mkdListItem NonText
+  hi! link mkdCodeStart NonText
+  hi! link mkdCodeEnd NonText
+  hi! link mkdCodeDelimiter NonText
+
+  " curly
+  hi! CocUnderline gui=undercurl
+
   if g:colors_name == 'embark'
     " ...
+    hi! Comment gui=italic
   elseif g:colors_name == 'challenger_deep'
     " ...
   elseif g:colors_name == 'tokyonight'
@@ -199,6 +208,28 @@ function s:add_theme_overrides()
     hi! link EndOfBuffer Normal
   elseif g:colors_name == 'zenbones'
     " ...
+  elseif g:colors_name == 'paramount'
+    if &background ==# 'dark'
+      " cold background
+      hi! Normal guibg=#19192a
+      hi! CursorLine guibg=#1c1c38
+      " new accent colour
+      hi! Constant guifg=#40ff80
+      hi! Comment guifg=#505080
+      hi! Statement guifg=#ccccff gui=bold
+    else
+      " new accent colour
+      hi! Constant guifg=#008844
+      hi! Comment guifg=#505080 gui=italic
+      hi! Statement guifg=#323242 gui=bold
+      " todo: diffRemoved diffAdded
+    endif
+    hi! VertSplit guibg=none
+    " headings are a bit wonky
+    hi! link htmlH1 String
+    hi! link htmlH2 String
+    hi! link htmlH3 String
+    hi! link NonText Comment
   elseif g:colors_name == 'dracula'
     hi! Normal guibg=#191920
     hi! CursorLine guibg=#242432
