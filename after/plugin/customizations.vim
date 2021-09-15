@@ -159,7 +159,7 @@ augroup END
 
 " inoremap: Dates and symbols {{{
 augroup insert_dates
-  au FileType text,markdown,c inoremap ;di <C-r>=strftime("%Y-%m-%d")<CR>
+  au FileType text,markdown,c inoremap ;di _<C-r>=strftime("%Y-%m-%d")<CR>_
   au FileType text,markdown,c inoremap ;dw <C-r>=strftime("%Y-%m-%d %a")<CR>
   au FileType text,markdown,c inoremap ;dl <C-r>=strftime("%a %e %b")<CR>
   au FileType text,markdown,c inoremap ;ok ✓
@@ -181,6 +181,8 @@ function s:add_theme_overrides()
   hi! link mkdCode Keyword
   " hi! link mkdLink htmlLink
   hi! link mkdLink mkdInlineURL
+  hi! link htmlBold String
+  hi! link htmlItalic Comment
 
   if g:colors_name == 'embark'
     " ...
