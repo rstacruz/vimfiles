@@ -214,6 +214,7 @@ function s:add_theme_overrides()
   elseif g:colors_name == 'github'
     hi! link VertSplit NonText
     hi! link EndOfBuffer Normal
+    hi! Comment gui=italic cterm=italic
     hi! Title cterm=bold gui=bold
   elseif g:colors_name == 'zenbones'
     " ...
