@@ -160,9 +160,12 @@ augroup END
 " inoremap: Dates and symbols {{{
 augroup insert_dates
   au FileType text,markdown,c inoremap ;di _<C-r>=strftime("%Y-%m-%d")<CR>_
-  au FileType text,markdown,c inoremap ;dw <C-r>=strftime("%Y-%m-%d %a")<CR>
+  au FileType text,markdown,c inoremap ;dw _<C-r>=strftime("%Y-%m-%d %a")<CR>_
   au FileType text,markdown,c inoremap ;dl <C-r>=strftime("%a %e %b")<CR>
   au FileType text,markdown,c inoremap ;ok ✓
+  au FileType text,markdown,c inoremap ;.m ·
+  au FileType text,markdown,c inoremap ;>  ›
+  au FileType text,markdown,c inoremap ;<  ‹
   au FileType text,markdown,c inoremap ;:: ∷
 " }}}
 
@@ -211,6 +214,7 @@ function s:add_theme_overrides()
   elseif g:colors_name == 'github'
     hi! link VertSplit NonText
     hi! link EndOfBuffer Normal
+    hi! Title cterm=bold gui=bold
   elseif g:colors_name == 'zenbones'
     " ...
   elseif g:colors_name == 'paramount'
@@ -227,10 +231,11 @@ function s:add_theme_overrides()
       hi! Constant  ctermfg=63   guifg=#008844
       hi! Comment   ctermfg=61   guifg=#505080 gui=italic
       hi! Statement ctermfg=none guifg=#323242 gui=bold
+      hi! Special                guifg=#434363
       hi! Visual    ctermfg=none ctermbg=254
       " todo: diffRemoved diffAdded
     endif
-    hi! VertSplit guibg=none
+    hi! VertSplit guibg=none ctermbg=none
     hi! link NonText          Comment
     hi! link Directory        Statement
     hi! link NERDTreeCWD      Constant

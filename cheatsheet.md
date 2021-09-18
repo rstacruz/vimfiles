@@ -129,4 +129,9 @@ These features are provided by [vim-unimpaired](https://github.com/tpope/vim-uni
 :ALEGoToDefinition
 :ALENext
 :ALEPrevious
+
+# Obsession
+:Obsession .        # write session to ./Session.vim
+:Obsession!         # stop writing session
+vim -S Session.vim  # load the session
 ```

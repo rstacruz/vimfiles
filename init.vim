@@ -42,6 +42,7 @@ Plug 'preservim/nerdtree'
 Plug 'rstacruz/vim-opinion'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-fugitive' " git extensions
 Plug 'tpope/vim-rhubarb' " enable :Gbrowse for Git
 Plug 'tpope/vim-sleuth'
