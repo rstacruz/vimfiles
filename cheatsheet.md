@@ -137,6 +137,9 @@ vim -S Session.vim  # load the session
 
 # todo.txt
 ,sd      # sort by date
+,sdd     # sort by due date
+,s+      # sort by project
+,s@      # sort by context
 ,x       # mark as done
 ,a ,b ,c # priority
 ,d       # update date

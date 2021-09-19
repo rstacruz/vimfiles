@@ -62,7 +62,7 @@ if $VIM_MINIMAL != '' | call plug#end() | finish | endif
 " Most plugins {{{
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-dispatch'
-Plug 'freitass/todo.txt-vim'
+Plug 'rstacruz/todo.txt-vim'
 Plug 'rstacruz/vim-closer'
 Plug 'junegunn/gv.vim'
 Plug 'nathangrigg/vim-beancount'
