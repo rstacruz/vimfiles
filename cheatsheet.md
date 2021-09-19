@@ -134,4 +134,11 @@ These features are provided by [vim-unimpaired](https://github.com/tpope/vim-uni
 :Obsession .        # write session to ./Session.vim
 :Obsession!         # stop writing session
 vim -S Session.vim  # load the session
+
+# todo.txt
+,sd      # sort by date
+,x       # mark as done
+,a ,b ,c # priority
+,d       # update date
+,D       # move done to done.txt
 ```

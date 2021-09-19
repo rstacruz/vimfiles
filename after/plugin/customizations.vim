@@ -197,6 +197,9 @@ function s:add_theme_overrides()
   hi! link htmlH2 Special
   hi! link htmlH3 String
 
+  " todo
+  hi! link TodoDate Comment
+
   " curly
   hi! CocUnderline gui=undercurl
 
