@@ -1,16 +1,17 @@
 if globpath(&rtp, "autoload/which_key.vim") == "" | finish | endif
 
-call which_key#register(',', 'g:which_key_map')
+" call which_key#register(',', 'g:which_key_map')
+call which_key#register('<Space>', 'g:which_key_map')
 call which_key#register('<CR>', 'g:which_key_cr')
 
 set timeoutlen=100
 let g:which_key_timeout = 0
 
 " Map for leader
-nnoremap <silent> <leader> :<c-u>WhichKey ','<CR>
-vnoremap <silent> <leader> :<c-u>WhichKeyVisual ','<CR>
-nnoremap <silent> <space> :<c-u>WhichKey ','<CR>
-vnoremap <silent> <space> :<c-u>WhichKeyVisual ','<CR>
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+nnoremap <silent> <space> :<c-u>WhichKey '<Space>'<CR>
+vnoremap <silent> <space> :<c-u>WhichKeyVisual '<Space>'<CR>
 
 " Map for <g>
 " messes with gf, meh
@@ -27,8 +28,8 @@ let g:which_key_disable_default_offset = 1
 " Open in current window
 " let g:which_key_floating_relative_win = 1
 
-" Exit with , (the leader key)
-let g:which_key_exit = ['<C-[>', '<Esc>', ',']
+" Exit
+let g:which_key_exit = ['<C-[>', '<Esc>']
 
 " Make it more compact
 let g:which_key_hspace = 2

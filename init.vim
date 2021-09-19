@@ -3,7 +3,7 @@
 " ┗┛   ╹  ╹ ╹
 
 let g:maplocalleader=","
-let g:mapleader="<space>"
+let g:mapleader="\<space>"
 
 if has('nvim')
   let vim = stdpath('config')
