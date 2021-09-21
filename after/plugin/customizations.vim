@@ -273,12 +273,14 @@ if exists('g:GuiLoaded')
   if hostname() == "penguin"
     GuiFont! Iosevka:h10:w50
     GuiLinespace -1
+    GuiTabline 1
+    colorscheme github
   else
     GuiFont! Iosevka:h13.5:w57
     GuiLinespace -3
+    GuiTabline 0
+    colorscheme embark
   endif
-  GuiTabline 0
-  colorscheme embark
   " also: paper, iceberg, challenger_deep, github
 endif
 " }}}
