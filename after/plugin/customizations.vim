@@ -270,9 +270,14 @@ autocmd User ZChangedDirGlobal StartifyReset
 if exists('g:GuiLoaded')
   " set guifont=JuliaMono:h13
   " set guifont=JetBrains\ Mono:h14:w60
-  GuiFont! Iosevka:h13.5:w57
+  if hostname() == "penguin"
+    GuiFont! Iosevka:h10:w50
+    GuiLinespace -1
+  else
+    GuiFont! Iosevka:h13.5:w57
+    GuiLinespace -3
+  endif
   GuiTabline 0
-  GuiLinespace -3
   colorscheme embark
   " also: paper, iceberg, challenger_deep, github
 endif
