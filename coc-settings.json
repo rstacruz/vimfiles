@@ -1,6 +1,6 @@
 {
   // Require .prettierrc
-  // "prettier.requireConfig": true,
+  "prettier.requireConfig": true,
 
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
