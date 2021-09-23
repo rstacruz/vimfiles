@@ -473,8 +473,8 @@ nnoremap <silent> <CR> :exec ":WhichKey '\<CR\>'"<CR>
 
 " markdown? {{{
 augroup keys
-  autocmd FileType markdown nnoremap <buffer> <leader>mv :MarkdownPreview<cr>
-  autocmd FileType markdown nnoremap <buffer> <leader>mp :call mdip#MarkdownClipboardImage()<cr>
+  autocmd FileType markdown nnoremap <buffer> <localleader>v :MarkdownPreview<cr>
+  autocmd FileType markdown nnoremap <buffer> <localleader>p :call mdip#MarkdownClipboardImage()<cr>
 augroup END
 
 " For autocmds
@@ -483,3 +483,4 @@ let g:which_key_labels = {
   \ 'call mdip#MarkdownClipboardImage()': 'Paste image',
   \ }
 " }}}
+"
