@@ -471,16 +471,22 @@ nnoremap <silent> <cr>z :Goyo<cr>
 nnoremap <silent> <CR> :exec ":WhichKey '\<CR\>'"<CR>
 " }}}
 
-" markdown? {{{
-augroup keys
-  autocmd FileType markdown nnoremap <buffer> <localleader>v :MarkdownPreview<cr>
-  autocmd FileType markdown nnoremap <buffer> <localleader>p :call mdip#MarkdownClipboardImage()<cr>
+" localleader: markdown? {{{
+nnoremap <silent> , :WhichKey ','<CR>
+
+" Markdown
+augroup local_markdown
+  autocmd FileType markdown nnoremap <silent> <buffer> <localleader>v :MarkdownPreview<cr>
+  autocmd FileType markdown nnoremap <silent> <buffer> <localleader>p :call mdip#MarkdownClipboardImage()<cr>
 augroup END
 
-" For autocmds
+augroup local_vim
+  autocmd FileType vim nnoremap <silent> <buffer> <localleader>s :so %<CR>
+augroup END
+
 let g:which_key_labels = {
   \ 'MarkdownPreview': 'Markdown preview',
   \ 'call mdip#MarkdownClipboardImage()': 'Paste image',
+  \ 'so %': 'Load file',
   \ }
 " }}}
-"
