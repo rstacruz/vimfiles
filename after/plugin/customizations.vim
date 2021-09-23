@@ -65,7 +65,7 @@ augroup END
 
 " Filetype: others {{{
 augroup customisations
-  au FileType markdown setlocal wrap linebreak nonumber norelativenumber isfname+=32 conceallevel=2
+  au FileType markdown setlocal nowrap linebreak nonumber norelativenumber isfname+=32 conceallevel=2
   au FileType yaml setlocal foldmethod=indent
   " isfname: Allow spaces in filenames to 'gf' inside taskpaper files
   " Allow spaces in filenames to 'gf' inside taskpaper files
