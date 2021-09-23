@@ -14,7 +14,8 @@ end
 call plug#begin(vim . '/vendor')
 
 " Language plugins {{{
-let g:polyglot_disabled = ['markdown']
+let g:polyglot_disabled = ['markdown','autoindent']
+" autoindent support is slow on crostini
 Plug 'sheerun/vim-polyglot'
 Plug 'plasticboy/vim-markdown'
 " }}}
