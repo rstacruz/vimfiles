@@ -7,7 +7,7 @@ set noruler
 set nonumber
 set noshowmode " no -- INSERT -- in the status line
 set ttimeoutlen=20 " for escape
-set timeoutlen=400 " for tab combos
+set timeoutlen=600 " for iabbrev
 set laststatus=1 " no statusbar if there's only one window
 let &fcs='eob: ' " hide tildes (https://github.com/neovim/neovim/issues/2067#issuecomment-398283872)
 " }}}
@@ -63,15 +63,26 @@ augroup customisations_beancount
 augroup END
 " }}}
 
-" Filetype: others {{{
-augroup customisations
-  au FileType markdown setlocal nowrap linebreak nonumber norelativenumber isfname+=32 conceallevel=2
-  au FileType yaml setlocal foldmethod=indent
-  " isfname: Allow spaces in filenames to 'gf' inside taskpaper files
+" Filetype: taskpaper {{{
+augroup customisations_taskpaper
   " Allow spaces in filenames to 'gf' inside taskpaper files
   au FileType taskpaper setlocal isfname+=32,[,],' ts=2 nowrap foldmethod=indent
   au! BufRead,BufNewFile *.ttxt setfiletype taskpaper
 augroup END
+" }}}
+
+" Filetype: markdown {{{
+augroup customisations_markdown
+  au FileType markdown setlocal nowrap linebreak nonumber norelativenumber isfname+=32 conceallevel=2
+augroup END
+" }}}
+
+" Filetype: others {{{
+augroup customisations_other
+  au FileType yaml setlocal foldmethod=indent
+  " isfname: Allow spaces in filenames to 'gf' inside taskpaper files
+augroup END
+" }}}
 
 " No status when editing Git commit messages
 if $GIT_EXEC_PATH != ''
@@ -162,8 +173,12 @@ augroup insert_dates
   au FileType text,markdown,c inoremap ;di <C-r>=strftime("%Y-%m-%d")<CR>
   au FileType text,markdown,c inoremap ;dw <C-r>=strftime("%Y-%m-%d %a")<CR>
   au FileType text,markdown,c inoremap ;dl <C-r>=strftime("%a %e %b")<CR>
+  au FileType text,markdown,c inoremap _;di _<C-r>=strftime("%Y-%m-%d")<CR>_
+  au FileType text,markdown,c inoremap _;dw _<C-r>=strftime("%Y-%m-%d %a")<CR>_
+  au FileType text,markdown,c inoremap _;dl _<C-r>=strftime("%a %e %b")<CR>_
   au FileType text,markdown,c inoremap ;ok ✓
   au FileType text,markdown,c inoremap ;.m ·
+  au FileType text,markdown,c inoremap ;md —
   au FileType text,markdown,c inoremap ;>  ›
   au FileType text,markdown,c inoremap ;<  ‹
   au FileType text,markdown,c inoremap ;:: ∷
