@@ -1,8 +1,8 @@
 " Allow ^C and ^V in the console
 
 if !has("gui_running")
-  vmap <C-c> "+y
-  vmap <C-v> "+p
-  imap <C-v> <Esc>"+pi
+  vnoremap <C-c> "+y
+  vnoremap <C-v> "+p
+  inoremap <C-v> <Esc>"+pa
 end
 
