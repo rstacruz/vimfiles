@@ -462,6 +462,10 @@ nnoremap <silent> <cr>v :silent wincmd v<cr><C-w>l
 nnoremap <silent> <cr>V :silent wincmd v<cr><C-w>l:term<cr>
 nnoremap <silent> <cr>s :silent wincmd s<cr><C-w>j
 nnoremap <silent> <cr>S :silent wincmd s<cr><C-w>j:term<cr>
+nnoremap <silent> <cr>k :silent wincmd k<cr>
+nnoremap <silent> <cr>j :silent wincmd j<cr>
+nnoremap <silent> <cr>h :silent wincmd h<cr>
+nnoremap <silent> <cr>l :silent wincmd l<cr>
 nnoremap <silent> <cr>K :silent wincmd K<cr>
 nnoremap <silent> <cr>J :silent wincmd J<cr>
 nnoremap <silent> <cr>H :silent wincmd H<cr>
