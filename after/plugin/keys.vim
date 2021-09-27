@@ -439,7 +439,7 @@ let g:which_key_cr = {
   \ }
 
 nnoremap <silent> <cr><Space> za
-nnoremap <silent> <cr><Esc> :FloatermToggle<cr>
+nnoremap <silent> <cr><PageDown> :FloatermToggle<cr>
 nnoremap <silent> <cr>9 :wincmd b<cr>
 nnoremap <silent> <cr>1 :wincmd t<cr>
 nnoremap <silent> <cr>2 :2wincmd w<cr>
