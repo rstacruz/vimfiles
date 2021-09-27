@@ -191,59 +191,59 @@ if exists(':Gstatus')
   let g:which_key_map.g.D = 'cd to Git root (global)'
   let g:which_key_map.g.y = 'GitHub: Copy URL'
 
-  nnoremap <leader>gs :tab Git<cr>
-  nnoremap <leader>gc :Git add --all \| tab Git commit -v<cr>
-  nnoremap <leader>gA :Git add --all \| tab Git commit --amend -v<cr>
-  nnoremap <leader>gb :Git blame<cr>
-  nnoremap <leader>gd :Glcd<cr>
-  nnoremap <leader>gD :Gcd<cr>
+  nnoremap <silent> <leader>gs :tab Git<cr>
+  nnoremap <silent> <leader>gc :Git add --all \| tab Git commit -v<cr>
+  nnoremap <silent> <leader>gA :Git add --all \| tab Git commit --amend -v<cr>
+  nnoremap <silent> <leader>gb :Git blame<cr>
+  nnoremap <silent> <leader>gd :Glcd<cr>
+  nnoremap <silent> <leader>gD :Gcd<cr>
 
   let g:which_key_map.g.h['h'] = 'Open in GitHub'
-  nnoremap <leader>ghh :GBrowse<cr>
-  vnoremap <leader>ghh :GBrowse<cr>
+  nnoremap <silent> <leader>ghh :GBrowse<cr>
+  vnoremap <silent> <leader>ghh :GBrowse<cr>
 
-  nnoremap <leader>gy :GBrowse!<cr>
-  vnoremap <leader>gy :GBrowse!<cr>
+  nnoremap <silent> <leader>gy :GBrowse!<cr>
+  vnoremap <silent> <leader>gy :GBrowse!<cr>
 
   if exists(':FloatermNew')
     let g:which_key_map.g.p = 'Push'
     let g:which_key_map.g.P = 'Push (force)'
-    nnoremap <leader>gp :exec "FloatermNew --autoclose=1 --height=8 --width=0.9 --title=push... --position=bottom git push" \| wincmd p<cr>
-    nnoremap <leader>gP :exec "FloatermNew --autoclose=1 --height=8 --width=0.9 --title=pushforce... --position=bottom git push --force-with-lease --set-upstream origin (git rev-parse --abbrev-ref HEAD)" \| wincmd p<cr>
+    nnoremap <silent> <leader>gp :exec "FloatermNew --autoclose=1 --height=8 --width=0.9 --title=push... --position=bottom git push" \| wincmd p<cr>
+    nnoremap <silent> <leader>gP :exec "FloatermNew --autoclose=1 --height=8 --width=0.9 --title=pushforce... --position=bottom git push --force-with-lease --set-upstream origin (git rev-parse --abbrev-ref HEAD)" \| wincmd p<cr>
 
     let g:which_key_map.g.h.p = 'Open pull request'
     let g:which_key_map.g.h.P = 'Create pull request'
-    nnoremap <leader>ghP :FloatermNew gh pr create<cr>
-    nnoremap <leader>ghp :FloatermNew --height=3 --width=0.9 --position=bottom gh pr view --web<cr>
+    nnoremap <silent> <leader>ghP :FloatermNew gh pr create<cr>
+    nnoremap <silent> <leader>ghp :FloatermNew --height=3 --width=0.9 --position=bottom gh pr view --web<cr>
   endif
 endif
 
 if exists(':GV')
   let g:which_key_map.g.l = 'Log'
-  nnoremap <leader>gl :GV<cr>
+  nnoremap <silent> <leader>gl :GV<cr>
 endif
 " }}}
 
 " [leader-p] Pick {{{
 if exists(':Buffers')
   let g:which_key_map.p.b = 'Buffers...'
-  nnoremap <leader>pb :Buffers<cr>
+  nnoremap <silent> <leader>pb :Buffers<cr>
 endif
 
 if exists(':FZF')
-  nnoremap <C-p> :Files<cr>
+  nnoremap <silent> <C-p> :GFiles --exclude-standard --others --cached<cr>
   let g:which_key_map.p.f = 'Files...'
-  nnoremap <leader>pf :Files<cr>
+  nnoremap <silent> <leader>pf :Files<cr>
   let g:which_key_map.p.g = 'Git files...'
-  nnoremap <leader>pg :GFiles --exclude-standard --others --cached<cr>
+  nnoremap <silent> <leader>pg :GFiles --exclude-standard --others --cached<cr>
   let g:which_key_map.p.s = 'Git status...'
-  nnoremap <leader>ps :GFiles?<cr>
+  nnoremap <silent> <leader>ps :GFiles?<cr>
   let g:which_key_map.pw = 'Switch to window...'
-  nnoremap <leader>pw :Windows<cr>
+  nnoremap <silent> <leader>pw :Windows<cr>
   let g:which_key_map.p['.'] = 'Search in this file...'
-  nnoremap <leader>p. :BLines<cr>
+  nnoremap <silent> <leader>p. :BLines<cr>
   let g:which_key_map.p['*'] = 'Search for this word...'
-  nnoremap <leader>p* :BLines <C-r><C-w><cr>
+  nnoremap <silent> <leader>p* :BLines <C-r><C-w><cr>
 endif
 " }}}
 
