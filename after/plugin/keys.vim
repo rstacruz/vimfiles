@@ -231,9 +231,11 @@ if exists(':Buffers')
 endif
 
 if exists(':FZF')
-  nnoremap <C-p> :GFiles<cr>
+  nnoremap <C-p> :Files<cr>
   let g:which_key_map.p.f = 'Files...'
   nnoremap <leader>pf :Files<cr>
+  let g:which_key_map.p.g = 'Git files...'
+  nnoremap <leader>pg :GFiles --exclude-standard --others --cached<cr>
   let g:which_key_map.p.s = 'Git status...'
   nnoremap <leader>ps :GFiles?<cr>
   let g:which_key_map.pw = 'Switch to window...'
