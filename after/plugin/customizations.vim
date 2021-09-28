@@ -239,23 +239,24 @@ function s:add_theme_overrides()
   elseif g:colors_name == 'paramount'
     if &background ==# 'dark'
       " cold background
-      hi! Normal     guibg=#19192a
-      hi! CursorLine guibg=#1c1c38
-      " new accent colour
-      hi! Constant  guifg=#40ff80
-      hi! Comment   guifg=#505080
-      hi! Statement guifg=#ccccff gui=bold
+      hi! Normal     ctermfg=none guibg=#19192a
+      hi! CursorLine              guibg=#1c1c38
+      hi! Constant   ctermfg=2    guifg=#40ff80
+      hi! Comment    ctermfg=8    guifg=#505080 gui=italic cterm=italic
+      hi! Statement  ctermfg=1    guifg=#ccccff gui=bold
     else
       " new accent colour
       hi! Constant  ctermfg=63   guifg=#008844
-      hi! Comment   ctermfg=61   guifg=#505080 gui=italic
+      hi! Comment   ctermfg=61   guifg=#505080 gui=italic cterm=italic
       hi! Statement ctermfg=none guifg=#323242 gui=bold
       hi! Special                guifg=#434363
       hi! Visual    ctermfg=none ctermbg=254
       " todo: diffRemoved diffAdded
     endif
     hi! VertSplit guibg=none ctermbg=none
+    hi! link PreProc          Comment
     hi! link NonText          Comment
+    hi! link Type             Statement
     hi! link Directory        Statement
     hi! link NERDTreeCWD      Constant
     hi! link NERDTreeClosable Constant
