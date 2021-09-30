@@ -330,12 +330,3 @@ endif
 " https://github.com/tpope/vim-unimpaired/issues/150
 nmap co yo
 " }}}
-
-" Chromebook keyboard {{{
-if hostname() == "penguin"
-  inoremap jl <Esc>:
-  inoremap jk <Esc>
-  vnoremap jl :
-  noremap jl :
-endif
-" }}}

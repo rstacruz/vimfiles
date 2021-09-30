@@ -496,3 +496,12 @@ let g:which_key_labels = {
   \ 'so %': 'Load file',
   \ }
 " }}}
+
+" Chromebook keyboard {{{
+if hostname() == "penguin" || $TERMUX_VERSION != ""
+  inoremap jl <Esc>:
+  inoremap jk <Esc>
+  vnoremap jl :
+  noremap jl :
+endif
+" }}}
