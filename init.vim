@@ -20,6 +20,11 @@ Plug 'sheerun/vim-polyglot'
 Plug 'plasticboy/vim-markdown'
 " }}}
 
+" Requires nvim 0.5 or later
+if has('nvim-0.5')
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+endif
+
 " Don't load the other plugins for git commit
 if $GIT_EXEC_PATH != '' | call plug#end() | finish | endif
 
@@ -79,16 +84,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'Asheq/close-buffers.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 " }}}
 
 " Requires nvim {{{
 if has('nvim')
   Plug 'voldikss/vim-floaterm'
-endif
-
-" Requires nvim 0.5 or later
-if has('nvim-0.5')
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 endif
 " }}}
 

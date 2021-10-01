@@ -225,13 +225,17 @@ endif
 " }}}
 
 " [leader-p] Pick {{{
-if exists(':Buffers')
+if exists(':Telescope')
+  nnoremap <silent> <C-p> :Telescope find_files<cr>
+  let g:which_key_map.p.b = 'Buffers...'
+  nnoremap <silent> <leader>pb :Telescope buffers<cr>
+elseif exists(':FZF')
+  nnoremap <silent> <C-p> :GFiles --exclude-standard --others --cached<cr>
   let g:which_key_map.p.b = 'Buffers...'
   nnoremap <silent> <leader>pb :Buffers<cr>
 endif
 
 if exists(':FZF')
-  nnoremap <silent> <C-p> :GFiles --exclude-standard --others --cached<cr>
   let g:which_key_map.p.f = 'Files...'
   nnoremap <silent> <leader>pf :Files<cr>
   let g:which_key_map.p.g = 'Git files...'
