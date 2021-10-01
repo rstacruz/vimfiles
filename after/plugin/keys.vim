@@ -503,9 +503,8 @@ let g:which_key_labels = {
 
 " Chromebook keyboard {{{
 if hostname() == "penguin" || $TERMUX_VERSION != ""
-  inoremap jl <Esc>:
-  inoremap jk <Esc>
-  vnoremap jl :
-  noremap jl :
+  inoremap ,; <Esc>:
+  inoremap ,. <Esc>
+vnoremap ,. :
 endif
 " }}}
