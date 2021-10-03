@@ -173,9 +173,8 @@ augroup insert_dates
   au FileType text,markdown,c inoremap ;di <C-r>=strftime("%Y-%m-%d")<CR>
   au FileType text,markdown,c inoremap ;dw <C-r>=strftime("%Y-%m-%d %a")<CR>
   au FileType text,markdown,c inoremap ;dl <C-r>=strftime("%a %e %b")<CR>
-  au FileType text,markdown,c inoremap _;di _<C-r>=strftime("%Y-%m-%d")<CR>_
-  au FileType text,markdown,c inoremap _;dw _<C-r>=strftime("%Y-%m-%d %a")<CR>_
-  au FileType text,markdown,c inoremap _;dl _<C-r>=strftime("%a %e %b")<CR>_
+  au FileType text,markdown,c inoremap *di _<C-r>=strftime("%Y-%m-%d")<CR>_
+  au FileType text,markdown,c inoremap *dw **<C-r>=strftime("%m-%d %a")<CR>**
   au FileType text,markdown,c inoremap ;ok ✓
   au FileType text,markdown,c inoremap ;.m ·
   au FileType text,markdown,c inoremap ;md —
