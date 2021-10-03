@@ -90,6 +90,7 @@ Plug 'Asheq/close-buffers.vim'
 if has('nvim')
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', {'do': 'make'}
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'alvarosevilla95/luatab.nvim'
   Plug 'hoob3rt/lualine.nvim'

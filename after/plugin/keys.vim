@@ -226,20 +226,22 @@ endif
 
 " [leader-p] Pick {{{
 if exists(':Telescope')
-  nnoremap <silent> <C-p> :Telescope find_files<cr>
+  nnoremap <silent> <C-p> :Telescope git_files<cr>
   let g:which_key_map.p.b = 'Buffers...'
   nnoremap <silent> <leader>pb :Telescope buffers<cr>
+  let g:which_key_map.p.g = 'Git files...'
+  nnoremap <silent> <leader>pg :Telescope git_files<cr>
 elseif exists(':FZF')
   nnoremap <silent> <C-p> :GFiles --exclude-standard --others --cached<cr>
   let g:which_key_map.p.b = 'Buffers...'
   nnoremap <silent> <leader>pb :Buffers<cr>
+  let g:which_key_map.p.g = 'Git files...'
+  nnoremap <silent> <leader>pg :GFiles --exclude-standard --others --cached<cr>
 endif
 
 if exists(':FZF')
   let g:which_key_map.p.f = 'Files...'
   nnoremap <silent> <leader>pf :Files<cr>
-  let g:which_key_map.p.g = 'Git files...'
-  nnoremap <silent> <leader>pg :GFiles --exclude-standard --others --cached<cr>
   let g:which_key_map.p.s = 'Git status...'
   nnoremap <silent> <leader>ps :GFiles?<cr>
   let g:which_key_map.pw = 'Switch to window...'
