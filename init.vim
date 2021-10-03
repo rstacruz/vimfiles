@@ -18,6 +18,7 @@ let g:polyglot_disabled = ['markdown','autoindent']
 " autoindent support is slow on crostini
 Plug 'sheerun/vim-polyglot'
 Plug 'plasticboy/vim-markdown'
+Plug 'rajasegar/vim-astro'
 " }}}
 
 " Requires nvim 0.5 or later
@@ -78,19 +79,23 @@ Plug 'jrudess/vim-foldtext'
 Plug 'airblade/vim-gitgutter'
 Plug 'rstacruz/vim-xtract'
 Plug 'ferrine/md-img-paste.vim'
-Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'Asheq/close-buffers.vim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
 " }}}
 
 " Requires nvim {{{
 if has('nvim')
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'alvarosevilla95/luatab.nvim'
+  Plug 'hoob3rt/lualine.nvim'
   Plug 'voldikss/vim-floaterm'
+else
+  Plug 'itchyny/lightline.vim'
 endif
 " }}}
 
@@ -127,3 +132,32 @@ let g:coc_global_extensions = [
 " Bye
 " vim:foldmethod=marker
 call plug#end()
+
+if has('nvim-0.5')
+lua << EOF
+  -- require('tabline').setup {
+  --   enable = false,
+  --   options = {
+  --     section_separators = {'│', '│'},
+  --     component_separators = {'', ''},
+  --     show_tabs_always = true,
+  --     show_filename_only = true
+  --   }
+  -- }
+  vim.o.tabline = '%!v:lua.require\'luatab\'.tabline()'
+  require('lualine').setup {
+    options = {
+      theme = 'auto'
+    },
+    -- tabline = {
+    --   lualine_a = {},
+    --   lualine_b = {},
+    --   -- lualine_c = { require'tabline'.tabline_buffers },
+    --   lualine_c = {},
+    --   lualine_x = { require'tabline'.tabline_tabs },
+    --   lualine_y = {},
+    --   lualine_z = {},
+    -- }
+  }
+EOF
+endif

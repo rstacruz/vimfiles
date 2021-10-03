@@ -8,7 +8,7 @@ set nonumber
 set noshowmode " no -- INSERT -- in the status line
 set ttimeoutlen=20 " for escape
 set timeoutlen=600 " for iabbrev
-set laststatus=1 " no statusbar if there's only one window
+set laststatus=2 " no statusbar if there's only one window
 let &fcs='eob: ' " hide tildes (https://github.com/neovim/neovim/issues/2067#issuecomment-398283872)
 " }}}
 
