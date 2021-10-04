@@ -34,18 +34,13 @@ Plug vim . '/modules/autofold'
 Plug vim . '/modules/auto-cursorline'
 Plug vim . '/modules/ctrl-c-ctrl-v'
 Plug vim . '/modules/dynamic-theme'
-Plug vim . '/modules/lolcolor'
 Plug vim . '/modules/jk-on-wrap'
-Plug vim . '/modules/quickterm'
 Plug vim . '/modules/save-typos'
-Plug vim . '/modules/startify-switcher'
 Plug vim . '/modules/synstack'
 Plug vim . '/modules/cd-z'
 " }}}
 
 " Plugins available in minimal mode {{{
-Plug 'cweagans/vim-taskpaper'
-Plug 'preservim/nerdtree'
 Plug 'rstacruz/vim-opinion'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
@@ -95,8 +90,11 @@ if has('nvim')
   Plug 'alvarosevilla95/luatab.nvim'
   Plug 'hoob3rt/lualine.nvim'
   Plug 'voldikss/vim-floaterm'
+  Plug 'kyazdani42/nvim-tree.lua'
+  Plug 'preservim/nerdtree'
 else
   Plug 'itchyny/lightline.vim'
+  Plug 'preservim/nerdtree'
 endif
 " }}}
 
@@ -136,29 +134,35 @@ call plug#end()
 
 if has('nvim-0.5')
 lua << EOF
-  -- require('tabline').setup {
-  --   enable = false,
-  --   options = {
-  --     section_separators = {'│', '│'},
-  --     component_separators = {'', ''},
-  --     show_tabs_always = true,
-  --     show_filename_only = true
-  --   }
-  -- }
   vim.o.tabline = '%!v:lua.require\'luatab\'.tabline()'
   require('lualine').setup {
     options = {
-      theme = 'auto'
+      section_separators = {'', ''},
+      component_separators = {'', ''},
+      theme = 'palenight',
+      icons_enabled = 1,
     },
-    -- tabline = {
-    --   lualine_a = {},
-    --   lualine_b = {},
-    --   -- lualine_c = { require'tabline'.tabline_buffers },
-    --   lualine_c = {},
-    --   lualine_x = { require'tabline'.tabline_tabs },
-    --   lualine_y = {},
-    --   lualine_z = {},
-    -- }
+    sections = {
+      lualine_b = {},
+      lualine_x = {
+        'branch',
+        'filetype'
+        },
+      lualine_y = {'progress'},
+    },
+    inactive_sections = {
+      lualine_a = {},
+      lualine_b = {},
+      lualine_c = {'filename'},
+      lualine_x = {},
+      lualine_y = {},
+      lualine_z = {}
+    },
   }
+  -- require('nvim-tree').setup {
+  --   view = {
+  --     side = 'right'
+  --   }
+  -- }
 EOF
 endif

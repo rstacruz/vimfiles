@@ -36,4 +36,9 @@ Plug 'freitass/todo.txt-vim'
 Plug 'ghifarit53/daycula-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'cocopon/iceberg.vim'
+
+Plug vim . '/modules/lolcolor'
+Plug vim . '/modules/quickterm'
+Plug vim . '/modules/startify-switcher'
+Plug 'cweagans/vim-taskpaper'
 ```

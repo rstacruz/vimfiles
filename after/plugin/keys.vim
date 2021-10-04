@@ -40,6 +40,12 @@ if exists(':NERDTree')
 endif
 " }}}
 
+" [-] Nvim-tree {{{
+if exists(':NvimTreeFindFile')
+  nnoremap <silent> - :NvimTreeFindFile<CR>
+endif
+" }}}
+
 " [ctrl-s] Save {{{
 if $GIT_EXEC_PATH != ''
   nnoremap <C-s> :wq<cr>
