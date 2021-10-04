@@ -19,15 +19,13 @@ let g:polyglot_disabled = ['markdown','autoindent']
 Plug 'sheerun/vim-polyglot'
 Plug 'plasticboy/vim-markdown'
 Plug 'rajasegar/vim-astro'
+Plug 'nathangrigg/vim-beancount'
 " }}}
 
 " Requires nvim 0.5 or later
 if has('nvim-0.5')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 endif
-
-" Don't load the other plugins for git commit
-if $GIT_EXEC_PATH != '' | call plug#end() | finish | endif
 
 " Home-made modules {{{
 Plug vim . '/modules/autofold'
@@ -47,36 +45,34 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-fugitive' " git extensions
 Plug 'tpope/vim-rhubarb' " enable :Gbrowse for Git
-Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired' " 'yon' to toggle line numbers, and more
 Plug 'rstacruz/vim-gitgrep'
+" }}}
+
+" Don't load the other plugins for git commit
+if $GIT_EXEC_PATH != '' | call plug#end() | finish | endif
+if $VIM_MINIMAL != '' | call plug#end() | finish | endif
+
+" Not likely needed in minimal mode
+Plug 'liuchengxu/vista.vim'
+Plug 'mhinz/vim-startify'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'liuchengxu/vim-which-key'
-Plug 'liuchengxu/vista.vim'
-Plug 'mhinz/vim-startify'
-" }}}
-
-" Don't load the other plugins
-if $VIM_MINIMAL != '' | call plug#end() | finish | endif
+" Plug 'tpope/vim-sleuth'
 
 " Most plugins {{{
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tpope/vim-dispatch'
-Plug 'rstacruz/todo.txt-vim'
 Plug 'rstacruz/vim-closer'
 Plug 'junegunn/gv.vim'
-Plug 'nathangrigg/vim-beancount'
 Plug 'thinca/vim-visualstar'
 Plug 'wellle/context.vim'
 Plug 'jrudess/vim-foldtext'
-Plug 'airblade/vim-gitgutter'
 Plug 'rstacruz/vim-xtract'
 Plug 'ferrine/md-img-paste.vim'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
-Plug 'dense-analysis/ale'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'Asheq/close-buffers.vim'
 " }}}
@@ -91,10 +87,13 @@ if has('nvim')
   Plug 'hoob3rt/lualine.nvim'
   Plug 'voldikss/vim-floaterm'
   Plug 'kyazdani42/nvim-tree.lua'
-  Plug 'preservim/nerdtree'
+  Plug 'preservim/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeFocus', 'NERDTree'] }
+  Plug 'lewis6991/gitsigns.nvim'
 else
   Plug 'itchyny/lightline.vim'
   Plug 'preservim/nerdtree'
+  Plug 'dense-analysis/ale'
+  Plug 'airblade/vim-gitgutter'
 endif
 " }}}
 
@@ -134,31 +133,43 @@ call plug#end()
 
 if has('nvim-0.5')
 lua << EOF
-  vim.o.tabline = '%!v:lua.require\'luatab\'.tabline()'
-  require('lualine').setup {
-    options = {
-      section_separators = {'', ''},
-      component_separators = {'', ''},
-      theme = 'palenight',
-      icons_enabled = 1,
-    },
-    sections = {
-      lualine_b = {},
-      lualine_x = {
-        'branch',
-        'filetype'
-        },
-      lualine_y = {'progress'},
-    },
-    inactive_sections = {
-      lualine_a = {},
-      lualine_b = {},
-      lualine_c = {'filename'},
-      lualine_x = {},
-      lualine_y = {},
-      lualine_z = {}
-    },
-  }
+  local status, luatab = pcall(require, 'luatab')
+  if status then
+    vim.o.tabline = '%!v:lua.require\'luatab\'.tabline()'
+  end
+
+  local status, gitsigns = pcall(require, 'gitsigns')
+  if status then
+    gitsigns.setup()
+  end
+
+  local status, lualine = pcall(require, 'lualine')
+  if status then
+    require('lualine').setup {
+      options = {
+        section_separators = {'', ''},
+        component_separators = {'', ''},
+        theme = 'palenight',
+        icons_enabled = 1,
+      },
+      sections = {
+        lualine_b = {},
+        lualine_x = {
+          'branch',
+          'filetype'
+          },
+        lualine_y = {'progress'},
+      },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {'filename'},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {}
+      },
+    }
+  end
   -- require('nvim-tree').setup {
   --   view = {
   --     side = 'right'
