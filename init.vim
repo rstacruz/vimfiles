@@ -72,8 +72,6 @@ Plug 'wellle/context.vim'
 Plug 'jrudess/vim-foldtext'
 Plug 'rstacruz/vim-xtract'
 Plug 'ferrine/md-img-paste.vim'
-Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
-Plug 'junegunn/fzf.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'Asheq/close-buffers.vim'
 " }}}
@@ -95,6 +93,8 @@ else
   Plug 'preservim/nerdtree'
   Plug 'dense-analysis/ale'
   Plug 'airblade/vim-gitgutter'
+  Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+  Plug 'junegunn/fzf.vim'
 endif
 " }}}
 

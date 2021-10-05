@@ -10,14 +10,20 @@ set ttimeoutlen=20 " for escape
 set timeoutlen=600 " for iabbrev
 set laststatus=2 " no statusbar if there's only one window
 let &fcs='eob: ' " hide tildes (https://github.com/neovim/neovim/issues/2067#issuecomment-398283872)
+set title
+
+augroup titlestring
+  " au! BufEnter * let &titlestring = fnamemodify(getcwd(),":t") . " / " . expand("%:t") . " —  " . (has("nvim") ? "Neovim" : "Vim")
+  au! BufEnter * let &titlestring = fnamemodify(getcwd(),":t") . " —  " . (has("nvim") ? "Neovim" : "Vim")
+augroup END
 " }}}
 
 " TermOpen customisations {{{
 if has('nvim')
   " no line number in :term
   " https://github.com/neovim/neovim/issues/6832#issuecomment-305507194
-  au TermOpen * setlocal nonumber norelativenumber nocursorline
-  au TermOpen * startinsert
+  au! TermOpen * setlocal nonumber norelativenumber nocursorline
+  au! TermOpen * startinsert
 endif
 " }}}
 
@@ -279,6 +285,7 @@ function s:add_theme_overrides()
 endfunction
 
 autocmd ColorScheme * call s:add_theme_overrides()
+autocmd VimEnter * call s:add_theme_overrides()
 " }}}
 
 " :Z {{{

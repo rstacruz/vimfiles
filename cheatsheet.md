@@ -80,6 +80,15 @@
 | `<leader>` `kc` | Toggle showing context |
 | `<leader>` `kz` | Zen mode               |
 
+### `h` - Hunks (gitsigns)
+
+| Key             | Description                        |
+| --------------- | ---------------------------------- |
+| `<leader>` `hb` | Blame line (show previous version) |
+| `<leader>` `hs` | Stage hunk                         |
+| `<leader>` `hS` | Stage all                          |
+| `<leader>` `hu` | Undo stage hunk                    |
+
 ### Other...
 
 | Key             | Description            |
