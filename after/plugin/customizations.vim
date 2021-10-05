@@ -211,8 +211,13 @@ function s:add_theme_overrides()
   hi! link htmlH2 Special
   hi! link htmlH3 String
 
-  " todo
   hi! link TodoDate Comment
+
+  " gitsigns
+  hi! link GitSignsAdd Constant
+  hi! link GitSignsDelete WarningMsg
+  hi! link GitSignsChange Comment
+  hi! link SignColumn NonText
 
   " curly
   hi! CocUnderline gui=undercurl
@@ -291,7 +296,7 @@ if exists('g:GuiLoaded')
     GuiTabline 1
     colorscheme github
   else
-    GuiFont! Iosevka:h13.5:w57
+    GuiFont! "Iosevka Nerd Font":h13.5:w57
     GuiLinespace -3
     GuiTabline 0
     colorscheme embark
@@ -322,6 +327,7 @@ end
 if has('gui_vimr')
   colorscheme github
   set background=light
+  set guifont="Iosevka Nerd Font:h16"
 endif
 " }}}
 

@@ -6,3 +6,4 @@ sessions
 !/bookmarks/README.md
 /spell
 /autoload/plug.vim.old
+/session

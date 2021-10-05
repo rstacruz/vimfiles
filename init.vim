@@ -39,15 +39,16 @@ Plug vim . '/modules/cd-z'
 " }}}
 
 " Plugins available in minimal mode {{{
-Plug 'rstacruz/vim-opinion'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-obsession'
-Plug 'tpope/vim-fugitive' " git extensions
-Plug 'tpope/vim-rhubarb' " enable :Gbrowse for Git
+Plug 'rstacruz/vim-opinion'       " opinionated settings
+Plug 'tpope/vim-commentary'       " comments
+Plug 'tpope/vim-endwise'          " add 'end' and 'endif'
+Plug 'tpope/vim-obsession'        " session saving with :Obsession
+Plug 'tpope/vim-fugitive'         " git extensions
+Plug 'tpope/vim-rhubarb'          " enable :Gbrowse for Git
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired' " 'yon' to toggle line numbers, and more
+Plug 'tpope/vim-unimpaired'       " 'yon' to toggle line numbers, and more
 Plug 'rstacruz/vim-gitgrep'
+Plug 'dhruvasagar/vim-prosession' " session management
 " }}}
 
 " Don't load the other plugins for git commit
@@ -149,7 +150,7 @@ lua << EOF
       options = {
         section_separators = {'', ''},
         component_separators = {'', ''},
-        theme = 'palenight',
+        theme = 'auto',
         icons_enabled = 1,
       },
       sections = {

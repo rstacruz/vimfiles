@@ -32,6 +32,10 @@ if exists(':GitGutterToggle')
   nnoremap <silent> yog :GitGutterToggle<cr>
   nnoremap <silent> cog :GitGutterToggle<cr>
 endif
+if exists(':Gitsigns')
+  nnoremap <silent> yog :Gitsigns toggle_signs<cr>
+  nnoremap <silent> cog :Gitsigns toggle_signs<cr>
+endif
 " }}}
 
 " [-] NERDtree {{{
