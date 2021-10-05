@@ -149,7 +149,8 @@ lua << EOF
     require('lualine').setup {
       options = {
         section_separators = {'', ''},
-        component_separators = {'', ''},
+        -- component_separators = {'', ''},
+        component_separators = {' ', ' '},
         theme = 'auto',
         icons_enabled = 1,
       },
