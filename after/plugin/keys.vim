@@ -103,8 +103,8 @@ nnoremap <leader>xs :wq<cr>
 nnoremap <leader>xo <C-w>o<cr>
 
 if exists(':Startify')
-  let g:which_key_map.x.r = 'Close all (reset workspace)'
-  nnoremap <leader>xr :tabonly<cr>:StartifyReset<cr>
+  let g:which_key_map.x.z = 'Close all (reset workspace)'
+  nnoremap <leader>xz :tabonly<cr>:Startify<cr>
 endif
 " }}}
 

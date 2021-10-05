@@ -61,7 +61,7 @@
 | `<leader>` `xc` | Close window                |
 | `<leader>` `xs` | Close window (save)         |
 | `<leader>` `xq` | Quit vim                    |
-| `<leader>` `xr` | Reset workspace (close all) |
+| `<leader>` `xz` | Reset workspace (close all) |
 
 ### `p` - Pick...
 
