@@ -296,8 +296,8 @@ if exists('g:GuiLoaded')
     GuiTabline 1
     colorscheme github
   else
-    GuiFont! "Iosevka Nerd Font":h13.5:w57
-    GuiLinespace -3
+    GuiFont! Iosevka Medium:h13.5:w57
+    GuiLinespace -2
     GuiTabline 0
     colorscheme embark
   endif
