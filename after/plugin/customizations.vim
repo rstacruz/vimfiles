@@ -283,9 +283,16 @@ autocmd ColorScheme * call s:add_theme_overrides()
 
 " :Z {{{
 let g:z_autocmd = 1
-augroup z_switcher
-  au! User ZChangedDirGlobal Prosession .
-augroup END
+if has(':Prosession')
+  augroup z_switcher
+    au! User ZChangedDirGlobal Prosession .
+  augroup END
+else
+  augroup z_switcher
+    au! User ZChangedDirGlobal tabonly
+    au! User ZChangedDirGlobal Startify
+  augroup END
+endif
 " }}}
 
 " Gui: neovim-qt {{{

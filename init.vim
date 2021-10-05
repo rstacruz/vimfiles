@@ -48,7 +48,7 @@ Plug 'tpope/vim-rhubarb'          " enable :Gbrowse for Git
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'       " 'yon' to toggle line numbers, and more
 Plug 'rstacruz/vim-gitgrep'
-Plug 'dhruvasagar/vim-prosession' " session management
+" Plug 'dhruvasagar/vim-prosession' " session management
 " }}}
 
 " Don't load the other plugins for git commit
@@ -155,12 +155,15 @@ lua << EOF
         icons_enabled = 1,
       },
       sections = {
-        lualine_b = {},
+        lualine_a = {},
+        lualine_b = {'filename'},
+        lualine_c = {'location', 'progress'},
         lualine_x = {
           'branch',
           'filetype'
           },
-        lualine_y = {'progress'},
+        lualine_y = {},
+        lualine_z = {'mode'},
       },
       inactive_sections = {
         lualine_a = {},
