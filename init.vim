@@ -157,11 +157,8 @@ lua << EOF
       sections = {
         lualine_a = {},
         lualine_b = {'filename'},
-        lualine_c = {'location', 'progress'},
-        lualine_x = {
-          'branch',
-          'filetype'
-          },
+        lualine_c = {'location'},
+        lualine_x = {'filetype'},
         lualine_y = {},
         lualine_z = {'mode'},
       },
