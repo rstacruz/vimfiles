@@ -1,4 +1,4 @@
-" vim:fdm=marker:foldmarker={{{,}}}
+"" vim:fdm=marker:foldmarker={{{,}}}
 
 " Basic custo {{{
 " don't give |ins-completion-menu| messages.
@@ -9,9 +9,11 @@ set noshowmode " no -- INSERT -- in the status line
 set ttimeoutlen=20 " for escape
 set timeoutlen=600 " for iabbrev
 set laststatus=2 " no statusbar if there's only one window
-let &fcs='eob: ' " hide tildes (https://github.com/neovim/neovim/issues/2067#issuecomment-398283872)
+let &fcs='eob: ,vert:█' " vertical split, hide tildes
 set title
+" }}}
 
+" TermOpen customisations {{{
 augroup titlestring
   " au! BufEnter * let &titlestring = fnamemodify(getcwd(),":t") . " / " . expand("%:t") . " —  " . (has("nvim") ? "Neovim" : "Vim")
   au! BufEnter * let &titlestring = fnamemodify(getcwd(),":t") . " —  " . (has("nvim") ? "Neovim" : "Vim")
@@ -251,6 +253,32 @@ function s:add_theme_overrides()
     hi! NonText guifg=#505090  " increase contrast
   elseif g:colors_name == 'zenbones'
     " ...
+  elseif g:colors_name == 'borland'
+    hi! VertSplit    gui=none guibg=#303050 guifg=#303050
+    hi! TabLine      gui=none guibg=#303050 guifg=#303050
+    hi! StatusLine   gui=none guibg=#303050 guifg=#9090aa
+    hi! StatusLineNC gui=none guibg=#303050 guifg=#9090aa
+    let &fcs="eob: ,vert:█"
+    if has('nvim')
+      let g:terminal_color_0 = '#dcdfe7'
+      let g:terminal_color_1 = '#cc517a'
+      let g:terminal_color_2 = '#668e3d'
+      let g:terminal_color_3 = '#c57339'
+      let g:terminal_color_4 = '#2d539e'
+      let g:terminal_color_5 = '#0000ff'
+      let g:terminal_color_6 = '#3f83a6'
+      let g:terminal_color_7 = '#33374c'
+      let g:terminal_color_8 = '#8389a3'
+      let g:terminal_color_9 = '#cc3768'
+      let g:terminal_color_10 = '#598030'
+      let g:terminal_color_11 = '#b6662d'
+      let g:terminal_color_12 = '#22478e'
+      let g:terminal_color_13 = '#6845ad'
+      let g:terminal_color_14 = '#327698'
+      let g:terminal_color_15 = '#262a3f'
+    else
+      let g:terminal_ansi_colors = ['#dcdfe7', '#cc517a', '#668e3d', '#c57339', '#2d539e', '#0000ff', '#3f83a6', '#33374c', '#8389a3', '#cc3768', '#598030', '#b6662d', '#22478e', '#6845ad', '#327698', '#262a3f']
+    endif
   elseif g:colors_name == 'paramount'
     if &background ==# 'dark'
       " cold background
@@ -353,7 +381,7 @@ end
 if has('gui_vimr')
   colorscheme github
   set background=light
-  set guifont="Iosevka Nerd Font:h16"
+  set guifont=Iosevka\ Nerd\ Font:h16
 endif
 " }}}
 
@@ -361,3 +389,10 @@ endif
 " https://github.com/tpope/vim-unimpaired/issues/150
 nmap co yo
 " }}}
+
+function! Vaporwave()
+  set guifont=Mx437\ ToshibaSat\ 8x16:h16
+  color borland
+endfunction
+
+command Vaporwave call Vaporwave()

@@ -105,6 +105,7 @@ Plug 'cormacrelf/vim-colors-github'
 Plug 'dracula/vim', {'as': 'dracula-vim'}
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'embark-theme/vim', {'as': 'embark-theme-vim'}
+Plug 'letorbi/vim-colors-modern-borland'
 Plug 'equt/paper.vim'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'joshdick/onedark.vim'
@@ -180,5 +181,22 @@ lua << EOF
       side = 'right'
     }
   }
+  local status, telescope = pcall(require, 'telescope')
+  if status then
+    telescope.setup {
+      defaults = {
+        preview = {
+          -- makes previews slow
+          treesitter = false,
+          timeout = 10
+        }
+      },
+      pickers = {
+        find_files = { theme = 'dropdown' },
+        git_files = { theme = 'dropdown' }
+      }
+    }
+    telescope.load_extension('fzf')
+  end
 EOF
 endif
