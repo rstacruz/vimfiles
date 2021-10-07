@@ -86,11 +86,10 @@ if has('nvim')
   Plug 'hoob3rt/lualine.nvim'
   Plug 'voldikss/vim-floaterm'
   Plug 'kyazdani42/nvim-tree.lua'
-  Plug 'preservim/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeFocus', 'NERDTree'] }
   Plug 'lewis6991/gitsigns.nvim'
 else
   Plug 'itchyny/lightline.vim'
-  Plug 'preservim/nerdtree'
+  Plug 'preservim/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeFocus', 'NERDTree'] }
   Plug 'dense-analysis/ale'
   Plug 'airblade/vim-gitgutter'
   Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
@@ -141,7 +140,11 @@ lua << EOF
 
   local status, gitsigns = pcall(require, 'gitsigns')
   if status then
-    gitsigns.setup()
+    gitsigns.setup {
+      signs = {
+        change = { text = '┊' }
+      }
+    }
   end
 
   local status, lualine = pcall(require, 'lualine')
@@ -151,7 +154,7 @@ lua << EOF
         section_separators = {'', ''},
         -- component_separators = {'', ''},
         component_separators = {' ', ' '},
-        theme = 'auto',
+        theme = 'oceanicnext',
         icons_enabled = 1,
       },
       sections = {
@@ -160,7 +163,7 @@ lua << EOF
         lualine_c = {'location'},
         lualine_x = {'filetype'},
         lualine_y = {},
-        lualine_z = {'mode'},
+        lualine_z = {},
       },
       inactive_sections = {
         lualine_a = {},
@@ -172,10 +175,10 @@ lua << EOF
       },
     }
   end
-  -- require('nvim-tree').setup {
-  --   view = {
-  --     side = 'right'
-  --   }
-  -- }
+  require('nvim-tree').setup {
+    view = {
+      side = 'right'
+    }
+  }
 EOF
 endif

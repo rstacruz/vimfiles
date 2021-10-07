@@ -228,6 +228,9 @@ function s:add_theme_overrides()
   " curly
   hi! CocUnderline gui=undercurl
 
+  " no reverse status line
+  hi! StatusLine gui=none
+
   if g:colors_name == 'embark'
     " ...
     hi! Comment gui=italic
@@ -244,6 +247,8 @@ function s:add_theme_overrides()
     hi! link EndOfBuffer Normal
     hi! Comment gui=italic cterm=italic
     hi! Title cterm=bold gui=bold
+  elseif g:colors_name == 'iceberg'
+    hi! NonText guifg=#505090  " increase contrast
   elseif g:colors_name == 'zenbones'
     " ...
   elseif g:colors_name == 'paramount'
@@ -263,7 +268,7 @@ function s:add_theme_overrides()
       hi! Visual    ctermfg=none ctermbg=254
       " todo: diffRemoved diffAdded
     endif
-    hi! VertSplit guibg=none ctermbg=none
+    " hi! VertSplit guibg=none ctermbg=none
     hi! link PreProc          Comment
     hi! link NonText          Comment
     hi! link Type             Statement
@@ -315,7 +320,7 @@ if exists('g:GuiLoaded')
     GuiFont! Iosevka Medium:h13.5:w57
     GuiLinespace -2
     GuiTabline 0
-    colorscheme embark
+    colorscheme iceberg
   endif
   " also: paper, iceberg, challenger_deep, github
 endif
