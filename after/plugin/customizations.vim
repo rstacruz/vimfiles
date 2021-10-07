@@ -27,6 +27,10 @@ if has('nvim')
   au! TermOpen * setlocal nonumber norelativenumber nocursorline
   au! TermOpen * startinsert
 endif
+
+augroup customisations_nvimtree
+  au! FileType NvimTree setlocal cursorline
+augroup END
 " }}}
 
 " Filetype: git {{{
