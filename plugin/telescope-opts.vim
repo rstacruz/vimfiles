@@ -9,8 +9,8 @@ require('telescope').setup {
     }
   },
   pickers = {
-    find_files = { theme = 'ivy' },
-    git_files = { theme = 'ivy' }
+    find_files = { theme = 'dropdown' },
+    git_files = { theme = 'dropdown' }
   }
 }
 require('telescope').load_extension('fzf')

@@ -311,10 +311,15 @@ endif
 if exists('g:GuiLoaded')
   " set guifont=JuliaMono:h13
   " set guifont=JetBrains\ Mono:h14:w60
-  if hostname() == "penguin"
+  if hostname() == 'penguin'
     GuiFont! Iosevka:h10:w50
     GuiLinespace -1
     GuiTabline 1
+    colorscheme github
+  elseif has('macunix') == 1
+    GuiFont! Iosevka Nerd Font:h16
+    GuiLinespace -2
+    GuiTabline 0
     colorscheme github
   else
     GuiFont! Iosevka Medium:h13.5:w57
