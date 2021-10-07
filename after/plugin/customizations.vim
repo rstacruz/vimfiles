@@ -200,21 +200,21 @@ function s:add_theme_overrides()
   hi! link mkdBlockQuote Number
   hi! link mkdCode Keyword
   hi! link mkdLink mkdInlineURL
-  hi! link htmlBold String
+  hi! link htmlBold Special
   hi! link htmlItalic Comment
 
   " bullets and delimiters
   hi! link mkdHeading NonText
   hi! link mkdBold NonText
   hi! link mkdItalic NonText
-  hi! link mkdListItem Special
+  hi! link mkdListItem NonText
   hi! link mkdCodeStart NonText
   hi! link mkdCodeEnd NonText
   hi! link mkdCodeDelimiter NonText
 
   " headings
   hi! link htmlH1 String
-  hi! link htmlH2 Special
+  hi! link htmlH2 String
   hi! link htmlH3 String
 
   hi! link TodoDate Comment
