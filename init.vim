@@ -85,7 +85,8 @@ if has('nvim')
   Plug 'alvarosevilla95/luatab.nvim'
   Plug 'hoob3rt/lualine.nvim'
   Plug 'voldikss/vim-floaterm'
-  Plug 'kyazdani42/nvim-tree.lua'
+  " Plug 'kyazdani42/nvim-tree.lua'
+  Plug 'preservim/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeFocus', 'NERDTree'] }
   Plug 'lewis6991/gitsigns.nvim'
 else
   Plug 'itchyny/lightline.vim'
@@ -176,11 +177,16 @@ lua << EOF
       },
     }
   end
-  require('nvim-tree').setup {
-    view = {
-      side = 'right'
+
+  local status, nvimtree = pcall(require, 'nvim-tree')
+  if status then
+    nvimtree.setup {
+      view = {
+        side = 'right'
+      }
     }
-  }
+  end
+
   local status, telescope = pcall(require, 'telescope')
   if status then
     telescope.setup {
