@@ -208,9 +208,9 @@ if exists(':Gstatus')
   nnoremap <silent> <leader>gd :Glcd<cr>
   nnoremap <silent> <leader>gD :Gcd<cr>
 
-  let g:which_key_map.g.h['h'] = 'Open in GitHub'
-  nnoremap <silent> <leader>ghh :GBrowse<cr>
-  vnoremap <silent> <leader>ghh :GBrowse<cr>
+  let g:which_key_map.g.h = 'GitHub: Open in browser'
+  nnoremap <silent> <leader>gh :GBrowse<cr>
+  vnoremap <silent> <leader>gh :GBrowse<cr>
 
   nnoremap <silent> <leader>gy :GBrowse!<cr>
   vnoremap <silent> <leader>gy :GBrowse!<cr>
@@ -221,10 +221,10 @@ if exists(':Gstatus')
     nnoremap <silent> <leader>gp :exec "FloatermNew --autoclose=1 --height=8 --width=0.9 --title=push... --position=bottom git push" \| wincmd p<cr>
     nnoremap <silent> <leader>gP :exec "FloatermNew --autoclose=1 --height=8 --width=0.9 --title=pushforce... --position=bottom git push --force-with-lease --set-upstream origin (git rev-parse --abbrev-ref HEAD)" \| wincmd p<cr>
 
-    let g:which_key_map.g.h.p = 'Open pull request'
-    let g:which_key_map.g.h.P = 'Create pull request'
-    nnoremap <silent> <leader>ghP :FloatermNew gh pr create<cr>
-    nnoremap <silent> <leader>ghp :FloatermNew --height=3 --width=0.9 --position=bottom gh pr view --web<cr>
+    let g:which_key_map.g.r = 'Open pull request'
+    let g:which_key_map.g.R = 'Create pull request'
+    nnoremap <silent> <leader>gr :FloatermNew gh pr create --web<cr>
+    nnoremap <silent> <leader>gR :FloatermNew --height=3 --width=0.9 --position=bottom gh pr view --web<cr>
   endif
 endif
 

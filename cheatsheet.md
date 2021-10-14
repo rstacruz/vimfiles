@@ -31,19 +31,20 @@
 
 ### `g` - Git...
 
-| Key              | Description         |
-| ---------------- | ------------------- |
-| `<leader>` `gs`  | Status              |
-| `<leader>` `gc`  | Commit              |
-| `<leader>` `gb`  | Blame               |
-|                  |                     |
-| `<leader>` `gp`  | Push                |
-| `<leader>` `gP`  | Push (force)        |
-|                  |                     |
-| `<leader>` `gy`  | Copy GitHub link    |
-| `<leader>` `ghh` | Open in GitHub      |
-| `<leader>` `ghp` | Open pull request   |
-| `<leader>` `ghP` | Create pull request |
+| Key             | Description         |
+| --------------- | ------------------- |
+| `<leader>` `gs` | Status              |
+| `<leader>` `gc` | Commit              |
+| `<leader>` `gb` | Blame               |
+|                 |                     |
+| `<leader>` `gp` | Push                |
+| `<leader>` `gP` | Push (force)        |
+|                 |                     |
+| `<leader>` `gy` | Copy GitHub link    |
+| `<leader>` `gh` | Open in GitHub      |
+|                 |                     |
+| `<leader>` `gr` | Open pull request   |
+| `<leader>` `gR` | Create pull request |
 
 ### `fe` - Settings...
 
