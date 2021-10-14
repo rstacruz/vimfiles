@@ -87,11 +87,11 @@ if has('nvim')
   Plug 'hoob3rt/lualine.nvim'
   Plug 'voldikss/vim-floaterm'
   " Plug 'kyazdani42/nvim-tree.lua'
-  Plug 'preservim/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeFocus', 'NERDTree'] }
+  Plug 'preservim/nerdtree'
   Plug 'lewis6991/gitsigns.nvim'
 else
   Plug 'itchyny/lightline.vim'
-  Plug 'preservim/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeFocus', 'NERDTree'] }
+  Plug 'preservim/nerdtree'
   Plug 'dense-analysis/ale'
   Plug 'airblade/vim-gitgutter'
   Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
