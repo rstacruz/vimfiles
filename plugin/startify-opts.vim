@@ -19,3 +19,5 @@ autocmd User Startified setlocal cursorline
 
 " Start with 1
 let g:startify_custom_indices = split('1234567890', '\zs')
+
+let g:startify_custom_header = ['','','','','','','    ✓']

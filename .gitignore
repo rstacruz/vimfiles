@@ -7,3 +7,4 @@ sessions
 /spell
 /autoload/plug.vim.old
 /session
+*.local.vim
