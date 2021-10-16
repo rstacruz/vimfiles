@@ -104,7 +104,7 @@ nnoremap <leader>xo <C-w>o<cr>
 
 if exists(':Startify')
   let g:which_key_map.x.z = 'Close all (reset workspace)'
-  nnoremap <leader>xz :tabonly<cr>:Startify<cr>
+  nnoremap <leader>xz :tabonly<cr>:wincmd o<cr>:Startify<cr>:Bdelete! hidden<cr>
 endif
 " }}}
 
