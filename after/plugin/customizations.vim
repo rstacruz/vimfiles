@@ -247,6 +247,7 @@ function s:add_theme_overrides()
     " ...
   elseif g:colors_name == 'zenbones'
     hi! Folded ctermbg=none
+    hi! Comment guibg=#906060  " increase contrast
   elseif g:colors_name == 'github'
     hi! link VertSplit NonText
     hi! link EndOfBuffer Normal
