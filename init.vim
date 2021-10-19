@@ -79,16 +79,17 @@ Plug 'Asheq/close-buffers.vim'
 
 " Requires nvim {{{
 if has('nvim')
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim'
-  Plug 'nvim-telescope/telescope-fzf-native.nvim', {'do': 'make'}
-  Plug 'kyazdani42/nvim-web-devicons'
   Plug 'alvarosevilla95/luatab.nvim'
   Plug 'hoob3rt/lualine.nvim'
-  Plug 'voldikss/vim-floaterm'
   " Plug 'kyazdani42/nvim-tree.lua'
-  Plug 'preservim/nerdtree'
+  Plug 'kyazdani42/nvim-web-devicons'
   Plug 'lewis6991/gitsigns.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', {'do': 'make'}
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'preservim/nerdtree'
+  Plug 'rktjmp/lush.nvim'
+  Plug 'voldikss/vim-floaterm'
 else
   Plug 'itchyny/lightline.vim'
   Plug 'preservim/nerdtree'
@@ -107,9 +108,10 @@ Plug 'cormacrelf/vim-colors-github'
 Plug 'dracula/vim', {'as': 'dracula-vim'}
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'embark-theme/vim', {'as': 'embark-theme-vim'}
-Plug 'letorbi/vim-colors-modern-borland'
 Plug 'equt/paper.vim'
 Plug 'ghifarit53/tokyonight-vim'
+Plug 'habamax/vim-sugarlily'
+Plug 'letorbi/vim-colors-modern-borland'
 Plug 'joshdick/onedark.vim'
 Plug 'lifepillar/vim-colortemplate'
 Plug 'mcchrish/zenbones.nvim'

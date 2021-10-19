@@ -356,9 +356,9 @@ if exists('g:GuiLoaded')
     GuiFont! Iosevka Medium:h13.5:w57
     GuiLinespace -2
     GuiTabline 0
-    colorscheme iceberg
+    colorscheme rosebones
   endif
-  " also: paper, iceberg, challenger_deep, github
+  " also: neovim, paper, iceberg, challenger_deep, github
 endif
 " }}}
 
