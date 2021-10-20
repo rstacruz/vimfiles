@@ -185,7 +185,7 @@ augroup insert_dates
   au FileType text,markdown,c inoremap \|dw - **<C-r>=strftime("%m-%d %a")<CR>**<CR><Tab>-<Space>
   au FileType text,markdown,c inoremap \|gh https://github.com/
   au FileType text,markdown,c inoremap \|gr https://github.com/rstacruz
-  au FileType text,markdown,c inoremap \|gc https://github.com/rstacruz/cheatsheets
+  au FileType text,markdown,c inoremap \|gc [#](https://github.com/rstacruz/cheatsheets/pull//files)<Esc>7ha
   au FileType text,markdown,c inoremap \|ok ✓
   au FileType text,markdown,c inoremap \|.m ·
   au FileType text,markdown,c inoremap \|md —

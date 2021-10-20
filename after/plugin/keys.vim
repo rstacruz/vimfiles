@@ -520,3 +520,6 @@ if hostname() == "penguin" || $TERMUX_VERSION != ""
 vnoremap ,. :
 endif
 " }}}
+
+" Alias for spacebar?
+nnoremap <silent> & :WhichKey '<space>'<cr>
