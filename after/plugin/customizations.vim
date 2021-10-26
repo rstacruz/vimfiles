@@ -183,6 +183,9 @@ augroup END
 " inoremap: Dates and symbols {{{
 augroup insert_dates
   au FileType text,markdown,c inoremap \|dw - **<C-r>=strftime("%m-%d %a")<CR>**<CR><Tab>-<Space>
+  au FileType text,markdown,c inoremap \|ds - <C-r>=strftime("%m-%d")<CR>:<Space>
+  au FileType text,markdown,c inoremap +-dw - **<C-r>=strftime("%m-%d %a")<CR>**<CR><Tab>-<Space>
+  au FileType text,markdown,c inoremap +-ds - <C-r>=strftime("%m-%d")<CR>:<Space>
   au FileType text,markdown,c inoremap \|gh https://github.com/
   au FileType text,markdown,c inoremap \|gr https://github.com/rstacruz
   au FileType text,markdown,c inoremap \|gc [#](https://github.com/rstacruz/cheatsheets/pull//files)<Esc>7ha
