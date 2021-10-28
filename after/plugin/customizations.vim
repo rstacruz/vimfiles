@@ -61,7 +61,7 @@ augroup END
 " Filetype: tree-sitter folding {{{
 augroup customisations_treesitter
   " treesitter-based folding where supported
-  au FileType typescript,typescriptreact,javascript,javascriptreact,css,json,markdown setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
+  au FileType typescript,typescriptreact,javascript,javascriptreact,css,json,markdown,ruby setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
 augroup END
 " }}}
 
