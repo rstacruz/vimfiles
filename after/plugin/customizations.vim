@@ -182,19 +182,19 @@ augroup END
 
 " inoremap: Dates and symbols {{{
 augroup insert_dates
-  au FileType text,markdown,c inoremap \|dw - **<C-r>=strftime("%m-%d %a")<CR>**<CR><Tab>-<Space>
-  au FileType text,markdown,c inoremap \|ds - <C-r>=strftime("%m-%d")<CR>:<Space>
-  au FileType text,markdown,c inoremap +-dw - **<C-r>=strftime("%m-%d %a")<CR>**<CR><Tab>-<Space>
-  au FileType text,markdown,c inoremap +-ds - <C-r>=strftime("%m-%d")<CR>:<Space>
-  au FileType text,markdown,c inoremap \|gh https://github.com/
-  au FileType text,markdown,c inoremap \|gr https://github.com/rstacruz
-  au FileType text,markdown,c inoremap \|gc [#](https://github.com/rstacruz/cheatsheets/pull//files)<Esc>7ha
-  au FileType text,markdown,c inoremap \|ok ✓
-  au FileType text,markdown,c inoremap \|.m ·
-  au FileType text,markdown,c inoremap \|md —
-  au FileType text,markdown,c inoremap \|>  ›
-  au FileType text,markdown,c inoremap \|<  ‹
-  au FileType text,markdown,c inoremap \|:: ∷
+  " +dw - Date weekday ("- 10-31 Mon:")
+  au FileType text,markdown,c inoremap +dw - **<C-r>=strftime("%m-%d %a")<CR>**<CR><Tab>
+  " +ds - Date short ("- 10-31:')
+  au FileType text,markdown,c inoremap +ds - <C-r>=strftime("%m-%d")<CR>:<Space>
+  au FileType text,markdown,c inoremap +gh https://github.com/
+  au FileType text,markdown,c inoremap +gr https://github.com/rstacruz
+  au FileType text,markdown,c inoremap +gc [#](https://github.com/rstacruz/cheatsheets/pull//files)<Esc>7ha
+  au FileType text,markdown,c inoremap +ok ✓
+  au FileType text,markdown,c inoremap +.m ·
+  au FileType text,markdown,c inoremap +md —
+  au FileType text,markdown,c inoremap +>  ›
+  au FileType text,markdown,c inoremap +<  ‹
+  au FileType text,markdown,c inoremap +:: ∷
 " }}}
 
 " Theme overrides {{{
@@ -205,20 +205,20 @@ function s:add_theme_overrides()
   hi EndOfBuffer ctermbg=none
   hi! link FloatermBorder NonText
 
-  hi! link mkdBlockQuote Number
+  hi! link mkdBlockQuote Comment
   hi! link mkdCode Keyword
   hi! link mkdLink mkdInlineURL
   hi! link htmlBold Special
   hi! link htmlItalic Comment
 
   " bullets and delimiters
-  hi! link mkdHeading NonText
-  hi! link mkdBold NonText
-  hi! link mkdItalic NonText
-  hi! link mkdListItem NonText
-  hi! link mkdCodeStart NonText
-  hi! link mkdCodeEnd NonText
-  hi! link mkdCodeDelimiter NonText
+  hi! link mkdHeading Comment
+  hi! link mkdBold Comment
+  hi! link mkdItalic Comment
+  hi! link mkdListItem Comment
+  hi! link mkdCodeStart Comment
+  hi! link mkdCodeEnd Comment
+  hi! link mkdCodeDelimiter Comment
 
   " headings
   hi! link htmlH1 String
@@ -286,6 +286,8 @@ function s:add_theme_overrides()
     else
       let g:terminal_ansi_colors = ['#dcdfe7', '#cc517a', '#668e3d', '#c57339', '#2d539e', '#0000ff', '#3f83a6', '#33374c', '#8389a3', '#cc3768', '#598030', '#b6662d', '#22478e', '#6845ad', '#327698', '#262a3f']
     endif
+  elseif g:colors_name == 'rosebones' && &background ==# 'light'
+    hi! Normal guibg=#ffffff
   elseif g:colors_name == 'paramount'
     if &background ==# 'dark'
       " cold background
@@ -407,3 +409,10 @@ function! Vaporwave()
 endfunction
 
 command Vaporwave call Vaporwave()
+
+" https://stackoverflow.com/a/37558470
+augroup remember_folds
+  autocmd!
+  autocmd BufWinLeave * silent! mkview
+  autocmd BufWinEnter * silent! loadview
+augroup END
