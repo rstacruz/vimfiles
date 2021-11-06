@@ -184,8 +184,8 @@ augroup END
 augroup insert_dates
   " +dw - Date weekday ("- 10-31 Mon:")
   au FileType text,markdown,c inoremap +dw - **<C-r>=strftime("%m-%d %a")<CR>**<CR><Tab>
-  " +ds - Date short ("- 10-31:')
-  au FileType text,markdown,c inoremap +ds - <C-r>=strftime("%m-%d")<CR>:<Space>
+  " +ds - Date short ("_10-31_')
+  au FileType text,markdown,c inoremap +ds _<C-r>=strftime("%m-%d")<CR>_
   au FileType text,markdown,c inoremap +gh https://github.com/
   au FileType text,markdown,c inoremap +gr https://github.com/rstacruz
   au FileType text,markdown,c inoremap +gc [#](https://github.com/rstacruz/cheatsheets/pull//files)<Esc>7ha

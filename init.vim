@@ -159,7 +159,7 @@ lua << EOF
         section_separators = {'', ''},
         -- component_separators = {'', ''},
         component_separators = {' ', ' '},
-        theme = 'oceanicnext',
+        theme = 'auto',
         icons_enabled = 1,
       },
       sections = {
