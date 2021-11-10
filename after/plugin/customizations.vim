@@ -86,6 +86,9 @@ augroup END
 " Filetype: markdown {{{
 augroup customisations_markdown
   au FileType markdown setlocal nowrap linebreak nonumber norelativenumber isfname+=32 conceallevel=2
+  " bold current word with `ysiw?` or `viwS?`
+  " (see :help surround-customizing)
+  au FileType markdown let b:surround_63 = "**\r**"
 augroup END
 " }}}
 

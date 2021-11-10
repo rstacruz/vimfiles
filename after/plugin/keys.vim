@@ -500,6 +500,8 @@ nnoremap <silent> , :WhichKey ','<CR>
 augroup local_markdown
   autocmd FileType markdown nnoremap <silent> <buffer> <localleader>v :MarkdownPreview<cr>
   autocmd FileType markdown nnoremap <silent> <buffer> <localleader>p :call mdip#MarkdownClipboardImage()<cr>
+  autocmd FileType markdown nnoremap <silent> <buffer> <localleader>b ysiw-<cr>
+  autocmd FileType markdown vnoremap <silent> <buffer> <localleader>b S-<cr>
 augroup END
 
 augroup local_vim
