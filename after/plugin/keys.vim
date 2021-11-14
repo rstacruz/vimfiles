@@ -401,6 +401,35 @@ if exists(':CocAction')
 endif
 " }}}
 
+" [leader-m] Marks (harpoon) {{{
+if globpath(&rtp, "plugin/mark.vim") != ""
+  let g:which_key_map.m = { 'name': '+Marks' }
+  let g:which_key_map.m.a = 'Add file'
+  nnoremap <silent> <leader>ma :lua require('harpoon.mark').add_file()<CR>
+
+  let g:which_key_map.p.m = 'List marks...'
+  nnoremap <silent> <leader>pm :lua require('harpoon.ui').toggle_quick_menu()<CR>
+
+  nnoremap <silent> <F1> :lua require('harpoon.ui').nav_file(1)<CR>
+  nnoremap <silent> <F2> :lua require('harpoon.ui').nav_file(2)<CR>
+  nnoremap <silent> <F3> :lua require('harpoon.ui').nav_file(3)<CR>
+  nnoremap <silent> <F4> :lua require('harpoon.ui').nav_file(4)<CR>
+  nnoremap <silent> <F5> :lua require('harpoon.ui').nav_file(5)<CR>
+  nnoremap <silent> <F7> :lua require('harpoon.term').gotoTerminal(1)<CR>
+  nnoremap <silent> <F8> :lua require('harpoon.term').gotoTerminal(2)<CR>
+  nnoremap <silent> <F9> :lua require('harpoon.term').gotoTerminal(3)<CR>
+
+  inoremap <silent> <F1> <Esc>:lua require('harpoon.ui').nav_file(1)<CR>
+  inoremap <silent> <F2> <Esc>:lua require('harpoon.ui').nav_file(2)<CR>
+  inoremap <silent> <F3> <Esc>:lua require('harpoon.ui').nav_file(3)<CR>
+  inoremap <silent> <F4> <Esc>:lua require('harpoon.ui').nav_file(4)<CR>
+  inoremap <silent> <F5> <Esc>:lua require('harpoon.ui').nav_file(5)<CR>
+  inoremap <silent> <F7> <Esc>:lua require('harpoon.term').gotoTerminal(1)<CR>
+  inoremap <silent> <F8> <Esc>:lua require('harpoon.term').gotoTerminal(2)<CR>
+  inoremap <silent> <F9> <Esc>:lua require('harpoon.term').gotoTerminal(3)<CR>
+endif
+" }}}
+
 " [leader-cm] Macros {{{
 let g:which_key_map.c.m = { 'name': '+Macros' }
 let g:which_key_map.c.m.f = 'JS arrow-func to func-decl'
