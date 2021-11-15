@@ -33,6 +33,14 @@ augroup customisations_nvimtree
 augroup END
 " }}}
 
+" Filetype: harpoon {{{
+augroup customisations_harpoon
+  " don't proc the enter keybindings
+  au! FileType harpoon nnoremap <buffer> <Space> :lua require('harpoon.ui').select_menu_item()<CR>
+  au! FileType harpoon setlocal timeoutlen=1
+augroup END
+" }}}
+
 " Filetype: git {{{
 augroup customisations_git
   au FileType gitcommit,pullrequest,gitrebase startinsert
