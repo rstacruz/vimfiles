@@ -141,7 +141,7 @@ if has('nvim-0.5')
 lua << EOF
   local status, luatab = pcall(require, 'luatab')
   if status then
-    vim.o.tabline = '%!v:lua.require\'luatab\'.tabline()'
+    require('luatab').setup({})
   end
 
   local status, gitsigns = pcall(require, 'gitsigns')
@@ -157,7 +157,8 @@ lua << EOF
   if status then
     require('lualine').setup {
       options = {
-        section_separators = {'', ''},
+        -- section_separators = {'', ''},
+        section_separators = {'', ''},
         -- component_separators = {'', ''},
         component_separators = {' ', ' '},
         theme = 'auto',
