@@ -429,3 +429,11 @@ command Vaporwave call Vaporwave()
 "   autocmd BufWinLeave * silent! mkview
 "   autocmd BufWinEnter * silent! loadview
 " augroup END
+
+function! UpdateVimConfig()
+  let vimhome = $HOME . '/.config/nvim'
+  let cmd = 'cd ' . vimhome . '; git pull --rebase --autostash'
+  exec 'FloatermNew --width=80 --height=24 --autoclose=0 ' . cmd
+endfunction
+
+command UpdateVimConfig call UpdateVimConfig()
