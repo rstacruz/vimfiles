@@ -54,6 +54,15 @@
 | `<leader>` `fei` | Edit init.vim       |
 | `<leader>` `fek` | Edit key bindings   |
 
+### `fi` - Follow in...
+
+| Key              | Description         |
+| ---------------- | ------------------- |
+| `<leader>` `fit` | Follow link in new tab |
+| `<leader>` `fiv` | Follow link to vert split |
+| `<leader>` `fis` | Follow link to horiz split |
+| `<leader>` `fi.` | Follow link in here |
+
 ### `x` - Close...
 
 | Key             | Description                 |

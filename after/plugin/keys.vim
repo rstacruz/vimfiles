@@ -177,6 +177,18 @@ nnoremap <silent> <leader>wK <C-w>K<CR>
 nnoremap <silent> <leader>wL <C-w>L<CR>
 " }}}
 
+" [leader-fi] Follow in... {{{{
+let g:which_key_map.f.i = { 'name': '+Follow in...' }
+let g:which_key_map.f.i.t = 'New tab'
+let g:which_key_map.f.i.v = 'Vert split'
+let g:which_key_map.f.i.s = 'Horiz split'
+let g:which_key_map.f.i['.'] = 'Here'
+nnoremap <leader>fit :tab split <cfile><CR>
+nnoremap <leader>fiv :vsplit <cfile><CR>
+nnoremap <leader>fis :ssplit <cfile><CR>
+nnoremap <leader>fi. :e <cfile><CR>
+" }}}
+
 " [leader-fe] Config {{{
 let g:which_key_map.f.e.k = 'Edit keys'
 let g:which_key_map.f.e.c = 'Customizations'
