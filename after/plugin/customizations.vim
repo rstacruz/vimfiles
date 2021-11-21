@@ -37,7 +37,7 @@ augroup END
 augroup customisations_harpoon
   " don't proc the enter keybindings
   au! FileType harpoon nnoremap <buffer> <Space> :lua require('harpoon.ui').select_menu_item()<CR>
-  au! FileType harpoon setlocal timeoutlen=1
+  " au! FileType harpoon setlocal timeoutlen=1
 augroup END
 " }}}
 
