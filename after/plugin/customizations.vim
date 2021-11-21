@@ -35,8 +35,8 @@ augroup END
 
 " Filetype: harpoon {{{
 augroup customisations_harpoon
-  " don't proc the enter keybindings
-  au! FileType harpoon nnoremap <buffer> <Space> :lua require('harpoon.ui').select_menu_item()<CR>
+  " easier to press than enter (mmemonic: "next")
+  au! FileType harpoon nnoremap <buffer> n :lua require('harpoon.ui').select_menu_item()<CR>
   " au! FileType harpoon setlocal timeoutlen=1
 augroup END
 " }}}
@@ -198,6 +198,7 @@ augroup insert_dates
   " +ds - Date short ("_10-31_')
   au FileType text,markdown,c inoremap +ds _<C-r>=strftime("%m-%d")<CR>_
   au FileType text,markdown,c inoremap +DS _<C-r>=strftime("%Y-%m-%d")<CR>_
+  au FileType text,markdown,c inoremap +di <C-r>=strftime("%Y-%m-%d")<CR>
   au FileType text,markdown,c inoremap +gh https://github.com/
   au FileType text,markdown,c inoremap +gr https://github.com/rstacruz
   au FileType text,markdown,c inoremap +gc [#](https://github.com/rstacruz/cheatsheets/pull//files)<Esc>7ha
