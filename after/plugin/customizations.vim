@@ -59,10 +59,10 @@ augroup END
 
 " Filetype: nerdtree/startify {{{
 augroup customisations_nerd
-  au FileType startify,nerdtree nnoremap <buffer> z :Z<space>
-  au FileType startify,nerdtree nnoremap <buffer> Z :ZZ<space>
-  au FileType startify,nerdtree nnoremap <buffer> , :Z<space>
-  au FileType startify,nerdtree nnoremap <buffer> . :term<cr>
+  au FileType nerdtree nnoremap <buffer> z :Z<space>
+  au FileType nerdtree nnoremap <buffer> Z :ZZ<space>
+  au FileType nerdtree nnoremap <buffer> , :Z<space>
+  au FileType nerdtree nnoremap <buffer> . :term<cr>
 augroup END
 " }}}
 
