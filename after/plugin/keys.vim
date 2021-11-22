@@ -193,17 +193,15 @@ nnoremap <leader>fi. :e <cfile><CR>
 let g:which_key_map.f.e.k = 'Edit keys'
 let g:which_key_map.f.e.c = 'Customizations'
 let g:which_key_map.f.e.i = 'Edit init.vim'
-let g:which_key_map.f.e.t = 'Edit theme'
-let g:which_key_map.f.e.s = 'Edit snippets'
 let g:which_key_map.f.e.u = 'Update config'
 let g:which_key_map.f.e.p = 'Update plugins'
+let g:which_key_map.f.e.r = 'Reload config'
 nnoremap <silent> <leader>fek :tabnew<cr>:e ~/.config/nvim/after/plugin/keys.vim<cr>
 nnoremap <silent> <leader>fec :tabnew<cr>:e ~/.config/nvim/after/plugin/customizations.vim<cr>
 nnoremap <silent> <leader>fei :tabnew<cr>:e ~/.config/nvim/init.vim<cr>
-nnoremap <silent> <leader>fes :tabnew<cr>:e ~/.config/nvim/ultisnips<cr>
-nnoremap <silent> <leader>fet :tabnew<cr>:e ~/.config/nvim/modules/dynamic-theme/color/dyntheme.vim<cr>
-nnoremap <silent> <leader>feu :UpdateVimConfig<cr>
 nnoremap <silent> <leader>fep :UpdateVimPlugins<cr>
+nnoremap <silent> <leader>feu :UpdateVimConfig<cr>
+nnoremap <silent> <leader>fer :ReloadVimConfig<cr>
 " }}}
 
 " [leader-g] Git {{{

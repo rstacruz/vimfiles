@@ -430,38 +430,47 @@ command Vaporwave call Vaporwave()
 "   autocmd BufWinEnter * silent! loadview
 " augroup END
 
+function GetVimHome()
+  let vimhome = $HOME . '/.config/nvim'
+  return vimhome
+endfunction
+
 " Update vim config {{{
 function! UpdateVimConfig()
-  let vimhome = $HOME . '/.config/nvim'
+  let vimhome = GetVimHome()
   let cmd = 'cd ' . vimhome . '; echo Updating vim config...; git pull --rebase --autostash'
   exec 'FloatermNew --width=80 --height=24 --autoclose=0 ' . cmd
 endfunction
 
-command! UpdateVimConfig call UpdateVimConfig()
 
 " Reload all files
-function! ReloadVimConfig()
-  echohl Comment
-  echomsg 'Reloading files...'
-  let files = globpath(&rtp, 'plugin/*.vim', 0, 1)
-    \ + globpath(&rtp, 'init.vim', 0, 1)
-    \ + globpath(&rtp, 'after/plugin/*.vim', 0, 1)
-  for file in files
-    exec 'source ' . file
-  endfor
-  echomsg 'Done ✓'
-  echohl None
-endfunction
+if !exists('*ReloadVimConfig')
+  function! ReloadVimConfig()
+    echohl Comment
+    echomsg 'Reloading files...'
+    let files = globpath(&rtp, 'plugin/*.vim', 0, 1)
+      \ + globpath(&rtp, 'init.vim', 0, 1)
+      \ + globpath(&rtp, 'after/plugin/*.vim', 0, 1)
+    for file in files
+      exec 'source ' . file
+    endfor
+    echomsg 'Done ✓'
+    echohl None
+  endfunction
+endif
 
-command! ReloadVimConfig call ReloadVimConfig()
 
 " Update vim plugins
 function! UpdateVimPlugins()
-  let vimhome = $HOME . '/.config/nvim'
-  exec 'source ' . vimhome - '/init.vim'
-  PlugInstall
-  PlugUpdate
+  let vimrc = globpath(&rtp, 'init.vim')
+  exec 'source ' . vimrc
+  if exists(':PlugInstall')
+    PlugInstall
+    PlugUpdate
+  endif
 endfunction
 
+command! UpdateVimConfig call UpdateVimConfig()
+command! ReloadVimConfig call ReloadVimConfig()
 command! UpdateVimPlugins call UpdateVimPlugins()
 " }}}
