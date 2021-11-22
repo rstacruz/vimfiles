@@ -430,10 +430,38 @@ command Vaporwave call Vaporwave()
 "   autocmd BufWinEnter * silent! loadview
 " augroup END
 
+" Update vim config {{{
 function! UpdateVimConfig()
   let vimhome = $HOME . '/.config/nvim'
-  let cmd = 'cd ' . vimhome . '; git pull --rebase --autostash'
+  let cmd = 'cd ' . vimhome . '; echo Updating vim config...; git pull --rebase --autostash'
   exec 'FloatermNew --width=80 --height=24 --autoclose=0 ' . cmd
 endfunction
 
-command UpdateVimConfig call UpdateVimConfig()
+command! UpdateVimConfig call UpdateVimConfig()
+
+" Reload all files
+function! ReloadVimConfig()
+  echohl Comment
+  echomsg 'Reloading files...'
+  let files = globpath(&rtp, 'plugin/*.vim', 0, 1)
+    \ + globpath(&rtp, 'init.vim', 0, 1)
+    \ + globpath(&rtp, 'after/plugin/*.vim', 0, 1)
+  for file in files
+    exec 'source ' . file
+  endfor
+  echomsg 'Done ✓'
+  echohl None
+endfunction
+
+command! ReloadVimConfig call ReloadVimConfig()
+
+" Update vim plugins
+function! UpdateVimPlugins()
+  let vimhome = $HOME . '/.config/nvim'
+  exec 'source ' . vimhome - '/init.vim'
+  PlugInstall
+  PlugUpdate
+endfunction
+
+command! UpdateVimPlugins call UpdateVimPlugins()
+" }}}

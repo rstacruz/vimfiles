@@ -54,6 +54,8 @@
 | `<leader>` `fec` | Edit customisations |
 | `<leader>` `fei` | Edit init.vim       |
 | `<leader>` `fek` | Edit key bindings   |
+| `<leader>` `feu` | Update vim config   |
+| `<leader>` `fep` | Update vim plugins  |
 
 ### `fi` - Follow in...
 
