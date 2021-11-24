@@ -212,7 +212,13 @@ augroup insert_dates
 
 " Theme overrides {{{
 function s:add_theme_overrides()
-  " if &background ==# 'dark' | ... | endif
+  " Default theme
+  if &background ==# 'dark'
+    let lualine_theme = 'ayu_dark'
+  else
+    let lualine_theme = 'ayu_light'
+  end
+
   hi Normal ctermbg=none
   hi NonText ctermbg=none
   hi EndOfBuffer ctermbg=none
@@ -264,6 +270,8 @@ function s:add_theme_overrides()
   elseif g:colors_name == 'zenbones'
     hi! Folded ctermbg=none
     hi! Comment guibg=#906060  " increase contrast
+  elseif g:colors_name == 'dyntheme'
+    let lualine_theme = '16color'
   elseif g:colors_name == 'github'
     hi! link VertSplit NonText
     hi! link EndOfBuffer Normal
@@ -279,26 +287,23 @@ function s:add_theme_overrides()
     hi! StatusLine   gui=none guibg=#303050 guifg=#9090aa
     hi! StatusLineNC gui=none guibg=#303050 guifg=#9090aa
     let &fcs="eob: ,vert:█"
-    if has('nvim')
-      let g:terminal_color_0 = '#dcdfe7'
-      let g:terminal_color_1 = '#cc517a'
-      let g:terminal_color_2 = '#668e3d'
-      let g:terminal_color_3 = '#c57339'
-      let g:terminal_color_4 = '#2d539e'
-      let g:terminal_color_5 = '#0000ff'
-      let g:terminal_color_6 = '#3f83a6'
-      let g:terminal_color_7 = '#33374c'
-      let g:terminal_color_8 = '#8389a3'
-      let g:terminal_color_9 = '#cc3768'
-      let g:terminal_color_10 = '#598030'
-      let g:terminal_color_11 = '#b6662d'
-      let g:terminal_color_12 = '#22478e'
-      let g:terminal_color_13 = '#6845ad'
-      let g:terminal_color_14 = '#327698'
-      let g:terminal_color_15 = '#262a3f'
-    else
-      let g:terminal_ansi_colors = ['#dcdfe7', '#cc517a', '#668e3d', '#c57339', '#2d539e', '#0000ff', '#3f83a6', '#33374c', '#8389a3', '#cc3768', '#598030', '#b6662d', '#22478e', '#6845ad', '#327698', '#262a3f']
-    endif
+    let g:terminal_color_0 = '#dcdfe7'
+    let g:terminal_color_1 = '#cc517a'
+    let g:terminal_color_2 = '#668e3d'
+    let g:terminal_color_3 = '#c57339'
+    let g:terminal_color_4 = '#2d539e'
+    let g:terminal_color_5 = '#0000ff'
+    let g:terminal_color_6 = '#3f83a6'
+    let g:terminal_color_7 = '#33374c'
+    let g:terminal_color_8 = '#8389a3'
+    let g:terminal_color_9 = '#cc3768'
+    let g:terminal_color_10 = '#598030'
+    let g:terminal_color_11 = '#b6662d'
+    let g:terminal_color_12 = '#22478e'
+    let g:terminal_color_13 = '#6845ad'
+    let g:terminal_color_14 = '#327698'
+    let g:terminal_color_15 = '#262a3f'
+    let g:terminal_ansi_colors = ['#dcdfe7', '#cc517a', '#668e3d', '#c57339', '#2d539e', '#0000ff', '#3f83a6', '#33374c', '#8389a3', '#cc3768', '#598030', '#b6662d', '#22478e', '#6845ad', '#327698', '#262a3f']
   elseif g:colors_name == 'rosebones' && &background ==# 'light'
     hi! Normal guibg=#ffffff
   elseif g:colors_name == 'paramount'
@@ -336,7 +341,11 @@ function s:add_theme_overrides()
     hi! link mkdCodeEnd     Comment
     hi! link mkdCodeStart   Comment
     hi! link VertSplit      Comment
+  else
   endif
+
+  echo lualine_theme
+  exec "lua require('lualine').setup { options = { theme = '" . lualine_theme . "' } }"
 endfunction
 
 autocmd ColorScheme * call s:add_theme_overrides()
@@ -473,4 +482,13 @@ endfunction
 command! UpdateVimConfig call UpdateVimConfig()
 command! ReloadVimConfig call ReloadVimConfig()
 command! UpdateVimPlugins call UpdateVimPlugins()
+" }}}
+
+" Automatic loadview {{{
+" use :mkview to save the view
+augroup automatic_loadview
+  autocmd BufWinEnter * silent! loadview
+"  autocmd BufWinEnter *.md silent! loadview
+"  autocmd BufWinLeave *.md silent mkview
+augroup END
 " }}}
