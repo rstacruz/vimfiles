@@ -344,7 +344,6 @@ function s:add_theme_overrides()
   else
   endif
 
-  echo lualine_theme
   exec "lua require('lualine').setup { options = { theme = '" . lualine_theme . "' } }"
 endfunction
 
