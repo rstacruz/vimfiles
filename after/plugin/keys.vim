@@ -355,9 +355,12 @@ endif
 " }}}
 
 " [leader-k] Editor {{{
-if exists(':Goyo')
+if exists(':ZenMode')
   let g:which_key_map.k.z = 'Toggle zen mode'
-  nmap <leader>kz :Goyo<cr>:echo "Zen mode"<cr>
+  nnoremap <silent> <leader>kz :ZenMode<cr>
+elseif exists(':Goyo')
+  let g:which_key_map.k.z = 'Toggle zen mode'
+  nnoremap <silent> <leader>kz :Goyo<cr>
 end
 
 if exists(':Autofold')
@@ -534,7 +537,6 @@ nnoremap <silent> <cr>H :silent wincmd H<cr>
 nnoremap <silent> <cr>L :silent wincmd L<cr>
 nnoremap <silent> <cr>x :q<cr>
 nnoremap <silent> <cr>X :bwipe!<cr>
-nnoremap <silent> <cr>z :Goyo<cr>
 
 nnoremap <silent> <CR> :exec ":WhichKey '\<CR\>'"<CR>
 " }}}

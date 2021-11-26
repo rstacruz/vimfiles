@@ -91,6 +91,7 @@ if has('nvim')
   Plug 'preservim/nerdtree'
   Plug 'rktjmp/lush.nvim'
   Plug 'voldikss/vim-floaterm'
+  Plug 'folke/zen-mode.nvim'
 else
   Plug 'itchyny/lightline.vim'
   Plug 'preservim/nerdtree'
@@ -208,6 +209,21 @@ lua << EOF
       }
     }
     telescope.load_extension('fzf')
+  end
+
+  local status, zenmode = pcall(require, 'zen-mode')
+  if status then
+    zenmode.setup {
+      window = {
+        backdrop = 1.0, -- don't shade
+        width = 82,
+        height = 0.96
+      },
+      options = {
+        signcolumn = 'no',
+        number = false
+      }
+    }
   end
 EOF
 endif
