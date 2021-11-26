@@ -15,9 +15,17 @@ let g:startify_lists = [
 let g:startify_change_to_vcs_root = 1
 
 " Cursor line
-autocmd User Startified setlocal cursorline
+" autocmd User Startified setlocal cursorline
 
 " Start with 1
 let g:startify_custom_indices = split('1234567890', '\zs')
 
 let g:startify_custom_header = ['']
+
+" let g:startify_disable_at_vimenter = 1
+
+" if &columns > 80
+"   let g:startify_padding_left = 30
+" else
+"   let g:startify_padding_left = 2
+" end

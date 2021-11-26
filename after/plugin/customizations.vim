@@ -57,12 +57,20 @@ augroup customisations_git
 augroup END
 " }}}
 
-" Filetype: nerdtree/startify {{{
+" Filetype: nerdtree {{{
 augroup customisations_nerd
   au FileType nerdtree nnoremap <buffer> z :Z<space>
   au FileType nerdtree nnoremap <buffer> Z :ZZ<space>
   au FileType nerdtree nnoremap <buffer> , :Z<space>
   au FileType nerdtree nnoremap <buffer> . :term<cr>
+augroup END
+" }}}
+
+" Filetype: startify {{{
+augroup customisations_startify
+  " au! VimEnter * Startify | vsplit | term
+  " au! VimEnter * Startify
+  au! User StartifyReset setlocal nocursorline
 augroup END
 " }}}
 
@@ -230,6 +238,16 @@ function s:add_theme_overrides()
   hi! link htmlBold Special
   hi! link htmlItalic Comment
 
+  " Startify
+  hi! link StartifySection Comment
+  hi! link StartifyHeader Comment
+  hi! link StartifyFooter Comment
+  hi! link StartifyNumber Comment
+  hi! link StartifyBracket Comment
+  hi! link StartifySlash Comment
+  hi! link StartifyFile Constant
+  hi! link StartifySpecial Comment
+
   " bullets and delimiters
   hi! link mkdHeading Comment
   hi! link mkdBold Comment
@@ -260,6 +278,9 @@ function s:add_theme_overrides()
   " no reverse status line
   hi! StatusLine gui=none
 
+  " don't like backgrounds in the folds
+  hi! link Folded Comment
+
   if g:colors_name == 'embark'
     " ...
     hi! Comment gui=italic
@@ -272,7 +293,6 @@ function s:add_theme_overrides()
   elseif g:colors_name == 'borland'
     let lualine_theme = 'powerline'
   elseif g:colors_name == 'zenbones'
-    hi! Folded ctermbg=none
     hi! Comment guibg=#906060  " increase contrast
   elseif g:colors_name == 'dyntheme'
     let lualine_theme = '16color'
@@ -282,6 +302,7 @@ function s:add_theme_overrides()
     hi! Comment gui=italic cterm=italic
     hi! Title cterm=bold gui=bold
   elseif g:colors_name == 'iceberg'
+    let lualine_theme = 'iceberg'
     hi! NonText guifg=#505090  " increase contrast
   elseif g:colors_name == 'zenbones'
     " ...
@@ -336,6 +357,7 @@ function s:add_theme_overrides()
     hi! link NERDTreeClosable Constant
     hi! link NERDTreeOpenable Constant
   elseif g:colors_name == 'dracula'
+    let lualine_theme = 'dracula'
     hi! Normal          guibg=#191920
     hi! CursorLine      guibg=#242432
     hi! DraculaBoundary guifg=#242432 guibg=none
@@ -482,6 +504,7 @@ function! UpdateVimPlugins()
   if exists(':PlugInstall')
     PlugInstall
     PlugUpdate
+    PlugDiff
   endif
 endfunction
 
@@ -498,3 +521,5 @@ augroup automatic_loadview
 "  autocmd BufWinLeave *.md silent mkview
 augroup END
 " }}}
+"
+
