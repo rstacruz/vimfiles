@@ -254,6 +254,8 @@ function s:add_theme_overrides()
 
   " curly
   hi! CocUnderline gui=undercurl
+  hi! link CocErrorHighlight SpellBad
+  hi! link CocErrorSign Error
 
   " no reverse status line
   hi! StatusLine gui=none
@@ -267,6 +269,8 @@ function s:add_theme_overrides()
     " ...
   elseif g:colors_name == 'onedark'
     " ...
+  elseif g:colors_name == 'borland'
+    let lualine_theme = 'powerline'
   elseif g:colors_name == 'zenbones'
     hi! Folded ctermbg=none
     hi! Comment guibg=#906060  " increase contrast
@@ -365,8 +369,18 @@ else
 endif
 " }}}
 
-" Gui: neovim-qt {{{
-if exists('g:GuiLoaded')
+" Gui and themes: neovim-qt {{{
+function! GetInferredBackground()
+  let cachedir = $HOME . '/.cache'
+
+  " infer it from pywal colors
+  if !filereadable(cachedir . '/wal/colors') | return 'dark' | endif
+  let bgcolor = system("cat ".$HOME."/.cache/wal/colors | head -n 1")
+  if matchstr(bgcolor, '#[efEF]') != "" | return 'light' | endif
+  return 'dark'
+endfunction
+
+if exists('g:GuiLoaded') " neovim-qt
   " set guifont=JuliaMono:h13
   " set guifont=JetBrains\ Mono:h14:w60
   if hostname() == 'penguin'
@@ -386,32 +400,25 @@ if exists('g:GuiLoaded')
     colorscheme rosebones
   endif
   " also: neovim, paper, iceberg, challenger_deep, github
-endif
-" }}}
-
-" Gui: Neovide {{{
-if exists('g:neovide')
+elseif exists('g:neovide') " neovide
   let g:neovide_cursor_animation_length=0.04
   set guifont=Iosevka:h20
   colorscheme dracula
   " set background=dark
-end
-" }}}
-
-" Gui: goneovim {{{
-if exists('g:goneovim')
+elseif exists('g:goneovim') " goneovim
   set guifont=Iosevka:h14
   colorscheme dracula
   " set background=dark
-end
-" }}}
-
-" Gui: vimr {{{
-" https://github.com/qvacua/vimr/wiki
-if has('gui_vimr')
+elseif has('gui_vimr') " https://github.com/qvacua/vimr/wiki
   colorscheme github
   set background=light
   set guifont=Iosevka\ Nerd\ Font:h16
+elseif hostname() == "misamino" " console, misamino
+  colorscheme dyntheme
+  let &background = GetInferredBackground()
+else
+  colorscheme github
+  let &background = GetInferredBackground()
 endif
 " }}}
 
@@ -426,7 +433,7 @@ function! Vaporwave()
   else
     set guifont=Mx437\ ToshibaSat\ 8x16:h16
   endif
-  color borland
+  colorschemea borland
 endfunction
 
 command Vaporwave call Vaporwave()
