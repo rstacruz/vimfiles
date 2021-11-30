@@ -217,7 +217,7 @@ lua << EOF
       window = {
         backdrop = 1.0, -- don't shade
         width = 82,
-        height = 0.96
+        height = 0.92
       },
       options = {
         signcolumn = 'no',

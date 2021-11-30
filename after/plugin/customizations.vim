@@ -402,46 +402,48 @@ function! GetInferredBackground()
   return 'dark'
 endfunction
 
-if exists('g:GuiLoaded') " neovim-qt
-  " set guifont=JuliaMono:h13
-  " set guifont=JetBrains\ Mono:h14:w60
-  if hostname() == 'penguin'
-    GuiFont! Iosevka:h10:w50
-    GuiLinespace -1
-    GuiTabline 1
+function! SetDefaultTheme()
+  if exists('g:GuiLoaded') " neovim-qt
+    " set guifont=JuliaMono:h13
+    " set guifont=JetBrains\ Mono:h14:w60
+    if hostname() == 'penguin' " chromeos
+      GuiFont! Iosevka:h10:w50
+      GuiLinespace -1
+      GuiTabline 1
+      colorscheme github
+    elseif has('macunix') == 1 " macos
+      GuiFont! Iosevka Nerd Font:h16
+      GuiLinespace -2
+      GuiTabline 0
+      colorscheme github
+    else " linux
+      GuiFont! Iosevka Medium:h13.5:w57
+      GuiLinespace -2
+      GuiTabline 0
+      colorscheme rosebones
+    endif
+    " also: neovim, paper, iceberg, challenger_deep, github
+  elseif exists('g:neovide') " neovide
+    let g:neovide_cursor_animation_length=0.04
+    set guifont=Iosevka:h20
     colorscheme github
-  elseif has('macunix') == 1
-    GuiFont! Iosevka Nerd Font:h16
-    GuiLinespace -2
-    GuiTabline 0
+  elseif exists('g:goneovim') " goneovim
+    set guifont=Iosevka:h14
     colorscheme github
+  elseif has('gui_vimr') " https://github.com/qvacua/vimr/wiki
+    colorscheme github
+    set background=light
+    set guifont=Iosevka\ Nerd\ Font:h16
+  elseif hostname() == "misamino" " console, misamino
+    colorscheme dyntheme
+    let &background = GetInferredBackground()
   else
-    GuiFont! Iosevka Medium:h13.5:w57
-    GuiLinespace -2
-    GuiTabline 0
-    colorscheme rosebones
+    colorscheme github
+    let &background = GetInferredBackground()
   endif
-  " also: neovim, paper, iceberg, challenger_deep, github
-elseif exists('g:neovide') " neovide
-  let g:neovide_cursor_animation_length=0.04
-  set guifont=Iosevka:h20
-  colorscheme dracula
-  " set background=dark
-elseif exists('g:goneovim') " goneovim
-  set guifont=Iosevka:h14
-  colorscheme dracula
-  " set background=dark
-elseif has('gui_vimr') " https://github.com/qvacua/vimr/wiki
-  colorscheme github
-  set background=light
-  set guifont=Iosevka\ Nerd\ Font:h16
-elseif hostname() == "misamino" " console, misamino
-  colorscheme dyntheme
-  let &background = GetInferredBackground()
-else
-  colorscheme github
-  let &background = GetInferredBackground()
-endif
+endfunction
+
+call SetDefaultTheme()
 " }}}
 
 " vim-unimpared: use `co` {{{
