@@ -379,16 +379,11 @@ autocmd VimEnter * call s:add_theme_overrides()
 
 " :Z {{{
 let g:z_autocmd = 1
-if has(':Prosession')
-  augroup z_switcher
-    au! User ZChangedDirGlobal Prosession .
-  augroup END
-else
-  augroup z_switcher
-    au! User ZChangedDirGlobal tabonly
-    au! User ZChangedDirGlobal Startify
-  augroup END
-endif
+augroup z_switcher
+  au! User ZChangedDirGlobal tabonly
+  au! User ZChangedDirGlobal wincmd o
+  au! User ZChangedDirGlobal term
+augroup END
 " }}}
 
 " Gui and themes: neovim-qt {{{
