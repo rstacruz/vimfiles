@@ -312,22 +312,7 @@ function s:add_theme_overrides()
     hi! StatusLine   gui=none guibg=#303050 guifg=#9090aa
     hi! StatusLineNC gui=none guibg=#303050 guifg=#9090aa
     let &fcs="eob: ,vert:█"
-    let g:terminal_color_0 = '#dcdfe7'
-    let g:terminal_color_1 = '#cc517a'
-    let g:terminal_color_2 = '#668e3d'
-    let g:terminal_color_3 = '#c57339'
-    let g:terminal_color_4 = '#2d539e'
-    let g:terminal_color_5 = '#0000ff'
-    let g:terminal_color_6 = '#3f83a6'
-    let g:terminal_color_7 = '#33374c'
-    let g:terminal_color_8 = '#8389a3'
-    let g:terminal_color_9 = '#cc3768'
-    let g:terminal_color_10 = '#598030'
-    let g:terminal_color_11 = '#b6662d'
-    let g:terminal_color_12 = '#22478e'
-    let g:terminal_color_13 = '#6845ad'
-    let g:terminal_color_14 = '#327698'
-    let g:terminal_color_15 = '#262a3f'
+    let g:terminal_color_0 = '#dcdfe7' | let g:terminal_color_1 = '#cc517a' | let g:terminal_color_2 = '#668e3d' | let g:terminal_color_3 = '#c57339' | let g:terminal_color_4 = '#2d539e' | let g:terminal_color_5 = '#0000ff' | let g:terminal_color_6 = '#3f83a6' | let g:terminal_color_7 = '#33374c' | let g:terminal_color_8 = '#8389a3' | let g:terminal_color_9 = '#cc3768' | let g:terminal_color_10 = '#598030' | let g:terminal_color_11 = '#b6662d' | let g:terminal_color_12 = '#22478e' | let g:terminal_color_13 = '#6845ad' | let g:terminal_color_14 = '#327698' | let g:terminal_color_15 = '#262a3f'
     let g:terminal_ansi_colors = ['#dcdfe7', '#cc517a', '#668e3d', '#c57339', '#2d539e', '#0000ff', '#3f83a6', '#33374c', '#8389a3', '#cc3768', '#598030', '#b6662d', '#22478e', '#6845ad', '#327698', '#262a3f']
   elseif g:colors_name == 'rosebones' && &background ==# 'light'
     hi! Normal guibg=#ffffff
@@ -404,9 +389,15 @@ function! GetInferredBackground()
 endfunction
 
 function! SetDefaultTheme()
-  let theme_cli_dark = get(g:, 'theme_cli_dark', 'dyntheme')
-  let theme_cli_light = get(g:, 'theme_cli_light', 'github')
-  let theme_cli_background = get(g:, 'theme_background', GetInferredBackground())
+  " Get preferred values
+  let theme_cli = get(g:, 'theme_cli', ['dyntheme', 'github'])
+  let theme_cli_background = get(g:, 'theme_cli_background', GetInferredBackground())
+  let theme_gui = get(g:, 'theme_gui', ['tokyobones', 'tokyobones'])
+  let theme_gui_background = get(g:, 'theme_gui_background', 'light')
+
+  " Placeholder for actual values (GUI by default)
+  let background = theme_gui_background
+  let themes = theme_gui
 
   if exists('g:GuiLoaded') " neovim-qt
     " set guifont=JuliaMono:h13
@@ -415,36 +406,35 @@ function! SetDefaultTheme()
       GuiFont! Iosevka:h10:w50
       GuiLinespace -1
       GuiTabline 1
-      colorscheme github
     elseif has('macunix') == 1 " macos
       GuiFont! Iosevka Nerd Font:h16
       GuiLinespace -2
       GuiTabline 0
-      colorscheme github
     else " linux
       GuiFont! Iosevka Fixed SemiBold:h13.5:w57
       GuiLinespace -2
       GuiTabline 0
-      colorscheme github
     endif
-    " also: neovim, paper, iceberg, challenger_deep, github
   elseif exists('g:neovide') " neovide
     let g:neovide_cursor_animation_length=0.04
     set guifont=Iosevka:h20
-    colorscheme github
   elseif exists('g:goneovim') " goneovim
     set guifont=Iosevka:h14
-    colorscheme github
   elseif has('gui_vimr') " https://github.com/qvacua/vimr/wiki
-    colorscheme github
-    set guifont=Iosevka\ Nerd\ Font:h16
+    " h18 has bold artifacts
+    set guifont=Iosevka\ Nerd\ Font:h18.5
   else " cli
-    let &background = theme_cli_background
-    if &background ==# 'dark'
-      exec 'colorscheme ' . theme_cli_dark
-    else
-      exec 'colorscheme ' . theme_cli_light
-    endif
+    let background = theme_cli_background
+    let themes = theme_cli
+  endif
+
+  " Finally set the theme
+  if background ==# 'light'
+    exec 'colorscheme ' . themes[1]
+    let &background = 'light'
+  else
+    exec 'colorscheme ' . themes[0]
+    let &background = 'dark'
   endif
 endfunction
 
