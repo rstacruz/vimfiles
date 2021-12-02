@@ -318,6 +318,7 @@ function s:add_theme_overrides()
     hi! Normal guibg=#ffffff
   elseif g:colors_name == 'tokyobones' && &background ==# 'light'
     hi! Normal guibg=#ffffff
+    hi! CursorLine guibg=#f2f2fa
   elseif g:colors_name == 'tokyobones' && &background ==# 'dark'
     hi! Normal guibg=#282838
   elseif g:colors_name == 'zenwritten' && &background ==# 'light'
@@ -421,8 +422,7 @@ function! SetDefaultTheme()
   elseif exists('g:goneovim') " goneovim
     set guifont=Iosevka:h14
   elseif has('gui_vimr') " https://github.com/qvacua/vimr/wiki
-    " h18 has bold artifacts
-    set guifont=Iosevka\ Nerd\ Font:h18.5
+    " font settings in the preferences
   else " cli
     let background = theme_cli_background
     let themes = theme_cli
