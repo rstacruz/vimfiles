@@ -222,6 +222,14 @@ lua << EOF
       options = {
         signcolumn = 'no',
         number = false
+      },
+      plugins = {
+        options = {
+          enabled = true,
+          ruler = false,
+          showcmd = false,
+        },
+        gitsigns = { enabled = false }
       }
     }
   end

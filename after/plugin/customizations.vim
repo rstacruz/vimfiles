@@ -331,6 +331,12 @@ function s:add_theme_overrides()
     let g:terminal_ansi_colors = ['#dcdfe7', '#cc517a', '#668e3d', '#c57339', '#2d539e', '#0000ff', '#3f83a6', '#33374c', '#8389a3', '#cc3768', '#598030', '#b6662d', '#22478e', '#6845ad', '#327698', '#262a3f']
   elseif g:colors_name == 'rosebones' && &background ==# 'light'
     hi! Normal guibg=#ffffff
+  elseif g:colors_name == 'tokyobones' && &background ==# 'light'
+    hi! Normal guibg=#ffffff
+  elseif g:colors_name == 'tokyobones' && &background ==# 'dark'
+    hi! Normal guibg=#282838
+  elseif g:colors_name == 'zenwritten' && &background ==# 'light'
+    hi! Normal guibg=#ffffff
   elseif g:colors_name == 'paramount'
     if &background ==# 'dark'
       " cold background
@@ -398,6 +404,10 @@ function! GetInferredBackground()
 endfunction
 
 function! SetDefaultTheme()
+  let theme_cli_dark = get(g:, 'theme_cli_dark', 'dyntheme')
+  let theme_cli_light = get(g:, 'theme_cli_light', 'github')
+  let theme_cli_background = get(g:, 'theme_background', GetInferredBackground())
+
   if exists('g:GuiLoaded') " neovim-qt
     " set guifont=JuliaMono:h13
     " set guifont=JetBrains\ Mono:h14:w60
@@ -412,10 +422,10 @@ function! SetDefaultTheme()
       GuiTabline 0
       colorscheme github
     else " linux
-      GuiFont! Iosevka Medium:h13.5:w57
+      GuiFont! Iosevka Fixed SemiBold:h13.5:w57
       GuiLinespace -2
       GuiTabline 0
-      colorscheme rosebones
+      colorscheme github
     endif
     " also: neovim, paper, iceberg, challenger_deep, github
   elseif exists('g:neovide') " neovide
@@ -427,14 +437,14 @@ function! SetDefaultTheme()
     colorscheme github
   elseif has('gui_vimr') " https://github.com/qvacua/vimr/wiki
     colorscheme github
-    set background=light
     set guifont=Iosevka\ Nerd\ Font:h16
-  elseif hostname() == "misamino" " console, misamino
-    colorscheme dyntheme
-    let &background = GetInferredBackground()
-  else
-    colorscheme github
-    let &background = GetInferredBackground()
+  else " cli
+    let &background = theme_cli_background
+    if &background ==# 'dark'
+      exec 'colorscheme ' . theme_cli_dark
+    else
+      exec 'colorscheme ' . theme_cli_light
+    endif
   endif
 endfunction
 
