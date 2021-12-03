@@ -282,16 +282,24 @@ function s:add_theme_overrides()
   hi! link Folded Comment
 
   if g:colors_name == 'embark'
-    " ...
     hi! Comment gui=italic
-  elseif g:colors_name == 'challenger_deep'
-    " ...
-  elseif g:colors_name == 'tokyonight'
-    " ...
-  elseif g:colors_name == 'onedark'
-    " ...
-  elseif g:colors_name == 'borland'
-    let lualine_theme = 'powerline'
+  elseif g:colors_name == 'iceberg' && &background ==# 'light'
+    let lualine_theme = 'iceberg'
+    hi! Normal guibg=#fcfcfc
+    hi! NonText guifg=#505090  " increase contrast
+    hi! CursorLine guibg=#eaf0fe
+  elseif g:colors_name == 'iceberg' && &background ==# 'dark'
+    let lualine_theme = 'iceberg'
+    hi! NonText guifg=#505090  " increase contrast
+  elseif g:colors_name == 'rosebones' && &background ==# 'light'
+    hi! Normal guibg=#ffffff
+  elseif g:colors_name == 'tokyobones' && &background ==# 'light'
+    hi! Normal guibg=#ffffff
+    hi! CursorLine guibg=#eaf0fe
+  elseif g:colors_name == 'tokyobones' && &background ==# 'dark'
+    hi! Normal guibg=#282838
+  elseif g:colors_name == 'zenwritten' && &background ==# 'light'
+    hi! Normal guibg=#ffffff
   elseif g:colors_name == 'zenbones'
     hi! Comment guibg=#906060  " increase contrast
   elseif g:colors_name == 'dyntheme'
@@ -301,12 +309,8 @@ function s:add_theme_overrides()
     hi! link EndOfBuffer Normal
     hi! Comment gui=italic cterm=italic
     hi! Title cterm=bold gui=bold
-  elseif g:colors_name == 'iceberg'
-    let lualine_theme = 'iceberg'
-    hi! NonText guifg=#505090  " increase contrast
-  elseif g:colors_name == 'zenbones'
-    " ...
   elseif g:colors_name == 'borland'
+    let lualine_theme = 'powerline'
     hi! VertSplit    gui=none guibg=#303050 guifg=#303050
     hi! TabLine      gui=none guibg=#303050 guifg=#303050
     hi! StatusLine   gui=none guibg=#303050 guifg=#9090aa
