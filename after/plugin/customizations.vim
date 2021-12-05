@@ -427,6 +427,7 @@ function! SetDefaultTheme()
     set guifont=Iosevka:h14
   elseif has('gui_vimr') " https://github.com/qvacua/vimr/wiki
     " font settings in the preferences
+    set guifont=Iosevka\ Nerd\ Font\ Complete:h18
   else " cli
     let background = theme_cli_background
     let themes = theme_cli
