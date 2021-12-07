@@ -9,10 +9,10 @@ set noshowmode " no -- INSERT -- in the status line
 set ttimeoutlen=20 " for escape
 set timeoutlen=600 " for iabbrev
 set laststatus=2 " no statusbar if there's only one window
-let &fcs='eob: ,vert:█' " vertical split, hide tildes
+let &fcs='eob: ,vert:┃' " vertical split, hide tildes
 set title
 
-let g:microtone_variants = ['id']
+let g:microtone_variants = []
 " }}}
 
 " TermOpen customisations {{{
@@ -404,7 +404,7 @@ endfunction
 
 function! SetDefaultTheme()
   " Get preferred values
-  let theme_cli = get(g:, 'theme_cli', ['microtone-mute', 'github'])
+  let theme_cli = get(g:, 'theme_cli', ['microtone-mute', 'microtone'])
   let theme_cli_background = get(g:, 'theme_cli_background', GetInferredBackground())
   let theme_gui = get(g:, 'theme_gui', ['tokyobones', 'tokyobones'])
   let theme_gui_background = get(g:, 'theme_gui_background', 'light')

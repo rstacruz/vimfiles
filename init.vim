@@ -209,7 +209,7 @@ lua << EOF
         git_files = { theme = 'dropdown' }
       }
     }
-    telescope.load_extension('fzf')
+    telescope.register_extension('fzf')
   end
 
   local status, zenmode = pcall(require, 'zen-mode')
