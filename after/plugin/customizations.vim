@@ -12,7 +12,7 @@ set laststatus=2 " no statusbar if there's only one window
 let &fcs='eob: ,vert:█' " vertical split, hide tildes
 set title
 
-let g:microtone_variants = ['italic2', 'id'] " alt1
+let g:microtone_variants = ['id']
 " }}}
 
 " TermOpen customisations {{{
@@ -229,7 +229,7 @@ function s:add_theme_overrides()
     let lualine_theme = 'ayu_light'
   end
 
-  if g:colors_name != 'microtone'
+  if matchstr(g:colors_name, '^microtone') == ''
     hi Normal ctermbg=none
     hi NonText ctermbg=none
     hi EndOfBuffer ctermbg=none
@@ -404,7 +404,7 @@ endfunction
 
 function! SetDefaultTheme()
   " Get preferred values
-  let theme_cli = get(g:, 'theme_cli', ['microtone', 'github'])
+  let theme_cli = get(g:, 'theme_cli', ['microtone-mute', 'github'])
   let theme_cli_background = get(g:, 'theme_cli_background', GetInferredBackground())
   let theme_gui = get(g:, 'theme_gui', ['tokyobones', 'tokyobones'])
   let theme_gui_background = get(g:, 'theme_gui_background', 'light')
