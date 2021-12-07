@@ -31,12 +31,12 @@ function! dyntheme#base#set_custom_theme(colors)
   let c = a:colors
 
   exe 'hi Comment    term=bold ctermfg='.c.4.' guifg=#406090'
-  exe 'hi Constant   term=underline ctermfg='.c.1.' guifg=#c00058'
+  exe 'hi Constant   term=underline ctermfg='.c.2.' guifg=#c00058'
   exe 'hi Special    term=bold ctermfg='.c.5.' guifg=SlateBlue'
   exe 'hi Identifier term=underline ctermfg='.c.6.' guifg=DarkCyan'
   exe 'hi Statement  term=bold ctermfg='.c.3.' gui=bold guifg=Brown'
   exe 'hi PreProc    term=underline ctermfg='.c.5.' guifg=Magenta3'
-  exe 'hi Type       term=underline ctermfg='.c.2.' gui=bold guifg=SeaGreen'
+  exe 'hi Type       term=underline ctermfg='.c.1.' gui=bold guifg=SeaGreen'
   exe 'hi Ignore     cterm=bold ctermfg='.c.7.' guifg=bg'
   exe 'hi Error      term=reverse cterm=bold ctermfg='.c.7.' ctermbg='.c.1.' gui=bold guifg=White guibg=Red'
   exe 'hi Todo       term=standout ctermfg=0 ctermbg='.c.3 .' guifg=Blue guibg=Yellow'

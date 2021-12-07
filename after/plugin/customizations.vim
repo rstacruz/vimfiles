@@ -11,6 +11,8 @@ set timeoutlen=600 " for iabbrev
 set laststatus=2 " no statusbar if there's only one window
 let &fcs='eob: ,vert:█' " vertical split, hide tildes
 set title
+
+let g:microtone_variants = ['italic2'] " alt1
 " }}}
 
 " TermOpen customisations {{{
@@ -227,59 +229,62 @@ function s:add_theme_overrides()
     let lualine_theme = 'ayu_light'
   end
 
-  hi Normal ctermbg=none
-  hi NonText ctermbg=none
-  hi EndOfBuffer ctermbg=none
-  hi! link FloatermBorder NonText
+  if g:colors_name != 'microtone'
+    hi Normal ctermbg=none
+    hi NonText ctermbg=none
+    hi EndOfBuffer ctermbg=none
+    hi! link FloatermBorder VertSplit
+    hi! link TelescopeBorder VertSplit
 
-  hi! link mkdBlockQuote Comment
-  hi! link mkdCode Keyword
-  hi! link mkdLink mkdInlineURL
-  hi! link htmlBold Special
-  hi! link htmlItalic Comment
+    hi! link mkdBlockQuote Comment
+    hi! link mkdCode       Keyword
+    hi! link mkdLink       mkdInlineURL
+    hi! link htmlBold      Special
+    hi! link htmlItalic    Comment
 
-  " Startify
-  hi! link StartifySection Comment
-  hi! link StartifyHeader Comment
-  hi! link StartifyFooter Comment
-  hi! link StartifyNumber Comment
-  hi! link StartifyBracket Comment
-  hi! link StartifySlash Comment
-  hi! link StartifyFile Constant
-  hi! link StartifySpecial Comment
+    " Startify
+    hi! link StartifySection Comment
+    hi! link StartifyHeader  Comment
+    hi! link StartifyFooter  Comment
+    hi! link StartifyNumber  Comment
+    hi! link StartifyBracket Comment
+    hi! link StartifySlash   Comment
+    hi! link StartifyFile    Type
+    hi! link StartifySpecial Comment
 
-  " bullets and delimiters
-  hi! link mkdHeading Comment
-  hi! link mkdBold Comment
-  hi! link mkdItalic Comment
-  hi! link mkdListItem Comment
-  hi! link mkdCodeStart Comment
-  hi! link mkdCodeEnd Comment
-  hi! link mkdCodeDelimiter Comment
+    " bullets and delimiters
+    hi! link mkdHeading       Delimiter
+    hi! link mkdBold          Delimiter
+    hi! link mkdItalic        Delimiter
+    hi! link mkdListItem      Delimiter
+    hi! link mkdCodeStart     Delimiter
+    hi! link mkdCodeEnd       Delimiter
+    hi! link mkdCodeDelimiter Delimiter
 
-  " headings
-  hi! link htmlH1 String
-  hi! link htmlH2 String
-  hi! link htmlH3 String
+    " headings
+    hi! link htmlH1 String
+    hi! link htmlH2 String
+    hi! link htmlH3 String
 
-  hi! link TodoDate Comment
+    hi! link TodoDate Comment
 
-  " gitsigns
-  hi! link GitSignsAdd Constant
-  hi! link GitSignsDelete WarningMsg
-  hi! link GitSignsChange Comment
-  hi! link SignColumn NonText
+    " gitsigns
+    hi! link GitSignsAdd Constant
+    hi! link GitSignsDelete WarningMsg
+    hi! link GitSignsChange Comment
+    hi! link SignColumn NonText
 
-  " curly
-  hi! CocUnderline gui=undercurl
-  hi! link CocErrorHighlight SpellBad
-  hi! link CocErrorSign Error
+    " curly
+    hi! CocUnderline gui=undercurl
+    hi! link CocErrorHighlight SpellBad
+    hi! link CocErrorSign Error
 
-  " no reverse status line
-  hi! StatusLine gui=none
+    " no reverse status line
+    hi! StatusLine gui=none
 
-  " don't like backgrounds in the folds
-  hi! link Folded Comment
+    " don't like backgrounds in the folds
+    hi! link Folded Comment
+  endif
 
   if g:colors_name == 'embark'
     hi! Comment gui=italic
@@ -303,6 +308,8 @@ function s:add_theme_overrides()
   elseif g:colors_name == 'zenbones'
     hi! Comment guibg=#906060  " increase contrast
   elseif g:colors_name == 'dyntheme'
+    let lualine_theme = '16color'
+  elseif g:colors_name == 'microtone'
     let lualine_theme = '16color'
   elseif g:colors_name == 'github'
     hi! link VertSplit NonText
@@ -366,7 +373,9 @@ function s:add_theme_overrides()
   else
   endif
 
-  exec "lua require('lualine').setup { options = { theme = '" . lualine_theme . "' } }"
+  if has('nvim') && globpath(&rtp, 'lua/lualine.lua') != ''
+    exec "lua require('lualine').setup { options = { theme = '" . lualine_theme . "' } }"
+  endif
 endfunction
 
 autocmd ColorScheme * call s:add_theme_overrides()
@@ -395,7 +404,7 @@ endfunction
 
 function! SetDefaultTheme()
   " Get preferred values
-  let theme_cli = get(g:, 'theme_cli', ['dyntheme', 'github'])
+  let theme_cli = get(g:, 'theme_cli', ['microtone', 'github'])
   let theme_cli_background = get(g:, 'theme_cli_background', GetInferredBackground())
   let theme_gui = get(g:, 'theme_gui', ['tokyobones', 'tokyobones'])
   let theme_gui_background = get(g:, 'theme_gui_background', 'light')
