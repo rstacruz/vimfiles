@@ -12,7 +12,7 @@ set laststatus=2 " no statusbar if there's only one window
 let &fcs='eob: ,vert:█' " vertical split, hide tildes
 set title
 
-let g:microtone_variants = ['italic2'] " alt1
+let g:microtone_variants = ['italic2', 'id'] " alt1
 " }}}
 
 " TermOpen customisations {{{
