@@ -32,7 +32,6 @@ Plug vim . '/modules/autofold'
 Plug vim . '/modules/auto-cursorline'
 Plug vim . '/modules/ctrl-c-ctrl-v'
 Plug vim . '/modules/dynamic-theme'
-Plug vim . '/modules/microtone'
 Plug vim . '/modules/jk-on-wrap'
 Plug vim . '/modules/save-typos'
 Plug vim . '/modules/synstack'
@@ -119,6 +118,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'lifepillar/vim-colortemplate'
 Plug 'mcchrish/zenbones.nvim'
 Plug 'owickstrom/vim-colors-paramount'
+Plug 'rstacruz/vim-microtone'
 " }}}
 
 " Coc extensions {{{
