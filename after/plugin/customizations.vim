@@ -402,7 +402,7 @@ endfunction
 
 function! SetDefaultTheme()
   " Get preferred values
-  let theme_cli = get(g:, 'theme_cli', ['microtone-16d', 'microtone-16d'])
+  let theme_cli = get(g:, 'theme_cli', ['microtone', 'microtone'])
   let theme_cli_background = get(g:, 'theme_cli_background', GetInferredBackground())
   let theme_gui = get(g:, 'theme_gui', ['tokyobones', 'tokyobones'])
   let theme_gui_background = get(g:, 'theme_gui_background', 'light')
