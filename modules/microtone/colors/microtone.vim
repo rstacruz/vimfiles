@@ -56,7 +56,7 @@ let s:is_dark = (&background == 'dark')
     \ 'BaseC':   ['Statement'],
     \ 'BaseCu':  ['Underlined'],
     \ 'BaseD':   ['String'],
-    \ 'BaseE':  ['Title'],
+    \ 'BaseE':  ['Title', 'MatchParen'],
     \ 'Normal':  ['Special', 'Identifier', 'PreProc', 'Ignore', 'Error',
                  \ 'Todo', 'MoreMsg', 'ErrorMsg', 'SpecialKey'],
     \ })
