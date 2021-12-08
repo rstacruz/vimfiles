@@ -27,19 +27,18 @@ let s:is_dark = (&background == 'dark')
   hi BaseD  ctermfg=2
   hi BaseE  ctermfg=3 cterm=bold
 
-  " Backgrounds (cursorline > visual > menu > selection)
+  " Backgrounds (cursorline > visual > selection)
   hi BaseBG1 ctermbg=8
   hi BaseBG2 ctermbg=8
-  hi BaseBG3 ctermbg=4 ctermfg=0
-  hi BaseBG4 ctermbg=2 ctermfg=0
+  hi BaseBG3 ctermbg=5 ctermfg=232
 
   " 256 color background overrides
   if s:is_dark
     hi BaseBG1 ctermbg=237
     hi BaseBG2 ctermbg=238
-    hi BaseE   ctermbg=238
+    hi BaseE   ctermbg=236
   else
-    hi BaseBG1 ctermbg=255
+    hi BaseBG1 ctermbg=254
     hi BaseBG2 ctermbg=253
     hi BaseE   ctermbg=230
   endif
@@ -47,10 +46,9 @@ let s:is_dark = (&background == 'dark')
 
 " Basic syntax {{{
   call s:LinkGroups({
-    \ 'BaseBG1': ['CursorLine', 'TabLine', 'TabLineFill', 'StatusLineNC'],
+    \ 'BaseBG1': ['CursorLine', 'TabLine', 'TabLineFill', 'StatusLineNC', 'Pmenu'],
     \ 'BaseBG2': ['Visual', 'StatusLine'],
-    \ 'BaseBG3': ['Search', 'Pmenu', 'TabLineSel'],
-    \ 'BaseBG4': ['PmenuSel'],
+    \ 'BaseBG3': ['Search', 'TabLineSel', 'PmenuSel'],
     \ 'BaseA':   ['NonText', 'VertSplit', 'EndOfBuffer', 'SignColumn',
                  \ 'FoldColumn', 'Noise', 'LineNr'],
     \ 'BaseAi':  ['Comment', 'Folded'],
