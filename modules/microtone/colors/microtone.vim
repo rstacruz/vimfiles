@@ -13,17 +13,17 @@ let s:is_dark = (&background == 'dark')
   endfunction
 " }}}
 
-" Base palette {{{
+" Base palette - terminal {{{
   " Normal
   hi Normal ctermfg=none ctermbg=none
 
   " Colours of increasing importance
-  " (noise > operators > statement > constants > highlight)
+  " (A noise > B keywords > C type > D constants > E highlight)
   hi BaseA  ctermfg=8
   hi BaseAi ctermfg=8 cterm=italic gui=italic
-  hi BaseB  ctermfg=4 cterm=italic gui=italic
-  hi BaseC  ctermfg=5
-  hi BaseCu ctermfg=5 cterm=underline gui=underline
+  hi BaseB  ctermfg=5
+  hi BaseBu ctermfg=5 cterm=underline gui=underline
+  hi BaseC  ctermfg=4 cterm=italic gui=italic
   hi BaseD  ctermfg=2
   hi BaseE  ctermfg=3 cterm=bold
 
@@ -42,6 +42,28 @@ let s:is_dark = (&background == 'dark')
     hi BaseBG2 ctermbg=253
     hi BaseE   ctermbg=230
   endif
+
+  hi UndercurlError gui=undercurl guisp=#ff5555 cterm=underline
+  hi UndercurlInfo  gui=undercurl guisp=#33aa33 cterm=underline
+" }}}
+
+" Base palette - GUI {{{
+  if s:is_dark
+    " todo
+  else
+    hi Normal guibg=#fdfdfd guifg=#303040
+    hi BaseA  guifg=#8282a0
+    hi BaseAi guifg=#5050fa gui=italic
+    hi BaseB  guifg=#40405a
+    hi BaseBu guifg=#60607a gui=underline
+    hi BaseC  guifg=#60607a gui=italic
+    hi BaseD  guifg=#7070cc gui=italic
+    hi BaseE  guifg=#3030aa guibg=#daeafa
+
+    hi BaseBG1 guibg=#ececf3
+    hi BaseBG2 guibg=#ead0ef
+    hi BaseBG3 guibg=#ead0ef
+  endif
 " }}}
 
 " Basic syntax {{{
@@ -52,9 +74,9 @@ let s:is_dark = (&background == 'dark')
     \ 'BaseA':   ['NonText', 'VertSplit', 'EndOfBuffer', 'SignColumn',
                  \ 'FoldColumn', 'Noise', 'LineNr'],
     \ 'BaseAi':  ['Comment', 'Folded'],
-    \ 'BaseB':   ['Type', 'Quote', 'Directory', 'Delimiter', 'Constant', 'Operator'],
-    \ 'BaseC':   ['Statement'],
-    \ 'BaseCu':  ['Underlined'],
+    \ 'BaseB':   ['Statement'],
+    \ 'BaseBu':  ['Underlined'],
+    \ 'BaseC':   ['Type', 'Quote', 'Directory', 'Delimiter', 'Constant', 'Operator'],
     \ 'BaseD':   ['String'],
     \ 'BaseE':  ['Title', 'MatchParen'],
     \ 'Normal':  ['Special', 'Identifier', 'PreProc', 'Ignore', 'Error',
@@ -84,6 +106,7 @@ let s:is_dark = (&background == 'dark')
   hi! link htmlBold                      String
   hi! link htmlItalic                    Type
   hi! link typescriptImport              Type " `import` and `from`
+  hi! link typescriptExport              Type " `export`
   hi! link typescriptIdentifierName      Normal " `React` in `import React from 'react'`
   hi! link typescriptLabel               Type " `hello` in `{ hello: 1234 }`
   hi! link cssPseudoClassId              Type " `:root` in `:root { ... }`
@@ -105,16 +128,20 @@ let s:is_dark = (&background == 'dark')
   hi! link cUserFunction                 BaseE
   hi! link vimFunction                   BaseE " `! Hello` in `function! Hello()`
   hi! link vimHiGroup                    Normal " `Normal` in `hi Normal ctermfg=none`
+  hi! link CocFadeOut                    UndercurlInfo " unused vars
+  hi! link CocUnderline                  UndercurlError 
+  hi! link CocErrorHighlight             UndercurlError 
+  hi! link CocWarningHighlight           UndercurlInfo 
 " }}}
 
 " Variations {{{
   for style in get(g:, 'microtone_variants', [])
     if style == 'less-italic' " less italic
-      hi! BaseB cterm=none gui=none
+      hi! BaseC cterm=none gui=none
 
     elseif style == 'no-italic' " no italic
       hi! BaseAi cterm=none gui=none
-      hi! BaseB cterm=none gui=none
+      hi! BaseC cterm=none gui=none
 
     elseif style == 'bg' " add a solid background
       hi! Normal ctermbg=0
