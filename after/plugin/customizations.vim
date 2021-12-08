@@ -309,8 +309,6 @@ function s:add_theme_overrides()
     hi! Comment guibg=#906060  " increase contrast
   elseif g:colors_name == 'dyntheme'
     let lualine_theme = '16color'
-  elseif g:colors_name == 'microtone'
-    let lualine_theme = '16color'
   elseif g:colors_name == 'github'
     hi! link VertSplit NonText
     hi! link EndOfBuffer Normal

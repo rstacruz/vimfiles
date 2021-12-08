@@ -53,7 +53,7 @@ let s:is_dark = (&background == 'dark')
   else
     hi Normal guibg=#fdfdfd guifg=#303040
     hi BaseA  guifg=#8282a0
-    hi BaseAi guifg=#5050fa gui=italic
+    hi BaseAi guifg=#8282a0 gui=italic
     hi BaseB  guifg=#40405a
     hi BaseBu guifg=#60607a gui=underline
     hi BaseC  guifg=#60607a gui=italic
