@@ -18,29 +18,32 @@ let s:is_dark = (&background == 'dark')
   hi Normal ctermfg=none ctermbg=none
 
   " Colours of increasing importance
-  " (A noise > B keywords > C type > D constants > E highlight)
+  " (A noise > B keywords > C type > D constants)
   hi BaseA  ctermfg=8
   hi BaseAi ctermfg=8 cterm=italic gui=italic
   hi BaseB  ctermfg=5
   hi BaseBu ctermfg=5 cterm=underline gui=underline
   hi BaseC  ctermfg=4 cterm=italic gui=italic
   hi BaseD  ctermfg=2
-  hi BaseE  ctermfg=3 cterm=bold
 
-  " Backgrounds (cursorline > visual > selection)
-  hi BaseBG1 ctermbg=8
-  hi BaseBG2 ctermbg=8
-  hi BaseBG3 ctermbg=5 ctermfg=232
+  " Ranges (cursorline > visual)
+  hi BaseR1 ctermbg=8
+  hi BaseR2 ctermbg=8
+
+  " Highlights (search > title > selection)
+  hi BaseH1 ctermfg=3 ctermbg=0 cterm=underline
+  hi BaseH2 ctermfg=3 cterm=bold
+  hi BaseH3 ctermbg=5 ctermfg=232
 
   " 256 color background overrides
   if s:is_dark
-    hi BaseBG1 ctermbg=237
-    hi BaseBG2 ctermbg=238
-    hi BaseE   ctermbg=236
+    hi BaseR1 ctermbg=237
+    hi BaseR2 ctermbg=238
+    hi BaseH2 ctermbg=236
   else
-    hi BaseBG1 ctermbg=254
-    hi BaseBG2 ctermbg=253
-    hi BaseE   ctermbg=230
+    hi BaseR1 ctermbg=254
+    hi BaseR2 ctermbg=253
+    hi BaseH2 ctermbg=230
   endif
 
   hi UndercurlError gui=undercurl guisp=#ff5555 cterm=underline
@@ -50,6 +53,7 @@ let s:is_dark = (&background == 'dark')
 " Base palette - GUI {{{
   if s:is_dark
     " todo
+    hi Normal guibg=#282838 guifg=#dadaea
   else
     hi Normal guibg=#fdfdfd guifg=#303040
     hi BaseA  guifg=#8282a0
@@ -58,29 +62,30 @@ let s:is_dark = (&background == 'dark')
     hi BaseBu guifg=#60607a gui=underline
     hi BaseC  guifg=#60607a gui=italic
     hi BaseD  guifg=#7070cc gui=italic
-    hi BaseE  guifg=#3030aa guibg=#daeafa
-
-    hi BaseBG1 guibg=#ececf3
-    hi BaseBG2 guibg=#ead0ef
-    hi BaseBG3 guibg=#ead0ef
+    hi BaseR1 guibg=#ececf3
+    hi BaseR2 guibg=#ead0ef
+    hi BaseH1 guibg=#ead0ef
+    hi BaseH2 guifg=#3030aa guibg=#daeafa
+    hi BaseH3 guibg=#ead0ef
   endif
 " }}}
 
 " Basic syntax {{{
   call s:LinkGroups({
-    \ 'BaseBG1': ['CursorLine', 'TabLine', 'TabLineFill', 'StatusLineNC', 'Pmenu'],
-    \ 'BaseBG2': ['Visual', 'StatusLine'],
-    \ 'BaseBG3': ['Search', 'TabLineSel', 'PmenuSel'],
-    \ 'BaseA':   ['NonText', 'VertSplit', 'EndOfBuffer', 'SignColumn',
-                 \ 'FoldColumn', 'Noise', 'LineNr'],
-    \ 'BaseAi':  ['Comment', 'Folded'],
-    \ 'BaseB':   ['Statement'],
-    \ 'BaseBu':  ['Underlined'],
-    \ 'BaseC':   ['Type', 'Quote', 'Directory', 'Delimiter', 'Constant', 'Operator'],
-    \ 'BaseD':   ['String'],
-    \ 'BaseE':  ['Title', 'MatchParen'],
-    \ 'Normal':  ['Special', 'Identifier', 'PreProc', 'Ignore', 'Error',
-                 \ 'Todo', 'MoreMsg', 'ErrorMsg', 'SpecialKey'],
+    \ 'Normal': ['Special', 'Identifier', 'PreProc', 'Ignore', 'Error',
+                \ 'Todo', 'MoreMsg', 'ErrorMsg', 'SpecialKey'],
+    \ 'BaseA': ['NonText', 'VertSplit', 'EndOfBuffer', 'SignColumn',
+               \ 'FoldColumn', 'Noise', 'LineNr'],
+    \ 'BaseAi': ['Comment', 'Folded'],
+    \ 'BaseB': ['Statement'],
+    \ 'BaseBu': ['Underlined'],
+    \ 'BaseC': ['Type', 'Quote', 'Directory', 'Delimiter', 'Constant', 'Operator'],
+    \ 'BaseD': ['String'],
+    \ 'BaseR1': ['CursorLine', 'TabLine', 'TabLineFill', 'StatusLineNC', 'Pmenu'],
+    \ 'BaseR2': ['Visual', 'StatusLine'],
+    \ 'BaseH1': ['Search', 'MatchParen'],
+    \ 'BaseH2': ['Title'],
+    \ 'BaseH3': ['TabLineSel', 'PmenuSel'],
     \ })
   " Later: DiffAdd DiffChange DiffDelete DiffText Conceal SpellBad SpellCap SpellRare SpellLocal
 " }}}
@@ -110,23 +115,23 @@ let s:is_dark = (&background == 'dark')
   hi! link typescriptIdentifierName      Normal " `React` in `import React from 'react'`
   hi! link typescriptLabel               Type " `hello` in `{ hello: 1234 }`
   hi! link cssPseudoClassId              Type " `:root` in `:root { ... }`
-  hi! link htmlH1                        BaseE
-  hi! link mkdHeading                    BaseE
-  hi! link typescriptDestructureVariable BaseE " `x` in `{ x } = y`
-  hi! link typescriptAliasDeclaration    BaseE " `Post` in `type Post = { ... }`
-  hi! link typescriptVariableDeclaration BaseE " `user` in `const user = ...`
-  hi! link typescriptInterfaceName       BaseE " `Post` in `inteface Post { ... }`
-  hi! link typescriptFuncName            BaseE " `greet` in `function greet()`
-  hi! link jsFuncName                    BaseE " `greet` in `function greet()`
-  hi! link jsVariableDef                 BaseE " `user` in `const user = ...`
-  hi! link jsDestructuringBlock          BaseE
-  hi! link rubyMethodName                BaseE
-  hi! link rubyModuleName                BaseE
-  hi! link rubyClassName                 BaseE
-  hi! link pythonClass                   BaseE
-  hi! link pythonFunction                BaseE
-  hi! link cUserFunction                 BaseE
-  hi! link vimFunction                   BaseE " `! Hello` in `function! Hello()`
+  hi! link htmlH1                        BaseH2
+  hi! link mkdHeading                    BaseH2
+  hi! link typescriptDestructureVariable BaseH2 " `x` in `{ x } = y`
+  hi! link typescriptAliasDeclaration    BaseH2 " `Post` in `type Post = { ... }`
+  hi! link typescriptVariableDeclaration BaseH2 " `user` in `const user = ...`
+  hi! link typescriptInterfaceName       BaseH2 " `Post` in `inteface Post { ... }`
+  hi! link typescriptFuncName            BaseH2 " `greet` in `function greet()`
+  hi! link jsFuncName                    BaseH2 " `greet` in `function greet()`
+  hi! link jsVariableDef                 BaseH2 " `user` in `const user = ...`
+  hi! link jsDestructuringBlock          BaseH2
+  hi! link rubyMethodName                BaseH2
+  hi! link rubyModuleName                BaseH2
+  hi! link rubyClassName                 BaseH2
+  hi! link pythonClass                   BaseH2
+  hi! link pythonFunction                BaseH2
+  hi! link cUserFunction                 BaseH2
+  hi! link vimFunction                   BaseH2 " `! Hello` in `function! Hello()`
   hi! link vimHiGroup                    Normal " `Normal` in `hi Normal ctermfg=none`
   hi! link CocFadeOut                    UndercurlInfo " unused vars
   hi! link CocUnderline                  UndercurlError 
@@ -147,7 +152,7 @@ let s:is_dark = (&background == 'dark')
       hi! Normal ctermbg=0
 
     elseif style == 'no-highlight' " no background highlight on id
-      hi! BaseE ctermbg=none guibg=none
+      hi! BaseH2 ctermbg=none guibg=none
     endif
   endfor
 " }}
