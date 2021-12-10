@@ -63,25 +63,26 @@ function s:set_theme(theme)
 endfunction
 
 function s:update_theme()
-  if g:colors_name == 'paper'
+  let color_name = get(g:, 'colors_name', '')
+  if color_name == 'paper'
     call s:set_theme('paper')
-  elseif g:colors_name == 'daycula'
+  elseif color_name == 'daycula'
     call s:set_theme('daycula')
-  elseif g:colors_name == 'dracula'
+  elseif color_name == 'dracula'
     call s:set_theme('dracula')
-  elseif g:colors_name == 'palenight'
+  elseif color_name == 'palenight'
     call s:set_theme('palenight')
-  elseif g:colors_name == 'embark'
+  elseif color_name == 'embark'
     call s:set_theme('tokyonight')
-  elseif g:colors_name == 'nightfly'
+  elseif color_name == 'nightfly'
     call s:set_theme('nightfly')
-  elseif g:colors_name == 'onedark'
+  elseif color_name == 'onedark'
     call s:set_theme('onedark')
-  elseif g:colors_name == 'zenbones'
+  elseif color_name == 'zenbones'
     call s:set_theme('zenbones')
-  elseif g:colors_name == 'github' && &background ==# 'dark'
+  elseif color_name == 'github' && &background ==# 'dark'
     call s:set_theme('github')
-  elseif g:colors_name == 'github' && &background ==# 'light'
+  elseif color_name == 'github' && &background ==# 'light'
     call s:set_theme('ayu_light')
   elseif exists('g:GuiLoaded') && &background ==# 'dark'
     call s:set_theme('paper')

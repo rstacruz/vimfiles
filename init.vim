@@ -48,6 +48,7 @@ Plug 'tpope/vim-rhubarb'          " enable :Gbrowse for Git
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'       " 'yon' to toggle line numbers, and more
 Plug 'rstacruz/vim-gitgrep'
+Plug 'rstacruz/vim-microtone'
 " Plug 'dhruvasagar/vim-prosession' " session management
 " }}}
 
@@ -118,7 +119,6 @@ Plug 'joshdick/onedark.vim'
 Plug 'lifepillar/vim-colortemplate'
 Plug 'mcchrish/zenbones.nvim'
 Plug 'owickstrom/vim-colors-paramount'
-Plug 'rstacruz/vim-microtone'
 " }}}
 
 " Coc extensions {{{

@@ -222,6 +222,8 @@ augroup insert_dates
 
 " Theme overrides {{{
 function s:add_theme_overrides()
+  let color_name = get(g:, 'colors_name', '')
+
   " Default theme
   if &background ==# 'dark'
     let lualine_theme = 'ayu_dark'
@@ -229,7 +231,7 @@ function s:add_theme_overrides()
     let lualine_theme = 'ayu_light'
   end
 
-  if matchstr(g:colors_name, '^microtone') == ''
+  if matchstr(color_name, '^microtone') == ''
     hi Normal ctermbg=none
     hi NonText ctermbg=none
     hi EndOfBuffer ctermbg=none
@@ -286,35 +288,35 @@ function s:add_theme_overrides()
     hi! link Folded Comment
   endif
 
-  if g:colors_name == 'embark'
+  if color_name == 'embark'
     hi! Comment gui=italic
-  elseif g:colors_name == 'iceberg' && &background ==# 'light'
+  elseif color_name == 'iceberg' && &background ==# 'light'
     let lualine_theme = 'iceberg'
     hi! Normal guibg=#fcfcfc
     hi! NonText guifg=#505090  " increase contrast
     hi! CursorLine guibg=#eaf0fe
-  elseif g:colors_name == 'iceberg' && &background ==# 'dark'
+  elseif color_name == 'iceberg' && &background ==# 'dark'
     let lualine_theme = 'iceberg'
     hi! NonText guifg=#505090  " increase contrast
-  elseif g:colors_name == 'rosebones' && &background ==# 'light'
+  elseif color_name == 'rosebones' && &background ==# 'light'
     hi! Normal guibg=#ffffff
-  elseif g:colors_name == 'tokyobones' && &background ==# 'light'
+  elseif color_name == 'tokyobones' && &background ==# 'light'
     hi! Normal guibg=#ffffff
     hi! CursorLine guibg=#eaf0fe
-  elseif g:colors_name == 'tokyobones' && &background ==# 'dark'
+  elseif color_name == 'tokyobones' && &background ==# 'dark'
     hi! Normal guibg=#282838
-  elseif g:colors_name == 'zenwritten' && &background ==# 'light'
+  elseif color_name == 'zenwritten' && &background ==# 'light'
     hi! Normal guibg=#ffffff
-  elseif g:colors_name == 'zenbones'
+  elseif color_name == 'zenbones'
     hi! Comment guibg=#906060  " increase contrast
-  elseif g:colors_name == 'dyntheme'
+  elseif color_name == 'dyntheme'
     let lualine_theme = '16color'
-  elseif g:colors_name == 'github'
+  elseif color_name == 'github'
     hi! link VertSplit NonText
     hi! link EndOfBuffer Normal
     hi! Comment gui=italic cterm=italic
     hi! Title cterm=bold gui=bold
-  elseif g:colors_name == 'borland'
+  elseif color_name == 'borland'
     let lualine_theme = 'powerline'
     hi! VertSplit    gui=none guibg=#303050 guifg=#303050
     hi! TabLine      gui=none guibg=#303050 guifg=#303050
@@ -323,16 +325,16 @@ function s:add_theme_overrides()
     let &fcs="eob: ,vert:█"
     let g:terminal_color_0 = '#dcdfe7' | let g:terminal_color_1 = '#cc517a' | let g:terminal_color_2 = '#668e3d' | let g:terminal_color_3 = '#c57339' | let g:terminal_color_4 = '#2d539e' | let g:terminal_color_5 = '#0000ff' | let g:terminal_color_6 = '#3f83a6' | let g:terminal_color_7 = '#33374c' | let g:terminal_color_8 = '#8389a3' | let g:terminal_color_9 = '#cc3768' | let g:terminal_color_10 = '#598030' | let g:terminal_color_11 = '#b6662d' | let g:terminal_color_12 = '#22478e' | let g:terminal_color_13 = '#6845ad' | let g:terminal_color_14 = '#327698' | let g:terminal_color_15 = '#262a3f'
     let g:terminal_ansi_colors = ['#dcdfe7', '#cc517a', '#668e3d', '#c57339', '#2d539e', '#0000ff', '#3f83a6', '#33374c', '#8389a3', '#cc3768', '#598030', '#b6662d', '#22478e', '#6845ad', '#327698', '#262a3f']
-  elseif g:colors_name == 'rosebones' && &background ==# 'light'
+  elseif color_name == 'rosebones' && &background ==# 'light'
     hi! Normal guibg=#ffffff
-  elseif g:colors_name == 'tokyobones' && &background ==# 'light'
+  elseif color_name == 'tokyobones' && &background ==# 'light'
     hi! Normal guibg=#ffffff
     hi! CursorLine guibg=#f2f2fa
-  elseif g:colors_name == 'tokyobones' && &background ==# 'dark'
+  elseif color_name == 'tokyobones' && &background ==# 'dark'
     hi! Normal guibg=#282838
-  elseif g:colors_name == 'zenwritten' && &background ==# 'light'
+  elseif color_name == 'zenwritten' && &background ==# 'light'
     hi! Normal guibg=#ffffff
-  elseif g:colors_name == 'paramount'
+  elseif color_name == 'paramount'
     if &background ==# 'dark'
       " cold background
       hi! Normal     ctermfg=none guibg=#19192a
@@ -357,7 +359,7 @@ function s:add_theme_overrides()
     hi! link NERDTreeCWD      Constant
     hi! link NERDTreeClosable Constant
     hi! link NERDTreeOpenable Constant
-  elseif g:colors_name == 'dracula'
+  elseif color_name == 'dracula'
     let lualine_theme = 'dracula'
     hi! Normal          guibg=#191920
     hi! CursorLine      guibg=#242432
