@@ -427,25 +427,27 @@ if globpath(&rtp, "plugin/mark.vim") != ""
   let g:which_key_map.p.m = 'List marks...'
   nnoremap <silent> <leader>pm :lua require('harpoon.ui').toggle_quick_menu()<CR>
 
-  let g:which_key_map.m.x = 'Terminal 1'
-  let g:which_key_map.m.c = 'Terminal 2'
-  let g:which_key_map.m.d = 'Terminal 3'
-  nnoremap <silent> <leader>mx :lua require('harpoon.term').gotoTerminal(1)<CR>
-  nnoremap <silent> <leader>mc :lua require('harpoon.term').gotoTerminal(2)<CR>
-  nnoremap <silent> <leader>md :lua require('harpoon.term').gotoTerminal(3)<CR>
+  " . l u y .  ‹── term
+  " m n e i o  ‹── files
+  " . . . . .
+  let g:which_key_map.m.m = 'List marks...'
+  nnoremap <silent> <leader>mm :lua require('harpoon.ui').toggle_quick_menu()<CR>
+
+  let g:which_key_map.m.l = 'Terminal 1'
+  let g:which_key_map.m.u = 'Terminal 2'
+  let g:which_key_map.m.y = 'Terminal 3'
+  nnoremap <silent> <leader>ml :lua require('harpoon.term').gotoTerminal(1)<CR>
+  nnoremap <silent> <leader>mu :lua require('harpoon.term').gotoTerminal(2)<CR>
+  nnoremap <silent> <leader>my :lua require('harpoon.term').gotoTerminal(3)<CR>
 
   let g:which_key_map.m.n = 'File 1'
   let g:which_key_map.m.e = 'File 2'
   let g:which_key_map.m.i = 'File 3'
-  let g:which_key_map.m.l = 'File 4'
-  let g:which_key_map.m.u = 'File 5'
-  let g:which_key_map.m.y = 'File 6'
+  let g:which_key_map.m.o = 'File 4'
   nnoremap <silent> <leader>mn :lua require('harpoon.ui').nav_file(1)<CR>
   nnoremap <silent> <leader>me :lua require('harpoon.ui').nav_file(2)<CR>
   nnoremap <silent> <leader>mi :lua require('harpoon.ui').nav_file(3)<CR>
-  nnoremap <silent> <leader>ml :lua require('harpoon.ui').nav_file(4)<CR>
-  nnoremap <silent> <leader>mu :lua require('harpoon.ui').nav_file(5)<CR>
-  nnoremap <silent> <leader>my :lua require('harpoon.ui').nav_file(6)<CR>
+  nnoremap <silent> <leader>mo :lua require('harpoon.ui').nav_file(4)<CR>
 endif
 " }}}
 

@@ -1,6 +1,6 @@
 # Vim customisations cheatsheet
 
-### `Enter` - Nav layer bindings
+## `Enter` - Nav layer bindings
 
 | Key                    | Description                        |
 | ---------------------- | ---------------------------------- |
@@ -18,7 +18,7 @@
 | `<enter>` `S/V/T`      | New terminal (split, vert, tab)    |
 | `<enter>` `s/v`        | Split window (horiz, vert)         |
 
-### `f` - File...
+## `f` - File...
 
 | Key             | Description             |
 | --------------- | ----------------------- |
@@ -30,7 +30,7 @@
 | `<leader>` `fY` | Copy path (full)        |
 | `<leader>` `fb` | Browse (ranger)         |
 
-### `g` - Git...
+## `g` - Git...
 
 | Key             | Description         |
 | --------------- | ------------------- |
@@ -47,7 +47,7 @@
 | `<leader>` `gr` | Open pull request   |
 | `<leader>` `gR` | Create pull request |
 
-### `fe` - Settings...
+## `fe` - Settings...
 
 | Key              | Description         |
 | ---------------- | ------------------- |
@@ -59,16 +59,16 @@
 | `<leader>` `fep` | Update vim plugins  |
 | `<leader>` `fer` | Reload settings     |
 
-### `fi` - Follow in...
+## `fi` - Follow in...
 
-| Key              | Description         |
-| ---------------- | ------------------- |
-| `<leader>` `fit` | Follow link in new tab |
-| `<leader>` `fiv` | Follow link to vert split |
+| Key              | Description                |
+| ---------------- | -------------------------- |
+| `<leader>` `fit` | Follow link in new tab     |
+| `<leader>` `fiv` | Follow link to vert split  |
 | `<leader>` `fis` | Follow link to horiz split |
-| `<leader>` `fi.` | Follow link in here |
+| `<leader>` `fi.` | Follow link in here        |
 
-### `x` - Close...
+## `x` - Close...
 
 | Key             | Description                 |
 | --------------- | --------------------------- |
@@ -78,7 +78,7 @@
 | `<leader>` `xq` | Quit vim                    |
 | `<leader>` `xz` | Reset workspace (close all) |
 
-### `p` - Pick...
+## `p` - Pick...
 
 | Key             | Description             |
 | --------------- | ----------------------- |
@@ -87,7 +87,7 @@
 | `<leader>` `p*` | Search for this word... |
 | `<leader>` `ps` | Git status...           |
 
-### `k` - Editor...
+## `k` - Editor...
 
 | Key             | Description            |
 | --------------- | ---------------------- |
@@ -95,7 +95,15 @@
 | `<leader>` `kc` | Toggle showing context |
 | `<leader>` `kz` | Zen mode               |
 
-### `h` - Hunks (gitsigns)
+## `m` - Marks...
+
+| Key                  | Description       |
+| -------------------- | ----------------- |
+| `<leader>` `m[luy]`  | Open terminal 1-3 |
+| `<leader>` `m[neio]` | Open file 1-4     |
+| `<leader>` `mm`      | List marks        |
+
+## `h` - Hunks (gitsigns)
 
 | Key             | Description                        |
 | --------------- | ---------------------------------- |
@@ -104,14 +112,14 @@
 | `<leader>` `hS` | Stage all                          |
 | `<leader>` `hu` | Undo stage hunk                    |
 
-### Other...
+## Other...
 
 | Key             | Description            |
 | --------------- | ---------------------- |
 | `<leader>` `*`  | Search word in project |
 | `<leader>` `mp` | Markdown image paste   |
 
-### `yo` - Toggle features
+## `yo` - Toggle features
 
 | Toggle | Description           |
 | ------ | --------------------- |
