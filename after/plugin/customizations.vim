@@ -208,6 +208,7 @@ augroup insert_dates
   " +ds - Date short ("_2021-10-31_')
   au FileType text,markdown,c inoremap +ds _<C-r>=strftime("%Y-%m-%d")<CR>_
   au FileType text,markdown,c inoremap +DS _<C-r>=strftime("%m-%d")<CR>_
+  au FileType text,markdown,c inoremap +` ```
   au FileType text,markdown,c inoremap +gh https://github.com/
   au FileType text,markdown,c inoremap +gr https://github.com/rstacruz
   au FileType text,markdown,c inoremap +gc [#](https://github.com/rstacruz/cheatsheets/pull//files)<Esc>7ha
