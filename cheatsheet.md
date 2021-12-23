@@ -10,9 +10,9 @@
 | `<enter>` `← ↓ ↑ →`    | Focus window                       |
 | `<enter>` `1 2 3 .. 8` | Focus window                       |
 |                        |                                    |
-| `<enter>` `home/end`   | Change tab                         |
-| `<enter>` `pgup`       | New tab                            |
-| `<enter>` `pgdn`       | Terminal                           |
+| `<enter>` `pgup/pgdn`  | Change tab                         |
+| `<enter>` `home`       | New tab                            |
+| `<enter>` `end`        | Terminal                           |
 |                        |                                    |
 | `<enter>` `<esc>`      | New terminal (float)               |
 | `<enter>` `S/V/T`      | New terminal (split, vert, tab)    |

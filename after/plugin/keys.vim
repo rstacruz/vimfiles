@@ -505,8 +505,8 @@ let g:which_key_cr = {
   \ }
 
 nnoremap <silent> <cr><Space> za
-nnoremap <silent> <cr><PageUp> :tabnew<cr>:Startify<cr>
-nnoremap <silent> <cr><PageDown> :FloatermToggle<cr>
+nnoremap <silent> <cr><Home> :tabnew<cr>:Startify<cr>
+nnoremap <silent> <cr><End> :FloatermToggle<cr>
 nnoremap <silent> <cr>9 :wincmd b<cr>
 nnoremap <silent> <cr>1 :wincmd t<cr>
 nnoremap <silent> <cr>2 :2wincmd w<cr>
@@ -515,8 +515,8 @@ nnoremap <silent> <cr>4 :4wincmd w<cr>
 nnoremap <silent> <cr>5 :5wincmd w<cr>
 nnoremap <silent> <cr>6 :6wincmd w<cr>
 nnoremap <silent> <cr>, :Buffers<cr>
-nnoremap <silent> <cr><Home>  gT
-nnoremap <silent> <cr><End>   gt
+nnoremap <silent> <cr><PageDown> gt
+nnoremap <silent> <cr><PageUp>   gT
 nnoremap <silent> <cr><Up>    :silent wincmd k<cr>
 nnoremap <silent> <cr><Down>  :silent wincmd j<cr>
 nnoremap <silent> <cr><Left>  :silent wincmd h<cr>
