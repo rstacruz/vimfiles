@@ -203,11 +203,10 @@ augroup END
 
 " inoremap: Dates and symbols {{{
 augroup insert_dates
-  " +dw - Date weekday ("- 10-31 Mon:")
-  au FileType text,markdown,c inoremap +dw - **<C-r>=strftime("%m-%d %a")<CR>**<CR><Tab>
+  " +dw - Date weekday ("_2021-10-31 Wed_")
+  au FileType text,markdown,c inoremap +dw _<C-r>=strftime("%Y-%m-%d %a")<CR>_
   " +ds - Date short ("_2021-10-31_')
   au FileType text,markdown,c inoremap +ds _<C-r>=strftime("%Y-%m-%d")<CR>_
-  au FileType text,markdown,c inoremap +DS _<C-r>=strftime("%m-%d")<CR>_
   au FileType text,markdown,c inoremap +` ```
   au FileType text,markdown,c inoremap +gh https://github.com/
   au FileType text,markdown,c inoremap +gr https://github.com/rstacruz
