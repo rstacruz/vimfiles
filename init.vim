@@ -201,7 +201,7 @@ lua << EOF
         preview = {
           -- makes previews slow
           treesitter = false,
-          timeout = 10
+          timeout = 30
         }
       },
       pickers = {

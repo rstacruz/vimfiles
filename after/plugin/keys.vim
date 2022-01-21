@@ -575,3 +575,5 @@ endif
 
 " Alias for spacebar?
 nnoremap <silent> & :WhichKey '<space>'<cr>
+
+nnoremap <silent> <leader><C-s>:w<cr>FloatermNew --height=6 --width=40 --autoclose=1 pwd; git-fastsync<cr>
