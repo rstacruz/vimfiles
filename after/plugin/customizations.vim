@@ -533,3 +533,11 @@ augroup END
 " }}}
 "
 
+
+function! GitFastsyncI()
+  Gcd
+  w
+  FloatermNew --height=6 --width=80 --autoclose=1 pwd; git-fastsync -i
+endfunction
+
+command! WF call GitFastsyncI()

@@ -420,6 +420,7 @@ endif
 
 " [leader-m] Marks (harpoon) {{{
 if globpath(&rtp, "plugin/mark.vim") != ""
+  let g:which_key_map[','] = 'Go to terminal'
   nnoremap <silent> <leader>, :lua require('harpoon.term').gotoTerminal(1)<CR>
 
   let g:which_key_map.m = { 'name': '+Marks' }
@@ -577,5 +578,3 @@ endif
 
 " Alias for spacebar?
 nnoremap <silent> & :WhichKey '<space>'<cr>
-
-nnoremap <silent> <leader><C-s> :w<cr>:FloatermNew --height=6 --width=40 --autoclose=1 pwd; git-fastsync<cr>
