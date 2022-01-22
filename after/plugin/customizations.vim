@@ -533,7 +533,6 @@ augroup END
 " }}}
 "
 
-
 function! GitFastsyncI()
   Gcd
   w
