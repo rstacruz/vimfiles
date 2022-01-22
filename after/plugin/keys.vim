@@ -420,6 +420,8 @@ endif
 
 " [leader-m] Marks (harpoon) {{{
 if globpath(&rtp, "plugin/mark.vim") != ""
+  nnoremap <silent> <leader>, :lua require('harpoon.term').gotoTerminal(1)<CR>
+
   let g:which_key_map.m = { 'name': '+Marks' }
   let g:which_key_map.m.a = 'Add file'
   nnoremap <silent> <leader>ma :lua require('harpoon.mark').add_file()<CR>
