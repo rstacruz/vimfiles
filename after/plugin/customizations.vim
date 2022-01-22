@@ -536,7 +536,8 @@ augroup END
 function! GitFastsyncI()
   Gcd
   w
-  FloatermNew --height=7 --width=80 --autoclose=1 pwd; git-fastsync -i
+  split
+  term git-fastsync -i
 endfunction
 
 function! GitFastsync()
