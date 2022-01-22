@@ -533,7 +533,7 @@ augroup END
 " }}}
 "
 
-function! GitFastsyncI()
+function! GitFastsyncInteractive()
   Gcd
   w
   split
@@ -546,5 +546,5 @@ function! GitFastsync()
   FloatermNew --height=7 --width=80 --autoclose=1 pwd; git-fastsync
 endfunction
 
-command! S call GitFastsync()
-command! SS call GitFastsyncI()
+command! SS call GitFastsync()
+command! S call GitFastsyncInteractive()
