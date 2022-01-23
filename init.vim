@@ -93,6 +93,7 @@ if has('nvim')
   Plug 'rktjmp/lush.nvim'
   Plug 'voldikss/vim-floaterm'
   Plug 'folke/zen-mode.nvim'
+  Plug 'junegunn/fzf.vim'
 else
   Plug 'itchyny/lightline.vim'
   Plug 'preservim/nerdtree'
