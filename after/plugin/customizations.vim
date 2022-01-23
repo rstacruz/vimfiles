@@ -543,7 +543,8 @@ endfunction
 function! GitFastsync()
   Gcd
   w
-  FloatermNew --height=7 --width=80 --autoclose=1 pwd; git-fastsync
+  FloatermNew --height=7 --width=80 --autoclose=1 git-fastsync
+  wincmd p
 endfunction
 
 command! SS call GitFastsync()
