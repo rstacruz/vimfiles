@@ -9,10 +9,12 @@ let g:scrollbar_shape = {
   \ }
 
 let g:scrollbar_highlight = {
-  \ 'head': 'VertSplit',
-  \ 'body': 'VertSplit',
-  \ 'tail': 'VertSplit',
+  \ 'head': 'scrollbar',
+  \ 'body': 'scrollbar',
+  \ 'tail': 'scrollbar',
   \ }
+
+hi! link scrollbar Type
 
 augroup ScrollbarInit
   autocmd!
