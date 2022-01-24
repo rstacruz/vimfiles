@@ -72,9 +72,10 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'thinca/vim-visualstar'
 Plug 'wellle/context.vim'
 
-if executable('code-minimap') == 1
-  Plug 'wfxr/minimap.vim'
-endif
+" if executable('code-minimap') == 1
+"   Plug 'wfxr/minimap.vim'
+" endif
+Plug 'Xuyuanp/scrollbar.nvim'
 " }}}
 
 " Requires nvim {{{
