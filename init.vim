@@ -49,7 +49,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'       " 'yon' to toggle line numbers, and more
 Plug 'rstacruz/vim-gitgrep'
 Plug 'rstacruz/vim-microtone'
-" Plug 'dhruvasagar/vim-prosession' " session management
 " }}}
 
 " Don't load the other plugins for git commit
@@ -57,25 +56,25 @@ if $GIT_EXEC_PATH != '' | call plug#end() | finish | endif
 if $VIM_MINIMAL != '' | call plug#end() | finish | endif
 
 " Not likely needed in minimal mode
-Plug 'liuchengxu/vista.vim'
 Plug 'mhinz/vim-startify'
-Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'liuchengxu/vim-which-key'
-" Plug 'tpope/vim-sleuth'
 
 " Most plugins {{{
+Plug 'Asheq/close-buffers.vim'
+Plug 'ferrine/md-img-paste.vim'
+Plug 'jrudess/vim-foldtext'
+Plug 'michaeljsmith/vim-indent-object'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rstacruz/vim-closer'
-Plug 'junegunn/gv.vim'
-Plug 'thinca/vim-visualstar'
-Plug 'wellle/context.vim'
-Plug 'jrudess/vim-foldtext'
 Plug 'rstacruz/vim-xtract'
 Plug 'ryanoasis/vim-devicons'
-Plug 'ferrine/md-img-paste.vim'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'Asheq/close-buffers.vim'
+Plug 'thinca/vim-visualstar'
+Plug 'wellle/context.vim'
+
+if executable('code-minimap') == 1
+  Plug 'wfxr/minimap.vim'
+endif
 " }}}
 
 " Requires nvim {{{
@@ -90,7 +89,6 @@ if has('nvim')
   Plug 'nvim-telescope/telescope-fzf-native.nvim', {'do': 'make'}
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'preservim/nerdtree'
-  Plug 'rktjmp/lush.nvim'
   Plug 'voldikss/vim-floaterm'
   Plug 'folke/zen-mode.nvim'
   Plug 'junegunn/fzf.vim'
@@ -105,21 +103,16 @@ endif
 " }}}
 
 " GUI themes and colorschemes {{{
-Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'challenger-deep-theme/vim', {'as': 'challenger-deep-theme-vim'}
 Plug 'cocopon/iceberg.vim'
 Plug 'cormacrelf/vim-colors-github'
 Plug 'dracula/vim', {'as': 'dracula-vim'}
-Plug 'drewtempelmeyer/palenight.vim'
 Plug 'embark-theme/vim', {'as': 'embark-theme-vim'}
-Plug 'equt/paper.vim'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'habamax/vim-sugarlily'
 Plug 'letorbi/vim-colors-modern-borland'
 Plug 'joshdick/onedark.vim'
-Plug 'lifepillar/vim-colortemplate'
 Plug 'mcchrish/zenbones.nvim'
-Plug 'owickstrom/vim-colors-paramount'
 " }}}
 
 " Coc extensions {{{

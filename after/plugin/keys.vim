@@ -362,6 +362,10 @@ elseif exists(':Goyo')
   let g:which_key_map.k.z = 'Toggle zen mode'
   nnoremap <silent> <leader>kz :Goyo<cr>
 end
+if exists(':Minimap')
+  let g:which_key_map.k.m = 'Toggle minimap'
+  nnoremap <silent> <leader>km :MinimapToggle<cr>:MinimapRefresh<cr>
+end
 
 if exists(':Autofold')
   let g:which_key_map.k.a = 'Toggle autofold'
