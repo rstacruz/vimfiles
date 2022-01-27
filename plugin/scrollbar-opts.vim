@@ -18,5 +18,5 @@ augroup ScrollbarInit
   autocmd!
   autocmd WinScrolled,VimResized,QuitPre * silent! lua require('scrollbar').show()
   autocmd WinEnter,FocusGained,BufEnter  * silent! lua require('scrollbar').show()
-  autocmd WinLeave,BufLeave,BufWinLeave,FocusLost            * silent! lua require('scrollbar').clear()
+  autocmd WinLeave,BufLeave,BufWinLeave,FocusLost,QuitPre * silent! lua require('scrollbar').clear()
 augroup end
