@@ -255,7 +255,11 @@ if exists(':Telescope')
   nnoremap <silent> <leader>pb :Telescope buffers<cr>
   let g:which_key_map.p.g = 'Git files...'
   nnoremap <silent> <leader>pg :Telescope git_files<cr>
-elseif exists(':Flies')
+  let g:which_key_map.p['*'] = 'Search word in cursor...'
+  nnoremap <silent> <leader>p* :Telescope grep_string<cr>
+  let g:which_key_map.p['/'] = 'Search...'
+  nnoremap <silent> <leader>p/ :Telescope live_grep<cr>
+elseif exists(':Files')
   nnoremap <silent> <C-p> :GFiles --exclude-standard --others --cached<cr>
   let g:which_key_map.p.b = 'Buffers...'
   nnoremap <silent> <leader>pb :Buffers<cr>
