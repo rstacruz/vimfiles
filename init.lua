@@ -64,7 +64,7 @@ end)
 vim.api.nvim_set_var('startify_custom_indices', {'1', '2', '3', '4', '5', '6', '7', '8', '9'})
 vim.api.nvim_set_var('startify_custom_header', {'    Neovim'})
 vim.api.nvim_command([[
-let g:startify_lists = [ { 'type': 'dir', 'header': startify#pad(['Recent files']) }, { 'type': 'sessions', 'header': startify#pad(['Saved sessions']) }, { 'type': 'commands',  'header': startify#pad(['Commands']) }, { 'type': 'bookmarks', 'header': startify#pad(['Bookmarks']) }, ]
+let g:startify_lists = [ { 'type': 'dir', 'header': startify#pad(['Recent files']) } ]
 ]])
 
 -- Vim settings
