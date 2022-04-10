@@ -15,11 +15,16 @@ require 'paq' {
   -- Goodies
   'tpope/vim-unimpaired'; -- Toggle key bindings
   'tpope/vim-commentary'; -- Comments
-  'tpope/vim-sleuth'; -- Detect indents automatically
   'thinca/vim-visualstar';
+  'michaeljsmith/vim-indent-object';
+  'Xuyuanp/scrollbar.nvim';
   'mhinz/vim-startify';
   'nvim-lua/plenary.nvim'; -- for Telescope
   'nvim-telescope/telescope.nvim';
+  'kyazdani42/nvim-tree.lua';
+  'kyazdani42/nvim-web-devicons';
+  'Darazaki/indent-o-matic'; -- automatic indentation detect
+  'nvim-lualine/lualine.nvim';
 }
 
 function plugin(module_name, callback)
@@ -27,7 +32,7 @@ function plugin(module_name, callback)
   if status then callback(mod) end
 end
 
--- Plugin: treesitter
+-- Plugin: treesitter {{{
 plugin('nvim-treesitter.configs', function(mod)
   mod.setup {
     ensure_installed = { 'c', 'cpp', 'javascript', 'css', 'lua', },
@@ -37,8 +42,9 @@ plugin('nvim-treesitter.configs', function(mod)
     },
   }
 end)
+-- }}}
 
--- Plugin: formatter
+-- Plugin: formatter {{{
 plugin('formatter', function(mod)
   mod.setup {}
   vim.api.nvim_command([[
@@ -47,8 +53,9 @@ plugin('formatter', function(mod)
     augroup END
   ]])
 end)
+-- }}}
 
--- Plugin: compe
+-- Plugin: compe {{{
 plugin('compe', function(mod)
   mod.setup {
     source = {
@@ -59,13 +66,68 @@ plugin('compe', function(mod)
     }
   }
 end)
+-- }}}
 
--- Plugin: startify
-vim.api.nvim_set_var('startify_custom_indices', {'1', '2', '3', '4', '5', '6', '7', '8', '9'})
-vim.api.nvim_set_var('startify_custom_header', {'    Neovim'})
-vim.api.nvim_command([[
-let g:startify_lists = [ { 'type': 'dir', 'header': startify#pad(['Recent files']) } ]
-]])
+-- Plugin: scrollbar (not working?) {{{
+plugin('scrollbar', function(mod)
+  vim.api.nvim_command([[
+    let g:scrollbar_max_size = 12
+    let g:scrollbar_shape = { 'head': '█', 'body': '█', 'tail': '█', }
+    let g:scrollbar_highlight = { 'head': 'LineNr', 'body': 'LineNr', 'tail': 'LineNr', }
+
+    augroup ScrollbarInit
+      autocmd WinScrolled,VimResized,QuitPre * silent! lua require('scrollbar').show()
+      autocmd WinEnter,FocusGained,BufEnter  * silent! lua require('scrollbar').show()
+      autocmd WinLeave,BufLeave,BufWinLeave,FocusLost,QuitPre * silent! lua require('scrollbar').clear()
+    augroup END
+  ]])
+end)
+-- }}}
+
+-- Plugin: tree {{{
+plugin('nvim-tree', function(mod)
+  mod.setup { }
+end)
+-- }}}
+
+-- Plugin: startify {{{
+if vim.api.nvim_eval('exists(":Startify")') then
+  vim.api.nvim_set_var('startify_custom_indices', {'1', '2', '3', '4', '5', '6', '7', '8', '9'})
+  vim.api.nvim_set_var('startify_custom_header', {'    Neovim'})
+  vim.api.nvim_set_var('startify_enable_unsafe', 1)
+  vim.api.nvim_command([[
+  let g:startify_lists = [ { 'type': 'dir', 'header': startify#pad(['Recent files']) } ]
+  ]])
+end
+-- }}}
+
+-- Plugin: indent-o-matic {{{
+plugin('indent-o-matic', function(mod)
+  mod.setup { }
+end)
+-- }}}
+--
+-- Plugin: lualine {{{
+plugin('lualine', function(mod)
+  mod.setup {
+    options = {
+      component_separators = { left = '', right = '' },
+      section_separators = { left = '', right = '' },
+    },
+    sections = {
+      lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
+      lualine_b = { 'filename' },
+      lualine_c = {},
+      lualine_x = {'filetype'},
+      lualine_y = {'progress'},
+      lualine_z = {
+        { 'location', separator = { right = '' }, left_padding = 2 },
+      },
+    },
+    tabline = {}
+  }
+end)
+-- }}}
 
 -- Vim settings
 vim.opt.gdefault = true
@@ -73,6 +135,8 @@ vim.opt.mouse = 'a'
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
+vim.opt.showmode = false -- Don't show "-- INSERT --" in status line
+vim.opt.fillchars = { eob = '┄', vert = '┃' }
 vim.cmd 'color microtone'
 
 -- Vim: terminal (no line numbers)
@@ -86,3 +150,5 @@ vim.api.nvim_command([[
 -- Etc
 require 'keymaps'
 require 'plugin-lspconfig'
+
+-- vim:foldmethod=marker
