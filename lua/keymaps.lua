@@ -11,6 +11,7 @@ map('n', [[+]], [[za]], opts)
 
 -- Keymap: ctrl
 map('n', [[<c-s>]], [[:w<cr>]], opts)
+map('i', [[<c-s>]], [[<esc>:w<cr>]], opts)
 map('n', [[<c-p>]], [[:Telescope find_files<cr>]], opts)
 map('i', [[<c-v>]], [[<esc>:set paste<cr>a<c-r>+<esc>:set nopaste<cr>a]], opts) -- Paste
 map('v', [[<c-c>]], [["+y]], opts) -- Paste
@@ -47,12 +48,14 @@ map('n', [[<leader>vs]], [[:tab split ~/.config/nvim/init.lua<cr>]], opts) -- [v
 map('n', [[<leader>vk]], [[:tab split ~/.config/nvim/lua/keymaps.lua<cr>]], opts) -- [vk] :: Vim keybindings
 map('n', [[<leader>vr]], [[:luafile ~/.config/nvim/init.lua<cr>:PaqSync<cr>]], opts) -- [vr] :: Vim reload
 
--- Keymap: leader x [exit]
+-- Keymap: leader x (exit)
 map('n', [[<leader>xs]], [[:SClose<cr>]], opts) -- [xs] :: Close session
 
--- Keymap: leader u [ui]
-map('n', [[<leader>ub]], [[:NvimTreeToggle<cr>]], opts)
-map('n', [[<leader>ue]], [[:NvimTreeToggle<cr>]], opts)
+-- Keymap: leader u (user interface)
+map('n', [[<leader>uf]], [[:NvimTreeToggle<cr>]], opts) -- [uf] :: Files
+
+-- Keymap: leader g (git)
+map('n', [[<leader>gs]], [[:Git<cr>]], opts) -- [gs] :: Git status
 
 -- lcoalleader: lua
 map('n', [[<localleader>s]], [[:w<cr>:luafile %<cr>]], opts)
