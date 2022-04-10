@@ -6,7 +6,7 @@ vim.g.maplocalleader = ','
 -- Keymap: general
 map('n', [[gs]], [[:%s~~]], opts)
 map('v', [[gs]], [[:s~~]], opts)
-map('n', [[-]], [[:NvimTreeFocus<cr>]], opts)
+map('n', [[-]], [[:NvimTreeFindFile<cr>]], opts)
 map('n', [[+]], [[za]], opts)
 
 -- Keymap: ctrl
@@ -15,17 +15,22 @@ map('n', [[<c-p>]], [[:Telescope find_files<cr>]], opts)
 map('i', [[<c-v>]], [[<esc>:set paste<cr>a<c-r>+<esc>:set nopaste<cr>a]], opts) -- Paste
 map('v', [[<c-c>]], [["+y]], opts) -- Paste
 
+-- Keymap: terminal
+map('t', [[<esc>]], [[<c-\><c-n>]], opts) -- Terminal esc
+
 -- Keymap: cr
 map('n', [[<cr><right>]], [[<c-w>l]], opts)
 map('n', [[<cr><left>]], [[<c-w>h]], opts)
 map('n', [[<cr><up>]], [[<c-w>k]], opts)
 map('n', [[<cr><down>]], [[<c-w>j]], opts)
+map('n', [[<cr>t]], [[:tabnew<cr>]], opts)
 map('n', [[<del>]], [[<c-w>q]], opts)
 
 -- Keymap: leader
 map('n', [[<leader>*]], [[:tabnew<cr>]], opts)
+map('n', [[<leader>.]], [[:term<cr>]], opts)
 
--- Keymap: leader w
+-- Keymap: leader w (window)
 map('n', [[<leader>wH]], [[<c-w>H]], opts)
 map('n', [[<leader>wJ]], [[<c-w>J]], opts)
 map('n', [[<leader>wK]], [[<c-w>]], opts)
@@ -34,10 +39,16 @@ map('n', [[<leader>ws]], [[<c-w>s]], opts)
 map('n', [[<leader>wv]], [[<c-w>v]], opts)
 map('n', [[<leader>wq]], [[<c-w>q]], opts)
 
--- Keymap: leader v [vim]
+-- Keymap: leader p (pick)
+map('n', [[<leader>pb]], [[:Telescope buffers<cr>]], opts)
+
+-- Keymap: leader v (vim)
 map('n', [[<leader>vs]], [[:tab split ~/.config/nvim/init.lua<cr>]], opts) -- [vs] :: Vim settings
 map('n', [[<leader>vk]], [[:tab split ~/.config/nvim/lua/keymaps.lua<cr>]], opts) -- [vk] :: Vim keybindings
 map('n', [[<leader>vr]], [[:luafile ~/.config/nvim/init.lua<cr>:PaqSync<cr>]], opts) -- [vr] :: Vim reload
+
+-- Keymap: leader x [exit]
+map('n', [[<leader>xs]], [[:SClose<cr>]], opts) -- [xs] :: Close session
 
 -- Keymap: leader u [ui]
 map('n', [[<leader>ub]], [[:NvimTreeToggle<cr>]], opts)

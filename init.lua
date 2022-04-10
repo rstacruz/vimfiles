@@ -15,6 +15,7 @@ require 'paq' {
   -- Goodies
   'tpope/vim-unimpaired'; -- Toggle key bindings
   'tpope/vim-commentary'; -- Comments
+  'tpope/vim-fugitive'; -- Git
   'thinca/vim-visualstar';
   'michaeljsmith/vim-indent-object';
   'Xuyuanp/scrollbar.nvim';
@@ -31,6 +32,8 @@ function plugin(module_name, callback)
   local status, mod = pcall(require, module_name)
   if status then callback(mod) end
 end
+
+cmd = vim.api.nvim_command
 
 -- Plugin: treesitter {{{
 plugin('nvim-treesitter.configs', function(mod)
@@ -74,13 +77,14 @@ plugin('scrollbar', function(mod)
     let g:scrollbar_max_size = 12
     let g:scrollbar_shape = { 'head': '█', 'body': '█', 'tail': '█', }
     let g:scrollbar_highlight = { 'head': 'LineNr', 'body': 'LineNr', 'tail': 'LineNr', }
-
-    augroup ScrollbarInit
-      autocmd WinScrolled,VimResized,QuitPre * silent! lua require('scrollbar').show()
-      autocmd WinEnter,FocusGained,BufEnter  * silent! lua require('scrollbar').show()
-      autocmd WinLeave,BufLeave,BufWinLeave,FocusLost,QuitPre * silent! lua require('scrollbar').clear()
-    augroup END
   ]])
+
+  cmd([[augroup ScrollbarInit]])
+  cmd([[au!]])
+  cmd([[autocmd WinScrolled,VimResized,QuitPre * silent! lua require('scrollbar').show()]])
+  cmd([[autocmd WinEnter,FocusGained,BufEnter  * silent! lua require('scrollbar').show()]])
+  cmd([[autocmd WinLeave,BufLeave,BufWinLeave,FocusLost,QuitPre * silent! lua require('scrollbar').clear()]])
+  cmd([[augroup END]])
 end)
 -- }}}
 
@@ -106,7 +110,7 @@ plugin('indent-o-matic', function(mod)
   mod.setup { }
 end)
 -- }}}
---
+
 -- Plugin: lualine {{{
 plugin('lualine', function(mod)
   mod.setup {
@@ -115,7 +119,14 @@ plugin('lualine', function(mod)
       section_separators = { left = '', right = '' },
     },
     sections = {
-      lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
+      lualine_a = {
+        {
+          'mode',
+          separator = { left = '' },
+          right_padding = 2,
+          fmt = function(str) return str:sub(1,3) end
+        }
+      },
       lualine_b = { 'filename' },
       lualine_c = {},
       lualine_x = {'filetype'},
@@ -129,7 +140,7 @@ plugin('lualine', function(mod)
 end)
 -- }}}
 
--- Vim settings
+-- Vim settings {{{
 vim.opt.gdefault = true
 vim.opt.mouse = 'a'
 vim.opt.expandtab = true
@@ -138,14 +149,15 @@ vim.opt.softtabstop = 2
 vim.opt.showmode = false -- Don't show "-- INSERT --" in status line
 vim.opt.fillchars = { eob = '┄', vert = '┃' }
 vim.cmd 'color microtone'
+-- }}}
 
--- Vim: terminal (no line numbers)
-vim.api.nvim_command([[
-  augroup TerminalCustomisations
-  au! TermOpen * setlocal nonumber norelativenumber nocursorline
-  au! TermOpen * startinsert
-  augroup END
-]])
+-- Customisation: terminal (no line numbers) {{{
+cmd([[augroup TerminalCustomisations]])
+cmd([[au!]])
+cmd([[au TermOpen * setlocal nonumber norelativenumber nocursorline]])
+cmd([[au TermOpen * startinsert]])
+cmd([[augroup END]])
+-- }}}
 
 -- Etc
 require 'keymaps'
