@@ -549,3 +549,33 @@ endfunction
 
 command! SS call GitFastsync()
 command! S call GitFastsyncInteractive()
+
+" https://benjamincongdon.me/blog/2020/06/27/Vim-Tip-Paste-Markdown-Link-with-Automatic-Title-Fetching/
+function GetURLTitle(url)
+    " Bail early if the url obviously isn't a URL.
+    if a:url !~ '^https\?://'
+        return ""
+    endif
+
+    " https://unix.stackexchange.com/a/103282
+    let title = system("curl " . shellescape(a:url) . " -H 'User-Agent: Mozilla/5.0 (Mobile; rv:26.0) Gecko/26.0 Firefox/26.0' -so - | grep -iPo '(?<=<title>)(.*?)(?=</title>)'")
+
+    " Echo the error if getting title failed.
+    if v:shell_error != 0
+        echom title
+        return ""
+    endif
+
+    " Strip trailing newline
+    return substitute(title, '\n', '', 'g')
+endfunction
+
+function PasteMDLink()
+    let url = getreg("+")
+    let title = GetURLTitle(url)
+    let mdLink = printf("[%s](%s)", title, url)
+    execute "normal! a" . mdLink . "\<Esc>"
+endfunction
+
+" Make a keybinding (mnemonic: "mark down paste")
+" nmap <Leader>mdp :call PasteMDLink()<cr>
