@@ -91,7 +91,7 @@ wk.register({
   g = {
     name = 'Git...',
     s = { ':tab Git<cr>', 'Git status' },
-    a = { ':Git add -u . | tab Git commit -v<cr>', 'Git add and commit' },
+    a = { ':Glcd | Git add -u . | tab Git commit -v<cr>', 'Git add and commit' },
     h = { ':GBrowse<cr>', 'Open in GitHub' },
     c = { ':tab Git commit -v<cr>', 'Git commit' },
     b = { ':Git blame<cr>', 'Open file blame' }
