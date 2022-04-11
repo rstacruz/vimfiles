@@ -284,6 +284,7 @@ cmd([[augroup END]])
 -- Customisation: git (close on ctrl-s) {{{
 cmd([[augroup GitCustomisations]])
 cmd([[au!]])
+cmd([[au FileType gitcommit startinsert]])
 cmd([[au FileType gitcommit inoremap <silent> <buffer> <c-s> <esc>:w<cr>G:q<cr>]])
 cmd([[au FileType gitcommit nnoremap <silent> <buffer> <c-s> :w<cr>G:q<cr>]])
 cmd([[augroup END]])
