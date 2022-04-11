@@ -186,7 +186,8 @@ plugin('which-key', function(mod)
       group = ''
     },
     layout = {
-      align = 'center'
+      align = 'center',
+      spacing = 7
     }
  }
 end)
