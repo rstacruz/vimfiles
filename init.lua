@@ -1,6 +1,5 @@
 PKGS = {
-  -- Paq (package manager)
-  'savq/paq-nvim';
+  'savq/paq-nvim'; -- Paq package manager
 
   -- Language
   'nvim-treesitter/nvim-treesitter';
@@ -17,29 +16,29 @@ PKGS = {
 
   -- Goodies
   'Darazaki/indent-o-matic'; -- Detect indentation automatically
-  'jrudess/vim-foldtext'; -- Improve appearance of fold text
+  'Xuyuanp/scrollbar.nvim';
   'folke/lsp-colors.nvim'; -- Infer some colours needed for LSP
   'folke/which-key.nvim'; -- Menu when pressing [space]
+  'jrudess/vim-foldtext'; -- Improve appearance of fold text
   'kyazdani42/nvim-tree.lua'; -- File explorer
   'kyazdani42/nvim-web-devicons';
   'lewis6991/gitsigns.nvim'; -- Git indicators on the gutter
   'lewis6991/impatient.nvim'; -- Improve startup time by optimising Lua cache
-  'nathom/filetype.nvim'; -- Improve startup time
   'lukas-reineke/indent-blankline.nvim'; -- Indent indicators
   'mhinz/vim-startify'; -- Show recent files on startup
   'michaeljsmith/vim-indent-object';
-  'nvim-lualine/lualine.nvim'; -- Status line
+  'nathom/filetype.nvim'; -- Improve startup time
   'nvim-lua/plenary.nvim'; -- for Telescope
+  'nvim-lualine/lualine.nvim'; -- Status line
   'nvim-telescope/telescope.nvim';
   'rstacruz/vim-gitgrep';
   'thinca/vim-visualstar';
   'tpope/vim-commentary'; -- Comments
   'tpope/vim-fugitive'; -- Git
-  'tpope/vim-surround';
   'tpope/vim-rhubarb'; -- Fugitive extension for GitHub commands
+  'tpope/vim-surround';
   'tpope/vim-unimpaired'; -- Toggle key bindings
   'voldikss/vim-floaterm'; -- Floating terminals
-  'Xuyuanp/scrollbar.nvim';
 }
 
 -- Preamble {{{
@@ -59,6 +58,7 @@ local function has_paq(name)
 end
 -- }}}
 
+-- Bootstrap {{{
 if not has_paq('paq-nvim') then
   local path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
   local paq_url = 'https://github.com/savq/paq-nvim.git'
@@ -74,6 +74,7 @@ plugin('paq', function(paq)
   paq(PKGS)
   paq.install()
 end)
+-- }}}
 
 plugin('nvim-treesitter.configs', function(mod) -- {{{
   mod.setup {
