@@ -37,6 +37,7 @@ plugin('paq', function(paq)
     'tpope/vim-surround';
     'tpope/vim-rhubarb'; -- Fugitive extension for GitHub commands
     'tpope/vim-unimpaired'; -- Toggle key bindings
+    'voldikss/vim-floaterm';
     'Xuyuanp/scrollbar.nvim';
   }
   paq.install()
@@ -130,10 +131,17 @@ if vim.api.nvim_eval('exists(":Startify")') then
   vim.api.nvim_set_var('startify_custom_header', {'    Neovim'})
   vim.api.nvim_set_var('startify_enable_unsafe', 1)
   vim.api.nvim_command([[
-  let g:startify_lists = [ { 'type': 'dir', 'header': ['Recent files'] } ]
+  let g:startify_lists = [ { 'type': 'dir', 'header': ['  Recent files'] }, { 'type': 'sessions', 'header': ['  Sessions'] } ]
   ]])
 end
 -- }}}
+--
+-- Plugin: floaterm {{{
+if vim.api.nvim_eval('exists(":FloatermNew")') then
+  vim.api.nvim_set_var('floaterm_width', 0.95)
+end
+-- }}}
+
 
 -- Plugin: indent-o-matic {{{
 plugin('indent-o-matic', function(mod)

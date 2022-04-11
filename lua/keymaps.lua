@@ -83,9 +83,10 @@ wk.register({
     name = 'Settings...',
     f = { ':NvimTreeToggle<cr>', 'Toggle file explorer' },
     [','] = { ':tab split ~/.config/nvim/init.lua<cr>', 'Edit Vim settings' },
-    x = { ':tab split ~/.config/nvim/init.lua<cr>', 'Edit Vim settings' },
+    x = { ':tab split ~/.config/nvim/init.lua<cr>', 'Edit extensions' },
     k = { ':tab split ~/.config/nvim/lua/keymaps.lua<cr>', 'Edit keybindings' },
     s = { ':luafile ~/.config/nvim/init.lua<cr>:PaqSync<cr>', 'Sync plugins' },
+    u = { ':luafile ~/.config/nvim/init.lua<cr>:PaqUpdate<cr>', 'Update plugins' },
   },
   g = {
     name = 'Git...',
@@ -94,6 +95,12 @@ wk.register({
     h = { ':GBrowse<cr>', 'Open in GitHub' },
     c = { ':tab Git commit -v<cr>', 'Git commit' },
     b = { ':Git blame<cr>', 'Open file blame' }
+  },
+  t = {
+    name = 'Terminal...',
+    a = { ':FloatermToggle a<cr>', 'Open terminal 1' },
+    r = { ':FloatermToggle r<cr>', 'Open terminal 2' },
+    s = { ':FloatermToggle s<cr>', 'Open terminal 3' },
   },
 }, { prefix = '<Leader>' })
 
