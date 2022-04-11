@@ -42,6 +42,7 @@ wk.register({
   ['7'] = { ':7wincmd w<cr>', 'Focus pane 7' },
   ['8'] = { ':8wincmd w<cr>', 'Focus pane 8' },
   ['0'] = { '<c-w>b', 'Focus last pane' },
+  ['<Esc>'] = { ':FloatermToggle<cr>', 'Toggle terminal' },
   t = { ':tabnew<cr>', 'New tab' }
 }, { prefix = "<cr>" })
 
