@@ -94,7 +94,8 @@ wk.register({
     a = { ':Glcd | Git add -u . | tab Git commit -v<cr>', 'Git add and commit' },
     h = { ':GBrowse<cr>', 'Open in GitHub' },
     c = { ':tab Git commit -v<cr>', 'Git commit' },
-    b = { ':Git blame<cr>', 'Open file blame' }
+    b = { ':Git blame<cr>', 'Open file blame' },
+    p = { ':FloatermNew --width=0.5 --height=0.3 git push<cr>', 'Push' }
   },
   t = {
     name = 'Terminal...',
@@ -107,7 +108,6 @@ wk.register({
     a = { ':lua vim.lsp.buf.code_action()', 'Actions' },
   },
 }, { prefix = '<Leader>' })
-
 -- lcoalleader: lua
 map('n', [[<localleader>s]], [[:w<cr>:luafile %<cr>]], opts)
 
