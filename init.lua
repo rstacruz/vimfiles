@@ -219,7 +219,6 @@ end) -- }}}
 
 plugin("nvim-lsp-installer", function(mod) --  {{{
   vim.api.nvim_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-  require("lsp-format").setup()
 
   mod.on_server_ready(function(server)
     local opts = {}
