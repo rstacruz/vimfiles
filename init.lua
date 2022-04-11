@@ -28,6 +28,7 @@ plugin('paq', function(paq)
 
     -- Goodies
     'Darazaki/indent-o-matic'; -- Detect indentation automatically
+    'jrudess/vim-foldtext'; -- Improve appearance of fold text
     'folke/lsp-colors.nvim'; -- Infer some colours needed for LSP
     'folke/which-key.nvim'; -- Menu when pressing [space]
     'kyazdani42/nvim-tree.lua'; -- File explorer
@@ -230,7 +231,9 @@ if vimeval('exists(":Startify")') then -- {{{
   vim.api.nvim_set_var('startify_custom_header', {'    Neovim'})
   vim.api.nvim_set_var('startify_enable_unsafe', 1)
   vim.api.nvim_command([[
-  let g:startify_lists = [ { 'type': 'dir', 'header': ['  Recent files'] } ]
+  let g:startify_lists = []
+  let g:startify_lists += [ { 'type': 'dir', 'header': ['  Recent files'] } ]
+  let g:startify_lists += [ { 'type': 'sessions', 'header': ['  Sessions'] } ]
   ]])
 end -- }}}
 
