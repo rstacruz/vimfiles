@@ -17,6 +17,7 @@ PKGS = {
 
   -- Goodies
   "phaazon/hop.nvim",
+  "nvim-pack/nvim-spectre",
   "Darazaki/indent-o-matic", -- Detect indentation automatically
   "Xuyuanp/scrollbar.nvim",
   "folke/lsp-colors.nvim", -- Infer some colours needed for LSP
@@ -220,7 +221,8 @@ end) -- }}}
 
 plugin("hop", function(mod) -- {{{
   mod.setup({
-    keys = "arstgwfpxcdvmneiohluykj",
+    keys = "arstgmneiowfpyulcdh",
+    -- keys = "1234567890",
   })
 end) -- }}}
 
