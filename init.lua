@@ -3,6 +3,10 @@ local function plugin(module_name, callback)
   if status then callback(mod) end
 end
 
+-- Plugin: impatient {{{
+plugin('impatient', function() end)
+-- }}}
+
 plugin('paq', function(paq)
   paq {
     -- Paq (package manager)
@@ -24,7 +28,8 @@ plugin('paq', function(paq)
     'folke/which-key.nvim';
     'kyazdani42/nvim-tree.lua'; -- File explorer
     'kyazdani42/nvim-web-devicons';
-    'lewis6991/gitsigns.nvim';
+    'lewis6991/gitsigns.nvim'; -- Git indicators on the gutter
+    'lewis6991/impatient.nvim'; -- Improve startup time by optimising Lua cache
     'mhinz/vim-startify';
     'michaeljsmith/vim-indent-object';
     'nvim-lualine/lualine.nvim';
@@ -135,20 +140,19 @@ if vim.api.nvim_eval('exists(":Startify")') then
   ]])
 end
 -- }}}
---
+
 -- Plugin: floaterm {{{
 if vim.api.nvim_eval('exists(":FloatermNew")') then
   vim.api.nvim_set_var('floaterm_width', 0.95)
 end
 -- }}}
 
-
 -- Plugin: indent-o-matic {{{
 plugin('indent-o-matic', function(mod)
   mod.setup { }
 end)
 -- }}}
-
+--
 -- Plugin: lualine {{{
 plugin('lualine', function(mod)
   mod.setup {
