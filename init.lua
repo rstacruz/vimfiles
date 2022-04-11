@@ -154,6 +154,7 @@ vim.opt.mouse = 'a'
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
+vim.opt.swapfile = false
 vim.opt.showmode = false -- Don't show "-- INSERT --" in status line
 vim.opt.timeoutlen = 200 -- For which-key
 vim.opt.fillchars = { eob = '┄', vert = '┃' }

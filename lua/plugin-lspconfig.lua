@@ -1,4 +1,5 @@
-local servers = { 'pyright', 'rust_analyzer', 'tsserver' }
+local servers = { 'sumneko_lua', 'tsserver', 'cssls', 'solargraph' }
+-- { 'pyright', 'rust_analyzer' }
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -13,10 +14,10 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   local bmap = vim.api.nvim_buf_set_keymap
-  bmap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts) -- gD :: Go to declration
-  bmap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts) -- gd :: Go to definition
-  bmap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts) -- gi :: Go to implementation
-  bmap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts) -- gr :: Go to references
+  -- bmap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts) -- gD :: Go to declration
+  -- bmap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts) -- gd :: Go to definition
+  -- bmap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts) -- gi :: Go to implementation
+  -- bmap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts) -- gr :: Go to references
 
   bmap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts) -- K :: hover info
   bmap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts) -- <c-k> :: signature
