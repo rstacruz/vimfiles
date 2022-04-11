@@ -244,6 +244,7 @@ cmd([[augroup END]])
 -- Customisation: git (close on ctrl-s) {{{
 cmd([[augroup GitCustomisations]])
 cmd([[au!]])
+cmd([[au BufWritePost COMMIT_EDITMSG norm G]])
 cmd([[au BufWritePost COMMIT_EDITMSG bwipe]])
 cmd([[augroup END]])
 -- }}}
