@@ -1,42 +1,45 @@
-require 'paq' {
-  -- Paq (package manager)
-  'savq/paq-nvim';
-
-  -- Language
-  'nvim-treesitter/nvim-treesitter';
-  'hrsh7th/nvim-compe';
-  'neovim/nvim-lspconfig';
-  'mhartington/formatter.nvim';
-  'williamboman/nvim-lsp-installer';
-
-  -- Themes
-  'rstacruz/vim-microtone';
-
-  -- Goodies
-  'Darazaki/indent-o-matic'; -- Detect indentation automatically
-  'folke/lsp-colors.nvim';
-  'folke/which-key.nvim';
-  'kyazdani42/nvim-tree.lua'; -- File explorer
-  'kyazdani42/nvim-web-devicons';
-  'lewis6991/gitsigns.nvim';
-  'mhinz/vim-startify';
-  'michaeljsmith/vim-indent-object';
-  'nvim-lualine/lualine.nvim';
-  'nvim-lua/plenary.nvim'; -- for Telescope
-  'nvim-telescope/telescope.nvim';
-  'rstacruz/vim-gitgrep';
-  'thinca/vim-visualstar';
-  'tpope/vim-commentary'; -- Comments
-  'tpope/vim-fugitive'; -- Git
-  'tpope/vim-surround';
-  'tpope/vim-unimpaired'; -- Toggle key bindings
-  'Xuyuanp/scrollbar.nvim';
-}
-
 local function plugin(module_name, callback)
   local status, mod = pcall(require, module_name)
   if status then callback(mod) end
 end
+
+plugin('paq', function(paq)
+  paq {
+    -- Paq (package manager)
+    'savq/paq-nvim';
+
+    -- Language
+    'nvim-treesitter/nvim-treesitter';
+    'hrsh7th/nvim-compe';
+    'neovim/nvim-lspconfig';
+    'mhartington/formatter.nvim';
+    'williamboman/nvim-lsp-installer';
+
+    -- Themes
+    'rstacruz/vim-microtone';
+
+    -- Goodies
+    'Darazaki/indent-o-matic'; -- Detect indentation automatically
+    'folke/lsp-colors.nvim';
+    'folke/which-key.nvim';
+    'kyazdani42/nvim-tree.lua'; -- File explorer
+    'kyazdani42/nvim-web-devicons';
+    'lewis6991/gitsigns.nvim';
+    'mhinz/vim-startify';
+    'michaeljsmith/vim-indent-object';
+    'nvim-lualine/lualine.nvim';
+    'nvim-lua/plenary.nvim'; -- for Telescope
+    'nvim-telescope/telescope.nvim';
+    'rstacruz/vim-gitgrep';
+    'thinca/vim-visualstar';
+    'tpope/vim-commentary'; -- Comments
+    'tpope/vim-fugitive'; -- Git
+    'tpope/vim-surround';
+    'tpope/vim-unimpaired'; -- Toggle key bindings
+    'Xuyuanp/scrollbar.nvim';
+  }
+  paq.install()
+end)
 
 cmd = vim.api.nvim_command
 

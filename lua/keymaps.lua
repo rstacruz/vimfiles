@@ -71,7 +71,7 @@ wk.register({
   x = {
     name = 'Exit...',
     s = { ':SClose<cr>', 'Close session' },
-    ['<cr>'] = { ':cq<cr>', 'Exit' }
+    x = { ':cq<cr>', 'Exit' }
   },
   f = {
     name = 'File...',
@@ -79,12 +79,13 @@ wk.register({
     s = { ':noa w<cr>', 'Save without formatting' },
     r = { ':e!<cr>', 'Revert' }
   },
-  k = {
-    name = 'Editor...',
+  [','] = {
+    name = 'Settings...',
     f = { ':NvimTreeToggle<cr>', 'Toggle file explorer' },
-    s = { ':tab split ~/.config/nvim/init.lua<cr>', 'Edit settings' },
-    b = { ':tab split ~/.config/nvim/lua/keymaps.lua<cr>', 'Edit keybindings' },
-    i = { ':luafile ~/.config/nvim/init.lua<cr>:PaqSync<cr>', 'Sync plugins' },
+    [','] = { ':tab split ~/.config/nvim/init.lua<cr>', 'Edit Vim settings' },
+    x = { ':tab split ~/.config/nvim/init.lua<cr>', 'Edit Vim settings' },
+    k = { ':tab split ~/.config/nvim/lua/keymaps.lua<cr>', 'Edit keybindings' },
+    s = { ':luafile ~/.config/nvim/init.lua<cr>:PaqSync<cr>', 'Sync plugins' },
   },
   g = {
     name = 'Git...',
