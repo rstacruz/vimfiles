@@ -25,6 +25,7 @@ wk.register({
   gr = { ":Telescope lsp_references<cr>", "References (lsp)..." },
   gD = { ":lua vim.lsp.buf.declaration()", "Declaration (lsp)..." },
   gi = { ":lua vim.lsp.buf.implementation()", "Implementation (lsp)..." },
+  gw = { ":HopWord<cr>", "Hop to word" },
 })
 
 -- Keymap: cr
@@ -73,6 +74,12 @@ wk.register({
     name = "Exit...",
     s = { ":SClose<cr>", "Close session" },
     x = { ":cq<cr>", "Exit" },
+  },
+  h = {
+    name = "Hop to...",
+    e = { ":HopLine<cr>", "Line" },
+    i = { ":HopWord<cr>", "Word" },
+    o = { ":HopChar1<cr>", "Character" },
   },
   f = {
     name = "File...",

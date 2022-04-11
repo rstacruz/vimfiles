@@ -16,6 +16,7 @@ PKGS = {
   "preservim/vim-markdown", -- Markdown
 
   -- Goodies
+  "phaazon/hop.nvim",
   "Darazaki/indent-o-matic", -- Detect indentation automatically
   "Xuyuanp/scrollbar.nvim",
   "folke/lsp-colors.nvim", -- Infer some colours needed for LSP
@@ -214,6 +215,12 @@ end) -- }}}
 plugin("nvim-gps", function(mod) -- {{{
   mod.setup({
     separator = " ╱ ",
+  })
+end) -- }}}
+
+plugin("hop", function(mod) -- {{{
+  mod.setup({
+    keys = "arstgwfpxcdvmneiohluykj",
   })
 end) -- }}}
 
