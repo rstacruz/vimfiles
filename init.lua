@@ -6,6 +6,7 @@ PKGS = {
   "hrsh7th/nvim-compe",
   "neovim/nvim-lspconfig",
   "williamboman/nvim-lsp-installer",
+  "sbdchd/neoformat",
 
   -- Themes
   "rstacruz/vim-microtone",
@@ -24,7 +25,6 @@ PKGS = {
   "lewis6991/gitsigns.nvim", -- Git indicators on the gutter
   "lewis6991/impatient.nvim", -- Improve startup time by optimising Lua cache
   "lukas-reineke/indent-blankline.nvim", -- Indent indicators
-  "lukas-reineke/lsp-format.nvim",
   "mhinz/vim-startify", -- Show recent files on startup
   "michaeljsmith/vim-indent-object",
   "nathom/filetype.nvim", -- Improve startup time
@@ -87,46 +87,6 @@ plugin("nvim-treesitter.configs", function(mod) -- {{{
       use_languagetree = true,
     },
   })
-end) -- }}}
-
-plugin("formatter", function(mod) -- {{{
-  mod.setup({
-    filetype = {
-      lua = {
-        function()
-          return {
-            exe = "stylua",
-            args = {
-              "--config-path " .. os.getenv("XDG_CONFIG_HOME") .. "/stylua/stylua.toml",
-              "-",
-            },
-            stdin = true,
-          }
-        end,
-      },
-      ruby = {
-        function()
-          return {
-            exe = "bundle exec rubocop", -- might prepend `bundle exec `
-            args = {
-              "--auto-correct",
-              "--stdin",
-              "%:p",
-              "2>/dev/null",
-              "|",
-              "awk 'f; /^====================$/{f=1}'",
-            },
-            stdin = true,
-          }
-        end,
-      },
-    },
-  })
-  vim.api.nvim_command([[
-    augroup FormatAutogroup
-    autocmd! BufWritePost *.js,*.ts,*.tsx FormatWrite
-    augroup END
-  ]])
 end) -- }}}
 
 plugin("compe", function(mod) -- {{{
@@ -251,7 +211,7 @@ end) -- }}}
 
 plugin("nvim-lsp-installer", function(mod) --  {{{
   vim.api.nvim_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-  require('lsp-format').setup()
+  require("lsp-format").setup()
 
   mod.on_server_ready(function(server)
     local opts = {}
@@ -281,6 +241,13 @@ end -- }}}
 
 if has_paq("vim-microtone") then -- {{{
   cmd([[color microtone]])
+end -- }}}
+
+if has_paq("neoformat") then -- {{{
+  cmd([[augroup Neoformat]])
+  cmd([[au!]])
+  cmd([[au BufWritePre *.lua,*.js,*.ts,*.tsx undojoin | Neoformat]])
+  cmd([[augroup END]])
 end -- }}}
 
 -- Vim settings {{{

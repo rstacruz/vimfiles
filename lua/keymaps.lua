@@ -114,7 +114,8 @@ wk.register({
   l = {
     name = "Language (lsp)...",
     a = { ":lua vim.lsp.buf.code_action()<cr>", "Actions" },
-    f = { ":lua vim.lsp.buf.formatting_seq_sync()<cr>", "Format" },
+    F = { ":lua vim.lsp.buf.formatting_seq_sync()<cr>", "Format (via LSP)" },
+    f = { ":Neoformat<cr>", "Format (via Neoformat)" },
   },
 }, { prefix = "<Leader>" })
 -- lcoalleader: lua

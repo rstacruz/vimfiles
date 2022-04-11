@@ -8,6 +8,16 @@ Working with LSP:
 :LspInstall
 ```
 
+## Formatting
+
+These formatters are automatically picked up by [neoformat](https://github.com/sbdchd/neoformat)).
+
+```sh
+volta install @fsouza/prettierd  # https://github.com/fsouza/prettierd
+volta install eslint_d  # https://github.com/mantoni/eslint_d.js
+cargo install stylua  # https://github.com/JohnnyMorganz/StyLua
+```
+
 ## Previous versions
 
 - [v22.04](https://github.com/rstacruz/vimfiles.git/tree/v22.04) (2022-) — Neovim-only, based on Paq
