@@ -164,7 +164,24 @@ plugin('lualine', function(mod) -- {{{
         { 'location', separator = { right = '' }, left_padding = 2 },
       },
     },
-    tabline = {}
+    tabline = {
+      lualine_a = {},
+      lualine_b = {
+        {
+          'tabs',
+          mode = 1,
+          tabs_color = {
+            -- Same values as the general color option can be used here.
+            active = 'lualine_a_normal',
+            inactive = 'lualine_b_inactive',
+          }
+        }
+      },
+      lualine_c = {},
+      lualine_x = {},
+      lualine_y = {'branch'},
+      lualine_z = {}
+    }
   }
 end) -- }}}
 
@@ -229,7 +246,7 @@ vim.opt.softtabstop = 2
 vim.opt.swapfile = false
 vim.opt.showmode = false -- Don't show '-- INSERT --' in status line
 vim.opt.timeoutlen = 200 -- For which-key
-vim.opt.fillchars = { eob = '┄', vert = '▓' }
+vim.opt.fillchars = { eob = ' ', vert = '▓' }
 vim.cmd 'color microtone'
 -- }}}
 

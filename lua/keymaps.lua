@@ -78,7 +78,9 @@ wk.register({
     name = 'File...',
     w = { ':w<cr>', 'Save' },
     s = { ':noa w<cr>', 'Save without formatting' },
-    r = { ':e!<cr>', 'Revert' }
+    r = { ':e!<cr>', 'Revert' },
+    y = { [[:let @+=@% | echo '→ ' . @%<cr>]], 'Copy current path' },
+    Y = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], 'Copy full path' },
   },
   [','] = {
     name = 'Settings...',
@@ -96,7 +98,12 @@ wk.register({
     h = { ':GBrowse<cr>', 'Open in GitHub' },
     c = { ':tab Git commit -v<cr>', 'Git commit' },
     b = { ':Git blame<cr>', 'Open file blame' },
-    p = { ':FloatermNew --width=0.5 --height=0.3 git push<cr>', 'Push' }
+    p = { ':FloatermNew --width=0.5 --height=0.3 git push<cr>', 'Push' },
+    r = {
+      name = 'Pull request...',
+      c = { ':Glcd | FloatermNew --width=0.5 --height=0.1 gh pr create --web<cr>', 'Create PR (web)' },
+      v = { ':Glcd | FloatermNew --width=0.5 --height=0.1 gh pr view --web<cr>', 'View PR (web)' },
+    },
   },
   t = {
     name = 'Terminal...',
