@@ -1,57 +1,77 @@
+PKGS = {
+  -- Paq (package manager)
+  'savq/paq-nvim';
+
+  -- Language
+  'nvim-treesitter/nvim-treesitter';
+  'hrsh7th/nvim-compe';
+  'neovim/nvim-lspconfig';
+  'mhartington/formatter.nvim';
+  'williamboman/nvim-lsp-installer';
+
+  -- Themes
+  'rstacruz/vim-microtone';
+
+  -- File types
+  'preservim/vim-markdown'; -- Markdown
+
+  -- Goodies
+  'Darazaki/indent-o-matic'; -- Detect indentation automatically
+  'jrudess/vim-foldtext'; -- Improve appearance of fold text
+  'folke/lsp-colors.nvim'; -- Infer some colours needed for LSP
+  'folke/which-key.nvim'; -- Menu when pressing [space]
+  'kyazdani42/nvim-tree.lua'; -- File explorer
+  'kyazdani42/nvim-web-devicons';
+  'lewis6991/gitsigns.nvim'; -- Git indicators on the gutter
+  'lewis6991/impatient.nvim'; -- Improve startup time by optimising Lua cache
+  'nathom/filetype.nvim'; -- Improve startup time
+  'lukas-reineke/indent-blankline.nvim'; -- Indent indicators
+  'mhinz/vim-startify'; -- Show recent files on startup
+  'michaeljsmith/vim-indent-object';
+  'nvim-lualine/lualine.nvim'; -- Status line
+  'nvim-lua/plenary.nvim'; -- for Telescope
+  'nvim-telescope/telescope.nvim';
+  'rstacruz/vim-gitgrep';
+  'thinca/vim-visualstar';
+  'tpope/vim-commentary'; -- Comments
+  'tpope/vim-fugitive'; -- Git
+  'tpope/vim-surround';
+  'tpope/vim-rhubarb'; -- Fugitive extension for GitHub commands
+  'tpope/vim-unimpaired'; -- Toggle key bindings
+  'voldikss/vim-floaterm'; -- Floating terminals
+  'Xuyuanp/scrollbar.nvim';
+}
+
 -- Preamble {{{
 pcall(require, 'impatient') -- Cache Lua packages
 local cmd = vim.api.nvim_command
-local vimeval = vim.api.nvim_eval
+
+-- Loads a module using require(), but does nothing if the module is not present
+-- Used for conditionally configuring a plugin depending on whether it's installed
 local function plugin(module_name, callback)
   local status, mod = pcall(require, module_name)
   if status then callback(mod) end
 end
+
+local function has_paq(name)
+  local path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/' .. name
+  return vim.fn.empty(vim.fn.glob(path)) == 0
+end
 -- }}}
 
+if not has_paq('paq-nvim') then
+  local path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
+  local paq_url = 'https://github.com/savq/paq-nvim.git'
+  vim.fn.system { 'git', 'clone', '--depth=1', paq_url, path }
+  vim.cmd('packadd paq-nvim')
+  vim.cmd('autocmd User PaqDoneInstall quit')
+  local paq = require('paq')
+  paq(PKGS)
+  paq.install()
+end
+
 plugin('paq', function(paq)
-  paq {
-    -- Paq (package manager)
-    'savq/paq-nvim';
-
-    -- Language
-    'nvim-treesitter/nvim-treesitter';
-    'hrsh7th/nvim-compe';
-    'neovim/nvim-lspconfig';
-    'mhartington/formatter.nvim';
-    'williamboman/nvim-lsp-installer';
-
-    -- Themes
-    'rstacruz/vim-microtone';
-
-    -- File types
-    'preservim/vim-markdown'; -- Markdown
-
-    -- Goodies
-    'Darazaki/indent-o-matic'; -- Detect indentation automatically
-    'jrudess/vim-foldtext'; -- Improve appearance of fold text
-    'folke/lsp-colors.nvim'; -- Infer some colours needed for LSP
-    'folke/which-key.nvim'; -- Menu when pressing [space]
-    'kyazdani42/nvim-tree.lua'; -- File explorer
-    'kyazdani42/nvim-web-devicons';
-    'lewis6991/gitsigns.nvim'; -- Git indicators on the gutter
-    'lewis6991/impatient.nvim'; -- Improve startup time by optimising Lua cache
-    'nathom/filetype.nvim'; -- Improve startup time
-    'lukas-reineke/indent-blankline.nvim'; -- Indent indicators
-    'mhinz/vim-startify'; -- Show recent files on startup
-    'michaeljsmith/vim-indent-object';
-    'nvim-lualine/lualine.nvim'; -- Status line
-    'nvim-lua/plenary.nvim'; -- for Telescope
-    'nvim-telescope/telescope.nvim';
-    'rstacruz/vim-gitgrep';
-    'thinca/vim-visualstar';
-    'tpope/vim-commentary'; -- Comments
-    'tpope/vim-fugitive'; -- Git
-    'tpope/vim-surround';
-    'tpope/vim-rhubarb'; -- Fugitive extension for GitHub commands
-    'tpope/vim-unimpaired'; -- Toggle key bindings
-    'voldikss/vim-floaterm'; -- Floating terminals
-    'Xuyuanp/scrollbar.nvim';
-  }
+  paq(PKGS)
   paq.install()
 end)
 
@@ -205,7 +225,8 @@ plugin('which-key', function(mod) -- {{{
       align = 'center',
       spacing = 7
     }
- }
+  }
+  require('keymaps')
 end) -- }}}
 
 plugin('gitsigns', function(mod) -- {{{
@@ -226,7 +247,7 @@ plugin('nvim-lsp-installer', function(mod) --  {{{
   end)
 end) -- }}}
 
-if vimeval('exists(":Startify")') then -- {{{
+if has_paq('vim-startify') then -- {{{
   vim.api.nvim_set_var('startify_custom_indices', {'1', '2', '3', '4', '5', '6', '7', '8', '9'})
   vim.api.nvim_set_var('startify_custom_header', {'    Neovim'})
   vim.api.nvim_set_var('startify_enable_unsafe', 1)
@@ -237,8 +258,12 @@ if vimeval('exists(":Startify")') then -- {{{
   ]])
 end -- }}}
 
-if vimeval('exists(":FloatermNew")') then -- {{{
+if has_paq('vim-floaterm') then -- {{{
   vim.api.nvim_set_var('floaterm_width', 0.95)
+end -- }}}
+
+if has_paq('vim-microtone') then -- {{{
+  cmd([[color microtone]])
 end -- }}}
 
 -- Vim settings {{{
@@ -251,7 +276,6 @@ vim.opt.swapfile = false
 vim.opt.showmode = false -- Don't show '-- INSERT --' in status line
 vim.opt.timeoutlen = 200 -- For which-key
 vim.opt.fillchars = { eob = ' ', vert = '▓' }
-vim.cmd 'color microtone'
 -- }}}
 
 -- Customisation: terminal (no line numbers) {{{
@@ -269,8 +293,5 @@ cmd([[au FileType gitcommit inoremap <silent> <buffer> <c-s> <esc>:w<cr>G:q<cr>]
 cmd([[au FileType gitcommit nnoremap <silent> <buffer> <c-s> :w<cr>G:q<cr>]])
 cmd([[augroup END]])
 -- }}}
-
--- Etc
-require 'keymaps'
 
 -- vim:foldmethod=marker
