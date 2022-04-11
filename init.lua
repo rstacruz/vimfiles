@@ -5,7 +5,6 @@ PKGS = {
   "nvim-treesitter/nvim-treesitter",
   "hrsh7th/nvim-compe",
   "neovim/nvim-lspconfig",
-  "mhartington/formatter.nvim",
   "williamboman/nvim-lsp-installer",
 
   -- Themes
@@ -25,6 +24,7 @@ PKGS = {
   "lewis6991/gitsigns.nvim", -- Git indicators on the gutter
   "lewis6991/impatient.nvim", -- Improve startup time by optimising Lua cache
   "lukas-reineke/indent-blankline.nvim", -- Indent indicators
+  "lukas-reineke/lsp-format.nvim",
   "mhinz/vim-startify", -- Show recent files on startup
   "michaeljsmith/vim-indent-object",
   "nathom/filetype.nvim", -- Improve startup time
@@ -58,6 +58,7 @@ local function has_paq(name)
   local path = vim.fn.stdpath("data") .. "/site/pack/paqs/start/" .. name
   return vim.fn.empty(vim.fn.glob(path)) == 0
 end
+
 -- }}}
 
 -- Bootstrap {{{
@@ -250,6 +251,7 @@ end) -- }}}
 
 plugin("nvim-lsp-installer", function(mod) --  {{{
   vim.api.nvim_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+  require('lsp-format').setup()
 
   mod.on_server_ready(function(server)
     local opts = {}

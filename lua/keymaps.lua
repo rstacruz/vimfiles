@@ -111,9 +111,10 @@ wk.register({
     r = { ":FloatermToggle r<cr>", "Open terminal 2" },
     s = { ":FloatermToggle s<cr>", "Open terminal 3" },
   },
-  c = {
-    name = "Code (lsp)...",
-    a = { ":lua vim.lsp.buf.code_action()", "Actions" },
+  l = {
+    name = "Language (lsp)...",
+    a = { ":lua vim.lsp.buf.code_action()<cr>", "Actions" },
+    f = { ":lua vim.lsp.buf.formatting_seq_sync()<cr>", "Format" },
   },
 }, { prefix = "<Leader>" })
 -- lcoalleader: lua
