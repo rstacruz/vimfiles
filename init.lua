@@ -1,10 +1,12 @@
--- Run impatient.nvim before anything else
-pcall(require, 'impatient')
-
+-- Preamble {{{
+pcall(require, 'impatient') -- Cache Lua packages
+local cmd = vim.api.nvim_command
+local vimeval = vim.api.nvim_eval
 local function plugin(module_name, callback)
   local status, mod = pcall(require, module_name)
   if status then callback(mod) end
 end
+-- }}}
 
 plugin('paq', function(paq)
   paq {
@@ -48,10 +50,7 @@ plugin('paq', function(paq)
   paq.install()
 end)
 
-local cmd = vim.api.nvim_command
-
--- Plugin: treesitter {{{
-plugin('nvim-treesitter.configs', function(mod)
+plugin('nvim-treesitter.configs', function(mod) -- {{{
   mod.setup {
     ensure_installed = { 'c', 'cpp', 'javascript', 'css', 'lua', },
     highlight = {
@@ -59,11 +58,9 @@ plugin('nvim-treesitter.configs', function(mod)
       use_languagetree = true
     },
   }
-end)
--- }}}
+end) -- }}}
 
--- Plugin: formatter {{{
-plugin('formatter', function(mod)
+plugin('formatter', function(mod) -- {{{
   mod.setup {
     filetype = {
       lua = { function()
@@ -91,11 +88,9 @@ plugin('formatter', function(mod)
     autocmd! BufWritePost *.js,*.ts,*.tsx FormatWrite
     augroup END
   ]])
-end)
--- }}}
+end) -- }}}
 
--- Plugin: compe {{{
-plugin('compe', function(mod)
+plugin('compe', function(mod) -- {{{
   mod.setup {
     source = {
       path = true;
@@ -104,8 +99,7 @@ plugin('compe', function(mod)
       nvim_lua = true;
     }
   }
-end)
--- }}}
+end) -- }}}
 
 plugin('scrollbar', function() -- {{{
   vim.api.nvim_command([[
@@ -126,23 +120,6 @@ plugin('nvim-tree', function(mod) -- {{{
   mod.setup { }
 end) -- }}}
 
--- Plugin: startify {{{
-if vim.api.nvim_eval('exists(":Startify")') then
-  vim.api.nvim_set_var('startify_custom_indices', {'1', '2', '3', '4', '5', '6', '7', '8', '9'})
-  vim.api.nvim_set_var('startify_custom_header', {'    Neovim'})
-  vim.api.nvim_set_var('startify_enable_unsafe', 1)
-  vim.api.nvim_command([[
-  let g:startify_lists = [ { 'type': 'dir', 'header': ['  Recent files'] } ]
-  ]])
-end
--- }}}
-
--- Plugin: floaterm {{{
-if vim.api.nvim_eval('exists(":FloatermNew")') then
-  vim.api.nvim_set_var('floaterm_width', 0.95)
-end
--- }}}
-
 plugin('indent-o-matic', function(mod) -- {{{
   mod.setup { }
 end) -- }}}
@@ -153,6 +130,12 @@ plugin('indent_blankline', function(mod) -- {{{
     show_current_context = true,
     show_current_context_start = true,
   }
+  vim.cmd([[
+    let g:indent_blankline_show_first_indent_level = v:true
+    let g:indent_blankline_char_list = ['│', '┊', '┆']
+    let g:indent_blankline_context_char_list = ['┊']
+    let g:indent_blankline_filetype_exclude += ['startify']
+  ]])
 end) -- }}}
 
 plugin('lualine', function(mod) -- {{{
@@ -211,15 +194,28 @@ plugin('nvim-lsp-installer', function(mod) --  {{{
   vim.api.nvim_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   mod.on_server_ready(function(server)
-      local opts = {}
-      -- (optional) Customize the options passed to the server
-      -- if server.name == 'tsserver' then
-      --     opts.root_dir = function() ... end
-      -- end
+    local opts = {}
+    -- (optional) Customize the options passed to the server
+    -- if server.name == 'tsserver' then
+    --     opts.root_dir = function() ... end
+    -- end
 
-      server:setup(opts)
+    server:setup(opts)
   end)
 end) -- }}}
+
+if vimeval('exists(":Startify")') then -- {{{
+  vim.api.nvim_set_var('startify_custom_indices', {'1', '2', '3', '4', '5', '6', '7', '8', '9'})
+  vim.api.nvim_set_var('startify_custom_header', {'    Neovim'})
+  vim.api.nvim_set_var('startify_enable_unsafe', 1)
+  vim.api.nvim_command([[
+  let g:startify_lists = [ { 'type': 'dir', 'header': ['  Recent files'] } ]
+  ]])
+end -- }}}
+
+if vimeval('exists(":FloatermNew")') then -- {{{
+  vim.api.nvim_set_var('floaterm_width', 0.95)
+end -- }}}
 
 -- Vim settings {{{
 vim.opt.gdefault = true
