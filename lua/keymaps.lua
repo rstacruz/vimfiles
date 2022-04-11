@@ -1,3 +1,4 @@
+local wk = require('which-key')
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 vim.g.mapleader = ' '
@@ -19,47 +20,61 @@ map('v', [[<c-c>]], [["+y]], opts) -- Paste
 -- Keymap: terminal
 map('t', [[<esc>]], [[<c-\><c-n>]], opts) -- Terminal esc
 
--- Keymap: cr
-map('n', [[<cr><right>]], [[<c-w>l]], opts)
-map('n', [[<cr><left>]], [[<c-w>h]], opts)
-map('n', [[<cr><up>]], [[<c-w>k]], opts)
-map('n', [[<cr><down>]], [[<c-w>j]], opts)
-map('n', [[<cr>t]], [[:tabnew<cr>]], opts)
 map('n', [[<del>]], [[<c-w>q]], opts)
 
+-- Keymap: cr
+wk.register({
+  ['<left>'] = { '<c-w>h', 'Focus left' },
+  ['<right>'] = { '<c-w>h', 'Focus right' },
+  ['<down>'] = { '<c-w>j', 'Focus down' },
+  ['<up>'] = { '<c-w>k', 'Focus up' },
+  t = { ':tabnew<cr>', 'New tab' }
+}, { prefix = "<cr>" })
+
 -- Keymap: leader
-map('n', [[<leader>*]], [[:tabnew<cr>]], opts)
-map('n', [[<leader>.]], [[:term<cr>]], opts)
-
--- Keymap: leader w (window)
-map('n', [[<leader>wH]], [[<c-w>H]], opts)
-map('n', [[<leader>wJ]], [[<c-w>J]], opts)
-map('n', [[<leader>wK]], [[<c-w>K]], opts)
-map('n', [[<leader>wL]], [[<c-w>L]], opts)
-map('n', [[<leader>wh]], [[<c-w>h]], opts)
-map('n', [[<leader>wj]], [[<c-w>j]], opts)
-map('n', [[<leader>wk]], [[<c-w>k]], opts)
-map('n', [[<leader>wl]], [[<c-w>l]], opts)
-map('n', [[<leader>ws]], [[<c-w>s]], opts)
-map('n', [[<leader>wv]], [[<c-w>v]], opts)
-map('n', [[<leader>wq]], [[<c-w>q]], opts)
-
--- Keymap: leader p (pick)
-map('n', [[<leader>pb]], [[:Telescope buffers<cr>]], opts)
-
--- Keymap: leader v (vim)
-map('n', [[<leader>vs]], [[:tab split ~/.config/nvim/init.lua<cr>]], opts) -- [vs] :: Vim settings
-map('n', [[<leader>vk]], [[:tab split ~/.config/nvim/lua/keymaps.lua<cr>]], opts) -- [vk] :: Vim keybindings
-map('n', [[<leader>vr]], [[:luafile ~/.config/nvim/init.lua<cr>:PaqSync<cr>]], opts) -- [vr] :: Vim reload
-
--- Keymap: leader x (exit)
-map('n', [[<leader>xs]], [[:SClose<cr>]], opts) -- [xs] :: Close session
-
--- Keymap: leader u (user interface)
-map('n', [[<leader>uf]], [[:NvimTreeToggle<cr>]], opts) -- [uf] :: Files
-
--- Keymap: leader g (git)
-map('n', [[<leader>gs]], [[:Git<cr>]], opts) -- [gs] :: Git status
+wk.register({
+  ['.'] = { ":term<cr>", "Open terminal here" },
+  ['*'] = { ":GG <c-r><c-w><cr>", "Search" },
+  w = {
+    name = 'Window...',
+    H = { '<c-w>H', 'Move ←' },
+    J = { '<c-w>J', 'Move ↓' },
+    K = { '<c-w>K', 'Move ↑' },
+    L = { '<c-w>L', 'Move →' },
+    h = { '<c-w>h', 'Focus ←' },
+    j = { '<c-w>j', 'Focus ↓' },
+    k = { '<c-w>k', 'Focus ↑' },
+    l = { '<c-w>l', 'Focus →' },
+    s = { '<c-w>s', 'Split horizontal' },
+    v = { '<c-w>v', 'Split vertical' },
+    q = { '<c-w>q', 'Close' },
+  },
+  p = {
+    name = "Pick...",
+    b = { ":Telescope buffers<cr>", "Buffers" }
+  },
+  x = {
+    name = "Exit...",
+    s = { ":SClose<cr>", "Close session" }
+  },
+  f = {
+    name = "File...",
+    w = { ":w<cr>", "Save" },
+    s = { ":noa w<cr>", "Save without formatting" },
+    r = { ":e!<cr>", "Revert" }
+  },
+  o = {
+    name = "Options...",
+    f = { ":NvimTreeToggle<cr>", "Toggle file explorer" },
+    s = { ":tab split ~/.config/nvim/init.lua<cr>", "Edit settings" },
+    k = { ":tab split ~/.config/nvim/lua/keymaps.lua<cr>", "Edit keybindings" },
+    i = { ":luafile ~/.config/nvim/init.lua<cr>:PaqSync<cr>", "Sync plugins" },
+  },
+  g = {
+    name = "Git...",
+    s = { ":Git<cr>", "Git status" }
+  },
+}, { prefix = "<Leader>" })
 
 -- lcoalleader: lua
 map('n', [[<localleader>s]], [[:w<cr>:luafile %<cr>]], opts)

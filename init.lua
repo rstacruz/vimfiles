@@ -22,10 +22,12 @@ require 'paq' {
   'mhinz/vim-startify';
   'nvim-lua/plenary.nvim'; -- for Telescope
   'nvim-telescope/telescope.nvim';
-  'kyazdani42/nvim-tree.lua';
+  'kyazdani42/nvim-tree.lua'; -- File explorer
   'kyazdani42/nvim-web-devicons';
-  'Darazaki/indent-o-matic'; -- automatic indentation detect
+  'Darazaki/indent-o-matic'; -- Detect indentation automatically
   'nvim-lualine/lualine.nvim';
+  'rstacruz/vim-gitgrep';
+  'folke/which-key.nvim';
 }
 
 function plugin(module_name, callback)
@@ -140,6 +142,12 @@ plugin('lualine', function(mod)
 end)
 -- }}}
 
+-- Plugin: which-key {{{
+plugin('which-key', function(mod)
+  mod.setup { }
+end)
+-- }}}
+
 -- Vim settings {{{
 vim.opt.gdefault = true
 vim.opt.mouse = 'a'
@@ -147,6 +155,7 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.showmode = false -- Don't show "-- INSERT --" in status line
+vim.opt.timeoutlen = 200 -- For which-key
 vim.opt.fillchars = { eob = '┄', vert = '┃' }
 vim.cmd 'color microtone'
 -- }}}
