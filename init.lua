@@ -28,9 +28,10 @@ require 'paq' {
   'nvim-lualine/lualine.nvim';
   'rstacruz/vim-gitgrep';
   'folke/which-key.nvim';
+  'folke/lsp-colors.nvim';
 }
 
-function plugin(module_name, callback)
+local function plugin(module_name, callback)
   local status, mod = pcall(require, module_name)
   if status then callback(mod) end
 end
@@ -73,7 +74,7 @@ plugin('compe', function(mod)
 end)
 -- }}}
 
--- Plugin: scrollbar (not working?) {{{
+-- Plugin: scrollbar {{{
 plugin('scrollbar', function(mod)
   vim.api.nvim_command([[
     let g:scrollbar_max_size = 12
@@ -148,6 +149,22 @@ plugin('which-key', function(mod)
 end)
 -- }}}
 
+-- Plugin: LSP installer {{{
+plugin('nvim-lsp-installer', function(lsp_installer)
+  vim.api.nvim_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  lsp_installer.on_server_ready(function(server)
+      local opts = {}
+      -- (optional) Customize the options passed to the server
+      -- if server.name == "tsserver" then
+      --     opts.root_dir = function() ... end
+      -- end
+
+      server:setup(opts)
+  end)
+end)
+-- }}}
+
 -- Vim settings {{{
 vim.opt.gdefault = true
 vim.opt.mouse = 'a'
@@ -171,6 +188,5 @@ cmd([[augroup END]])
 
 -- Etc
 require 'keymaps'
-require 'plugin-lspconfig'
 
 -- vim:foldmethod=marker

@@ -89,6 +89,7 @@ wk.register({
   g = {
     name = 'Git...',
     s = { ':Git<cr>', 'Git status' },
+    c = { ':Git commit -v<cr>', 'Git commit' },
     b = { ':Git blame<cr>', 'Open file blame' }
   },
 }, { prefix = '<Leader>' })
