@@ -35,6 +35,7 @@ plugin('paq', function(paq)
     'tpope/vim-commentary'; -- Comments
     'tpope/vim-fugitive'; -- Git
     'tpope/vim-surround';
+    'tpope/vim-rhubarb'; -- Fugitive extension for GitHub commands
     'tpope/vim-unimpaired'; -- Toggle key bindings
     'Xuyuanp/scrollbar.nvim';
   }
@@ -61,11 +62,11 @@ plugin('formatter', function(mod)
     filetype = {
       lua = { function()
         return {
-          exe = "stylua",
+          exe = 'stylua',
           args = {
-            "--config-path " .. os.getenv("XDG_CONFIG_HOME")
-              .. "/stylua/stylua.toml",
-            "-",
+            '--config-path ' .. os.getenv('XDG_CONFIG_HOME')
+              .. '/stylua/stylua.toml',
+            '-',
           },
           stdin = true,
         }
@@ -171,7 +172,23 @@ end)
 
 -- Plugin: which-key {{{
 plugin('which-key', function(mod)
-  mod.setup { }
+  mod.setup {
+    window = {
+      border = 'shadow',
+      margin = { 1, 15, 2, 15 }
+    },
+    key_labels = {
+      ['<leader>'] = '∴'
+    },
+    icons = {
+      breadcrumb = '›',
+      separator = '┄',
+      group = ''
+    },
+    layout = {
+      align = 'center'
+    }
+ }
 end)
 -- }}}
 
@@ -188,7 +205,7 @@ plugin('nvim-lsp-installer', function(lsp_installer)
   lsp_installer.on_server_ready(function(server)
       local opts = {}
       -- (optional) Customize the options passed to the server
-      -- if server.name == "tsserver" then
+      -- if server.name == 'tsserver' then
       --     opts.root_dir = function() ... end
       -- end
 
@@ -204,7 +221,7 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.swapfile = false
-vim.opt.showmode = false -- Don't show "-- INSERT --" in status line
+vim.opt.showmode = false -- Don't show '-- INSERT --' in status line
 vim.opt.timeoutlen = 200 -- For which-key
 vim.opt.fillchars = { eob = '┄', vert = '┃' }
 vim.cmd 'color microtone'
