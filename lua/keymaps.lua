@@ -102,6 +102,10 @@ wk.register({
     r = { ':FloatermToggle r<cr>', 'Open terminal 2' },
     s = { ':FloatermToggle s<cr>', 'Open terminal 3' },
   },
+  c = {
+    name = 'Code (lsp)...',
+    a = { ':lua vim.lsp.buf.code_action()', 'Actions' },
+  },
 }, { prefix = '<Leader>' })
 
 -- lcoalleader: lua

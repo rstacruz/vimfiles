@@ -1,11 +1,10 @@
+-- Run impatient.nvim before anything else
+pcall(require, 'impatient')
+
 local function plugin(module_name, callback)
   local status, mod = pcall(require, module_name)
   if status then callback(mod) end
 end
-
--- Plugin: impatient {{{
-plugin('impatient', function() end)
--- }}}
 
 plugin('paq', function(paq)
   paq {
@@ -30,6 +29,7 @@ plugin('paq', function(paq)
     'kyazdani42/nvim-web-devicons';
     'lewis6991/gitsigns.nvim'; -- Git indicators on the gutter
     'lewis6991/impatient.nvim'; -- Improve startup time by optimising Lua cache
+    'lukas-reineke/indent-blankline.nvim'; -- Indent indicators
     'mhinz/vim-startify';
     'michaeljsmith/vim-indent-object';
     'nvim-lualine/lualine.nvim';
@@ -48,7 +48,7 @@ plugin('paq', function(paq)
   paq.install()
 end)
 
-cmd = vim.api.nvim_command
+local cmd = vim.api.nvim_command
 
 -- Plugin: treesitter {{{
 plugin('nvim-treesitter.configs', function(mod)
@@ -107,8 +107,7 @@ plugin('compe', function(mod)
 end)
 -- }}}
 
--- Plugin: scrollbar {{{
-plugin('scrollbar', function(mod)
+plugin('scrollbar', function() -- {{{
   vim.api.nvim_command([[
     let g:scrollbar_max_size = 12
     let g:scrollbar_shape = { 'head': '█', 'body': '█', 'tail': '█', }
@@ -121,14 +120,11 @@ plugin('scrollbar', function(mod)
   cmd([[autocmd WinEnter,FocusGained,BufEnter  * silent! lua require('scrollbar').show()]])
   cmd([[autocmd WinLeave,BufLeave,BufWinLeave,FocusLost,QuitPre * silent! lua require('scrollbar').clear()]])
   cmd([[augroup END]])
-end)
--- }}}
+end) -- }}}
 
--- Plugin: tree {{{
-plugin('nvim-tree', function(mod)
+plugin('nvim-tree', function(mod) -- {{{
   mod.setup { }
-end)
--- }}}
+end) -- }}}
 
 -- Plugin: startify {{{
 if vim.api.nvim_eval('exists(":Startify")') then
@@ -147,14 +143,19 @@ if vim.api.nvim_eval('exists(":FloatermNew")') then
 end
 -- }}}
 
--- Plugin: indent-o-matic {{{
-plugin('indent-o-matic', function(mod)
+plugin('indent-o-matic', function(mod) -- {{{
   mod.setup { }
-end)
--- }}}
---
--- Plugin: lualine {{{
-plugin('lualine', function(mod)
+end) -- }}}
+
+plugin('indent_blankline', function(mod) -- {{{
+  mod.setup {
+    space_char_blankline = ' ',
+    show_current_context = true,
+    show_current_context_start = true,
+  }
+end) -- }}}
+
+plugin('lualine', function(mod) -- {{{
   mod.setup {
     options = {
       component_separators = { left = '', right = '' },
@@ -179,11 +180,9 @@ plugin('lualine', function(mod)
     },
     tabline = {}
   }
-end)
--- }}}
+end) -- }}}
 
--- Plugin: which-key {{{
-plugin('which-key', function(mod)
+plugin('which-key', function(mod) -- {{{
   mod.setup {
     window = {
       border = 'shadow',
@@ -202,20 +201,16 @@ plugin('which-key', function(mod)
       spacing = 7
     }
  }
-end)
--- }}}
+end) -- }}}
 
--- Plugin: gitsigns {{{
-plugin('gitsigns', function(mod)
+plugin('gitsigns', function(mod) -- {{{
   mod.setup { }
-end)
--- }}}
+end) -- }}}
 
--- Plugin: LSP installer {{{
-plugin('nvim-lsp-installer', function(lsp_installer)
+plugin('nvim-lsp-installer', function(mod) --  {{{
   vim.api.nvim_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  lsp_installer.on_server_ready(function(server)
+  mod.on_server_ready(function(server)
       local opts = {}
       -- (optional) Customize the options passed to the server
       -- if server.name == 'tsserver' then
@@ -224,8 +219,7 @@ plugin('nvim-lsp-installer', function(lsp_installer)
 
       server:setup(opts)
   end)
-end)
--- }}}
+end) -- }}}
 
 -- Vim settings {{{
 vim.opt.gdefault = true
@@ -245,6 +239,14 @@ cmd([[augroup TerminalCustomisations]])
 cmd([[au!]])
 cmd([[au TermOpen * setlocal nonumber norelativenumber nocursorline]])
 cmd([[au TermOpen * startinsert]])
+cmd([[augroup END]])
+-- }}}
+
+-- Customisation: git (close on ctrl-s) {{{
+cmd([[augroup GitCustomisations]])
+cmd([[au!]])
+cmd([[au FileType gitcommit,pullrequest,gitrebase inoremap <buffer> <C-s> <Esc>:wq<cr>]])
+cmd([[au FileType gitcommit,pullrequest,gitrebase noremap <buffer> <C-s> :wq<cr>]])
 cmd([[augroup END]])
 -- }}}
 
