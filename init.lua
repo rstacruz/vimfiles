@@ -23,18 +23,21 @@ plugin('paq', function(paq)
     -- Themes
     'rstacruz/vim-microtone';
 
+    -- File types
+    'preservim/vim-markdown'; -- Markdown
+
     -- Goodies
     'Darazaki/indent-o-matic'; -- Detect indentation automatically
-    'folke/lsp-colors.nvim';
-    'folke/which-key.nvim';
+    'folke/lsp-colors.nvim'; -- Infer some colours needed for LSP
+    'folke/which-key.nvim'; -- Menu when pressing [space]
     'kyazdani42/nvim-tree.lua'; -- File explorer
     'kyazdani42/nvim-web-devicons';
     'lewis6991/gitsigns.nvim'; -- Git indicators on the gutter
     'lewis6991/impatient.nvim'; -- Improve startup time by optimising Lua cache
     'lukas-reineke/indent-blankline.nvim'; -- Indent indicators
-    'mhinz/vim-startify';
+    'mhinz/vim-startify'; -- Show recent files on startup
     'michaeljsmith/vim-indent-object';
-    'nvim-lualine/lualine.nvim';
+    'nvim-lualine/lualine.nvim'; -- Status line
     'nvim-lua/plenary.nvim'; -- for Telescope
     'nvim-telescope/telescope.nvim';
     'rstacruz/vim-gitgrep';
@@ -44,7 +47,7 @@ plugin('paq', function(paq)
     'tpope/vim-surround';
     'tpope/vim-rhubarb'; -- Fugitive extension for GitHub commands
     'tpope/vim-unimpaired'; -- Toggle key bindings
-    'voldikss/vim-floaterm';
+    'voldikss/vim-floaterm'; -- Floating terminals
     'Xuyuanp/scrollbar.nvim';
   }
   paq.install()
@@ -226,7 +229,7 @@ vim.opt.softtabstop = 2
 vim.opt.swapfile = false
 vim.opt.showmode = false -- Don't show '-- INSERT --' in status line
 vim.opt.timeoutlen = 200 -- For which-key
-vim.opt.fillchars = { eob = '┄', vert = '┃' }
+vim.opt.fillchars = { eob = '┄', vert = '▓' }
 vim.cmd 'color microtone'
 -- }}}
 
@@ -241,8 +244,7 @@ cmd([[augroup END]])
 -- Customisation: git (close on ctrl-s) {{{
 cmd([[augroup GitCustomisations]])
 cmd([[au!]])
-cmd([[au FileType gitcommit,pullrequest,gitrebase inoremap <buffer> <C-s> <Esc>:wq<cr>]])
-cmd([[au FileType gitcommit,pullrequest,gitrebase noremap <buffer> <C-s> :wq<cr>]])
+cmd([[au BufWritePost COMMIT_EDITMSG bwipe]])
 cmd([[augroup END]])
 -- }}}
 
