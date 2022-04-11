@@ -7,6 +7,7 @@ PKGS = {
   "neovim/nvim-lspconfig",
   "williamboman/nvim-lsp-installer",
   "sbdchd/neoformat",
+  "SmiteshP/nvim-gps",
 
   -- Themes
   "rstacruz/vim-microtone",
@@ -138,8 +139,10 @@ plugin("indent_blankline", function(mod) -- {{{
 end) -- }}}
 
 plugin("lualine", function(mod) -- {{{
+  local gps = require("nvim-gps")
   mod.setup({
     options = {
+      theme = "dracula",
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
     },
@@ -147,15 +150,14 @@ plugin("lualine", function(mod) -- {{{
       lualine_a = {
         {
           "mode",
-          separator = { left = "" },
-          right_padding = 2,
+          separator = { left = "", right = "▓▒░" },
           fmt = function(str)
-            return str:sub(1, 3)
+            return str:sub(1, 1)
           end,
         },
       },
       lualine_b = { "filename" },
-      lualine_c = {},
+      lualine_c = { { gps.get_location, cond = gps.is_available } },
       lualine_x = { "filetype" },
       lualine_y = { "progress" },
       lualine_z = {
@@ -209,6 +211,12 @@ plugin("gitsigns", function(mod) -- {{{
   mod.setup({})
 end) -- }}}
 
+plugin("nvim-gps", function(mod) -- {{{
+  mod.setup({
+    separator = " ╱ ",
+  })
+end) -- }}}
+
 plugin("nvim-lsp-installer", function(mod) --  {{{
   vim.api.nvim_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
   require("lsp-format").setup()
@@ -225,7 +233,10 @@ plugin("nvim-lsp-installer", function(mod) --  {{{
 end) -- }}}
 
 if has_paq("vim-startify") then -- {{{
-  vim.api.nvim_set_var("startify_custom_indices", { "1", "2", "3", "4", "5", "6", "7", "8", "9" })
+  vim.api.nvim_set_var(
+    "startify_custom_indices",
+    { "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "r", "s", "t", "g", "z", "x", "c", "d", "v" }
+  )
   vim.api.nvim_set_var("startify_custom_header", { "    Neovim" })
   vim.api.nvim_set_var("startify_enable_unsafe", 1)
   vim.api.nvim_command([[
