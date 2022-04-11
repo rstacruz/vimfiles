@@ -89,6 +89,7 @@ wk.register({
   g = {
     name = 'Git...',
     s = { ':Git<cr>', 'Git status' },
+    a = { ':Git add -u . | Git commit -v<cr>', 'Git add and commit' },
     c = { ':Git commit -v<cr>', 'Git commit' },
     b = { ':Git blame<cr>', 'Open file blame' }
   },

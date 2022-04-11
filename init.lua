@@ -13,22 +13,24 @@ require 'paq' {
   'rstacruz/vim-microtone';
 
   -- Goodies
-  'tpope/vim-unimpaired'; -- Toggle key bindings
-  'tpope/vim-commentary'; -- Comments
-  'tpope/vim-fugitive'; -- Git
-  'thinca/vim-visualstar';
-  'michaeljsmith/vim-indent-object';
-  'Xuyuanp/scrollbar.nvim';
-  'mhinz/vim-startify';
-  'nvim-lua/plenary.nvim'; -- for Telescope
-  'nvim-telescope/telescope.nvim';
+  'Darazaki/indent-o-matic'; -- Detect indentation automatically
+  'folke/lsp-colors.nvim';
+  'folke/which-key.nvim';
   'kyazdani42/nvim-tree.lua'; -- File explorer
   'kyazdani42/nvim-web-devicons';
-  'Darazaki/indent-o-matic'; -- Detect indentation automatically
+  'lewis6991/gitsigns.nvim';
+  'mhinz/vim-startify';
+  'michaeljsmith/vim-indent-object';
   'nvim-lualine/lualine.nvim';
+  'nvim-lua/plenary.nvim'; -- for Telescope
+  'nvim-telescope/telescope.nvim';
   'rstacruz/vim-gitgrep';
-  'folke/which-key.nvim';
-  'folke/lsp-colors.nvim';
+  'thinca/vim-visualstar';
+  'tpope/vim-commentary'; -- Comments
+  'tpope/vim-fugitive'; -- Git
+  'tpope/vim-surround';
+  'tpope/vim-unimpaired'; -- Toggle key bindings
+  'Xuyuanp/scrollbar.nvim';
 }
 
 local function plugin(module_name, callback)
@@ -52,7 +54,28 @@ end)
 
 -- Plugin: formatter {{{
 plugin('formatter', function(mod)
-  mod.setup {}
+  mod.setup {
+    filetype = {
+      lua = { function()
+        return {
+          exe = "stylua",
+          args = {
+            "--config-path " .. os.getenv("XDG_CONFIG_HOME")
+              .. "/stylua/stylua.toml",
+            "-",
+          },
+          stdin = true,
+        }
+      end },
+      ruby = { function()
+        return {
+          exe = 'bundle exec rubocop', -- might prepend `bundle exec `
+          args = { '--auto-correct', '--stdin', '%:p', '2>/dev/null', '|', "awk 'f; /^====================$/{f=1}'"},
+          stdin = true,
+        }
+      end }
+    }
+  }
   vim.api.nvim_command([[
     augroup FormatAutogroup
     autocmd! BufWritePost *.js,*.ts,*.tsx FormatWrite
@@ -145,6 +168,12 @@ end)
 
 -- Plugin: which-key {{{
 plugin('which-key', function(mod)
+  mod.setup { }
+end)
+-- }}}
+
+-- Plugin: gitsigns {{{
+plugin('gitsigns', function(mod)
   mod.setup { }
 end)
 -- }}}
