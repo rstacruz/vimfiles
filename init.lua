@@ -34,6 +34,7 @@ plugin('paq', function(paq)
     'kyazdani42/nvim-web-devicons';
     'lewis6991/gitsigns.nvim'; -- Git indicators on the gutter
     'lewis6991/impatient.nvim'; -- Improve startup time by optimising Lua cache
+    'nathom/filetype.nvim'; -- Improve startup time
     'lukas-reineke/indent-blankline.nvim'; -- Indent indicators
     'mhinz/vim-startify'; -- Show recent files on startup
     'michaeljsmith/vim-indent-object';
