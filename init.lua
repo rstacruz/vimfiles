@@ -141,7 +141,7 @@ plugin("indent_blankline", function(mod) -- {{{
 end) -- }}}
 
 plugin("lualine", function(mod) -- {{{
-  local gps = require("nvim-gps")
+  local status, gps = pcall(require, "nvim-gps")
   mod.setup({
     options = {
       theme = "dracula",
@@ -159,7 +159,9 @@ plugin("lualine", function(mod) -- {{{
         },
       },
       lualine_b = { "filename" },
-      lualine_c = { { gps.get_location, cond = gps.is_available } },
+      lualine_c = {
+        gps and { gps.get_location, cond = gps.is_available } or {}
+      },
       lualine_x = { "filetype" },
       lualine_y = { "progress" },
       lualine_z = {
