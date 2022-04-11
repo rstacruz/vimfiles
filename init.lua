@@ -100,7 +100,7 @@ if vim.api.nvim_eval('exists(":Startify")') then
   vim.api.nvim_set_var('startify_custom_header', {'    Neovim'})
   vim.api.nvim_set_var('startify_enable_unsafe', 1)
   vim.api.nvim_command([[
-  let g:startify_lists = [ { 'type': 'dir', 'header': startify#pad(['Recent files']) } ]
+  let g:startify_lists = [ { 'type': 'dir', 'header': ['Recent files'] } ]
   ]])
 end
 -- }}}

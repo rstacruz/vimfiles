@@ -1,0 +1,9 @@
+/session
+/bookmarks
+/spell
+/vendor
+.netrwhist
+
+# artifacts from previous incarnations
+/autoload/plug.vim.old
+/plugin/*.local.vim
