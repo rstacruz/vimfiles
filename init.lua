@@ -76,7 +76,7 @@ utils.bootstrap_paq(PKGS)
 local function get_theme()
   local bg = utils.is_light() and "light" or "dark"
   if utils.has_paq("zenbones.nvim") then
-    return bg == "light" and { "rosebones", "auto", bg } or { "tokyobones", "auto", bg }
+    return bg == "light" and { "rosebones", "auto", bg } or { "rosebones", "auto", bg }
   elseif utils.has_paq("vim-code-dark") then
     return { "codedark", "auto", "dark" }
   elseif utils.has_paq("github-nvim-theme") then

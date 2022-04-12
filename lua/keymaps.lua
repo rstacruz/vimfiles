@@ -12,7 +12,8 @@ vim.g.maplocalleader = ","
 map("n", [[gs]], [[:%s~~]], opts)
 map("v", [[gs]], [[:s~~]], opts)
 map("n", [[+]], [[za]], opts)
-map("n", [[<del>]], [[:bwipe<cr>]], opts)
+map("n", [[<del>]], [[:bwipe!<cr>]], opts)
+map("n", [[<bs>]], [[:q<cr>]], opts)
 map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 
