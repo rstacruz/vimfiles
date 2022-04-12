@@ -61,7 +61,7 @@ PKGS = {
 -- Preamble {{{
 pcall(require, "impatient") -- Cache Lua packages
 local cmd = vim.api.nvim_command
-local utils = require('utils')
+local utils = require("utils")
 local plugin = utils.plugin
 utils.bootstrap_paq(PKGS)
 -- }}}
@@ -69,11 +69,11 @@ utils.bootstrap_paq(PKGS)
 -- Theme {{{
 local function get_theme()
   if utils.has_paq("github-nvim-theme") then
-    return utils.is_light() and {"github_light", "auto"} or {"github_dark", "dracula"}
+    return utils.is_light() and { "github_light", "auto" } or { "github_dark", "dracula" }
   elseif utils.has_paq("vim-microtone") then
-    return {"microtone", "dracula"}
+    return { "microtone", "dracula" }
   else
-    return {"defualt", "auto"}
+    return { "defualt", "auto" }
   end
 end
 
@@ -202,7 +202,7 @@ plugin("lualine", function(mod) -- {{{
     },
     sections = {
       lualine_a = {
-        { "filename", file_status = false, icon = "", cond = is_file },
+        { "filename", file_status = false, icon = "", cond = is_file, t },
         terminal,
         startify,
       },
