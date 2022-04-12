@@ -32,14 +32,14 @@ map("n", [[<c-s>]], [[:w<cr>]], opts) -- Save
 map("i", [[<c-s>]], [[<esc>:w<cr>]], opts) -- Save (ins)
 map("v", [[<c-c>]], [["+y]], opts) -- Copy
 map("i", [[<c-v>]], [[<esc>:set paste<cr>a<c-r>+<esc>:set nopaste<cr>a]], opts) -- Paste
-if has_require('telescope') then
+if has_require("telescope") then
   map("n", [[<c-p>]], [[:Glcd<cr>:Telescope find_files<cr>]], opts)
 end
-if has_require('nvim-tree') then
+if has_require("nvim-tree") then
   map("n", [[<c-b>]], [[:NvimTreeToggle<cr>]], opts) -- Toggle sidebar
   map("n", [[-]], [[:NvimTreeFindFile<cr>]], opts)
 end
-if has_require('toggleterm') then
+if has_require("toggleterm") then
   map("n", [[<c-j>]], [[:ToggleTerm<cr>]], opts) -- Toggle terminal
   map("t", [[<c-j>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Toggle terminal
   map("t", [[<c-k>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Toggle terminal
@@ -119,6 +119,7 @@ wk.register({
     k = { ":tab split ~/.config/nvim/lua/keymaps.lua<cr>", "Edit keybindings" },
     s = { ":luafile ~/.config/nvim/init.lua<cr>:PaqSync<cr>", "Sync plugins" },
     u = { ":luafile ~/.config/nvim/init.lua<cr>:PaqUpdate<cr>", "Update plugins" },
+    p = { ":StartupTime<cr>", "Profile startup time" },
   },
   g = {
     name = "Git...",
