@@ -1,3 +1,7 @@
+local function has_require(mod)
+  return pcall(require, mod)
+end
+
 local wk = require("which-key")
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
@@ -15,9 +19,15 @@ map("n", [[<del>]], [[<c-w>q]], opts)
 -- Keymap: ctrl
 map("n", [[<c-s>]], [[:w<cr>]], opts)
 map("i", [[<c-s>]], [[<esc>:w<cr>]], opts)
-map("n", [[<c-p>]], [[:Glcd<cr>:Telescope find_files<cr>]], opts)
 map("i", [[<c-v>]], [[<esc>:set paste<cr>a<c-r>+<esc>:set nopaste<cr>a]], opts) -- Paste
 map("v", [[<c-c>]], [["+y]], opts) -- Paste
+if has_require('telescope') then
+  map("n", [[<c-p>]], [[:Glcd<cr>:Telescope find_files<cr>]], opts)
+end
+if has_require('toggleterm') then
+  map("n", [[<c-j>]], [[:ToggleTerm<cr>]], opts) -- Toggle terminal
+  map("t", [[<c-j>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Toggle terminal
+end
 
 -- Keymap: lsp
 wk.register({

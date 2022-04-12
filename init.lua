@@ -273,15 +273,17 @@ if has_paq("neoformat") then -- {{{
 end -- }}}
 
 -- Vim settings {{{
-vim.opt.gdefault = true
-vim.opt.mouse = "a"
 vim.opt.expandtab = true
+vim.opt.fillchars = { eob = " ", vert = "▓" } -- end-of-buffer and vertical split
+vim.opt.gdefault = true -- Search/replace uses `g` flag by default
+vim.opt.mouse = "a" -- Enable mouse support
+vim.opt.shell = "/bin/bash"
 vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
-vim.opt.swapfile = false
 vim.opt.showmode = false -- Don't show '-- INSERT --' in status line
+vim.opt.softtabstop = 2
+vim.opt.swapfile = false -- Don't write swap files
 vim.opt.timeoutlen = 200 -- For which-key
-vim.opt.fillchars = { eob = " ", vert = "▓" }
+vim.opt.wrap = false -- Word wrap
 -- }}}
 
 -- Customisation: terminal (no line numbers) {{{
