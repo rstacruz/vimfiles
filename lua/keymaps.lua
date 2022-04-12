@@ -121,15 +121,13 @@ wk.register({
     p = { ":FloatermNew --width=0.5 --height=0.3 git push<cr>", "Push" },
     r = {
       name = "Pull request...",
-      c = { ":Glcd | FloatermNew --width=0.5 --height=0.1 gh pr create --web<cr>", "Create PR (web)" },
-      v = { ":Glcd | FloatermNew --width=0.5 --height=0.1 gh pr view --web<cr>", "View PR (web)" },
+      c = { ":Glcd | !gh pr create --web<cr>", "Create PR (web)" },
+      v = { ":Glcd | !gh pr view --web<cr>", "View PR (web)" },
     },
   },
   t = {
     name = "Terminal...",
-    a = { ":FloatermToggle a<cr>", "Open terminal 1" },
-    r = { ":FloatermToggle r<cr>", "Open terminal 2" },
-    s = { ":FloatermToggle s<cr>", "Open terminal 3" },
+    s = { ":ToggleTerm size=64 direction=horizontal<cr>", "Open terminal to side" },
   },
   l = {
     name = "Language (lsp)...",
