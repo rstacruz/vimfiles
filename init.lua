@@ -66,10 +66,20 @@ local plugin = utils.plugin
 utils.bootstrap_paq(PKGS)
 -- }}}
 
-local theme = require("theme").get()
-if theme then
-  cmd("color " .. theme[1])
+-- Theme {{{
+local function get_theme()
+  if utils.has_paq("github-nvim-theme") then
+    return utils.is_light() and {"github_light", "auto"} or {"github_dark", "dracula"}
+  elseif utils.has_paq("vim-microtone") then
+    return {"microtone", "dracula"}
+  else
+    return {"defualt", "auto"}
+  end
 end
+
+local theme = get_theme()
+cmd("color " .. theme[1])
+-- }}}
 
 plugin("nvim-treesitter.configs", function(mod) -- {{{
   mod.setup({

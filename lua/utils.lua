@@ -40,4 +40,21 @@ local function plugin(module_name, callback, options)
   end
 end
 
-return { has_paq = has_paq, bootstrap_paq = bootstrap_paq, plugin = plugin }
+-- Checks if the theme should be light based on Pywal colors
+local function is_light()
+  local cache = vim.env.XDG_CACHE_DIR or (vim.env.HOME .. "/.cache")
+
+  -- Pywal colors file
+  local colors_file = cache .. "/wal/colors"
+  if vim.fn.filereadable(colors_file) == 0 then return false end
+
+  local bgcolor = vim.fn.system("cat " .. colors_file .. " | head -n 1")
+  return vim.fn.matchstr(bgcolor, "#[efEF]") ~= ""
+end
+
+return {
+  has_paq = has_paq,
+  bootstrap_paq = bootstrap_paq,
+  plugin = plugin,
+  is_light = is_light
+}
