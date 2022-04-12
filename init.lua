@@ -180,15 +180,17 @@ end) -- }}}
 plugin("lualine", function(mod) -- {{{
   local _, gps = pcall(require, "nvim-gps")
   local function is_file()
-    return vim.bo.filetype ~= "toggleterm" and vim.bo.filetype ~= "NvimTree"
+    return vim.bo.filetype ~= "toggleterm" and
+      vim.bo.filetype ~= "NvimTree" and
+      vim.bo.filetype ~= "startify"
   end
   local terminal = {
-    function()
-      return [[ ]] .. (vim.b.toggle_number or "0")
-    end,
-    cond = function()
-      return vim.bo.filetype == "toggleterm"
-    end
+    function() return [[ ]] .. (vim.b.toggle_number or "0") end,
+    cond = function() return vim.bo.filetype == "toggleterm" end
+  }
+  local startify = {
+    function() return [[ ]] .. vim.fn.getcwd() end,
+    cond = function() return vim.bo.filetype == "startify" end
   }
 
   mod.setup({
@@ -211,7 +213,8 @@ plugin("lualine", function(mod) -- {{{
     sections = {
       lualine_a = {
         { "filename", file_status = false, icon = "", cond = is_file },
-        terminal
+        terminal,
+        startify
       },
       lualine_b = {
         {
@@ -297,6 +300,19 @@ plugin("hop", function(mod) -- {{{
   })
 end) -- }}}
 
+plugin("toggleterm", function(toggleterm)
+  toggleterm.setup({
+    size = function(term)
+      if term.direction == "horizontal" then
+        return 24
+      elseif term.direction == "vertical" then
+        return vim.o.columns * 0.4
+      end
+    end,
+    shading_factor = 2
+  })
+end)
+
 plugin("nvim-lsp-installer", function(mod) --  {{{
   vim.api.nvim_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -317,6 +333,7 @@ if has_paq("vim-startify") then -- {{{
     { "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "r", "s", "t", "g", "z", "x", "c", "d", "v" }
   )
   vim.api.nvim_set_var("startify_custom_header", { "    Neovim" })
+  vim.api.nvim_set_var("startify_change_to_vcs_root", 1)
   vim.api.nvim_set_var("startify_enable_unsafe", 1)
   vim.api.nvim_command([[
   let g:startify_lists = []
