@@ -18,16 +18,14 @@ map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 
 -- Keymap: terminal
 map("t", [[<esc>]], [[<c-\><c-n>]], opts) -- Terminal esc
-map("t", [[<c-k>]], [[<c-\><c-n><c-w>k]], opts) -- Terminal focus up
-map("t", [[<c-h>]], [[<c-\><c-n><c-w>h]], opts) -- Terminal focus left
-map("t", [[<c-l>]], [[<c-\><c-n><c-w>l]], opts) -- Terminal focus right
+map("t", [[<c-n>]], [[<c-\><c-n><c-w>w]], opts) -- Terminal focus next
+map("t", [[<c-h>]], [[<c-\><c-n><c-w>W]], opts) -- Terminal focus prev
 
 -- Keymap: ctrl
-map("n", [[<c-h>]], [[<c-w>h]], opts) -- Focus left
-map("n", [[<c-l>]], [[<c-w>l]], opts) -- Focus right
-map("n", [[<c-k>]], [[<c-w>k]], opts) -- Focus down
-map("i", [[<c-h>]], [[<esc><c-w>h]], opts) -- Focus left (ins)
-map("i", [[<c-l>]], [[<esc><c-w>l]], opts) -- Focus right (ins)
+map("n", [[<c-h>]], [[<c-w>W]], opts) -- Focus prev
+map("i", [[<c-h>]], [[<esc><c-w>W]], opts) -- Focus prev (ins)
+map("n", [[<c-n>]], [[<c-w>w]], opts) -- Focus next (ins)
+map("i", [[<c-n>]], [[<esc><c-w>w]], opts) -- Focus next (ins)
 map("n", [[<c-s>]], [[:w<cr>]], opts) -- Save
 map("i", [[<c-s>]], [[<esc>:w<cr>]], opts) -- Save (ins)
 map("v", [[<c-c>]], [["+y]], opts) -- Copy
@@ -58,8 +56,8 @@ wk.register({
   gr = { ":Telescope lsp_references<cr>", "References (lsp)..." },
   gD = { ":lua vim.lsp.buf.declaration()", "Declaration (lsp)..." },
   gi = { ":lua vim.lsp.buf.implementation()", "Implementation (lsp)..." },
-  ["<c-g>"] = { ":HopLine<cr>", "Hop to line" },
-  ["<c-f>"] = { ":HopWord<cr>", "Hop to word" },
+  ["<c-l>"] = { ":HopLine<cr>", "Hop to line" },
+  ["<c-g>"] = { ":HopWord<cr>", "Hop to word" },
 })
 
 -- Keymap: cr
@@ -83,7 +81,7 @@ wk.register({
 
 -- Keymap: leader
 wk.register({
-  ["."] = { ":ToggleTerm direction=vertical<cr>", "Open terminal" },
+  ["."] = { ":ToggleTerm<cr>", "Open terminal" },
   ["*"] = { ":GG <c-r><c-w><cr>", "Search" },
   w = {
     name = "Window...",

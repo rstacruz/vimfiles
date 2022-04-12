@@ -21,7 +21,7 @@ local function bootstrap_paq(pkgs)
     paq(pkgs)
     vim.defer_fn(function()
       paq.install()
-    end, 250)
+    end, 750)
   end
 end
 
@@ -33,7 +33,7 @@ local function plugin(module_name, callback, options)
     if options and options["delay"] then
       vim.defer_fn(function()
         callback(mod)
-      end, 25)
+      end, 50)
     else
       callback(mod)
     end
@@ -46,7 +46,9 @@ local function is_light()
 
   -- Pywal colors file
   local colors_file = cache .. "/wal/colors"
-  if vim.fn.filereadable(colors_file) == 0 then return false end
+  if vim.fn.filereadable(colors_file) == 0 then
+    return false
+  end
 
   local bgcolor = vim.fn.system("cat " .. colors_file .. " | head -n 1")
   return vim.fn.matchstr(bgcolor, "#[efEF]") ~= ""
@@ -56,5 +58,5 @@ return {
   has_paq = has_paq,
   bootstrap_paq = bootstrap_paq,
   plugin = plugin,
-  is_light = is_light
+  is_light = is_light,
 }

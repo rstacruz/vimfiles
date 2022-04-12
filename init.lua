@@ -302,12 +302,9 @@ plugin("hop", function(mod) -- {{{
   })
 end, { defer = true }) -- }}}
 
-plugin("auto-session", function(mod) -- {{{
-  mod.setup({})
-end, { defer = false }) -- }}}
-
 plugin("toggleterm", function(toggleterm) -- {{{
   toggleterm.setup({
+    direction = "vertical",
     size = function(term)
       if term.direction == "horizontal" then
         return 24
@@ -338,7 +335,11 @@ if utils.has_paq("vim-startify") then -- {{{
     "startify_custom_indices",
     { "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "r", "s", "t", "g", "z", "x", "c", "d", "v" }
   )
-  vim.api.nvim_set_var("startify_custom_header", { "    Neovim" })
+  vim.api.nvim_set_var("startify_custom_header", {
+    "       ",
+    "   n    i  m",
+    "       ",
+  })
   vim.api.nvim_set_var("startify_change_to_vcs_root", 1)
   vim.api.nvim_set_var("startify_enable_unsafe", 1)
   vim.api.nvim_command([[
