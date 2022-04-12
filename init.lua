@@ -5,9 +5,9 @@ PKGS = {
   "nvim-treesitter/nvim-treesitter",
   "hrsh7th/nvim-compe",
   "neovim/nvim-lspconfig",
-  "williamboman/nvim-lsp-installer",
-  "sbdchd/neoformat",
-  "SmiteshP/nvim-gps",
+  "williamboman/nvim-lsp-installer", -- Install LSP servers (:LspInstall)
+  "sbdchd/neoformat", -- Formatting
+  "SmiteshP/nvim-gps", -- Breadcrumbs in the status line
 
   -- Themes
   "rstacruz/vim-microtone",
@@ -16,7 +16,7 @@ PKGS = {
   "preservim/vim-markdown", -- Markdown
 
   -- Goodies
-  "phaazon/hop.nvim",
+  "phaazon/hop.nvim", -- Easymotion (gw)
   "nvim-pack/nvim-spectre",
   "Darazaki/indent-o-matic", -- Detect indentation automatically
   "Xuyuanp/scrollbar.nvim",
@@ -41,7 +41,8 @@ PKGS = {
   "tpope/vim-rhubarb", -- Fugitive extension for GitHub commands
   "tpope/vim-surround",
   "tpope/vim-unimpaired", -- Toggle key bindings
-  "voldikss/vim-floaterm", -- Floating terminals
+  -- "voldikss/vim-floaterm", -- Floating terminals
+  "akinsho/toggleterm.nvim",
 }
 
 -- Preamble {{{

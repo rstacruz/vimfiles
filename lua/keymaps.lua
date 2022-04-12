@@ -26,6 +26,7 @@ wk.register({
   gD = { ":lua vim.lsp.buf.declaration()", "Declaration (lsp)..." },
   gi = { ":lua vim.lsp.buf.implementation()", "Implementation (lsp)..." },
   gw = { ":HopWord<cr>", "Hop to word" },
+  gl = { ":HopLine<cr>", "Hop to line" },
 })
 
 -- Keymap: cr
@@ -127,7 +128,8 @@ wk.register({
     f = { ":Neoformat<cr>", "Format (via Neoformat)" },
   },
 }, { prefix = "<Leader>" })
--- lcoalleader: lua
+
+-- localleader: lua
 map("n", [[<localleader>s]], [[:w<cr>:luafile %<cr>]], opts)
 
 -- Etc
