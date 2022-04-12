@@ -49,8 +49,8 @@ wk.register({
   gr = { ":Telescope lsp_references<cr>", "References (lsp)..." },
   gD = { ":lua vim.lsp.buf.declaration()", "Declaration (lsp)..." },
   gi = { ":lua vim.lsp.buf.implementation()", "Implementation (lsp)..." },
-  gw = { ":HopWord<cr>", "Hop to word" },
-  gl = { ":HopLine<cr>", "Hop to line" },
+  ["<c-g>"] = { ":HopLine<cr>", "Hop to line" },
+  ["<c-f>"] = { ":HopWord<cr>", "Hop to word" },
 })
 
 -- Keymap: cr
@@ -100,12 +100,6 @@ wk.register({
     s = { ":SClose<cr>", "Close session" },
     x = { ":cq<cr>", "Exit" },
   },
-  h = {
-    name = "Hop to...",
-    e = { ":HopLine<cr>", "Line" },
-    i = { ":HopWord<cr>", "Word" },
-    o = { ":HopChar1<cr>", "Character" },
-  },
   f = {
     name = "File...",
     w = { ":w<cr>", "Save" },
@@ -131,7 +125,7 @@ wk.register({
     h = { ":GBrowse<cr>", "Open in GitHub" },
     c = { ":tab Git commit -v<cr>", "Git commit" },
     b = { ":Git blame<cr>", "Open file blame" },
-    p = { ":FloatermNew --width=0.5 --height=0.3 git push<cr>", "Push" },
+    p = { ":!git push<cr>", "Push" },
     r = {
       name = "Pull request...",
       c = { ":Glcd | !gh pr create --web<cr>", "Create PR (web)" },

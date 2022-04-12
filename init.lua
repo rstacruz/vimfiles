@@ -67,7 +67,6 @@ local function has_paq(name)
   local path = vim.fn.stdpath("data") .. "/site/pack/paqs/start/" .. name
   return vim.fn.empty(vim.fn.glob(path)) == 0
 end
-
 -- }}}
 
 -- Bootstrap {{{
@@ -223,8 +222,8 @@ end) -- }}}
 plugin("which-key", function(mod) -- {{{
   mod.setup({
     window = {
-      border = "shadow",
-      margin = { 1, 15, 2, 15 },
+      border = "single",
+      margin = { 1, 10, 2, 10 },
     },
     key_labels = {
       ["<leader>"] = "∴",
