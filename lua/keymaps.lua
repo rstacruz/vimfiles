@@ -11,7 +11,6 @@ vim.g.maplocalleader = ","
 -- Keymap: general
 map("n", [[gs]], [[:%s~~]], opts)
 map("v", [[gs]], [[:s~~]], opts)
-map("n", [[-]], [[:NvimTreeFindFile<cr>]], opts)
 map("n", [[+]], [[za]], opts)
 map("t", [[<esc>]], [[<c-\><c-n>]], opts) -- Terminal esc
 map("n", [[<del>]], [[<c-w>q]], opts)
@@ -23,6 +22,10 @@ map("i", [[<c-v>]], [[<esc>:set paste<cr>a<c-r>+<esc>:set nopaste<cr>a]], opts) 
 map("v", [[<c-c>]], [["+y]], opts) -- Paste
 if has_require('telescope') then
   map("n", [[<c-p>]], [[:Glcd<cr>:Telescope find_files<cr>]], opts)
+end
+if has_require('nvim-tree') then
+  map("n", [[<c-b>]], [[:NvimTreeToggle<cr>]], opts) -- Toggle sidebar
+  map("n", [[-]], [[:NvimTreeFindFile<cr>]], opts)
 end
 if has_require('toggleterm') then
   map("n", [[<c-j>]], [[:ToggleTerm<cr>]], opts) -- Toggle terminal
@@ -104,7 +107,6 @@ wk.register({
   },
   [","] = {
     name = "Settings...",
-    f = { ":NvimTreeToggle<cr>", "Toggle file explorer" },
     [","] = { ":tab split ~/.config/nvim/init.lua<cr>", "Edit Vim settings" },
     x = { ":tab split ~/.config/nvim/init.lua<cr>", "Edit extensions" },
     k = { ":tab split ~/.config/nvim/lua/keymaps.lua<cr>", "Edit keybindings" },
