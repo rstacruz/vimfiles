@@ -152,7 +152,14 @@ plugin("scrollbar", function() -- {{{
 end, { defer = true }) -- }}}
 
 plugin("nvim-tree", function(mod) -- {{{
-  mod.setup({})
+  mod.setup({
+    view = { side = "left" },
+    renderer = {
+      indent_markers = {
+        enable = true,
+      },
+    },
+  })
 end) -- }}}
 
 plugin("indent-o-matic", function(mod) -- {{{
