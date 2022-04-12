@@ -100,11 +100,13 @@ wk.register({
   p = {
     name = "Pick...",
     b = { ":Telescope buffers<cr>", "Buffers" },
+    r = { ":lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Recent files" },
     s = { ":Telescope lsp_workspace_symbols<cr>", "Symbols" },
   },
   x = {
     name = "Exit...",
-    s = { ":SClose<cr>", "Close session" },
+    s = { ":%bd<cr>", "Close all buffers" },
+    S = { ":%bd<cr>:lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Close all and show recent" },
     x = { ":cq<cr>", "Exit" },
   },
   f = {
@@ -157,6 +159,11 @@ wk.register({
     d = { ":lua vim.diagnostic.setloclist()<CR>", "Diagnostics" },
     F = { ":lua vim.lsp.buf.formatting_seq_sync()<cr>", "Format (via LSP)" },
     f = { ":Neoformat<cr>", "Format (via Neoformat)" },
+  },
+  o = {
+    name = "Toggle...",
+    w = { ":set wrap!", "Word wrap" },
+    n = { ":set number!", "Line number" },
   },
 }, { prefix = "<Leader>" })
 

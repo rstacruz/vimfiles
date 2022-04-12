@@ -17,6 +17,7 @@ PKGS = {
   -- Themes
   "rstacruz/vim-microtone",
   "projekt0n/github-nvim-theme",
+  "tomasiser/vim-code-dark",
 
   -- File types
   "preservim/vim-markdown", -- Markdown (.md)
@@ -44,7 +45,6 @@ PKGS = {
   "Darazaki/indent-o-matic", -- Detect indentation automatically
   "akinsho/toggleterm.nvim", -- Terminal
   "jrudess/vim-foldtext", -- Improve appearance of fold text
-  "mhinz/vim-startify", -- Show recent files on startup
   "michaeljsmith/vim-indent-object",
   "nvim-pack/nvim-spectre", -- Find files
   "phaazon/hop.nvim", -- Easymotion (gw)
@@ -54,10 +54,11 @@ PKGS = {
   "tpope/vim-fugitive", -- Git
   "tpope/vim-rhubarb", -- Fugitive extension for GitHub commands
   "tpope/vim-surround",
-  "tpope/vim-unimpaired", -- Toggle key bindings
-  "dstein64/vim-startuptime",
+  "dstein64/vim-startuptime", -- Profile startup
+  "nanotee/zoxide.vim", -- Integration with zoxide dir changer
 
   -- "glepnir/dashboard-nvim",
+  -- "mhinz/vim-startify", -- Show recent files on startup
 }
 
 -- Preamble {{{
@@ -70,7 +71,9 @@ utils.bootstrap_paq(PKGS)
 
 -- Theme {{{
 local function get_theme()
-  if utils.has_paq("github-nvim-theme") then
+  if utils.has_paq("vim-code-dark") then
+    return { "codedark", "auto" }
+  elseif utils.has_paq("github-nvim-theme") then
     return utils.is_light() and { "github_light", "auto" } or { "github_dark", "auto" }
   elseif utils.has_paq("vim-microtone") then
     return { "microtone", "dracula" }
@@ -330,25 +333,6 @@ plugin("nvim-lsp-installer", function(mod) --  {{{
   end)
 end, { defer = true }) -- }}}
 
-if utils.has_paq("vim-startify") then -- {{{
-  vim.api.nvim_set_var(
-    "startify_custom_indices",
-    { "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "r", "s", "t", "g", "z", "x", "c", "d", "v" }
-  )
-  vim.api.nvim_set_var("startify_custom_header", {
-    "       ",
-    "   n    i  m",
-    "       ",
-  })
-  vim.api.nvim_set_var("startify_change_to_vcs_root", 1)
-  vim.api.nvim_set_var("startify_enable_unsafe", 1)
-  vim.api.nvim_command([[
-  let g:startify_lists = []
-  let g:startify_lists += [ { 'type': 'dir', 'header': ['  Recent files'] } ]
-  let g:startify_lists += [ { 'type': 'sessions', 'header': ['  Sessions'] } ]
-  ]])
-end -- }}}
-
 if utils.has_paq("neoformat") then -- {{{
   cmd([[augroup Neoformat]])
   cmd([[au!]])
@@ -364,6 +348,7 @@ vim.opt.mouse = "a" -- Enable mouse support
 vim.opt.shell = "/bin/bash"
 vim.opt.shiftwidth = 2
 vim.opt.showmode = false -- Don't show '-- INSERT --' in status line
+vim.opt.termguicolors = theme[1] ~= "microtone" -- Full GUI colours in terminal
 vim.opt.softtabstop = 2
 vim.opt.swapfile = false -- Don't write swap files
 vim.opt.timeoutlen = 200 -- For which-key
