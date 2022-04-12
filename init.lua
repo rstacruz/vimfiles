@@ -3,42 +3,51 @@ PKGS = {
 
   -- Language
   "nvim-treesitter/nvim-treesitter",
+  "neovim/nvim-lspconfig",
+  "williamboman/nvim-lsp-installer", -- Install LSP servers (:LspInstall)
+  "sbdchd/neoformat", -- Formatting
+
+  -- Completion
   "hrsh7th/cmp-nvim-lsp",
   "hrsh7th/cmp-buffer",
   "hrsh7th/cmp-path",
   "hrsh7th/cmp-cmdline",
   "hrsh7th/nvim-cmp",
-  "neovim/nvim-lspconfig",
-  "williamboman/nvim-lsp-installer", -- Install LSP servers (:LspInstall)
-  "sbdchd/neoformat", -- Formatting
-  "SmiteshP/nvim-gps", -- Breadcrumbs in the status line
 
   -- Themes
   "rstacruz/vim-microtone",
   "projekt0n/github-nvim-theme",
 
   -- File types
-  "preservim/vim-markdown", -- Markdown
+  "preservim/vim-markdown", -- Markdown (.md)
+  "slim-template/vim-slim", -- Slim (.slim)
 
-  -- Goodies
-  "phaazon/hop.nvim", -- Easymotion (gw)
-  "nvim-pack/nvim-spectre",
-  "Darazaki/indent-o-matic", -- Detect indentation automatically
-  "Xuyuanp/scrollbar.nvim",
+  -- UI
+  "SmiteshP/nvim-gps", -- Breadcrumbs in the status line
+  "Xuyuanp/scrollbar.nvim", -- Scrollbars
   "folke/lsp-colors.nvim", -- Infer some colours needed for LSP
   "folke/which-key.nvim", -- Menu when pressing [space]
-  "jrudess/vim-foldtext", -- Improve appearance of fold text
   "kyazdani42/nvim-tree.lua", -- File explorer
   "kyazdani42/nvim-web-devicons",
   "lewis6991/gitsigns.nvim", -- Git indicators on the gutter
-  "lewis6991/impatient.nvim", -- Improve startup time by optimising Lua cache
   "lukas-reineke/indent-blankline.nvim", -- Indent indicators
-  "mhinz/vim-startify", -- Show recent files on startup
-  "michaeljsmith/vim-indent-object",
-  "nathom/filetype.nvim", -- Improve startup time
   "nvim-lua/plenary.nvim", -- for Telescope
   "nvim-lualine/lualine.nvim", -- Status line
   "nvim-telescope/telescope.nvim",
+  "onsails/lspkind-nvim", -- Icons on LSP menus
+
+  -- Optimisations
+  "lewis6991/impatient.nvim", -- Improve startup time by optimising Lua cache
+  "nathom/filetype.nvim", -- Improve startup time
+
+  -- Goodies
+  "Darazaki/indent-o-matic", -- Detect indentation automatically
+  "akinsho/toggleterm.nvim", -- Terminal
+  "jrudess/vim-foldtext", -- Improve appearance of fold text
+  "mhinz/vim-startify", -- Show recent files on startup
+  "michaeljsmith/vim-indent-object",
+  "nvim-pack/nvim-spectre", -- Find files
+  "phaazon/hop.nvim", -- Easymotion (gw)
   "rstacruz/vim-gitgrep",
   "thinca/vim-visualstar",
   "tpope/vim-commentary", -- Comments
@@ -46,8 +55,6 @@ PKGS = {
   "tpope/vim-rhubarb", -- Fugitive extension for GitHub commands
   "tpope/vim-surround",
   "tpope/vim-unimpaired", -- Toggle key bindings
-  "akinsho/toggleterm.nvim", -- Terminal
-  "onsails/lspkind-nvim", -- Icons on LSP menus
 }
 
 -- Preamble {{{
