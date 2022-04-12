@@ -11,6 +11,7 @@ PKGS = {
 
   -- Themes
   "rstacruz/vim-microtone",
+  "projekt0n/github-nvim-theme",
 
   -- File types
   "preservim/vim-markdown", -- Markdown
@@ -41,8 +42,7 @@ PKGS = {
   "tpope/vim-rhubarb", -- Fugitive extension for GitHub commands
   "tpope/vim-surround",
   "tpope/vim-unimpaired", -- Toggle key bindings
-  -- "voldikss/vim-floaterm", -- Floating terminals
-  "akinsho/toggleterm.nvim",
+  "akinsho/toggleterm.nvim", -- Terminal
 }
 
 -- Preamble {{{
@@ -82,6 +82,9 @@ plugin("paq", function(paq)
   paq.install()
 end)
 -- }}}
+
+local theme = require("theme").get()
+if theme then cmd("color " .. theme[1]) end
 
 plugin("nvim-treesitter.configs", function(mod) -- {{{
   mod.setup({
@@ -142,10 +145,10 @@ plugin("indent_blankline", function(mod) -- {{{
 end) -- }}}
 
 plugin("lualine", function(mod) -- {{{
-  local status, gps = pcall(require, "nvim-gps")
+  local _, gps = pcall(require, "nvim-gps")
   mod.setup({
     options = {
-      theme = "dracula",
+      theme = theme[2],
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
     },
@@ -259,10 +262,6 @@ end -- }}}
 
 if has_paq("vim-floaterm") then -- {{{
   vim.api.nvim_set_var("floaterm_width", 0.95)
-end -- }}}
-
-if has_paq("vim-microtone") then -- {{{
-  cmd([[color microtone]])
 end -- }}}
 
 if has_paq("neoformat") then -- {{{
