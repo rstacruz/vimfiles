@@ -3,7 +3,11 @@ PKGS = {
 
   -- Language
   "nvim-treesitter/nvim-treesitter",
-  "hrsh7th/nvim-compe",
+  "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-buffer",
+  "hrsh7th/cmp-path",
+  "hrsh7th/cmp-cmdline",
+  "hrsh7th/nvim-cmp",
   "neovim/nvim-lspconfig",
   "williamboman/nvim-lsp-installer", -- Install LSP servers (:LspInstall)
   "sbdchd/neoformat", -- Formatting
@@ -43,6 +47,7 @@ PKGS = {
   "tpope/vim-surround",
   "tpope/vim-unimpaired", -- Toggle key bindings
   "akinsho/toggleterm.nvim", -- Terminal
+  "onsails/lspkind-nvim", -- Icons on LSP menus
 }
 
 -- Preamble {{{
@@ -96,14 +101,36 @@ plugin("nvim-treesitter.configs", function(mod) -- {{{
   })
 end) -- }}}
 
-plugin("compe", function(mod) -- {{{
-  mod.setup({
-    source = {
-      path = true,
-      buffer = true,
-      nvim_lsp = true,
-      nvim_lua = true,
+plugin("cmp", function(cmp) -- {{{
+  local _, lspkind = pcall(require, 'lspkind')
+
+  cmp.setup({
+    mapping = {
+      ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+      ['<C-y>'] = cmp.config.disable,
+      ['<C-e>'] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
     },
+    formatting = lspkind and {
+      format = lspkind.cmp_format({
+        mode = 'symbol',
+        maxwidth = 50,
+      })
+    } or {},
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      -- { name = 'vsnip' }, -- For vsnip users.
+      -- { name = 'luasnip' }, -- For luasnip users.
+      -- { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
+    }, {
+      { name = 'buffer' },
+    })
   })
 end) -- }}}
 

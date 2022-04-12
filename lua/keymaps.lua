@@ -40,6 +40,7 @@ end
 if has_require('toggleterm') then
   map("n", [[<c-j>]], [[:ToggleTerm<cr>]], opts) -- Toggle terminal
   map("t", [[<c-j>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Toggle terminal
+  map("t", [[<c-k>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Toggle terminal
 end
 
 -- Keymap: lsp
@@ -141,7 +142,11 @@ wk.register({
     name = "Terminal...",
     s = { ":ToggleTerm size=64 direction=vertical<cr>", "Open terminal to side" },
     f = { ":ToggleTerm size=64 direction=float<cr>", "Open terminal floating" },
-    v = { ":ToggleTerm size=20 direction=horifloat<cr>", "Open terminal to bottom" },
+    v = { ":ToggleTerm size=20 direction=horizontal<cr>", "Open terminal to bottom" },
+    a = { ":1ToggleTerm<cr>", "Terminal 1" },
+    z = { ":2ToggleTerm<cr>", "Terminal 2" },
+    x = { ":3ToggleTerm<cr>", "Terminal 3" },
+    c = { ":4ToggleTerm<cr>", "Terminal 4" },
   },
   l = {
     name = "Language (lsp)...",
