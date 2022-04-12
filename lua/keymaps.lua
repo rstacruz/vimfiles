@@ -13,6 +13,8 @@ map("n", [[gs]], [[:%s~~]], opts)
 map("v", [[gs]], [[:s~~]], opts)
 map("n", [[+]], [[za]], opts)
 map("n", [[<del>]], [[<c-w>q]], opts)
+map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 
 -- Keymap: terminal
 map("t", [[<esc>]], [[<c-\><c-n>]], opts) -- Terminal esc
@@ -137,7 +139,7 @@ wk.register({
     s = { ":ToggleTerm size=64 direction=vertical<cr>", "Open terminal to side" },
     f = { ":ToggleTerm size=64 direction=float<cr>", "Open terminal floating" },
     v = { ":ToggleTerm size=20 direction=horizontal<cr>", "Open terminal to bottom" },
-    t = { ":ToggleTerm direction=tab<cr>", "Open terminal to tab" },
+    n = { ":ToggleTerm direction=tab<cr>", "Open terminal to tab" },
     a = { ":1ToggleTerm<cr>", "Terminal 1" },
     z = { ":2ToggleTerm<cr>", "Terminal 2" },
     x = { ":3ToggleTerm<cr>", "Terminal 3" },
@@ -146,6 +148,7 @@ wk.register({
   l = {
     name = "Language (lsp)...",
     a = { ":lua vim.lsp.buf.code_action()<cr>", "Actions" },
+    d = { ":lua vim.diagnostic.setloclist()<CR>", "Diagnostics" },
     F = { ":lua vim.lsp.buf.formatting_seq_sync()<cr>", "Format (via LSP)" },
     f = { ":Neoformat<cr>", "Format (via Neoformat)" },
   },
