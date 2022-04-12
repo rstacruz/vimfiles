@@ -12,14 +12,24 @@ vim.g.maplocalleader = ","
 map("n", [[gs]], [[:%s~~]], opts)
 map("v", [[gs]], [[:s~~]], opts)
 map("n", [[+]], [[za]], opts)
-map("t", [[<esc>]], [[<c-\><c-n>]], opts) -- Terminal esc
 map("n", [[<del>]], [[<c-w>q]], opts)
 
+-- Keymap: terminal
+map("t", [[<esc>]], [[<c-\><c-n>]], opts) -- Terminal esc
+map("t", [[<c-k>]], [[<c-\><c-n><c-w>k]], opts) -- Terminal focus up
+map("t", [[<c-h>]], [[<c-\><c-n><c-w>h]], opts) -- Terminal focus left
+map("t", [[<c-l>]], [[<c-\><c-n><c-w>l]], opts) -- Terminal focus right
+
 -- Keymap: ctrl
-map("n", [[<c-s>]], [[:w<cr>]], opts)
-map("i", [[<c-s>]], [[<esc>:w<cr>]], opts)
+map("n", [[<c-h>]], [[<c-w>h]], opts) -- Focus left
+map("n", [[<c-l>]], [[<c-w>l]], opts) -- Focus right
+map("n", [[<c-k>]], [[<c-w>k]], opts) -- Focus down
+map("i", [[<c-h>]], [[<esc><c-w>h]], opts) -- Focus left (ins)
+map("i", [[<c-l>]], [[<esc><c-w>l]], opts) -- Focus right (ins)
+map("n", [[<c-s>]], [[:w<cr>]], opts) -- Save
+map("i", [[<c-s>]], [[<esc>:w<cr>]], opts) -- Save (ins)
+map("v", [[<c-c>]], [["+y]], opts) -- Copy
 map("i", [[<c-v>]], [[<esc>:set paste<cr>a<c-r>+<esc>:set nopaste<cr>a]], opts) -- Paste
-map("v", [[<c-c>]], [["+y]], opts) -- Paste
 if has_require('telescope') then
   map("n", [[<c-p>]], [[:Glcd<cr>:Telescope find_files<cr>]], opts)
 end
