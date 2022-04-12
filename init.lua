@@ -56,6 +56,8 @@ PKGS = {
   "tpope/vim-surround",
   "tpope/vim-unimpaired", -- Toggle key bindings
   "dstein64/vim-startuptime",
+
+  -- "glepnir/dashboard-nvim",
 }
 
 -- Preamble {{{
@@ -343,7 +345,7 @@ end -- }}}
 
 -- Vim settings {{{
 vim.opt.expandtab = true
-vim.opt.fillchars = { eob = " ", vert = "▓" } -- end-of-buffer and vertical split
+vim.opt.fillchars = { eob = " ", vert = "░" } -- end-of-buffer and vertical split
 vim.opt.gdefault = true -- Search/replace uses `g` flag by default
 vim.opt.mouse = "a" -- Enable mouse support
 vim.opt.shell = "/bin/bash"
