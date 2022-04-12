@@ -183,7 +183,12 @@ plugin("lualine", function(mod) -- {{{
       return vim.bo.filetype == "startify"
     end,
   }
-  local filename = { "filename", file_status = false, icon = "", cond = is_file, separator = { right = "/" } }
+  local filename = {
+    "filename",
+    icon = "",
+    cond = is_file,
+    symbols = { modified = " ●", readonly = " " },
+  }
   local mode = {
     "mode",
     fmt = function(str)
@@ -237,7 +242,7 @@ plugin("lualine", function(mod) -- {{{
       },
       lualine_c = {
         filename,
-        gps and { gps.get_location, cond = gps.is_available, color = "lualine_a_inactive" } or {},
+        gps and { gps.get_location, cond = gps.is_available, color = "lualine_c_inactive" } or {},
       },
       lualine_x = { filetype },
       lualine_y = {
