@@ -179,30 +179,62 @@ end) -- }}}
 
 plugin("lualine", function(mod) -- {{{
   local _, gps = pcall(require, "nvim-gps")
+  local function is_file()
+    return vim.bo.filetype ~= "toggleterm" and vim.bo.filetype ~= "NvimTree"
+  end
+  local terminal = {
+    function()
+      return [[ ]] .. (vim.b.toggle_number or "0")
+    end,
+    cond = function()
+      return vim.bo.filetype == "toggleterm"
+    end
+  }
+
   mod.setup({
     options = {
       theme = theme[2],
-      component_separators = { left = "", right = "" },
-      section_separators = { left = "", right = "" },
+      component_separators = { left = "", right = "" },
+      section_separators = { left = "", right = "" },
+    },
+    inactive_sections = {
+      lualine_a = {},
+      lualine_b = {},
+      lualine_c = {
+        { "filename", file_status = false, icon = "", cond = is_file },
+        terminal
+      },
+      lualine_x = {},
+      lualine_y = {},
+      lualine_z = {},
     },
     sections = {
       lualine_a = {
+        { "filename", file_status = false, icon = "", cond = is_file },
+        terminal
+      },
+      lualine_b = {
         {
-          "mode",
-          separator = { left = "", right = "▓▒░" },
-          fmt = function(str)
-            return str:sub(1, 1)
-          end,
+          'diagnostics',
+          source = { 'nvim' },
+          sections = { 'error' },
         },
       },
-      lualine_b = { "filename" },
       lualine_c = {
-        gps and { gps.get_location, cond = gps.is_available } or {}
+        gps and { gps.get_location, cond = gps.is_available } or {},
       },
-      lualine_x = { "filetype" },
-      lualine_y = { "progress" },
+      lualine_x = {
+        { "filetype", cond = is_file }
+      },
+      lualine_y = {
+        { "location", icon = "", left_padding = 2, cond = is_file },
+      },
       lualine_z = {
-        { "location", separator = { right = "" }, left_padding = 2 },
+        {
+          "mode",
+          fmt = function(str) return str:sub(1, 1) end,
+          cond = is_file
+        },
       },
     },
     tabline = {

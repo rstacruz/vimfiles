@@ -18,7 +18,7 @@ end
 -- Returns theme to use
 local function get_theme()
   if has_paq("github-nvim-theme") then
-    return is_light() and {"github_light", "auto"} or {"github_dark", "auto"}
+    return is_light() and {"github_light", "auto"} or {"github_dark", "dracula"}
   end
 
   if has_paq("vim-microtone") then
