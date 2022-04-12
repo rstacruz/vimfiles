@@ -12,7 +12,7 @@ vim.g.maplocalleader = ","
 map("n", [[gs]], [[:%s~~]], opts)
 map("v", [[gs]], [[:s~~]], opts)
 map("n", [[+]], [[za]], opts)
-map("n", [[<del>]], [[<c-w>q]], opts)
+map("n", [[<del>]], [[:bwipe<cr>]], opts)
 map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 
@@ -78,7 +78,7 @@ wk.register({
   ["8"] = { ":8wincmd w<cr>", "Focus pane 8" },
   ["0"] = { "<c-w>b", "Focus last pane" },
   ["<Esc>"] = { ":FloatermToggle<cr>", "Toggle terminal" },
-  t = { ":tabnew<cr>", "New tab" },
+  t = { ":tab split<cr>", "New tab" },
 }, { prefix = "<cr>" })
 
 -- Keymap: leader
