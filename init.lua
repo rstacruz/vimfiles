@@ -176,12 +176,9 @@ plugin(
   end)
 ) -- }}}
 
-plugin(
-  "nvim-tree",
-  deferred(function(mod) -- {{{
-    mod.setup({})
-  end)
-) -- }}}
+plugin("nvim-tree", function(mod) -- {{{
+  mod.setup({})
+end) -- }}}
 
 plugin("indent-o-matic", function(mod) -- {{{
   mod.setup({})
