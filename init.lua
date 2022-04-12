@@ -209,8 +209,7 @@ plugin("lualine", function(mod) -- {{{
   local tabs = {
     "tabs",
     mode = 0,
-    separator = { right = "" },
-    -- separator = { left = "" },
+    separator = { left = "" },
     tabs_color = {
       -- Same values as the general color option can be used here.
       active = "lualine_a_normal",
@@ -220,8 +219,8 @@ plugin("lualine", function(mod) -- {{{
 
   local buffers = {
     "buffers",
+    separator = { right = "" },
     filetype_names = { NvimTree = "tree" },
-    separator = { left = "" },
     buffers_color = {
       active = "lualine_b_normal",
       inactive = "lualine_c_inactive",
@@ -271,12 +270,12 @@ plugin("lualine", function(mod) -- {{{
       lualine_z = { mode },
     },
     tabline = {
-      lualine_a = { tabs },
+      lualine_z = { tabs },
       lualine_b = {},
       lualine_c = {},
-      lualine_x = { buffers },
+      lualine_a = { buffers },
       lualine_y = {},
-      lualine_z = {},
+      lualine_x = {},
     },
   })
 end) -- }}}
@@ -305,6 +304,13 @@ end, { defer = true }) -- }}}
 
 plugin("gitsigns", function(mod) -- {{{
   mod.setup({})
+end, { defer = true }) -- }}}
+
+plugin("telescope", function(mod) -- {{{
+  local defaults = require("telescope.themes").get_dropdown()
+  mod.setup({
+    defaults = defaults,
+  })
 end, { defer = true }) -- }}}
 
 plugin("nvim-gps", function(mod) -- {{{
