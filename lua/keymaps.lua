@@ -137,6 +137,7 @@ wk.register({
     s = { ":ToggleTerm size=64 direction=vertical<cr>", "Open terminal to side" },
     f = { ":ToggleTerm size=64 direction=float<cr>", "Open terminal floating" },
     v = { ":ToggleTerm size=20 direction=horizontal<cr>", "Open terminal to bottom" },
+    t = { ":ToggleTerm direction=tab<cr>", "Open terminal to tab" },
     a = { ":1ToggleTerm<cr>", "Terminal 1" },
     z = { ":2ToggleTerm<cr>", "Terminal 2" },
     x = { ":3ToggleTerm<cr>", "Terminal 3" },
