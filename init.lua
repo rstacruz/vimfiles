@@ -64,24 +64,22 @@ local cmd = vim.api.nvim_command
 
 -- Loads a module using require(), but does nothing if the module is not present
 -- Used for conditionally configuring a plugin depending on whether it's installed
-local function plugin(module_name, callback)
+local function plugin(module_name, callback, options)
   local status, mod = pcall(require, module_name)
   if status then
-    callback(mod)
+    if options and options["delay"] then
+      vim.defer_fn(function()
+        callback(mod)
+      end, 25)
+    else
+      callback(mod)
+    end
   end
 end
 
 local function has_paq(name)
   local path = vim.fn.stdpath("data") .. "/site/pack/paqs/start/" .. name
   return vim.fn.empty(vim.fn.glob(path)) == 0
-end
-
-local function deferred(callback)
-  return function(a)
-    vim.defer_fn(function()
-      callback(a)
-    end, 25)
-  end
 end
 -- }}}
 
@@ -109,72 +107,63 @@ if theme then
   cmd("color " .. theme[1])
 end
 
-plugin(
-  "nvim-treesitter.configs",
-  deferred(function(mod) -- {{{
-    mod.setup({
-      ensure_installed = { "c", "cpp", "javascript", "css", "lua" },
-      highlight = {
-        enable = true,
-        use_languagetree = true,
-      },
-    })
-  end)
-) -- }}}
+plugin("nvim-treesitter.configs", function(mod) -- {{{
+  mod.setup({
+    ensure_installed = { "c", "cpp", "javascript", "css", "lua" },
+    highlight = {
+      enable = true,
+      use_languagetree = true,
+    },
+  })
+end, { defer = true }) -- }}}
 
-plugin(
-  "cmp",
-  deferred(function(cmp) -- {{{
-    local _, lspkind = pcall(require, "lspkind")
+plugin("cmp", function(cmp) -- {{{
+  local _, lspkind = pcall(require, "lspkind")
 
-    cmp.setup({
-      mapping = {
-        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-        ["<C-y>"] = cmp.config.disable,
-        ["<C-e>"] = cmp.mapping({
-          i = cmp.mapping.abort(),
-          c = cmp.mapping.close(),
-        }),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
-      },
-      formatting = lspkind and {
-        format = lspkind.cmp_format({
-          mode = "symbol",
-          maxwidth = 50,
-        }),
-      } or {},
-      sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        -- { name = 'vsnip' }, -- For vsnip users.
-        -- { name = 'luasnip' }, -- For luasnip users.
-        -- { name = 'ultisnips' }, -- For ultisnips users.
-        -- { name = 'snippy' }, -- For snippy users.
-      }, {
-        { name = "buffer" },
+  cmp.setup({
+    mapping = {
+      ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+      ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+      ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+      ["<C-y>"] = cmp.config.disable,
+      ["<C-e>"] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
       }),
-    })
-  end)
-) -- }}}
+      ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    },
+    formatting = lspkind and {
+      format = lspkind.cmp_format({
+        mode = "symbol",
+        maxwidth = 50,
+      }),
+    } or {},
+    sources = cmp.config.sources({
+      { name = "nvim_lsp" },
+      -- { name = 'vsnip' }, -- For vsnip users.
+      -- { name = 'luasnip' }, -- For luasnip users.
+      -- { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
+    }, {
+      { name = "buffer" },
+    }),
+  })
+end, { defer = true }) -- }}}
 
-plugin(
-  "scrollbar",
-  deferred(function() -- {{{
-    vim.api.nvim_command([[
+plugin("scrollbar", function() -- {{{
+  vim.api.nvim_command([[
     let g:scrollbar_max_size = 12
     let g:scrollbar_shape = { 'head': '█', 'body': '█', 'tail': '█', }
     let g:scrollbar_highlight = { 'head': 'LineNr', 'body': 'LineNr', 'tail': 'LineNr', }
   ]])
 
-    cmd([[augroup ScrollbarInit]])
-    cmd([[au!]])
-    cmd([[autocmd WinScrolled,VimResized,QuitPre * silent! lua require('scrollbar').show()]])
-    cmd([[autocmd WinEnter,FocusGained,BufEnter  * silent! lua require('scrollbar').show()]])
-    cmd([[autocmd WinLeave,BufLeave,BufWinLeave,FocusLost,QuitPre * silent! lua require('scrollbar').clear()]])
-    cmd([[augroup END]])
-  end)
-) -- }}}
+  cmd([[augroup ScrollbarInit]])
+  cmd([[au!]])
+  cmd([[autocmd WinScrolled,VimResized,QuitPre * silent! lua require('scrollbar').show()]])
+  cmd([[autocmd WinEnter,FocusGained,BufEnter  * silent! lua require('scrollbar').show()]])
+  cmd([[autocmd WinLeave,BufLeave,BufWinLeave,FocusLost,QuitPre * silent! lua require('scrollbar').clear()]])
+  cmd([[augroup END]])
+end, { defer = true }) -- }}}
 
 plugin("nvim-tree", function(mod) -- {{{
   mod.setup({})
@@ -184,22 +173,19 @@ plugin("indent-o-matic", function(mod) -- {{{
   mod.setup({})
 end) -- }}}
 
-plugin(
-  "indent_blankline",
-  deferred(function(mod) -- {{{
-    mod.setup({
-      space_char_blankline = " ",
-      show_current_context = true,
-      show_current_context_start = true,
-    })
-    vim.cmd([[
+plugin("indent_blankline", function(mod) -- {{{
+  mod.setup({
+    space_char_blankline = " ",
+    show_current_context = true,
+    show_current_context_start = true,
+  })
+  vim.cmd([[
     let g:indent_blankline_show_first_indent_level = v:true
     let g:indent_blankline_char_list = ['│', '┊', '┆']
     let g:indent_blankline_context_char_list = ['┊']
     let g:indent_blankline_filetype_exclude += ['startify']
   ]])
-  end)
-) -- }}}
+end, { defer = true }) -- }}}
 
 plugin("lualine", function(mod) -- {{{
   local _, gps = pcall(require, "nvim-gps")
@@ -293,89 +279,71 @@ plugin("lualine", function(mod) -- {{{
   })
 end) -- }}}
 
-plugin(
-  "which-key",
-  deferred(function(mod) -- {{{
-    mod.setup({
-      window = {
-        border = "single",
-        margin = { 1, 10, 2, 10 },
-      },
-      key_labels = {
-        ["<leader>"] = "∴",
-      },
-      icons = {
-        breadcrumb = "›",
-        separator = "┄",
-        group = "",
-      },
-      layout = {
-        align = "center",
-        spacing = 7,
-      },
-    })
-    require("keymaps")
+plugin("which-key", function(mod) -- {{{
+  mod.setup({
+    window = {
+      border = "single",
+      margin = { 1, 10, 2, 10 },
+    },
+    key_labels = {
+      ["<leader>"] = "∴",
+    },
+    icons = {
+      breadcrumb = "›",
+      separator = "┄",
+      group = "",
+    },
+    layout = {
+      align = "center",
+      spacing = 7,
+    },
+  })
+  require("keymaps")
+end, { defer = true }) -- }}}
+
+plugin("gitsigns", function(mod) -- {{{
+  mod.setup({})
+end, { defer = true }) -- }}}
+
+plugin("nvim-gps", function(mod) -- {{{
+  mod.setup({
+    separator = " ╱ ",
+  })
+end, { defer = true }) -- }}}
+
+plugin("hop", function(mod) -- {{{
+  mod.setup({
+    keys = "arstgmneiowfpyulcdh",
+    -- keys = "1234567890",
+  })
+end, { defer = true }) -- }}}
+
+plugin("toggleterm", function(toggleterm) -- {{{
+  toggleterm.setup({
+    size = function(term)
+      if term.direction == "horizontal" then
+        return 24
+      elseif term.direction == "vertical" then
+        return vim.o.columns * 0.4
+      end
+    end,
+    shading_factor = 2,
+  })
+end, { defer = true }) -- }}}
+
+plugin("nvim-lsp-installer", function(mod) --  {{{
+  vim.api.nvim_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+
+  mod.on_server_ready(function(server)
+    local opts = {}
+    -- (optional) Customize the options passed to the server
+    -- if server.name == 'tsserver' then
+    --     opts.root_dir = function() ... end
+    -- end
+
+    server:setup(opts)
   end)
-) -- }}}
-
-plugin(
-  "gitsigns",
-  deferred(function(mod) -- {{{
-    mod.setup({})
-  end)
-) -- }}}
-
-plugin(
-  "nvim-gps",
-  deferred(function(mod) -- {{{
-    mod.setup({
-      separator = " ╱ ",
-    })
-  end)
-) -- }}}
-
-plugin(
-  "hop",
-  deferred(function(mod) -- {{{
-    mod.setup({
-      keys = "arstgmneiowfpyulcdh",
-      -- keys = "1234567890",
-    })
-  end)
-) -- }}}
-
-plugin(
-  "toggleterm",
-  deferred(function(toggleterm) -- {{{
-    toggleterm.setup({
-      size = function(term)
-        if term.direction == "horizontal" then
-          return 24
-        elseif term.direction == "vertical" then
-          return vim.o.columns * 0.4
-        end
-      end,
-      shading_factor = 2,
-    })
-  end)
-) -- }}}
-
-plugin(
-  "nvim-lsp-installer",
-  deferred(function(mod) --  {{{
-    vim.api.nvim_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
-    mod.on_server_ready(function(server)
-      local opts = {}
-      -- (optional) Customize the options passed to the server
-      -- if server.name == 'tsserver' then
-      --     opts.root_dir = function() ... end
-      -- end
-
-      server:setup(opts)
-    end)
-  end)
-) -- }}}
+end, { defer = true }) -- }}}
 
 if has_paq("vim-startify") then -- {{{
   vim.api.nvim_set_var(
