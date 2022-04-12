@@ -205,6 +205,13 @@ plugin("lualine", function(mod) -- {{{
 
   local buffers = { "buffers", filetype_names = { NvimTree = "tree" } }
 
+  local filetype = {
+    "filetype",
+    cond = function()
+      return is_file() and vim.o.columns > 100
+    end,
+  }
+
   mod.setup({
     options = {
       theme = theme[2],
@@ -214,10 +221,7 @@ plugin("lualine", function(mod) -- {{{
     inactive_sections = {
       lualine_a = {},
       lualine_b = {},
-      lualine_c = {
-        filename,
-        terminal,
-      },
+      lualine_c = { filename, terminal },
       lualine_x = {},
       lualine_y = {},
       lualine_z = {},
@@ -235,14 +239,7 @@ plugin("lualine", function(mod) -- {{{
         filename,
         gps and { gps.get_location, cond = gps.is_available, color = "lualine_a_inactive" } or {},
       },
-      lualine_x = {
-        {
-          "filetype",
-          cond = function()
-            return is_file() and vim.o.columns > 100
-          end,
-        },
-      },
+      lualine_x = { filetype },
       lualine_y = {
         { "location", icon = "", left_padding = 2, cond = is_file },
         terminal,
