@@ -83,7 +83,7 @@ wk.register({
 
 -- Keymap: leader
 wk.register({
-  ["."] = { ":term<cr>", "Open terminal here" },
+  ["."] = { ":ToggleTerm direction=vertical<cr>", "Open terminal" },
   ["*"] = { ":GG <c-r><c-w><cr>", "Search" },
   w = {
     name = "Window...",

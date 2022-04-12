@@ -312,7 +312,7 @@ plugin("toggleterm", function(toggleterm) -- {{{
       if term.direction == "horizontal" then
         return 24
       elseif term.direction == "vertical" then
-        return vim.o.columns * 0.4
+        return 80 -- vim.o.columns * 0.4
       end
     end,
     shading_factor = 3,
