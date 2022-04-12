@@ -346,7 +346,7 @@ plugin(
 
 plugin(
   "toggleterm",
-  deferred(function(toggleterm)
+  deferred(function(toggleterm) -- {{{
     toggleterm.setup({
       size = function(term)
         if term.direction == "horizontal" then
@@ -358,7 +358,7 @@ plugin(
       shading_factor = 2,
     })
   end)
-)
+) -- }}}
 
 plugin(
   "nvim-lsp-installer",
@@ -392,14 +392,10 @@ if has_paq("vim-startify") then -- {{{
   ]])
 end -- }}}
 
-if has_paq("vim-floaterm") then -- {{{
-  vim.api.nvim_set_var("floaterm_width", 0.95)
-end -- }}}
-
 if has_paq("neoformat") then -- {{{
   cmd([[augroup Neoformat]])
   cmd([[au!]])
-  cmd([[au BufWritePre *.lua,*.js,*.ts,*.tsx undojoin | Neoformat]])
+  cmd([[au BufWritePre *.lua,*.js,*.ts,*.tsx Neoformat]])
   cmd([[augroup END]])
 end -- }}}
 
