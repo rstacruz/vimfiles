@@ -105,9 +105,10 @@ wk.register({
   },
   x = {
     name = "Exit...",
-    s = { ":%bd<cr>", "Close all buffers" },
-    S = { ":%bd<cr>:lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Close all and show recent" },
+    s = { ":%bd!<cr>", "Close all buffers" },
+    r = { ":%bd!<cr>:lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Close all and show recent" },
     x = { ":cq<cr>", "Exit" },
+    z = { ":%bd!<cr>:Zi<cr>", "Switch to project..." },
   },
   f = {
     name = "File...",
@@ -156,14 +157,15 @@ wk.register({
   l = {
     name = "Language (lsp)...",
     a = { ":lua vim.lsp.buf.code_action()<cr>", "Actions" },
-    d = { ":lua vim.diagnostic.setloclist()<CR>", "Diagnostics" },
+    r = { ":lua vim.lsp.buf.rename()<cr>", "Rename symbol..." },
+    d = { ":Telescope diagnostics<CR>", "Diagnostics" },
     F = { ":lua vim.lsp.buf.formatting_seq_sync()<cr>", "Format (via LSP)" },
     f = { ":Neoformat<cr>", "Format (via Neoformat)" },
   },
   o = {
     name = "Toggle...",
-    w = { ":set wrap!", "Word wrap" },
-    n = { ":set number!", "Line number" },
+    w = { ":set wrap!<cr>", "Word wrap" },
+    n = { ":set number!<cr>", "Line number" },
   },
 }, { prefix = "<Leader>" })
 

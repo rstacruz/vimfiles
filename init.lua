@@ -18,6 +18,8 @@ PKGS = {
   "rstacruz/vim-microtone",
   "projekt0n/github-nvim-theme",
   "tomasiser/vim-code-dark",
+  "rktjmp/lush.nvim", -- Required by zenbones
+  "mcchrish/zenbones.nvim",
 
   -- File types
   "preservim/vim-markdown", -- Markdown (.md)
@@ -36,6 +38,7 @@ PKGS = {
   "nvim-lualine/lualine.nvim", -- Status line
   "nvim-telescope/telescope.nvim",
   "onsails/lspkind-nvim", -- Icons on LSP menus
+  "stevearc/dressing.nvim", -- Improved appearance of vim.ui
 
   -- Optimisations
   "lewis6991/impatient.nvim", -- Improve startup time by optimising Lua cache
@@ -71,18 +74,22 @@ utils.bootstrap_paq(PKGS)
 
 -- Theme {{{
 local function get_theme()
-  if utils.has_paq("vim-code-dark") then
-    return { "codedark", "auto" }
+  local bg = utils.is_light() and "light" or "dark"
+  if utils.has_paq("zenbones.nvim") then
+    return bg == "light" and { "rosebones", "auto", bg } or { "tokyobones", "auto", bg }
+  elseif utils.has_paq("vim-code-dark") then
+    return { "codedark", "auto", "dark" }
   elseif utils.has_paq("github-nvim-theme") then
-    return utils.is_light() and { "github_light", "auto" } or { "github_dark", "auto" }
+    return bg and { "github_light", "auto", bg } or { "github_dark", "auto", bg }
   elseif utils.has_paq("vim-microtone") then
-    return { "microtone", "dracula" }
+    return { "microtone", "dracula", bg }
   else
-    return { "defualt", "auto" }
+    return { "defualt", "auto", bg }
   end
 end
 
 local theme = get_theme()
+vim.opt.background = theme[3]
 cmd("color " .. theme[1])
 -- }}}
 
@@ -159,7 +166,7 @@ plugin("indent_blankline", function(mod) -- {{{
   })
   vim.cmd([[
     let g:indent_blankline_show_first_indent_level = v:true
-    let g:indent_blankline_char_list = ['│', '┊', '┆']
+    let g:indent_blankline_char_list = ['┊', '┆', '│']
     let g:indent_blankline_context_char_list = ['┊']
     let g:indent_blankline_filetype_exclude += ['startify']
   ]])
@@ -211,7 +218,15 @@ plugin("lualine", function(mod) -- {{{
     },
   }
 
-  local buffers = { "buffers", filetype_names = { NvimTree = "tree" } }
+  local buffers = {
+    "buffers",
+    filetype_names = { NvimTree = "tree" },
+    separator = { left = "" },
+    buffers_color = {
+      active = "lualine_b_normal",
+      inactive = "lualine_c_inactive",
+    },
+  }
 
   local filetype = {
     "filetype",
@@ -351,7 +366,7 @@ vim.opt.showmode = false -- Don't show '-- INSERT --' in status line
 vim.opt.termguicolors = theme[1] ~= "microtone" -- Full GUI colours in terminal
 vim.opt.softtabstop = 2
 vim.opt.swapfile = false -- Don't write swap files
-vim.opt.timeoutlen = 200 -- For which-key
+vim.opt.timeoutlen = 400 -- For which-key
 vim.opt.wrap = false -- Word wrap
 -- }}}
 
@@ -371,5 +386,4 @@ cmd([[au FileType gitcommit inoremap <silent> <buffer> <c-s> <esc>:w<cr>G:q<cr>]
 cmd([[au FileType gitcommit nnoremap <silent> <buffer> <c-s> :w<cr>G:q<cr>]])
 cmd([[augroup END]])
 -- }}}
-
 -- vim:foldmethod=marker
