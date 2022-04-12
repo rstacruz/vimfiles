@@ -45,8 +45,15 @@ if has_require("toggleterm") then
   map("t", [[<c-k>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Toggle terminal
 end
 
--- Keymap: lsp
+-- Keymap: general
 wk.register({
+  -- Buffer
+  gb = { ":bnext<cr>", "Buffer: next" },
+  gB = { ":bprev<cr>", "Buffer: previous" },
+  ["<tab>"] = { ":bnext<cr>", "Buffer: next" },
+  ["<s-tab>"] = { ":bprev<cr>", "Buffer: previous" },
+
+  -- lsp
   gd = { ":Telescope lsp_definitions<cr>", "Definitions (lsp)..." },
   gr = { ":Telescope lsp_references<cr>", "References (lsp)..." },
   gD = { ":lua vim.lsp.buf.declaration()", "Declaration (lsp)..." },

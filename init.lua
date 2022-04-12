@@ -71,7 +71,7 @@ utils.bootstrap_paq(PKGS)
 -- Theme {{{
 local function get_theme()
   if utils.has_paq("github-nvim-theme") then
-    return utils.is_light() and { "github_light", "auto" } or { "github_dark", "dracula" }
+    return utils.is_light() and { "github_light", "auto" } or { "github_dark", "auto" }
   elseif utils.has_paq("vim-microtone") then
     return { "microtone", "dracula" }
   else
@@ -153,7 +153,6 @@ plugin("indent_blankline", function(mod) -- {{{
   mod.setup({
     space_char_blankline = " ",
     show_current_context = true,
-    show_current_context_start = true,
   })
   vim.cmd([[
     let g:indent_blankline_show_first_indent_level = v:true
@@ -184,6 +183,27 @@ plugin("lualine", function(mod) -- {{{
       return vim.bo.filetype == "startify"
     end,
   }
+  local filename = { "filename", file_status = false, icon = "", cond = is_file, separator = { right = "/" } }
+  local mode = {
+    "mode",
+    fmt = function(str)
+      return str:sub(1, 1)
+    end,
+    cond = is_file,
+  }
+  local tabs = {
+    "tabs",
+    mode = 0,
+    separator = { right = "" },
+    -- separator = { left = "" },
+    tabs_color = {
+      -- Same values as the general color option can be used here.
+      active = "lualine_a_normal",
+      inactive = "lualine_b_inactive",
+    },
+  }
+
+  local buffers = { "buffers", filetype_names = { NvimTree = "tree" } }
 
   mod.setup({
     options = {
@@ -195,7 +215,7 @@ plugin("lualine", function(mod) -- {{{
       lualine_a = {},
       lualine_b = {},
       lualine_c = {
-        { "filename", file_status = false, icon = "", cond = is_file },
+        filename,
         terminal,
       },
       lualine_x = {},
@@ -203,11 +223,7 @@ plugin("lualine", function(mod) -- {{{
       lualine_z = {},
     },
     sections = {
-      lualine_a = {
-        { "filename", file_status = false, icon = "", cond = is_file, t },
-        terminal,
-        startify,
-      },
+      lualine_a = {},
       lualine_b = {
         {
           "diagnostics",
@@ -216,40 +232,30 @@ plugin("lualine", function(mod) -- {{{
         },
       },
       lualine_c = {
-        gps and { gps.get_location, cond = gps.is_available } or {},
+        filename,
+        gps and { gps.get_location, cond = gps.is_available, color = "lualine_a_inactive" } or {},
       },
       lualine_x = {
-        { "filetype", cond = is_file },
+        {
+          "filetype",
+          cond = function()
+            return is_file() and vim.o.columns > 100
+          end,
+        },
       },
       lualine_y = {
         { "location", icon = "", left_padding = 2, cond = is_file },
+        terminal,
+        startify,
       },
-      lualine_z = {
-        {
-          "mode",
-          fmt = function(str)
-            return str:sub(1, 1)
-          end,
-          cond = is_file,
-        },
-      },
+      lualine_z = { mode },
     },
     tabline = {
-      lualine_a = {},
-      lualine_b = {
-        {
-          "tabs",
-          mode = 1,
-          tabs_color = {
-            -- Same values as the general color option can be used here.
-            active = "lualine_a_normal",
-            inactive = "lualine_b_inactive",
-          },
-        },
-      },
+      lualine_a = { tabs },
+      lualine_b = {},
       lualine_c = {},
-      lualine_x = {},
-      lualine_y = { "branch" },
+      lualine_x = { buffers },
+      lualine_y = {},
       lualine_z = {},
     },
   })
@@ -294,6 +300,10 @@ plugin("hop", function(mod) -- {{{
   })
 end, { defer = true }) -- }}}
 
+plugin("auto-session", function(mod) -- {{{
+  mod.setup({})
+end, { defer = false }) -- }}}
+
 plugin("toggleterm", function(toggleterm) -- {{{
   toggleterm.setup({
     size = function(term)
@@ -303,7 +313,7 @@ plugin("toggleterm", function(toggleterm) -- {{{
         return vim.o.columns * 0.4
       end
     end,
-    shading_factor = 2,
+    shading_factor = 3,
   })
 end, { defer = true }) -- }}}
 
