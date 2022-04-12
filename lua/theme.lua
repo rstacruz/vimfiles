@@ -1,7 +1,4 @@
-local function has_paq(name)
-  local path = vim.fn.stdpath("data") .. "/site/pack/paqs/start/" .. name
-  return vim.fn.empty(vim.fn.glob(path)) == 0
-end
+local has_paq = require('utils').has_paq
 
 -- Checks if the theme should be light based on Pywal colors
 local function is_light()

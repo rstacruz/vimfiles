@@ -61,45 +61,9 @@ PKGS = {
 -- Preamble {{{
 pcall(require, "impatient") -- Cache Lua packages
 local cmd = vim.api.nvim_command
-
--- Loads a module using require(), but does nothing if the module is not present
--- Used for conditionally configuring a plugin depending on whether it's installed
-local function plugin(module_name, callback, options)
-  local status, mod = pcall(require, module_name)
-  if status then
-    if options and options["delay"] then
-      vim.defer_fn(function()
-        callback(mod)
-      end, 25)
-    else
-      callback(mod)
-    end
-  end
-end
-
-local function has_paq(name)
-  local path = vim.fn.stdpath("data") .. "/site/pack/paqs/start/" .. name
-  return vim.fn.empty(vim.fn.glob(path)) == 0
-end
--- }}}
-
--- Bootstrap {{{
-if not has_paq("paq-nvim") then
-  local path = vim.fn.stdpath("data") .. "/site/pack/paqs/start/paq-nvim"
-  local paq_url = "https://github.com/savq/paq-nvim.git"
-  vim.fn.system({ "git", "clone", "--depth=1", paq_url, path })
-  vim.cmd("packadd paq-nvim")
-  vim.cmd("autocmd User PaqDoneInstall quit")
-  local paq = require("paq")
-  paq(PKGS)
-  paq.install()
-else
-  local paq = require("paq")
-  paq(PKGS)
-  vim.defer_fn(function()
-    paq.install()
-  end, 250)
-end
+local utils = require('utils')
+local plugin = utils.plugin
+utils.bootstrap_paq(PKGS)
 -- }}}
 
 local theme = require("theme").get()
@@ -345,7 +309,7 @@ plugin("nvim-lsp-installer", function(mod) --  {{{
   end)
 end, { defer = true }) -- }}}
 
-if has_paq("vim-startify") then -- {{{
+if utils.has_paq("vim-startify") then -- {{{
   vim.api.nvim_set_var(
     "startify_custom_indices",
     { "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "r", "s", "t", "g", "z", "x", "c", "d", "v" }
@@ -360,7 +324,7 @@ if has_paq("vim-startify") then -- {{{
   ]])
 end -- }}}
 
-if has_paq("neoformat") then -- {{{
+if utils.has_paq("neoformat") then -- {{{
   cmd([[augroup Neoformat]])
   cmd([[au!]])
   cmd([[au BufWritePre *.lua,*.js,*.ts,*.tsx Neoformat]])
