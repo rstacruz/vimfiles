@@ -188,7 +188,7 @@ end) -- }}}
 plugin("which-key", function(mod) -- {{{
   mod.setup({
     window = {
-      border = "single",
+      border = "shadow",
       margin = { 1, 10, 2, 10 },
     },
     key_labels = {

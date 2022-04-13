@@ -172,6 +172,3 @@ wk.register({
 
 -- localleader: lua
 map("n", [[<localleader>s]], [[:w<cr>:luafile %<cr>]], opts)
-
--- Etc
-map("n", [[co]], [[yo]], {}) -- Unimpaired
