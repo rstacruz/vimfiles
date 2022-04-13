@@ -176,6 +176,7 @@ plugin("indent_blankline", function(mod) -- {{{
     let g:indent_blankline_char_list = ['┊', '┆', '│']
     let g:indent_blankline_context_char_list = ['┊']
     let g:indent_blankline_filetype_exclude += ['startify']
+    let g:indent_blankline_filetype_exclude += ['toggleterm']
   ]])
 end, { defer = true }) -- }}}
 
