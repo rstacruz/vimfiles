@@ -2,7 +2,8 @@ local function get_theme(opts)
   local _, gps = pcall(require, "nvim-gps")
 
   local function is_file()
-    return vim.bo.filetype ~= "toggleterm" and vim.bo.filetype ~= "NvimTree" and vim.bo.filetype ~= "startify"
+    local nonfile_types = { toggleterm = true, NvimTree = true, startify = true, vista_kind = true }
+    return not (nonfile_types[vim.bo.filetype] or false)
   end
 
   local terminal = {
@@ -40,20 +41,25 @@ local function get_theme(opts)
   local tabs = {
     "tabs",
     mode = 0,
-    separator = { left = "" },
-    padding = { left = 3, right = 3 },
+    separator = { left = "█", right = "" },
+    component_separators = { left = " ", right = "" },
+    section_separators = { left = "", right = "" },
+    padding = { left = 2, right = 2 },
     tabs_color = {
       -- Same values as the general color option can be used here.
-      active = "Preproc",
+      active = "lualine_a_normal",
       inactive = "lualine_b_inactive",
     },
   }
 
   local buffers = {
     "buffers",
-    separator = { right = "" },
-    component_separators = { left = "│", right = "" },
-    section_separators = { left = "│", right = "" },
+    -- a  XXXXXX  e   ......
+    --    ......      XXXXXX    e    ......
+    --    ......  c   ......         XXXXXX   b
+    separator = { left = "", right = "" },
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
     padding = { left = 1, right = 4 },
     max_length = 200,
     filetype_names = { NvimTree = "tree" },
@@ -106,12 +112,12 @@ local function get_theme(opts)
       lualine_z = { mode },
     },
     tabline = {
-      lualine_z = { tabs },
+      lualine_a = { tabs },
       lualine_b = {},
-      lualine_c = {},
-      lualine_a = { buffers },
+      lualine_c = { buffers },
       lualine_y = {},
       lualine_x = {},
+      lualine_z = {},
     },
   }
 end

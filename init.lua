@@ -1,11 +1,11 @@
-PKGS = {
+PKGS = { -- {{{
   "savq/paq-nvim", -- Paq package manager
 
   -- Language
   "nvim-treesitter/nvim-treesitter",
   "neovim/nvim-lspconfig",
   "williamboman/nvim-lsp-installer", -- Install LSP servers (:LspInstall)
-  "sbdchd/neoformat", -- Formatting
+  "jose-elias-alvarez/null-ls.nvim", -- Formatting and diagnostics
 
   -- Completion
   "hrsh7th/cmp-nvim-lsp",
@@ -39,6 +39,7 @@ PKGS = {
   "nvim-telescope/telescope.nvim",
   "onsails/lspkind-nvim", -- Icons on LSP menus
   "stevearc/dressing.nvim", -- Improved appearance of vim.ui
+  "rcarriga/nvim-notify",
 
   -- Optimisations
   "lewis6991/impatient.nvim", -- Improve startup time by optimising Lua cache
@@ -60,15 +61,14 @@ PKGS = {
   "dstein64/vim-startuptime", -- Profile startup
   "nanotee/zoxide.vim", -- Integration with zoxide dir changer
 
-  -- "glepnir/dashboard-nvim",
   -- "mhinz/vim-startify", -- Show recent files on startup
-  "rcarriga/nvim-notify"
-}
+  -- "liuchengxu/vista.vim", -- Tag explorer
+} -- }}}
 
 -- Preamble {{{
 pcall(require, "impatient") -- Cache Lua packages
 local cmd = vim.api.nvim_command
-local utils = require("utils")
+local utils = require("core.utils")
 local plugin = utils.plugin
 utils.bootstrap_paq(PKGS)
 -- }}}
@@ -98,12 +98,17 @@ cmd("color " .. theme[1])
 plugin("nvim-treesitter.configs", function(mod) -- {{{
   mod.setup({
     ensure_installed = { "c", "cpp", "javascript", "css", "lua" },
+    matchup = { enable = true },
+    indent = { enable = true },
+    autotag = { enable = true },
     highlight = {
       enable = true,
       use_languagetree = true,
     },
   })
-end, { defer = true }) -- }}}
+  vim.o.foldmethod = "expr"
+  vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+end) -- }}}
 
 plugin("cmp", function(cmp) -- {{{
   local _, lspkind = pcall(require, "lspkind")
@@ -173,17 +178,22 @@ plugin("indent_blankline", function(mod) -- {{{
     space_char_blankline = " ",
     show_current_context = true,
   })
-  vim.cmd([[
-    let g:indent_blankline_show_first_indent_level = v:true
-    let g:indent_blankline_char_list = ['┊', '┆', '│']
-    let g:indent_blankline_context_char_list = ['┊']
-    let g:indent_blankline_filetype_exclude += ['startify']
-    let g:indent_blankline_filetype_exclude += ['toggleterm']
-  ]])
+  vim.g.indent_blankline_show_first_indent_level = true
+  vim.g.indent_blankline_char_list = { "┊", "┆", "│" }
+  vim.g.indent_blankline_context_char_list = { "┊" }
+  vim.g.indent_blankline_filetype_exclude = {
+    "lspinfo",
+    "packer",
+    "checkhealth",
+    "",
+    "startify",
+    "toggleterm",
+    "help",
+  }
 end, { defer = true }) -- }}}
 
 plugin("lualine", function(lualine) -- {{{
-  local opts = require("lualine-theme").get_theme({ theme = theme[2] })
+  local opts = require("core.lualine-theme").get_theme({ theme = theme[2] })
   lualine.setup(opts)
 end) -- }}}
 
@@ -206,7 +216,7 @@ plugin("which-key", function(mod) -- {{{
       spacing = 7,
     },
   })
-  require("keymaps")
+  require("core.keymaps")
 end, { defer = true }) -- }}}
 
 plugin("gitsigns", function(mod) -- {{{
@@ -215,6 +225,8 @@ end, { defer = true }) -- }}}
 
 plugin("telescope", function(mod) -- {{{
   local defaults = require("telescope.themes").get_dropdown()
+  defaults.prompt_prefix = "› "
+  defaults.selection_caret = "━ "
   mod.setup({
     defaults = defaults,
   })
@@ -229,16 +241,32 @@ end, { defer = true }) -- }}}
 plugin("hop", function(mod) -- {{{
   mod.setup({
     keys = "arstgmneiowfpyulcdh",
-    -- keys = "1234567890",
   })
 end, { defer = true }) -- }}}
 
-plugin("notify", function(notify)
+plugin("notify", function(notify) -- {{{
   notify.setup({
-    stages = "static"
+    stages = "static",
   })
   vim.notify = notify
-end)
+end) -- }}}
+
+plugin("null-ls", function(nullls) -- {{{
+  -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+  nullls.setup({
+    sources = {
+      nullls.builtins.completion.spell,
+      nullls.builtins.formatting.stylua,
+      nullls.builtins.formatting.prettierd, -- volta install @fsouza/prettierd
+      nullls.builtins.diagnostics.rubocop,
+      nullls.builtins.diagnostics.eslint_d,
+    },
+  })
+  cmd([[augroup Nullformat]])
+  cmd([[au!]])
+  cmd([[au BufWritePre *.lua,*.js,*.ts,*.tsx lua vim.lsp.buf.formatting_seq_sync()]])
+  cmd([[augroup END]])
+end) -- }}}
 
 plugin("toggleterm", function(toggleterm) -- {{{
   toggleterm.setup({
@@ -254,7 +282,7 @@ plugin("toggleterm", function(toggleterm) -- {{{
   })
 end, { defer = true }) -- }}}
 
-plugin("nvim-lsp-installer", function(mod) --  {{{
+plugin("nvim-lsp-installer", function(mod) -- {{{
   vim.api.nvim_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
   mod.on_server_ready(function(server)
@@ -268,27 +296,32 @@ plugin("nvim-lsp-installer", function(mod) --  {{{
   end)
 end, { defer = true }) -- }}}
 
-if utils.has_paq("neoformat") then -- {{{
-  cmd([[augroup Neoformat]])
-  cmd([[au!]])
-  cmd([[au BufWritePre *.lua,*.js,*.ts,*.tsx Neoformat]])
-  cmd([[augroup END]])
-end -- }}}
+if utils.has_paq("vista.vim") then
+  vim.g.vista_default_executive = "nvim_lsp"
+end
 
--- Vim settings {{{
-vim.opt.expandtab = true
-vim.opt.fillchars = { eob = " ", vert = "░" } -- end-of-buffer and vertical split
-vim.opt.gdefault = true -- Search/replace uses `g` flag by default
-vim.opt.mouse = "a" -- Enable mouse support
-vim.opt.shell = "/bin/bash"
-vim.opt.shiftwidth = 2
-vim.opt.showmode = false -- Don't show '-- INSERT --' in status line
-vim.opt.termguicolors = theme[1] ~= "microtone" -- Full GUI colours in terminal
-vim.opt.softtabstop = 2
-vim.opt.swapfile = false -- Don't write swap files
-vim.opt.timeoutlen = 400 -- For which-key
-vim.opt.wrap = false -- Word wrap
--- }}}
+if true then -- Vim settings {{{
+  vim.opt.backup = false -- No backup files
+  vim.opt.expandtab = true
+  vim.opt.fillchars = { eob = " ", vert = "░" } -- end-of-buffer and vertical split
+  vim.opt.gdefault = true -- Search/replace uses `g` flag by default
+  vim.opt.ignorecase = true -- Case insensitive search
+  vim.opt.mouse = "a" -- Enable mouse support
+  vim.opt.pumheight = 10 -- Popup menu height
+  vim.opt.scrolloff = 4 -- Scroll padding
+  vim.opt.shell = "/bin/bash"
+  vim.opt.shiftwidth = 2
+  vim.opt.showmode = false -- Don't show '-- INSERT --' in status line
+  vim.opt.signcolumn = "yes" -- Always show sign column
+  vim.opt.smartcase = true -- Case insensitive by default, unless there's uppercase
+  vim.opt.softtabstop = 2
+  vim.opt.splitbelow = true -- Vertical splits open below
+  vim.opt.splitright = true -- Horizontal splits open to the right
+  vim.opt.swapfile = false -- Don't write swap files
+  vim.opt.termguicolors = theme[1] ~= "microtone" -- Full GUI colours in terminal
+  vim.opt.timeoutlen = 400 -- For which-key
+  vim.opt.wrap = false -- Word wrap
+end -- }}}
 
 -- Customisation: terminal (no line numbers) {{{
 cmd([[augroup TerminalCustomisations]])

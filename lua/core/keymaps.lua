@@ -35,7 +35,7 @@ if has_require("telescope") then
   map("n", [[<c-p>]], [[:Glcd<cr>:Telescope find_files<cr>]], opts)
 end
 if has_require("nvim-tree") then
-  map("n", [[<c-b>]], [[:NvimTreeToggle<cr>]], opts) -- Toggle sidebar
+  -- map("n", [[<c-b>]], [[:NvimTreeToggle<cr>]], opts) -- Toggle sidebar
   map("n", [[-]], [[:NvimTreeFindFile<cr>]], opts)
 end
 if has_require("toggleterm") then
@@ -83,6 +83,7 @@ wk.register({
 -- Keymap: leader
 wk.register({
   ["."] = { ":ToggleTerm<cr>", "Open terminal" },
+  [","] = { ":NvimTreeToggle<cr>", "Open sidebar" },
   ["*"] = { ":GG <c-r><c-w><cr>", "Search" },
   w = {
     name = "Window...",
@@ -121,14 +122,15 @@ wk.register({
     y = { [[:let @+=@% | echo '→ ' . @%<cr>]], "Copy current path" },
     Y = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], "Copy full path" },
   },
-  [","] = {
+  s = {
     name = "Settings...",
     [","] = { ":tab split ~/.config/nvim/init.lua<cr>", "Edit Vim settings" },
     x = { ":tab split ~/.config/nvim/init.lua<cr>", "Edit extensions" },
-    k = { ":tab split ~/.config/nvim/lua/keymaps.lua<cr>", "Edit keybindings" },
-    s = { ":luafile ~/.config/nvim/init.lua<cr>:PaqSync<cr>", "Sync plugins" },
+    k = { ":tab split ~/.config/nvim/lua/core/keymaps.lua<cr>", "Edit keybindings" },
+    r = { ":lua require('core.utils').reload()<cr>", "Reload" },
+    s = { ":lua require('core.utils').reload()<cr>:PaqSync<cr>", "Sync plugins" },
     c = { ":Telescope colorscheme<cr>", "Choose colour scheme" },
-    u = { ":luafile ~/.config/nvim/init.lua<cr>:PaqUpdate<cr>", "Update plugins" },
+    u = { ":lua require('core.utils').reload()<cr>:PaqUpdate<cr>", "Update plugins" },
     p = { ":StartupTime<cr>", "Profile startup time" },
   },
   g = {
@@ -158,13 +160,12 @@ wk.register({
     x = { ":3ToggleTerm<cr>", "Terminal 3" },
     c = { ":4ToggleTerm<cr>", "Terminal 4" },
   },
-  l = {
-    name = "Language (lsp)...",
+  c = {
+    name = "Code (lsp)...",
     a = { ":lua vim.lsp.buf.code_action()<cr>", "Actions" },
     r = { ":lua vim.lsp.buf.rename()<cr>", "Rename symbol..." },
     d = { ":Telescope diagnostics<CR>", "Diagnostics" },
-    F = { ":lua vim.lsp.buf.formatting_seq_sync()<cr>", "Format (via LSP)" },
-    f = { ":Neoformat<cr>", "Format (via Neoformat)" },
+    f = { ":lua vim.lsp.buf.formatting_seq_sync()<cr>", "Format (via LSP)" },
   },
   o = {
     name = "Toggle...",

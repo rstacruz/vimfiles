@@ -54,9 +54,20 @@ local function is_light()
   return vim.fn.matchstr(bgcolor, "#[efEF]") ~= ""
 end
 
+-- Reload vim config
+local function reload()
+  for k, _ in pairs(package.loaded) do
+    if string.match(k, "^core") then
+      package.loaded[k] = nil
+    end
+  end
+  vim.cmd([[luafile ~/.config/nvim/init.lua]])
+end
+
 return {
   has_paq = has_paq,
   bootstrap_paq = bootstrap_paq,
   plugin = plugin,
   is_light = is_light,
+  reload = reload,
 }
