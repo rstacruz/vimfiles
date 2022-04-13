@@ -83,6 +83,7 @@ wk.register({
 -- Keymap: leader
 wk.register({
   ["."] = { ":ToggleTerm<cr>", "Open terminal" },
+  ["'"] = { ":term fish<cr>", "Open terminal in buffer" },
   [","] = { ":NvimTreeToggle<cr>", "Open sidebar" },
   ["*"] = { ":GG <c-r><c-w><cr>", "Search" },
   w = {
@@ -121,12 +122,13 @@ wk.register({
     f = { ":GG ", "Find in project..." },
     y = { [[:let @+=@% | echo '→ ' . @%<cr>]], "Copy current path" },
     Y = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], "Copy full path" },
+    ["/"] = { [[:Glcd | lua require('spectre').open()<cr>]], "Search in project..." },
   },
   s = {
     name = "Settings...",
-    [","] = { ":tab split ~/.config/nvim/init.lua<cr>", "Edit Vim settings" },
-    x = { ":tab split ~/.config/nvim/init.lua<cr>", "Edit extensions" },
-    k = { ":tab split ~/.config/nvim/lua/core/keymaps.lua<cr>", "Edit keybindings" },
+    [","] = { ":vsplit ~/.config/nvim/init.lua<cr>", "Edit Vim settings" },
+    x = { ":vsplit ~/.config/nvim/init.lua<cr>", "Edit extensions" },
+    k = { ":vsplit ~/.config/nvim/lua/core/keymaps.lua<cr>", "Edit keybindings" },
     r = { ":lua require('core.utils').reload()<cr>", "Reload" },
     s = { ":lua require('core.utils').reload()<cr>:PaqSync<cr>", "Sync plugins" },
     c = { ":Telescope colorscheme<cr>", "Choose colour scheme" },

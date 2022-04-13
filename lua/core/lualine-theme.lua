@@ -2,8 +2,18 @@ local function get_theme(opts)
   local _, gps = pcall(require, "nvim-gps")
 
   local function is_file()
-    local nonfile_types = { toggleterm = true, NvimTree = true, startify = true, vista_kind = true }
+    local nonfile_types = {
+      toggleterm = true,
+      NvimTree = true,
+      startify = true,
+      vista_kind = true,
+      spectre_panel = true,
+    }
     return not (nonfile_types[vim.bo.filetype] or false)
+  end
+
+  local function is_non_file()
+    return not is_file()
   end
 
   local terminal = {
@@ -72,7 +82,7 @@ local function get_theme(opts)
   local filetype = {
     "filetype",
     cond = function()
-      return is_file() and vim.o.columns > 100
+      return vim.o.columns > 100
     end,
   }
 

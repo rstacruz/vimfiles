@@ -189,6 +189,7 @@ plugin("indent_blankline", function(mod) -- {{{
     "startify",
     "toggleterm",
     "help",
+    "spectre_panel",
   }
 end, { defer = true }) -- }}}
 
@@ -296,9 +297,13 @@ plugin("nvim-lsp-installer", function(mod) -- {{{
   end)
 end, { defer = true }) -- }}}
 
-if utils.has_paq("vista.vim") then
-  vim.g.vista_default_executive = "nvim_lsp"
-end
+plugin("spectre", function(spectre) -- {{{
+  spectre.setup({
+    line_sep_start = "──────────────────────────────────────────",
+    result_padding = "   ",
+    line_sep = "──────────────────────────────────────────",
+  })
+end) -- }}}
 
 if true then -- Vim settings {{{
   vim.opt.backup = false -- No backup files
@@ -321,6 +326,7 @@ if true then -- Vim settings {{{
   vim.opt.termguicolors = theme[1] ~= "microtone" -- Full GUI colours in terminal
   vim.opt.timeoutlen = 400 -- For which-key
   vim.opt.wrap = false -- Word wrap
+  vim.opt.foldlevel = 99 -- Don't fold everything on first load
 end -- }}}
 
 -- Customisation: terminal (no line numbers) {{{
@@ -337,6 +343,9 @@ cmd([[au!]])
 cmd([[au FileType gitcommit startinsert]])
 cmd([[au FileType gitcommit inoremap <silent> <buffer> <c-s> <esc>:w<cr>G:q<cr>]])
 cmd([[au FileType gitcommit nnoremap <silent> <buffer> <c-s> :w<cr>G:q<cr>]])
+cmd([[augroup END]])
+-- }}}
+-- vim:foldmethod=marker
 cmd([[augroup END]])
 -- }}}
 -- vim:foldmethod=marker
