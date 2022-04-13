@@ -19,9 +19,9 @@ local function bootstrap_paq(pkgs)
   else
     local paq = require("paq")
     paq(pkgs)
-    vim.defer_fn(function()
-      paq.install()
-    end, 750)
+    -- vim.defer_fn(function()
+    --   paq.install()
+    -- end, 750)
   end
 end
 

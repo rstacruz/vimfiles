@@ -62,6 +62,7 @@ PKGS = {
 
   -- "glepnir/dashboard-nvim",
   -- "mhinz/vim-startify", -- Show recent files on startup
+  "rcarriga/nvim-notify"
 }
 
 -- Preamble {{{
@@ -75,12 +76,13 @@ utils.bootstrap_paq(PKGS)
 -- Theme {{{
 local function get_theme()
   local bg = utils.is_light() and "light" or "dark"
-  if utils.has_paq("zenbones.nvim") then
+
+  if utils.has_paq("github-nvim-theme") then
+    return bg == "light" and { "github_light", "auto", bg } or { "github_dark", "auto", bg }
+  elseif utils.has_paq("zenbones.nvim") then
     return bg == "light" and { "rosebones", "auto", bg } or { "rosebones", "auto", bg }
   elseif utils.has_paq("vim-code-dark") then
     return { "codedark", "auto", "dark" }
-  elseif utils.has_paq("github-nvim-theme") then
-    return bg and { "github_light", "auto", bg } or { "github_dark", "auto", bg }
   elseif utils.has_paq("vim-microtone") then
     return { "microtone", "dracula", bg }
   else
@@ -230,6 +232,13 @@ plugin("hop", function(mod) -- {{{
     -- keys = "1234567890",
   })
 end, { defer = true }) -- }}}
+
+plugin("notify", function(notify)
+  notify.setup({
+    stages = "static"
+  })
+  vim.notify = notify
+end)
 
 plugin("toggleterm", function(toggleterm) -- {{{
   toggleterm.setup({

@@ -127,17 +127,20 @@ wk.register({
     x = { ":tab split ~/.config/nvim/init.lua<cr>", "Edit extensions" },
     k = { ":tab split ~/.config/nvim/lua/keymaps.lua<cr>", "Edit keybindings" },
     s = { ":luafile ~/.config/nvim/init.lua<cr>:PaqSync<cr>", "Sync plugins" },
+    c = { ":Telescope colorscheme<cr>", "Choose colour scheme" },
     u = { ":luafile ~/.config/nvim/init.lua<cr>:PaqUpdate<cr>", "Update plugins" },
     p = { ":StartupTime<cr>", "Profile startup time" },
   },
   g = {
     name = "Git...",
-    s = { ":tab Git<cr>", "Git status" },
-    a = { ":Glcd | Git add -u . | tab Git commit -v<cr>", "Git add and commit" },
+    s = { ":Git<cr>", "Git status" },
+    a = { ":Glcd | Git add -u . | Git commit -v<cr>", "Add & commit" },
+    A = { ":Glcd | Git add -u . | Git commit --amend -v<cr>", "Add & amend" },
     h = { ":GBrowse<cr>", "Open in GitHub" },
-    c = { ":tab Git commit -v<cr>", "Git commit" },
+    c = { ":Git commit -v<cr>", "Commit" },
     b = { ":Git blame<cr>", "Open file blame" },
     p = { ":!git push<cr>", "Push" },
+    P = { ":!git push -f<cr>", "Push (force)" },
     r = {
       name = "Pull request...",
       c = { ":Glcd | !gh pr create --web<cr>", "Create PR (web)" },
@@ -165,8 +168,9 @@ wk.register({
   },
   o = {
     name = "Toggle...",
-    w = { ":set wrap!<cr>", "Word wrap" },
-    n = { ":set number!<cr>", "Line number" },
+    w = { ":set wrap!<cr>", "Toggle word wrap" },
+    n = { ":set number!<cr>", "Toggle line number" },
+    b = { ":lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>", "Toggle light/dark" },
   },
 }, { prefix = "<Leader>" })
 

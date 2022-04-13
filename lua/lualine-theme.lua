@@ -40,10 +40,11 @@ local function get_theme(opts)
   local tabs = {
     "tabs",
     mode = 0,
-    separator = { left = "" },
+    separator = { left = "" },
+    padding = { left = 3, right = 3 },
     tabs_color = {
       -- Same values as the general color option can be used here.
-      active = "lualine_a_normal",
+      active = "Preproc",
       inactive = "lualine_b_inactive",
     },
   }
