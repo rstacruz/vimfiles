@@ -55,8 +55,9 @@ wk.register({
   -- lsp
   gd = { ":Telescope lsp_definitions<cr>", "Definitions (lsp)..." },
   gr = { ":Telescope lsp_references<cr>", "References (lsp)..." },
-  gD = { ":lua vim.lsp.buf.declaration()", "Declaration (lsp)..." },
-  gi = { ":lua vim.lsp.buf.implementation()", "Implementation (lsp)..." },
+  gh = { ":lua vim.lsp.buf.hover()<cr>", "Declaration (lsp)..." },
+  gD = { ":lua vim.lsp.buf.declaration()<cr>", "Declaration (lsp)..." },
+  gi = { ":lua vim.lsp.buf.implementation()<cr>", "Implementation (lsp)..." },
   ["<c-l>"] = { ":HopLine<cr>", "Hop to line" },
   ["<c-g>"] = { ":HopWord<cr>", "Hop to word" },
 })
