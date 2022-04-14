@@ -180,3 +180,7 @@ wk.register({
 
 -- localleader: lua
 map("n", [[<localleader>s]], [[:w<cr>:luafile %<cr>]], opts)
+
+-- Unimpaired
+map("n", [[co]], [[<leader>o]], { silent = true })
+map("n", [[yo]], [[<leader>o]], { silent = true })
