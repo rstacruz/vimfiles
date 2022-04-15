@@ -337,7 +337,5 @@ cmd([[au FileType gitcommit inoremap <silent> <buffer> <c-s> <esc>:w<cr>G:q<cr>]
 cmd([[au FileType gitcommit nnoremap <silent> <buffer> <c-s> :w<cr>G:q<cr>]])
 cmd([[augroup END]])
 -- }}}
--- vim:foldmethod=marker
-cmd([[augroup END]])
--- }}}
+
 -- vim:foldmethod=marker
