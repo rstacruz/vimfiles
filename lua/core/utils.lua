@@ -66,10 +66,11 @@ end
 
 local function zed()
   vim.ui.input("Switch to project:", function(value)
-    if value == "" then
+    if value == nil then
       return
     end
 
+    vim.cmd("silent! NvimTreeClose")
     vim.cmd("silent! %bw!")
     vim.cmd("Z " .. value)
     vim.cmd("e .")
