@@ -77,16 +77,18 @@ utils.bootstrap_paq(PKGS)
 local function get_theme()
   local bg = utils.is_light() and "light" or "dark"
 
-  if utils.has_paq("github-nvim-theme") then
-    return bg == "light" and { "github_light", "auto", bg } or { "github_dark", "auto", bg }
+  if false then
+    print("...")
   elseif utils.has_paq("zenbones.nvim") then
     return bg == "light" and { "rosebones", "auto", bg } or { "rosebones", "auto", bg }
+  elseif utils.has_paq("github-nvim-theme") then
+    return bg == "light" and { "github_light", "auto", bg } or { "github_dark", "auto", bg }
   elseif utils.has_paq("vim-code-dark") then
     return { "codedark", "auto", "dark" }
   elseif utils.has_paq("vim-microtone") then
     return { "microtone", "dracula", bg }
   else
-    return { "defualt", "auto", bg }
+    return { "default", "auto", bg }
   end
 end
 
@@ -152,7 +154,10 @@ end, { defer = true }) -- }}}
 
 plugin("nvim-tree", function(mod) -- {{{
   mod.setup({
-    view = { side = "left" },
+    view = {
+      side = "left",
+      width = 30,
+    },
     renderer = {
       indent_markers = {
         enable = true,
@@ -291,9 +296,9 @@ end, { defer = true }) -- }}}
 
 plugin("spectre", function(spectre) -- {{{
   spectre.setup({
-    line_sep_start = "──────────────────────────────────────────",
+    line_sep_start = "",
     result_padding = "   ",
-    line_sep = "──────────────────────────────────────────",
+    line_sep = "",
   })
 end) -- }}}
 
@@ -318,23 +323,37 @@ if true then -- Vim settings {{{
   vim.opt.termguicolors = theme[1] ~= "microtone" -- Full GUI colours in terminal
   vim.opt.timeoutlen = 400 -- For which-key
   vim.opt.wrap = false -- Word wrap
+  vim.opt.winwidth = 85 -- Auto-resize windows
   vim.opt.foldlevel = 99 -- Don't fold everything on first load
 end -- }}}
 
--- Customisation: terminal (no line numbers) {{{
+-- Customisation: augroups {{{
+-- Terminal (no line numbers)
 cmd([[augroup TerminalCustomisations]])
 cmd([[au!]])
 cmd([[au TermOpen * setlocal nonumber norelativenumber nocursorline]])
 cmd([[au TermOpen * startinsert]])
 cmd([[augroup END]])
--- }}}
 
--- Customisation: git (close on ctrl-s) {{{
+-- Git (close on ctrl-s)
 cmd([[augroup GitCustomisations]])
 cmd([[au!]])
 cmd([[au FileType gitcommit startinsert]])
 cmd([[au FileType gitcommit inoremap <silent> <buffer> <c-s> <esc>:w<cr>G:q<cr>]])
 cmd([[au FileType gitcommit nnoremap <silent> <buffer> <c-s> :w<cr>G:q<cr>]])
+cmd([[augroup END]])
+
+-- NvimTree
+cmd([[augroup TreeCustomisations]])
+cmd([[au!]])
+cmd([[au BufWinEnter NvimTree* set cursorline]])
+cmd([[augroup END]])
+
+-- Cursorline on insert mode
+cmd([[augroup CursorLine]])
+cmd([[au!]])
+cmd([[au InsertEnter * set cursorline]])
+cmd([[au InsertLeave * set nocursorline]])
 cmd([[augroup END]])
 -- }}}
 

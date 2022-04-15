@@ -12,10 +12,6 @@ local function get_theme(opts)
     return not (nonfile_types[vim.bo.filetype] or false)
   end
 
-  local function is_non_file()
-    return not is_file()
-  end
-
   local terminal = {
     function()
       return [[ ]] .. (vim.b.toggle_number or "0")

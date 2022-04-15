@@ -32,10 +32,10 @@ map("i", [[<c-s>]], [[<esc>:w<cr>]], opts) -- Save (ins)
 map("v", [[<c-c>]], [["+y]], opts) -- Copy
 map("i", [[<c-v>]], [[<esc>:set paste<cr>a<c-r>+<esc>:set nopaste<cr>a]], opts) -- Paste
 if has_require("telescope") then
-  map("n", [[<c-p>]], [[:Glcd<cr>:Telescope find_files<cr>]], opts)
+  map("n", [[<c-p>]], [[:silent! Glcd<cr>:Telescope find_files<cr>]], opts)
 end
 if has_require("nvim-tree") then
-  -- map("n", [[<c-b>]], [[:NvimTreeToggle<cr>]], opts) -- Toggle sidebar
+  map("n", [[<c-b>]], [[:NvimTreeToggle<cr>]], opts) -- Toggle sidebar
   map("n", [[-]], [[:NvimTreeFindFile<cr>]], opts)
 end
 if has_require("toggleterm") then
@@ -112,7 +112,7 @@ wk.register({
     s = { ":%bd!<cr>", "Close all buffers" },
     r = { ":%bd!<cr>:lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Close all and show recent" },
     x = { ":cq<cr>", "Exit" },
-    z = { ":%bd!<cr>:Zi<cr>", "Switch to project..." },
+    z = { ":lua require ('core.utils').zed()<cr>", "Switch to project..." },
   },
   f = {
     name = "File...",
@@ -123,7 +123,7 @@ wk.register({
     f = { ":GG ", "Find in project..." },
     y = { [[:let @+=@% | echo '→ ' . @%<cr>]], "Copy current path" },
     Y = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], "Copy full path" },
-    ["/"] = { [[:Glcd | lua require('spectre').open()<cr>]], "Search in project..." },
+    ["/"] = { [[:silent! Glcd | lua require('spectre').open()<cr>]], "Search in project..." },
   },
   s = {
     name = "Settings...",
@@ -139,8 +139,8 @@ wk.register({
   g = {
     name = "Git...",
     s = { ":Git<cr>", "Git status" },
-    a = { ":Glcd | Git add -u . | Git commit -v<cr>", "Add & commit" },
-    A = { ":Glcd | Git add -u . | Git commit --amend -v<cr>", "Add & amend" },
+    a = { ":silent! Glcd | Git add -u . | Git commit -v<cr>", "Add & commit" },
+    A = { ":silent! Glcd | Git add -u . | Git commit --amend -v<cr>", "Add & amend" },
     h = { ":GBrowse<cr>", "Open in GitHub" },
     c = { ":Git commit -v<cr>", "Commit" },
     b = { ":Git blame<cr>", "Open file blame" },
@@ -148,8 +148,8 @@ wk.register({
     P = { ":!git push -f<cr>", "Push (force)" },
     r = {
       name = "Pull request...",
-      c = { ":Glcd | !gh pr create --web<cr>", "Create PR (web)" },
-      v = { ":Glcd | !gh pr view --web<cr>", "View PR (web)" },
+      c = { ":silent! Glcd | !gh pr create --web<cr>", "Create PR (web)" },
+      v = { ":silent! Glcd | !gh pr view --web<cr>", "View PR (web)" },
     },
   },
   t = {
