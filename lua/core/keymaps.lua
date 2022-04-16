@@ -84,7 +84,7 @@ wk.register({
 -- Keymap: leader
 wk.register({
   ["."] = { ":ToggleTerm<cr>", "Open terminal" },
-  ["'"] = { ":term fish<cr>", "Open terminal in buffer" },
+  ["'"] = { ":vs<cr>:term fish<cr>", "Open terminal in buffer" },
   [","] = { ":NvimTreeToggle<cr>", "Open sidebar" },
   ["*"] = { ":GG <c-r><c-w><cr>", "Search" },
   w = {
@@ -109,8 +109,11 @@ wk.register({
   },
   x = {
     name = "Exit...",
-    s = { ":%bd!<cr>", "Close all buffers" },
-    r = { ":%bd!<cr>:lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Close all and show recent" },
+    o = { ":%bd!|e#|bd#<cr>", "Close all buffers" },
+    r = {
+      ":%bd!|e#|bd#<cr>:lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>",
+      "Close all and show recent",
+    },
     x = { ":cq<cr>", "Exit" },
     z = { ":lua require ('core.utils').zed()<cr>", "Switch to project..." },
   },

@@ -63,6 +63,7 @@ PKGS = { -- {{{
 
   -- "mhinz/vim-startify", -- Show recent files on startup
   -- "liuchengxu/vista.vim", -- Tag explorer
+  "vimwiki/vimwiki",
 } -- }}}
 
 -- Preamble {{{
@@ -301,6 +302,12 @@ plugin("spectre", function(spectre) -- {{{
     line_sep = "",
   })
 end) -- }}}
+
+if utils.has_paq("vimwiki") then
+  cmd([[
+    let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+  ]])
+end
 
 if true then -- Vim settings {{{
   vim.opt.backup = false -- No backup files
