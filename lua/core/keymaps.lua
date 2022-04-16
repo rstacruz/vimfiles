@@ -26,6 +26,10 @@ map("n", [[<c-h>]], [[<c-w>W]], opts) -- Focus prev
 map("i", [[<c-h>]], [[<esc><c-w>W]], opts) -- Focus prev (ins)
 map("n", [[<c-n>]], [[<c-w>w]], opts) -- Focus next (ins)
 map("i", [[<c-n>]], [[<esc><c-w>w]], opts) -- Focus next (ins)
+map("n", [[<c-pageup>]], [[<c-w>W]], opts) -- Focus prev
+map("i", [[<c-pageup>]], [[<esc><c-w>W]], opts) -- Focus prev (ins)
+map("n", [[<c-pagedown>]], [[<c-w>w]], opts) -- Focus next (ins)
+map("i", [[<c-pagedown>]], [[<esc><c-w>w]], opts) -- Focus next (ins)
 map("n", [[<c-s>]], [[:w<cr>]], opts) -- Save
 map("i", [[<c-s>]], [[<esc>:w<cr>]], opts) -- Save (ins)
 map("v", [[<c-c>]], [["+y]], opts) -- Copy
