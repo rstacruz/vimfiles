@@ -1,7 +1,8 @@
 -- Configs I don't use anymore
 --
-local utils = require("utils")
+local utils = require("core.utils")
 
+-- Startify options
 if utils.has_paq("vim-startify") then -- {{{
 	vim.api.nvim_set_var(
 		"startify_custom_indices",

@@ -13,7 +13,6 @@ map("n", [[gs]], [[:%s~~]], opts)
 map("v", [[gs]], [[:s~~]], opts)
 map("n", [[+]], [[za]], opts)
 map("n", [[<del>]], [[:bwipe!<cr>]], opts)
-map("n", [[<bs>]], [[:q<cr>]], opts)
 map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 
@@ -36,7 +35,7 @@ if has_require("telescope") then
 end
 if has_require("nvim-tree") then
   map("n", [[<c-b>]], [[:NvimTreeToggle<cr>]], opts) -- Toggle sidebar
-  map("n", [[-]], [[:NvimTreeFindFile<cr>]], opts)
+  map("n", [[-]], [[:silent! Glcd | :NvimTreeFindFile<cr>]], opts)
 end
 if has_require("toggleterm") then
   map("n", [[<c-j>]], [[:ToggleTerm<cr>]], opts) -- Toggle terminal
@@ -83,8 +82,9 @@ wk.register({
 
 -- Keymap: leader
 wk.register({
-  ["."] = { ":ToggleTerm<cr>", "Open terminal" },
-  ["'"] = { ":vs<cr>:term fish<cr>", "Open terminal in buffer" },
+  ["'"] = { ":ToggleTerm<cr>", "Open terminal" },
+  ["."] = { ":vs<cr>:term fish<cr>", "Open terminal in buffer" },
+  -- ["'"] = { ":vs<cr>:term fish<cr>", "Open terminal in buffer" },
   [","] = { ":NvimTreeToggle<cr>", "Open sidebar" },
   ["*"] = { ":GG <c-r><c-w><cr>", "Search" },
   w = {
@@ -115,7 +115,7 @@ wk.register({
       "Close all and show recent",
     },
     x = { ":cq<cr>", "Exit" },
-    z = { ":lua require ('core.utils').zed()<cr>", "Switch to project..." },
+    z = { ":lua require ('core.actions').zed()<cr>", "Switch to project..." },
   },
   f = {
     name = "File...",
@@ -126,7 +126,8 @@ wk.register({
     f = { ":GG ", "Find in project..." },
     y = { [[:let @+=@% | echo '→ ' . @%<cr>]], "Copy current path" },
     Y = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], "Copy full path" },
-    ["/"] = { [[:silent! Glcd | lua require('spectre').open()<cr>]], "Search in project..." },
+    ["/"] = { [[:silent! Glcd | lua require('spectre').open()<cr>]], "Search (spectre)..." },
+    g = { [[:lua require('core.actions').telescope_grep()<cr>]], "Search (telescope)..." },
   },
   s = {
     name = "Settings...",
@@ -147,8 +148,9 @@ wk.register({
     h = { ":GBrowse<cr>", "Open in GitHub" },
     c = { ":Git commit -v<cr>", "Commit" },
     b = { ":Git blame<cr>", "Open file blame" },
-    p = { ":!git push<cr>", "Push" },
-    P = { ":!git push -f<cr>", "Push (force)" },
+    p = { ":silent! Glcd | lua require('core.actions').open_floating_cmd('git push')<cr>", "Push" },
+    P = { ":silent! Glcd | lua require('core.actions').open_floating_cmd('git push -f')<cr>", "Push (force)" },
+    t = { ":silent! Glcd | lua require ('core.actions').open_tig()<cr>", "Tig..." },
     r = {
       name = "Pull request...",
       c = { ":silent! Glcd | !gh pr create --web<cr>", "Create PR (web)" },
@@ -178,6 +180,7 @@ wk.register({
     w = { ":set wrap!<cr>", "Toggle word wrap" },
     n = { ":set number!<cr>", "Toggle line number" },
     b = { ":lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>", "Toggle light/dark" },
+    c = { ":lua vim.o.conceallevel = vim.o.conceallevel == 2 and 0 or 2<cr>", "Toggle conceal" },
   },
 }, { prefix = "<Leader>" })
 

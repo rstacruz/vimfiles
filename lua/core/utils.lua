@@ -64,24 +64,10 @@ local function reload()
   vim.cmd([[luafile ~/.config/nvim/init.lua]])
 end
 
-local function zed()
-  vim.ui.input("Switch to project:", function(value)
-    if value == nil then
-      return
-    end
-
-    vim.cmd("silent! NvimTreeClose")
-    vim.cmd("silent! %bw!")
-    vim.cmd("Z " .. value)
-    vim.cmd("e .")
-  end)
-end
-
 return {
   has_paq = has_paq,
   bootstrap_paq = bootstrap_paq,
   plugin = plugin,
   is_light = is_light,
   reload = reload,
-  zed = zed,
 }

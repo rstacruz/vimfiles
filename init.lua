@@ -100,7 +100,7 @@ cmd("color " .. theme[1])
 
 plugin("nvim-treesitter.configs", function(mod) -- {{{
   mod.setup({
-    ensure_installed = { "c", "cpp", "javascript", "css", "lua" },
+    ensure_installed = { "c", "cpp", "javascript", "css", "lua", "markdown" },
     matchup = { enable = true },
     indent = { enable = true },
     autotag = { enable = true },
@@ -301,7 +301,7 @@ plugin("spectre", function(spectre) -- {{{
     result_padding = "   ",
     line_sep = "",
   })
-end) -- }}}
+end, { defer = true }) -- }}}
 
 if utils.has_paq("vimwiki") then
   cmd([[
@@ -316,6 +316,7 @@ if true then -- Vim settings {{{
   vim.opt.gdefault = true -- Search/replace uses `g` flag by default
   vim.opt.ignorecase = true -- Case insensitive search
   vim.opt.mouse = "a" -- Enable mouse support
+  vim.opt.number = true -- Line numbers
   vim.opt.pumheight = 10 -- Popup menu height
   vim.opt.scrolloff = 4 -- Scroll padding
   vim.opt.shell = "/bin/bash"
@@ -340,6 +341,12 @@ cmd([[augroup TerminalCustomisations]])
 cmd([[au!]])
 cmd([[au TermOpen * setlocal nonumber norelativenumber nocursorline]])
 cmd([[au TermOpen * startinsert]])
+cmd([[augroup END]])
+
+-- Markdown (no line numbers)
+cmd([[augroup MarkdownCustomisations]])
+cmd([[au!]])
+cmd([[au TermOpen * setlocal nonumber]])
 cmd([[augroup END]])
 
 -- Git (close on ctrl-s)
