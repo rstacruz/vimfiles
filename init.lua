@@ -12,7 +12,9 @@ PKGS = { -- {{{
   "hrsh7th/cmp-buffer",
   "hrsh7th/cmp-path",
   "hrsh7th/cmp-cmdline",
+  "hrsh7th/cmp-vsnip",
   "hrsh7th/nvim-cmp",
+  "hrsh7th/vim-vsnip",
 
   -- Themes
   "rstacruz/vim-microtone",
@@ -80,10 +82,10 @@ local function get_theme()
 
   if false then
     print("...")
+  elseif utils.has_paq("github-nvim-theme") then
+    return bg == "light" and { "github_light", "auto", bg } or { "github_dimmed", "auto", bg }
   elseif utils.has_paq("zenbones.nvim") then
     return bg == "light" and { "rosebones", "auto", bg } or { "rosebones", "auto", bg }
-  elseif utils.has_paq("github-nvim-theme") then
-    return bg == "light" and { "github_light", "auto", bg } or { "github_dark", "auto", bg }
   elseif utils.has_paq("vim-code-dark") then
     return { "codedark", "auto", "dark" }
   elseif utils.has_paq("vim-microtone") then
@@ -115,25 +117,49 @@ end) -- }}}
 
 plugin("cmp", function(cmp) -- {{{
   local _, lspkind = pcall(require, "lspkind")
+  local formatting = lspkind
+      and {
+        format = lspkind.cmp_format({
+          mode = "symbol",
+          maxwidth = 50,
+        }),
+      }
+      or {}
+
+  local mapping = cmp.mapping.preset.insert()
+  mapping["<cr>"] = cmp.mapping.confirm({ select = true })
+  mapping["<c-f>"] = cmp.mapping.scroll_docs(4) -- scroll the help text
+  mapping["<c-b>"] = cmp.mapping.scroll_docs(-4)
 
   cmp.setup({
-    mapping = {
-      ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    mapping = mapping,
+    formatting = formatting,
+    snippet = {
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+      end,
     },
-    formatting = lspkind and {
-      format = lspkind.cmp_format({
-        mode = "symbol",
-        maxwidth = 50,
-      }),
-    } or {},
     sources = cmp.config.sources({
       { name = "nvim_lsp" },
-      -- { name = 'vsnip' }, -- For vsnip users.
-      -- { name = 'luasnip' }, -- For luasnip users.
-      -- { name = 'ultisnips' }, -- For ultisnips users.
-      -- { name = 'snippy' }, -- For snippy users.
+      { name = "vsnip" },
     }, {
       { name = "buffer" },
+    }),
+  })
+
+  cmp.setup.cmdline("/", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = "buffer" },
+    },
+  })
+
+  cmp.setup.cmdline(":", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = "path" },
+    }, {
+      { name = "cmdline" },
     }),
   })
 end, { defer = true }) -- }}}
@@ -146,7 +172,7 @@ plugin("nvim-tree", function(mod) -- {{{
   mod.setup({
     view = {
       side = "left",
-      width = 30,
+      width = 20,
     },
     renderer = {
       indent_markers = {
@@ -208,7 +234,13 @@ plugin("which-key", function(mod) -- {{{
 end, { defer = true }) -- }}}
 
 plugin("gitsigns", function(mod) -- {{{
-  mod.setup({})
+  mod.setup({
+    signs = {
+      changedelete = { text = "▌" }, -- Originally "~"
+      change = { text = "▌" },
+      add = { text = "▌" },
+    },
+  })
 end, { defer = true }) -- }}}
 
 plugin("telescope", function(mod) -- {{{
@@ -243,7 +275,6 @@ plugin("null-ls", function(nullls) -- {{{
   -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
   nullls.setup({
     sources = {
-      nullls.builtins.completion.spell,
       nullls.builtins.formatting.stylua,
       nullls.builtins.formatting.prettierd, -- volta install @fsouza/prettierd
       nullls.builtins.diagnostics.rubocop,
@@ -275,10 +306,12 @@ plugin("nvim-lsp-installer", function(mod) -- {{{
 
   mod.on_server_ready(function(server)
     local opts = {}
-    -- (optional) Customize the options passed to the server
-    -- if server.name == 'tsserver' then
-    --     opts.root_dir = function() ... end
-    -- end
+
+    -- I'm not sure if this does anything lol, but using `capabilities`
+    local _, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+    if cmp_nvim_lsp then
+      opts["capabilities"] = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    end
 
     server:setup(opts)
   end)
