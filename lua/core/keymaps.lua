@@ -88,11 +88,16 @@ wk.register({
 
 -- Keymap: leader
 wk.register({
-  ["'"] = { ":ToggleTerm<cr>", "Open terminal" },
   ["."] = { ":vs<cr>:term fish<cr>", "Open terminal in buffer" },
-  -- ["'"] = { ":vs<cr>:term fish<cr>", "Open terminal in buffer" },
-  [","] = { ":NvimTreeToggle<cr>", "Open sidebar" },
-  ["*"] = { ":GG <c-r><c-w><cr>", "Search" },
+  ["*"] = { ":GG <c-r><c-w><cr>", "Search from cursor" },
+  [","] = {
+    name = "Experimental...",
+    n = { ":noh<cr>", "Remove search highlighting" },
+    ["/"] = { [[:silent! Glcd | lua require('spectre').open()<cr>]], "Search (spectre)..." },
+    ["'"] = { ":ToggleTerm<cr>", "Open terminal" },
+    [","] = { ":NvimTreeToggle<cr>", "Open sidebar" },
+    g = { [[:lua require('core.actions').telescope_grep()<cr>]], "Search (telescope)..." },
+  },
   w = {
     name = "Window...",
     H = { "<c-w>H", "Move ←" },
@@ -127,13 +132,10 @@ wk.register({
     name = "File...",
     w = { ":w<cr>", "Save" },
     s = { ":noa w<cr>", "Save without formatting" },
-    n = { ":noh<cr>", "Remove search highlighting" },
     r = { ":e!<cr>", "Revert" },
-    f = { ":GG ", "Find in project..." },
+    g = { ":lua vim.ui.input('Find:', function(val) vim.cmd(':GG ' .. val) end)<cr>", "Find in project..." },
     y = { [[:let @+=@% | echo '→ ' . @%<cr>]], "Copy current path" },
     Y = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], "Copy full path" },
-    ["/"] = { [[:silent! Glcd | lua require('spectre').open()<cr>]], "Search (spectre)..." },
-    g = { [[:lua require('core.actions').telescope_grep()<cr>]], "Search (telescope)..." },
   },
   s = {
     name = "Settings...",

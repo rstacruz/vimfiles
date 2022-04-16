@@ -352,11 +352,14 @@ if true then -- Vim settings {{{
   vim.opt.splitright = true -- Horizontal splits open to the right
   vim.opt.swapfile = false -- Don't write swap files
   vim.opt.termguicolors = theme[1] ~= "microtone" -- Full GUI colours in terminal
-  vim.opt.timeoutlen = 400 -- For which-key
   vim.opt.wrap = false -- Word wrap
   vim.opt.winwidth = 85 -- Auto-resize windows
   vim.opt.winminwidth = 12
   vim.opt.foldlevel = 99 -- Don't fold everything on first load
+
+  if utils.has_paq("which-key.nvim") then
+    vim.opt.timeoutlen = 0 -- Show instantly
+  end
 
   if vim.fn.has("nvim-0.7") == 1 then
     vim.opt.laststatus = 3 -- Global statusline
@@ -364,17 +367,14 @@ if true then -- Vim settings {{{
 end -- }}}
 
 -- Customisation: augroups {{{
--- Terminal (no line numbers)
-cmd([[augroup TerminalCustomisations]])
+-- No line numbers, insert mode, etc
+cmd([[augroup FiletypeCustomisations]])
 cmd([[au!]])
 cmd([[au TermOpen * setlocal nonumber norelativenumber nocursorline]])
 cmd([[au TermOpen * startinsert]])
-cmd([[augroup END]])
-
--- Markdown (no line numbers)
-cmd([[augroup MarkdownCustomisations]])
-cmd([[au!]])
-cmd([[au TermOpen * setlocal nonumber]])
+cmd([[au FileType markdown,spectre_panel setlocal nonumber]])
+cmd([[au FileType spectre_panel startinsert]])
+cmd([[au BufWinEnter NvimTree* set cursorline]])
 cmd([[augroup END]])
 
 -- Git (close on ctrl-s)
@@ -383,12 +383,6 @@ cmd([[au!]])
 cmd([[au FileType gitcommit startinsert]])
 cmd([[au FileType gitcommit inoremap <silent> <buffer> <c-s> <esc>:w<cr>G:q<cr>]])
 cmd([[au FileType gitcommit nnoremap <silent> <buffer> <c-s> :w<cr>G:q<cr>]])
-cmd([[augroup END]])
-
--- NvimTree
-cmd([[augroup TreeCustomisations]])
-cmd([[au!]])
-cmd([[au BufWinEnter NvimTree* set cursorline]])
 cmd([[augroup END]])
 
 -- Cursorline on insert mode
