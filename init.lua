@@ -80,18 +80,18 @@ utils.bootstrap_paq(PKGS)
 local function get_theme()
   local bg = utils.is_light() and "light" or "dark"
 
-  if false then
-    print("...")
-  elseif utils.has_paq("github-nvim-theme") then
-    return bg == "light" and { "github_light", "auto", bg } or { "github_dimmed", "auto", bg }
-  elseif utils.has_paq("zenbones.nvim") then
-    return bg == "light" and { "rosebones", "auto", bg } or { "rosebones", "auto", bg }
-  elseif utils.has_paq("vim-code-dark") then
-    return { "codedark", "auto", "dark" }
-  elseif utils.has_paq("vim-microtone") then
-    return { "microtone", "dracula", bg }
+  if bg == "light" then
+    return false
+        or utils.has_paq("github-nvim-theme") and { "github_light", "auto", bg }
+        or utils.has_paq("zenbones.nvim") and { "rosebones", "auto", bg }
+        or utils.has_paq("vim-microtone") and { "microtone", "dracula", bg }
+        or { "default", "auto", bg }
   else
-    return { "default", "auto", bg }
+    return false
+        or utils.has_paq("github-nvim-theme") and { "github_dimmed", "auto", bg }
+        or utils.has_paq("zenbones.nvim") and { "tokyobones", "auto", bg }
+        or utils.has_paq("vim-microtone") and { "microtone", "dracula", bg }
+        or { "default", "auto", bg }
   end
 end
 
