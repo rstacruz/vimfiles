@@ -19,9 +19,6 @@ local function bootstrap_paq(pkgs)
   else
     local paq = require("paq")
     paq(pkgs)
-    -- vim.defer_fn(function()
-    --   paq.install()
-    -- end, 750)
   end
 end
 
@@ -30,10 +27,10 @@ end
 local function plugin(module_name, callback, options)
   local status, mod = pcall(require, module_name)
   if status then
-    if options and options["delay"] then
+    if options and options["defer"] then
       vim.defer_fn(function()
         callback(mod)
-      end, 50)
+      end, 1000)
     else
       callback(mod)
     end

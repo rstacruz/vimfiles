@@ -1,3 +1,5 @@
+pcall(require, "impatient") -- Cache Lua packages
+
 PKGS = { -- {{{
   "savq/paq-nvim", -- Paq package manager
 
@@ -69,7 +71,6 @@ PKGS = { -- {{{
 } -- }}}
 
 -- Preamble {{{
-pcall(require, "impatient") -- Cache Lua packages
 local cmd = vim.api.nvim_command
 local utils = require("core.utils")
 local plugin = utils.plugin
@@ -166,7 +167,7 @@ end, { defer = true }) -- }}}
 
 plugin("scrollview", function(scrollview) -- {{{
   scrollview.setup()
-end) -- }}}
+end, { defer = true }) -- }}}
 
 plugin("nvim-tree", function(mod) -- {{{
   mod.setup({
@@ -285,7 +286,7 @@ plugin("null-ls", function(nullls) -- {{{
   cmd([[au!]])
   cmd([[au BufWritePre *.lua,*.js,*.ts,*.tsx lua vim.lsp.buf.formatting_seq_sync()]])
   cmd([[augroup END]])
-end) -- }}}
+end, { defer = true }) -- }}}
 
 plugin("toggleterm", function(toggleterm) -- {{{
   toggleterm.setup({

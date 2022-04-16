@@ -1,6 +1,8 @@
 -- Configs I don't use anymore
 --
 local utils = require("core.utils")
+local plugin = utils.plugin
+local cmd = vim.cmd
 
 PKGS = {
   -- Scrollbars. Works great but the scrollbars don't reposition well
@@ -42,3 +44,15 @@ plugin("scrollbar", function() -- {{{
   cmd([[autocmd WinLeave,BufLeave,BufWinLeave,FocusLost,QuitPre * silent! lua require('scrollbar').clear()]])
   cmd([[augroup END]])
 end, { defer = true }) -- }}}
+
+-- This seems to make things slow
+plugin("cmp", function(cmp)
+  cmp.setup.cmdline(":", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = "path" },
+    }, {
+      { name = "cmdline" },
+    }),
+  })
+end)

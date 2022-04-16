@@ -185,6 +185,7 @@ wk.register({
     name = "Toggle...",
     w = { ":set wrap!<cr>", "Toggle word wrap" },
     n = { ":set number!<cr>", "Toggle line number" },
+    r = { ":set relativenumber!<cr>", "Toggle relative line number" },
     f = vim.fn.has("g:neovide") and { ":let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle fullscreen" }
         or {},
     b = { ":lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>", "Toggle light/dark" },
