@@ -195,7 +195,7 @@ plugin("indent_blankline", function(mod) -- {{{
   vim.g.indent_blankline_char_list = { "┊", "┆", "│" }
   vim.g.indent_blankline_context_char_list = { "┊" }
   vim.g.indent_blankline_filetype_exclude = {
-    "lspinfo",
+    "lspinfo", -- arst
     "packer",
     "checkhealth",
     "",
