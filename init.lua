@@ -27,7 +27,7 @@ PKGS = { -- {{{
 
   -- UI
   "SmiteshP/nvim-gps", -- Breadcrumbs in the status line
-  "Xuyuanp/scrollbar.nvim", -- Scrollbars
+  "dstein64/nvim-scrollview",
   "folke/lsp-colors.nvim", -- Infer some colours needed for LSP
   "folke/which-key.nvim", -- Menu when pressing [space]
   "kyazdani42/nvim-tree.lua", -- File explorer
@@ -138,20 +138,9 @@ plugin("cmp", function(cmp) -- {{{
   })
 end, { defer = true }) -- }}}
 
-plugin("scrollbar", function() -- {{{
-  vim.api.nvim_command([[
-    let g:scrollbar_max_size = 12
-    let g:scrollbar_shape = { 'head': '█', 'body': '█', 'tail': '█', }
-    let g:scrollbar_highlight = { 'head': 'LineNr', 'body': 'LineNr', 'tail': 'LineNr', }
-  ]])
-
-  cmd([[augroup ScrollbarInit]])
-  cmd([[au!]])
-  cmd([[autocmd WinScrolled,VimResized,QuitPre * silent! lua require('scrollbar').show()]])
-  cmd([[autocmd WinEnter,FocusGained,BufEnter  * silent! lua require('scrollbar').show()]])
-  cmd([[autocmd WinLeave,BufLeave,BufWinLeave,FocusLost,QuitPre * silent! lua require('scrollbar').clear()]])
-  cmd([[augroup END]])
-end, { defer = true }) -- }}}
+plugin("scrollview", function(scrollview) -- {{{
+  scrollview.setup()
+end) -- }}}
 
 plugin("nvim-tree", function(mod) -- {{{
   mod.setup({
