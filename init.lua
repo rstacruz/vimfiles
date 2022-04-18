@@ -335,7 +335,7 @@ end
 if true then -- Vim settings {{{
   vim.opt.backup = false -- No backup files
   vim.opt.expandtab = true
-  vim.opt.fillchars = { eob = " ", vert = "▓" } -- end-of-buffer and vertical split
+  vim.opt.fillchars = { eob = " ", vert = "▐" } -- end-of-buffer and vertical split
   vim.opt.gdefault = true -- Search/replace uses `g` flag by default
   vim.opt.ignorecase = true -- Case insensitive search
   vim.opt.mouse = "a" -- Enable mouse support
@@ -363,6 +363,11 @@ if true then -- Vim settings {{{
 
   if vim.fn.has("nvim-0.7") == 1 then
     vim.opt.laststatus = 3 -- Global statusline
+    vim.opt.fillchars = {
+      eob = " ",
+      vert = "▐", vertright = "▐"
+    } -- better vert characters for global statusline
+
   end
 end -- }}}
 
