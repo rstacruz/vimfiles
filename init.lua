@@ -384,7 +384,6 @@ cmd([[au!]])
 cmd([[au TermOpen * setlocal nonumber norelativenumber nocursorline]])
 cmd([[au TermOpen * startinsert]])
 cmd([[au FileType markdown,spectre_panel setlocal nonumber]])
-cmd([[au FileType spectre_panel startinsert]])
 cmd([[au BufWinEnter NvimTree* set cursorline]])
 cmd([[augroup END]])
 

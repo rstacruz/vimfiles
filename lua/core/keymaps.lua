@@ -16,6 +16,8 @@ map("n", [[<del>]], [[:bwipe!<cr>]], opts)
 map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 
+map("v", "<leader>*", ":silent! Glcd | lua require('spectre').open_visual()<cr>", opts)
+
 -- Keymap: terminal
 map("t", [[<esc>]], [[<c-\><c-n>]], opts) -- Terminal esc
 map("t", [[<c-n>]], [[<c-\><c-n><c-w>w]], opts) -- Terminal focus next
@@ -89,14 +91,14 @@ wk.register({
 -- Keymap: leader
 wk.register({
   ["."] = { ":vs<cr>:term fish<cr>", "Open terminal in buffer" },
-  ["*"] = { ":GG <c-r><c-w><cr>", "Search from cursor" },
+  ["*"] = { ":silent! Glcd | lua require('spectre').open_visual({ select_word = true })<cr>", "Search this word" },
   [","] = {
     name = "Experimental...",
     n = { ":noh<cr>", "Remove search highlighting" },
-    ["/"] = { [[:silent! Glcd | lua require('spectre').open()<cr>]], "Search (spectre)..." },
+    g = { [[:lua require('core.actions').telescope_grep()<cr>]], "Search (telescope)..." },
     ["'"] = { ":ToggleTerm<cr>", "Open terminal" },
     [","] = { ":NvimTreeToggle<cr>", "Open sidebar" },
-    g = { [[:lua require('core.actions').telescope_grep()<cr>]], "Search (telescope)..." },
+    ["*"] = { ":GG <c-r><c-w><cr>", "Search from cursor (GG)..." },
   },
   w = {
     name = "Window...",
@@ -114,6 +116,7 @@ wk.register({
   },
   p = {
     name = "Pick...",
+    g = { [[:silent! Glcd | lua require('spectre').open({ is_insert_mode = true })<cr>]], "Grep..." },
     b = { ":Telescope buffers<cr>", "Buffers" },
     r = { ":lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Recent files" },
     s = { ":Telescope lsp_workspace_symbols<cr>", "Symbols" },
