@@ -132,14 +132,14 @@ plugin("cmp", function(cmp) -- {{{
     ["<c-f>"] = cmp.mapping.scroll_docs(4), -- scroll the help text
     ["<c-b>"] = cmp.mapping.scroll_docs(-4),
     ["<c-d>"] = cmp.mapping.scroll_docs(4),
-    ["<c-u>"] = cmp.mapping.scroll_docs(4)
+    ["<c-u>"] = cmp.mapping.scroll_docs(4),
   })
 
   cmp.setup({
     mapping = mapping,
     formatting = formatting,
     completion = {
-      keyword_length = 4
+      keyword_length = 4,
     },
     snippet = {
       expand = function(args)
@@ -371,9 +371,14 @@ if true then -- Vim settings {{{
     vim.opt.laststatus = 3 -- Global statusline
     vim.opt.fillchars = {
       eob = " ",
-      vert = "▐", vertright = "▐"
+      vert = "▐",
+      vertright = "▐",
+      vertleft = "▐",
+      verthoriz = "▐",
+      horizup = "━",
+      horizdown = "━",
+      horiz = "━",
     } -- better vert characters for global statusline
-
   end
 end -- }}}
 
