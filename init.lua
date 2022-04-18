@@ -364,7 +364,7 @@ if true then -- Vim settings {{{
   vim.opt.foldlevel = 99 -- Don't fold everything on first load
 
   if utils.has_paq("which-key.nvim") then
-    vim.opt.timeoutlen = 0 -- Show instantly
+    vim.opt.timeoutlen = 120 -- Show almost instantly
   end
 
   if vim.fn.has("nvim-0.7") == 1 then
