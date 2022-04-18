@@ -127,14 +127,20 @@ plugin("cmp", function(cmp) -- {{{
       }
       or {}
 
-  local mapping = cmp.mapping.preset.insert()
-  mapping["<cr>"] = cmp.mapping.confirm({ select = true })
-  mapping["<c-f>"] = cmp.mapping.scroll_docs(4) -- scroll the help text
-  mapping["<c-b>"] = cmp.mapping.scroll_docs(-4)
+  local mapping = cmp.mapping.preset.insert({
+    ["<cr>"] = cmp.mapping.confirm(), -- add { select = true } to auto-select first item
+    ["<c-f>"] = cmp.mapping.scroll_docs(4), -- scroll the help text
+    ["<c-b>"] = cmp.mapping.scroll_docs(-4),
+    ["<c-d>"] = cmp.mapping.scroll_docs(4),
+    ["<c-u>"] = cmp.mapping.scroll_docs(4)
+  })
 
   cmp.setup({
     mapping = mapping,
     formatting = formatting,
+    completion = {
+      keyword_length = 4
+    },
     snippet = {
       expand = function(args)
         vim.fn["vsnip#anonymous"](args.body)
