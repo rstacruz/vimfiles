@@ -42,6 +42,7 @@ PKGS = { -- {{{
   "nvim-lua/plenary.nvim", -- for Telescope
   "nvim-lualine/lualine.nvim", -- Status line
   "nvim-telescope/telescope.nvim",
+  { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
   "onsails/lspkind-nvim", -- Icons on LSP menus
   "stevearc/dressing.nvim", -- Improved appearance of vim.ui
   "rcarriga/nvim-notify",
@@ -251,13 +252,15 @@ plugin("gitsigns", function(mod) -- {{{
   })
 end, { defer = true }) -- }}}
 
-plugin("telescope", function(mod) -- {{{
-  local defaults = require("telescope.themes").get_dropdown()
-  defaults.prompt_prefix = "› "
-  defaults.selection_caret = "━ "
-  mod.setup({
+plugin("telescope", function(telescope) -- {{{
+  local defaults = require("telescope.themes").get_dropdown({
+    prompt_prefix = "› ",
+    selection_caret = "━ ",
+  })
+  telescope.setup({
     defaults = defaults,
   })
+  telescope.load_extension("fzf")
 end, { defer = true }) -- }}}
 
 plugin("nvim-gps", function(mod) -- {{{
