@@ -28,6 +28,7 @@ PKGS = { -- {{{
   -- File types
   "preservim/vim-markdown", -- Markdown (.md)
   "slim-template/vim-slim", -- Slim (.slim)
+  "vimwiki/vimwiki", -- Obsidian Markdown
 
   -- UI
   "SmiteshP/nvim-gps", -- Breadcrumbs in the status line
@@ -58,16 +59,16 @@ PKGS = { -- {{{
   "phaazon/hop.nvim", -- Easymotion (gw)
   "rstacruz/vim-gitgrep",
   "thinca/vim-visualstar",
-  "tpope/vim-commentary", -- Comments
   "tpope/vim-fugitive", -- Git
   "tpope/vim-rhubarb", -- Fugitive extension for GitHub commands
   "tpope/vim-surround",
   "dstein64/vim-startuptime", -- Profile startup
   "nanotee/zoxide.vim", -- Integration with zoxide dir changer
+  "numToStr/Comment.nvim", -- Comments
 
   -- "mhinz/vim-startify", -- Show recent files on startup
   -- "liuchengxu/vista.vim", -- Tag explorer
-  "vimwiki/vimwiki",
+  -- "tpope/vim-commentary", -- Comments
 } -- }}}
 
 -- Preamble {{{
@@ -331,6 +332,10 @@ plugin("spectre", function(spectre) -- {{{
     line_sep = "",
   })
 end, { defer = true }) -- }}}
+
+plugin("Comment", function(comment)
+  comment.setup()
+end)
 
 if utils.has_paq("vimwiki") then
   cmd([[
