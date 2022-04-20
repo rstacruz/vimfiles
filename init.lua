@@ -255,7 +255,7 @@ end, { defer = true }) -- }}}
 plugin("telescope", function(telescope) -- {{{
   local defaults = require("telescope.themes").get_dropdown({
     prompt_prefix = "› ",
-    selection_caret = "━ ",
+    selection_caret = "  ",
   })
   telescope.setup({
     defaults = defaults,
