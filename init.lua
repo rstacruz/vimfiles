@@ -21,9 +21,11 @@ PKGS = { -- {{{
   -- Themes
   "rstacruz/vim-microtone",
   "projekt0n/github-nvim-theme",
-  "tomasiser/vim-code-dark",
+  -- "tomasiser/vim-code-dark",
   "rktjmp/lush.nvim", -- Required by zenbones
   "mcchrish/zenbones.nvim",
+  { "catppuccin/nvim", as = "catppuccin-nvim" },
+  "EdenEast/nightfox.nvim",
 
   -- File types
   "preservim/vim-markdown", -- Markdown (.md)
@@ -80,17 +82,20 @@ utils.bootstrap_paq(PKGS)
 -- }}}
 
 -- Theme {{{
-local function get_theme()
-  local bg = utils.is_light() and "light" or "dark"
+Theme = { theme = { "default", "auto", "dark" }, mode = "dark" }
 
+function Theme.get_theme(bg)
   if bg == "light" then
     return false
+        or utils.has_paq("nightfox.nvim") and { "dayfox", "auto", bg }
         or utils.has_paq("github-nvim-theme") and { "github_light", "auto", bg }
         or utils.has_paq("zenbones.nvim") and { "rosebones", "auto", bg }
         or utils.has_paq("vim-microtone") and { "microtone", "dracula", bg }
         or { "default", "auto", bg }
   else
     return false
+        or utils.has_paq("nightfox.nvim") and { "duskfox", "auto", bg }
+        or utils.has_paq("catppuccin-nvim") and { "catppuccin", "auto", bg }
         or utils.has_paq("github-nvim-theme") and { "github_dimmed", "auto", bg }
         or utils.has_paq("zenbones.nvim") and { "tokyobones", "auto", bg }
         or utils.has_paq("vim-microtone") and { "microtone", "dracula", bg }
@@ -98,9 +103,19 @@ local function get_theme()
   end
 end
 
-local theme = get_theme()
-vim.opt.background = theme[3]
-cmd("color " .. theme[1])
+function Theme:set_theme(mode)
+  mode = mode or (utils.is_light() and "light" or "dark")
+  self.theme = self.get_theme(mode)
+  self.mode = mode
+  vim.opt.background = self.theme[3]
+  cmd("color " .. self.theme[1])
+end
+
+function Theme:toggle_theme()
+  self:set_theme(self.mode == "dark" and "light" or "dark")
+end
+
+Theme:set_theme()
 -- }}}
 
 plugin("nvim-treesitter.configs", function(mod) -- {{{
@@ -216,7 +231,7 @@ plugin("indent_blankline", function(mod) -- {{{
 end, { defer = true }) -- }}}
 
 plugin("lualine", function(lualine) -- {{{
-  local opts = require("core.lualine-theme").get_theme({ theme = theme[2] })
+  local opts = require("core.lualine-theme").get_theme({ theme = Theme.theme[2] })
   lualine.setup(opts)
 end) -- }}}
 
@@ -336,6 +351,17 @@ plugin("spectre", function(spectre) -- {{{
   })
 end, { defer = true }) -- }}}
 
+plugin("nightfox", function(nightfox) -- {{{
+  nightfox.setup({
+    options = {
+      styles = {
+        comments = "italic",
+        keywords = "bold",
+      },
+    },
+  })
+end) -- }}}
+
 plugin("Comment", function(comment)
   comment.setup()
 end)
@@ -365,7 +391,7 @@ if true then -- Vim settings {{{
   vim.opt.splitbelow = true -- Vertical splits open below
   vim.opt.splitright = true -- Horizontal splits open to the right
   vim.opt.swapfile = false -- Don't write swap files
-  vim.opt.termguicolors = theme[1] ~= "microtone" -- Full GUI colours in terminal
+  vim.opt.termguicolors = Theme.theme[1] ~= "microtone" -- Full GUI colours in terminal
   vim.opt.wrap = false -- Word wrap
   vim.opt.winwidth = 85 -- Auto-resize windows
   vim.opt.winminwidth = 12
