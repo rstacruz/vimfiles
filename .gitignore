@@ -7,3 +7,4 @@
 # artifacts from previous incarnations
 /autoload/plug.vim.old
 /plugin/*.local.vim
+/plugin/packer_compiled.lua

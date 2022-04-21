@@ -1,7 +1,7 @@
 pcall(require, "impatient") -- Cache Lua packages
 
 PKGS = { -- {{{
-  "savq/paq-nvim", -- Paq package manager
+  "wbthomason/packer.nvim",
 
   -- Language
   "nvim-treesitter/nvim-treesitter",
@@ -21,7 +21,6 @@ PKGS = { -- {{{
   -- Themes
   "rstacruz/vim-microtone",
   "projekt0n/github-nvim-theme",
-  -- "tomasiser/vim-code-dark",
   "rktjmp/lush.nvim", -- Required by zenbones
   "mcchrish/zenbones.nvim",
   { "catppuccin/nvim", as = "catppuccin-nvim" },
@@ -68,17 +67,24 @@ PKGS = { -- {{{
   "dstein64/vim-startuptime", -- Profile startup
   "nanotee/zoxide.vim", -- Integration with zoxide dir changer
   "numToStr/Comment.nvim", -- Comments
-
-  -- "mhinz/vim-startify", -- Show recent files on startup
-  -- "liuchengxu/vista.vim", -- Tag explorer
-  -- "tpope/vim-commentary", -- Comments
 } -- }}}
+
+local has_packer, packer = pcall(require, "packer") -- Cache Lua packages
+if not has_packer then
+  vim.cmd([[echo "Packer was not found"]])
+  return
+end
+
+packer.startup(function(use)
+  for _, package in pairs(PKGS) do
+    use(package)
+  end
+end)
 
 -- Preamble {{{
 local cmd = vim.api.nvim_command
 local utils = require("core.utils")
 local plugin = utils.plugin
-utils.bootstrap_paq(PKGS)
 -- }}}
 
 -- Theme {{{
@@ -87,18 +93,18 @@ Theme = { theme = { "default", "auto", "dark" }, mode = "dark" }
 function Theme.get_theme(bg)
   if bg == "light" then
     return false
-        or utils.has_paq("nightfox.nvim") and { "dayfox", "auto", bg }
-        or utils.has_paq("github-nvim-theme") and { "github_light", "auto", bg }
-        or utils.has_paq("zenbones.nvim") and { "rosebones", "auto", bg }
-        or utils.has_paq("vim-microtone") and { "microtone", "dracula", bg }
+        or utils.has_pkg("nightfox.nvim") and { "dayfox", "auto", bg }
+        or utils.has_pkg("github-nvim-theme") and { "github_light", "auto", bg }
+        or utils.has_pkg("zenbones.nvim") and { "rosebones", "auto", bg }
+        or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
         or { "default", "auto", bg }
   else
     return false
-        or utils.has_paq("nightfox.nvim") and { "duskfox", "auto", bg }
-        or utils.has_paq("catppuccin-nvim") and { "catppuccin", "auto", bg }
-        or utils.has_paq("github-nvim-theme") and { "github_dimmed", "auto", bg }
-        or utils.has_paq("zenbones.nvim") and { "tokyobones", "auto", bg }
-        or utils.has_paq("vim-microtone") and { "microtone", "dracula", bg }
+        or utils.has_pkg("nightfox.nvim") and { "duskfox", "auto", bg }
+        or utils.has_pkg("catppuccin-nvim") and { "catppuccin", "auto", bg }
+        or utils.has_pkg("github-nvim-theme") and { "github_dimmed", "auto", bg }
+        or utils.has_pkg("zenbones.nvim") and { "tokyobones", "auto", bg }
+        or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
         or { "default", "auto", bg }
   end
 end
@@ -366,7 +372,7 @@ plugin("Comment", function(comment)
   comment.setup()
 end)
 
-if utils.has_paq("vimwiki") then
+if utils.has_pkg("vimwiki") then
   cmd([[
     let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
   ]])
@@ -397,7 +403,7 @@ if true then -- Vim settings {{{
   vim.opt.winminwidth = 12
   vim.opt.foldlevel = 99 -- Don't fold everything on first load
 
-  if utils.has_paq("which-key.nvim") then
+  if utils.has_pkg("which-key.nvim") then
     vim.opt.timeoutlen = 120 -- Show almost instantly
   end
 
