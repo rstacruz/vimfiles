@@ -446,6 +446,18 @@ cmd([[au!]])
 cmd([[au InsertEnter * set cursorline]])
 cmd([[au InsertLeave * set nocursorline]])
 cmd([[augroup END]])
+
+cmd([[augroup ThemeCustomisations]])
+cmd([[au!]])
+cmd([[au Colorscheme * lua CustomiseTheme()]])
+cmd([[augroup END]])
+
+function CustomiseTheme()
+  cmd([[hi HopNextKey guibg=#ffddaa guifg=#000000]])
+  cmd([[hi HopNextKey1 guibg=#ffddaa guifg=#000000]])
+  cmd([[hi HopNextKey2 guibg=#ffddaa guifg=#000000]])
+end
+
 -- }}}
 
 -- Abbreviations
