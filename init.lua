@@ -93,19 +93,19 @@ Theme = { theme = { "default", "auto", "dark" }, mode = "dark" }
 function Theme.get_theme(bg)
   if bg == "light" then
     return false
-        or utils.has_pkg("nightfox.nvim") and { "dayfox", "auto", bg }
-        or utils.has_pkg("github-nvim-theme") and { "github_light", "auto", bg }
-        or utils.has_pkg("zenbones.nvim") and { "rosebones", "auto", bg }
-        or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
-        or { "default", "auto", bg }
+      or utils.has_pkg("nightfox.nvim") and { "dayfox", "auto", bg }
+      or utils.has_pkg("github-nvim-theme") and { "github_light", "auto", bg }
+      or utils.has_pkg("zenbones.nvim") and { "rosebones", "auto", bg }
+      or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
+      or { "default", "auto", bg }
   else
     return false
-        or utils.has_pkg("nightfox.nvim") and { "duskfox", "auto", bg }
-        or utils.has_pkg("catppuccin-nvim") and { "catppuccin", "auto", bg }
-        or utils.has_pkg("github-nvim-theme") and { "github_dimmed", "auto", bg }
-        or utils.has_pkg("zenbones.nvim") and { "tokyobones", "auto", bg }
-        or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
-        or { "default", "auto", bg }
+      or utils.has_pkg("nightfox.nvim") and { "duskfox", "auto", bg }
+      or utils.has_pkg("catppuccin-nvim") and { "catppuccin", "auto", bg }
+      or utils.has_pkg("github-nvim-theme") and { "github_dimmed", "auto", bg }
+      or utils.has_pkg("zenbones.nvim") and { "tokyobones", "auto", bg }
+      or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
+      or { "default", "auto", bg }
   end
 end
 
@@ -148,7 +148,7 @@ plugin("cmp", function(cmp) -- {{{
           maxwidth = 50,
         }),
       }
-      or {}
+    or {}
 
   local mapping = cmp.mapping.preset.insert({
     ["<cr>"] = cmp.mapping.confirm(), -- add { select = true } to auto-select first item
@@ -303,16 +303,26 @@ plugin("notify", function(notify) -- {{{
   vim.notify = notify
 end) -- }}}
 
-plugin("null-ls", function(nullls) -- {{{
+plugin("null-ls", function(null_ls) -- {{{
+  local sources = {}
+  if vim.fn.executable("ruby") then
+    table.insert(sources, null_ls.builtins.diagnostics.rubocop)
+  end
+  if vim.fn.executable("stylua") then -- cargo install stylua
+    table.insert(sources, null_ls.builtins.formatting.stylua)
+  end
+  if vim.fn.executable("prettierd") then -- volta install @fsouza/prettierd
+    table.insert(sources, null_ls.builtins.formatting.prettierd)
+  end
+  if vim.fn.executable("eslint_d") then -- volta install eslint_d
+    table.insert(sources, null_ls.builtins.diagnostics.eslint_d)
+  end
+
   -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
-  nullls.setup({
-    sources = {
-      nullls.builtins.formatting.stylua,
-      nullls.builtins.formatting.prettierd, -- volta install @fsouza/prettierd
-      nullls.builtins.diagnostics.rubocop,
-      nullls.builtins.diagnostics.eslint_d,
-    },
+  null_ls.setup({
+    sources = sources,
   })
+
   cmd([[augroup Nullformat]])
   cmd([[au!]])
   cmd([[au BufWritePre *.lua,*.js,*.ts,*.tsx lua vim.lsp.buf.formatting_seq_sync()]])
