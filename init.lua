@@ -16,7 +16,7 @@ PKGS = { -- {{{
   "hrsh7th/cmp-cmdline",
   "hrsh7th/cmp-vsnip",
   "hrsh7th/nvim-cmp",
-  "hrsh7th/vim-vsnip",
+  -- "hrsh7th/vim-vsnip",
 
   -- Themes
   "rstacruz/vim-microtone",
@@ -165,13 +165,13 @@ plugin("cmp", function(cmp) -- {{{
       keyword_length = 4,
     },
     snippet = {
-      expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body)
+      expand = function()
+        -- vim.fn["vsnip#anonymous"](args.body)
       end,
     },
     sources = cmp.config.sources({
       { name = "nvim_lsp" },
-      { name = "vsnip" },
+      -- { name = "vsnip" },
     }, {
       { name = "buffer" },
     }),
@@ -261,7 +261,7 @@ plugin("which-key", function(mod) -- {{{
     },
   })
   require("core.keymaps")
-end, { defer = true }) -- }}}
+end) -- }}}
 
 plugin("gitsigns", function(mod) -- {{{
   mod.setup({
