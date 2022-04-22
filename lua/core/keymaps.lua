@@ -146,7 +146,7 @@ wk.register({
     x = { ":vsplit ~/.config/nvim/init.lua<cr>", "Edit extensions" },
     k = { ":vsplit ~/.config/nvim/lua/core/keymaps.lua<cr>", "Edit keybindings" },
     r = { ":lua require('core.utils').reload()<cr>", "Reload" },
-    s = { ":lua require('core.utils').reload()<cr>:PaqSync<cr>", "Sync plugins" },
+    s = { ":lua require('core.utils').reload()<cr>:PackerSync<cr>", "Sync plugins" },
     c = { ":Telescope colorscheme<cr>", "Choose colour scheme" },
     u = { ":lua require('core.utils').reload()<cr>:PaqUpdate<cr>", "Update plugins" },
     p = { ":StartupTime<cr>", "Profile startup time" },

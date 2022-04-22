@@ -448,4 +448,9 @@ cmd([[au InsertLeave * set nocursorline]])
 cmd([[augroup END]])
 -- }}}
 
+-- Abbreviations
+vim.defer_fn(function()
+  require("core.abbreviations").setup()
+end, 250)
+
 -- vim:foldmethod=marker
