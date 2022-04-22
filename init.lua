@@ -50,7 +50,7 @@ PKGS = { -- {{{
 
   -- Optimisations
   "lewis6991/impatient.nvim", -- Improve startup time by optimising Lua cache
-  "nathom/filetype.nvim", -- Improve startup time
+  -- "nathom/filetype.nvim", -- Improve startup time
 
   -- Goodies
   "Darazaki/indent-o-matic", -- Detect indentation automatically
@@ -422,6 +422,12 @@ if true then -- Vim settings {{{
   end
 end -- }}}
 
+if true then -- Filetype {{{
+  -- https://www.reddit.com/r/neovim/comments/rvwsl3/introducing_filetypelua_and_a_call_for_help/
+  vim.g.do_filetype_lua = 1
+  vim.g.did_load_filetypes = 0
+end -- }}}
+
 -- Customisation: augroups {{{
 -- No line numbers, insert mode, etc
 cmd([[augroup FiletypeCustomisations]])
@@ -430,6 +436,8 @@ cmd([[au TermOpen * setlocal nonumber norelativenumber nocursorline]])
 cmd([[au TermOpen * startinsert]])
 cmd([[au FileType markdown,spectre_panel setlocal nonumber]])
 cmd([[au BufWinEnter NvimTree* set cursorline]])
+cmd([[au BufWritePost init.lua luafile ~/.config/nvim/init.lua]])
+cmd([[au BufWritePost init.lua PackerCompile]])
 cmd([[augroup END]])
 
 -- Git (close on ctrl-s)
@@ -447,6 +455,7 @@ cmd([[au InsertEnter * set cursorline]])
 cmd([[au InsertLeave * set nocursorline]])
 cmd([[augroup END]])
 
+-- Themes
 cmd([[augroup ThemeCustomisations]])
 cmd([[au!]])
 cmd([[au Colorscheme * lua CustomiseTheme()]])

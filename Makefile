@@ -9,7 +9,10 @@ $(PACKER_PATH):
 sync: packer
 	nvim +PackerCompile +PackerSync
 
-clean:
+clean: ## Removes packer
+	rm -rf $(PACKER_PATH) plugin/packer_compiled.lua
+
+clean-all: ## Removes packer and all plugins
 	rm -rf $(HOME)/.local/share/nvim/site/pack/packer plugin/packer_compiled.lua
 
 fmt:
