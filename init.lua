@@ -4,7 +4,7 @@ PKGS = { -- {{{
   "wbthomason/packer.nvim",
 
   -- Language
-  "nvim-treesitter/nvim-treesitter",
+  { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
   "neovim/nvim-lspconfig",
   "williamboman/nvim-lsp-installer", -- Install LSP servers (:LspInstall)
   "jose-elias-alvarez/null-ls.nvim", -- Formatting and diagnostics
