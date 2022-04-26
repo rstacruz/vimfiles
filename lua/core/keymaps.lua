@@ -189,6 +189,7 @@ wk.register({
   o = {
     name = "Toggle...",
     w = { ":set wrap!<cr>", "Toggle word wrap" },
+    s = { ":set spell!<cr>", "Toggle spell check" },
     n = { ":set number!<cr>", "Toggle line number" },
     r = { ":set relativenumber!<cr>", "Toggle relative line number" },
     f = vim.fn.has("g:neovide") and { ":let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle fullscreen" }

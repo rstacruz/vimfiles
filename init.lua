@@ -127,13 +127,15 @@ Theme:set_theme()
 -- }}}
 
 plugin("zk", function(zk) -- {{{
-  zk.setup({
-    picker = "telescope",
-    auto_attach = {
-      enabled = true,
-      filetypes = { "markdown" },
-    },
-  })
+  if vim.fn.executable("zk") then
+    zk.setup({
+      picker = "telescope",
+      auto_attach = {
+        enabled = true,
+        filetypes = { "markdown" },
+      },
+    })
+  end
 end) -- }}}
 
 plugin("nvim-treesitter.configs", function(mod) -- {{{
@@ -390,9 +392,12 @@ plugin("nightfox", function(nightfox) -- {{{
   })
 end) -- }}}
 
-plugin("Comment", function(comment)
+plugin("Comment", function(comment) -- {{{
   comment.setup()
-end)
+end) -- }}}
+
+if utils.has_pkg("markdown") then -- {{{
+end -- }}}
 
 if utils.has_pkg("vimwiki") then
   cmd([[
