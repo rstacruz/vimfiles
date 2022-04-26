@@ -25,11 +25,13 @@ PKGS = { -- {{{
   "mcchrish/zenbones.nvim",
   { "catppuccin/nvim", as = "catppuccin-nvim" },
   "EdenEast/nightfox.nvim",
+  "navarasu/onedark.nvim",
 
   -- File types
   "preservim/vim-markdown", -- Markdown (.md)
   "slim-template/vim-slim", -- Slim (.slim)
-  "vimwiki/vimwiki", -- Obsidian Markdown
+  -- "vimwiki/vimwiki", -- Obsidian Markdown
+  "mickael-menu/zk-nvim", -- Zk (.md)
 
   -- UI
   "SmiteshP/nvim-gps", -- Breadcrumbs in the status line
@@ -93,19 +95,19 @@ Theme = { theme = { "default", "auto", "dark" }, mode = "dark" }
 function Theme.get_theme(bg)
   if bg == "light" then
     return false
-      or utils.has_pkg("nightfox.nvim") and { "dayfox", "auto", bg }
-      or utils.has_pkg("github-nvim-theme") and { "github_light", "auto", bg }
-      or utils.has_pkg("zenbones.nvim") and { "rosebones", "auto", bg }
-      or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
-      or { "default", "auto", bg }
+        or utils.has_pkg("nightfox.nvim") and { "dayfox", "auto", bg }
+        or utils.has_pkg("github-nvim-theme") and { "github_light", "auto", bg }
+        or utils.has_pkg("zenbones.nvim") and { "rosebones", "auto", bg }
+        or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
+        or { "default", "auto", bg }
   else
     return false
-      or utils.has_pkg("nightfox.nvim") and { "duskfox", "auto", bg }
-      or utils.has_pkg("catppuccin-nvim") and { "catppuccin", "auto", bg }
-      or utils.has_pkg("github-nvim-theme") and { "github_dimmed", "auto", bg }
-      or utils.has_pkg("zenbones.nvim") and { "tokyobones", "auto", bg }
-      or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
-      or { "default", "auto", bg }
+        or utils.has_pkg("nightfox.nvim") and { "duskfox", "auto", bg }
+        or utils.has_pkg("catppuccin-nvim") and { "catppuccin", "auto", bg }
+        or utils.has_pkg("github-nvim-theme") and { "github_dimmed", "auto", bg }
+        or utils.has_pkg("zenbones.nvim") and { "tokyobones", "auto", bg }
+        or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
+        or { "default", "auto", bg }
   end
 end
 
@@ -123,6 +125,16 @@ end
 
 Theme:set_theme()
 -- }}}
+
+plugin("zk", function(zk) -- {{{
+  zk.setup({
+    picker = "telescope",
+    auto_attach = {
+      enabled = true,
+      filetypes = { "markdown" },
+    },
+  })
+end) -- }}}
 
 plugin("nvim-treesitter.configs", function(mod) -- {{{
   mod.setup({
@@ -148,7 +160,7 @@ plugin("cmp", function(cmp) -- {{{
           maxwidth = 50,
         }),
       }
-    or {}
+      or {}
 
   local mapping = cmp.mapping.preset.insert({
     ["<cr>"] = cmp.mapping.confirm(), -- add { select = true } to auto-select first item

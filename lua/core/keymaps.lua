@@ -193,7 +193,8 @@ wk.register({
     r = { ":set relativenumber!<cr>", "Toggle relative line number" },
     f = vim.fn.has("g:neovide") and { ":let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle fullscreen" }
         or {},
-    b = { ":lua Theme:toggle_theme()<cr>", "Toggle light/dark" },
+    b = { ":lua Theme:toggle_theme()<cr>", "Toggle light/dark (theme)" },
+    B = { ":lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>", "Toggle light/dark (bg)" },
     c = { ":lua vim.o.conceallevel = vim.o.conceallevel == 2 and 0 or 2<cr>", "Toggle conceal" },
   },
 }, { prefix = "<Leader>" })
