@@ -18,6 +18,13 @@ volta install eslint_d  # https://github.com/mantoni/eslint_d.js
 cargo install stylua  # https://github.com/JohnnyMorganz/StyLua
 ```
 
+## Other things
+
+```
+:WorkspacesAdd
+:WorkspacesList
+```
+
 ## Previous versions
 
 - [v22.04](https://github.com/rstacruz/vimfiles.git/tree/v22.04) (2022-) — Neovim-only, based on Paq

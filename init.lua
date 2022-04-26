@@ -55,7 +55,8 @@ PKGS = { -- {{{
   -- "nathom/filetype.nvim", -- Improve startup time
 
   -- Goodies
-  "Darazaki/indent-o-matic", -- Detect indentation automatically
+  -- "Darazaki/indent-o-matic", -- Detect indentation automatically
+  { "rstacruz/indent-o-matic", branch = "patch-1" }, -- Detect indentation automatically
   "akinsho/toggleterm.nvim", -- Terminal
   "jrudess/vim-foldtext", -- Improve appearance of fold text
   "michaeljsmith/vim-indent-object",
@@ -69,6 +70,7 @@ PKGS = { -- {{{
   "dstein64/vim-startuptime", -- Profile startup
   "nanotee/zoxide.vim", -- Integration with zoxide dir changer
   "numToStr/Comment.nvim", -- Comments
+  "natecraddock/workspaces.nvim"
 } -- }}}
 
 local has_packer, packer = pcall(require, "packer") -- Cache Lua packages
@@ -226,10 +228,6 @@ plugin("nvim-tree", function(mod) -- {{{
   })
 end) -- }}}
 
-plugin("indent-o-matic", function(mod) -- {{{
-  mod.setup({})
-end) -- }}}
-
 plugin("indent_blankline", function(mod) -- {{{
   mod.setup({
     space_char_blankline = " ",
@@ -295,8 +293,14 @@ plugin("telescope", function(telescope) -- {{{
   telescope.setup({
     defaults = defaults,
   })
-  telescope.load_extension("fzf")
-end, { defer = true }) -- }}}
+
+end) -- }}}
+
+plugin("telescope._extensions.fzf", function() -- {{{
+  plugin("telescope", function(telescope)
+    telescope.load_extension("fzf")
+  end)
+end) -- }}}
 
 plugin("nvim-gps", function(mod) -- {{{
   mod.setup({
@@ -396,8 +400,18 @@ plugin("Comment", function(comment) -- {{{
   comment.setup()
 end) -- }}}
 
-if utils.has_pkg("markdown") then -- {{{
-end -- }}}
+plugin("workspaces", function(workspaces) -- {{{
+  workspaces.setup({
+    hooks = {
+      open_pre = { "%bd!" },
+      open = { "e ." }
+    }
+  })
+
+  plugin("telescope", function(telescope)
+    telescope.load_extension("workspaces")
+  end)
+end) -- }}}
 
 if utils.has_pkg("vimwiki") then
   cmd([[
