@@ -212,6 +212,7 @@ end, { defer = true }) -- }}}
 
 plugin("scrollview", function(scrollview) -- {{{
   scrollview.setup()
+  vim.g.scrollview_excluded_filetypes = { 'NvimTree' }
 end, { defer = true }) -- }}}
 
 plugin("nvim-tree", function(mod) -- {{{
@@ -404,7 +405,8 @@ plugin("workspaces", function(workspaces) -- {{{
   workspaces.setup({
     hooks = {
       open_pre = { "%bd!" },
-      open = { "e ." }
+      -- open = { "Telescope" },
+      open = { "lua require('telescope.builtin').oldfiles({only_cwd=true})" },
     }
   })
 

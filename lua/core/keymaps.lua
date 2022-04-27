@@ -84,8 +84,8 @@ wk.register({
   ["7"] = { ":7wincmd w<cr>", "Focus pane 7" },
   ["8"] = { ":8wincmd w<cr>", "Focus pane 8" },
   ["0"] = { "<c-w>b", "Focus last pane" },
-  ["<Esc>"] = { ":FloatermToggle<cr>", "Toggle terminal" },
-  t = { ":tab split<cr>", "New tab" },
+  -- ["<Esc>"] = { ":FloatermToggle<cr>", "Toggle terminal" },
+  -- t = { ":tab split<cr>", "New tab" },
 }, { prefix = "<cr>" })
 
 -- Keymap: leader
@@ -118,6 +118,7 @@ wk.register({
     name = "Pick...",
     g = { [[:silent! Glcd | lua require('spectre').open({ is_insert_mode = true })<cr>]], "Grep..." },
     b = { ":Telescope buffers<cr>", "Buffers" },
+    w = { ":Telescope workspaces<cr>", "Workspaces" },
     r = { ":lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Recent files" },
     s = { ":Telescope lsp_workspace_symbols<cr>", "Symbols" },
   },
@@ -136,7 +137,7 @@ wk.register({
     w = { ":w<cr>", "Save" },
     s = { ":noa w<cr>", "Save without formatting" },
     r = { ":e!<cr>", "Revert" },
-    g = { ":lua vim.ui.input('Find:', function(val) vim.cmd(':GG ' .. val) end)<cr>", "Find in project..." },
+    -- g = { ":lua vim.ui.input('Find:', function(val) vim.cmd(':GG ' .. val) end)<cr>", "Find in project..." },
     y = { [[:let @+=@% | echo '→ ' . @%<cr>]], "Copy current path" },
     Y = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], "Copy full path" },
   },
