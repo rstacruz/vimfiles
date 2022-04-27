@@ -38,7 +38,15 @@ PKGS = { -- {{{
   "dstein64/nvim-scrollview",
   "folke/lsp-colors.nvim", -- Infer some colours needed for LSP
   "folke/which-key.nvim", -- Menu when pressing [space]
-  "kyazdani42/nvim-tree.lua", -- File explorer
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    },
+  },
   "kyazdani42/nvim-web-devicons",
   "lewis6991/gitsigns.nvim", -- Git indicators on the gutter
   "lukas-reineke/indent-blankline.nvim", -- Indent indicators
@@ -70,7 +78,7 @@ PKGS = { -- {{{
   "dstein64/vim-startuptime", -- Profile startup
   "nanotee/zoxide.vim", -- Integration with zoxide dir changer
   "numToStr/Comment.nvim", -- Comments
-  "natecraddock/workspaces.nvim"
+  "natecraddock/workspaces.nvim",
 } -- }}}
 
 local has_packer, packer = pcall(require, "packer") -- Cache Lua packages
@@ -212,22 +220,8 @@ end, { defer = true }) -- }}}
 
 plugin("scrollview", function(scrollview) -- {{{
   scrollview.setup()
-  vim.g.scrollview_excluded_filetypes = { 'NvimTree' }
+  vim.g.scrollview_excluded_filetypes = { "NvimTree" }
 end, { defer = true }) -- }}}
-
-plugin("nvim-tree", function(mod) -- {{{
-  mod.setup({
-    view = {
-      side = "left",
-      width = 20,
-    },
-    renderer = {
-      indent_markers = {
-        enable = true,
-      },
-    },
-  })
-end) -- }}}
 
 plugin("indent_blankline", function(mod) -- {{{
   mod.setup({
@@ -294,7 +288,6 @@ plugin("telescope", function(telescope) -- {{{
   telescope.setup({
     defaults = defaults,
   })
-
 end) -- }}}
 
 plugin("telescope._extensions.fzf", function() -- {{{
@@ -406,8 +399,9 @@ plugin("workspaces", function(workspaces) -- {{{
     hooks = {
       open_pre = { "%bd!" },
       -- open = { "Telescope" },
-      open = { "lua require('telescope.builtin').oldfiles({only_cwd=true})" },
-    }
+      -- open = { "lua require('telescope.builtin').oldfiles({only_cwd=true})" },
+      open = { "term fish" },
+    },
   })
 
   plugin("telescope", function(telescope)
@@ -415,11 +409,14 @@ plugin("workspaces", function(workspaces) -- {{{
   end)
 end) -- }}}
 
-if utils.has_pkg("vimwiki") then
-  cmd([[
-    let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
-  ]])
-end
+plugin("neo-tree", function(neo_tree) -- {{{
+  vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+  neo_tree.setup({
+    window = {
+      position = "right",
+    },
+  })
+end) -- }}}
 
 if true then -- Vim settings {{{
   vim.opt.backup = false -- No backup files
@@ -477,8 +474,7 @@ cmd([[augroup FiletypeCustomisations]])
 cmd([[au!]])
 cmd([[au TermOpen * setlocal nonumber norelativenumber nocursorline]])
 cmd([[au TermOpen * startinsert]])
-cmd([[au FileType markdown,spectre_panel setlocal nonumber]])
-cmd([[au BufWinEnter NvimTree* set cursorline]])
+cmd([[au FileType markdown,spectre_panel,neo-tree setlocal nonumber]])
 cmd([[au BufWritePost init.lua luafile ~/.config/nvim/init.lua]])
 cmd([[au BufWritePost init.lua PackerCompile]])
 cmd([[augroup END]])

@@ -5,6 +5,7 @@ local function get_theme(opts)
     local nonfile_types = {
       toggleterm = true,
       NvimTree = true,
+      ["neo-tree"] = true,
       startify = true,
       vista_kind = true,
       spectre_panel = true,
@@ -78,7 +79,7 @@ local function get_theme(opts)
   local filetype = {
     "filetype",
     cond = function()
-      return vim.o.columns > 100
+      return is_file() and vim.o.columns > 100
     end,
   }
 

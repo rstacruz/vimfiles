@@ -8,6 +8,7 @@ PKGS = {
   -- Scrollbars. Works great but the scrollbars don't reposition well
   -- when using with &winwidth. `nvim-scrollview` is a great alternative
   -- "Xuyuanp/scrollbar.nvim",
+  "kyazdani42/nvim-tree.lua", -- File explorer
 }
 
 -- Startify options
@@ -56,3 +57,27 @@ plugin("cmp", function(cmp)
     }),
   })
 end)
+
+plugin("nvim-tree", function(mod) -- {{{
+  mod.setup({
+    view = {
+      side = "left",
+      width = 20,
+    },
+    renderer = {
+      indent_markers = {
+        enable = true,
+      },
+    },
+  })
+  cmd([[augroup NvimtreeFiletypeCustomisations]])
+  cmd([[au!]])
+  cmd([[au BufWinEnter NvimTree* set cursorline]])
+  cmd([[augroup END]])
+end) -- }}}
+
+if utils.has_pkg("vimwiki") then
+  cmd([[
+    let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+  ]])
+end
