@@ -60,7 +60,7 @@ PKGS = { -- {{{
 
   -- Optimisations
   "lewis6991/impatient.nvim", -- Improve startup time by optimising Lua cache
-  -- "nathom/filetype.nvim", -- Improve startup time
+  "nathom/filetype.nvim", -- Improve startup time
 
   -- Goodies
   -- "Darazaki/indent-o-matic", -- Detect indentation automatically
@@ -76,9 +76,11 @@ PKGS = { -- {{{
   "tpope/vim-rhubarb", -- Fugitive extension for GitHub commands
   "tpope/vim-surround",
   "dstein64/vim-startuptime", -- Profile startup
-  "nanotee/zoxide.vim", -- Integration with zoxide dir changer
   "numToStr/Comment.nvim", -- Comments
-  "natecraddock/workspaces.nvim",
+  "natecraddock/workspaces.nvim", -- Manage workspaces
+
+  -- Still trying it out
+  "ThePrimeagen/harpoon", -- Bookmark files
 } -- }}}
 
 local has_packer, packer = pcall(require, "packer") -- Cache Lua packages
@@ -296,6 +298,12 @@ plugin("telescope._extensions.fzf", function() -- {{{
   end)
 end) -- }}}
 
+plugin("harpoon", function() -- {{{
+  plugin("telescope", function(telescope)
+    telescope.load_extension("harpoon") -- allow `:Telescope harpoon`
+  end)
+end) -- }}}
+
 plugin("nvim-gps", function(mod) -- {{{
   mod.setup({
     separator = " ╱ ",
@@ -399,8 +407,8 @@ plugin("workspaces", function(workspaces) -- {{{
     hooks = {
       open_pre = { "%bd!" },
       -- open = { "Telescope" },
-      -- open = { "lua require('telescope.builtin').oldfiles({only_cwd=true})" },
-      open = { "term fish" },
+      open = { "lua require('telescope.builtin').oldfiles({only_cwd=true})" },
+      -- open = { "term fish" },
     },
   })
 
@@ -460,12 +468,6 @@ if true then -- Vim settings {{{
       horiz = "━",
     } -- better vert characters for global statusline
   end
-end -- }}}
-
-if true then -- Filetype {{{
-  -- https://www.reddit.com/r/neovim/comments/rvwsl3/introducing_filetypelua_and_a_call_for_help/
-  vim.g.do_filetype_lua = 1
-  vim.g.did_load_filetypes = 0
 end -- }}}
 
 -- Customisation: augroups {{{

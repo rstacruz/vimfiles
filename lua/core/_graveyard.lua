@@ -9,6 +9,7 @@ PKGS = {
   -- when using with &winwidth. `nvim-scrollview` is a great alternative
   -- "Xuyuanp/scrollbar.nvim",
   "kyazdani42/nvim-tree.lua", -- File explorer
+  "nanotee/zoxide.vim", -- Integration with zoxide dir changer
 }
 
 -- Startify options
@@ -80,4 +81,25 @@ if utils.has_pkg("vimwiki") then
   cmd([[
     let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
   ]])
+end
+
+if true then -- Filetype {{{
+  -- https://www.reddit.com/r/neovim/comments/rvwsl3/introducing_filetypelua_and_a_call_for_help/
+  vim.g.do_filetype_lua = 1
+  vim.g.did_load_filetypes = 0
+end -- }}}
+
+-- Opens a prompt to switch to a project
+local function zed()
+  vim.ui.input("Switch to project:", function(value)
+    if value == nil then
+      return
+    end
+
+    vim.cmd("silent! NvimTreeClose")
+    vim.cmd("silent! %bw!")
+    vim.cmd("Z " .. value)
+    vim.cmd("e .")
+    -- require("telescope.builtin").oldfiles({ only_cwd = true })
+  end)
 end
