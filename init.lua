@@ -47,6 +47,7 @@ PKGS = { -- {{{
       "MunifTanjim/nui.nvim",
     },
   },
+  "mrjones2014/legendary.nvim",
   "kyazdani42/nvim-web-devicons",
   "lewis6991/gitsigns.nvim", -- Git indicators on the gutter
   "lukas-reineke/indent-blankline.nvim", -- Indent indicators
@@ -248,6 +249,10 @@ end, { defer = true }) -- }}}
 plugin("lualine", function(lualine) -- {{{
   local opts = require("core.lualine-theme").get_theme({ theme = Theme.theme[2] })
   lualine.setup(opts)
+end) -- }}}
+
+plugin("legendary", function(legendary) -- {{{
+  legendary.setup() -- Do this before which-key
 end) -- }}}
 
 plugin("which-key", function(mod) -- {{{
@@ -452,7 +457,7 @@ if true then -- Vim settings {{{
   vim.opt.foldlevel = 99 -- Don't fold everything on first load
 
   if utils.has_pkg("which-key.nvim") then
-    vim.opt.timeoutlen = 120 -- Show almost instantly
+    vim.opt.timeoutlen = 200
   end
 
   if vim.fn.has("nvim-0.7") == 1 then

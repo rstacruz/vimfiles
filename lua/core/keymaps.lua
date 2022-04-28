@@ -48,8 +48,9 @@ elseif has_require("neo-tree") then
 end
 if has_require("toggleterm") then
   map("n", [[<c-j>]], [[:ToggleTerm<cr>]], opts) -- Toggle terminal
-  map("t", [[<c-j>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Toggle terminal
-  map("t", [[<c-k>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Toggle terminal
+  map("t", [[<esc><esc>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Terminal esc
+  -- map("t", [[<c-j>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Toggle terminal
+  -- map("t", [[<c-k>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Toggle terminal
 end
 
 -- Keymap: general
@@ -95,6 +96,7 @@ wk.register({
 wk.register({
   ["."] = { ":vs<cr>:term fish<cr>", "Open terminal in buffer" },
   ["*"] = { ":silent! Glcd | lua require('spectre').open_visual({ select_word = true })<cr>", "Search this word" },
+  ["?"] = { "<cmd>lua require('core.actions').show_reference()<cr>", "Show reference" },
   [","] = {
     name = "Experimental...",
     n = { ":noh<cr>", "Remove search highlighting" },
@@ -105,32 +107,32 @@ wk.register({
   },
   w = {
     name = "Window...",
-    H = { "<c-w>H", "Move ←" },
-    J = { "<c-w>J", "Move ↓" },
-    K = { "<c-w>K", "Move ↑" },
-    L = { "<c-w>L", "Move →" },
-    h = { "<c-w>h", "Focus ←" },
-    j = { "<c-w>j", "Focus ↓" },
-    k = { "<c-w>k", "Focus ↑" },
-    l = { "<c-w>l", "Focus →" },
+    H = { "<c-w>H", "Move window left ←" },
+    J = { "<c-w>J", "Move window down ↓" },
+    K = { "<c-w>K", "Move window up ↑" },
+    L = { "<c-w>L", "Move window right →" },
+    h = { "<c-w>h", "Focus window left ←" },
+    j = { "<c-w>j", "Focus window down ↓" },
+    k = { "<c-w>k", "Focus window up ↑" },
+    l = { "<c-w>l", "Focus window right →" },
     s = { "<c-w>s", "Split horizontal" },
     v = { "<c-w>v", "Split vertical" },
-    q = { "<c-w>q", "Close" },
+    q = { "<c-w>q", "Close window" },
     t = { "<cmd>tab split<cr>", "New tab" },
   },
   p = {
     name = "Pick...",
-    g = { [[:silent! Glcd | lua require('spectre').open({ is_insert_mode = true })<cr>]], "Grep..." },
-    b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-    m = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Bookmarks" },
-    w = { "<cmd>Telescope workspaces<cr>", "Workspaces" },
-    r = { "<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Recent files" },
-    s = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Symbols" },
+    g = { [[:silent! Glcd | lua require('spectre').open({ is_insert_mode = true })<cr>]], "Find in files..." },
+    b = { "<cmd>Telescope buffers<cr>", "List buffers..." },
+    m = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Show bookmarks..." },
+    w = { "<cmd>Telescope workspaces<cr>", "Open workspace..." },
+    r = { "<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Open recent file..." },
+    s = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Show symbols..." },
   },
   m = {
     name = "Marks...",
-    a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add this file" },
-    ["."] = { "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>", "Commands..." },
+    a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Bookmark this file" },
+    ["."] = { "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>", "Bookmark commands..." },
   },
   x = {
     name = "Exit...",
@@ -140,11 +142,10 @@ wk.register({
       "Close all and show recent",
     },
     x = { ":cq<cr>", "Exit" },
-    z = { ":lua require ('core.actions').zed()<cr>", "Switch to project..." },
   },
   f = {
     name = "File...",
-    w = { ":w<cr>", "Save" },
+    w = { ":w<cr>", "Save file" },
     s = { ":noa w<cr>", "Save without formatting" },
     r = { ":e!<cr>", "Revert" },
     -- g = { ":lua vim.ui.input('Find:', function(val) vim.cmd(':GG ' .. val) end)<cr>", "Find in project..." },
@@ -154,9 +155,8 @@ wk.register({
   s = {
     name = "Settings...",
     [","] = { ":vsplit ~/.config/nvim/init.lua<cr>", "Edit Vim settings" },
-    x = { ":vsplit ~/.config/nvim/init.lua<cr>", "Edit extensions" },
     k = { ":vsplit ~/.config/nvim/lua/core/keymaps.lua<cr>", "Edit keybindings" },
-    r = { ":lua require('core.utils').reload()<cr>", "Reload" },
+    r = { ":lua require('core.utils').reload()<cr>", "Reload Vim config" },
     s = { ":lua require('core.utils').reload()<cr>:PackerSync<cr>", "Sync plugins" },
     c = { ":Telescope colorscheme<cr>", "Choose colour scheme" },
     u = { ":lua require('core.utils').reload()<cr>:PaqUpdate<cr>", "Update plugins" },
@@ -200,15 +200,19 @@ wk.register({
   },
   o = {
     name = "Toggle...",
-    w = { ":set wrap!<cr>", "Toggle word wrap" },
-    s = { ":set spell!<cr>", "Toggle spell check" },
-    n = { ":set number!<cr>", "Toggle line number" },
-    r = { ":set relativenumber!<cr>", "Toggle relative line number" },
-    f = vim.fn.has("g:neovide") and { ":let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle fullscreen" }
+    d = { "<cmd>lua vim.o.winwidth = vim.o.winwidth == 85 and 45 or 85<cr>100<c-w><", "Toggle wi[d]e" },
+    w = { ":set wrap!<cr>", "Toggle [w]ord wrap" },
+    s = { ":set spell!<cr>", "Toggle [s]pell check" },
+    n = { ":set number!<cr>", "Toggle line [n]umber" },
+    r = { ":set relativenumber!<cr>", "Toggle [r]elative line number" },
+    f = vim.fn.has("g:neovide") and { ":let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle [f]ullscreen" }
         or {},
-    b = { ":lua Theme:toggle_theme()<cr>", "Toggle light/dark (theme)" },
-    B = { ":lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>", "Toggle light/dark (bg)" },
-    c = { ":lua vim.o.conceallevel = vim.o.conceallevel == 2 and 0 or 2<cr>", "Toggle conceal" },
+    b = { ":lua Theme:toggle_theme()<cr>", "Toggle light/dark theme" },
+    B = {
+      ":lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
+      "Toggle light/dark [B]ackground",
+    },
+    c = { ":lua vim.o.conceallevel = vim.o.conceallevel == 2 and 0 or 2<cr>", "Toggle [c]onceal" },
   },
 }, { prefix = "<Leader>" })
 
