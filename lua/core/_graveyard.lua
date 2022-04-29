@@ -103,3 +103,7 @@ local function zed()
     -- require("telescope.builtin").oldfiles({ only_cwd = true })
   end)
 end
+
+-- Auto reload on save
+cmd([[au BufWritePost init.lua luafile ~/.config/nvim/init.lua]])
+cmd([[au BufWritePost init.lua PackerCompile]])

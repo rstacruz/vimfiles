@@ -71,6 +71,8 @@ wk.register({
   ["<c-g>"] = { ":HopWord<cr>", "Hop to word" },
   ["gl"] = { ":HopLine<cr>", "Hop to line" },
   ["gw"] = { ":HopWord<cr>", "Hop to word" },
+
+  ["<F1>"] = { "<cmd>lua require('core.actions').show_reference()<cr>", "Show reference" },
 })
 
 -- Keymap: cr
@@ -101,12 +103,10 @@ wk.register({
     name = "Experimental...",
     n = { ":noh<cr>", "Remove search highlighting" },
     g = { [[:lua require('core.actions').telescope_grep()<cr>]], "Search (telescope)..." },
-    ["'"] = { ":ToggleTerm<cr>", "Open terminal" },
-    [","] = { ":NvimTreeToggle<cr>", "Open sidebar" },
     ["*"] = { ":GG <c-r><c-w><cr>", "Search from cursor (GG)..." },
   },
   w = {
-    name = "Window...",
+    name = "[w]indow...",
     H = { "<c-w>H", "Move window left ←" },
     J = { "<c-w>J", "Move window down ↓" },
     K = { "<c-w>K", "Move window up ↑" },
@@ -121,21 +121,25 @@ wk.register({
     t = { "<cmd>tab split<cr>", "New tab" },
   },
   p = {
-    name = "Pick...",
+    name = "[p]ick...",
     g = { [[:silent! Glcd | lua require('spectre').open({ is_insert_mode = true })<cr>]], "Find in files..." },
     b = { "<cmd>Telescope buffers<cr>", "List buffers..." },
     m = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Show bookmarks..." },
     w = { "<cmd>Telescope workspaces<cr>", "Open workspace..." },
     r = { "<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Open recent file..." },
     s = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Show symbols..." },
+    W = {
+      name = "[w]orkspaces...",
+      a = { "<cmd>WorkspacesAdd<cr>", "Workspace: [a]dd this folder" },
+    },
   },
   m = {
-    name = "Marks...",
+    name = "[m]arks...",
     a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Bookmark this file" },
     ["."] = { "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>", "Bookmark commands..." },
   },
   x = {
-    name = "Exit...",
+    name = "E[x]it...",
     o = { ":%bd!|e#|bd#<cr>", "Close all buffers" },
     r = {
       ":%bd!|e#|bd#<cr>:lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>",
@@ -144,26 +148,31 @@ wk.register({
     x = { ":cq<cr>", "Exit" },
   },
   f = {
-    name = "File...",
+    name = "[f]ile...",
     w = { ":w<cr>", "Save file" },
-    s = { ":noa w<cr>", "Save without formatting" },
-    r = { ":e!<cr>", "Revert" },
+    s = { ":noa w<cr>", "[s]ave without formatting" },
+    r = { ":e!<cr>", "[r]evert changes in file" },
     -- g = { ":lua vim.ui.input('Find:', function(val) vim.cmd(':GG ' .. val) end)<cr>", "Find in project..." },
-    y = { [[:let @+=@% | echo '→ ' . @%<cr>]], "Copy current path" },
-    Y = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], "Copy full path" },
+    y = { [[:let @+=@% | echo '→ ' . @%<cr>]], "Cop[y] current path" },
+    Y = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], "Cop[Y] full path" },
   },
   s = {
-    name = "Settings...",
-    [","] = { ":vsplit ~/.config/nvim/init.lua<cr>", "Edit Vim settings" },
-    k = { ":vsplit ~/.config/nvim/lua/core/keymaps.lua<cr>", "Edit keybindings" },
-    r = { ":lua require('core.utils').reload()<cr>", "Reload Vim config" },
-    s = { ":lua require('core.utils').reload()<cr>:PackerSync<cr>", "Sync plugins" },
-    c = { ":Telescope colorscheme<cr>", "Choose colour scheme" },
-    u = { ":lua require('core.utils').reload()<cr>:PaqUpdate<cr>", "Update plugins" },
-    p = { ":StartupTime<cr>", "Profile startup time" },
+    name = "[s]ettings...",
+    [","] = { "<cmd>vsplit ~/.config/nvim/init.lua<cr>", "Edit Vim settings" },
+    k = { "<cmd>vsplit ~/.config/nvim/lua/core/keymaps.lua<cr>", "Edit [k]eybindings" },
+    r = { "<cmd>lua require('core.utils').reload()<cr>", "[r]eload Vim config" },
+    c = { "<cmd>Telescope colorscheme<cr>", "Choose [c]olour scheme" },
+    u = { "<cmd>lua require('core.utils').reload()<cr>:PaqUpdate<cr>", "[u]pdate plugins" },
+    P = { "<cmd>StartupTime<cr>", "[P]rofile startup time" },
+    p = {
+      name = "Packer...",
+      c = { ":lua require('core.utils').reload()<cr>:PackerClean<cr>", "Packer: [c]lean unused packages" },
+      i = { ":lua require('core.utils').reload()<cr>:PackerInstall<cr>", "Packer: [i]nstall new packages" },
+      s = { ":lua require('core.utils').reload()<cr>:PackerSync<cr>", "Packer: [s]ync packages" },
+    }
   },
   g = {
-    name = "Git...",
+    name = "[g]it...",
     s = { ":Git<cr>", "Git status" },
     a = { ":silent! Glcd | Git add -u . | Git commit -v<cr>", "Add & commit" },
     A = { ":silent! Glcd | Git add -u . | Git commit --amend -v<cr>", "Add & amend" },
@@ -180,7 +189,7 @@ wk.register({
     },
   },
   t = {
-    name = "Terminal...",
+    name = "[t]erminal...",
     -- s = { ":ToggleTerm direction=vertical<cr>", "Open terminal to side" },
     -- f = { ":ToggleTerm direction=float<cr>", "Open terminal floating" },
     -- v = { ":ToggleTerm direction=horizontal<cr>", "Open terminal to bottom" },
@@ -192,14 +201,14 @@ wk.register({
     t = { ":4ToggleTerm<cr>", "Terminal 4" },
   },
   c = {
-    name = "Code (lsp)...",
+    name = "[c]ode...",
     a = { ":lua vim.lsp.buf.code_action()<cr>", "Actions" },
     r = { ":lua vim.lsp.buf.rename()<cr>", "Rename symbol..." },
     d = { ":Telescope diagnostics<CR>", "Diagnostics" },
     f = { ":lua vim.lsp.buf.formatting_seq_sync()<cr>", "Format (via LSP)" },
   },
   o = {
-    name = "Toggle...",
+    name = "T[o]ggle...",
     d = { "<cmd>lua vim.o.winwidth = vim.o.winwidth == 85 and 45 or 85<cr>100<c-w><", "Toggle wi[d]e" },
     w = { ":set wrap!<cr>", "Toggle [w]ord wrap" },
     s = { ":set spell!<cr>", "Toggle [s]pell check" },

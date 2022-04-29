@@ -84,6 +84,7 @@ PKGS = { -- {{{
   "ThePrimeagen/harpoon", -- Bookmark files
 } -- }}}
 
+-- Packer startup {{{
 local has_packer, packer = pcall(require, "packer") -- Cache Lua packages
 if not has_packer then
   vim.cmd([[echo "Packer was not found"]])
@@ -95,6 +96,7 @@ packer.startup(function(use)
     use(package)
   end
 end)
+-- }}}
 
 -- Preamble {{{
 local cmd = vim.api.nvim_command
@@ -108,9 +110,9 @@ Theme = { theme = { "default", "auto", "dark" }, mode = "dark" }
 function Theme.get_theme(bg)
   if bg == "light" then
     return false
+        or utils.has_pkg("zenbones.nvim") and { "seoulbones", "auto", bg }
         or utils.has_pkg("nightfox.nvim") and { "dayfox", "auto", bg }
         or utils.has_pkg("github-nvim-theme") and { "github_light", "auto", bg }
-        or utils.has_pkg("zenbones.nvim") and { "rosebones", "auto", bg }
         or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
         or { "default", "auto", bg }
   else
@@ -135,8 +137,6 @@ end
 function Theme:toggle_theme()
   self:set_theme(self.mode == "dark" and "light" or "dark")
 end
-
-Theme:set_theme()
 -- }}}
 
 plugin("zk", function(zk) -- {{{
@@ -252,7 +252,9 @@ plugin("lualine", function(lualine) -- {{{
 end) -- }}}
 
 plugin("legendary", function(legendary) -- {{{
-  legendary.setup() -- Do this before which-key
+  legendary.setup({ -- Do this before which-key
+    select_prompt = ""
+  })
 end) -- }}}
 
 plugin("which-key", function(mod) -- {{{
@@ -482,8 +484,6 @@ cmd([[au!]])
 cmd([[au TermOpen * setlocal nonumber norelativenumber nocursorline]])
 cmd([[au TermOpen * startinsert]])
 cmd([[au FileType markdown,spectre_panel,neo-tree setlocal nonumber]])
-cmd([[au BufWritePost init.lua luafile ~/.config/nvim/init.lua]])
-cmd([[au BufWritePost init.lua PackerCompile]])
 cmd([[augroup END]])
 
 -- Git (close on ctrl-s)
@@ -508,9 +508,17 @@ cmd([[au Colorscheme * lua CustomiseTheme()]])
 cmd([[augroup END]])
 
 function CustomiseTheme()
-  cmd([[hi HopNextKey guibg=#ffddaa guifg=#000000]])
-  cmd([[hi HopNextKey1 guibg=#ffddaa guifg=#000000]])
-  cmd([[hi HopNextKey2 guibg=#ffddaa guifg=#000000]])
+  cmd([[hi! HopNextKey guibg=#ffddaa guifg=#000000]])
+  cmd([[hi! HopNextKey1 guibg=#ffddaa guifg=#000000]])
+  cmd([[hi! HopNextKey2 guibg=#ffddaa guifg=#000000]])
+
+  local col = vim.g.colors_name
+  local bg = vim.o.background
+
+  if ({seoulbones=1, rosebones=1, zenbones=1, dayfox=1})[col] and bg == "light" then
+    cmd([[hi! Normal guibg=#ffffff]])
+    cmd([[hi! NormalNC guibg=#fafafc]])
+  end
 end
 
 -- }}}
@@ -519,5 +527,8 @@ end
 vim.defer_fn(function()
   require("core.abbreviations").setup()
 end, 250)
+
+-- Set theme after the customise theme hooks
+Theme:set_theme()
 
 -- vim:foldmethod=marker
