@@ -37,7 +37,7 @@ map("i", [[<c-s>]], [[<esc>:w<cr>]], opts) -- Save (ins)
 map("v", [[<c-c>]], [["+y]], opts) -- Copy
 map("i", [[<c-v>]], [[<esc>:set paste<cr>a<c-r>+<esc>:set nopaste<cr>a]], opts) -- Paste
 if has_require("telescope") then
-  map("n", [[<c-p>]], [[:silent! Glcd<cr>:Telescope find_files<cr>]], opts)
+  map("n", [[<c-p>]], [[:silent! Glcd<cr>:Telescope find_files hidden=true<cr>]], opts)
 end
 if has_require("nvim-tree") then
   map("n", [[<c-b>]], [[:NvimTreeToggle<cr>]], opts) -- Toggle sidebar
