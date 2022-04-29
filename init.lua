@@ -370,21 +370,22 @@ plugin("toggleterm", function(toggleterm) -- {{{
   })
 end, { defer = true }) -- }}}
 
-plugin("nvim-lsp-installer", function(mod) -- {{{
+plugin("nvim-lsp-installer", function(lsp_installer) -- {{{
   vim.api.nvim_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
-  mod.on_server_ready(function(server)
-    local opts = {}
-
-    -- I'm not sure if this does anything lol, but using `capabilities`
-    local _, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-    if cmp_nvim_lsp then
-      opts["capabilities"] = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    end
-
-    server:setup(opts)
-  end)
-end, { defer = true }) -- }}}
+  lsp_installer.setup()
+  -- mod.on_server_ready(function(server)
+  --   local opts = {}
+  --
+  --   -- I'm not sure if this does anything lol, but using `capabilities`
+  --   local _, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+  --   if cmp_nvim_lsp then
+  --     opts["capabilities"] = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  --   end
+  --
+  --   server:setup(opts)
+  -- end)
+end) -- }}}
 
 plugin("spectre", function(spectre) -- {{{
   spectre.setup({
