@@ -15,5 +15,14 @@ clean: ## Removes packer
 clean-all: ## Removes packer and all plugins
 	rm -rf $(HOME)/.local/share/nvim/site/pack/packer plugin/packer_compiled.lua
 
+snapshot: ## Take snapshot of known working package versions (experimental)
+	rm -f ~/.cache/nvim/packer.nvim/packer.lock
+	nvim "+autocmd User PackerComplete qa!" "+PackerSnapshot packer.lock"
+	cp ~/.cache/nvim/packer.nvim/packer.lock .
+
+rollback: ## Rollback to last snapshot (experimental)
+	cp packer.lock ~/.cache/nvim/packer.nvim/packer.lock
+	nvim "+autocmd User PackerComplete qa!" "+PackerSnapshotRollback packer.lock"
+
 fmt:
 	stylua lua/ init.lua
