@@ -82,6 +82,7 @@ PKGS = { -- {{{
 
   -- Still trying it out
   "ThePrimeagen/harpoon", -- Bookmark files
+  "folke/twilight.nvim",
 } -- }}}
 
 -- Packer startup {{{
@@ -110,19 +111,19 @@ Theme = { theme = { "default", "auto", "dark" }, mode = "dark" }
 function Theme.get_theme(bg)
   if bg == "light" then
     return false
-        or utils.has_pkg("zenbones.nvim") and { "seoulbones", "auto", bg }
-        or utils.has_pkg("nightfox.nvim") and { "dayfox", "auto", bg }
-        or utils.has_pkg("github-nvim-theme") and { "github_light", "auto", bg }
-        or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
-        or { "default", "auto", bg }
+      or utils.has_pkg("zenbones.nvim") and { "seoulbones", "auto", bg }
+      or utils.has_pkg("nightfox.nvim") and { "dayfox", "auto", bg }
+      or utils.has_pkg("github-nvim-theme") and { "github_light", "auto", bg }
+      or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
+      or { "default", "auto", bg }
   else
     return false
-        or utils.has_pkg("nightfox.nvim") and { "duskfox", "auto", bg }
-        or utils.has_pkg("catppuccin-nvim") and { "catppuccin", "auto", bg }
-        or utils.has_pkg("github-nvim-theme") and { "github_dimmed", "auto", bg }
-        or utils.has_pkg("zenbones.nvim") and { "tokyobones", "auto", bg }
-        or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
-        or { "default", "auto", bg }
+      or utils.has_pkg("nightfox.nvim") and { "duskfox", "auto", bg }
+      or utils.has_pkg("catppuccin-nvim") and { "catppuccin", "auto", bg }
+      or utils.has_pkg("github-nvim-theme") and { "github_dimmed", "auto", bg }
+      or utils.has_pkg("zenbones.nvim") and { "tokyobones", "auto", bg }
+      or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
+      or { "default", "auto", bg }
   end
 end
 
@@ -175,7 +176,7 @@ plugin("cmp", function(cmp) -- {{{
           maxwidth = 50,
         }),
       }
-      or {}
+    or {}
 
   local mapping = cmp.mapping.preset.insert({
     ["<cr>"] = cmp.mapping.confirm(), -- add { select = true } to auto-select first item
@@ -253,7 +254,7 @@ end) -- }}}
 
 plugin("legendary", function(legendary) -- {{{
   legendary.setup({ -- Do this before which-key
-    select_prompt = ""
+    select_prompt = "",
   })
 end) -- }}}
 
@@ -372,19 +373,7 @@ end, { defer = true }) -- }}}
 
 plugin("nvim-lsp-installer", function(lsp_installer) -- {{{
   vim.api.nvim_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
   lsp_installer.setup()
-  -- mod.on_server_ready(function(server)
-  --   local opts = {}
-  --
-  --   -- I'm not sure if this does anything lol, but using `capabilities`
-  --   local _, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-  --   if cmp_nvim_lsp then
-  --     opts["capabilities"] = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  --   end
-  --
-  --   server:setup(opts)
-  -- end)
 end) -- }}}
 
 plugin("spectre", function(spectre) -- {{{
@@ -516,7 +505,7 @@ function CustomiseTheme()
   local col = vim.g.colors_name
   local bg = vim.o.background
 
-  if ({seoulbones=1, rosebones=1, zenbones=1, dayfox=1})[col] and bg == "light" then
+  if ({ seoulbones = 1, rosebones = 1, zenbones = 1, dayfox = 1 })[col] and bg == "light" then
     cmd([[hi! Normal guibg=#ffffff]])
     cmd([[hi! NormalNC guibg=#fafafc]])
   end

@@ -96,7 +96,7 @@ wk.register({
 
 -- Keymap: leader
 wk.register({
-  ["."] = { ":vs<cr>:term fish<cr>", "Open terminal in buffer" },
+  ["."] = { "<cmd>ToggleTerm<cr>", "Toggle terminal" },
   ["*"] = { ":silent! Glcd | lua require('spectre').open_visual({ select_word = true })<cr>", "Search this word" },
   ["?"] = { "<cmd>lua require('core.actions').show_reference()<cr>", "Show reference" },
   [","] = {
@@ -162,14 +162,13 @@ wk.register({
     k = { "<cmd>vsplit ~/.config/nvim/lua/core/keymaps.lua<cr>", "Edit [k]eybindings" },
     r = { "<cmd>lua require('core.utils').reload()<cr>", "[r]eload Vim config" },
     c = { "<cmd>Telescope colorscheme<cr>", "Choose [c]olour scheme" },
-    u = { "<cmd>lua require('core.utils').reload()<cr>:PaqUpdate<cr>", "[u]pdate plugins" },
     P = { "<cmd>StartupTime<cr>", "[P]rofile startup time" },
     p = {
       name = "Packer...",
       c = { ":lua require('core.utils').reload()<cr>:PackerClean<cr>", "Packer: [c]lean unused packages" },
       i = { ":lua require('core.utils').reload()<cr>:PackerInstall<cr>", "Packer: [i]nstall new packages" },
       s = { ":lua require('core.utils').reload()<cr>:PackerSync<cr>", "Packer: [s]ync packages" },
-    }
+    },
   },
   g = {
     name = "[g]it...",
@@ -194,11 +193,12 @@ wk.register({
     -- f = { ":ToggleTerm direction=float<cr>", "Open terminal floating" },
     -- v = { ":ToggleTerm direction=horizontal<cr>", "Open terminal to bottom" },
     -- n = { ":ToggleTerm direction=tab<cr>", "Open terminal to tab" },
-    ["."] = { ":ToggleTerm<cr>", "Toggle terminal" },
-    a = { ":1ToggleTerm<cr>", "Terminal 1" },
-    r = { ":2ToggleTerm<cr>", "Terminal 2" },
-    s = { ":3ToggleTerm<cr>", "Terminal 3" },
-    t = { ":4ToggleTerm<cr>", "Terminal 4" },
+    ["."] = { "<cmd>ToggleTerm<cr>", "Toggle terminal" },
+    a = { "<cmd>1ToggleTerm<cr>", "Terminal 1" },
+    r = { "<cmd>2ToggleTerm<cr>", "Terminal 2" },
+    s = { "<cmd>3ToggleTerm<cr>", "Terminal 3" },
+    t = { "<cmd>4ToggleTerm<cr>", "Terminal 4" },
+    h = { ":vs<cr>:term fish<cr>", "Open terminal [h]ere" },
   },
   c = {
     name = "[c]ode...",
@@ -215,8 +215,9 @@ wk.register({
     n = { ":set number!<cr>", "Toggle line [n]umber" },
     r = { ":set relativenumber!<cr>", "Toggle [r]elative line number" },
     f = vim.fn.has("g:neovide") and { ":let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle [f]ullscreen" }
-        or {},
+      or {},
     b = { ":lua Theme:toggle_theme()<cr>", "Toggle light/dark theme" },
+    t = { "<cmd>Twilight<cr>", "Toggle [t]wilight mode" },
     B = {
       ":lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
       "Toggle light/dark [B]ackground",
