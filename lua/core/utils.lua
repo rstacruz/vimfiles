@@ -43,9 +43,43 @@ local function reload()
   vim.cmd([[luafile ~/.config/nvim/init.lua]])
 end
 
+-- Autocmd convenience API
+local function augroup_lua(name, fn)
+  local group = vim.api.nvim_create_augroup(name, { clear = true })
+  local autocmd = function(event, pattern, action)
+    options = { pattern = pattern, group = group }
+    if type(action) == "string" then
+      options.command = action
+    end
+    if type(action) == "function" then
+      options.callback = action
+    end
+    vim.api.nvim_create_autocmd(event, options)
+  end
+
+  fn(autocmd, group)
+end
+
+-- Autocmd API that works before Neovim 0.7 (in a limited way)
+local function augroup_legacy(name, fn)
+  local autocmd = function(event, pattern, action)
+    if type(action) == "string" then
+      vim.cmd("au " .. event .. " " .. pattern .. " " .. action)
+    end
+  end
+
+  vim.cmd("augroup " .. name)
+  vim.cmd("au!")
+  fn(autocmd, name)
+  vim.cmd("augroup END")
+end
+
+local augroup = vim.fn.has("nvim-0.7") and augroup_lua or augroup_legacy
+
 return {
   has_pkg = has_pkg,
   plugin = plugin,
   is_light = is_light,
   reload = reload,
+  augroup = augroup,
 }

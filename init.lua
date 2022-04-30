@@ -25,7 +25,8 @@ PKGS = { -- {{{
   "mcchrish/zenbones.nvim",
   { "catppuccin/nvim", as = "catppuccin-nvim" },
   "EdenEast/nightfox.nvim",
-  "navarasu/onedark.nvim",
+  -- "navarasu/onedark.nvim",
+  { "rose-pine/neovim", as = "rose-pine-nvim" },
 
   -- File types
   "preservim/vim-markdown", -- Markdown (.md)
@@ -467,35 +468,35 @@ if true then -- Vim settings {{{
   end
 end -- }}}
 
--- Customisation: augroups {{{
--- No line numbers, insert mode, etc
-cmd([[augroup FiletypeCustomisations]])
-cmd([[au!]])
-cmd([[au TermOpen * setlocal nonumber norelativenumber nocursorline]])
-cmd([[au TermOpen * startinsert]])
-cmd([[au FileType markdown,spectre_panel,neo-tree setlocal nonumber]])
-cmd([[augroup END]])
+if true then -- Autocmds {{{
+  local augroup = require("core.utils").augroup
 
--- Git (close on ctrl-s)
-cmd([[augroup GitCustomisations]])
-cmd([[au!]])
-cmd([[au FileType gitcommit startinsert]])
-cmd([[au FileType gitcommit inoremap <silent> <buffer> <c-s> <esc>:w<cr>G:q<cr>]])
-cmd([[au FileType gitcommit nnoremap <silent> <buffer> <c-s> :w<cr>G:q<cr>]])
-cmd([[augroup END]])
+  augroup("MyCustomisations", function(autocmd, group)
+    -- Cursorline on insert mode
+    autocmd("InsertEnter", "*", "set cursorline")
+    autocmd("InsertLeave", "*", "set nocursorline")
 
--- Cursorline on insert mode
-cmd([[augroup CursorLine]])
-cmd([[au!]])
-cmd([[au InsertEnter * set cursorline]])
-cmd([[au InsertLeave * set nocursorline]])
-cmd([[augroup END]])
+    -- No line numbers, insert mode, etc
+    autocmd("TermOpen", "*", "setlocal nonumber norelativenumber nocursorline")
+    autocmd("TermOpen", "*", "startinsert")
+    autocmd("FileType", "markdown,spectre_panel,neo-tree", "setlocal nonumber")
 
--- Themes
-cmd([[augroup ThemeCustomisations]])
-cmd([[au!]])
-cmd([[au Colorscheme * lua CustomiseTheme()]])
-cmd([[augroup END]])
+    -- Git: close on ctrl-s
+    autocmd("FileType", "gitcommit", "startinsert")
+    autocmd("FileType", "gitcommit", [[inoremap <silent> <buffer> <c-s> <esc>:w<cr>G:q<cr>]])
+    autocmd("FileType", "gitcommit", [[nnoremap <silent> <buffer> <c-s> :w<cr>G:q<cr>]])
+
+    -- Markdown stuff
+    autocmd("FileType", "text,markdown", [[inoremap <buffer> +dw <C-r>=strftime('%d %b, %a')<CR>]])
+    autocmd("FileType", "text,markdown", [[inoremap <buffer> +ds <C-r>=strftime('%Y-%m-%d')<CR>]])
+    autocmd("FileType", "text,markdown", [[inoremap <buffer> :star: ⭐]])
+    autocmd("FileType", "text,markdown", [[inoremap <buffer> -- —]])
+
+    autocmd("Colorscheme", "*", function()
+      CustomiseTheme()
+    end)
+  end)
+end
 
 function CustomiseTheme()
   cmd([[hi! HopNextKey guibg=#ffddaa guifg=#000000]])
@@ -509,9 +510,7 @@ function CustomiseTheme()
     cmd([[hi! Normal guibg=#ffffff]])
     cmd([[hi! NormalNC guibg=#fafafc]])
   end
-end
-
--- }}}
+end -- }}}
 
 -- Abbreviations
 vim.defer_fn(function()
