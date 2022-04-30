@@ -83,7 +83,8 @@ PKGS = { -- {{{
 
   -- Still trying it out
   "ThePrimeagen/harpoon", -- Bookmark files
-  "folke/twilight.nvim",
+  "folke/twilight.nvim", -- Isolate (leader-ot)
+  "luukvbaal/nnn.nvim", -- File manager
 } -- }}}
 
 -- Packer startup {{{
@@ -422,6 +423,10 @@ plugin("neo-tree", function(neo_tree) -- {{{
       position = "right",
     },
   })
+end) -- }}}
+
+plugin("nnn", function(nnn) -- {{{
+  nnn.setup()
 end) -- }}}
 
 if true then -- Vim settings {{{

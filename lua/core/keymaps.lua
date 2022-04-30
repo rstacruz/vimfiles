@@ -37,7 +37,7 @@ map("i", [[<c-s>]], [[<esc>:w<cr>]], opts) -- Save (ins)
 map("v", [[<c-c>]], [["+y]], opts) -- Copy
 map("i", [[<c-v>]], [[<esc>:set paste<cr>a<c-r>+<esc>:set nopaste<cr>a]], opts) -- Paste
 if has_require("telescope") then
-  map("n", [[<c-p>]], [[:silent! Glcd<cr>:Telescope find_files hidden=true<cr>]], opts)
+  map("n", [[<c-p>]], [[<cmd>lua require("core.actions").open_file_picker()<cr>]], opts)
 end
 if has_require("nvim-tree") then
   map("n", [[<c-b>]], [[:NvimTreeToggle<cr>]], opts) -- Toggle sidebar
@@ -122,12 +122,17 @@ wk.register({
   },
   p = {
     name = "[p]ick...",
-    g = { [[:silent! Glcd | lua require('spectre').open({ is_insert_mode = true })<cr>]], "Find in files..." },
-    b = { "<cmd>Telescope buffers<cr>", "List buffers..." },
-    m = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Show bookmarks..." },
-    w = { "<cmd>Telescope workspaces<cr>", "Open workspace..." },
-    r = { "<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Open recent file..." },
-    s = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Show symbols..." },
+    g = {
+      [[:silent! Glcd | lua require('spectre').open({ is_insert_mode = true })<cr>]],
+      "Find in files ([g]rep)...",
+    },
+    e = { "<cmd>Neotree float toggle<cr>", "[e]xplore files..." },
+    b = { "<cmd>Telescope buffers<cr>", "List [b]uffers..." },
+    f = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open [f]ile..." },
+    m = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Show book[m]arks..." },
+    w = { "<cmd>Telescope workspaces<cr>", "Open [w]orkspace..." },
+    r = { "<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Open [r]ecent file..." },
+    s = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Show [s]ymbols..." },
     W = {
       name = "[w]orkspaces...",
       a = { "<cmd>WorkspacesAdd<cr>", "Workspace: [a]dd this folder" },
@@ -135,8 +140,8 @@ wk.register({
   },
   m = {
     name = "[m]arks...",
-    a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Bookmark this file" },
-    ["."] = { "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>", "Bookmark commands..." },
+    a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "[a]dd bookmark" },
+    ["."] = { "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>", "Bookmark commands... [.]" },
   },
   x = {
     name = "E[x]it...",
@@ -172,19 +177,20 @@ wk.register({
   },
   g = {
     name = "[g]it...",
-    s = { ":Git<cr>", "Git status" },
-    a = { ":silent! Glcd | Git add -u . | Git commit -v<cr>", "Add & commit" },
-    A = { ":silent! Glcd | Git add -u . | Git commit --amend -v<cr>", "Add & amend" },
-    h = { ":GBrowse<cr>", "Open in GitHub" },
-    c = { ":Git commit -v<cr>", "Commit" },
-    b = { ":Git blame<cr>", "Open file blame" },
-    p = { ":silent! Glcd | lua require('core.actions').open_floating_cmd('git push')<cr>", "Push" },
-    P = { ":silent! Glcd | lua require('core.actions').open_floating_cmd('git push -f')<cr>", "Push (force)" },
-    t = { ":silent! Glcd | lua require ('core.actions').open_tig()<cr>", "Tig..." },
-    r = {
-      name = "Pull request...",
-      c = { ":silent! Glcd | !gh pr create --web<cr>", "Create PR (web)" },
-      v = { ":silent! Glcd | !gh pr view --web<cr>", "View PR (web)" },
+    s = { ":Git<cr>", "Git [s]tatus" },
+    a = { ":silent! Glcd | Git add -u . | Git commit -v<cr>", "[a]dd & commit" },
+    A = { ":silent! Glcd | Git add -u . | Git commit --amend -v<cr>", "[A]dd & amend" },
+    y = { ":GBrowse!<cr>", "Cop[y] GitHub URL" },
+    Y = { ":GBrowse<cr>", "Open in GitHub [Y]" },
+    c = { ":Git commit -v<cr>", "[c]ommit" },
+    b = { ":Git blame<cr>", "Open file [b]lame" },
+    p = { ":silent! Glcd | lua require('core.actions').open_floating_cmd('git push')<cr>", "[p]ush" },
+    P = { ":silent! Glcd | lua require('core.actions').open_floating_cmd('git push -f')<cr>", "[P]ush (force)" },
+    t = { ":silent! Glcd | lua require ('core.actions').open_tig()<cr>", "[t]ig... *" },
+    h = {
+      name = "Git[h]ub...",
+      p = { ":silent! Glcd | !gh pr create --web<cr>", "Create PR" },
+      v = { ":silent! Glcd | !gh pr view --web<cr>", "View PR" },
     },
   },
   t = {
