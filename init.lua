@@ -494,8 +494,16 @@ if true then -- Autocmds {{{
     -- Markdown stuff
     autocmd("FileType", "text,markdown", [[inoremap <buffer> +dw <C-r>=strftime('%d %b, %a')<CR>]])
     autocmd("FileType", "text,markdown", [[inoremap <buffer> +ds <C-r>=strftime('%Y-%m-%d')<CR>]])
-    autocmd("FileType", "text,markdown", [[inoremap <buffer> :star: ⭐]])
-    autocmd("FileType", "text,markdown", [[inoremap <buffer> -- —]])
+    autocmd("FileType", "text,markdown", [[iabbrev <buffer> :star: ⭐]])
+    autocmd("FileType", "text,markdown", [[iabbrev <buffer> -- —]])
+    autocmd("FileType", "text,markdown", [[iabbrev <buffer> -> →]])
+    autocmd("FileType", "text,markdown", [[inoremap <buffer> +co ``<left>]]) -- [co]de
+    autocmd("FileType", "text,markdown", [[inoremap <buffer> +cd ```<cr>```<home><up><end>]]) -- [c]o[d]e block
+    autocmd(
+      "FileType",
+      "text,markdown",
+      [[iabbrev <buffer> *** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *]]
+    )
 
     autocmd("Colorscheme", "*", function()
       CustomiseTheme()

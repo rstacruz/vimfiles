@@ -77,8 +77,6 @@ wk.register({
   gi = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Implementation (lsp)..." },
 
   -- hop
-  ["<c-l>"] = { "<cmd>HopLine<cr>", "Hop to line" },
-  ["<c-g>"] = { "<cmd>HopWord<cr>", "Hop to word" },
   ["gl"] = { "<cmd>HopLine<cr>", "Hop to line" },
   ["gw"] = { "<cmd>HopWord<cr>", "Hop to word" },
 
@@ -137,7 +135,9 @@ wk.register({
       "Find in files ([g]rep)...",
     },
     e = { "<cmd>Neotree float toggle<cr>", "[e]xplore files..." },
-    b = { "<cmd>Telescope buffers<cr>", "List [b]uffers..." },
+    B = { "<cmd>Telescope buffers<cr>", "List [B]uffers (telescope)..." },
+    b = { "<cmd>Neotree float buffers<cr>", "List [b]uffers..." },
+    g = { "<cmd>Neotree float git_status<cr>", "List chan[g]ed files..." },
     f = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open [f]ile..." },
     m = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Show book[m]arks..." },
     w = { "<cmd>Telescope workspaces<cr>", "Open [w]orkspace..." },
