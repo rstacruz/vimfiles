@@ -9,12 +9,20 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
 -- Keymap: general
-map("n", [[gs]], [[:%s~~]], opts)
-map("v", [[gs]], [[:s~~]], opts)
 map("n", [[+]], [[za]], opts)
 map("n", [[<del>]], [[:bwipe!<cr>]], opts)
+
+-- Search/replace
+map("n", [[gs]], [[:%s~~]], opts)
+map("v", [[gs]], [[:s~~]], opts)
+
+-- Diagnostic
 map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+
+-- Hop
+map("v", [[gl]], [[<cmd>HopLine<cr>]], opts)
+map("v", [[gw]], [[<cmd>HopWord<cr>]], opts)
 
 map("v", "<leader>*", ":silent! Glcd | lua require('spectre').open_visual()<cr>", opts)
 
@@ -62,15 +70,17 @@ wk.register({
   ["<s-tab>"] = { ":bprev<cr>", "Buffer: previous" },
 
   -- lsp
-  gd = { ":Telescope lsp_definitions<cr>", "Definitions (lsp)..." },
-  gr = { ":Telescope lsp_references<cr>", "References (lsp)..." },
-  gh = { ":lua vim.lsp.buf.hover()<cr>", "Declaration (lsp)..." },
-  gD = { ":lua vim.lsp.buf.declaration()<cr>", "Declaration (lsp)..." },
-  gi = { ":lua vim.lsp.buf.implementation()<cr>", "Implementation (lsp)..." },
-  ["<c-l>"] = { ":HopLine<cr>", "Hop to line" },
-  ["<c-g>"] = { ":HopWord<cr>", "Hop to word" },
-  ["gl"] = { ":HopLine<cr>", "Hop to line" },
-  ["gw"] = { ":HopWord<cr>", "Hop to word" },
+  gd = { "<cmd>Telescope lsp_definitions<cr>", "Definitions (lsp)..." },
+  gr = { "<cmd>Telescope lsp_references<cr>", "References (lsp)..." },
+  gh = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Declaration (lsp)..." },
+  gD = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Declaration (lsp)..." },
+  gi = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Implementation (lsp)..." },
+
+  -- hop
+  ["<c-l>"] = { "<cmd>HopLine<cr>", "Hop to line" },
+  ["<c-g>"] = { "<cmd>HopWord<cr>", "Hop to word" },
+  ["gl"] = { "<cmd>HopLine<cr>", "Hop to line" },
+  ["gw"] = { "<cmd>HopWord<cr>", "Hop to word" },
 
   ["<F1>"] = { "<cmd>lua require('core.actions').show_reference()<cr>", "Show reference" },
 })
