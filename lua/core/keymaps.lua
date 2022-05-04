@@ -226,10 +226,17 @@ wk.register({
   o = {
     name = "T[o]ggle...",
     d = { "<cmd>lua vim.o.winwidth = vim.o.winwidth == 85 and 45 or 85<cr>100<c-w><", "Toggle wi[d]e" },
-    w = { ":set wrap!<cr>", "Toggle [w]ord wrap" },
-    s = { ":set spell!<cr>", "Toggle [s]pell check" },
-    n = { ":set number!<cr>", "Toggle line [n]umber" },
-    r = { ":set relativenumber!<cr>", "Toggle [r]elative line number" },
+    w = { "<cmd>set wrap!<cr>", "Toggle [w]ord wrap" },
+    D = {
+      name = "[D]iagnostic...",
+      d = { "<cmd>lua vim.diagnostic.disable()<cr>", "[d]isable diagnostics" },
+      e = { "<cmd>lua vim.diagnostic.enable()<cr>", "[e]nable diagnostics" },
+      h = { "<cmd>lua vim.diagnostic.hide()<cr>", "[h]ide diagnostics" },
+      s = { "<cmd>lua vim.diagnostic.show()<cr>", "[s]how diagnostics" },
+    },
+    s = { "<cmd>set spell!<cr>", "Toggle [s]pell check" },
+    n = { "<cmd>set number!<cr>", "Toggle line [n]umber" },
+    r = { "<cmd>set relativenumber!<cr>", "Toggle [r]elative line number" },
     f = vim.fn.has("g:neovide") and { ":let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle [f]ullscreen" }
       or {},
     b = { ":lua Theme:toggle_theme()<cr>", "Toggle light/dark theme" },
