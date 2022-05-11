@@ -1,10 +1,12 @@
 pcall(require, "impatient") -- Cache Lua packages
 
+local not_windows = not vim.fn.has("windows")
+
 PKGS = { -- {{{
   "wbthomason/packer.nvim",
 
   -- Language
-  { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
+  (not_windows and { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }),
   "neovim/nvim-lspconfig",
   "williamboman/nvim-lsp-installer", -- Install LSP servers (:LspInstall)
   "jose-elias-alvarez/null-ls.nvim", -- Formatting and diagnostics
@@ -35,7 +37,7 @@ PKGS = { -- {{{
   "mickael-menu/zk-nvim", -- Zk (.md)
 
   -- UI
-  "SmiteshP/nvim-gps", -- Breadcrumbs in the status line
+  (not_windows and "SmiteshP/nvim-gps"), -- Breadcrumbs in the status line
   "dstein64/nvim-scrollview",
   "folke/lsp-colors.nvim", -- Infer some colours needed for LSP
   "folke/which-key.nvim", -- Menu when pressing [space]
@@ -84,21 +86,26 @@ PKGS = { -- {{{
   -- Still trying it out
   "ThePrimeagen/harpoon", -- Bookmark files
   "folke/twilight.nvim", -- Isolate (leader-ot)
-  "luukvbaal/nnn.nvim", -- File manager
+  (not_windows and "luukvbaal/nnn.nvim"), -- File manager
 } -- }}}
 
 -- Packer startup {{{
 local has_packer, packer = pcall(require, "packer") -- Cache Lua packages
 if not has_packer then
-  vim.cmd([[echo "Packer was not found"]])
+  vim.cmd([[echo "Packer was not found, installing..."]])
+  local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+  vim.fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+  vim.cmd([[echo "Done, restart now!"]])
   return
+else
+  packer.startup(function(use)
+    for _, package in pairs(PKGS) do
+      if package then
+        use(package)
+      end
+    end
+  end)
 end
-
-packer.startup(function(use)
-  for _, package in pairs(PKGS) do
-    use(package)
-  end
-end)
 -- }}}
 
 -- Preamble {{{
@@ -140,6 +147,7 @@ end
 function Theme:toggle_theme()
   self:set_theme(self.mode == "dark" and "light" or "dark")
 end
+
 -- }}}
 
 plugin("zk", function(zk) -- {{{
@@ -443,7 +451,6 @@ if true then -- Vim settings {{{
   vim.opt.number = true -- Line numbers
   vim.opt.pumheight = 10 -- Popup menu height
   vim.opt.scrolloff = 4 -- Scroll padding
-  vim.opt.shell = "/bin/bash"
   vim.opt.shiftwidth = 2
   vim.opt.showmode = false -- Don't show '-- INSERT --' in status line
   vim.opt.signcolumn = "yes" -- Always show sign column
@@ -457,6 +464,10 @@ if true then -- Vim settings {{{
   vim.opt.winwidth = 85 -- Auto-resize windows
   vim.opt.winminwidth = 12
   vim.opt.foldlevel = 99 -- Don't fold everything on first load
+
+  if not_windows then
+    vim.opt.shell = "/bin/bash"
+  end
 
   if utils.has_pkg("which-key.nvim") then
     vim.opt.timeoutlen = 200
