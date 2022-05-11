@@ -374,8 +374,12 @@ plugin("toggleterm", function(toggleterm) -- {{{
 end, { defer = true }) -- }}}
 
 plugin("nvim-lsp-installer", function(lsp_installer) -- {{{
-  vim.api.nvim_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-  lsp_installer.setup()
+  plugin("lspconfig", function(lspconfig)
+    lsp_installer.setup({})
+    lspconfig.solargraph.setup({})
+    lspconfig.sumneko_lua.setup({})
+    lspconfig.tsserver.setup({})
+  end)
 end) -- }}}
 
 plugin("spectre", function(spectre) -- {{{
