@@ -1,21 +1,24 @@
 {
-  "catppuccin-nvim": {
-    "commit": "8a67df6"
+  "nvim-gps": {
+    "commit": "9552418"
   },
   "telescope-fzf-native.nvim": {
-    "commit": "8ec164b"
+    "commit": "281b07a"
   },
   "packer.nvim": {
     "commit": "4dedd3b"
   },
+  "Comment.nvim": {
+    "commit": "79b356d"
+  },
   "nvim-notify": {
-    "commit": "6f298f2"
+    "commit": "d4a01ee"
   },
   "vim-surround": {
     "commit": "bf3480d"
   },
   "nvim-lspconfig": {
-    "commit": "21102d5"
+    "commit": "2f37b2c"
   },
   "nvim-spectre": {
     "commit": "345e5dd"
@@ -23,26 +26,23 @@
   "lsp-colors.nvim": {
     "commit": "517fe3a"
   },
-  "cmp-cmdline": {
-    "commit": "a4ce238"
-  },
   "nvim-scrollview": {
-    "commit": "ba6c48b"
+    "commit": "696b56f"
   },
   "vim-gitgrep": {
     "commit": "f8cd8e6"
   },
   "null-ls.nvim": {
-    "commit": "d871b41"
+    "commit": "dcad76e"
   },
   "lualine.nvim": {
-    "commit": "dfac736"
+    "commit": "619eded"
   },
-  "which-key.nvim": {
-    "commit": "a3c19ec"
+  "cmp-cmdline": {
+    "commit": "c36ca4b"
   },
   "cmp-nvim-lsp": {
-    "commit": "ebdfc20"
+    "commit": "e6b5feb"
   },
   "zk-nvim": {
     "commit": "d705faa"
@@ -51,55 +51,52 @@
     "commit": "c53aa4a"
   },
   "github-nvim-theme": {
-    "commit": "9c641bd"
+    "commit": "eeac2e7"
   },
-  "plenary.nvim": {
-    "commit": "9069d14"
+  "legendary.nvim": {
+    "commit": "1722613"
   },
   "vim-fugitive": {
     "commit": "b7287bd"
   },
   "gitsigns.nvim": {
-    "commit": "b800663"
+    "commit": "aca84fd"
   },
   "indent-blankline.nvim": {
-    "commit": "045d958"
-  },
-  "onedark.nvim": {
-    "commit": "08cde8a"
+    "commit": "8567ac8"
   },
   "dressing.nvim": {
-    "commit": "f68a91a"
+    "commit": "a476efd"
   },
   "lspkind-nvim": {
     "commit": "57e5b5d"
   },
-  "neo-tree.nvim": {
-    "commit": "01d54bd"
+  "which-key.nvim": {
+    "commit": "bd4411a"
   },
   "telescope.nvim": {
-    "commit": "7cde1ca"
+    "commit": "795a63e"
   },
   "vim-microtone": {
     "commit": "3a90458"
   },
+  "catppuccin-nvim": {
+    "commit": "8a67df6"
+  },
   "vim-startuptime": {
     "commit": "61f122e"
-  },
-  "nvim-gps": {
-    "commit": "944ea6e"
-  },
-  "Comment.nvim": {
-    "commit": "cb0de89"
   },
   "filetype.nvim": {
     "commit": "5a9837d"
   },
-  "vim-indent-object": {
-    "commit": "5c5b24c"
+  "hop.nvim": {
+    "commit": "b93ed4c"
   },
   "lush.nvim": {
-    "commit": "87e9039"
+    "commit": "0c4acf6"
+  },
+  "neo-tree.nvim": {
+    "commit": "a917174"
   },
   "vim-visualstar": {
     "commit": "a18cd0e"
@@ -108,63 +105,69 @@
     "commit": "0abfa18"
   },
   "nvim-web-devicons": {
-    "commit": "2033e8e"
+    "commit": "bdd4342"
   },
   "vim-slim": {
     "commit": "f0758ea"
   },
   "nvim-treesitter": {
-    "commit": "9425591"
+    "commit": "aaf5d37"
   },
   "nui.nvim": {
-    "commit": "42552b3"
+    "commit": "abdbfab"
+  },
+  "nnn.nvim": {
+    "commit": "0205f69"
   },
   "impatient.nvim": {
     "commit": "2337df7"
   },
   "vim-markdown": {
-    "commit": "9068655"
+    "commit": "3a96439"
   },
-  "hop.nvim": {
-    "commit": "b93ed4c"
+  "vim-indent-object": {
+    "commit": "5c5b24c"
   },
   "vim-rhubarb": {
     "commit": "977b3cc"
   },
   "nvim-lsp-installer": {
-    "commit": "016cd4b"
+    "commit": "896831c"
   },
-  "vim-foldtext": {
-    "commit": "4508785"
+  "nightfox.nvim": {
+    "commit": "63a8eb6"
   },
   "indent-o-matic": {
     "commit": "9d04624"
   },
   "zenbones.nvim": {
-    "commit": "1e0b792"
+    "commit": "e4def19"
   },
-  "nightfox.nvim": {
-    "commit": "9cd98ed"
+  "vim-foldtext": {
+    "commit": "4508785"
+  },
+  "rose-pine-nvim": {
+    "commit": "aa69b6a"
   },
   "twilight.nvim": {
     "commit": "8ab43c0"
   },
   "toggleterm.nvim": {
-    "commit": "6c7f5db"
+    "commit": "7941edf"
   },
-  "legendary.nvim": {
-    "commit": "aec2237"
+  "plenary.nvim": {
+    "commit": "9069d14"
   },
   "nvim-cmp": {
-    "commit": "74284cf"
+    "commit": "a226b6a"
   },
   "harpoon": {
-    "commit": "28762aa"
+    "commit": "d3d3d22"
   },
   "cmp-path": {
     "commit": "466b6b8"
   },
   "cmp-buffer": {
-    "commit": "d66c4c2"
+    "commit": "12463cf"
   }
 }
