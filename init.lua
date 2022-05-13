@@ -168,7 +168,8 @@ plugin("nvim-treesitter.configs", function(mod) -- {{{
   mod.setup({
     ensure_installed = {
       "c", "cpp", "javascript", "css", "lua", "markdown", "ruby", "yaml",
-      "json", "html", "python", "svelte", "typescript"
+      "json", "html", "python", "svelte", "typescript", "fish", "dockerfile",
+      "make", "jsdoc", "scss", "vim"
     },
     matchup = { enable = true },
     indent = { enable = true },
