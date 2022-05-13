@@ -1,15 +1,17 @@
 pcall(require, "impatient") -- Cache Lua packages
 
-local not_windows = not vim.fn.has("windows")
+-- Proxy for checking if it's a dev environment
+local has_gcc = vim.fn.executable("gcc")
 
 PKGS = { -- {{{
   "wbthomason/packer.nvim",
 
   -- Language
-  (not_windows and { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }),
-  "neovim/nvim-lspconfig",
-  "williamboman/nvim-lsp-installer", -- Install LSP servers (:LspInstall)
-  "jose-elias-alvarez/null-ls.nvim", -- Formatting and diagnostics
+  (has_gcc and { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }),
+  (has_gcc and "neovim/nvim-lspconfig"),
+  (has_gcc and "williamboman/nvim-lsp-installer"), -- Install LSP servers (:LspInstall)
+  (has_gcc and "jose-elias-alvarez/null-ls.nvim"), -- Formatting and diagnostics
+  (has_gcc and "SmiteshP/nvim-gps"), -- Breadcrumbs in the status line
 
   -- Completion
   "hrsh7th/cmp-nvim-lsp",
@@ -37,7 +39,6 @@ PKGS = { -- {{{
   "mickael-menu/zk-nvim", -- Zk (.md)
 
   -- UI
-  (not_windows and "SmiteshP/nvim-gps"), -- Breadcrumbs in the status line
   "dstein64/nvim-scrollview",
   "folke/lsp-colors.nvim", -- Infer some colours needed for LSP
   "folke/which-key.nvim", -- Menu when pressing [space]
@@ -87,7 +88,7 @@ PKGS = { -- {{{
   -- Still trying it out
   "ThePrimeagen/harpoon", -- Bookmark files
   "folke/twilight.nvim", -- Isolate (leader-ot)
-  (not_windows and "luukvbaal/nnn.nvim"), -- File manager
+  (vim.fn.executable("nnn") and "luukvbaal/nnn.nvim"), -- File manager
 } -- }}}
 
 -- Packer startup {{{
@@ -386,10 +387,18 @@ end, { defer = true }) -- }}}
 
 plugin("nvim-lsp-installer", function(lsp_installer) -- {{{
   plugin("lspconfig", function(lspconfig)
-    lsp_installer.setup({})
-    lspconfig.solargraph.setup({})
+    lsp_installer.setup({
+      automatic_installation = true
+    })
+
+    if vim.fn.executable("ruby") then
+      lspconfig.solargraph.setup({})
+    end
+    if vim.fn.executable("node") then
+      lspconfig.tsserver.setup({})
+      lspconfig.yamlls.setup({})
+    end
     lspconfig.sumneko_lua.setup({})
-    lspconfig.tsserver.setup({})
   end)
 end) -- }}}
 
@@ -468,7 +477,7 @@ if true then -- Vim settings {{{
   vim.opt.winminwidth = 12
   vim.opt.foldlevel = 99 -- Don't fold everything on first load
 
-  if not_windows then
+  if not vim.fn.has("windows") then
     vim.opt.shell = "/bin/bash"
   end
 
