@@ -8,6 +8,7 @@ PKGS = { -- {{{
 
   -- Language
   (has_gcc and { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }),
+  (has_gcc and "nvim-treesitter/nvim-treesitter-textobjects"),
   (has_gcc and "neovim/nvim-lspconfig"),
   (has_gcc and "williamboman/nvim-lsp-installer"), -- Install LSP servers (:LspInstall)
   (has_gcc and "jose-elias-alvarez/null-ls.nvim"), -- Formatting and diagnostics
@@ -178,6 +179,18 @@ plugin("nvim-treesitter.configs", function(mod) -- {{{
       enable = true,
       use_languagetree = true,
     },
+    textobjects = {
+      select = {
+        enable = true,
+        lookahead = true,
+        keymaps = {
+          ["af"] = "@function.outer",
+          ["if"] = "@function.inner",
+          ["ac"] = "@class.outer",
+          ["ic"] = "@class.inner",
+        },
+      },
+    }
   })
   vim.o.foldmethod = "expr"
   vim.o.foldexpr = "nvim_treesitter#foldexpr()"

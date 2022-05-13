@@ -18,6 +18,15 @@ volta install eslint_d  # https://github.com/mantoni/eslint_d.js
 cargo install stylua  # https://github.com/JohnnyMorganz/StyLua
 ```
 
+## Treesitter
+
+```
+vaf  # select function (also: vif)
+vac  # select class (also: vic)
+
+=    # re-indent selection
+```
+
 ## Other things
 
 ```
