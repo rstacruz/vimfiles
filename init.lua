@@ -1,7 +1,10 @@
 pcall(require, "impatient") -- Cache Lua packages
 
 -- Proxy for checking if it's a dev environment
-local has_gcc = vim.fn.executable("gcc")
+local function which(bin)
+  return vim.fn.executable(bin) == 1
+end
+local has_gcc = which("gcc")
 
 PKGS = { -- {{{
   "wbthomason/packer.nvim",
@@ -37,7 +40,7 @@ PKGS = { -- {{{
   "preservim/vim-markdown", -- Markdown (.md)
   "slim-template/vim-slim", -- Slim (.slim)
   -- "vimwiki/vimwiki", -- Obsidian Markdown
-  "mickael-menu/zk-nvim", -- Zk (.md)
+  (which("zk") and "mickael-menu/zk-nvim"), -- Zk (.md)
 
   -- UI
   "dstein64/nvim-scrollview",
@@ -408,10 +411,10 @@ plugin("nvim-lsp-installer", function(lsp_installer) -- {{{
       automatic_installation = true
     })
 
-    if vim.fn.executable("ruby") then
+    if which("ruby") then
       lspconfig.solargraph.setup({})
     end
-    if vim.fn.executable("node") then
+    if which("node") then
       lspconfig.tsserver.setup({})
       lspconfig.yamlls.setup({})
     end
