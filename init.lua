@@ -94,6 +94,7 @@ PKGS = { -- {{{
   "ThePrimeagen/harpoon", -- Bookmark files
   "folke/twilight.nvim", -- Isolate (leader-ot)
   (vim.fn.executable("nnn") and "luukvbaal/nnn.nvim"), -- File manager
+  "TimUntersberger/neogit",
 } -- }}}
 
 -- Packer startup {{{
@@ -472,6 +473,10 @@ end) -- }}}
 
 plugin("nnn", function(nnn) -- {{{
   nnn.setup()
+end) -- }}}
+
+plugin("neogit", function(neogit) -- {{{
+  neogit.setup()
 end) -- }}}
 
 if true then -- Vim settings {{{

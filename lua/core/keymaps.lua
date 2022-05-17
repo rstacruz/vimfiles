@@ -190,7 +190,8 @@ wk.register({
   },
   g = {
     name = "[g]it...",
-    s = { ":Git<cr>", "Git [s]tatus" },
+    s = { "<cmd>Neogit<cr>", "Git [s]tatus" },
+    S = { "<cmd>Neogit kind=vsplit<cr>", "Git [s]tatus, split" },
     a = { ":silent! Glcd | Git add -u . | Git commit -v<cr>", "[a]dd & commit" },
     A = { ":silent! Glcd | Git add -u . | Git commit --amend -v<cr>", "[A]dd & amend" },
     y = { ":GBrowse!<cr>", "Cop[y] GitHub URL" },
