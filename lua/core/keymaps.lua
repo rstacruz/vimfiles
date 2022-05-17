@@ -158,12 +158,8 @@ wk.register({
   },
   x = {
     name = "E[x]it...",
-    o = { ":%bd!|e#|bd#<cr>g;", "Close all buffers" },
-    r = {
-      ":%bd!|e#|bd#<cr>:lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>",
-      "Close all and show recent",
-    },
-    x = { ":cq<cr>", "Exit" },
+    o = { ":%bd!|e#|bd#<cr>g;", "Cl[o]se all buffers" },
+    x = { ":cq<cr>", "E[x]it" },
   },
   f = {
     name = "[f]ile...",
@@ -213,7 +209,8 @@ wk.register({
     -- f = { ":ToggleTerm direction=float<cr>", "Open terminal floating" },
     -- v = { ":ToggleTerm direction=horizontal<cr>", "Open terminal to bottom" },
     -- n = { ":ToggleTerm direction=tab<cr>", "Open terminal to tab" },
-    ["."] = { "<cmd>ToggleTerm<cr>", "Toggle terminal" },
+    -- ["."] = { "<cmd>ToggleTerm<cr>", "Toggle terminal" },
+    ["."] = { "<cmd>silent! 1TermExec cmd=\"$history[1]\"<cr>", "Repeat last term command" },
     a = { "<cmd>1ToggleTerm<cr>", "Terminal 1" },
     r = { "<cmd>2ToggleTerm<cr>", "Terminal 2" },
     s = { "<cmd>3ToggleTerm<cr>", "Terminal 3" },
