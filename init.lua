@@ -4,6 +4,7 @@ pcall(require, "impatient") -- Cache Lua packages
 local function which(bin)
   return vim.fn.executable(bin) == 1
 end
+
 local has_gcc = which("gcc")
 
 PKGS = { -- {{{
@@ -126,9 +127,9 @@ Theme = { theme = { "default", "auto", "dark" }, mode = "dark" }
 function Theme.get_theme(bg)
   if bg == "light" then
     return false
-        or utils.has_pkg("zenbones.nvim") and { "seoulbones", "auto", bg }
-        or utils.has_pkg("nightfox.nvim") and { "dayfox", "auto", bg }
         or utils.has_pkg("github-nvim-theme") and { "github_light", "auto", bg }
+        or utils.has_pkg("nightfox.nvim") and { "dayfox", "auto", bg }
+        or utils.has_pkg("zenbones.nvim") and { "seoulbones", "auto", bg }
         or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
         or { "default", "auto", bg }
   else

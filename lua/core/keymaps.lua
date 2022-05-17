@@ -58,6 +58,8 @@ if has_require("toggleterm") then
   map("n", [[<c-j>]], [[:ToggleTerm<cr>]], opts) -- Toggle terminal
   map("t", [[<esc><esc>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Terminal esc
   map("n", [[<esc><esc>]], [[<cmd>ToggleTerm<cr>]], opts) -- Terminal esc
+  map("t", [[<esc><pagedown>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Terminal esc
+  map("n", [[<esc><pagedown>]], [[<cmd>ToggleTerm<cr>]], opts) -- Terminal esc
   -- map("t", [[<c-j>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Toggle terminal
   -- map("t", [[<c-k>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Toggle terminal
 end
@@ -110,7 +112,8 @@ wk.register({
   ["?"] = { "<cmd>lua require('core.actions').show_reference()<cr>", "Show reference" },
   [","] = {
     name = "Experimental...",
-    n = { ":noh<cr>", "Remove search highlighting" },
+    s = { "<cmd>split ~/.scratchpad<cr><C-w>H", "Open [s]cratchpad" },
+    n = { ":noh<cr>", "Remove search highlighting [n]" },
     g = { [[:lua require('core.actions').telescope_grep()<cr>]], "Search (telescope)..." },
     ["*"] = { ":GG <c-r><c-w><cr>", "Search from cursor (GG)..." },
   },
@@ -155,7 +158,7 @@ wk.register({
   },
   x = {
     name = "E[x]it...",
-    o = { ":%bd!|e#|bd#<cr>", "Close all buffers" },
+    o = { ":%bd!|e#|bd#<cr>g;", "Close all buffers" },
     r = {
       ":%bd!|e#|bd#<cr>:lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>",
       "Close all and show recent",
@@ -164,7 +167,7 @@ wk.register({
   },
   f = {
     name = "[f]ile...",
-    w = { ":w<cr>", "Save file" },
+    w = { ":w<cr>", "Save file [w]" },
     s = { ":noa w<cr>", "[s]ave without formatting" },
     r = { ":e!<cr>", "[r]evert changes in file" },
     -- g = { ":lua vim.ui.input('Find:', function(val) vim.cmd(':GG ' .. val) end)<cr>", "Find in project..." },
@@ -179,10 +182,10 @@ wk.register({
     c = { "<cmd>Telescope colorscheme<cr>", "Choose [c]olour scheme" },
     P = { "<cmd>StartupTime<cr>", "[P]rofile startup time" },
     p = {
-      name = "Packer...",
-      c = { ":lua require('core.utils').reload()<cr>:PackerClean<cr>", "Packer: [c]lean unused packages" },
-      i = { ":lua require('core.utils').reload()<cr>:PackerInstall<cr>", "Packer: [i]nstall new packages" },
-      s = { ":lua require('core.utils').reload()<cr>:PackerSync<cr>", "Packer: [s]ync packages" },
+      name = "[p]acker...",
+      c = { "<cmd>lua require('core.utils').reload()<cr>:PackerClean<cr>", "Packer: [c]lean unused packages" },
+      i = { "<cmd>lua require('core.utils').reload()<cr>:PackerInstall<cr>", "Packer: [i]nstall new packages" },
+      s = { "<cmd>lua require('core.utils').reload()<cr>:PackerSync<cr>", "Packer: [s]ync packages" },
     },
   },
   g = {
@@ -218,10 +221,10 @@ wk.register({
   },
   c = {
     name = "[c]ode...",
-    a = { ":lua vim.lsp.buf.code_action()<cr>", "Actions" },
-    r = { ":lua vim.lsp.buf.rename()<cr>", "Rename symbol..." },
-    d = { ":Telescope diagnostics<CR>", "Diagnostics" },
-    f = { ":lua vim.lsp.buf.formatting_seq_sync()<cr>", "Format (via LSP)" },
+    a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "[a]ctions..." },
+    r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "[r]ename symbol..." },
+    d = { "<cmd>Telescope diagnostics<CR>", "Show [d]iagnostics" },
+    f = { "<cmd>lua vim.lsp.buf.formatting_seq_sync()<cr>", "[f]ormat via LSP" },
   },
   o = {
     name = "T[o]ggle...",
@@ -238,7 +241,7 @@ wk.register({
     n = { "<cmd>set number!<cr>", "Toggle line [n]umber" },
     r = { "<cmd>set relativenumber!<cr>", "Toggle [r]elative line number" },
     f = vim.fn.has("g:neovide") and { ":let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle [f]ullscreen" }
-      or {},
+        or {},
     b = { ":lua Theme:toggle_theme()<cr>", "Toggle light/dark theme" },
     t = { "<cmd>Twilight<cr>", "Toggle [t]wilight mode" },
     B = {
