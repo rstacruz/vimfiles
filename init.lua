@@ -1,4 +1,11 @@
-pcall(require, "impatient") -- Cache Lua packages
+-- Packer startup {{{
+local bootstrap
+local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  vim.cmd([[echo "Packer was not found, installing..."]])
+  local packer_url = "https://github.com/wbthomason/packer.nvim"
+  bootstrap = vim.fn.system({ "git", "clone", "--depth", "1", packer_url, install_path })
+end
 
 -- Proxy for checking if it's a dev environment
 local function which(bin)
@@ -7,16 +14,16 @@ end
 
 local has_gcc = which("gcc")
 
-PKGS = { -- {{{
+PACKAGES = { -- {{{
   "wbthomason/packer.nvim",
 
   -- Language
   (has_gcc and { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }),
-  (has_gcc and "nvim-treesitter/nvim-treesitter-textobjects"),
-  (has_gcc and "neovim/nvim-lspconfig"),
-  (has_gcc and "williamboman/nvim-lsp-installer"), -- Install LSP servers (:LspInstall)
-  (has_gcc and "jose-elias-alvarez/null-ls.nvim"), -- Formatting and diagnostics
-  (has_gcc and "SmiteshP/nvim-gps"), -- Breadcrumbs in the status line
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  "neovim/nvim-lspconfig",
+  "williamboman/nvim-lsp-installer", -- Install LSP servers (:LspInstall
+  "jose-elias-alvarez/null-ls.nvim", -- Formatting and diagnostics
+  "SmiteshP/nvim-gps", -- Breadcrumbs in the status line
 
   -- Completion
   "hrsh7th/cmp-nvim-lsp",
@@ -93,26 +100,21 @@ PKGS = { -- {{{
   -- Still trying it out
   "ThePrimeagen/harpoon", -- Bookmark files
   "folke/twilight.nvim", -- Isolate (leader-ot)
-  (vim.fn.executable("nnn") and "luukvbaal/nnn.nvim"), -- File manager
   "TimUntersberger/neogit",
 } -- }}}
 
--- Packer startup {{{
-local has_packer, packer = pcall(require, "packer") -- Cache Lua packages
-if not has_packer then
-  vim.cmd([[echo "Packer was not found, installing..."]])
-  local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-  vim.fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-  vim.cmd([[echo "Done, restart now!"]])
-  return
-else
-  packer.startup(function(use)
-    for _, package in pairs(PKGS) do
-      if package then
-        use(package)
-      end
+require("packer").startup(function(use)
+  for _, package in pairs(PACKAGES) do
+    if package then
+      use(package)
     end
-  end)
+  end
+end)
+
+if bootstrap then
+  require("packer").sync()
+else
+  require("impatient")
 end
 -- }}}
 
@@ -128,19 +130,19 @@ Theme = { theme = { "default", "auto", "dark" }, mode = "dark" }
 function Theme.get_theme(bg)
   if bg == "light" then
     return false
-        or utils.has_pkg("github-nvim-theme") and { "github_light", "auto", bg }
-        or utils.has_pkg("nightfox.nvim") and { "dayfox", "auto", bg }
-        or utils.has_pkg("zenbones.nvim") and { "seoulbones", "auto", bg }
-        or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
-        or { "default", "auto", bg }
+      or utils.has_pkg("github-nvim-theme") and { "github_light", "auto", bg }
+      or utils.has_pkg("nightfox.nvim") and { "dayfox", "auto", bg }
+      or utils.has_pkg("zenbones.nvim") and { "seoulbones", "auto", bg }
+      or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
+      or { "default", "auto", bg }
   else
     return false
-        or utils.has_pkg("nightfox.nvim") and { "duskfox", "auto", bg }
-        or utils.has_pkg("catppuccin-nvim") and { "catppuccin", "auto", bg }
-        or utils.has_pkg("github-nvim-theme") and { "github_dimmed", "auto", bg }
-        or utils.has_pkg("zenbones.nvim") and { "tokyobones", "auto", bg }
-        or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
-        or { "default", "auto", bg }
+      or utils.has_pkg("nightfox.nvim") and { "duskfox", "auto", bg }
+      or utils.has_pkg("catppuccin-nvim") and { "catppuccin", "auto", bg }
+      or utils.has_pkg("github-nvim-theme") and { "github_dimmed", "auto", bg }
+      or utils.has_pkg("zenbones.nvim") and { "tokyobones", "auto", bg }
+      or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
+      or { "default", "auto", bg }
   end
 end
 
@@ -173,9 +175,25 @@ end) -- }}}
 plugin("nvim-treesitter.configs", function(mod) -- {{{
   mod.setup({
     ensure_installed = {
-      "c", "cpp", "javascript", "css", "lua", "markdown", "ruby", "yaml",
-      "json", "html", "python", "svelte", "typescript", "fish", "dockerfile",
-      "make", "jsdoc", "scss", "vim"
+      "c",
+      "cpp",
+      "javascript",
+      "css",
+      "lua",
+      "markdown",
+      "ruby",
+      "yaml",
+      "json",
+      "html",
+      "python",
+      "svelte",
+      "typescript",
+      "fish",
+      "dockerfile",
+      "make",
+      "jsdoc",
+      "scss",
+      "vim",
     },
     matchup = { enable = true },
     indent = { enable = true },
@@ -195,7 +213,7 @@ plugin("nvim-treesitter.configs", function(mod) -- {{{
           ["ic"] = "@class.inner",
         },
       },
-    }
+    },
   })
   vim.o.foldmethod = "expr"
   vim.o.foldexpr = "nvim_treesitter#foldexpr()"
@@ -210,7 +228,7 @@ plugin("cmp", function(cmp) -- {{{
           maxwidth = 50,
         }),
       }
-      or {}
+    or {}
 
   local mapping = cmp.mapping.preset.insert({
     ["<cr>"] = cmp.mapping.confirm(), -- add { select = true } to auto-select first item
@@ -369,7 +387,7 @@ end) -- }}}
 
 plugin("null-ls", function(null_ls) -- {{{
   local sources = {}
-  if vim.fn.executable("ruby") then
+  if vim.fn.executable("ruby") then -- gem install rubocop
     table.insert(sources, null_ls.builtins.diagnostics.rubocop)
   end
   if vim.fn.executable("stylua") then -- cargo install stylua
@@ -409,8 +427,9 @@ end, { defer = true }) -- }}}
 
 plugin("nvim-lsp-installer", function(lsp_installer) -- {{{
   plugin("lspconfig", function(lspconfig)
+    require("core.extras.lsp_borders")
     lsp_installer.setup({
-      automatic_installation = true
+      automatic_installation = true,
     })
 
     if which("ruby") then
@@ -477,6 +496,13 @@ end) -- }}}
 
 plugin("neogit", function(neogit) -- {{{
   neogit.setup()
+end) -- }}}
+
+plugin("symbols-outline", function() -- {{{
+  vim.g.symbols_outline = {
+    auto_close = true,
+    symbol_blacklist = { "Field", "Param" },
+  }
 end) -- }}}
 
 if true then -- Vim settings {{{

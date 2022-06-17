@@ -10,6 +10,7 @@ PKGS = {
   -- "Xuyuanp/scrollbar.nvim",
   "kyazdani42/nvim-tree.lua", -- File explorer
   "nanotee/zoxide.vim", -- Integration with zoxide dir changer
+  (vim.fn.executable("nnn") and "luukvbaal/nnn.nvim"), -- File manager
 }
 
 -- Startify options

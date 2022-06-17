@@ -8,130 +8,103 @@ local opts = { noremap = true, silent = true }
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
--- Keymap: general
-map("n", [[+]], [[za]], opts)
-map("n", [[<del>]], [[:bwipe!<cr>]], opts)
-
--- Search/replace
-map("n", [[gs]], [[:%s~~]], opts)
-map("v", [[gs]], [[:s~~]], opts)
-
--- Diagnostic
-map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-
--- Hop
-map("v", [[gl]], [[<cmd>HopLine<cr>]], opts)
-map("v", [[gw]], [[<cmd>HopWord<cr>]], opts)
-
-map("v", "<leader>*", ":silent! Glcd | lua require('spectre').open_visual()<cr>", opts)
-
--- Keymap: terminal
-map("t", [[<esc>]], [[<c-\><c-n>]], opts) -- Terminal esc
-map("t", [[<c-n>]], [[<c-\><c-n><c-w>w]], opts) -- Terminal focus next
-map("t", [[<c-h>]], [[<c-\><c-n><c-w>W]], opts) -- Terminal focus prev
-
--- Keymap: ctrl
-map("n", [[<c-h>]], [[<c-w>W]], opts) -- Focus prev
-map("i", [[<c-h>]], [[<esc><c-w>W]], opts) -- Focus prev (ins)
-map("n", [[<c-n>]], [[<c-w>w]], opts) -- Focus next (ins)
-map("i", [[<c-n>]], [[<esc><c-w>w]], opts) -- Focus next (ins)
-map("n", [[<c-pageup>]], [[<c-w>W]], opts) -- Focus prev
-map("i", [[<c-pageup>]], [[<esc><c-w>W]], opts) -- Focus prev (ins)
-map("n", [[<c-pagedown>]], [[<c-w>w]], opts) -- Focus next (ins)
-map("i", [[<c-pagedown>]], [[<esc><c-w>w]], opts) -- Focus next (ins)
-map("n", [[<c-s>]], [[:w<cr>]], opts) -- Save
-map("i", [[<c-s>]], [[<esc>:w<cr>]], opts) -- Save (ins)
-map("v", [[<c-c>]], [["+y]], opts) -- Copy
-map("i", [[<c-v>]], [[<esc>:set paste<cr>a<c-r>+<esc>:set nopaste<cr>a]], opts) -- Paste
-if has_require("telescope") then
-  map("n", [[<c-p>]], [[<cmd>lua require("core.actions").open_file_picker()<cr>]], opts)
-end
-if has_require("nvim-tree") then
-  map("n", [[<c-b>]], [[:NvimTreeToggle<cr>]], opts) -- Toggle sidebar
-  map("n", [[-]], [[:silent! Glcd | :NvimTreeFindFile<cr>]], opts)
-elseif has_require("neo-tree") then
-  map("n", [[<c-b>]], [[:Neotree<cr>]], opts) -- Toggle sidebar
-  map("n", [[-]], [[:silent! Glcd | :Neotree reveal<cr>]], opts)
-end
-if has_require("toggleterm") then
-  map("n", [[<c-j>]], [[:ToggleTerm<cr>]], opts) -- Toggle terminal
-  map("t", [[<esc><esc>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Terminal esc
-  map("n", [[<esc><esc>]], [[<cmd>ToggleTerm<cr>]], opts) -- Terminal esc
-  map("t", [[<esc><pagedown>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Terminal esc
-  map("n", [[<esc><pagedown>]], [[<cmd>ToggleTerm<cr>]], opts) -- Terminal esc
-  -- map("t", [[<c-j>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Toggle terminal
-  -- map("t", [[<c-k>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Toggle terminal
-end
+-- Visual
+wk.register({
+  ["gl"] = { "<cmd>HopLine<cr>", "Go to line" },
+  ["gw"] = { "<cmd>HopWord<cr>", "Go to word" },
+  ["<leader>*"] = { "<cmd>silent! Glcd | lua require('spectre').open_visual()<cr>" },
+}, { mode = "v" })
 
 -- Keymap: general
 wk.register({
+  -- Diagnostics
+  ["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Previous error" },
+  ["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Next error" },
+
   -- Buffer
-  gb = { ":bnext<cr>", "Buffer: next" },
-  gB = { ":bprev<cr>", "Buffer: previous" },
+  ["gb"] = { ":bnext<cr>", "Buffer: next" },
+  ["gB"] = { ":bprev<cr>", "Buffer: previous" },
   ["<tab>"] = { ":bnext<cr>", "Buffer: next" },
   ["<s-tab>"] = { ":bprev<cr>", "Buffer: previous" },
 
   -- lsp
-  gd = { "<cmd>Telescope lsp_definitions<cr>", "Definitions (lsp)..." },
-  gr = { "<cmd>Telescope lsp_references<cr>", "References (lsp)..." },
-  gh = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Declaration (lsp)..." },
-  gD = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Declaration (lsp)..." },
-  gi = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Implementation (lsp)..." },
+  ["gd"] = { "<cmd>Telescope lsp_definitions<cr>", "Definitions (lsp)..." },
+  ["gr"] = { "<cmd>Telescope lsp_references<cr>", "References (lsp)..." },
+  ["gh"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Declaration (lsp)..." },
+  ["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Declaration (lsp)..." },
+  ["gi"] = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Implementation (lsp)..." },
 
-  -- hop
+  -- Hop
   ["gl"] = { "<cmd>HopLine<cr>", "Hop to line" },
   ["gw"] = { "<cmd>HopWord<cr>", "Hop to word" },
 
-  ["<F1>"] = { "<cmd>lua require('core.actions').show_reference()<cr>", "Show reference" },
+  -- Keymap: cr
+  ["<cr><left>"] = { "<c-w>h", "Focus left" },
+  ["<cr><right>"] = { "<c-w>l", "Focus right" },
+  ["<cr><down>"] = { "<c-w>j", "Focus down" },
+  ["<cr><up>"] = { "<c-w>k", "Focus up" },
+  ["<cr>1"] = { "<c-w>t", "Focus pane 1" },
+  ["<cr>2"] = { ":2wincmd w<cr>", "Focus pane 2" },
+  ["<cr>3"] = { ":3wincmd w<cr>", "Focus pane 3" },
+  ["<cr>4"] = { ":4wincmd w<cr>", "Focus pane 4" },
+  ["<cr>5"] = { ":5wincmd w<cr>", "Focus pane 5" },
+  ["<cr>6"] = { ":6wincmd w<cr>", "Focus pane 6" },
+  ["<cr>7"] = { ":7wincmd w<cr>", "Focus pane 7" },
+  ["<cr>8"] = { ":8wincmd w<cr>", "Focus pane 8" },
+  ["<cr>0"] = { "<c-w>b", "Focus last pane" },
+
+  -- Leader
+  ["<leader>."] = { "<cmd>ToggleTerm<cr>", "Toggle terminal" },
+  ["<leader>*"] = { ":GG <c-r><c-w><cr>", "Search from cursor (GG)..." },
+  ["<leader>?"] = { "<cmd>lua require('core.actions').show_reference()<cr>", "Show keymap reference" },
+
+  -- Leader: [,] experimental
+  ["<leader>,"] = { name = "Experimental..." },
+  ["<leader>,s"] = { "<cmd>split ~/.scratchpad<cr><C-w>H", "Open [s]cratchpad" },
+  ["<leader>,n"] = { ":noh<cr>", "Remove search highlighting [n]" },
+  ["<leader>,g"] = { [[:lua require('core.actions').telescope_grep()<cr>]], "Search (telescope)..." },
+
+  -- Leader: [w] window
+  ["<leader>w"] = { name = "[w]indow..." },
+  ["<leader>wH"] = { "<c-w>H", "Move window left ←" },
+  ["<leader>wJ"] = { "<c-w>J", "Move window down ↓" },
+  ["<leader>wK"] = { "<c-w>K", "Move window up ↑" },
+  ["<leader>wL"] = { "<c-w>L", "Move window right →" },
+  ["<leader>wh"] = { "<c-w>h", "Focus window left ←" },
+  ["<leader>wj"] = { "<c-w>j", "Focus window down ↓" },
+  ["<leader>wk"] = { "<c-w>k", "Focus window up ↑" },
+  ["<leader>wl"] = { "<c-w>l", "Focus window right →" },
+  ["<leader>ws"] = { "<c-w>s", "Split horizontal" },
+  ["<leader>wv"] = { "<c-w>v", "Split vertical" },
+  ["<leader>wq"] = { "<c-w>q", "Close window" },
+  ["<leader>wt"] = { "<cmd>tab split<cr>", "New tab" },
+
+  -- Leader: [m] marks
+  ["<leader>m"] = { name = "[m]arks..." },
+  ["<leader>ma"] = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "[a]dd bookmark" },
+  ["<leader>m."] = { "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>", "Bookmark commands... [.]" },
+
+  -- Leader: [x] exit
+  ["<leader>x"] = { name = "E[x]it..." },
+  ["<leader>xo"] = { ":%bd!|e#|bd#<cr>g;", "Cl[o]se all buffers" },
+  ["<leader>xx"] = { ":cq<cr>", "E[x]it" },
+
+  -- Leader: [s] settings
+  ["<leader>s"] = { name = "[s]ettings..." },
+  ["<leader>s,"] = { "<cmd>vsplit ~/.config/nvim/init.lua<cr>", "Edit Vim settings" },
+  ["<leader>sk"] = { "<cmd>vsplit ~/.config/nvim/lua/core/keymaps.lua<cr>", "Edit [k]eybindings" },
+  ["<leader>sr"] = { "<cmd>lua require('core.utils').reload()<cr>", "[r]eload Vim config" },
+  ["<leader>sc"] = { "<cmd>Telescope colorscheme<cr>", "Choose [c]olour scheme" },
+  ["<leader>sP"] = { "<cmd>StartupTime<cr>", "[P]rofile startup time" },
+
+  -- Leader: [sp] packer
+  ["<leader>sp"] = { name = "[p]acker..." },
+  ["<leader>spc"] = { "<cmd>lua require('core.utils').reload()<cr>:PackerClean<cr>", "Packer: [c]lean unused packages", },
+  ["<leader>spi"] = { "<cmd>lua require('core.utils').reload()<cr>:PackerInstall<cr>", "Packer: [i]nstall new packages", },
+  ["<leader>sps"] = { "<cmd>lua require('core.utils').reload()<cr>:PackerSync<cr>", "Packer: [s]ync packages" },
 })
 
--- Keymap: cr
 wk.register({
-  ["<left>"] = { "<c-w>h", "Focus left" },
-  ["<right>"] = { "<c-w>l", "Focus right" },
-  ["<down>"] = { "<c-w>j", "Focus down" },
-  ["<up>"] = { "<c-w>k", "Focus up" },
-  ["1"] = { "<c-w>t", "Focus pane 1" },
-  ["2"] = { ":2wincmd w<cr>", "Focus pane 2" },
-  ["3"] = { ":3wincmd w<cr>", "Focus pane 3" },
-  ["4"] = { ":4wincmd w<cr>", "Focus pane 4" },
-  ["5"] = { ":5wincmd w<cr>", "Focus pane 5" },
-  ["6"] = { ":6wincmd w<cr>", "Focus pane 6" },
-  ["7"] = { ":7wincmd w<cr>", "Focus pane 7" },
-  ["8"] = { ":8wincmd w<cr>", "Focus pane 8" },
-  ["0"] = { "<c-w>b", "Focus last pane" },
-  -- ["<Esc>"] = { ":FloatermToggle<cr>", "Toggle terminal" },
-  -- t = { ":tab split<cr>", "New tab" },
-}, { prefix = "<cr>" })
-
--- Keymap: leader
-wk.register({
-  ["."] = { "<cmd>ToggleTerm<cr>", "Toggle terminal" },
-  ["*"] = { ":silent! Glcd | lua require('spectre').open_visual({ select_word = true })<cr>", "Search this word" },
-  ["?"] = { "<cmd>lua require('core.actions').show_reference()<cr>", "Show reference" },
-  [","] = {
-    name = "Experimental...",
-    s = { "<cmd>split ~/.scratchpad<cr><C-w>H", "Open [s]cratchpad" },
-    n = { ":noh<cr>", "Remove search highlighting [n]" },
-    g = { [[:lua require('core.actions').telescope_grep()<cr>]], "Search (telescope)..." },
-    ["*"] = { ":GG <c-r><c-w><cr>", "Search from cursor (GG)..." },
-  },
-  w = {
-    name = "[w]indow...",
-    H = { "<c-w>H", "Move window left ←" },
-    J = { "<c-w>J", "Move window down ↓" },
-    K = { "<c-w>K", "Move window up ↑" },
-    L = { "<c-w>L", "Move window right →" },
-    h = { "<c-w>h", "Focus window left ←" },
-    j = { "<c-w>j", "Focus window down ↓" },
-    k = { "<c-w>k", "Focus window up ↑" },
-    l = { "<c-w>l", "Focus window right →" },
-    s = { "<c-w>s", "Split horizontal" },
-    v = { "<c-w>v", "Split vertical" },
-    q = { "<c-w>q", "Close window" },
-    t = { "<cmd>tab split<cr>", "New tab" },
-  },
   p = {
     name = "[p]ick...",
     g = {
@@ -145,21 +118,12 @@ wk.register({
     m = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Show book[m]arks..." },
     w = { "<cmd>Telescope workspaces<cr>", "Open [w]orkspace..." },
     r = { "<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Open [r]ecent file..." },
-    s = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Show [s]ymbols..." },
+    s = { "<cmd>SymbolsOutline<cr>", "Show [s]ymbols..." },
+    S = { "<cmd>Telescope lsp_document_symbols<cr>", "Show [S]ymbols (Tele)..." },
     W = {
       name = "[w]orkspaces...",
       a = { "<cmd>WorkspacesAdd<cr>", "Workspace: [a]dd this folder" },
     },
-  },
-  m = {
-    name = "[m]arks...",
-    a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "[a]dd bookmark" },
-    ["."] = { "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>", "Bookmark commands... [.]" },
-  },
-  x = {
-    name = "E[x]it...",
-    o = { ":%bd!|e#|bd#<cr>g;", "Cl[o]se all buffers" },
-    x = { ":cq<cr>", "E[x]it" },
   },
   f = {
     name = "[f]ile...",
@@ -169,20 +133,6 @@ wk.register({
     -- g = { ":lua vim.ui.input('Find:', function(val) vim.cmd(':GG ' .. val) end)<cr>", "Find in project..." },
     y = { [[:let @+=@% | echo '→ ' . @%<cr>]], "Cop[y] current path" },
     Y = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], "Cop[Y] full path" },
-  },
-  s = {
-    name = "[s]ettings...",
-    [","] = { "<cmd>vsplit ~/.config/nvim/init.lua<cr>", "Edit Vim settings" },
-    k = { "<cmd>vsplit ~/.config/nvim/lua/core/keymaps.lua<cr>", "Edit [k]eybindings" },
-    r = { "<cmd>lua require('core.utils').reload()<cr>", "[r]eload Vim config" },
-    c = { "<cmd>Telescope colorscheme<cr>", "Choose [c]olour scheme" },
-    P = { "<cmd>StartupTime<cr>", "[P]rofile startup time" },
-    p = {
-      name = "[p]acker...",
-      c = { "<cmd>lua require('core.utils').reload()<cr>:PackerClean<cr>", "Packer: [c]lean unused packages" },
-      i = { "<cmd>lua require('core.utils').reload()<cr>:PackerInstall<cr>", "Packer: [i]nstall new packages" },
-      s = { "<cmd>lua require('core.utils').reload()<cr>:PackerSync<cr>", "Packer: [s]ync packages" },
-    },
   },
   g = {
     name = "[g]it...",
@@ -210,7 +160,7 @@ wk.register({
     -- v = { ":ToggleTerm direction=horizontal<cr>", "Open terminal to bottom" },
     -- n = { ":ToggleTerm direction=tab<cr>", "Open terminal to tab" },
     -- ["."] = { "<cmd>ToggleTerm<cr>", "Toggle terminal" },
-    ["."] = { "<cmd>silent! 1TermExec cmd=\"$history[1]\"<cr>", "Repeat last term command" },
+    ["."] = { '<cmd>silent! 1TermExec cmd="$history[1]"<cr>', "Repeat last term command" },
     a = { "<cmd>1ToggleTerm<cr>", "Terminal 1" },
     r = { "<cmd>2ToggleTerm<cr>", "Terminal 2" },
     s = { "<cmd>3ToggleTerm<cr>", "Terminal 3" },
@@ -250,9 +200,52 @@ wk.register({
   },
 }, { prefix = "<Leader>" })
 
--- localleader: lua
-map("n", [[<localleader>s]], [[:w<cr>:luafile %<cr>]], opts)
-
 -- Unimpaired
 map("n", [[co]], [[<leader>o]], { silent = true })
 map("n", [[yo]], [[<leader>o]], { silent = true })
+
+-- Keymap: general
+map("n", [[+]], [[za]], opts)
+map("n", [[<del>]], [[:bwipe!<cr>]], opts)
+
+-- Search/replace
+map("n", [[gs]], [[:%s~~]], opts)
+map("v", [[gs]], [[:s~~]], opts)
+
+-- Keymap: terminal
+map("t", [[<esc>]], [[<c-\><c-n>]], opts) -- Terminal esc
+map("t", [[<c-n>]], [[<c-\><c-n><c-w>w]], opts) -- Terminal focus next
+map("t", [[<c-h>]], [[<c-\><c-n><c-w>W]], opts) -- Terminal focus prev
+
+-- Keymap: ctrl
+map("n", [[<c-h>]], [[<c-w>W]], opts) -- Focus prev
+map("i", [[<c-h>]], [[<esc><c-w>W]], opts) -- Focus prev (ins)
+map("n", [[<c-n>]], [[<c-w>w]], opts) -- Focus next (ins)
+map("i", [[<c-n>]], [[<esc><c-w>w]], opts) -- Focus next (ins)
+map("n", [[<c-pageup>]], [[<c-w>W]], opts) -- Focus prev
+map("i", [[<c-pageup>]], [[<esc><c-w>W]], opts) -- Focus prev (ins)
+map("n", [[<c-pagedown>]], [[<c-w>w]], opts) -- Focus next (ins)
+map("i", [[<c-pagedown>]], [[<esc><c-w>w]], opts) -- Focus next (ins)
+map("n", [[<c-s>]], [[:w<cr>]], opts) -- Save
+map("i", [[<c-s>]], [[<esc>:w<cr>]], opts) -- Save (ins)
+map("v", [[<c-c>]], [["+y]], opts) -- Copy
+map("i", [[<c-v>]], [[<esc>:set paste<cr>a<c-r>+<esc>:set nopaste<cr>a]], opts) -- Paste
+if has_require("telescope") then
+  map("n", [[<c-p>]], [[<cmd>lua require("core.actions").open_file_picker()<cr>]], opts)
+end
+if has_require("nvim-tree") then
+  map("n", [[<c-b>]], [[:NvimTreeToggle<cr>]], opts) -- Toggle sidebar
+  map("n", [[-]], [[:silent! Glcd | :NvimTreeFindFile<cr>]], opts)
+elseif has_require("neo-tree") then
+  map("n", [[<c-b>]], [[:Neotree<cr>]], opts) -- Toggle sidebar
+  map("n", [[-]], [[:silent! Glcd | :Neotree reveal<cr>]], opts)
+end
+if has_require("toggleterm") then
+  map("n", [[<c-j>]], [[:ToggleTerm<cr>]], opts) -- Toggle terminal
+  map("t", [[<esc><esc>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Terminal esc
+  map("n", [[<esc><esc>]], [[<cmd>ToggleTerm<cr>]], opts) -- Terminal esc
+  map("t", [[<esc><pagedown>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Terminal esc
+  map("n", [[<esc><pagedown>]], [[<cmd>ToggleTerm<cr>]], opts) -- Terminal esc
+  -- map("t", [[<c-j>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Toggle terminal
+  -- map("t", [[<c-k>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Toggle terminal
+end
