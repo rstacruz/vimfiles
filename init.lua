@@ -1,121 +1,109 @@
 -- Packer startup {{{
-local bootstrap
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.cmd([[echo "Packer was not found, installing..."]])
-  local packer_url = "https://github.com/wbthomason/packer.nvim"
-  bootstrap = vim.fn.system({ "git", "clone", "--depth", "1", packer_url, install_path })
-end
-
 -- Proxy for checking if it's a dev environment
 local function which(bin)
   return vim.fn.executable(bin) == 1
 end
 
-local has_gcc = which("gcc")
+local has_gcc = vim.fn.executable("gcc")
 
-PACKAGES = { -- {{{
-  "wbthomason/packer.nvim",
+local function packages(use)
+  use "wbthomason/packer.nvim"
 
   -- Language
-  (has_gcc and { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }),
-  "nvim-treesitter/nvim-treesitter-textobjects",
-  "neovim/nvim-lspconfig",
-  "williamboman/nvim-lsp-installer", -- Install LSP servers (:LspInstall
-  "jose-elias-alvarez/null-ls.nvim", -- Formatting and diagnostics
-  "SmiteshP/nvim-gps", -- Breadcrumbs in the status line
+  if has_gcc then use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" } end
+  use "nvim-treesitter/nvim-treesitter-textobjects"
+  use "neovim/nvim-lspconfig"
+  use "williamboman/nvim-lsp-installer" -- Install LSP servers (:LspInstall
+  use "jose-elias-alvarez/null-ls.nvim" -- Formatting and diagnostics
+  use "SmiteshP/nvim-gps" -- Breadcrumbs in the status line
 
   -- Completion
-  "hrsh7th/cmp-nvim-lsp",
-  "hrsh7th/cmp-buffer",
-  "hrsh7th/cmp-path",
-  "hrsh7th/cmp-cmdline",
-  "hrsh7th/cmp-vsnip",
-  "hrsh7th/nvim-cmp",
-  -- "hrsh7th/vim-vsnip",
+  use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/cmp-buffer"
+  use "hrsh7th/cmp-path"
+  use "hrsh7th/cmp-cmdline"
+  use "hrsh7th/cmp-vsnip"
+  use "hrsh7th/nvim-cmp"
+  -- "hrsh7th/vim-vsnip"
 
   -- Themes
-  "rstacruz/vim-microtone",
-  "projekt0n/github-nvim-theme",
-  "rktjmp/lush.nvim", -- Required by zenbones
-  "mcchrish/zenbones.nvim",
-  { "catppuccin/nvim", as = "catppuccin-nvim" },
-  "EdenEast/nightfox.nvim",
-  -- "navarasu/onedark.nvim",
-  { "rose-pine/neovim", as = "rose-pine-nvim" },
+  use "rstacruz/vim-microtone"
+  use "projekt0n/github-nvim-theme"
+  use "rktjmp/lush.nvim" -- Required by zenbones
+  use "mcchrish/zenbones.nvim"
+  use { "catppuccin/nvim", as = "catppuccin-nvim" }
+  use "EdenEast/nightfox.nvim"
+  use { "rose-pine/neovim", as = "rose-pine-nvim" }
 
   -- File types
-  "preservim/vim-markdown", -- Markdown (.md)
-  "slim-template/vim-slim", -- Slim (.slim)
-  -- "vimwiki/vimwiki", -- Obsidian Markdown
-  (which("zk") and "mickael-menu/zk-nvim"), -- Zk (.md)
+  use "preservim/vim-markdown" -- Markdown (.md)
+  use "slim-template/vim-slim" -- Slim (.slim)
 
   -- UI
-  "dstein64/nvim-scrollview",
-  "folke/lsp-colors.nvim", -- Infer some colours needed for LSP
-  "folke/which-key.nvim", -- Menu when pressing [space]
-  {
+  use "dstein64/nvim-scrollview"
+  use "folke/lsp-colors.nvim" -- Infer some colours needed for LSP
+  use "folke/which-key.nvim" -- Menu when pressing [space]
+  use {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
     requires = {
       "nvim-lua/plenary.nvim",
-      "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-    },
-  },
-  "mrjones2014/legendary.nvim",
-  "kyazdani42/nvim-web-devicons",
-  "lewis6991/gitsigns.nvim", -- Git indicators on the gutter
-  "lukas-reineke/indent-blankline.nvim", -- Indent indicators
-  "nvim-lua/plenary.nvim", -- for Telescope
-  "nvim-lualine/lualine.nvim", -- Status line
-  "nvim-telescope/telescope.nvim",
-  { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-  "onsails/lspkind-nvim", -- Icons on LSP menus
-  "stevearc/dressing.nvim", -- Improved appearance of vim.ui
-  "rcarriga/nvim-notify",
-  "simrat39/symbols-outline.nvim",
+      "kyazdani42/nvim-web-devicons",
+      "MunifTanjim/nui.nvim"
+    }
+  }
+  use "mrjones2014/legendary.nvim"
+  use "kyazdani42/nvim-web-devicons"
+  use "lewis6991/gitsigns.nvim" -- Git indicators on the gutter
+  use "lukas-reineke/indent-blankline.nvim" -- Indent indicators
+  use "nvim-lua/plenary.nvim" -- for Telescope
+  use "nvim-lualine/lualine.nvim" -- Status line
+  use "nvim-telescope/telescope.nvim"
+  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+  use "onsails/lspkind-nvim" -- Icons on LSP menus
+  use "stevearc/dressing.nvim" -- Improved appearance of vim.ui
+  use "rcarriga/nvim-notify"
+  use "simrat39/symbols-outline.nvim"
 
   -- Optimisations
-  "lewis6991/impatient.nvim", -- Improve startup time by optimising Lua cache
-  "nathom/filetype.nvim", -- Improve startup time
+  use "lewis6991/impatient.nvim" -- Improve startup time by optimising Lua cache
+  use "nathom/filetype.nvim" -- Improve startup time
 
   -- Goodies
-  -- "Darazaki/indent-o-matic", -- Detect indentation automatically
-  { "rstacruz/indent-o-matic", branch = "patch-1" }, -- Detect indentation automatically
-  "akinsho/toggleterm.nvim", -- Terminal
-  "jrudess/vim-foldtext", -- Improve appearance of fold text
-  "michaeljsmith/vim-indent-object",
-  "nvim-pack/nvim-spectre", -- Find files
-  "phaazon/hop.nvim", -- Easymotion (gw)
-  "rstacruz/vim-gitgrep",
-  "thinca/vim-visualstar",
-  "tpope/vim-fugitive", -- Git
-  "tpope/vim-rhubarb", -- Fugitive extension for GitHub commands
-  "tpope/vim-surround",
-  "dstein64/vim-startuptime", -- Profile startup
-  "numToStr/Comment.nvim", -- Comments
-  "natecraddock/workspaces.nvim", -- Manage workspaces
+  -- "Darazaki/indent-o-matic" -- Detect indentation automatically
+  use { "rstacruz/indent-o-matic", branch = "patch-1" } -- Detect indentation automatically
+  use "akinsho/toggleterm.nvim" -- Terminal
+  use "jrudess/vim-foldtext" -- Improve appearance of fold text
+  use "michaeljsmith/vim-indent-object"
+  use "nvim-pack/nvim-spectre" -- Find files
+  use "phaazon/hop.nvim" -- Easymotion (gw)
+  use "rstacruz/vim-gitgrep"
+  use "thinca/vim-visualstar"
+  use "tpope/vim-fugitive" -- Git
+  use "tpope/vim-rhubarb" -- Fugitive extension for GitHub commands
+  use "tpope/vim-surround"
+  use "dstein64/vim-startuptime" -- Profile startup
+  use "numToStr/Comment.nvim" -- Comments
+  use "natecraddock/workspaces.nvim" -- Manage workspaces
 
   -- Still trying it out
-  "ThePrimeagen/harpoon", -- Bookmark files
-  "folke/twilight.nvim", -- Isolate (leader-ot)
-  "TimUntersberger/neogit",
-} -- }}}
+  use "ThePrimeagen/harpoon" -- Bookmark files
+  use "folke/twilight.nvim" -- Isolate (leader-ot)
+  use "TimUntersberger/neogit"
+end -- }}}
 
-require("packer").startup(function(use)
-  for _, package in pairs(PACKAGES) do
-    if package then
-      use(package)
-    end
-  end
-end)
-
-if bootstrap then
+local packer_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
+  vim.cmd([[echo "Installing packer..."]])
+  vim.fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", packer_path })
+  vim.cmd("autocmd User PackerCompileDone luafile " .. vim.env.MYVIMRC)
+  require("packer").startup(packages)
   require("packer").sync()
-else
-  require("impatient")
+  return
 end
+
+require("packer").startup(packages)
+require("impatient")
 -- }}}
 
 -- Preamble {{{
@@ -130,19 +118,19 @@ Theme = { theme = { "default", "auto", "dark" }, mode = "dark" }
 function Theme.get_theme(bg)
   if bg == "light" then
     return false
-      or utils.has_pkg("github-nvim-theme") and { "github_light", "auto", bg }
-      or utils.has_pkg("nightfox.nvim") and { "dayfox", "auto", bg }
-      or utils.has_pkg("zenbones.nvim") and { "seoulbones", "auto", bg }
-      or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
-      or { "default", "auto", bg }
+        or utils.has_pkg("github-nvim-theme") and { "github_light", "auto", bg }
+        or utils.has_pkg("nightfox.nvim") and { "dayfox", "auto", bg }
+        or utils.has_pkg("zenbones.nvim") and { "seoulbones", "auto", bg }
+        or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
+        or { "default", "auto", bg }
   else
     return false
-      or utils.has_pkg("nightfox.nvim") and { "duskfox", "auto", bg }
-      or utils.has_pkg("catppuccin-nvim") and { "catppuccin", "auto", bg }
-      or utils.has_pkg("github-nvim-theme") and { "github_dimmed", "auto", bg }
-      or utils.has_pkg("zenbones.nvim") and { "tokyobones", "auto", bg }
-      or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
-      or { "default", "auto", bg }
+        or utils.has_pkg("nightfox.nvim") and { "duskfox", "auto", bg }
+        or utils.has_pkg("catppuccin-nvim") and { "catppuccin", "auto", bg }
+        or utils.has_pkg("github-nvim-theme") and { "github_dimmed", "auto", bg }
+        or utils.has_pkg("zenbones.nvim") and { "tokyobones", "auto", bg }
+        or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
+        or { "default", "auto", bg }
   end
 end
 
@@ -159,18 +147,6 @@ function Theme:toggle_theme()
 end
 
 -- }}}
-
-plugin("zk", function(zk) -- {{{
-  if vim.fn.executable("zk") then
-    zk.setup({
-      picker = "telescope",
-      auto_attach = {
-        enabled = true,
-        filetypes = { "markdown" },
-      },
-    })
-  end
-end) -- }}}
 
 plugin("nvim-treesitter.configs", function(mod) -- {{{
   mod.setup({
@@ -228,7 +204,7 @@ plugin("cmp", function(cmp) -- {{{
           maxwidth = 50,
         }),
       }
-    or {}
+      or {}
 
   local mapping = cmp.mapping.preset.insert({
     ["<cr>"] = cmp.mapping.confirm(), -- add { select = true } to auto-select first item
@@ -288,7 +264,7 @@ plugin("indent_blankline", function(mod) -- {{{
   vim.g.indent_blankline_char_list = { "┊", "┆", "│" }
   vim.g.indent_blankline_context_char_list = { "┊" }
   vim.g.indent_blankline_filetype_exclude = {
-    "lspinfo", -- arst
+    "lspinfo",
     "packer",
     "checkhealth",
     "",
@@ -603,6 +579,14 @@ function CustomiseTheme()
     cmd([[hi! NormalNC guibg=#fafafc]])
   end
 end -- }}}
+
+-- Highlight on yank
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function() vim.highlight.on_yank() end,
+  group = highlight_group,
+  pattern = '*',
+})
 
 -- Abbreviations
 vim.defer_fn(function()
