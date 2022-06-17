@@ -1,12 +1,9 @@
-local function has_require(mod)
-  return pcall(require, mod)
-end
-
 local wk = require("which-key")
-local map = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
+
+local has_hop = pcall(require, "hop")
+local has_neotree = pcall(require, "neo-tree")
 
 -- Visual
 wk.register({
@@ -15,12 +12,7 @@ wk.register({
   ["<leader>*"] = { "<cmd>silent! Glcd | lua require('spectre').open_visual()<cr>" },
 }, { mode = "v" })
 
--- Keymap: general
 wk.register({
-  -- Diagnostics
-  ["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Previous error" },
-  ["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Next error" },
-
   -- Buffer
   ["gb"] = { ":bnext<cr>", "Buffer: next" },
   ["gB"] = { ":bprev<cr>", "Buffer: previous" },
@@ -30,13 +22,18 @@ wk.register({
   -- lsp
   ["gd"] = { "<cmd>Telescope lsp_definitions<cr>", "Definitions (lsp)..." },
   ["gr"] = { "<cmd>Telescope lsp_references<cr>", "References (lsp)..." },
-  ["gh"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Declaration (lsp)..." },
+  ["gh"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show hover" },
   ["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Declaration (lsp)..." },
   ["gi"] = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Implementation (lsp)..." },
+  ["K"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show hover" },
 
   -- Hop
-  ["gl"] = { "<cmd>HopLine<cr>", "Hop to line" },
-  ["gw"] = { "<cmd>HopWord<cr>", "Hop to word" },
+  ["gl"] = has_hop and { "<cmd>HopLine<cr>", "Hop to line" } or {},
+  ["gw"] = has_hop and { "<cmd>HopWord<cr>", "Hop to word" } or {},
+
+  -- Diagnostics
+  ["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Previous error" },
+  ["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Next error" },
 
   -- Keymap: cr
   ["<cr><left>"] = { "<c-w>h", "Focus left" },
@@ -102,103 +99,91 @@ wk.register({
   ["<leader>spc"] = { "<cmd>lua require('core.utils').reload()<cr>:PackerClean<cr>", "Packer: [c]lean unused packages", },
   ["<leader>spi"] = { "<cmd>lua require('core.utils').reload()<cr>:PackerInstall<cr>", "Packer: [i]nstall new packages", },
   ["<leader>sps"] = { "<cmd>lua require('core.utils').reload()<cr>:PackerSync<cr>", "Packer: [s]ync packages" },
+
+  -- Leader: [t] terminal
+  ["<leader>t"] = { name = "[t]erminal..." },
+  ["<leader>ta"] = { "<cmd>1ToggleTerm<cr>", "Terminal 1" },
+  ["<leader>tr"] = { "<cmd>2ToggleTerm<cr>", "Terminal 2" },
+  ["<leader>ts"] = { "<cmd>3ToggleTerm<cr>", "Terminal 3" },
+  ["<leader>tt"] = { "<cmd>4ToggleTerm<cr>", "Terminal 4" },
+  ["<leader>th"] = { ":vs<cr>:term fish<cr>", "Open terminal [h]ere" },
+
+  -- Leader: [c] code
+  ["<leader>c"] = { name = "[c]ode..." },
+  ["<leader>ca"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "[a]ctions..." },
+  ["<leader>cr"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "[r]ename symbol..." },
+  ["<leader>cd"] = { "<cmd>Telescope diagnostics<CR>", "Show [d]iagnostics" },
+  ["<leader>cf"] = { "<cmd>lua vim.lsp.buf.formatting_seq_sync()<cr>", "[f]ormat via LSP" },
+
+  -- Leader: [g] git
+  ["<leader>g"] = { name = "[g]it..." },
+  ["<leader>gs"] = { "<cmd>Neogit<cr>", "Git [s]tatus" },
+  ["<leader>gS"] = { "<cmd>Neogit kind=vsplit<cr>", "Git [s]tatus, split" },
+  ["<leader>ga"] = { ":silent! Glcd | Git add -u . | Git commit -v<cr>", "[a]dd & commit" },
+  ["<leader>gA"] = { ":silent! Glcd | Git add -u . | Git commit --amend -v<cr>", "[A]dd & amend" },
+  ["<leader>gy"] = { ":GBrowse!<cr>", "Cop[y] GitHub URL" },
+  ["<leader>gY"] = { ":GBrowse<cr>", "Open in GitHub [Y]" },
+  ["<leader>gc"] = { ":Git commit -v<cr>", "[c]ommit" },
+  ["<leader>gb"] = { ":Git blame<cr>", "Open file [b]lame" },
+  ["<leader>gp"] = { ":silent! Glcd | lua require('core.actions').open_floating_cmd('git push')<cr>", "[p]ush" },
+  ["<leader>gP"] = { ":silent! Glcd | lua require('core.actions').open_floating_cmd('git push -f')<cr>", "[P]ush (force)" },
+  ["<leader>gt"] = { ":silent! Glcd | lua require ('core.actions').open_tig()<cr>", "[t]ig... *" },
+
+  -- Leader: [gh] github
+  ["<leader>gh"] = { name = "Git[h]ub..." },
+  ["<leader>ghp"] = { ":silent! Glcd | !gh pr create --web<cr>", "Create PR" },
+  ["<leader>ghv"] = { ":silent! Glcd | !gh pr view --web<cr>", "View PR" },
+
+  -- Leader: [p] pick
+  ["<leader>p"] = { name = "[p]ick..." },
+  ["<leader>pe"] = has_neotree and { "<cmd>Neotree float toggle<cr>", "[e]xplore files..." } or {},
+  ["<leader>pb"] = { "<cmd>Telescope buffers<cr>", "List [B]uffers (telescope)..." },
+  ["<leader>pB"] = has_neotree and { "<cmd>Neotree float buffers<cr>", "List [b]uffers..." } or {},
+  ["<leader>pf"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open [f]ile..." },
+  ["<leader>pm"] = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Show book[m]arks..." },
+  ["<leader>pw"] = { "<cmd>Telescope workspaces<cr>", "Open [w]orkspace..." },
+  ["<leader>pr"] = { "<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Open [r]ecent file..." },
+  ["<leader>ps"] = { "<cmd>SymbolsOutline<cr>", "Show [s]ymbols..." },
+  ["<leader>pS"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Show [S]ymbols (Tele)..." },
+  ["<leader>pg"] = { [[:silent! Glcd | lua require('spectre').open({ is_insert_mode = true })<cr>]], "Find in files ([g]rep)...", },
+  ["<leader>pW"] = { name = "[w]orkspaces..." },
+  ["<leader>pWa"] = { "<cmd>WorkspacesAdd<cr>", "Workspace: [a]dd this folder" },
+
+  -- Leader: [f] file
+  ["<leader>f"] = { name = "[f]ile..." },
+  ["<leader>fw"] = { ":w<cr>", "Save file [w]" },
+  ["<leader>fs"] = { ":noa w<cr>", "[s]ave without formatting" },
+  ["<leader>fr"] = { ":e!<cr>", "[r]evert changes in file" },
+  ["<leader>fy"] = { [[:let @+=@% | echo '→ ' . @%<cr>]], "Cop[y] current path" },
+  ["<leader>fY"] = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], "Cop[Y] full path" },
+
+  -- Leader: [o] toggle
+  ["<leader>o"] = { name = "T[o]ggle..." },
+  ["<leader>od"] = { "<cmd>lua vim.o.winwidth = vim.o.winwidth == 85 and 45 or 85<cr>100<c-w><", "Toggle wi[d]e" },
+  ["<leader>ow"] = { "<cmd>set wrap!<cr>", "Toggle [w]ord wrap" },
+  ["<leader>os"] = { "<cmd>set spell!<cr>", "Toggle [s]pell check" },
+  ["<leader>on"] = { "<cmd>set number!<cr>", "Toggle line [n]umber" },
+  ["<leader>or"] = { "<cmd>set relativenumber!<cr>", "Toggle [r]elative line number" },
+  ["<leader>of"] = vim.fn.has("g:neovide") and { ":let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle [f]ullscreen" } or {},
+  ["<leader>ob"] = { ":lua Theme:toggle_theme()<cr>", "Toggle light/dark theme" },
+  ["<leader>ot"] = { "<cmd>Twilight<cr>", "Toggle [t]wilight mode" },
+  ["<leader>oB"] = { ":lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>", "Toggle light/dark [B]ackground", },
+  ["<leader>oc"] = { ":lua vim.o.conceallevel = vim.o.conceallevel == 2 and 0 or 2<cr>", "Toggle [c]onceal" },
+
+  -- Leader: [oD] diagnostic
+  ["<leader>oD"] = { name = "[D]iagnostic..." },
+  ["<leader>oDd"] = { "<cmd>lua vim.diagnostic.disable()<cr>", "[d]isable diagnostics" },
+  ["<leader>oDe"] = { "<cmd>lua vim.diagnostic.enable()<cr>", "[e]nable diagnostics" },
+  ["<leader>oDh"] = { "<cmd>lua vim.diagnostic.hide()<cr>", "[h]ide diagnostics" },
+  ["<leader>oDs"] = { "<cmd>lua vim.diagnostic.show()<cr>", "[s]how diagnostics" },
 })
 
-wk.register({
-  p = {
-    name = "[p]ick...",
-    g = {
-      [[:silent! Glcd | lua require('spectre').open({ is_insert_mode = true })<cr>]],
-      "Find in files ([g]rep)...",
-    },
-    e = { "<cmd>Neotree float toggle<cr>", "[e]xplore files..." },
-    b = { "<cmd>Telescope buffers<cr>", "List [B]uffers (telescope)..." },
-    B = { "<cmd>Neotree float buffers<cr>", "List [b]uffers..." },
-    f = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open [f]ile..." },
-    m = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Show book[m]arks..." },
-    w = { "<cmd>Telescope workspaces<cr>", "Open [w]orkspace..." },
-    r = { "<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Open [r]ecent file..." },
-    s = { "<cmd>SymbolsOutline<cr>", "Show [s]ymbols..." },
-    S = { "<cmd>Telescope lsp_document_symbols<cr>", "Show [S]ymbols (Tele)..." },
-    W = {
-      name = "[w]orkspaces...",
-      a = { "<cmd>WorkspacesAdd<cr>", "Workspace: [a]dd this folder" },
-    },
-  },
-  f = {
-    name = "[f]ile...",
-    w = { ":w<cr>", "Save file [w]" },
-    s = { ":noa w<cr>", "[s]ave without formatting" },
-    r = { ":e!<cr>", "[r]evert changes in file" },
-    -- g = { ":lua vim.ui.input('Find:', function(val) vim.cmd(':GG ' .. val) end)<cr>", "Find in project..." },
-    y = { [[:let @+=@% | echo '→ ' . @%<cr>]], "Cop[y] current path" },
-    Y = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], "Cop[Y] full path" },
-  },
-  g = {
-    name = "[g]it...",
-    s = { "<cmd>Neogit<cr>", "Git [s]tatus" },
-    S = { "<cmd>Neogit kind=vsplit<cr>", "Git [s]tatus, split" },
-    a = { ":silent! Glcd | Git add -u . | Git commit -v<cr>", "[a]dd & commit" },
-    A = { ":silent! Glcd | Git add -u . | Git commit --amend -v<cr>", "[A]dd & amend" },
-    y = { ":GBrowse!<cr>", "Cop[y] GitHub URL" },
-    Y = { ":GBrowse<cr>", "Open in GitHub [Y]" },
-    c = { ":Git commit -v<cr>", "[c]ommit" },
-    b = { ":Git blame<cr>", "Open file [b]lame" },
-    p = { ":silent! Glcd | lua require('core.actions').open_floating_cmd('git push')<cr>", "[p]ush" },
-    P = { ":silent! Glcd | lua require('core.actions').open_floating_cmd('git push -f')<cr>", "[P]ush (force)" },
-    t = { ":silent! Glcd | lua require ('core.actions').open_tig()<cr>", "[t]ig... *" },
-    h = {
-      name = "Git[h]ub...",
-      p = { ":silent! Glcd | !gh pr create --web<cr>", "Create PR" },
-      v = { ":silent! Glcd | !gh pr view --web<cr>", "View PR" },
-    },
-  },
-  t = {
-    name = "[t]erminal...",
-    -- s = { ":ToggleTerm direction=vertical<cr>", "Open terminal to side" },
-    -- f = { ":ToggleTerm direction=float<cr>", "Open terminal floating" },
-    -- v = { ":ToggleTerm direction=horizontal<cr>", "Open terminal to bottom" },
-    -- n = { ":ToggleTerm direction=tab<cr>", "Open terminal to tab" },
-    -- ["."] = { "<cmd>ToggleTerm<cr>", "Toggle terminal" },
-    ["."] = { '<cmd>silent! 1TermExec cmd="$history[1]"<cr>', "Repeat last term command" },
-    a = { "<cmd>1ToggleTerm<cr>", "Terminal 1" },
-    r = { "<cmd>2ToggleTerm<cr>", "Terminal 2" },
-    s = { "<cmd>3ToggleTerm<cr>", "Terminal 3" },
-    t = { "<cmd>4ToggleTerm<cr>", "Terminal 4" },
-    h = { ":vs<cr>:term fish<cr>", "Open terminal [h]ere" },
-  },
-  c = {
-    name = "[c]ode...",
-    a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "[a]ctions..." },
-    r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "[r]ename symbol..." },
-    d = { "<cmd>Telescope diagnostics<CR>", "Show [d]iagnostics" },
-    f = { "<cmd>lua vim.lsp.buf.formatting_seq_sync()<cr>", "[f]ormat via LSP" },
-  },
-  o = {
-    name = "T[o]ggle...",
-    d = { "<cmd>lua vim.o.winwidth = vim.o.winwidth == 85 and 45 or 85<cr>100<c-w><", "Toggle wi[d]e" },
-    w = { "<cmd>set wrap!<cr>", "Toggle [w]ord wrap" },
-    D = {
-      name = "[D]iagnostic...",
-      d = { "<cmd>lua vim.diagnostic.disable()<cr>", "[d]isable diagnostics" },
-      e = { "<cmd>lua vim.diagnostic.enable()<cr>", "[e]nable diagnostics" },
-      h = { "<cmd>lua vim.diagnostic.hide()<cr>", "[h]ide diagnostics" },
-      s = { "<cmd>lua vim.diagnostic.show()<cr>", "[s]how diagnostics" },
-    },
-    s = { "<cmd>set spell!<cr>", "Toggle [s]pell check" },
-    n = { "<cmd>set number!<cr>", "Toggle line [n]umber" },
-    r = { "<cmd>set relativenumber!<cr>", "Toggle [r]elative line number" },
-    f = vim.fn.has("g:neovide") and { ":let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle [f]ullscreen" }
-        or {},
-    b = { ":lua Theme:toggle_theme()<cr>", "Toggle light/dark theme" },
-    t = { "<cmd>Twilight<cr>", "Toggle [t]wilight mode" },
-    B = {
-      ":lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
-      "Toggle light/dark [B]ackground",
-    },
-    c = { ":lua vim.o.conceallevel = vim.o.conceallevel == 2 and 0 or 2<cr>", "Toggle [c]onceal" },
-  },
-}, { prefix = "<Leader>" })
+local function has_require(mod)
+  return pcall(require, mod)
+end
+
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
 
 -- Unimpaired
 map("n", [[co]], [[<leader>o]], { silent = true })
@@ -218,18 +203,20 @@ map("t", [[<c-n>]], [[<c-\><c-n><c-w>w]], opts) -- Terminal focus next
 map("t", [[<c-h>]], [[<c-\><c-n><c-w>W]], opts) -- Terminal focus prev
 
 -- Keymap: ctrl
-map("n", [[<c-h>]], [[<c-w>W]], opts) -- Focus prev
 map("i", [[<c-h>]], [[<esc><c-w>W]], opts) -- Focus prev (ins)
-map("n", [[<c-n>]], [[<c-w>w]], opts) -- Focus next (ins)
 map("i", [[<c-n>]], [[<esc><c-w>w]], opts) -- Focus next (ins)
-map("n", [[<c-pageup>]], [[<c-w>W]], opts) -- Focus prev
-map("i", [[<c-pageup>]], [[<esc><c-w>W]], opts) -- Focus prev (ins)
-map("n", [[<c-pagedown>]], [[<c-w>w]], opts) -- Focus next (ins)
 map("i", [[<c-pagedown>]], [[<esc><c-w>w]], opts) -- Focus next (ins)
-map("n", [[<c-s>]], [[:w<cr>]], opts) -- Save
+map("i", [[<c-pageup>]], [[<esc><c-w>W]], opts) -- Focus prev (ins)
 map("i", [[<c-s>]], [[<esc>:w<cr>]], opts) -- Save (ins)
-map("v", [[<c-c>]], [["+y]], opts) -- Copy
 map("i", [[<c-v>]], [[<esc>:set paste<cr>a<c-r>+<esc>:set nopaste<cr>a]], opts) -- Paste
+
+map("n", [[<c-h>]], [[<c-w>W]], opts) -- Focus prev
+map("n", [[<c-n>]], [[<c-w>w]], opts) -- Focus next (ins)
+map("n", [[<c-pagedown>]], [[<c-w>w]], opts) -- Focus next (ins)
+map("n", [[<c-pageup>]], [[<c-w>W]], opts) -- Focus prev
+map("n", [[<c-s>]], [[:w<cr>]], opts) -- Save
+
+map("v", [[<c-c>]], [["+y]], opts) -- Copy
 if has_require("telescope") then
   map("n", [[<c-p>]], [[<cmd>lua require("core.actions").open_file_picker()<cr>]], opts)
 end
@@ -246,6 +233,4 @@ if has_require("toggleterm") then
   map("n", [[<esc><esc>]], [[<cmd>ToggleTerm<cr>]], opts) -- Terminal esc
   map("t", [[<esc><pagedown>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Terminal esc
   map("n", [[<esc><pagedown>]], [[<cmd>ToggleTerm<cr>]], opts) -- Terminal esc
-  -- map("t", [[<c-j>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Toggle terminal
-  -- map("t", [[<c-k>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Toggle terminal
 end
