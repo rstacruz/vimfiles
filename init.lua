@@ -70,8 +70,7 @@ local function packages(use)
   use "nathom/filetype.nvim" -- Improve startup time
 
   -- Goodies
-  -- "Darazaki/indent-o-matic" -- Detect indentation automatically
-  use { "rstacruz/indent-o-matic", branch = "patch-1" } -- Detect indentation automatically
+  use "Darazaki/indent-o-matic" -- Detect indentation automatically
   use "akinsho/toggleterm.nvim" -- Terminal
   use "jrudess/vim-foldtext" -- Improve appearance of fold text
   use "michaeljsmith/vim-indent-object"
@@ -343,21 +342,15 @@ plugin("harpoon", function() -- {{{
 end) -- }}}
 
 plugin("nvim-gps", function(mod) -- {{{
-  mod.setup({
-    separator = " ╱ ",
-  })
+  mod.setup({ separator = " ╱ " })
 end, { defer = true }) -- }}}
 
 plugin("hop", function(mod) -- {{{
-  mod.setup({
-    keys = "arstgmneiowfpyulcdh",
-  })
+  mod.setup({ keys = "arstgmneiowfpyulcdh" })
 end, { defer = true }) -- }}}
 
 plugin("notify", function(notify) -- {{{
-  notify.setup({
-    stages = "static",
-  })
+  notify.setup({ stages = "static" })
   vim.notify = notify
 end) -- }}}
 
@@ -464,10 +457,6 @@ plugin("neo-tree", function(neo_tree) -- {{{
       position = "right",
     },
   })
-end) -- }}}
-
-plugin("nnn", function(nnn) -- {{{
-  nnn.setup()
 end) -- }}}
 
 plugin("neogit", function(neogit) -- {{{
