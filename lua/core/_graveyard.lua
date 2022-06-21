@@ -12,6 +12,7 @@ function packages(use)
   use "nanotee/zoxide.vim" -- Integration with zoxide dir changer
   if vim.fn.executable("nnn") then use("luukvbaal/nnn.nvim") end -- File manager
   use { "rose-pine/neovim", as = "rose-pine-nvim" }
+  use "mrjones2014/legendary.nvim"
 end
 
 -- Startify options
@@ -114,7 +115,21 @@ cmd([[au BufWritePost init.lua PackerCompile]])
 vim.g.indent_blankline_char_list = { "┊", "┆", "│" }
 
 -- Leader: [m] marks for harpoon
-["<leader>m"] = { name = "[m]arks..." },
-["<leader>ma"] = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "[a]dd bookmark" },
-["<leader>m."] = { "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>", "Bookmark commands... [.]" },
+require("which-key").register({
+  ["<leader>m"] = { name = "[m]arks..." },
+  ["<leader>ma"] = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "[a]dd bookmark" },
+  ["<leader>m."] = { "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>", "Bookmark commands... [.]" },
+})
 
+-- Keybindings for switching around
+require("which-key").register({
+  ["<cr>1"] = { "<c-w>t", "Focus pane 1" },
+  ["<cr>2"] = { ":2wincmd w<cr>", "Focus pane 2" },
+  ["<cr>3"] = { ":3wincmd w<cr>", "Focus pane 3" },
+  ["<cr>4"] = { ":4wincmd w<cr>", "Focus pane 4" },
+  ["<cr>5"] = { ":5wincmd w<cr>", "Focus pane 5" },
+  ["<cr>6"] = { ":6wincmd w<cr>", "Focus pane 6" },
+  ["<cr>7"] = { ":7wincmd w<cr>", "Focus pane 7" },
+  ["<cr>8"] = { ":8wincmd w<cr>", "Focus pane 8" },
+  ["<cr>0"] = { "<c-w>b", "Focus last pane" },
+})

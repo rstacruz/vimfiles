@@ -51,7 +51,6 @@ local function packages(use)
       "MunifTanjim/nui.nvim"
     }
   }
-  use "mrjones2014/legendary.nvim"
   use "kyazdani42/nvim-web-devicons"
   use "lewis6991/gitsigns.nvim" -- Git indicators on the gutter
   use "lukas-reineke/indent-blankline.nvim" -- Indent indicators
@@ -275,12 +274,6 @@ end, { defer = true }) -- }}}
 plugin("lualine", function(lualine) -- {{{
   local opts = require("core.lualine-theme").get_theme({ theme = Theme.theme[2] })
   lualine.setup(opts)
-end) -- }}}
-
-plugin("legendary", function(legendary) -- {{{
-  legendary.setup({ -- Do this before which-key
-    select_prompt = "",
-  })
 end) -- }}}
 
 plugin("which-key", function(mod) -- {{{

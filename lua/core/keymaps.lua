@@ -40,20 +40,10 @@ wk.register({
   ["<cr><right>"] = { "<c-w>l", "Focus right" },
   ["<cr><down>"] = { "<c-w>j", "Focus down" },
   ["<cr><up>"] = { "<c-w>k", "Focus up" },
-  ["<cr>1"] = { "<c-w>t", "Focus pane 1" },
-  ["<cr>2"] = { ":2wincmd w<cr>", "Focus pane 2" },
-  ["<cr>3"] = { ":3wincmd w<cr>", "Focus pane 3" },
-  ["<cr>4"] = { ":4wincmd w<cr>", "Focus pane 4" },
-  ["<cr>5"] = { ":5wincmd w<cr>", "Focus pane 5" },
-  ["<cr>6"] = { ":6wincmd w<cr>", "Focus pane 6" },
-  ["<cr>7"] = { ":7wincmd w<cr>", "Focus pane 7" },
-  ["<cr>8"] = { ":8wincmd w<cr>", "Focus pane 8" },
-  ["<cr>0"] = { "<c-w>b", "Focus last pane" },
 
   -- Leader
   ["<leader>."] = { "<cmd>ToggleTerm<cr>", "Toggle terminal" },
   ["<leader>*"] = { ":GG <c-r><c-w><cr>", "Search from cursor (GG)..." },
-  ["<leader>?"] = { "<cmd>lua require('core.actions').show_reference()<cr>", "Show keymap reference" },
 
   -- Leader: [,] experimental
   ["<leader>,"] = { name = "Experimental..." },
