@@ -33,7 +33,6 @@ local function packages(use)
   use "mcchrish/zenbones.nvim"
   use { "catppuccin/nvim", as = "catppuccin-nvim" }
   use "EdenEast/nightfox.nvim"
-  use { "rose-pine/neovim", as = "rose-pine-nvim" }
 
   -- File types
   use "preservim/vim-markdown" -- Markdown (.md)
@@ -86,7 +85,6 @@ local function packages(use)
   use "natecraddock/workspaces.nvim" -- Manage workspaces
 
   -- Still trying it out
-  use "ThePrimeagen/harpoon" -- Bookmark files
   use "folke/twilight.nvim" -- Isolate (leader-ot)
   use "TimUntersberger/neogit"
 end -- }}}
@@ -260,8 +258,8 @@ plugin("indent_blankline", function(mod) -- {{{
     show_current_context = true,
   })
   vim.g.indent_blankline_show_first_indent_level = true
-  vim.g.indent_blankline_char_list = { "┊", "┆", "│" }
-  vim.g.indent_blankline_context_char_list = { "┊" }
+  vim.g.indent_blankline_char_list = { "│" }
+  vim.g.indent_blankline_context_char_list = { "│" }
   vim.g.indent_blankline_filetype_exclude = {
     "lspinfo",
     "packer",
@@ -288,8 +286,7 @@ end) -- }}}
 plugin("which-key", function(mod) -- {{{
   mod.setup({
     window = {
-      border = "shadow",
-      margin = { 1, 10, 2, 10 },
+      margin = { 1, 4, 2, 4 },
     },
     key_labels = {
       ["<leader>"] = "∴",
@@ -332,12 +329,6 @@ end) -- }}}
 plugin("telescope._extensions.fzf", function() -- {{{
   plugin("telescope", function(telescope)
     telescope.load_extension("fzf")
-  end)
-end) -- }}}
-
-plugin("harpoon", function() -- {{{
-  plugin("telescope", function(telescope)
-    telescope.load_extension("harpoon") -- allow `:Telescope harpoon`
   end)
 end) -- }}}
 

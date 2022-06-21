@@ -76,11 +76,6 @@ wk.register({
   ["<leader>wq"] = { "<c-w>q", "Close window" },
   ["<leader>wt"] = { "<cmd>tab split<cr>", "New tab" },
 
-  -- Leader: [m] marks
-  ["<leader>m"] = { name = "[m]arks..." },
-  ["<leader>ma"] = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "[a]dd bookmark" },
-  ["<leader>m."] = { "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>", "Bookmark commands... [.]" },
-
   -- Leader: [x] exit
   ["<leader>x"] = { name = "E[x]it..." },
   ["<leader>xo"] = { ":%bd!|e#|bd#<cr>g;", "Cl[o]se all buffers" },
@@ -92,7 +87,7 @@ wk.register({
   ["<leader>sk"] = { "<cmd>vsplit ~/.config/nvim/lua/core/keymaps.lua<cr>", "Edit [k]eybindings" },
   ["<leader>sr"] = { "<cmd>lua require('core.utils').reload()<cr>", "[r]eload Vim config" },
   ["<leader>sc"] = { "<cmd>Telescope colorscheme<cr>", "Choose [c]olour scheme" },
-  ["<leader>sP"] = { "<cmd>StartupTime<cr>", "[P]rofile startup time" },
+  ["<leader>st"] = { "<cmd>StartupTime<cr>", "Profile startup [t]ime" },
 
   -- Leader: [sp] packer
   ["<leader>sp"] = { name = "[p]acker..." },
@@ -140,7 +135,6 @@ wk.register({
   ["<leader>pb"] = { "<cmd>Telescope buffers<cr>", "List [B]uffers (telescope)..." },
   ["<leader>pB"] = has_neotree and { "<cmd>Neotree float buffers<cr>", "List [b]uffers..." } or {},
   ["<leader>pf"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open [f]ile..." },
-  ["<leader>pm"] = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Show book[m]arks..." },
   ["<leader>pw"] = { "<cmd>Telescope workspaces<cr>", "Open [w]orkspace..." },
   ["<leader>pr"] = { "<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Open [r]ecent file..." },
   ["<leader>ps"] = { "<cmd>SymbolsOutline<cr>", "Show [s]ymbols..." },

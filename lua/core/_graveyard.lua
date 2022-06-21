@@ -4,14 +4,15 @@ local utils = require("core.utils")
 local plugin = utils.plugin
 local cmd = vim.cmd
 
-PKGS = {
+function packages(use)
   -- Scrollbars. Works great but the scrollbars don't reposition well
   -- when using with &winwidth. `nvim-scrollview` is a great alternative
   -- "Xuyuanp/scrollbar.nvim",
-  "kyazdani42/nvim-tree.lua", -- File explorer
-  "nanotee/zoxide.vim", -- Integration with zoxide dir changer
-  (vim.fn.executable("nnn") and "luukvbaal/nnn.nvim"), -- File manager
-}
+  use "kyazdani42/nvim-tree.lua" -- File explorer
+  use "nanotee/zoxide.vim" -- Integration with zoxide dir changer
+  if vim.fn.executable("nnn") then use("luukvbaal/nnn.nvim") end -- File manager
+  use { "rose-pine/neovim", as = "rose-pine-nvim" }
+end
 
 -- Startify options
 if utils.has_paq("vim-startify") then -- {{{
@@ -108,3 +109,12 @@ end
 -- Auto reload on save
 cmd([[au BufWritePost init.lua luafile ~/.config/nvim/init.lua]])
 cmd([[au BufWritePost init.lua PackerCompile]])
+
+-- Indent blankline
+vim.g.indent_blankline_char_list = { "┊", "┆", "│" }
+
+-- Leader: [m] marks for harpoon
+["<leader>m"] = { name = "[m]arks..." },
+["<leader>ma"] = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "[a]dd bookmark" },
+["<leader>m."] = { "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>", "Bookmark commands... [.]" },
+
