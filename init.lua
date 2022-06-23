@@ -86,6 +86,7 @@ local function packages(use)
   -- Still trying it out
   use "folke/twilight.nvim" -- Isolate (leader-ot)
   use "TimUntersberger/neogit"
+  use "github/copilot.vim"
 end -- }}}
 
 local packer_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
