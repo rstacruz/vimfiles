@@ -393,7 +393,7 @@ plugin("nvim-lsp-installer", function(lsp_installer) -- {{{
       lspconfig.tsserver.setup({})
       lspconfig.yamlls.setup({})
       lspconfig.astro.setup({})
-      lspconfig.cssts.setup({})
+      lspconfig.cssls.setup({})
     end
     lspconfig.sumneko_lua.setup({})
   end)
