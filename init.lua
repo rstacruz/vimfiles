@@ -31,7 +31,9 @@ local function packages(use)
   use "projekt0n/github-nvim-theme"
   use "rktjmp/lush.nvim" -- Required by zenbones
   use "mcchrish/zenbones.nvim"
-  use { "catppuccin/nvim", as = "catppuccin-nvim" }
+  use { "catppuccin/nvim", as = "catppuccininvim" }
+  use { "dracula/vim", as = "dracula-vim" }
+  use "cmoscofian/nibble-vim"
   use "EdenEast/nightfox.nvim"
 
   -- File types
@@ -355,13 +357,11 @@ plugin("null-ls", function(null_ls) -- {{{
   end
 
   -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
-  null_ls.setup({
-    sources = sources,
-  })
+  null_ls.setup({ sources = sources })
 
   cmd([[augroup Nullformat]])
   cmd([[au!]])
-  cmd([[au BufWritePre *.lua,*.js,*.ts,*.tsx lua vim.lsp.buf.formatting_seq_sync()]])
+  cmd([[au BufWritePre *.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs lua vim.lsp.buf.format()]])
   cmd([[augroup END]])
 end, { defer = true }) -- }}}
 
@@ -383,7 +383,7 @@ plugin("nvim-lsp-installer", function(lsp_installer) -- {{{
   plugin("lspconfig", function(lspconfig)
     require("core.extras.lsp_borders")
     lsp_installer.setup({
-      automatic_installation = true,
+      -- automatic_installation = true,
     })
 
     if which("ruby") then
@@ -392,6 +392,8 @@ plugin("nvim-lsp-installer", function(lsp_installer) -- {{{
     if which("node") then
       lspconfig.tsserver.setup({})
       lspconfig.yamlls.setup({})
+      lspconfig.astro.setup({})
+      lspconfig.cssts.setup({})
     end
     lspconfig.sumneko_lua.setup({})
   end)
@@ -500,6 +502,10 @@ if true then -- Vim settings {{{
       horiz = "━",
     } -- better vert characters for global statusline
   end
+
+  if vim.fn.has("nvim-0.8") == 1 then
+    vim.opt.cmdheight = 0
+  end
 end -- }}}
 
 if true then -- Autocmds {{{
@@ -547,6 +553,10 @@ function CustomiseTheme()
 
   local col = vim.g.colors_name
   local bg = vim.o.background
+
+  if col == "nibble" then
+    cmd([[hi! Comment guifg=#8080cc guibg=#2020aa]])
+  end
 
   if ({ seoulbones = 1, rosebones = 1, zenbones = 1, dayfox = 1 })[col] and bg == "light" then
     cmd([[hi! Normal guibg=#ffffff]])
