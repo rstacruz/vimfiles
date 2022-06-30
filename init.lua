@@ -359,9 +359,10 @@ plugin("null-ls", function(null_ls) -- {{{
   -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
   null_ls.setup({ sources = sources })
 
+  local formatCommand = vim.lsp.buf.format and "vim.lsp.buf.format()" or "vim.lsp.buf.formatting_seq_sync()"
   cmd([[augroup Nullformat]])
   cmd([[au!]])
-  cmd([[au BufWritePre *.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs lua vim.lsp.buf.format()]])
+  cmd([[au BufWritePre *.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs lua ]] .. formatCommand)
   cmd([[augroup END]])
 end, { defer = true }) -- }}}
 
