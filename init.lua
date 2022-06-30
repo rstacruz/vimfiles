@@ -84,6 +84,7 @@ local function packages(use)
   use "dstein64/vim-startuptime" -- Profile startup
   use "numToStr/Comment.nvim" -- Comments
   use "natecraddock/workspaces.nvim" -- Manage workspaces
+  use "kazhala/close-buffers.nvim" -- Close hidden buffers
 
   -- Still trying it out
   use "folke/twilight.nvim" -- Isolate (leader-ot)

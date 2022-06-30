@@ -68,8 +68,10 @@ wk.register({
 
   -- Leader: [x] exit
   ["<leader>x"] = { name = "E[x]it..." },
-  ["<leader>xo"] = { ":%bd!|e#|bd#<cr>g;", "Cl[o]se all buffers" },
-  ["<leader>xx"] = { ":cq<cr>", "E[x]it" },
+  ["<leader>xo"] = { ":%bd!|e#|bd#<cr>g;", "Close [o]ther buffers" },
+  ["<leader>xh"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>", "Close [h]idden buffers" },
+  ["<leader>xH"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>", "Close [H]idden buffers (force)" },
+  ["<leader>xc"] = { ":cq<cr>", "Exit [c]" },
 
   -- Leader: [s] settings
   ["<leader>s"] = { name = "[s]ettings..." },
