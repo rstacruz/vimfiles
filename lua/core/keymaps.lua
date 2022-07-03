@@ -70,7 +70,8 @@ wk.register({
   ["<leader>x"] = { name = "E[x]it..." },
   ["<leader>xo"] = { ":%bd!|e#|bd#<cr>g;", "Close [o]ther buffers" },
   ["<leader>xh"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>", "Close [h]idden buffers" },
-  ["<leader>xH"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>", "Close [H]idden buffers (force)" },
+  ["<leader>xH"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>",
+    "Close [H]idden buffers (force)" },
   ["<leader>xc"] = { ":cq<cr>", "Exit [c]" },
 
   -- Leader: [s] settings
@@ -126,12 +127,13 @@ wk.register({
   ["<leader>pe"] = has_neotree and { "<cmd>Neotree float toggle<cr>", "[e]xplore files..." } or {},
   ["<leader>pb"] = { "<cmd>Telescope buffers<cr>", "List [B]uffers (telescope)..." },
   ["<leader>pB"] = has_neotree and { "<cmd>Neotree float buffers<cr>", "List [b]uffers..." } or {},
-  ["<leader>pf"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open [f]ile..." },
+  ["<leader>pf"] = { "<cmd>Telescope fd<cr>", "Open [f]ile..." },
   ["<leader>pw"] = { "<cmd>Telescope workspaces<cr>", "Open [w]orkspace..." },
   ["<leader>pr"] = { "<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Open [r]ecent file..." },
   ["<leader>ps"] = { "<cmd>SymbolsOutline<cr>", "Show [s]ymbols..." },
   ["<leader>pS"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Show [S]ymbols (Tele)..." },
-  ["<leader>pg"] = { [[:silent! Glcd | lua require('spectre').open({ is_insert_mode = true })<cr>]], "Find in files ([g]rep)...", },
+  ["<leader>pg"] = { [[:silent! Glcd | lua require('spectre').open({ is_insert_mode = true })<cr>]],
+    "Find in files ([g]rep)...", },
   ["<leader>pW"] = { name = "[w]orkspaces..." },
   ["<leader>pWa"] = { "<cmd>WorkspacesAdd<cr>", "Workspace: [a]dd this folder" },
 
@@ -150,10 +152,12 @@ wk.register({
   ["<leader>os"] = { "<cmd>set spell!<cr>", "Toggle [s]pell check" },
   ["<leader>on"] = { "<cmd>set number!<cr>", "Toggle line [n]umber" },
   ["<leader>or"] = { "<cmd>set relativenumber!<cr>", "Toggle [r]elative line number" },
-  ["<leader>of"] = vim.fn.has("g:neovide") and { ":let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle [f]ullscreen" } or {},
+  ["<leader>of"] = vim.fn.has("g:neovide") and
+      { ":let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle [f]ullscreen" } or {},
   ["<leader>ob"] = { ":lua Theme:toggle_theme()<cr>", "Toggle light/dark theme" },
   ["<leader>ot"] = { "<cmd>Twilight<cr>", "Toggle [t]wilight mode" },
-  ["<leader>oB"] = { ":lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>", "Toggle light/dark [B]ackground", },
+  ["<leader>oB"] = { ":lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
+    "Toggle light/dark [B]ackground", },
   ["<leader>oc"] = { ":lua vim.o.conceallevel = vim.o.conceallevel == 2 and 0 or 2<cr>", "Toggle [c]onceal" },
 
   -- Leader: [oD] diagnostic
@@ -204,7 +208,7 @@ map("n", [[<c-s>]], [[:w<cr>]], opts) -- Save
 
 map("v", [[<c-c>]], [["+y]], opts) -- Copy
 if has_require("telescope") then
-  map("n", [[<c-p>]], [[<cmd>lua require("core.actions").open_file_picker()<cr>]], opts)
+  map("n", [[<c-p>]], [[<cmd>Telescope fd<cr>]], opts)
 end
 if has_require("nvim-tree") then
   map("n", [[<c-b>]], [[:NvimTreeToggle<cr>]], opts) -- Toggle sidebar
