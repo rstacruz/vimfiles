@@ -35,6 +35,7 @@ local function packages(use)
   use { "dracula/vim", as = "dracula-vim" }
   use "cmoscofian/nibble-vim"
   use "EdenEast/nightfox.nvim"
+  use { "embark-theme/vim", as = "embark-theme-vim" }
 
   -- File types
   use "preservim/vim-markdown" -- Markdown (.md)
@@ -557,7 +558,9 @@ function CustomiseTheme()
   local bg = vim.o.background
 
   if col == "nibble" then
-    cmd([[hi! Comment guifg=#8080cc guibg=#2020aa]])
+    cmd([[hi! Comment guifg=#8080cc guibg=none gui=italic]])
+    cmd([[hi! Cursorline gui=none guibg=#2020aa]]) -- Default was underline only
+    cmd([[hi! LineNr guifg=#5555bb gui=italic]])
   end
 
   if ({ seoulbones = 1, rosebones = 1, zenbones = 1, dayfox = 1 })[col] and bg == "light" then
