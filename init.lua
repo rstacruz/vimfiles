@@ -294,6 +294,7 @@ plugin("which-key", function(mod) -- {{{
       separator = "┄",
       group = "",
     },
+    triggers = { "<leader>" },
     layout = {
       align = "center",
       spacing = 7,
