@@ -10,6 +10,8 @@ wk.register({
   ["gl"] = { "<cmd>HopLine<cr>", "Go to line" },
   ["gw"] = { "<cmd>HopWord<cr>", "Go to word" },
   ["<leader>*"] = { "<cmd>silent! Glcd | lua require('spectre').open_visual()<cr>" },
+  ["<leader>gy"] = { "<cmd>GBrowse!<cr>", "Cop[y] GitHub URL" },
+  ["<leader>gY"] = { "<cmd>GBrowse<cr>", "Open in GitHub [Y]" },
 }, { mode = "v" })
 
 wk.register({
