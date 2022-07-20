@@ -126,8 +126,8 @@ function Theme.get_theme(bg)
         or { "default", "auto", bg }
   else
     return false
-        or utils.has_pkg("nightfox.nvim") and { "duskfox", "auto", bg }
         or utils.has_pkg("catppuccin-nvim") and { "catppuccin", "auto", bg }
+        or utils.has_pkg("nightfox.nvim") and { "duskfox", "auto", bg }
         or utils.has_pkg("github-nvim-theme") and { "github_dimmed", "auto", bg }
         or utils.has_pkg("zenbones.nvim") and { "tokyobones", "auto", bg }
         or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
