@@ -13,7 +13,8 @@ local function packages(use)
   if has_gcc then use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" } end
   use "nvim-treesitter/nvim-treesitter-textobjects"
   use "neovim/nvim-lspconfig"
-  use "williamboman/nvim-lsp-installer" -- Install LSP servers (:LspInstall
+  use "williamboman/mason.nvim" -- Install LSP servers (:Mason)
+  use "williamboman/mason-lspconfig.nvim"
   use "jose-elias-alvarez/null-ls.nvim" -- Formatting and diagnostics
   use "SmiteshP/nvim-gps" -- Breadcrumbs in the status line
 
@@ -383,12 +384,10 @@ plugin("toggleterm", function(toggleterm) -- {{{
   })
 end, { defer = true }) -- }}}
 
-plugin("nvim-lsp-installer", function(lsp_installer) -- {{{
+plugin("mason", function(mason) -- {{{
   plugin("lspconfig", function(lspconfig)
     require("core.extras.lsp_borders")
-    lsp_installer.setup({
-      -- automatic_installation = true,
-    })
+    mason.setup()
 
     if which("ruby") then
       lspconfig.solargraph.setup({})
