@@ -389,6 +389,14 @@ plugin("mason", function(mason) -- {{{
     require("core.extras.lsp_borders")
     mason.setup()
 
+    plugin("mason-lspconfig", function(masonLsp)
+      masonLsp.setup({
+        ensure_installed = {
+          "stylua", "lua-language-server", "typescript-language-server",
+        }
+      })
+    end)
+
     if which("ruby") then
       lspconfig.solargraph.setup({})
     end
