@@ -522,7 +522,7 @@ end -- }}}
 if true then -- Autocmds {{{
   local augroup = require("core.utils").augroup
 
-  augroup("MyCustomisations", function(autocmd, group)
+  augroup("MyCustomisations", function(autocmd, _group)
     -- Cursorline on insert mode
     autocmd("InsertEnter", "*", "set cursorline")
     autocmd("InsertLeave", "*", "set nocursorline")
@@ -563,7 +563,6 @@ function CustomiseTheme()
   cmd([[hi! HopNextKey2 guibg=#ffddaa guifg=#000000]])
 
   local col = vim.g.colors_name
-  local bg = vim.o.background
 
   if col == "nibble" then
     cmd([[hi! Comment guifg=#8080cc guibg=none gui=italic]])
@@ -571,7 +570,9 @@ function CustomiseTheme()
     cmd([[hi! LineNr guifg=#5555bb gui=italic]])
   end
 
-  if ({ seoulbones = 1, rosebones = 1, zenbones = 1, dayfox = 1 })[col] and bg == "light" then
+  local bg = vim.o.background
+  if ({ seoulbones = 1, dayfox = 1 })[col] and bg == "light" then
+    -- dayfox and seoulbones are a dirty grey background by default
     cmd([[hi! Normal guibg=#ffffff]])
     cmd([[hi! NormalNC guibg=#fafafc]])
   end
