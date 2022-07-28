@@ -154,25 +154,9 @@ end
 plugin("nvim-treesitter.configs", function(mod) -- {{{
   mod.setup({
     ensure_installed = {
-      "c",
-      "cpp",
-      "javascript",
-      "css",
-      "lua",
-      "markdown",
-      "ruby",
-      "yaml",
-      "json",
-      "html",
-      "python",
-      "svelte",
-      "typescript",
-      "fish",
-      "dockerfile",
-      "make",
-      "jsdoc",
-      "scss",
-      "vim",
+      "c", "cpp", "javascript", "css", "lua", "markdown", "ruby", "yaml",
+      "json", "html", "python", "svelte", "typescript", "fish", "dockerfile",
+      "make", "jsdoc", "scss", "vim",
     },
     matchup = { enable = true },
     indent = { enable = true },
@@ -202,10 +186,7 @@ plugin("cmp", function(cmp) -- {{{
   local _, lspkind = pcall(require, "lspkind")
   local formatting = lspkind
       and {
-        format = lspkind.cmp_format({
-          mode = "symbol",
-          maxwidth = 50,
-        }),
+        format = lspkind.cmp_format({ mode = "symbol", maxwidth = 50, }),
       }
       or {}
 
@@ -267,14 +248,7 @@ plugin("indent_blankline", function(mod) -- {{{
   vim.g.indent_blankline_char_list = { "│" }
   vim.g.indent_blankline_context_char_list = { "│" }
   vim.g.indent_blankline_filetype_exclude = {
-    "lspinfo",
-    "packer",
-    "checkhealth",
-    "",
-    "startify",
-    "toggleterm",
-    "help",
-    "spectre_panel",
+    "lspinfo", "packer", "checkhealth", "", "startify", "toggleterm", "help", "spectre_panel",
   }
 end, { defer = true }) -- }}}
 
@@ -286,7 +260,7 @@ end) -- }}}
 plugin("which-key", function(mod) -- {{{
   mod.setup({
     window = {
-      margin = { 1, 4, 2, 4 },
+      margin = { 0, 0, 0, 0 },
     },
     key_labels = {
       ["<leader>"] = "∴",
@@ -525,9 +499,10 @@ if true then -- Vim settings {{{
     } -- better vert characters for global statusline
   end
 
-  if vim.fn.has("nvim-0.8") == 1 then
-    vim.opt.cmdheight = 0
-  end
+  -- Causes issues with plugins like which-key
+  -- if vim.fn.has("nvim-0.8") == 1 then
+  --   vim.opt.cmdheight = 0
+  -- end
 end -- }}}
 
 if true then -- Autocmds {{{
@@ -585,17 +560,10 @@ function CustomiseTheme()
   end
 end -- }}}
 
--- Highlight on yank
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function() vim.highlight.on_yank() end,
-  group = highlight_group,
-  pattern = '*',
-})
-
 -- Abbreviations
 vim.defer_fn(function()
   require("core.abbreviations").setup()
+  require("core.extras.highlight_on_yank").setup()
 end, 250)
 
 -- Set theme after the customise theme hooks
