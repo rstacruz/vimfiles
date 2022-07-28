@@ -213,10 +213,10 @@ if has_require("telescope") then
   map("n", [[<c-p>]], [[<cmd>Telescope fd<cr>]], opts)
 end
 if has_require("nvim-tree") then
-  map("n", [[<c-b>]], [[:NvimTreeToggle<cr>]], opts) -- Toggle sidebar
+  -- map("n", [[<c-b>]], [[:NvimTreeToggle<cr>]], opts) -- Toggle sidebar
   map("n", [[-]], [[:silent! Glcd | :NvimTreeFindFile<cr>]], opts)
 elseif has_require("neo-tree") then
-  map("n", [[<c-b>]], [[:Neotree<cr>]], opts) -- Toggle sidebar
+  -- map("n", [[<c-b>]], [[<cmd>Neotree<cr>]], opts) -- Toggle sidebar
   map("n", [[-]], [[:silent! Glcd | :Neotree reveal<cr>]], opts)
 end
 if has_require("toggleterm") then

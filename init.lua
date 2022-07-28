@@ -533,23 +533,20 @@ if true then -- Autocmds {{{
     autocmd("FileType", "markdown,spectre_panel,neo-tree", "setlocal nonumber")
 
     -- Git: close on ctrl-s
-    autocmd("FileType", "gitcommit", "startinsert")
-    autocmd("FileType", "gitcommit", [[inoremap <silent> <buffer> <c-s> <esc>:w<cr>G:q<cr>]])
-    autocmd("FileType", "gitcommit", [[nnoremap <silent> <buffer> <c-s> :w<cr>G:q<cr>]])
+    autocmd("FileType", "gitcommit,NeogitCommitMessage", "startinsert")
+    autocmd("FileType", "gitcommit,NeogitCommitMessage", [[inoremap <silent> <buffer> <c-s> <esc>:w<cr>G:q<cr>]])
+    autocmd("FileType", "gitcommit,NeogitCommitMessage", [[nnoremap <silent> <buffer> <c-s> :w<cr>G:q<cr>]])
+
+    -- Neogit: make `-` easier to hit, and cancel out the global - keymap
+    autocmd("FileType", "NeogitPopup", [[nnoremap <buffer> , -]])
+    autocmd("FileType", "NeogitPopup", [[nnoremap <buffer> - -]])
 
     -- Markdown stuff
-    autocmd("FileType", "text,markdown", [[inoremap <buffer> +dw <C-r>=strftime('%d %b, %a')<CR>]])
-    autocmd("FileType", "text,markdown", [[inoremap <buffer> +ds <C-r>=strftime('%Y-%m-%d')<CR>]])
     autocmd("FileType", "text,markdown", [[iabbrev <buffer> :star: ⭐]])
     autocmd("FileType", "text,markdown", [[iabbrev <buffer> -- —]])
     autocmd("FileType", "text,markdown", [[iabbrev <buffer> -> →]])
     autocmd("FileType", "text,markdown", [[inoremap <buffer> +co ``<left>]]) -- [co]de
     autocmd("FileType", "text,markdown", [[inoremap <buffer> +cd ```<cr>```<home><up><end>]]) -- [c]o[d]e block
-    autocmd(
-      "FileType",
-      "text,markdown",
-      [[iabbrev <buffer> *** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *]]
-    )
 
     autocmd("Colorscheme", "*", function()
       CustomiseTheme()
@@ -563,6 +560,7 @@ function CustomiseTheme()
   cmd([[hi! HopNextKey2 guibg=#ffddaa guifg=#000000]])
 
   local col = vim.g.colors_name
+  local bg = vim.o.background
 
   if col == "nibble" then
     cmd([[hi! Comment guifg=#8080cc guibg=none gui=italic]])
@@ -570,9 +568,7 @@ function CustomiseTheme()
     cmd([[hi! LineNr guifg=#5555bb gui=italic]])
   end
 
-  local bg = vim.o.background
-  if ({ seoulbones = 1, dayfox = 1 })[col] and bg == "light" then
-    -- dayfox and seoulbones are a dirty grey background by default
+  if ({ seoulbones = 1, rosebones = 1, zenbones = 1, dayfox = 1 })[col] and bg == "light" then
     cmd([[hi! Normal guibg=#ffffff]])
     cmd([[hi! NormalNC guibg=#fafafc]])
   end
