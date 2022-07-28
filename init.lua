@@ -433,7 +433,12 @@ plugin("neo-tree", function(neo_tree) -- {{{
 end) -- }}}
 
 plugin("neogit", function(neogit) -- {{{
-  neogit.setup()
+  neogit.setup({
+    signs = {
+      section = { '▶ ', '▼ ' },
+      item = { ' ▶', ' ▼' },
+    }
+  })
 end) -- }}}
 
 plugin("symbols-outline", function() -- {{{
