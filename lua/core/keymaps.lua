@@ -108,15 +108,11 @@ wk.register({
   -- Leader: [g] git
   ["<leader>g"] = { name = "[g]it..." },
   ["<leader>gs"] = { "<cmd>Neogit<cr>", "Git [s]tatus" },
-  ["<leader>gS"] = { "<cmd>Neogit kind=vsplit<cr>", "Git [s]tatus, split" },
-  ["<leader>ga"] = { "<cmd>Git add -u . | Git commit -v<cr>", "[a]dd & commit" },
-  ["<leader>gA"] = { "<cmd>Git add -u . | Git commit --amend -v<cr>", "[A]dd & amend" },
-  ["<leader>gy"] = { ":GBrowse!<cr>", "Cop[y] GitHub URL" },
-  ["<leader>gY"] = { ":GBrowse<cr>", "Open in GitHub [Y]" },
-  ["<leader>gc"] = { ":Git commit -v<cr>", "[c]ommit" },
-  ["<leader>gb"] = { ":Git blame<cr>", "Open file [b]lame" },
-  ["<leader>gp"] = { "<cmd>lua require('core.actions').open_floating_cmd('git push')<cr>", "[p]ush" },
-  ["<leader>gP"] = { "<cmd>lua require('core.actions').open_floating_cmd('git push -f')<cr>", "[P]ush (force)" },
+  ["<leader>gy"] = { "<cmd>GBrowse!<cr>", "Cop[y] GitHub URL" },
+  ["<leader>gY"] = { "<cmd>GBrowse<cr>", "Open in GitHub [Y]" },
+  ["<leader>gc"] = { "<cmd>Neogit commit<cr>", "[c]ommit" },
+  ["<leader>gb"] = { "<cmd>Git blame<cr>", "Open file [b]lame" },
+  ["<leader>gp"] = { "<cmd>Neogit push<cr>", "[p]ush" },
   ["<leader>gt"] = { "<cmd>lua require ('core.actions').open_tig()<cr>", "[t]ig... *" },
 
   -- Leader: [gh] github
