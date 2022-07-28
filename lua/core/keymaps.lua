@@ -9,7 +9,7 @@ local has_neotree = pcall(require, "neo-tree")
 wk.register({
   ["gl"] = { "<cmd>HopLine<cr>", "Go to line" },
   ["gw"] = { "<cmd>HopWord<cr>", "Go to word" },
-  ["<leader>*"] = { "<cmd>silent! Glcd | lua require('spectre').open_visual()<cr>" },
+  ["<leader>*"] = { "<cmd>lua require('spectre').open_visual()<cr>" },
   ["<leader>gy"] = { "<cmd>GBrowse!<cr>", "Cop[y] GitHub URL" },
   ["<leader>gY"] = { "<cmd>GBrowse<cr>", "Open in GitHub [Y]" },
 }, { mode = "v" })
@@ -109,20 +109,20 @@ wk.register({
   ["<leader>g"] = { name = "[g]it..." },
   ["<leader>gs"] = { "<cmd>Neogit<cr>", "Git [s]tatus" },
   ["<leader>gS"] = { "<cmd>Neogit kind=vsplit<cr>", "Git [s]tatus, split" },
-  ["<leader>ga"] = { ":silent! Glcd | Git add -u . | Git commit -v<cr>", "[a]dd & commit" },
-  ["<leader>gA"] = { ":silent! Glcd | Git add -u . | Git commit --amend -v<cr>", "[A]dd & amend" },
+  ["<leader>ga"] = { "<cmd>Git add -u . | Git commit -v<cr>", "[a]dd & commit" },
+  ["<leader>gA"] = { "<cmd>Git add -u . | Git commit --amend -v<cr>", "[A]dd & amend" },
   ["<leader>gy"] = { ":GBrowse!<cr>", "Cop[y] GitHub URL" },
   ["<leader>gY"] = { ":GBrowse<cr>", "Open in GitHub [Y]" },
   ["<leader>gc"] = { ":Git commit -v<cr>", "[c]ommit" },
   ["<leader>gb"] = { ":Git blame<cr>", "Open file [b]lame" },
-  ["<leader>gp"] = { ":silent! Glcd | lua require('core.actions').open_floating_cmd('git push')<cr>", "[p]ush" },
-  ["<leader>gP"] = { ":silent! Glcd | lua require('core.actions').open_floating_cmd('git push -f')<cr>", "[P]ush (force)" },
-  ["<leader>gt"] = { ":silent! Glcd | lua require ('core.actions').open_tig()<cr>", "[t]ig... *" },
+  ["<leader>gp"] = { "<cmd>lua require('core.actions').open_floating_cmd('git push')<cr>", "[p]ush" },
+  ["<leader>gP"] = { "<cmd>lua require('core.actions').open_floating_cmd('git push -f')<cr>", "[P]ush (force)" },
+  ["<leader>gt"] = { "<cmd>lua require ('core.actions').open_tig()<cr>", "[t]ig... *" },
 
   -- Leader: [gh] github
   ["<leader>gh"] = { name = "Git[h]ub..." },
-  ["<leader>ghp"] = { ":silent! Glcd | !gh pr create --web<cr>", "Create PR" },
-  ["<leader>ghv"] = { ":silent! Glcd | !gh pr view --web<cr>", "View PR" },
+  ["<leader>ghp"] = { "<cmd>!gh pr create --web<cr>", "Create PR" },
+  ["<leader>ghv"] = { "<cmd>!gh pr view --web<cr>", "View PR" },
 
   -- Leader: [p] pick
   ["<leader>p"] = { name = "[p]ick..." },
@@ -134,7 +134,7 @@ wk.register({
   ["<leader>pr"] = { "<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Open [r]ecent file..." },
   ["<leader>ps"] = { "<cmd>SymbolsOutline<cr>", "Show [s]ymbols..." },
   ["<leader>pS"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Show [S]ymbols (Tele)..." },
-  ["<leader>pg"] = { [[:silent! Glcd | lua require('spectre').open({ is_insert_mode = true })<cr>]],
+  ["<leader>pg"] = { [[<cmd>lua require('spectre').open({ is_insert_mode = true })<cr>]],
     "Find in files ([g]rep)...", },
   ["<leader>pW"] = { name = "[w]orkspaces..." },
   ["<leader>pWa"] = { "<cmd>WorkspacesAdd<cr>", "Workspace: [a]dd this folder" },
@@ -214,10 +214,10 @@ if has_require("telescope") then
 end
 if has_require("nvim-tree") then
   -- map("n", [[<c-b>]], [[:NvimTreeToggle<cr>]], opts) -- Toggle sidebar
-  map("n", [[-]], [[:silent! Glcd | :NvimTreeFindFile<cr>]], opts)
+  map("n", [[-]], [[<cmd>:NvimTreeFindFile<cr>]], opts)
 elseif has_require("neo-tree") then
   -- map("n", [[<c-b>]], [[<cmd>Neotree<cr>]], opts) -- Toggle sidebar
-  map("n", [[-]], [[:silent! Glcd | :Neotree reveal<cr>]], opts)
+  map("n", [[-]], [[<cmd>:Neotree reveal<cr>]], opts)
 end
 if has_require("toggleterm") then
   map("n", [[<c-j>]], [[:ToggleTerm<cr>]], opts) -- Toggle terminal

@@ -92,6 +92,7 @@ local function packages(use)
   use "folke/twilight.nvim" -- Isolate (leader-ot)
   use "TimUntersberger/neogit"
   use "github/copilot.vim"
+  use "airblade/vim-rooter"
 end -- }}}
 
 local packer_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
@@ -467,6 +468,16 @@ plugin("symbols-outline", function() -- {{{
     symbol_blacklist = { "Field", "Param" },
   }
 end) -- }}}
+
+if true then -- Vim-rooter {{{
+  -- Localise the changes, so, eg, opening vimrc while in a project will
+  -- not mess with the global cwd
+  vim.g.rooter_cd_cmd = 'lcd'
+  vim.g.rooter_silent_chdir = 1
+
+  -- simplify the list for optimisation
+  vim.g.rooter_patterns = { '.git', 'package.json' }
+end -- }}}
 
 if true then -- Vim settings {{{
   vim.opt.backup = false -- No backup files
