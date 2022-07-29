@@ -60,6 +60,7 @@ local function packages(use)
   use "lukas-reineke/indent-blankline.nvim" -- Indent indicators
   use "nvim-lua/plenary.nvim" -- for Telescope
   use "nvim-lualine/lualine.nvim" -- Status line
+  use "romgrk/barbar.nvim" -- tabline
   use "nvim-telescope/telescope.nvim"
   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
   use "onsails/lspkind-nvim" -- Icons on LSP menus
@@ -90,7 +91,8 @@ local function packages(use)
 
   -- Still trying it out
   use "folke/twilight.nvim" -- Isolate (leader-ot)
-  use "TimUntersberger/neogit"
+  use { "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" }
+  use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
   use "github/copilot.vim"
   use "airblade/vim-rooter"
 end -- }}}
@@ -437,6 +439,9 @@ plugin("neogit", function(neogit) -- {{{
     signs = {
       section = { '▶ ', '▼ ' },
       item = { ' ▶', ' ▼' },
+    },
+    integrations = {
+      diffview = true -- uses sindrets/diffview.nvim
     }
   })
 end) -- }}}
@@ -448,7 +453,16 @@ plugin("symbols-outline", function() -- {{{
   }
 end) -- }}}
 
+plugin("bufferline", function(bufferline) -- {{{
+  bufferline.setup({
+    -- auto_hide = true -- hide when only 1 buffer
+    icon_pinned = '∴'
+  })
+end) -- }}}
+
 if true then -- Vim-rooter {{{
+  -- ["<leader>b<"] = { "<cmd>BufferMovePrevious<cr>", "Move to left" },
+  -- ["<leader>b>"] = { "<cmd>BufferMoveNext<cr>", "Move to right" },
   -- Localise the changes, so, eg, opening vimrc while in a project will
   -- not mess with the global cwd
   vim.g.rooter_cd_cmd = 'lcd'

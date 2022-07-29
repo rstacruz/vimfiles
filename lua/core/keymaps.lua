@@ -68,9 +68,18 @@ wk.register({
   ["<leader>wq"] = { "<c-w>q", "Close window" },
   ["<leader>wt"] = { "<cmd>tab split<cr>", "New tab" },
 
+  -- Leader: [b] buffers
+  ["<leader>b"] = { name = "[b]uffers..." },
+  ["<leader>bb"] = { "<cmd>BufferPick<cr>", "pick [b]..." },
+  ["<leader>bp"] = { "<cmd>BufferPin<cr>", "Toggle [p]in" },
+  ["<leader>br"] = { "<cmd>BufferCloseBuffersRight<cr>", "close all [r]ight" },
+  ["<leader>bo"] = { "<cmd>BufferCloseAllButCurrentOrPinned<cr>", "[o]nly this" },
+  -- ["<leader>b<"] = { "<cmd>BufferMovePrevious<cr>", "Move to left" },
+  -- ["<leader>b>"] = { "<cmd>BufferMoveNext<cr>", "Move to right" },
+
   -- Leader: [x] exit
   ["<leader>x"] = { name = "E[x]it..." },
-  ["<leader>xo"] = { ":%bd!|e#|bd#<cr>g;", "Close [o]ther buffers" },
+  -- ["<leader>xo"] = { ":%bd!|e#|bd#<cr>g;", "Close [o]ther buffers" },
   ["<leader>xh"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>", "Close [h]idden buffers" },
   ["<leader>xH"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>",
     "Close [H]idden buffers (force)" },

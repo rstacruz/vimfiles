@@ -118,14 +118,14 @@ local function get_theme(opts)
       },
       lualine_z = { mode },
     },
-    tabline = {
-      lualine_a = { tabs },
-      lualine_b = {},
-      lualine_c = { buffers },
-      lualine_y = {},
-      lualine_x = {},
-      lualine_z = {},
-    },
+    -- tabline = {
+    --   lualine_a = { tabs },
+    --   lualine_b = {},
+    --   lualine_c = { buffers },
+    --   lualine_y = {},
+    --   lualine_x = {},
+    --   lualine_z = {},
+    -- },
   }
 end
 
