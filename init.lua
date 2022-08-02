@@ -29,7 +29,8 @@ local function packages(use)
 
   -- Themes
   use "rstacruz/vim-microtone"
-  use "projekt0n/github-nvim-theme"
+  -- use "projekt0n/github-nvim-theme"
+  use { "rstacruz/github-nvim-theme", branch = "feat-barbar" } -- https://github.com/projekt0n/github-nvim-theme/pull/200
   use "rktjmp/lush.nvim" -- Required by zenbones
   use "mcchrish/zenbones.nvim"
   use { "catppuccin/nvim", as = "catppuccininvim" }
