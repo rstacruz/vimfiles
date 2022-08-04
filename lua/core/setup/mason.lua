@@ -6,14 +6,12 @@ local function setup()
   local _, mason = pcall(require, "mason")
   if not mason then return end
 
-  local _, lspconfig = pcall(require, "lspconfig")
-  if not lspconfig then return end
+  local has_lspconfig, lspconfig = pcall(require, "lspconfig")
+  if not has_lspconfig then return end
 
-  local _, null_ls = pcall(require, "null-ls")
-  if not null_ls then return end
-
-  local _, masonLspConfig = pcall(require, "mason-lspconfig")
-  local _, installer = pcall(require, "mason-tool-installer")
+  local has_null_ls, null_ls = pcall(require, "null-ls")
+  local has_mason_lspconfig, mason_lspconfig = pcall(require, "mason-lspconfig")
+  local has_installer, installer = pcall(require, "mason-tool-installer")
 
   mason.setup()
 
@@ -41,16 +39,16 @@ local function setup()
     table.insert(tools, "stylua")
   end
 
-  if masonLspConfig then masonLspConfig.setup() end
+  if has_mason_lspconfig then mason_lspconfig.setup() end
 
-  if installer then
+  if has_installer then
     installer.setup({
       ensure_installed = tools,
     })
   end
 
   -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
-  if null_ls then
+  if has_null_ls then
     null_ls.setup({ sources = null_sources })
   end
 end
