@@ -6,15 +6,15 @@ local has_hop = pcall(require, "hop")
 local has_neotree = pcall(require, "neo-tree")
 
 -- Visual
-wk.register({
+local VISUAL_BINDINGS = {
   ["gl"] = { "<cmd>HopLine<cr>", "Go to line" },
   ["gw"] = { "<cmd>HopWord<cr>", "Go to word" },
   ["<leader>*"] = { "<cmd>lua require('spectre').open_visual()<cr>" },
   ["<leader>gy"] = { "<cmd>GBrowse!<cr>", "Cop[y] GitHub URL" },
   ["<leader>gY"] = { "<cmd>GBrowse<cr>", "Open in GitHub [Y]" },
-}, { mode = "v" })
+}
 
-wk.register({
+local BINDINGS = {
   -- Buffer
   ["gb"] = { ":bnext<cr>", "Buffer: next" },
   ["gB"] = { ":bprev<cr>", "Buffer: previous" },
@@ -122,7 +122,7 @@ wk.register({
   ["<leader>gc"] = { "<cmd>Neogit commit<cr>", "[c]ommit" },
   ["<leader>gb"] = { "<cmd>Git blame<cr>", "Open file [b]lame" },
   ["<leader>gp"] = { "<cmd>Neogit push<cr>", "[p]ush" },
-  ["<leader>gt"] = { "<cmd>lua require ('core.actions').open_tig()<cr>", "[t]ig... *" },
+  ["<leader>gt"] = { "<cmd>lua require('core.actions').open_tig()<cr>", "[t]ig... *" },
 
   -- Leader: [gh] github
   ["<leader>gh"] = { name = "Git[h]ub..." },
@@ -134,7 +134,7 @@ wk.register({
   ["<leader>pe"] = has_neotree and { "<cmd>Neotree float toggle<cr>", "[e]xplore files..." } or {},
   ["<leader>pb"] = { "<cmd>Telescope buffers<cr>", "List [B]uffers (telescope)..." },
   ["<leader>pB"] = has_neotree and { "<cmd>Neotree float buffers<cr>", "List [b]uffers..." } or {},
-  ["<leader>pf"] = { "<cmd>Telescope fd<cr>", "Open [f]ile..." },
+  ["<leader>pf"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open [f]ile..." },
   ["<leader>pw"] = { "<cmd>Telescope workspaces<cr>", "Open [w]orkspace..." },
   ["<leader>pr"] = { "<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Open [r]ecent file..." },
   ["<leader>ps"] = { "<cmd>SymbolsOutline<cr>", "Show [s]ymbols..." },
@@ -173,61 +173,68 @@ wk.register({
   ["<leader>oDe"] = { "<cmd>lua vim.diagnostic.enable()<cr>", "[e]nable diagnostics" },
   ["<leader>oDh"] = { "<cmd>lua vim.diagnostic.hide()<cr>", "[h]ide diagnostics" },
   ["<leader>oDs"] = { "<cmd>lua vim.diagnostic.show()<cr>", "[s]how diagnostics" },
-})
+}
 
-local function has_require(mod)
-  return pcall(require, mod)
-end
 
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
--- Unimpaired
-map("n", [[co]], [[<leader>o]], { silent = true })
-map("n", [[yo]], [[<leader>o]], { silent = true })
+local function setup_other_bindings()
+  -- Unimpaired
+  map("n", [[co]], [[<leader>o]], { silent = true })
+  map("n", [[yo]], [[<leader>o]], { silent = true })
 
--- Keymap: general
-map("n", [[+]], [[za]], opts)
-map("n", [[<del>]], [[:bwipe!<cr>]], opts)
+  -- Keymap: general
+  map("n", [[+]], [[za]], opts)
+  map("n", [[<del>]], [[:bwipe!<cr>]], opts)
 
--- Search/replace
-map("n", [[gs]], [[:%s~~]], opts)
-map("v", [[gs]], [[:s~~]], opts)
+  -- Search/replace
+  map("n", [[gs]], [[:%s~~]], opts)
+  map("v", [[gs]], [[:s~~]], opts)
 
--- Keymap: terminal
-map("t", [[<esc>]], [[<c-\><c-n>]], opts) -- Terminal esc
-map("t", [[<c-n>]], [[<c-\><c-n><c-w>w]], opts) -- Terminal focus next
-map("t", [[<c-h>]], [[<c-\><c-n><c-w>W]], opts) -- Terminal focus prev
+  -- Keymap: terminal
+  map("t", [[<esc>]], [[<c-\><c-n>]], opts) -- Terminal esc
+  map("t", [[<c-n>]], [[<c-\><c-n><c-w>w]], opts) -- Terminal focus next
+  map("t", [[<c-h>]], [[<c-\><c-n><c-w>W]], opts) -- Terminal focus prev
 
--- Keymap: ctrl
-map("i", [[<c-h>]], [[<esc><c-w>W]], opts) -- Focus prev (ins)
-map("i", [[<c-n>]], [[<esc><c-w>w]], opts) -- Focus next (ins)
-map("i", [[<c-pagedown>]], [[<esc><c-w>w]], opts) -- Focus next (ins)
-map("i", [[<c-pageup>]], [[<esc><c-w>W]], opts) -- Focus prev (ins)
-map("i", [[<c-s>]], [[<esc>:w<cr>]], opts) -- Save (ins)
-map("i", [[<c-v>]], [[<esc>:set paste<cr>a<c-r>+<esc>:set nopaste<cr>a]], opts) -- Paste
+  -- Keymap: ctrl
+  map("i", [[<c-h>]], [[<esc><c-w>W]], opts) -- Focus prev (ins)
+  map("i", [[<c-n>]], [[<esc><c-w>w]], opts) -- Focus next (ins)
+  map("i", [[<c-pagedown>]], [[<esc><c-w>w]], opts) -- Focus next (ins)
+  map("i", [[<c-pageup>]], [[<esc><c-w>W]], opts) -- Focus prev (ins)
+  map("i", [[<c-s>]], [[<esc>:w<cr>]], opts) -- Save (ins)
+  map("i", [[<c-v>]], [[<esc>:set paste<cr>a<c-r>+<esc>:set nopaste<cr>a]], opts) -- Paste
 
-map("n", [[<c-h>]], [[<c-w>W]], opts) -- Focus prev
-map("n", [[<c-n>]], [[<c-w>w]], opts) -- Focus next (ins)
-map("n", [[<c-pagedown>]], [[<c-w>w]], opts) -- Focus next (ins)
-map("n", [[<c-pageup>]], [[<c-w>W]], opts) -- Focus prev
-map("n", [[<c-s>]], [[:w<cr>]], opts) -- Save
+  map("n", [[<c-h>]], [[<c-w>W]], opts) -- Focus prev
+  map("n", [[<c-n>]], [[<c-w>w]], opts) -- Focus next (ins)
+  map("n", [[<c-pagedown>]], [[<c-w>w]], opts) -- Focus next (ins)
+  map("n", [[<c-pageup>]], [[<c-w>W]], opts) -- Focus prev
+  map("n", [[<c-s>]], [[:w<cr>]], opts) -- Save
 
-map("v", [[<c-c>]], [["+y]], opts) -- Copy
-if has_require("telescope") then
-  map("n", [[<c-p>]], [[<cmd>Telescope fd<cr>]], opts)
+  map("v", [[<c-c>]], [["+y]], opts) -- Copy
+  if pcall(require, "telescope") then
+    map("n", [[<c-p>]], [[<cmd>Telescope fd<cr>]], opts)
+  end
+  if pcall(require, "nvim-tree") then
+    -- map("n", [[<c-b>]], [[:NvimTreeToggle<cr>]], opts) -- Toggle sidebar
+    map("n", [[-]], [[<cmd>:NvimTreeFindFile<cr>]], opts)
+  elseif pcall(require, "neo-tree") then
+    -- map("n", [[<c-b>]], [[<cmd>Neotree<cr>]], opts) -- Toggle sidebar
+    map("n", [[-]], [[<cmd>:Neotree reveal<cr>]], opts)
+  end
+  if pcall(require, "toggleterm") then
+    map("n", [[<c-j>]], [[:ToggleTerm<cr>]], opts) -- Toggle terminal
+    map("t", [[<esc><esc>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Terminal esc
+    map("n", [[<esc><esc>]], [[<cmd>ToggleTerm<cr>]], opts) -- Terminal esc
+    map("t", [[<esc><pagedown>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Terminal esc
+    map("n", [[<esc><pagedown>]], [[<cmd>ToggleTerm<cr>]], opts) -- Terminal esc
+  end
 end
-if has_require("nvim-tree") then
-  -- map("n", [[<c-b>]], [[:NvimTreeToggle<cr>]], opts) -- Toggle sidebar
-  map("n", [[-]], [[<cmd>:NvimTreeFindFile<cr>]], opts)
-elseif has_require("neo-tree") then
-  -- map("n", [[<c-b>]], [[<cmd>Neotree<cr>]], opts) -- Toggle sidebar
-  map("n", [[-]], [[<cmd>:Neotree reveal<cr>]], opts)
+
+local function setup()
+  wk.register(VISUAL_BINDINGS, { mode = "v" })
+  wk.register(BINDINGS)
+  setup_other_bindings()
 end
-if has_require("toggleterm") then
-  map("n", [[<c-j>]], [[:ToggleTerm<cr>]], opts) -- Toggle terminal
-  map("t", [[<esc><esc>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Terminal esc
-  map("n", [[<esc><esc>]], [[<cmd>ToggleTerm<cr>]], opts) -- Terminal esc
-  map("t", [[<esc><pagedown>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Terminal esc
-  map("n", [[<esc><pagedown>]], [[<cmd>ToggleTerm<cr>]], opts) -- Terminal esc
-end
+
+return { setup = setup }

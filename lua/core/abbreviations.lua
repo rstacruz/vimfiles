@@ -11,4 +11,7 @@ local function setup()
   end
 end
 
-return { setup = setup, abbreviations = ABBREVIATIONS }
+return {
+  setup = setup,
+  abbreviations = ABBREVIATIONS
+}

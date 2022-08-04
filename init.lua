@@ -278,7 +278,7 @@ plugin("which-key", function(mod) -- {{{
       spacing = 7,
     },
   })
-  require("core.keymaps")
+  require("core.keymaps").setup()
 end) -- }}}
 
 plugin("gitsigns", function(mod) -- {{{
@@ -363,7 +363,7 @@ end, { defer = true }) -- }}}
 
 plugin("mason", function(mason) -- {{{
   plugin("lspconfig", function(lspconfig)
-    require("core.extras.lsp_borders")
+    require("core.extras.lsp_borders").setup()
     mason.setup()
 
     plugin("mason-lspconfig", function(masonLsp)
