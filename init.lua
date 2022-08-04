@@ -10,7 +10,7 @@ local function packages(use)
   use "nvim-treesitter/nvim-treesitter-textobjects"
   use "neovim/nvim-lspconfig"
   use "williamboman/mason.nvim" -- Install LSP servers (:Mason)
-  use "williamboman/mason-lspconfig.nvim"
+  -- use "williamboman/mason-lspconfig.nvim" -- not needed for now
   use "WhoIsSethDaniel/mason-tool-installer.nvim" -- Auto-install as needed
   use "jose-elias-alvarez/null-ls.nvim" -- Formatting and diagnostics
   use "SmiteshP/nvim-gps" -- Breadcrumbs in the status line

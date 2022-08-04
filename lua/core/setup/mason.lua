@@ -2,6 +2,8 @@ local function which(bin)
   return vim.fn.executable(bin) == 1
 end
 
+-- See also:
+-- - Mapping lspconfig names to Mason: https://github.com/williamboman/mason-lspconfig.nvim/blob/main/doc/server-mapping.md
 local function setup()
   local _, mason = pcall(require, "mason")
   if not mason then return end
@@ -10,7 +12,6 @@ local function setup()
   if not has_lspconfig then return end
 
   local has_null_ls, null_ls = pcall(require, "null-ls")
-  local has_mason_lspconfig, mason_lspconfig = pcall(require, "mason-lspconfig")
   local has_installer, installer = pcall(require, "mason-tool-installer")
 
   mason.setup()
@@ -19,27 +20,33 @@ local function setup()
   local null_sources = {}
 
   if which("node") then
-    table.insert(tools, "typescript-language-server")
-    table.insert(tools, "yaml-language-server")
-    table.insert(tools, "eslint_d")
-    table.insert(tools, "prettierd")
+    lspconfig.astro.setup({})
+    lspconfig.cssls.setup({})
+    lspconfig.svelte.setup({})
+    lspconfig.tailwindcss.setup({})
     lspconfig.tsserver.setup({})
     lspconfig.yamlls.setup({})
+    table.insert(tools, "astro-language-server")
+    table.insert(tools, "css-lsp")
+    table.insert(tools, "eslint_d")
+    table.insert(tools, "prettierd")
+    table.insert(tools, "svelte-language-server")
+    table.insert(tools, "tailwindcss-language-server")
+    table.insert(tools, "typescript-language-server")
+    table.insert(tools, "yaml-language-server")
   end
   if which("lua") then
-    table.insert(tools, "lua-language-server")
     lspconfig.sumneko_lua.setup({})
+    table.insert(tools, "lua-language-server")
   end
   if which("ruby") then
-    table.insert(tools, "solargraph")
-    table.insert(tools, "rubocop")
     lspconfig.solargraph.setup({})
+    table.insert(tools, "rubocop")
+    table.insert(tools, "solargraph")
   end
   if which("cargo") then
     table.insert(tools, "stylua")
   end
-
-  if has_mason_lspconfig then mason_lspconfig.setup() end
 
   if has_installer then
     installer.setup({
