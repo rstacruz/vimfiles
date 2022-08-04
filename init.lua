@@ -1,9 +1,5 @@
 -- Packer startup {{{
 -- Proxy for checking if it's a dev environment
-local function which(bin)
-  return vim.fn.executable(bin) == 1
-end
-
 local has_gcc = vim.fn.executable("gcc")
 
 local function packages(use)
@@ -15,6 +11,7 @@ local function packages(use)
   use "neovim/nvim-lspconfig"
   use "williamboman/mason.nvim" -- Install LSP servers (:Mason)
   use "williamboman/mason-lspconfig.nvim"
+  use "WhoIsSethDaniel/mason-tool-installer.nvim" -- Auto-install as needed
   use "jose-elias-alvarez/null-ls.nvim" -- Formatting and diagnostics
   use "SmiteshP/nvim-gps" -- Breadcrumbs in the status line
 
@@ -322,24 +319,7 @@ plugin("notify", function(notify) -- {{{
   vim.notify = notify
 end) -- }}}
 
-plugin("null-ls", function(null_ls) -- {{{
-  local sources = {}
-  if vim.fn.executable("ruby") then -- gem install rubocop
-    table.insert(sources, null_ls.builtins.diagnostics.rubocop)
-  end
-  if vim.fn.executable("stylua") then -- cargo install stylua
-    table.insert(sources, null_ls.builtins.formatting.stylua)
-  end
-  if vim.fn.executable("prettierd") then -- volta install @fsouza/prettierd
-    table.insert(sources, null_ls.builtins.formatting.prettierd)
-  end
-  if vim.fn.executable("eslint_d") then -- volta install eslint_d
-    table.insert(sources, null_ls.builtins.diagnostics.eslint_d)
-  end
-
-  -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
-  null_ls.setup({ sources = sources })
-
+plugin("null-ls", function() -- {{{
   local formatCommand = vim.lsp.buf.format and "vim.lsp.buf.format()" or "vim.lsp.buf.formatting_seq_sync()"
   cmd([[augroup Nullformat]])
   cmd([[au!]])
@@ -361,30 +341,9 @@ plugin("toggleterm", function(toggleterm) -- {{{
   })
 end, { defer = true }) -- }}}
 
-plugin("mason", function(mason) -- {{{
-  plugin("lspconfig", function(lspconfig)
-    require("core.extras.lsp_borders").setup()
-    mason.setup()
-
-    plugin("mason-lspconfig", function(masonLsp)
-      masonLsp.setup({
-        ensure_installed = {
-          "stylua", "lua-language-server", "typescript-language-server",
-        }
-      })
-    end)
-
-    if which("ruby") then
-      lspconfig.solargraph.setup({})
-    end
-    if which("node") then
-      lspconfig.tsserver.setup({})
-      lspconfig.yamlls.setup({})
-      lspconfig.astro.setup({})
-      lspconfig.cssls.setup({})
-    end
-    lspconfig.sumneko_lua.setup({})
-  end)
+plugin("mason", function() -- {{{
+  require("core.extras.lsp_borders").setup()
+  require("core.setup.mason").setup()
 end) -- }}}
 
 plugin("spectre", function(spectre) -- {{{
