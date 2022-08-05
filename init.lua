@@ -339,9 +339,7 @@ plugin("workspaces", function(workspaces) -- {{{
   workspaces.setup({
     hooks = {
       open_pre = { "%bd!" },
-      -- open = { "Telescope" },
       open = { "lua require('telescope.builtin').oldfiles({only_cwd=true})" },
-      -- open = { "term fish" },
     },
   })
 
@@ -450,5 +448,16 @@ end, 250)
 
 -- Set theme after the customise theme hooks
 require("core.setup.theme").setup()
+
+-- Expermental: show syntax group under cursor
+vim.cmd([[
+nnoremap <leader>,h :CheckHighlightUnderCursor<cr>
+com! CheckHighlightUnderCursor echo {l,c,n ->
+        \ '' . l . ':' . c . ': '
+        \ . 'hi<'    . synIDattr(synID(l, c, 1), n)             . '> '
+        \ .'trans<' . synIDattr(synID(l, c, 0), n)             . '> '
+        \ .'lo<'    . synIDattr(synIDtrans(synID(l, c, 1)), n) . '> '
+        \ }(line("."), col("."), "name")
+]])
 
 -- vim:foldmethod=marker

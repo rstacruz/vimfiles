@@ -16,12 +16,14 @@ local CURRENT_THEME = {
 
 local THEMES = {
   light = {
+    { if_pkg = "zenbones.nvim", colorscheme = "zenbones", lualine = "zenbones" },
     { if_pkg = "github-nvim-theme", colorscheme = "github_light", lualine = "auto" },
     { if_pkg = "nightfox.nvim", colorscheme = "dayfox", lualine = "auto" },
     { if_pkg = "zenbones.nvim", colorscheme = "seoulbones", lualine = "auto" },
     { if_pkg = "vim-microtone", colorscheme = "microtone", lualine = "dracula" }
   },
   dark = {
+    { if_pkg = "zenbones.nvim", colorscheme = "zenbones", lualine = "zenbones" },
     { if_pkg = "catppuccin-nvim", colorscheme = "catppuccin", lualine = "auto" },
     { if_pkg = "github-nvim-theme", colorscheme = "github_dimmed", lualine = "auto" },
   }
@@ -71,6 +73,17 @@ local function setup(options)
   CURRENT_THEME = get_theme(mode)
   CURRENT_MODE = mode
   vim.opt.background = CURRENT_THEME.bgmode
+
+  vim.g.zenbones = {
+    lightness = "bright",
+    transparent_background = true,
+    solid_linenr = true,
+    lighten_noncurrent_window = true,
+    lighten_cursor_line = 9,
+    darken_noncurrent_window = true,
+    lighten_noncurrent_window = true,
+  }
+  vim.g.rosebones = vim.g.zenbones
   cmd("color " .. CURRENT_THEME.colorscheme)
 end
 
