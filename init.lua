@@ -115,42 +115,6 @@ local utils = require("core.utils")
 local plugin = utils.plugin
 -- }}}
 
--- Theme {{{
-Theme = { theme = { "default", "auto", "dark" }, mode = "dark" }
-
-function Theme.get_theme(bg)
-  if bg == "light" then
-    return false
-        or utils.has_pkg("github-nvim-theme") and { "github_light", "auto", bg }
-        or utils.has_pkg("nightfox.nvim") and { "dayfox", "auto", bg }
-        or utils.has_pkg("zenbones.nvim") and { "seoulbones", "auto", bg }
-        or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
-        or { "default", "auto", bg }
-  else
-    return false
-        or utils.has_pkg("catppuccin-nvim") and { "catppuccin", "auto", bg }
-        or utils.has_pkg("nightfox.nvim") and { "duskfox", "auto", bg }
-        or utils.has_pkg("github-nvim-theme") and { "github_dimmed", "auto", bg }
-        or utils.has_pkg("zenbones.nvim") and { "tokyobones", "auto", bg }
-        or utils.has_pkg("vim-microtone") and { "microtone", "dracula", bg }
-        or { "default", "auto", bg }
-  end
-end
-
-function Theme:set_theme(mode)
-  mode = mode or (utils.is_light() and "light" or "dark")
-  self.theme = self.get_theme(mode)
-  self.mode = mode
-  vim.opt.background = self.theme[3]
-  cmd("color " .. self.theme[1])
-end
-
-function Theme:toggle_theme()
-  self:set_theme(self.mode == "dark" and "light" or "dark")
-end
-
--- }}}
-
 plugin("nvim-treesitter.configs", function(mod) -- {{{
   mod.setup({
     ensure_installed = {
@@ -253,7 +217,8 @@ plugin("indent_blankline", function(mod) -- {{{
 end, { defer = true }) -- }}}
 
 plugin("lualine", function(lualine) -- {{{
-  local opts = require("core.lualine-theme").get_theme({ theme = Theme.theme[2] })
+  local lualine_theme = require("core.setup.theme").get_lualine_theme()
+  local opts = require("core.lualine-theme").get_theme({ theme = lualine_theme })
   lualine.setup(opts)
 end) -- }}}
 
@@ -470,29 +435,9 @@ if true then -- Autocmds {{{
     autocmd("FileType", "text,markdown", [[inoremap <buffer> +cd ```<cr>```<home><up><end>]]) -- [c]o[d]e block
 
     autocmd("Colorscheme", "*", function()
-      CustomiseTheme()
+      require("core.setup.theme").apply_overrides()
     end)
   end)
-end
-
-function CustomiseTheme()
-  cmd([[hi! HopNextKey guibg=#ffddaa guifg=#000000]])
-  cmd([[hi! HopNextKey1 guibg=#ffddaa guifg=#000000]])
-  cmd([[hi! HopNextKey2 guibg=#ffddaa guifg=#000000]])
-
-  local col = vim.g.colors_name
-  local bg = vim.o.background
-
-  if col == "nibble" then
-    cmd([[hi! Comment guifg=#8080cc guibg=none gui=italic]])
-    cmd([[hi! Cursorline gui=none guibg=#2020aa]]) -- Default was underline only
-    cmd([[hi! LineNr guifg=#5555bb gui=italic]])
-  end
-
-  if ({ seoulbones = 1, rosebones = 1, zenbones = 1, dayfox = 1 })[col] and bg == "light" then
-    cmd([[hi! Normal guibg=#ffffff]])
-    cmd([[hi! NormalNC guibg=#fafafc]])
-  end
 end -- }}}
 
 require("core.setup.vim_settings").setup()
@@ -504,6 +449,6 @@ vim.defer_fn(function()
 end, 250)
 
 -- Set theme after the customise theme hooks
-Theme:set_theme()
+require("core.setup.theme").setup()
 
 -- vim:foldmethod=marker

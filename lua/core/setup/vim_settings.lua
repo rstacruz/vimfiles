@@ -16,7 +16,7 @@ local function setup()
   vim.opt.splitbelow = true -- Vertical splits open below
   vim.opt.splitright = true -- Horizontal splits open to the right
   vim.opt.swapfile = false -- Don't write swap files
-  vim.opt.termguicolors = Theme.theme[1] ~= "microtone" -- Full GUI colours in terminal
+  vim.opt.termguicolors = true -- Full GUI colours in terminal
   vim.opt.wrap = false -- Word wrap
   vim.opt.winwidth = 85 -- Auto-resize windows
   vim.opt.winminwidth = 12
