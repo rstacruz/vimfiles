@@ -43,15 +43,16 @@ local function packages(use)
   use "dstein64/nvim-scrollview"
   use "folke/lsp-colors.nvim" -- Infer some colours needed for LSP
   use "folke/which-key.nvim" -- Menu when pressing [space]
-  use {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "kyazdani42/nvim-web-devicons",
-      "MunifTanjim/nui.nvim"
-    }
-  }
+  -- use {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   branch = "v2.x",
+  --   requires = {
+  --     "nvim-lua/plenary.nvim",
+  --     "kyazdani42/nvim-web-devicons",
+  --     "MunifTanjim/nui.nvim"
+  --   }
+  -- }
+  use "kyazdani42/nvim-tree.lua"
   use "kyazdani42/nvim-web-devicons"
   use "lewis6991/gitsigns.nvim" -- Git indicators on the gutter
   use "lukas-reineke/indent-blankline.nvim" -- Indent indicators
@@ -416,6 +417,14 @@ plugin("bufferline", function(bufferline) -- {{{
   bufferline.setup({
     -- auto_hide = true -- hide when only 1 buffer
     icon_pinned = '∴'
+  })
+end) -- }}}
+
+plugin("nvim-tree", function(nvimtree) -- {{{
+  nvimtree.setup({
+    view = {
+      width = 30
+    }
   })
 end) -- }}}
 

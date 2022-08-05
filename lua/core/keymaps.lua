@@ -3,7 +3,6 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
 local has_hop = pcall(require, "hop")
-local has_neotree = pcall(require, "neo-tree")
 
 -- Visual
 local VISUAL_BINDINGS = {
@@ -131,9 +130,7 @@ local BINDINGS = {
 
   -- Leader: [p] pick
   ["<leader>p"] = { name = "[p]ick..." },
-  ["<leader>pe"] = has_neotree and { "<cmd>Neotree float toggle<cr>", "[e]xplore files..." } or {},
   ["<leader>pb"] = { "<cmd>Telescope buffers<cr>", "List [B]uffers (telescope)..." },
-  ["<leader>pB"] = has_neotree and { "<cmd>Neotree float buffers<cr>", "List [b]uffers..." } or {},
   ["<leader>pf"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open [f]ile..." },
   ["<leader>pw"] = { "<cmd>Telescope workspaces<cr>", "Open [w]orkspace..." },
   ["<leader>pr"] = { "<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Open [r]ecent file..." },
