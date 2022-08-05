@@ -76,7 +76,7 @@ local function setup(options)
 
   vim.g.zenbones = {
     lightness = "bright",
-    transparent_background = true,
+    --transparent_background = true,
     solid_linenr = true,
     lighten_noncurrent_window = true,
     lighten_cursor_line = 9,
