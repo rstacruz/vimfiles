@@ -42,15 +42,6 @@ local function packages(use)
   use "dstein64/nvim-scrollview"
   use "folke/lsp-colors.nvim" -- Infer some colours needed for LSP
   use "folke/which-key.nvim" -- Menu when pressing [space]
-  -- use {
-  --   "nvim-neo-tree/neo-tree.nvim",
-  --   branch = "v2.x",
-  --   requires = {
-  --     "nvim-lua/plenary.nvim",
-  --     "kyazdani42/nvim-web-devicons",
-  --     "MunifTanjim/nui.nvim"
-  --   }
-  -- }
   use "kyazdani42/nvim-tree.lua"
   use "kyazdani42/nvim-web-devicons"
   use "lewis6991/gitsigns.nvim" -- Git indicators on the gutter
@@ -63,7 +54,7 @@ local function packages(use)
   use "onsails/lspkind-nvim" -- Icons on LSP menus
   use "stevearc/dressing.nvim" -- Improved appearance of vim.ui
   use "rcarriga/nvim-notify"
-  use "simrat39/symbols-outline.nvim"
+  use "RRethy/vim-illuminate"
 
   -- Optimisations
   use "lewis6991/impatient.nvim" -- Improve startup time by optimising Lua cache
@@ -262,16 +253,6 @@ run(function() -- neo-tree {{{
   })
 end) -- }}}
 
-run(function() -- symbols-outline {{{
-  local has, _ = pcall(require, "symbols-outline")
-  if not has then return end
-
-  vim.g.symbols_outline = {
-    auto_close = true,
-    symbol_blacklist = { "Field", "Param" },
-  }
-end) -- }}}
-
 plugin("bufferline", function(bufferline) -- {{{
   bufferline.setup({
     -- auto_hide = true -- hide when only 1 buffer
@@ -287,16 +268,16 @@ plugin("nvim-tree", function(nvimtree) -- {{{
   })
 end) -- }}}
 
-require("core.setup.treesitter").setup()
 require("core.setup.mason").setup()
 require("core.setup.nvim-settings").setup()
 require("core.setup.rooter").setup()
+require("core.setup.treesitter").setup()
 require("core.setup.which-key").setup()
-require("core.extras.lsp_borders").setup()
 require("core.lib.theme").setup()
 require("core.keymaps").setup()
 
 vim.defer_fn(function()
+  require("core.extras.lsp_borders").setup()
   require("core.setup.nvim-autocmds").setup()
   require("core.setup.neogit").setup()
   require("core.setup.toggleterm").setup()
