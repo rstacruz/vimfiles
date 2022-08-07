@@ -108,6 +108,10 @@ local function run(fn)
   fn()
 end
 
+local function run_later(fn)
+  vim.defer_fn(fn, 250)
+end
+
 require("packer").startup(packages)
 require("impatient")
 -- }}}
@@ -118,23 +122,30 @@ local utils = require("core.utils")
 local plugin = utils.plugin
 -- }}}
 
-plugin("scrollview", function(scrollview) -- {{{
+run_later(function() -- scrollview {{{
+  local has, scrollview = pcall(require, "scrollview")
+  if not has then return end
+
   scrollview.setup()
   vim.g.scrollview_excluded_filetypes = { "NvimTree" }
-end, { defer = true }) -- }}}
+end) -- }}}
 
-plugin("indent_blankline", function(mod) -- {{{
-  mod.setup({
+run_later(function() -- indent_blankline {{{
+  local has, indent_blankline = pcall(require, "indent_blankline")
+  if not has then return end
+
+  indent_blankline.setup({
     space_char_blankline = " ",
     show_current_context = true,
   })
+
   vim.g.indent_blankline_show_first_indent_level = true
   vim.g.indent_blankline_char_list = { "│" }
   vim.g.indent_blankline_context_char_list = { "│" }
   vim.g.indent_blankline_filetype_exclude = {
     "lspinfo", "packer", "checkhealth", "", "startify", "toggleterm", "help", "spectre_panel",
   }
-end, { defer = true }) -- }}}
+end) -- }}}
 
 plugin("lualine", function(lualine) -- {{{
   local lualine_theme = require("core.lib.theme").get_lualine_theme()
@@ -191,22 +202,21 @@ plugin("null-ls", function() -- {{{
   cmd([[augroup END]])
 end, { defer = true }) -- }}}
 
-plugin("mason", function() -- {{{
-  require("core.extras.lsp_borders").setup()
-  require("core.setup.mason").setup()
-end) -- }}}
+run_later(function() --- spectre {{{
+  local has, spectre = pcall(require, "spectre")
+  if not has then return end
 
-plugin("spectre", function(spectre) -- {{{
   spectre.setup({
     line_sep_start = "",
     result_padding = "   ",
     line_sep = "",
   })
-end, { defer = true }) -- }}}
+end) -- }}}
 
 run(function() -- Nightfox {{{
   local has, nightfox = pcall(require, "nightfox")
   if not has then return end
+
   nightfox.setup({
     options = {
       styles = {
@@ -278,9 +288,11 @@ plugin("nvim-tree", function(nvimtree) -- {{{
 end) -- }}}
 
 require("core.setup.treesitter").setup()
+require("core.setup.mason").setup()
 require("core.setup.nvim-settings").setup()
 require("core.setup.rooter").setup()
 require("core.setup.which-key").setup()
+require("core.extras.lsp_borders").setup()
 require("core.lib.theme").setup()
 require("core.keymaps").setup()
 
