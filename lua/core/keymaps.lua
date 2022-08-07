@@ -158,7 +158,7 @@ local BINDINGS = {
   ["<leader>or"] = { "<cmd>set relativenumber!<cr>", "Toggle [r]elative line number" },
   ["<leader>of"] = vim.fn.has("g:neovide") and
       { ":let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle [f]ullscreen" } or {},
-  ["<leader>ob"] = { ":lua require('core.setup.theme').toggle_theme()<cr>", "Toggle light/dark theme" },
+  ["<leader>ob"] = { ":lua require('core.lib.theme').toggle_theme()<cr>", "Toggle light/dark theme" },
   ["<leader>ot"] = { "<cmd>Twilight<cr>", "Toggle [t]wilight mode" },
   ["<leader>oB"] = { ":lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
     "Toggle light/dark [B]ackground", },

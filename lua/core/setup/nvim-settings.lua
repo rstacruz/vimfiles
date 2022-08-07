@@ -27,7 +27,6 @@ local function setup()
     vim.opt.shell = "/bin/bash"
   end
 
-
   if vim.fn.has("nvim-0.7") == 1 then
     vim.opt.laststatus = 3 -- Global statusline
     vim.opt.fillchars = {

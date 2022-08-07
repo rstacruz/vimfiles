@@ -7,6 +7,7 @@ local CURRENT_MODE = "dark"
 ---@class ThemeState
 ---@field colorscheme string
 ---@field lualine string
+---@field bgmode string
 ---@type ThemeState
 local CURRENT_THEME = {
   colorscheme = "default",
@@ -66,7 +67,7 @@ end
 
 ---@class SetupOptions
 ---@field mode string ("light" or "dark")
----@param options SetupOptions
+---@param options SetupOptions?
 local function setup(options)
   local opts = options or {}
   local mode = opts.mode or (utils.is_light() and "light" or "dark")
@@ -78,7 +79,6 @@ local function setup(options)
     lightness = "bright",
     --transparent_background = true,
     solid_linenr = true,
-    lighten_noncurrent_window = true,
     lighten_cursor_line = 9,
     darken_noncurrent_window = true,
     lighten_noncurrent_window = true,

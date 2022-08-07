@@ -47,7 +47,7 @@ end
 local function augroup_lua(name, fn)
   local group = vim.api.nvim_create_augroup(name, { clear = true })
   local autocmd = function(event, pattern, action)
-    options = { pattern = pattern, group = group }
+    local options = { pattern = pattern, group = group }
     if type(action) == "string" then
       options.command = action
     end

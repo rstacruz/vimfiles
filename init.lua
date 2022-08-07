@@ -10,7 +10,6 @@ local function packages(use)
   use "nvim-treesitter/nvim-treesitter-textobjects"
   use "neovim/nvim-lspconfig"
   use "williamboman/mason.nvim" -- Install LSP servers (:Mason)
-  -- use "williamboman/mason-lspconfig.nvim" -- not needed for now
   use "WhoIsSethDaniel/mason-tool-installer.nvim" -- Auto-install as needed
   use "jose-elias-alvarez/null-ls.nvim" -- Formatting and diagnostics
   use "SmiteshP/nvim-gps" -- Breadcrumbs in the status line
@@ -105,6 +104,10 @@ if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
   return
 end
 
+local function run(fn)
+  fn()
+end
+
 require("packer").startup(packages)
 require("impatient")
 -- }}}
@@ -114,89 +117,6 @@ local cmd = vim.api.nvim_command
 local utils = require("core.utils")
 local plugin = utils.plugin
 -- }}}
-
-plugin("nvim-treesitter.configs", function(mod) -- {{{
-  mod.setup({
-    ensure_installed = {
-      "c", "cpp", "javascript", "css", "lua", "markdown", "ruby", "yaml",
-      "json", "html", "python", "svelte", "typescript", "fish", "dockerfile",
-      "make", "jsdoc", "scss", "vim",
-    },
-    matchup = { enable = true },
-    indent = { enable = true },
-    autotag = { enable = true },
-    highlight = {
-      enable = true,
-      use_languagetree = true,
-    },
-    textobjects = {
-      select = {
-        enable = true,
-        lookahead = true,
-        keymaps = {
-          ["af"] = "@function.outer",
-          ["if"] = "@function.inner",
-          ["ac"] = "@class.outer",
-          ["ic"] = "@class.inner",
-        },
-      },
-    },
-  })
-  vim.o.foldmethod = "expr"
-  vim.o.foldexpr = "nvim_treesitter#foldexpr()"
-end) -- }}}
-
-plugin("cmp", function(cmp) -- {{{
-  local _, lspkind = pcall(require, "lspkind")
-  local formatting = lspkind
-      and {
-        format = lspkind.cmp_format({ mode = "symbol", maxwidth = 50, }),
-      }
-      or {}
-
-  local mapping = cmp.mapping.preset.insert({
-    ["<cr>"] = cmp.mapping.confirm(), -- add { select = true } to auto-select first item
-    ["<c-f>"] = cmp.mapping.scroll_docs(4), -- scroll the help text
-    ["<c-b>"] = cmp.mapping.scroll_docs(-4),
-    ["<c-d>"] = cmp.mapping.scroll_docs(4),
-    ["<c-u>"] = cmp.mapping.scroll_docs(4),
-  })
-
-  cmp.setup({
-    mapping = mapping,
-    formatting = formatting,
-    completion = {
-      keyword_length = 4,
-    },
-    snippet = {
-      expand = function()
-        -- vim.fn["vsnip#anonymous"](args.body)
-      end,
-    },
-    sources = cmp.config.sources({
-      { name = "nvim_lsp" },
-      -- { name = "vsnip" },
-    }, {
-      { name = "buffer" },
-    }),
-  })
-
-  cmp.setup.cmdline("/", {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-      { name = "buffer" },
-    },
-  })
-
-  cmp.setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-      { name = "path" },
-    }, {
-      { name = "cmdline" },
-    }),
-  })
-end, { defer = true }) -- }}}
 
 plugin("scrollview", function(scrollview) -- {{{
   scrollview.setup()
@@ -217,31 +137,9 @@ plugin("indent_blankline", function(mod) -- {{{
 end, { defer = true }) -- }}}
 
 plugin("lualine", function(lualine) -- {{{
-  local lualine_theme = require("core.setup.theme").get_lualine_theme()
-  local opts = require("core.lualine-theme").get_theme({ theme = lualine_theme })
+  local lualine_theme = require("core.lib.theme").get_lualine_theme()
+  local opts = require("core.lib.lualine-theme").get_theme({ theme = lualine_theme })
   lualine.setup(opts)
-end) -- }}}
-
-plugin("which-key", function(mod) -- {{{
-  mod.setup({
-    window = {
-      margin = { 0, 0, 0, 0 },
-    },
-    key_labels = {
-      ["<leader>"] = "∴",
-    },
-    icons = {
-      breadcrumb = "›",
-      separator = "┄",
-      group = "",
-    },
-    triggers = { "<leader>" },
-    layout = {
-      align = "center",
-      spacing = 7,
-    },
-  })
-  require("core.keymaps").setup()
 end) -- }}}
 
 plugin("gitsigns", function(mod) -- {{{
@@ -293,20 +191,6 @@ plugin("null-ls", function() -- {{{
   cmd([[augroup END]])
 end, { defer = true }) -- }}}
 
-plugin("toggleterm", function(toggleterm) -- {{{
-  toggleterm.setup({
-    direction = "vertical",
-    size = function(term)
-      if term.direction == "horizontal" then
-        return 24
-      elseif term.direction == "vertical" then
-        return 80 -- vim.o.columns * 0.4
-      end
-    end,
-    shading_factor = 3,
-  })
-end, { defer = true }) -- }}}
-
 plugin("mason", function() -- {{{
   require("core.extras.lsp_borders").setup()
   require("core.setup.mason").setup()
@@ -320,7 +204,9 @@ plugin("spectre", function(spectre) -- {{{
   })
 end, { defer = true }) -- }}}
 
-plugin("nightfox", function(nightfox) -- {{{
+run(function() -- Nightfox {{{
+  local has, nightfox = pcall(require, "nightfox")
+  if not has then return end
   nightfox.setup({
     options = {
       styles = {
@@ -331,11 +217,16 @@ plugin("nightfox", function(nightfox) -- {{{
   })
 end) -- }}}
 
-plugin("Comment", function(comment) -- {{{
+run(function() -- Comment {{{
+  local has, comment = pcall(require, "Comment")
+  if not has then return end
   comment.setup()
 end) -- }}}
 
-plugin("workspaces", function(workspaces) -- {{{
+run(function() -- Workspaces {{{
+  local has, workspaces = pcall(require, "workspaces")
+  if not has then return end
+
   workspaces.setup({
     hooks = {
       open_pre = { "%bd!" },
@@ -343,33 +234,28 @@ plugin("workspaces", function(workspaces) -- {{{
     },
   })
 
-  plugin("telescope", function(telescope)
+  local has_telescope, telescope = pcall(require, "telescope")
+  if has_telescope then
     telescope.load_extension("workspaces")
-  end)
+  end
 end) -- }}}
 
-plugin("neo-tree", function(neo_tree) -- {{{
+run(function() -- neo-tree {{{
+  local has, neotree = pcall(require, "neo-tree")
+  if not has then return end
+
   vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-  neo_tree.setup({
+  neotree.setup({
     window = {
       position = "right",
     },
   })
 end) -- }}}
 
-plugin("neogit", function(neogit) -- {{{
-  neogit.setup({
-    signs = {
-      section = { '▶ ', '▼ ' },
-      item = { ' ▶', ' ▼' },
-    },
-    integrations = {
-      diffview = true -- uses sindrets/diffview.nvim
-    }
-  })
-end) -- }}}
+run(function() -- symbols-outline {{{
+  local has, _ = pcall(require, "symbols-outline")
+  if not has then return end
 
-plugin("symbols-outline", function() -- {{{
   vim.g.symbols_outline = {
     auto_close = true,
     symbol_blacklist = { "Field", "Param" },
@@ -391,73 +277,21 @@ plugin("nvim-tree", function(nvimtree) -- {{{
   })
 end) -- }}}
 
-if true then -- Vim-rooter {{{
-  -- ["<leader>b<"] = { "<cmd>BufferMovePrevious<cr>", "Move to left" },
-  -- ["<leader>b>"] = { "<cmd>BufferMoveNext<cr>", "Move to right" },
-  -- Localise the changes, so, eg, opening vimrc while in a project will
-  -- not mess with the global cwd
-  vim.g.rooter_cd_cmd = 'lcd'
-  vim.g.rooter_silent_chdir = 1
+require("core.setup.treesitter").setup()
+require("core.setup.nvim-settings").setup()
+require("core.setup.rooter").setup()
+require("core.setup.which-key").setup()
+require("core.lib.theme").setup()
+require("core.keymaps").setup()
 
-  -- simplify the list for optimisation
-  vim.g.rooter_patterns = { '.git', 'package.json' }
-end -- }}}
-
-if true then -- Autocmds {{{
-  local augroup = require("core.utils").augroup
-
-  augroup("MyCustomisations", function(autocmd, _group)
-    -- Cursorline on insert mode
-    autocmd("InsertEnter", "*", "set cursorline")
-    autocmd("InsertLeave", "*", "set nocursorline")
-
-    -- No line numbers, insert mode, etc
-    autocmd("TermOpen", "*", "setlocal nonumber norelativenumber nocursorline")
-    autocmd("TermOpen", "*", "startinsert")
-    autocmd("FileType", "markdown,spectre_panel,neo-tree", "setlocal nonumber")
-
-    -- Git: close on ctrl-s
-    autocmd("FileType", "gitcommit,NeogitCommitMessage", "startinsert")
-    autocmd("FileType", "gitcommit,NeogitCommitMessage", [[inoremap <silent> <buffer> <c-s> <esc>:w<cr>G:q<cr>]])
-    autocmd("FileType", "gitcommit,NeogitCommitMessage", [[nnoremap <silent> <buffer> <c-s> :w<cr>G:q<cr>]])
-
-    -- Neogit: make `-` easier to hit, and cancel out the global - keymap
-    autocmd("FileType", "NeogitPopup", [[nnoremap <buffer> , -]])
-    autocmd("FileType", "NeogitPopup", [[nnoremap <buffer> - -]])
-
-    -- Markdown stuff
-    autocmd("FileType", "text,markdown", [[iabbrev <buffer> :star: ⭐]])
-    autocmd("FileType", "text,markdown", [[iabbrev <buffer> -- —]])
-    autocmd("FileType", "text,markdown", [[iabbrev <buffer> -> →]])
-    autocmd("FileType", "text,markdown", [[inoremap <buffer> +co ``<left>]]) -- [co]de
-    autocmd("FileType", "text,markdown", [[inoremap <buffer> +cd ```<cr>```<home><up><end>]]) -- [c]o[d]e block
-
-    autocmd("Colorscheme", "*", function()
-      require("core.setup.theme").apply_overrides()
-    end)
-  end)
-end -- }}}
-
-require("core.setup.vim_settings").setup()
-
--- Abbreviations
 vim.defer_fn(function()
-  require("core.abbreviations").setup()
-  require("core.extras.highlight_on_yank").setup()
+  require("core.setup.nvim-autocmds").setup()
+  require("core.setup.neogit").setup()
+  require("core.setup.toggleterm").setup()
+  require("core.setup.cmp").setup()
+  require("core.setup.zz-deferred").setup()
+  require("core.lib.abbreviations").setup()
+  require("core.lib.highlight_on_yank").setup()
 end, 250)
-
--- Set theme after the customise theme hooks
-require("core.setup.theme").setup()
-
--- Expermental: show syntax group under cursor
-vim.cmd([[
-nnoremap <leader>,h :CheckHighlightUnderCursor<cr>
-com! CheckHighlightUnderCursor echo {l,c,n ->
-        \ '' . l . ':' . c . ': '
-        \ . 'hi<'    . synIDattr(synID(l, c, 1), n)             . '> '
-        \ .'trans<' . synIDattr(synID(l, c, 0), n)             . '> '
-        \ .'lo<'    . synIDattr(synIDtrans(synID(l, c, 1)), n) . '> '
-        \ }(line("."), col("."), "name")
-]])
 
 -- vim:foldmethod=marker
