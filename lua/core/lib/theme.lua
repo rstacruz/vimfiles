@@ -87,6 +87,13 @@ local function setup(options)
   vim.g.rosebones = vim.g.zenbones
 
   cmd("color " .. CURRENT_THEME.colorscheme)
+
+  -- hax for applying zenbones config
+  if CURRENT_THEME.colorscheme == "zenbones" then
+    vim.defer_fn(function()
+      cmd("color " .. CURRENT_THEME.colorscheme)
+    end, 300)
+  end
 end
 
 local function toggle_theme()
