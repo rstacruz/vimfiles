@@ -6,10 +6,14 @@ end
 -- - Mapping lspconfig names to Mason: https://github.com/williamboman/mason-lspconfig.nvim/blob/main/doc/server-mapping.md
 local function setup()
   local _, mason = pcall(require, "mason")
-  if not mason then return end
+  if not mason then
+    return
+  end
 
   local has_lspconfig, lspconfig = pcall(require, "lspconfig")
-  if not has_lspconfig then return end
+  if not has_lspconfig then
+    return
+  end
 
   local has_null_ls, null_ls = pcall(require, "null-ls")
   local has_installer, installer = pcall(require, "mason-tool-installer")
@@ -34,6 +38,9 @@ local function setup()
     table.insert(tools, "tailwindcss-language-server")
     table.insert(tools, "typescript-language-server")
     table.insert(tools, "yaml-language-server")
+    table.insert(null_sources, null_ls.builtins.code_actions.eslint_d)
+    table.insert(null_sources, null_ls.builtins.diagnostics.eslint_d)
+    table.insert(null_sources, null_ls.builtins.formatting.eslint_d)
   end
   if which("lua") then
     lspconfig.sumneko_lua.setup({})
@@ -41,11 +48,16 @@ local function setup()
   end
   if which("ruby") then
     lspconfig.solargraph.setup({})
+    table.insert(null_sources, null_ls.builtins.formatting.standardrb)
+    table.insert(null_sources, null_ls.builtins.diagnostics.standardrb)
+    -- table.insert(null_sources, null_ls.builtins.formatting.rubocop)
+    -- table.insert(null_sources, null_ls.builtins.diagnostics.rubocop)
     table.insert(tools, "rubocop")
     table.insert(tools, "solargraph")
   end
   if which("cargo") then
     table.insert(tools, "stylua")
+    table.insert(null_sources, null_ls.builtins.formatting.stylua)
   end
 
   if has_installer then
