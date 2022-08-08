@@ -11,7 +11,7 @@ local function setup()
         return 80 -- vim.o.columns * 0.4
       end
     end,
-    shading_factor = 3,
+    shading_factor = 0,
   })
 end
 

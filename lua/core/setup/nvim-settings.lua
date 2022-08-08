@@ -18,8 +18,6 @@ local function setup()
   vim.opt.swapfile = false -- Don't write swap files
   vim.opt.termguicolors = true -- Full GUI colours in terminal
   vim.opt.wrap = false -- Word wrap
-  vim.opt.winwidth = 85 -- Auto-resize windows
-  vim.opt.winminwidth = 12
   vim.opt.foldlevel = 99 -- Don't fold everything on first load
   vim.opt.timeoutlen = 200 -- for which-key
 

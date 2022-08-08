@@ -13,7 +13,7 @@ local VISUAL_BINDINGS = {
   ["<leader>gY"] = { "<cmd>GBrowse<cr>", "Open in GitHub [Y]" },
 }
 
-local BINDINGS = {
+local NORMAL_BINDINGS = {
   -- Buffer
   ["gb"] = { ":bnext<cr>", "Buffer: next" },
   ["gB"] = { ":bprev<cr>", "Buffer: previous" },
@@ -172,11 +172,20 @@ local BINDINGS = {
   ["<leader>oDs"] = { "<cmd>lua vim.diagnostic.show()<cr>", "[s]how diagnostics" },
 }
 
+-- Works everywhere
+local CTRL_BINDINGS = {
+  ["<c-h>"] = { [[<cmd>wincmd W | set winwidth=80 | set winwidth=20<cr>]], "Focus previous pane" },
+  ["<c-n>"] = { [[<cmd>wincmd w | set winwidth=80 | set winwidth=20<cr>]], "Focus next pane" },
+  ["<c-pageup>"] = { [[<cmd>wincmd W | set winwidth=80 | set winwidth=20<cr>]], "Focus previous pane" },
+  ["<c-pagedown>"] = { [[<cmd>wincmd w | set winwidth=80 | set winwidth=20<cr>]], "Focus next pane" },
+  ["<c-s>"] = { [[<cmd>w<cr>]], "Save file" },
+}
 
-local map = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
 
 local function setup_other_bindings()
+  local map = vim.api.nvim_set_keymap
+  local opts = { noremap = true, silent = true }
+
   -- Unimpaired
   map("n", [[co]], [[<leader>o]], { silent = true })
   map("n", [[yo]], [[<leader>o]], { silent = true })
@@ -191,46 +200,30 @@ local function setup_other_bindings()
 
   -- Keymap: terminal
   map("t", [[<esc>]], [[<c-\><c-n>]], opts) -- Terminal esc
-  map("t", [[<c-n>]], [[<c-\><c-n><c-w>w]], opts) -- Terminal focus next
-  map("t", [[<c-h>]], [[<c-\><c-n><c-w>W]], opts) -- Terminal focus prev
 
   -- Keymap: ctrl
-  map("i", [[<c-h>]], [[<esc><c-w>W]], opts) -- Focus prev (ins)
-  map("i", [[<c-n>]], [[<esc><c-w>w]], opts) -- Focus next (ins)
-  map("i", [[<c-pagedown>]], [[<esc><c-w>w]], opts) -- Focus next (ins)
-  map("i", [[<c-pageup>]], [[<esc><c-w>W]], opts) -- Focus prev (ins)
-  map("i", [[<c-s>]], [[<esc>:w<cr>]], opts) -- Save (ins)
   map("i", [[<c-v>]], [[<esc>:set paste<cr>a<c-r>+<esc>:set nopaste<cr>a]], opts) -- Paste
-
-  map("n", [[<c-h>]], [[<c-w>W]], opts) -- Focus prev
-  map("n", [[<c-n>]], [[<c-w>w]], opts) -- Focus next (ins)
-  map("n", [[<c-pagedown>]], [[<c-w>w]], opts) -- Focus next (ins)
-  map("n", [[<c-pageup>]], [[<c-w>W]], opts) -- Focus prev
-  map("n", [[<c-s>]], [[:w<cr>]], opts) -- Save
-
   map("v", [[<c-c>]], [["+y]], opts) -- Copy
   if pcall(require, "telescope") then
     map("n", [[<c-p>]], [[<cmd>Telescope fd<cr>]], opts)
   end
   if pcall(require, "nvim-tree") then
-    -- map("n", [[<c-b>]], [[:NvimTreeToggle<cr>]], opts) -- Toggle sidebar
     map("n", [[-]], [[<cmd>:NvimTreeFindFile<cr>]], opts)
   elseif pcall(require, "neo-tree") then
-    -- map("n", [[<c-b>]], [[<cmd>Neotree<cr>]], opts) -- Toggle sidebar
     map("n", [[-]], [[<cmd>:Neotree reveal<cr>]], opts)
   end
   if pcall(require, "toggleterm") then
     map("n", [[<c-j>]], [[:ToggleTerm<cr>]], opts) -- Toggle terminal
-    map("t", [[<esc><esc>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Terminal esc
-    map("n", [[<esc><esc>]], [[<cmd>ToggleTerm<cr>]], opts) -- Terminal esc
-    map("t", [[<esc><pagedown>]], [[<c-\><c-n>:ToggleTerm<cr>]], opts) -- Terminal esc
-    map("n", [[<esc><pagedown>]], [[<cmd>ToggleTerm<cr>]], opts) -- Terminal esc
   end
 end
 
 local function setup()
-  wk.register(VISUAL_BINDINGS, { mode = "v" })
-  wk.register(BINDINGS)
+  wk.register(NORMAL_BINDINGS, { mode = 'n' })
+  wk.register(VISUAL_BINDINGS, { mode = 'v' })
+  wk.register(CTRL_BINDINGS, { mode = 'i' })
+  wk.register(CTRL_BINDINGS, { mode = 't' })
+  wk.register(CTRL_BINDINGS, { mode = 'n' })
+  wk.register(CTRL_BINDINGS, { mode = 'v' })
   setup_other_bindings()
 end
 

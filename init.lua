@@ -113,7 +113,7 @@ local utils = require("core.utils")
 local plugin = utils.plugin
 -- }}}
 
-run_later(function() -- scrollview {{{
+run(function() -- scrollview {{{
   local has, scrollview = pcall(require, "scrollview")
   if not has then return end
 
@@ -144,25 +144,30 @@ plugin("lualine", function(lualine) -- {{{
   lualine.setup(opts)
 end) -- }}}
 
-plugin("gitsigns", function(mod) -- {{{
-  mod.setup({
+run(function() -- gitsigns {{{
+  local has, gitsigns = pcall(require, "gitsigns")
+  if not has then return end
+
+  gitsigns.setup({
     signs = {
       changedelete = { text = "▌" }, -- Originally "~"
       change = { text = "▌" },
       add = { text = "▌" },
     },
   })
-end, { defer = true }) -- }}}
+end) -- }}}
 
-plugin("telescope", function(telescope) -- {{{
-  local defaults = require("telescope.themes").get_ivy({
-    show_line = false,
-    preview_title = false,
-    prompt_prefix = "› ",
-    selection_caret = "  ",
-  })
+run(function() -- telescope {{{
+  local has, telescope = pcall(require, "telescope")
+  if not has then return end
+
   telescope.setup({
-    defaults = defaults,
+    defaults = {
+      show_line = false,
+      preview_title = false,
+      prompt_prefix = "› ",
+      selection_caret = "› ",
+    }
   })
 end) -- }}}
 
