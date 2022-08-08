@@ -77,13 +77,15 @@ local function setup(options)
 
   vim.g.zenbones = {
     lightness = "bright",
-    --transparent_background = true,
+    darkness = "warm", -- warm | stark
     solid_linenr = true,
     lighten_cursor_line = 9,
     darken_noncurrent_window = true,
     lighten_noncurrent_window = true,
   }
+
   vim.g.rosebones = vim.g.zenbones
+
   cmd("color " .. CURRENT_THEME.colorscheme)
 end
 
