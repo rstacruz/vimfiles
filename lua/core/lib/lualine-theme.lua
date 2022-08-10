@@ -9,6 +9,7 @@ local function get_theme(opts)
       startify = true,
       vista_kind = true,
       spectre_panel = true,
+      alpha = true,
     }
     return not (nonfile_types[vim.bo.filetype] or false)
   end

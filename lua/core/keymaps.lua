@@ -52,7 +52,6 @@ local NORMAL_BINDINGS = {
   -- Leader: [,] experimental
   ["<leader>,"] = { name = "Experimental..." },
   ["<leader>,s"] = { "<cmd>split ~/.scratchpad<cr><C-w>H", "Open [s]cratchpad" },
-  ["<leader>,n"] = { "<cmd>noh<cr>", "Remove search highlighting [n]" },
   ["<leader>,g"] = { [[:lua require('core.actions').telescope_grep()<cr>]], "Search (telescope)..." },
 
   -- Leader: [w] window
@@ -82,6 +81,7 @@ local NORMAL_BINDINGS = {
   ["<leader>xh"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>", "Close [h]idden buffers" },
   ["<leader>xH"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>", "Close [H]idden buffers (force)" },
   ["<leader>xc"] = { "<cmd>cq<cr>", "Exit [c]" },
+  ["<leader>xa"] = { "<cmd>%bd! | Alpha<cr>", "Back to st[a]rt screen" },
 
   -- Leader: [s] settings
   ["<leader>s"] = { name = "[s]ettings..." },

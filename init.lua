@@ -41,6 +41,7 @@ local function packages(use)
   use("slim-template/vim-slim") -- Slim (.slim)
 
   -- UI
+  use("goolord/alpha-nvim")
   use("dstein64/nvim-scrollview")
   use("folke/lsp-colors.nvim") -- Infer some colours needed for LSP
   use("folke/which-key.nvim") -- Menu when pressing [space]
@@ -106,7 +107,7 @@ local function run_later(fn)
 end
 
 require("packer").startup(packages)
-require("impatient")
+require("impatient").enable_profile()
 -- }}}
 
 local function setup_scrollview() -- {{{
@@ -325,6 +326,7 @@ require("core.lib.theme").setup()
 require("core.setup.bufferline").setup() -- do after theme
 require("core.setup.nvim-settings").setup()
 require("core.setup.treesitter").setup()
+require("core.setup.alpha").setup()
 
 run_later(function()
   require("core.setup.mason").setup()
