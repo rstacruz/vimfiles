@@ -98,16 +98,17 @@ local function get_theme(opts)
       lualine_z = {},
     },
     sections = {
-      lualine_a = {},
-      lualine_b = {
+      lualine_a = {
         {
           "diagnostics",
           source = { "nvim" },
           sections = { "error" },
         },
       },
-      lualine_c = {
+      lualine_b = {
         filename,
+      },
+      lualine_c = {
         gps and { gps.get_location, cond = gps.is_available, color = "lualine_c_inactive" } or {},
       },
       lualine_x = { filetype },
