@@ -4,7 +4,7 @@ local function setup()
     return
   end
 
-  local groups = require("bufferline.groups")
+  local has_groups, groups = pcall(require, "bufferline.groups")
 
   bufferline.setup({
     options = {
@@ -24,20 +24,21 @@ local function setup()
       --   local icon = level:match("error") and "" or ""
       --   return " " .. icon .. count
       -- end,
-      groups = {
-        options = {
-          toggle_hidden_on_enter = true, -- when you re-enter a hidden group this options re-opens that group so the buffer is visible
-        },
-        items = {
-          groups.builtin.ungrouped,
-          {
-            name = "Docs",
-            matcher = function(buf)
-              return buf.filename:match("%.md") or buf.filename:match("%.txt")
-            end,
+      groups = has_groups
+        and {
+          options = {
+            toggle_hidden_on_enter = true, -- when you re-enter a hidden group this options re-opens that group so the buffer is visible
+          },
+          items = {
+            groups.builtin.ungrouped,
+            {
+              name = "Docs",
+              matcher = function(buf)
+                return buf.filename:match("%.md") or buf.filename:match("%.txt")
+              end,
+            },
           },
         },
-      },
     },
   })
 end

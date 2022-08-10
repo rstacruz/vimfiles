@@ -330,10 +330,10 @@ run_later(function() -- nvim-tree {{{
   })
 end)
 
-require("core.setup.bufferline").setup()
+require("core.lib.theme").setup()
+require("core.setup.bufferline").setup() -- do after theme
 require("core.setup.nvim-settings").setup()
 require("core.setup.treesitter").setup()
-require("core.lib.theme").setup()
 
 run_later(function()
   require("core.setup.mason").setup()
