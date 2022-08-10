@@ -115,7 +115,7 @@ local utils = require("core.utils")
 local plugin = utils.plugin
 -- }}}
 
-run(function() -- scrollview {{{
+run_later(function() -- scrollview {{{
   local has, scrollview = pcall(require, "scrollview")
   if not has then
     return
@@ -151,13 +151,19 @@ run_later(function() -- indent_blankline {{{
   }
 end) -- }}}
 
-plugin("lualine", function(lualine) -- {{{
+run(function() -- lualine {{{
+  local has, lualine = pcall(require, "lualine")
+  if not has then
+    return
+  end
+
   local lualine_theme = require("core.lib.theme").get_lualine_theme()
   local opts = require("core.lib.lualine-theme").get_theme({ theme = lualine_theme })
+
   lualine.setup(opts)
 end) -- }}}
 
-run(function() -- gitsigns {{{
+run_later(function() -- gitsigns {{{
   local has, gitsigns = pcall(require, "gitsigns")
   if not has then
     return
@@ -172,7 +178,7 @@ run(function() -- gitsigns {{{
   })
 end) -- }}}
 
-run(function() -- telescope {{{
+run_later(function() -- telescope {{{
   local has, telescope = pcall(require, "telescope")
   if not has then
     return
@@ -194,28 +200,48 @@ plugin("telescope._extensions.fzf", function() -- {{{
   end)
 end) -- }}}
 
-plugin("nvim-gps", function(mod) -- {{{
-  mod.setup({ separator = " ╱ " })
-end, { defer = true }) -- }}}
+run_later(function() -- nvim-gps {{{
+  local has, nvim_gps = pcall(require, "nvim-gps")
+  if not has then
+    return
+  end
 
-plugin("hop", function(mod) -- {{{
-  mod.setup({ keys = "arstgmneiowfpyulcdh" })
-end, { defer = true }) -- }}}
+  nvim_gps.setup({ separator = " ╱ " })
+end) -- }}}
 
-plugin("notify", function(notify) -- {{{
+run_later(function() -- hop {{{
+  local has, hop = pcall(require, "hop")
+  if not has then
+    return
+  end
+
+  hop.setup({ keys = "arstgmneiowfpyulcdh" })
+end) -- }}}
+
+run_later(function() -- notify {{{
+  local has, notify = pcall(require, "notify")
+  if not has then
+    return
+  end
+
   notify.setup({ stages = "static" })
   vim.notify = notify
 end) -- }}}
 
-plugin("null-ls", function() -- {{{
+run_later(function() -- null-ls {{{
+  local has, _ = pcall(require, "null-ls")
+  if not has then
+    return
+  end
+
   local formatCommand = vim.lsp.buf.format and "vim.lsp.buf.format()" or "vim.lsp.buf.formatting_seq_sync()"
   cmd([[augroup Nullformat]])
   cmd([[au!]])
   cmd([[au BufWritePre *.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs lua ]] .. formatCommand)
   cmd([[augroup END]])
-end, { defer = true }) -- }}}
+end) -- }}}
 
-run_later(function() --- spectre {{{
+run_later(function() -- spectre {{{
   local has, spectre = pcall(require, "spectre")
   if not has then
     return
@@ -244,7 +270,7 @@ run(function() -- Nightfox {{{
   })
 end) -- }}}
 
-run(function() -- Comment {{{
+run_later(function() -- Comment {{{
   local has, comment = pcall(require, "Comment")
   if not has then
     return
@@ -252,7 +278,7 @@ run(function() -- Comment {{{
   comment.setup()
 end) -- }}}
 
-run(function() -- Workspaces {{{
+run_later(function() -- Workspaces {{{
   local has, workspaces = pcall(require, "workspaces")
   if not has then
     return
@@ -285,13 +311,18 @@ run(function() -- neo-tree {{{
   })
 end) -- }}}
 
-plugin("nvim-tree", function(nvimtree) -- {{{
-  nvimtree.setup({
+run_later(function() -- nvim-tree {{{
+  local has, nvim_tree = pcall(require, "nvim-tree")
+  if not has then
+    return
+  end
+
+  nvim_tree.setup({
     view = {
       width = 30,
     },
   })
-end) -- }}}
+end)
 
 run(function() -- bufferline {{{
   local has, bufferline = pcall(require, "bufferline")
@@ -322,7 +353,7 @@ require("core.setup.treesitter").setup()
 require("core.setup.which-key").setup()
 require("core.lib.theme").setup()
 
-vim.defer_fn(function()
+run_later(function()
   require("core.extras.lsp_borders").setup()
   require("core.setup.nvim-autocmds").setup()
   require("core.setup.neogit").setup()
@@ -332,6 +363,6 @@ vim.defer_fn(function()
   require("core.lib.abbreviations").setup()
   require("core.lib.highlight_on_yank").setup()
   require("core.keymaps").setup()
-end, 250)
+end)
 
 -- vim:foldmethod=marker
