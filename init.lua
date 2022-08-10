@@ -317,8 +317,15 @@ run_later(function() -- nvim-tree {{{
   end
 
   nvim_tree.setup({
+    sync_root_with_cwd = true,
     view = {
       width = 30,
+    },
+    renderer = {
+      add_trailing = true,
+      indent_markers = {
+        enable = true,
+      },
     },
   })
 end)
