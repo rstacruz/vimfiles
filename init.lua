@@ -109,7 +109,7 @@ require("packer").startup(packages)
 require("impatient")
 -- }}}
 
-run_later(function() -- scrollview {{{
+local function setup_scrollview() -- {{{
   local has, scrollview = pcall(require, "scrollview")
   if not has then
     return
@@ -117,9 +117,11 @@ run_later(function() -- scrollview {{{
 
   scrollview.setup()
   vim.g.scrollview_excluded_filetypes = { "NvimTree" }
-end) -- }}}
+end
 
-run_later(function() -- indent_blankline {{{
+run_later(setup_scrollview) -- }}}
+
+local function setup_indent_blankline() -- {{{
   local has, indent_blankline = pcall(require, "indent_blankline")
   if not has then
     return
@@ -143,9 +145,11 @@ run_later(function() -- indent_blankline {{{
     "help",
     "spectre_panel",
   }
-end) -- }}}
+end
 
-run(function() -- lualine {{{
+run_later(setup_indent_blankline) -- }}}
+
+local function setup_lualine() -- {{{
   local has, lualine = pcall(require, "lualine")
   if not has then
     return
@@ -155,9 +159,11 @@ run(function() -- lualine {{{
   local opts = require("core.lib.lualine-theme").get_theme({ theme = lualine_theme })
 
   lualine.setup(opts)
-end) -- }}}
+end
 
-run_later(function() -- gitsigns {{{
+run(setup_lualine) -- }}}
+
+local function setup_gitsigns() -- {{{
   local has, gitsigns = pcall(require, "gitsigns")
   if not has then
     return
@@ -170,63 +176,65 @@ run_later(function() -- gitsigns {{{
       add = { text = "▌" },
     },
   })
-end) -- }}}
+end
 
-run_later(function() -- telescope {{{
+run_later(setup_gitsigns) -- }}}
+
+local function setup_telescope() -- {{{
   local has, telescope = pcall(require, "telescope")
   if not has then
     return
   end
   local options = {
-  defaults = {
-    vimgrep_arguments = {
-      "rg",
-      "--color=never",
-      "--no-heading",
-      "--with-filename",
-      "--line-number",
-      "--column",
-      "--smart-case",
-    },
-    prompt_prefix = "   ",
-    selection_caret = "  ",
-    entry_prefix = "  ",
-    initial_mode = "insert",
-    selection_strategy = "reset",
-    sorting_strategy = "ascending",
-    layout_strategy = "horizontal",
-    layout_config = {
-      horizontal = {
-        prompt_position = "top",
-        preview_width = 0.55,
-        results_width = 0.8,
+    defaults = {
+      vimgrep_arguments = {
+        "rg",
+        "--color=never",
+        "--no-heading",
+        "--with-filename",
+        "--line-number",
+        "--column",
+        "--smart-case",
       },
-      vertical = {
-        mirror = false,
+      prompt_prefix = "   ",
+      selection_caret = "  ",
+      entry_prefix = "  ",
+      initial_mode = "insert",
+      selection_strategy = "reset",
+      sorting_strategy = "ascending",
+      layout_strategy = "horizontal",
+      layout_config = {
+        horizontal = {
+          prompt_position = "top",
+          preview_width = 0.55,
+          results_width = 0.8,
+        },
+        vertical = {
+          mirror = false,
+        },
+        width = 0.87,
+        height = 0.80,
+        preview_cutoff = 120,
       },
-      width = 0.87,
-      height = 0.80,
-      preview_cutoff = 120,
+      file_sorter = require("telescope.sorters").get_fuzzy_file,
+      file_ignore_patterns = { "node_modules" },
+      generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+      path_display = { "truncate" },
+      winblend = 0,
+      border = {},
+      borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+      color_devicons = true,
+      set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+      file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+      grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+      qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+      -- Developer configurations: Not meant for general override
+      buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+      mappings = {
+        n = { ["q"] = require("telescope.actions").close },
+      },
     },
-    file_sorter = require("telescope.sorters").get_fuzzy_file,
-    file_ignore_patterns = { "node_modules" },
-    generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-    path_display = { "truncate" },
-    winblend = 0,
-    border = {},
-    borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-    color_devicons = true,
-    set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
-    file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-    grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-    qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-    -- Developer configurations: Not meant for general override
-    buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
-    mappings = {
-      n = { ["q"] = require("telescope.actions").close },
-    },
-  },
-}
+  }
 
   telescope.setup(options)
 
@@ -234,27 +242,33 @@ run_later(function() -- telescope {{{
   if has_fzf then
     telescope.load_extension("fzf")
   end
-end) -- }}}
+end
 
-run_later(function() -- nvim-gps {{{
+run_later(setup_telescope) -- }}}
+
+local function setup_nvim_gps() -- {{{
   local has, nvim_gps = pcall(require, "nvim-gps")
   if not has then
     return
   end
 
   nvim_gps.setup({ separator = " ╱ " })
-end) -- }}}
+end
 
-run_later(function() -- hop {{{
+run_later(setup_nvim_gps) -- }}}
+
+local function setup_hop() -- {{{
   local has, hop = pcall(require, "hop")
   if not has then
     return
   end
 
   hop.setup({ keys = "arstgmneiowfpyulcdh" })
-end) -- }}}
+end
 
-run_later(function() -- notify {{{
+run_later(setup_hop) -- }}}
+
+local function setup_notify() -- {{{
   local has, notify = pcall(require, "notify")
   if not has then
     return
@@ -262,9 +276,11 @@ run_later(function() -- notify {{{
 
   notify.setup({ stages = "static" })
   vim.notify = notify
-end) -- }}}
+end
 
-run_later(function() -- null-ls {{{
+run(setup_notify) -- }}}
+
+local function setup_null_ls() -- {{{
   local has, _ = pcall(require, "null-ls")
   if not has then
     return
@@ -275,9 +291,11 @@ run_later(function() -- null-ls {{{
   vim.cmd([[au!]])
   vim.cmd([[au BufWritePre *.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs lua ]] .. formatCommand)
   vim.cmd([[augroup END]])
-end) -- }}}
+end
 
-run_later(function() -- spectre {{{
+run_later(setup_null_ls) -- }}}
+
+local function setup_spectre() -- {{{
   local has, spectre = pcall(require, "spectre")
   if not has then
     return
@@ -288,9 +306,11 @@ run_later(function() -- spectre {{{
     result_padding = "   ",
     line_sep = "",
   })
-end) -- }}}
+end
 
-run(function() -- Nightfox {{{
+run_later(setup_spectre) -- }}}
+
+local function setup_nightfox() -- {{{
   local has, nightfox = pcall(require, "nightfox")
   if not has then
     return
@@ -310,17 +330,21 @@ run(function() -- Nightfox {{{
       },
     },
   })
-end) -- }}}
+end
 
-run_later(function() -- Comment {{{
+run(setup_nightfox) -- }}}
+
+local function setup_comment() -- {{{
   local has, comment = pcall(require, "Comment")
   if not has then
     return
   end
   comment.setup()
-end) -- }}}
+end
 
-run_later(function() -- Workspaces {{{
+run_later(setup_comment) -- }}}
+
+local function setup_workspaces() -- {{{
   local has, workspaces = pcall(require, "workspaces")
   if not has then
     return
@@ -337,23 +361,11 @@ run_later(function() -- Workspaces {{{
   if has_telescope then
     telescope.load_extension("workspaces")
   end
-end) -- }}}
+end
 
-run(function() -- neo-tree {{{
-  local has, neotree = pcall(require, "neo-tree")
-  if not has then
-    return
-  end
+run_later(setup_workspaces) -- }}}
 
-  vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-  neotree.setup({
-    window = {
-      position = "right",
-    },
-  })
-end) -- }}}
-
-run_later(function() -- nvim-tree {{{
+local function setup_nvim_tree() -- {{{
   local has, nvim_tree = pcall(require, "nvim-tree")
   if not has then
     return
@@ -371,7 +383,9 @@ run_later(function() -- nvim-tree {{{
       },
     },
   })
-end)
+end
+
+run(setup_nvim_tree) -- }}}
 
 require("core.lib.theme").setup()
 require("core.setup.bufferline").setup() -- do after theme

@@ -15,6 +15,8 @@ local VISUAL_BINDINGS = {
 }
 
 local NORMAL_BINDINGS = {
+  ["<esc>"] = { "<cmd>noh<cr>", "Remove highlights" },
+
   -- Buffer
   ["gb"] = has_bufferline and { "<cmd>BufferLineCycleNext<cr>", "Buffer: next" } or {},
   ["gB"] = has_bufferline and { "<cmd>BufferLineCyclePrev<cr>", "Buffer: previous" } or {},
