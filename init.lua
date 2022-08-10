@@ -109,12 +109,6 @@ require("packer").startup(packages)
 require("impatient")
 -- }}}
 
--- Preamble {{{
-local cmd = vim.api.nvim_command
-local utils = require("core.utils")
-local plugin = utils.plugin
--- }}}
-
 run_later(function() -- scrollview {{{
   local has, scrollview = pcall(require, "scrollview")
   if not has then
@@ -192,12 +186,11 @@ run_later(function() -- telescope {{{
       selection_caret = "› ",
     },
   })
-end) -- }}}
 
-plugin("telescope._extensions.fzf", function() -- {{{
-  plugin("telescope", function(telescope)
+  local has_fzf, _ = pcall(require, "telescope._extensions.fzf")
+  if has_fzf then
     telescope.load_extension("fzf")
-  end)
+  end
 end) -- }}}
 
 run_later(function() -- nvim-gps {{{
@@ -235,10 +228,10 @@ run_later(function() -- null-ls {{{
   end
 
   local formatCommand = vim.lsp.buf.format and "vim.lsp.buf.format()" or "vim.lsp.buf.formatting_seq_sync()"
-  cmd([[augroup Nullformat]])
-  cmd([[au!]])
-  cmd([[au BufWritePre *.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs lua ]] .. formatCommand)
-  cmd([[augroup END]])
+  vim.cmd([[augroup Nullformat]])
+  vim.cmd([[au!]])
+  vim.cmd([[au BufWritePre *.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs lua ]] .. formatCommand)
+  vim.cmd([[augroup END]])
 end) -- }}}
 
 run_later(function() -- spectre {{{
