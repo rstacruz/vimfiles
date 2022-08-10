@@ -3,6 +3,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
 local has_hop = pcall(require, "hop")
+local has_bufferline = pcall(require, "bufferline")
 
 -- Visual
 local VISUAL_BINDINGS = {
@@ -15,10 +16,10 @@ local VISUAL_BINDINGS = {
 
 local NORMAL_BINDINGS = {
   -- Buffer
-  ["gb"] = { ":bnext<cr>", "Buffer: next" },
-  ["gB"] = { ":bprev<cr>", "Buffer: previous" },
-  ["<tab>"] = { ":bnext<cr>", "Buffer: next" },
-  ["<s-tab>"] = { ":bprev<cr>", "Buffer: previous" },
+  ["gb"] = has_bufferline and { "<cmd>BufferLineCycleNext<cr>", "Buffer: next" } or {},
+  ["gB"] = has_bufferline and { "<cmd>BufferLineCyclePrev<cr>", "Buffer: previous" } or {},
+  ["<tab>"] = has_bufferline and { "<cmd>BufferLineCycleNext<cr>", "Buffer: next" } or {},
+  ["<s-tab>"] = has_bufferline and { "<cmd>BufferLineCyclePrev<cr>", "Buffer: previous" } or {},
 
   -- lsp
   ["gd"] = { "<cmd>Telescope lsp_definitions<cr>", "Definitions (lsp)..." },
@@ -44,12 +45,12 @@ local NORMAL_BINDINGS = {
 
   -- Leader
   ["<leader>."] = { "<cmd>ToggleTerm<cr>", "Toggle terminal" },
-  ["<leader>*"] = { ":GG <c-r><c-w><cr>", "Search from cursor (GG)..." },
+  ["<leader>*"] = { "<cmd>GG <c-r><c-w><cr>", "Search from cursor (GG)..." },
 
   -- Leader: [,] experimental
   ["<leader>,"] = { name = "Experimental..." },
   ["<leader>,s"] = { "<cmd>split ~/.scratchpad<cr><C-w>H", "Open [s]cratchpad" },
-  ["<leader>,n"] = { ":noh<cr>", "Remove search highlighting [n]" },
+  ["<leader>,n"] = { "<cmd>noh<cr>", "Remove search highlighting [n]" },
   ["<leader>,g"] = { [[:lua require('core.actions').telescope_grep()<cr>]], "Search (telescope)..." },
 
   -- Leader: [w] window
@@ -68,21 +69,18 @@ local NORMAL_BINDINGS = {
   ["<leader>wt"] = { "<cmd>tab split<cr>", "New tab" },
 
   -- Leader: [b] buffers
-  ["<leader>b"] = { name = "[b]uffers..." },
-  ["<leader>bb"] = { "<cmd>BufferPick<cr>", "pick [b]..." },
-  ["<leader>bp"] = { "<cmd>BufferPin<cr>", "Toggle [p]in" },
-  ["<leader>br"] = { "<cmd>BufferCloseBuffersRight<cr>", "close all [r]ight" },
-  ["<leader>bo"] = { "<cmd>BufferCloseAllButCurrentOrPinned<cr>", "[o]nly this" },
-  -- ["<leader>b<"] = { "<cmd>BufferMovePrevious<cr>", "Move to left" },
-  -- ["<leader>b>"] = { "<cmd>BufferMoveNext<cr>", "Move to right" },
+  ["<leader>b"] = has_bufferline and { name = "[b]uffers..." } or {},
+  ["<leader>bb"] = has_bufferline and { "<cmd>BufferPick<cr>", "pick [b]..." } or {},
+  ["<leader>bp"] = has_bufferline and { "<cmd>BufferLineTogglePin<cr>", "Toggle [p]in" } or {},
+  ["<leader>bo"] = has_bufferline and { "<cmd>BufferCloseAllButCurrentOrPinned<cr>", "[o]nly this" } or {},
 
   -- Leader: [x] exit
   ["<leader>x"] = { name = "E[x]it..." },
-  -- ["<leader>xo"] = { ":%bd!|e#|bd#<cr>g;", "Close [o]ther buffers" },
+  -- ["<leader>xo"] = { "<cmd>%bd!|e#|bd#<cr>g;", "Close [o]ther buffers" },
   ["<leader>xh"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>", "Close [h]idden buffers" },
   ["<leader>xH"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>",
     "Close [H]idden buffers (force)" },
-  ["<leader>xc"] = { ":cq<cr>", "Exit [c]" },
+  ["<leader>xc"] = { "<cmd>cq<cr>", "Exit [c]" },
 
   -- Leader: [s] settings
   ["<leader>s"] = { name = "[s]ettings..." },
@@ -94,8 +92,8 @@ local NORMAL_BINDINGS = {
 
   -- Leader: [sp] packer
   ["<leader>sp"] = { name = "[p]acker..." },
-  ["<leader>spc"] = { "<cmd>lua require('core.utils').reload()<cr>:PackerClean<cr>", "Packer: [c]lean unused packages", },
-  ["<leader>spi"] = { "<cmd>lua require('core.utils').reload()<cr>:PackerInstall<cr>", "Packer: [i]nstall new packages", },
+  ["<leader>spc"] = { "<cmd>lua require('core.utils').reload()<cr>:PackerClean<cr>", "Packer: [c]lean unused packages" },
+  ["<leader>spi"] = { "<cmd>lua require('core.utils').reload()<cr>:PackerInstall<cr>", "Packer: [i]nstall new packages" },
   ["<leader>sps"] = { "<cmd>lua require('core.utils').reload()<cr>:PackerSync<cr>", "Packer: [s]ync packages" },
 
   -- Leader: [t] terminal
@@ -104,7 +102,7 @@ local NORMAL_BINDINGS = {
   ["<leader>tr"] = { "<cmd>2ToggleTerm<cr>", "Terminal 2" },
   ["<leader>ts"] = { "<cmd>3ToggleTerm<cr>", "Terminal 3" },
   ["<leader>tt"] = { "<cmd>4ToggleTerm<cr>", "Terminal 4" },
-  ["<leader>th"] = { ":vs<cr>:term fish<cr>", "Open terminal [h]ere" },
+  ["<leader>th"] = { "<cmd>vs<cr>:term fish<cr>", "Open terminal [h]ere" },
 
   -- Leader: [c] code
   ["<leader>c"] = { name = "[c]ode..." },
@@ -136,16 +134,15 @@ local NORMAL_BINDINGS = {
   ["<leader>pr"] = { "<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Open [r]ecent file..." },
   ["<leader>ps"] = { "<cmd>SymbolsOutline<cr>", "Show [s]ymbols..." },
   ["<leader>pS"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Show [S]ymbols (Tele)..." },
-  ["<leader>pg"] = { [[<cmd>lua require('spectre').open({ is_insert_mode = true })<cr>]],
-    "Find in files ([g]rep)...", },
+  ["<leader>pg"] = { [[<cmd>lua require('spectre').open({ is_insert_mode = true })<cr>]], "Find in files ([g]rep)..." },
   ["<leader>pW"] = { name = "[w]orkspaces..." },
   ["<leader>pWa"] = { "<cmd>WorkspacesAdd<cr>", "Workspace: [a]dd this folder" },
 
   -- Leader: [f] file
   ["<leader>f"] = { name = "[f]ile..." },
-  ["<leader>fw"] = { ":w<cr>", "Save file [w]" },
-  ["<leader>fs"] = { ":noa w<cr>", "[s]ave without formatting" },
-  ["<leader>fr"] = { ":e!<cr>", "[r]evert changes in file" },
+  ["<leader>fw"] = { "<cmd>w<cr>", "Save file [w]" },
+  ["<leader>fs"] = { "<cmd>noa w<cr>", "[s]ave without formatting" },
+  ["<leader>fr"] = { "<cmd>e!<cr>", "[r]evert changes in file" },
   ["<leader>fy"] = { [[:let @+=@% | echo '→ ' . @%<cr>]], "Cop[y] current path" },
   ["<leader>fY"] = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], "Cop[Y] full path" },
 
@@ -157,12 +154,12 @@ local NORMAL_BINDINGS = {
   ["<leader>on"] = { "<cmd>set number!<cr>", "Toggle line [n]umber" },
   ["<leader>or"] = { "<cmd>set relativenumber!<cr>", "Toggle [r]elative line number" },
   ["<leader>of"] = vim.fn.has("g:neovide") and
-      { ":let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle [f]ullscreen" } or {},
-  ["<leader>ob"] = { ":lua require('core.lib.theme').toggle_theme()<cr>", "Toggle light/dark theme" },
+      { "<cmd>let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle [f]ullscreen" } or {},
+  ["<leader>ob"] = { "<cmd>lua require('core.lib.theme').toggle_theme()<cr>", "Toggle light/dark theme" },
   ["<leader>ot"] = { "<cmd>Twilight<cr>", "Toggle [t]wilight mode" },
-  ["<leader>oB"] = { ":lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
-    "Toggle light/dark [B]ackground", },
-  ["<leader>oc"] = { ":lua vim.o.conceallevel = vim.o.conceallevel == 2 and 0 or 2<cr>", "Toggle [c]onceal" },
+  ["<leader>oB"] = { "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
+    "Toggle light/dark [B]ackground" },
+  ["<leader>oc"] = { "<cmd>lua vim.o.conceallevel = vim.o.conceallevel == 2 and 0 or 2<cr>", "Toggle [c]onceal" },
 
   -- Leader: [oD] diagnostic
   ["<leader>oD"] = { name = "[D]iagnostic..." },
@@ -180,7 +177,6 @@ local CTRL_BINDINGS = {
   ["<c-pagedown>"] = { [[<cmd>wincmd w | set winwidth=80 | set winwidth=20<cr>]], "Focus next pane" },
   ["<c-s>"] = { [[<cmd>w<cr>]], "Save file" },
 }
-
 
 local function setup_other_bindings()
   local map = vim.api.nvim_set_keymap
@@ -218,12 +214,12 @@ local function setup_other_bindings()
 end
 
 local function setup()
-  wk.register(NORMAL_BINDINGS, { mode = 'n' })
-  wk.register(VISUAL_BINDINGS, { mode = 'v' })
-  wk.register(CTRL_BINDINGS, { mode = 'i' })
-  wk.register(CTRL_BINDINGS, { mode = 't' })
-  wk.register(CTRL_BINDINGS, { mode = 'n' })
-  wk.register(CTRL_BINDINGS, { mode = 'v' })
+  wk.register(NORMAL_BINDINGS, { mode = "n" })
+  wk.register(VISUAL_BINDINGS, { mode = "v" })
+  wk.register(CTRL_BINDINGS, { mode = "i" })
+  wk.register(CTRL_BINDINGS, { mode = "t" })
+  wk.register(CTRL_BINDINGS, { mode = "n" })
+  wk.register(CTRL_BINDINGS, { mode = "v" })
   setup_other_bindings()
 end
 

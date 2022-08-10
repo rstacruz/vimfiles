@@ -12,7 +12,7 @@ local CURRENT_MODE = "dark"
 local CURRENT_THEME = {
   colorscheme = "default",
   lualine = "auto",
-  bgmode = "dark"
+  bgmode = "dark",
 }
 
 local THEMES = {
@@ -21,13 +21,13 @@ local THEMES = {
     { if_pkg = "github-nvim-theme", colorscheme = "github_light", lualine = "auto" },
     { if_pkg = "nightfox.nvim", colorscheme = "dayfox", lualine = "auto" },
     { if_pkg = "zenbones.nvim", colorscheme = "seoulbones", lualine = "auto" },
-    { if_pkg = "vim-microtone", colorscheme = "microtone", lualine = "dracula" }
+    { if_pkg = "vim-microtone", colorscheme = "microtone", lualine = "dracula" },
   },
   dark = {
     { if_pkg = "zenbones.nvim", colorscheme = "zenbones", lualine = "zenbones" },
     { if_pkg = "catppuccin-nvim", colorscheme = "catppuccin", lualine = "auto" },
     { if_pkg = "github-nvim-theme", colorscheme = "github_dimmed", lualine = "auto" },
-  }
+  },
 }
 
 ---@param bgmode string ("dark" or "light")
@@ -89,11 +89,11 @@ local function setup(options)
   cmd("color " .. CURRENT_THEME.colorscheme)
 
   -- hax for applying zenbones config
-  if CURRENT_THEME.colorscheme == "zenbones" then
-    vim.defer_fn(function()
-      cmd("color " .. CURRENT_THEME.colorscheme)
-    end, 300)
-  end
+  -- if CURRENT_THEME.colorscheme == "zenbones" then
+  --   vim.defer_fn(function()
+  --     cmd("color " .. CURRENT_THEME.colorscheme)
+  --   end, 300)
+  -- end
 end
 
 local function toggle_theme()

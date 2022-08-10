@@ -3,6 +3,9 @@
 Some plugins I used to use, but don't anymore
 
 ```lua
+  -- bufferline.nvim has more features
+  use "romgrk/barbar.nvim"
+
   -- can just configure things manually instead
   use "williamboman/mason-lspconfig.nvim"
 
