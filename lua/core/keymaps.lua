@@ -47,7 +47,7 @@ local NORMAL_BINDINGS = {
 
   -- Leader
   ["<leader>."] = { "<cmd>ToggleTerm<cr>", "Toggle terminal" },
-  ["<leader>*"] = { "<cmd>GG <c-r><c-w><cr>", "Search from cursor (GG)..." },
+  ["<leader>*"] = { ":GG <c-r><c-w><cr>", "Search in project..." },
 
   -- Leader: [,] experimental
   ["<leader>,"] = { name = "Experimental..." },
@@ -80,8 +80,7 @@ local NORMAL_BINDINGS = {
   ["<leader>x"] = { name = "E[x]it..." },
   -- ["<leader>xo"] = { "<cmd>%bd!|e#|bd#<cr>g;", "Close [o]ther buffers" },
   ["<leader>xh"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>", "Close [h]idden buffers" },
-  ["<leader>xH"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>",
-    "Close [H]idden buffers (force)" },
+  ["<leader>xH"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>", "Close [H]idden buffers (force)" },
   ["<leader>xc"] = { "<cmd>cq<cr>", "Exit [c]" },
 
   -- Leader: [s] settings
@@ -155,12 +154,10 @@ local NORMAL_BINDINGS = {
   ["<leader>os"] = { "<cmd>set spell!<cr>", "Toggle [s]pell check" },
   ["<leader>on"] = { "<cmd>set number!<cr>", "Toggle line [n]umber" },
   ["<leader>or"] = { "<cmd>set relativenumber!<cr>", "Toggle [r]elative line number" },
-  ["<leader>of"] = vim.fn.has("g:neovide") and
-      { "<cmd>let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle [f]ullscreen" } or {},
+  ["<leader>of"] = vim.fn.has("g:neovide") and { "<cmd>let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle [f]ullscreen" } or {},
   ["<leader>ob"] = { "<cmd>lua require('core.lib.theme').toggle_theme()<cr>", "Toggle light/dark theme" },
   ["<leader>ot"] = { "<cmd>Twilight<cr>", "Toggle [t]wilight mode" },
-  ["<leader>oB"] = { "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
-    "Toggle light/dark [B]ackground" },
+  ["<leader>oB"] = { "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>", "Toggle light/dark [B]ackground" },
   ["<leader>oc"] = { "<cmd>lua vim.o.conceallevel = vim.o.conceallevel == 2 and 0 or 2<cr>", "Toggle [c]onceal" },
 
   -- Leader: [oD] diagnostic
@@ -182,6 +179,7 @@ local CTRL_BINDINGS = {
 
 local function setup_other_bindings()
   local map = vim.api.nvim_set_keymap
+
   local opts = { noremap = true, silent = true }
 
   -- Unimpaired

@@ -47,12 +47,21 @@ local function apply_overrides()
   cmd([[hi! HopNextKey1 guibg=#ffddaa guifg=#000000]])
   cmd([[hi! HopNextKey2 guibg=#ffddaa guifg=#000000]])
 
+  cmd([[hi! link TelescopeNormal Pmenu]])
+  cmd([[hi! link TelescopeBorder Pmenu]])
+  cmd([[hi! link TelescopeTitle Comment]])
+  cmd([[hi! link TelescopePromptNormal Pmenu]])
+  cmd([[hi! link TelescopePromptPrefix Error]])
+  cmd([[hi! link TelescopePromptBorder Visual]])
+  cmd([[hi! link TelescopePromptTitle Comment]])
+  cmd([[hi! link TelescopePromptCounter Visual]])
+
   local col = vim.g.colors_name
   local bg = vim.o.background
 
   if col == "nibble" then
     cmd([[hi! Comment guifg=#8080cc guibg=none gui=italic]])
-    cmd([[hi! Cursorline gui=none guibg=#2020aa]]) -- Default was underline only
+    cmd([[hi! CursorLine gui=none guibg=#2020aa]]) -- Default was underline only
     cmd([[hi! LineNr guifg=#5555bb gui=italic]])
   end
 
@@ -87,6 +96,16 @@ local function setup(options)
 
   vim.g.rosebones = vim.g.zenbones
 
+  local augroup = vim.api.nvim_create_augroup("ThemeOverrides", { clear = true })
+  vim.api.nvim_create_autocmd("Colorscheme", {
+    pattern = "*",
+    group = augroup,
+    callback = function()
+      apply_overrides()
+      vim.defer_fn(apply_overrides, 100) -- dunno why this is needed, but nightfox can override the overrides
+    end,
+  })
+
   cmd("color " .. CURRENT_THEME.colorscheme)
 
   -- hax for applying zenbones config
@@ -105,6 +124,5 @@ end
 return {
   setup = setup,
   get_lualine_theme = get_lualine_theme,
-  apply_overrides = apply_overrides,
   toggle_theme = toggle_theme,
 }

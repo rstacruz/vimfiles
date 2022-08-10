@@ -26,10 +26,6 @@ local function setup()
     autocmd("FileType", "text,markdown", [[iabbrev <buffer> -> →]])
     autocmd("FileType", "text,markdown", [[inoremap <buffer> +co ``<left>]]) -- [co]de
     autocmd("FileType", "text,markdown", [[inoremap <buffer> +cd ```<cr>```<home><up><end>]]) -- [c]o[d]e block
-
-    autocmd("Colorscheme", "*", function()
-      require("core.lib.theme").apply_overrides()
-    end)
   end)
 end
 
