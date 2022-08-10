@@ -322,7 +322,7 @@ run_later(function() -- nvim-tree {{{
       width = 30,
     },
     renderer = {
-      add_trailing = true,
+      add_trailing = false,
       indent_markers = {
         enable = true,
       },

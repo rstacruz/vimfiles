@@ -175,7 +175,7 @@ local CTRL_BINDINGS = {
   ["<c-n>"] = { [[<cmd>wincmd w | set winwidth=80 | set winwidth=20<cr>]], "Focus next pane" },
   ["<c-pageup>"] = { [[<cmd>wincmd W | set winwidth=80 | set winwidth=20<cr>]], "Focus previous pane" },
   ["<c-pagedown>"] = { [[<cmd>wincmd w | set winwidth=80 | set winwidth=20<cr>]], "Focus next pane" },
-  ["<c-s>"] = { [[<cmd>w<cr>]], "Save file" },
+  ["<c-s>"] = { [[<cmd>w<cr><esc>]], "Save file" },
 }
 
 local function setup_other_bindings()
