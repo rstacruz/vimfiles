@@ -259,6 +259,12 @@ run(function() -- Nightfox {{{
   if not has then
     return
   end
+  local override = require("nightfox").override
+  override.palettes({
+    dawnfox = {
+      bg1 = "#fcfbfa",
+    },
+  })
 
   nightfox.setup({
     options = {
@@ -324,41 +330,20 @@ run_later(function() -- nvim-tree {{{
   })
 end)
 
-run(function() -- bufferline {{{
-  local has, bufferline = pcall(require, "bufferline")
-  if not has then
-    return
-  end
-
-  bufferline.setup({
-    options = {
-      offsets = {
-        {
-          filetype = "NvimTree",
-          text = function()
-            return "" -- vim.fn.getcwd()
-          end,
-          highlight = "NvimTreeNormal",
-          text_align = "left",
-        },
-      },
-    },
-  })
-end) -- }}}
-
-require("core.setup.mason").setup()
+require("core.setup.bufferline").setup()
 require("core.setup.nvim-settings").setup()
-require("core.setup.rooter").setup()
 require("core.setup.treesitter").setup()
-require("core.setup.which-key").setup()
 require("core.lib.theme").setup()
 
 run_later(function()
+  require("core.setup.mason").setup()
+  require("core.setup.rooter").setup()
   require("core.extras.lsp_borders").setup()
   require("core.setup.nvim-autocmds").setup()
   require("core.setup.neogit").setup()
   require("core.setup.toggleterm").setup()
   require("core.setup.cmp").setup()
+  require("core.setup.which-key").setup()
   require("core.setup.zz-deferred").setup()
   require("core.lib.abbreviations").setup()
   require("core.lib.highlight_on_yank").setup()
