@@ -285,10 +285,13 @@ local function setup_workspaces() -- {{{
     return
   end
 
+  local has_alpha, _ = pcall(require, "alpha")
+
   workspaces.setup({
+    global_cd = true,
     hooks = {
       open_pre = { "%bd!" },
-      open = { "lua require('telescope.builtin').oldfiles({only_cwd=true})" },
+      open = { has_alpha and "Alpha" or "e ." },
     },
   })
 
