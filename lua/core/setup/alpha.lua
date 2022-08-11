@@ -22,8 +22,10 @@ local function get_config()
     val = {
       dashboard.button("e", "  New file", "<cmd>ene<cr>"),
       dashboard.button("r", "  Recent files", "<cmd>Telescope oldfiles<cr>"),
-      dashboard.button("w", "  Open workspace", "<cmd>Telescope workspaces<cr>"),
-      dashboard.button("q", "  Quit", "<cmd>qa<cr>"),
+      dashboard.button(",", "  Browse files", "<cmd>e .<cr>"),
+      dashboard.button(".", "  Open terminal", "<cmd>term<cr>"),
+      dashboard.button("w", "  Open workspace", "<cmd>Telescope workspaces<cr>"),
+      dashboard.button("q", "  Quit", "<cmd>qa<cr>"),
     },
     opts = { spacing = 1 },
   }

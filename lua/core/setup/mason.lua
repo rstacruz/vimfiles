@@ -32,14 +32,14 @@ local function setup()
     lspconfig.yamlls.setup({})
     table.insert(tools, "astro-language-server")
     table.insert(tools, "css-lsp")
-    -- table.insert(tools, "eslint_d")
+    table.insert(tools, "eslint_d")
     table.insert(tools, "prettierd")
     table.insert(tools, "svelte-language-server")
     table.insert(tools, "tailwindcss-language-server")
     table.insert(tools, "typescript-language-server")
     table.insert(tools, "yaml-language-server")
     table.insert(null_sources, null_ls.builtins.code_actions.eslint_d)
-    table.insert(null_sources, null_ls.builtins.diagnostics.eslint_d)
+    -- table.insert(null_sources, null_ls.builtins.diagnostics.eslint_d) -- Produces "no eslint configuration found"} error
     table.insert(null_sources, null_ls.builtins.formatting.eslint_d)
   end
   if which("lua") then
