@@ -20,6 +20,10 @@ local function setup()
       },
       separator_style = "slant", -- slant | thick | thin
       diagnostics = "nvim_lsp",
+
+      -- Works like the browser I guess
+      sort_by = "insert_after_current",
+
       -- diagnostics_indicator = function(count, level)
       --   local icon = level:match("error") and "" or ""
       --   return " " .. icon .. count

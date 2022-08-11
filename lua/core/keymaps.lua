@@ -71,17 +71,17 @@ local NORMAL_BINDINGS = {
 
   -- Leader: [b] buffers
   ["<leader>b"] = has_bufferline and { name = "[b]uffers..." } or {},
-  ["<leader>bb"] = has_bufferline and { "<cmd>BufferPick<cr>", "pick [b]..." } or {},
-  ["<leader>bp"] = has_bufferline and { "<cmd>BufferLineTogglePin<cr>", "Toggle [p]in" } or {},
-  ["<leader>bo"] = has_bufferline and
-      { "<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>", "Close [o]ther tabs" } or {},
+  ["<leader>bp"] = has_bufferline and { "<cmd>BufferLinePick<cr>", "[p]ick..." } or {},
+  ["<leader>b<space>"] = has_bufferline and { "<cmd>BufferLineTogglePin<cr>", "Toggle [P]in" } or {},
+  ["<leader>b."] = has_bufferline and { "<cmd>BufferLineCloseRight<cr>", "Close to the right" } or {},
+  ["<leader>b,"] = has_bufferline and { "<cmd>BufferLineCloseLeft<cr>", "Close to the left" } or {},
+  ["<leader>bo"] = has_bufferline and { "<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>", "Close [o]ther tabs" } or {},
 
   -- Leader: [x] exit
   ["<leader>x"] = { name = "E[x]it..." },
   -- ["<leader>xo"] = { "<cmd>%bd!|e#|bd#<cr>g;", "Close [o]ther buffers" },
   ["<leader>xh"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>", "Close [h]idden buffers" },
-  ["<leader>xH"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>",
-    "Close [H]idden buffers (force)" },
+  ["<leader>xH"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>", "Close [H]idden buffers (force)" },
   ["<leader>xc"] = { "<cmd>cq<cr>", "Exit [c]" },
   ["<leader>xa"] = { "<cmd>%bd! | Alpha<cr>", "Back to st[a]rt screen" },
 
@@ -157,12 +157,10 @@ local NORMAL_BINDINGS = {
   ["<leader>os"] = { "<cmd>set spell!<cr>", "Toggle [s]pell check" },
   ["<leader>on"] = { "<cmd>set number!<cr>", "Toggle line [n]umber" },
   ["<leader>or"] = { "<cmd>set relativenumber!<cr>", "Toggle [r]elative line number" },
-  ["<leader>of"] = vim.fn.has("g:neovide") and
-      { "<cmd>let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle [f]ullscreen" } or {},
+  ["<leader>of"] = vim.fn.has("g:neovide") and { "<cmd>let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle [f]ullscreen" } or {},
   ["<leader>ob"] = { "<cmd>lua require('core.lib.theme').toggle_theme()<cr>", "Toggle light/dark theme" },
   ["<leader>ot"] = { "<cmd>Twilight<cr>", "Toggle [t]wilight mode" },
-  ["<leader>oB"] = { "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
-    "Toggle light/dark [B]ackground" },
+  ["<leader>oB"] = { "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>", "Toggle light/dark [B]ackground" },
   ["<leader>oc"] = { "<cmd>lua vim.o.conceallevel = vim.o.conceallevel == 2 and 0 or 2<cr>", "Toggle [c]onceal" },
 
   -- Leader: [oD] diagnostic
