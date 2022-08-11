@@ -1,13 +1,16 @@
 local function setup()
   local has_cmp, cmp = pcall(require, "cmp")
-  if not has_cmp then return end
+  if not has_cmp then
+    return
+  end
 
   local has_lspkind, lspkind = pcall(require, "lspkind")
-  local formatting = has_lspkind
-      and {
-        format = lspkind.cmp_format({ mode = "symbol", maxwidth = 50, }),
-      }
-      or {}
+  local formatting = has_lspkind and {
+    format = lspkind.cmp_format({
+      mode = "symbol",
+      maxwidth = 50,
+    }),
+  } or {}
 
   local mapping = cmp.mapping.preset.insert({
     ["<cr>"] = cmp.mapping.confirm(), -- add { select = true } to auto-select first item
@@ -20,6 +23,15 @@ local function setup()
   cmp.setup({
     mapping = mapping,
     formatting = formatting,
+    window = {
+      completion = {
+        -- border = "CmpBorder",
+        winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+      },
+      documentation = {
+        -- border = "CmpDocBorder",
+      },
+    },
     completion = {
       keyword_length = 4,
     },

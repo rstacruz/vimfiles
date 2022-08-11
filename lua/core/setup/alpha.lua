@@ -1,20 +1,16 @@
-local function boxify(input, options)
-  offset = options and options.offset or 0
-  input = "  " .. input .. "  "
-  return {
-    "╭" .. string.rep("─", string.len(input) + offset + 4) .. "╮",
-    "│  " .. input .. "  │",
-    "╰" .. string.rep("─", string.len(input) + offset + 4) .. "╯",
-  }
-end
+-- local function boxify(input, options)
+--   local offset = options and options.offset or 0
+--   input = "  " .. input .. "  "
+--   return {
+--     "╭" .. string.rep("─", string.len(input) + offset + 4) .. "╮",
+--     "│  " .. input .. "  │",
+--     "╰" .. string.rep("─", string.len(input) + offset + 4) .. "╯",
+--   }
+-- end
 
 local function get_config()
   -- https://github.com/goolord/alpha-nvim/blob/main/lua/alpha/themes/theta.lua
-  local theta = require("alpha.themes.theta")
-
   local dashboard = require("alpha.themes.dashboard")
-
-  local section_mru = theta.config.layout[4].val[3]
 
   -- buttons
   local section_buttons = {
@@ -31,7 +27,7 @@ local function get_config()
   }
   local config = {
     layout = {
-      { type = "padding", val = 2 },
+      { type = "padding", val = 5 },
       {
         type = "text",
         val = { "╲    ╱", " ╲  ╱ ", "  ╲╱ ", "" },
@@ -64,11 +60,40 @@ local function get_config()
   return config
 end
 
+local function setup_statusline_hooks()
+  local laststatus
+  local showtabline
+
+  local group = vim.api.nvim_create_augroup("alpha", { clear = true })
+  local autocmd = vim.api.nvim_create_autocmd
+  autocmd("FileType", {
+    pattern = "alpha",
+    group = group,
+    callback = function()
+      laststatus = vim.opt.laststatus
+      showtabline = vim.opt.showtabline
+      vim.opt.laststatus = 0
+      vim.opt.showtabline = 0
+    end,
+  })
+  autocmd("BufUnload", {
+    buffer = 0,
+    group = group,
+    callback = function()
+      vim.opt.laststatus = laststatus
+      vim.opt.showtabline = showtabline
+    end,
+  })
+end
+
 local function setup()
   local has, alpha = pcall(require, "alpha")
   if not has then
     return
   end
+
+  setup_statusline_hooks()
+
   local config = get_config()
   alpha.setup(config)
 end
