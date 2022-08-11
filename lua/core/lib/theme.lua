@@ -49,12 +49,12 @@ local function apply_overrides()
 
   cmd([[hi! link TelescopeNormal Pmenu]])
   cmd([[hi! link TelescopeBorder Pmenu]])
-  cmd([[hi! link TelescopeTitle Comment]])
+  cmd([[hi! link TelescopeTitle Search]])
   cmd([[hi! link TelescopePromptNormal CursorLine]])
-  cmd([[hi! link TelescopePromptPrefix Error]])
+  cmd([[hi! link TelescopePromptPrefix DevIconsTsx]])
   cmd([[hi! link TelescopePromptBorder CursorLine]])
-  cmd([[hi! link TelescopePromptTitle Comment]])
-  cmd([[hi! link TelescopePromptCounter CursorLine]])
+  cmd([[hi! link TelescopePromptTitle IncSearch]])
+  cmd([[hi! link TelescopePromptCounter NonText]])
 
   local col = vim.g.colors_name
   local bg = vim.o.background
