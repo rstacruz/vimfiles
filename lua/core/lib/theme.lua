@@ -17,8 +17,8 @@ local CURRENT_THEME = {
 
 local THEMES = {
   light = {
-    { if_pkg = "nightfox.nvim", colorscheme = "dawnfox", lualine = "auto" },
     { if_pkg = "zenbones.nvim", colorscheme = "zenbones", lualine = "zenbones" },
+    { if_pkg = "nightfox.nvim", colorscheme = "dawnfox", lualine = "auto" },
     { if_pkg = "github-nvim-theme", colorscheme = "github_light", lualine = "auto" },
     { if_pkg = "zenbones.nvim", colorscheme = "seoulbones", lualine = "auto" },
     { if_pkg = "vim-microtone", colorscheme = "microtone", lualine = "dracula" },
@@ -50,11 +50,11 @@ local function apply_overrides()
   cmd([[hi! link TelescopeNormal Pmenu]])
   cmd([[hi! link TelescopeBorder Pmenu]])
   cmd([[hi! link TelescopeTitle Comment]])
-  cmd([[hi! link TelescopePromptNormal Pmenu]])
+  cmd([[hi! link TelescopePromptNormal CursorLine]])
   cmd([[hi! link TelescopePromptPrefix Error]])
-  cmd([[hi! link TelescopePromptBorder Visual]])
+  cmd([[hi! link TelescopePromptBorder CursorLine]])
   cmd([[hi! link TelescopePromptTitle Comment]])
-  cmd([[hi! link TelescopePromptCounter Visual]])
+  cmd([[hi! link TelescopePromptCounter CursorLine]])
 
   local col = vim.g.colors_name
   local bg = vim.o.background
