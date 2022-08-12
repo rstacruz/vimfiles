@@ -50,11 +50,15 @@ local function apply_overrides()
   cmd([[hi! link TelescopeNormal Pmenu]])
   cmd([[hi! link TelescopeBorder Pmenu]])
   cmd([[hi! link TelescopeTitle Search]])
+
   cmd([[hi! link TelescopePromptNormal CursorLine]])
   cmd([[hi! link TelescopePromptPrefix DevIconsTsx]])
   cmd([[hi! link TelescopePromptBorder CursorLine]])
   cmd([[hi! link TelescopePromptTitle IncSearch]])
   cmd([[hi! link TelescopePromptCounter NonText]])
+
+  -- cmd([[hi! link TelescopePreviewNormal Normal]])
+  -- cmd([[hi! link TelescopePreviewBorder Normal]])
 
   cmd([[hi! link NvimTreeWinSeparator EndOfBuffer]]) -- better visual boundary from tree sidebar to the buffer
 

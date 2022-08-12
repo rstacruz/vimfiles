@@ -24,7 +24,7 @@ local function setup() -- {{{
       layout_config = {
         horizontal = {
           prompt_position = "top",
-          preview_width = 0.55,
+          preview_width = 0.4,
           results_width = 0.8,
         },
         vertical = {
@@ -39,7 +39,7 @@ local function setup() -- {{{
       generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
       path_display = { "truncate" },
       winblend = 0,
-      border = {},
+      border = true,
       -- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
       borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
       color_devicons = true,
