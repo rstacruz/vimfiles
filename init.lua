@@ -8,13 +8,13 @@ local function packages(use)
   -- Language
   if has_gcc then
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+    use("nvim-treesitter/nvim-treesitter-textobjects")
+    use("neovim/nvim-lspconfig")
+    use("williamboman/mason.nvim") -- Install LSP servers (:Mason)
+    use("WhoIsSethDaniel/mason-tool-installer.nvim") -- Auto-install as needed
+    use("jose-elias-alvarez/null-ls.nvim") -- Formatting and diagnostics
+    use("SmiteshP/nvim-gps") -- Breadcrumbs in the status line
   end
-  use("nvim-treesitter/nvim-treesitter-textobjects")
-  use("neovim/nvim-lspconfig")
-  use("williamboman/mason.nvim") -- Install LSP servers (:Mason)
-  use("WhoIsSethDaniel/mason-tool-installer.nvim") -- Auto-install as needed
-  use("jose-elias-alvarez/null-ls.nvim") -- Formatting and diagnostics
-  use("SmiteshP/nvim-gps") -- Breadcrumbs in the status line
 
   -- Completion
   use("hrsh7th/cmp-nvim-lsp")
@@ -23,7 +23,6 @@ local function packages(use)
   use("hrsh7th/cmp-cmdline")
   use("hrsh7th/cmp-vsnip")
   use("hrsh7th/nvim-cmp")
-  -- "hrsh7th/vim-vsnip"
 
   -- Themes
   use("rstacruz/vim-microtone")
@@ -53,7 +52,7 @@ local function packages(use)
   use("nvim-lualine/lualine.nvim") -- Status line
   use("akinsho/bufferline.nvim") -- tab line
   use("nvim-telescope/telescope.nvim")
-  use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+  -- use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
   use("onsails/lspkind-nvim") -- Icons on LSP menus
   use("stevearc/dressing.nvim") -- Improved appearance of vim.ui
   use("rcarriga/nvim-notify")
@@ -101,7 +100,7 @@ if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
 end
 
 require("packer").startup(packages)
-require("impatient").enable_profile()
+require("impatient")
 require("core.lib.theme").setup()
 require("core.setup.bufferline").setup() -- do after theme
 require("core.setup.nvim-options").setup()

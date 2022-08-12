@@ -17,9 +17,9 @@ local CURRENT_THEME = {
 
 local THEMES = {
   light = {
+    { if_pkg = "github-nvim-theme", colorscheme = "github_light", lualine = "auto" },
     { if_pkg = "zenbones.nvim", colorscheme = "zenbones", lualine = "zenbones" },
     { if_pkg = "nightfox.nvim", colorscheme = "dawnfox", lualine = "auto" },
-    { if_pkg = "github-nvim-theme", colorscheme = "github_light", lualine = "auto" },
     { if_pkg = "zenbones.nvim", colorscheme = "seoulbones", lualine = "auto" },
     { if_pkg = "vim-microtone", colorscheme = "microtone", lualine = "dracula" },
   },

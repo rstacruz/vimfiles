@@ -49,13 +49,13 @@ local function setup()
     mapping = mapping,
     formatting = formatting,
     completion = {
-      keyword_length = 4,
+      keyword_length = 2,
     },
-    snippet = {
-      expand = function()
-        -- vim.fn["vsnip#anonymous"](args.body)
-      end,
-    },
+    -- snippet = {
+    --   expand = function()
+    --     -- vim.fn["vsnip#anonymous"](args.body)
+    --   end,
+    -- },
     sources = cmp.config.sources({
       -- { name = "luasnip" },
       { name = "nvim_lsp" },
