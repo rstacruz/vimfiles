@@ -120,9 +120,10 @@ vim.defer_fn(function()
   require("core.setup.cmp").setup()
   require("core.setup.which-key").setup()
   require("core.setup.zz-deferred").setup()
+  require("core.setup.zz-other").setup_later()
   require("core.lib.abbreviations").setup()
   require("core.lib.highlight_on_yank").setup()
   require("core.keymaps").setup()
-end, 250)
+end, 400)
 
 -- vim:foldmethod=indent

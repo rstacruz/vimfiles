@@ -187,24 +187,24 @@ local function setup_nvim_tree()
   })
 end
 
-local function setup()
-  vim.defer_fn(function()
-    setup_comment()
-    setup_gitsigns()
-    setup_hop()
-    setup_indent_blankline()
-    setup_null_ls()
-    setup_nvim_gps()
-    setup_scrollview()
-    setup_spectre()
-    setup_workspaces()
-  end, 250)
+local function setup_later()
+  setup_comment()
+  setup_gitsigns()
+  setup_hop()
+  setup_indent_blankline()
+  setup_null_ls()
+  setup_nvim_gps()
+  setup_scrollview()
+  setup_spectre()
+  setup_workspaces()
+end
 
+local function setup()
   setup_lualine()
   setup_nightfox()
   setup_notify()
   setup_nvim_tree()
 end
 
-return { setup = setup }
+return { setup = setup, setup_later = setup_later }
 -- vim:foldmethod=indent
