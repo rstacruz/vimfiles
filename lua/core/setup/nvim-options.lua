@@ -57,13 +57,15 @@ local function setup()
   end
 
   if vim.fn.has("nvim-0.7") == 1 then
+    -- local vertchar = "▓" -- ▐
+    local vertchar = "▐" -- ▐
     vim.opt.laststatus = 3 -- Global statusline
     vim.opt.fillchars = {
       eob = " ",
-      vert = "▓", -- ▐
-      vertright = "▓",
-      vertleft = "▓",
-      verthoriz = "▓",
+      vert = vertchar,
+      vertright = vertchar,
+      vertleft = vertchar,
+      verthoriz = vertchar,
       horizup = "━",
       horizdown = "━",
       horiz = "━",

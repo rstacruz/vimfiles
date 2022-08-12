@@ -56,6 +56,8 @@ local function apply_overrides()
   cmd([[hi! link TelescopePromptTitle IncSearch]])
   cmd([[hi! link TelescopePromptCounter NonText]])
 
+  cmd([[hi! link NvimTreeWinSeparator EndOfBuffer]]) -- better visual boundary from tree sidebar to the buffer
+
   local col = vim.g.colors_name
   local bg = vim.o.background
 
