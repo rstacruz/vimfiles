@@ -1,11 +1,3 @@
-local function run(fn)
-  fn()
-end
-
-local function run_later(fn)
-  vim.defer_fn(fn, 250)
-end
-
 local function setup_scrollview()
   local has, scrollview = pcall(require, "scrollview")
   if not has then
@@ -196,19 +188,22 @@ local function setup_nvim_tree()
 end
 
 local function setup()
-  run_later(setup_comment)
-  run_later(setup_gitsigns)
-  run_later(setup_hop)
-  run_later(setup_indent_blankline)
-  run_later(setup_null_ls)
-  run_later(setup_nvim_gps)
-  run_later(setup_scrollview)
-  run_later(setup_spectre)
-  run_later(setup_workspaces)
-  run(setup_lualine)
-  run(setup_nightfox)
-  run(setup_notify)
-  run(setup_nvim_tree)
+  vim.defer_fn(function()
+    setup_comment()
+    setup_gitsigns()
+    setup_hop()
+    setup_indent_blankline()
+    setup_null_ls()
+    setup_nvim_gps()
+    setup_scrollview()
+    setup_spectre()
+    setup_workspaces()
+  end, 250)
+
+  setup_lualine()
+  setup_nightfox()
+  setup_notify()
+  setup_nvim_tree()
 end
 
 return { setup = setup }
