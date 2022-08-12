@@ -33,6 +33,7 @@ local function packages(use)
   use({ "dracula/vim", as = "dracula-vim" })
   use("cmoscofian/nibble-vim")
   use("EdenEast/nightfox.nvim")
+  use("navarasu/onedark.nvim")
   use({ "embark-theme/vim", as = "embark-theme-vim" })
 
   -- File types
@@ -52,7 +53,7 @@ local function packages(use)
   use("nvim-lualine/lualine.nvim") -- Status line
   use("akinsho/bufferline.nvim") -- tab line
   use("nvim-telescope/telescope.nvim")
-  -- use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+  use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
   use("onsails/lspkind-nvim") -- Icons on LSP menus
   use("stevearc/dressing.nvim") -- Improved appearance of vim.ui
   use("rcarriga/nvim-notify")

@@ -24,6 +24,7 @@ local THEMES = {
     { if_pkg = "vim-microtone", colorscheme = "microtone", lualine = "dracula" },
   },
   dark = {
+    { if_pkg = "onedark.nvim", colorscheme = "onedark", lualine = "auto" },
     { if_pkg = "nightfox.nvim", colorscheme = "nightfox", lualine = "auto" },
     { if_pkg = "zenbones.nvim", colorscheme = "zenbones", lualine = "zenbones" },
     { if_pkg = "catppuccin-nvim", colorscheme = "catppuccin", lualine = "auto" },
