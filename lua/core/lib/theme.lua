@@ -50,6 +50,8 @@ local function apply_overrides()
 
   cmd([[hi! link TelescopeNormal Pmenu]])
   cmd([[hi! link TelescopeBorder Pmenu]])
+  cmd([[hi! link TelescopePreviewBorder Pmenu]])
+  cmd([[hi! link TelescopeResultsBorder Pmenu]])
   cmd([[hi! link TelescopeTitle Search]])
 
   cmd([[hi! link TelescopePromptNormal CursorLine]])
