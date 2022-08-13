@@ -76,15 +76,13 @@ local NORMAL_BINDINGS = {
   ["<leader>b<space>"] = has_bufferline and { "<cmd>BufferLineTogglePin<cr>", "Toggle [P]in" } or {},
   ["<leader>b."] = has_bufferline and { "<cmd>BufferLineCloseRight<cr>", "Close to the right" } or {},
   ["<leader>b,"] = has_bufferline and { "<cmd>BufferLineCloseLeft<cr>", "Close to the left" } or {},
-  ["<leader>bo"] = has_bufferline and
-      { "<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>", "Close [o]ther tabs" } or {},
+  ["<leader>bo"] = has_bufferline and { "<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>", "Close [o]ther tabs" } or {},
 
   -- Leader: [x] exit
   ["<leader>x"] = { name = "E[x]it..." },
   -- ["<leader>xo"] = { "<cmd>%bd!|e#|bd#<cr>g;", "Close [o]ther buffers" },
   ["<leader>xh"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>", "Close [h]idden buffers" },
-  ["<leader>xH"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>",
-    "Close [H]idden buffers (force)" },
+  ["<leader>xH"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>", "Close [H]idden buffers (force)" },
   ["<leader>xc"] = { "<cmd>cq<cr>", "Exit [c]" },
   ["<leader>xa"] = { "<cmd>%bd! | Alpha<cr>", "Back to st[a]rt screen" },
 
@@ -137,9 +135,9 @@ local NORMAL_BINDINGS = {
   ["<leader>pf"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open [f]ile..." },
   ["<leader>pw"] = { "<cmd>Telescope workspaces<cr>", "Open [w]orkspace..." },
   ["<leader>pr"] = { "<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>", "Open [r]ecent file..." },
-  ["<leader>ps"] = { "<cmd>SymbolsOutline<cr>", "Show [s]ymbols..." },
-  ["<leader>pS"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Show [S]ymbols (Tele)..." },
+  ["<leader>ps"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Show [s]ymbols..." },
   ["<leader>pg"] = { [[<cmd>lua require('spectre').open({ is_insert_mode = true })<cr>]], "Find in files ([g]rep)..." },
+  ["<leader>pG"] = { [[<cmd>Telescope git_status<cr>]], "Files changed in [G]it..." },
   ["<leader>pW"] = { name = "[w]orkspaces..." },
   ["<leader>pWa"] = { "<cmd>WorkspacesAdd<cr>", "Workspace: [a]dd this folder" },
   ["<leader>pWd"] = { "<cmd>WorkspacesRemove<cr>", "Workspace: [d]dd this folder" },
@@ -159,12 +157,10 @@ local NORMAL_BINDINGS = {
   ["<leader>os"] = { "<cmd>set spell!<cr>", "Toggle [s]pell check" },
   ["<leader>on"] = { "<cmd>set number!<cr>", "Toggle line [n]umber" },
   ["<leader>or"] = { "<cmd>set relativenumber!<cr>", "Toggle [r]elative line number" },
-  ["<leader>of"] = vim.fn.has("g:neovide") and
-      { "<cmd>let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle [f]ullscreen" } or {},
+  ["<leader>of"] = vim.fn.has("g:neovide") and { "<cmd>let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle [f]ullscreen" } or {},
   ["<leader>ob"] = { "<cmd>lua require('core.lib.theme').toggle_theme()<cr>", "Toggle light/dark theme" },
   ["<leader>ot"] = { "<cmd>Twilight<cr>", "Toggle [t]wilight mode" },
-  ["<leader>oB"] = { "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
-    "Toggle light/dark [B]ackground" },
+  ["<leader>oB"] = { "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>", "Toggle light/dark [B]ackground" },
   ["<leader>oc"] = { "<cmd>lua vim.o.conceallevel = vim.o.conceallevel == 2 and 0 or 2<cr>", "Toggle [c]onceal" },
 
   -- Leader: [oD] diagnostic
