@@ -1,3 +1,4 @@
+pcall(require, "impatient")
 require("core.setup.nvim-options").setup()
 
 vim.g.baseconfig = {
@@ -17,7 +18,7 @@ end
 local packer_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 -- if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
 if not vim.fn.filereadable(packer_path .. "/lua/packer.lua") then
-  print("Installing packer...")
+  print("Installing packer…")
   vim.fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", packer_path })
   vim.cmd("autocmd User PackerCompileDone luafile " .. vim.env.MYVIMRC)
   vim.cmd("packadd packer.nvim")
@@ -27,7 +28,6 @@ if not vim.fn.filereadable(packer_path .. "/lua/packer.lua") then
 end
 
 require("packer").startup(packages)
-require("impatient")
 
 vim.cmd([[colorscheme terafox]])
 
