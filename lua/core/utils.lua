@@ -29,7 +29,7 @@ local function is_light()
     return false
   end
 
-  local bgcolor = vim.fn.system("cat " .. colors_file .. " | head -n 1")
+  local bgcolor = vim.fn.readfile(colors_file, "", 1)[1]
   return vim.fn.matchstr(bgcolor, "#[efEF]") ~= ""
 end
 

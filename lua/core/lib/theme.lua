@@ -1,5 +1,4 @@
 local cmd = vim.cmd
-local utils = require("core.utils")
 
 ---@type string ("dark" or "light")
 local CURRENT_MODE = "dark"
@@ -35,6 +34,7 @@ local THEMES = {
 ---@param bgmode string ("dark" or "light")
 ---@return ThemeState
 local function get_theme(bgmode)
+  local utils = require("core.utils")
   for _, item in ipairs(THEMES[bgmode]) do
     if utils.has_pkg(item.if_pkg) then
       return { colorscheme = item.colorscheme, lualine = item.lualine, bgmode = bgmode }
@@ -78,7 +78,7 @@ local function apply_overrides()
   cmd([[hi! link NvimTreeWinSeparator EndOfBuffer]]) -- better visual boundary from tree sidebar to the buffer
 
   local col = vim.g.colors_name
-  local bg = vim.o.background
+  local bg = vim.opt.background:get()
 
   -- different themes have different groups that look nice with borders
   if col == "terafox" or col == "nightfox" or col == "carbonfox" then
@@ -103,24 +103,24 @@ end
 
 ---@class SetupOptions
 ---@field mode string ("light" or "dark")
----@param options SetupOptions?
-local function setup(options)
+---@param options SetupOptions
+local function apply(options)
   local opts = options or {}
-  local mode = opts.mode or (utils.is_light() and "light" or "dark")
+  local mode = opts.mode
   CURRENT_THEME = get_theme(mode)
   CURRENT_MODE = mode
-  vim.opt.background = CURRENT_THEME.bgmode
-
-  vim.g.zenbones = {
-    lightness = "bright",
-    darkness = "warm", -- warm | stark
-    solid_linenr = true,
-    lighten_cursor_line = 9,
-    darken_noncurrent_window = true,
-    lighten_noncurrent_window = true,
-  }
-
-  vim.g.rosebones = vim.g.zenbones
+  -- vim.opt.background = CURRENT_THEME.bgmode
+  --
+  -- vim.g.zenbones = {
+  --   lightness = "bright",
+  --   darkness = "warm", -- warm | stark
+  --   solid_linenr = true,
+  --   lighten_cursor_line = 9,
+  --   darken_noncurrent_window = true,
+  --   lighten_noncurrent_window = true,
+  -- }
+  --
+  -- vim.g.rosebones = vim.g.zenbones
 
   local augroup = vim.api.nvim_create_augroup("ThemeOverrides", { clear = true })
   vim.api.nvim_create_autocmd("Colorscheme", {
@@ -142,9 +142,13 @@ local function setup(options)
   end
 end
 
+local function setup()
+  return apply({ mode = require("core.utils").is_light() and "light" or "dark" })
+end
+
 local function toggle_theme()
   local mode = CURRENT_MODE == "dark" and "light" or "dark"
-  setup({ mode = mode })
+  apply({ mode = mode })
 end
 
 return {
