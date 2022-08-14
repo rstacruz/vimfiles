@@ -137,6 +137,11 @@ local function setup()
 		return
 	end
 
+	local has_gps, gps = pcall(require, "nvim-gps")
+  if has_gps then
+    gps.setup({ separator = " ╱ " })
+  end
+
 	local options = get_theme({ theme = "auto" })
 	lualine.setup(options)
 end
