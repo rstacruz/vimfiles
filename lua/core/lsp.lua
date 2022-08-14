@@ -1,5 +1,5 @@
 local function has_bin(bin_name)
-  return vim.fn.filereadable(vim.fn.stdpath("data") .. "/mason/bin/" .. bin_name)
+  return vim.fn.filereadable(vim.fn.stdpath("data") .. "/mason/bin/" .. bin_name) == 1
 end
 
 local function setup()
