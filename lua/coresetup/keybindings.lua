@@ -3,6 +3,7 @@ local function get_default_mappings()
 		n = {
 			["-"] = { "<cmd>NvimTreeFindFile<cr>", "Open file explorer" },
 			["<c-p>"] = { "<cmd>Telescope find_files<cr>", "Open file…" },
+			["gs"] = { ":%s~~", "Replace with..." },
 
 			-- lsp
 			["gd"] = { "<cmd>Telescope lsp_definitions<cr>", "Definitions (lsp)…" },
@@ -32,7 +33,7 @@ local function get_default_mappings()
 			["<leader>os"] = { "<cmd>set spell!<cr>", "Toggle [s]pell check" },
 			["<leader>on"] = { "<cmd>set number!<cr>", "Toggle line [n]umber" },
 			["<leader>or"] = { "<cmd>set relativenumber!<cr>", "Toggle [r]elative line number" },
-			-- ["<leader>ob"] = { "<cmd>lua require('core.lib.theme').toggle_theme()<cr>", "Toggle light/dark theme" },
+			["<leader>ob"] = { "<cmd>lua require('core.theme-utils').toggle_theme()<cr>", "Toggle light/dark theme" },
 			-- ["<leader>oB"] = { "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
 			-- "Toggle light/dark [B]ackground" },
 			["<leader>oc"] = {
@@ -108,7 +109,9 @@ local function get_default_mappings()
 			["gl"] = { "<cmd>HopLine<cr>", "Go to line" },
 			["gw"] = { "<cmd>HopWord<cr>", "Go to word" },
 		},
-		v = {},
+    v = {
+			["gs"] = { ":s~~", "Replace with..." },
+    },
 		ctrl = {
 			["<c-h>"] = { [[<cmd>wincmd W | set winwidth=80 | set winwidth=20<cr>]], "Focus previous pane" },
 			["<c-n>"] = { [[<cmd>wincmd w | set winwidth=80 | set winwidth=20<cr>]], "Focus next pane" },

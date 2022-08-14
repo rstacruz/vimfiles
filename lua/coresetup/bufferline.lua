@@ -1,3 +1,14 @@
+-- Automatically re-apply bufferline when changing colorschemes.
+local function setup_colorscheme_hook(callback)
+	local group = vim.api.nvim_create_augroup("BufferlineColorschemeHook", { clear = true })
+
+	vim.api.nvim_create_autocmd("Colorscheme", {
+		pattern = "*",
+		group = group,
+		callback = callback
+	})
+end
+
 local function setup()
 	local has, bufferline = pcall(require, "bufferline")
 	if not has then
@@ -6,7 +17,7 @@ local function setup()
 
 	local has_groups, groups = pcall(require, "bufferline.groups")
 
-	bufferline.setup({
+	local options = {
 		options = {
 			offsets = {
 				{
@@ -18,7 +29,7 @@ local function setup()
 					text_align = "left",
 				},
 			},
-			separator_style = "slant", -- slant | thick | thin
+			separator_style = "thick", -- slant | thick | thin
 			diagnostics = "nvim_lsp",
 
 			-- Works like the browser I guess
@@ -44,7 +55,13 @@ local function setup()
 						},
 					},
 		},
-	})
+	}
+
+	bufferline.setup(options)
+
+	setup_colorscheme_hook(function()
+		bufferline.setup(options)
+	end)
 end
 
 return { setup = setup }

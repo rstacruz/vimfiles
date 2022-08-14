@@ -27,6 +27,7 @@ local function apply()
 	vim.api.nvim_set_hl(0, "IndentBlanklineContextChar", { link = "XxLine" })
 
 	vim.api.nvim_set_hl(0, "CmpBorder", { link = "XxLine" }) -- Border for completions
+	vim.api.nvim_set_hl(0, "BufferLineFill", { link = "TabLineFill" }) -- looks better in github_light
 
 	vim.api.nvim_set_hl(0, "NvimTreeSpecialFile", { link = "Comment" }) -- Make some files less visible
 	vim.api.nvim_set_hl(0, "NvimTreeIndentMarker", { link = "NonText" }) -- Make some files less visible
