@@ -1,13 +1,3 @@
--- local function boxify(input, options)
---   local offset = options and options.offset or 0
---   input = "  " .. input .. "  "
---   return {
---     "╭" .. string.rep("─", string.len(input) + offset + 4) .. "╮",
---     "│  " .. input .. "  │",
---     "╰" .. string.rep("─", string.len(input) + offset + 4) .. "╯",
---   }
--- end
-
 local function get_config()
   -- https://github.com/goolord/alpha-nvim/blob/main/lua/alpha/themes/theta.lua
   local dashboard = require("alpha.themes.dashboard")
@@ -17,7 +7,7 @@ local function get_config()
     type = "group",
     val = {
       dashboard.button("e", "  New file", "<cmd>ene<cr>"),
-      dashboard.button("r", "  Open", "<cmd>lua require('core.actions').open_file_picker()<cr>"),
+      dashboard.button("o", "  Open", "<cmd>lua require('core.actions').open_file_picker()<cr>"),
       dashboard.button("r", "  Recent files", "<cmd>Telescope oldfiles<cr>"),
       dashboard.button(",", "  Browse files", "<cmd>e .<cr>"),
       dashboard.button(".", "  Open terminal", "<cmd>term<cr>"),

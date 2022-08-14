@@ -21,6 +21,7 @@ local function setup()
   vim.opt.termguicolors = true -- Full GUI colours in terminal
   vim.opt.timeoutlen = 200 -- for which-key
   vim.opt.wrap = false -- Word wrap
+  vim.opt.clipboard = "unnamedplus" -- Use system clipboard
 
   -- Status
   vim.opt.title = true -- Show current file name in title bar
