@@ -6,14 +6,15 @@ vim.g.baseconfig = {
 }
 
 local function packages(use)
-	use({ "wbthomason/packer.nvim", opt = true })
+	use({ "wbthomason/packer.nvim" })
 
 	-- Improve startup time by optimising Lua cache
-	use("lewis6991/impatient.nvim")
+	use({ "lewis6991/impatient.nvim" })
 
 	-- Library for Telescope and many others
 	use({ "nvim-lua/plenary.nvim", module = "plenary" })
 
+  -- Telescope file picker
 	use({
 		"nvim-telescope/telescope.nvim",
 		cmd = "Telescope",
@@ -37,6 +38,7 @@ local function packages(use)
 		end,
 	})
 
+	-- File explorer
 	use({
 		"kyazdani42/nvim-tree.lua",
 		config = function()
@@ -44,7 +46,16 @@ local function packages(use)
 		end,
 	})
 
-	use("EdenEast/nightfox.nvim")
+	-- Status line
+	use({
+    "nvim-lualine/lualine.nvim",
+    event = "User DeferredLoad",
+    config = function()
+			require("coresetup.lualine").setup()
+    end
+  })
+
+	use({ "EdenEast/nightfox.nvim" })
 end
 
 -- Packer bootstrap
@@ -60,8 +71,6 @@ if vim.fn.filereadable(packer_path .. "/lua/packer.lua") == 0 then
 end
 
 require("packer").startup(packages)
-
--- Setup
 require("core.theme-overrides").setup()
 vim.cmd([[colorscheme terafox]])
 

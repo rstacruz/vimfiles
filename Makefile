@@ -20,3 +20,16 @@ setup:
 
 clean: ## Clean the data dir
 	rm -rf "$(playground_path)"
+
+docker:
+	docker run \
+		-w /root/.config/nvim \
+		-v $(shell pwd):/root/.config/nvim \
+		--name neovim-nimble-01 \
+		alpine:edge sh -uelic ' \
+	  apk add git nodejs neovim ripgrep --update; true' || true
+	docker start neovim-nimble-01
+	docker exec -it neovim-nimble-01 nvim
+
+docker-clean:
+	docker rm -f neovim-nimble-01

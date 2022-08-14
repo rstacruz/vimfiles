@@ -6,8 +6,12 @@ local function get_default_mappings()
 				["<c-p>"] = { "<cmd>Telescope find_files<cr>", "Open file…" },
 
 				["<leader>s"] = { name = "[s]ettings…" },
-				["<leader>s,"] = { "<cmd>vsplit ~/.config/nvim/init.lua<cr>", "Edit Neovim settings" },
-				["<leader>sk"] = { "<cmd>vsplit ~/.config/nvim/lua/core/keymaps.lua<cr>", "Edit [k]eybindings" },
+				["<leader>s,"] = { "<cmd>vsplit " .. vim.fn.stdpath("config") .. "/init.lua<cr>", "Edit Neovim settings" },
+				["<leader>sk"] = { "<cmd>vsplit " .. vim.fn.stdpath("config") .. "/lua/coresetup/keybindings.lua<cr>", "Edit [k]eybindings" },
+				["<leader>sr"] = {
+					"<cmd>lua require('core.utils').reload()<cr>",
+					"Reload config",
+				},
 				["<leader>si"] = {
 					"<cmd>lua require('core.utils').reload()<cr>:PackerInstall<cr>",
 					"Packer: [i]nstall new packages",
@@ -18,7 +22,7 @@ local function get_default_mappings()
 				},
 
 				["<leader>,"] = { name = "experimental…" },
-				["<leader>,p"] = { "<cmd>StartupTime --tries 6<cr>", "Profile startup time" },
+				["<leader>,p"] = { "<cmd>StartupTime --tries 12<cr>", "Profile startup time" },
 			},
 			v = {},
 			ctrl = {

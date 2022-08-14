@@ -6,6 +6,7 @@ local function reload()
 		end
 	end
 	vim.cmd("luafile " .. vim.env.MYVIMRC)
+  require("packer").compile()
 end
 
 local function setup_deferred_loading(callback)
