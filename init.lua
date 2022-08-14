@@ -123,14 +123,35 @@ local function packages(use)
 		end,
 	})
 
+	-- TODO
+  -- use({
+  --   "hrsh7th/nvim-cmp",
+  --   requires = {
+  --     "onsails/lspkind-nvim",
+  --     { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+  --     { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+  --     { "hrsh7th/cmp-path", after = "nvim-cmp" },
+  --     { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+  --     { "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
+  --   },
+  -- })
+
+  use({
+    "numToStr/Comment.nvim",
+    event = "User OnFileLoad",
+    config = function()
+      require("Comment").setup()
+    end,
+  }) -- Comments
+
 	use({ "EdenEast/nightfox.nvim" })
 	use({ "projekt0n/github-nvim-theme" })
-	use({ "mcchrish/zenbones.nvim", requires = { "rktjmp/lush.nvim" } })
-	use({ "catppuccin/nvim", as = "catppuccin-nvim" })
-	use({ "dracula/vim", as = "dracula-vim" })
-	use({ "cmoscofian/nibble-vim" })
-	use({ "navarasu/onedark.nvim" })
-	use({ "embark-theme/vim", as = "embark-theme-vim" })
+	-- use({ "mcchrish/zenbones.nvim", requires = { "rktjmp/lush.nvim" } })
+	-- use({ "catppuccin/nvim", as = "catppuccin-nvim" })
+	-- use({ "dracula/vim", as = "dracula-vim" })
+	-- use({ "cmoscofian/nibble-vim" })
+	-- use({ "navarasu/onedark.nvim" })
+	-- use({ "embark-theme/vim", as = "embark-theme-vim" })
 end
 
 -- Bootstrap packer
