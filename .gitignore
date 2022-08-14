@@ -8,3 +8,4 @@
 /autoload/plug.vim.old
 /plugin/*.local.vim
 /plugin/packer_compiled.lua
+.neovim_playground_env

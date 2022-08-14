@@ -1,28 +1,22 @@
-PACKER_PATH = $(HOME)/.local/share/nvim/site/pack/packer/start/packer.nvim
+# Run 'make nvim' to test out nvim with nvim-starter configuration.
+# This allows testing it out without affecting your existing neovim config.
 
-install: packer
+playground_path = $(shell pwd)/.neovim_playground_env
+playground_config_path = $(playground_path)/.config
+playground_data_path = $(playground_path)/data
+env = XDG_CONFIG_HOME="$(playground_config_path)" XDG_DATA_HOME="$(playground_data_path)"
 
-packer: $(PACKER_PATH) ## Install packer
-$(PACKER_PATH):
-	git clone --depth 1 https://github.com/wbthomason/packer.nvim $(PACKER_PATH)
+nvim: setup # Launch neovim with this config
+	$(env) nvim
 
-sync: packer
-	nvim +PackerCompile +PackerSync
+fish: setup ## Sets up fish abbreviation for launching with this config
+	fish -c 'abbr nvim-rsc "$(env) nvim"'
+	@echo "Type 'nvim-rsc' to open in this config"
 
-clean: ## Removes packer
-	rm -rf $(PACKER_PATH) plugin/packer_compiled.lua
+setup:
+	@mkdir -p "$(playground_config_path)"
+	@mkdir -p "$(playground_data_path)"
+	@ln -nfs "$(shell pwd)" "$(playground_config_path)/nvim"
 
-clean-all: ## Removes packer and all plugins
-	rm -rf $(HOME)/.local/share/nvim/site/pack/packer plugin/packer_compiled.lua
-
-snapshot: ## Take snapshot of known working package versions (experimental)
-	rm -f ~/.cache/nvim/packer.nvim/packer.lock
-	nvim "+autocmd User PackerComplete qa!" "+PackerSnapshot packer.lock"
-	cat ~/.cache/nvim/packer.nvim/packer.lock | jq . > packer.lock
-
-rollback: ## Rollback to last snapshot (experimental)
-	cp packer.lock ~/.cache/nvim/packer.nvim/packer.lock
-	nvim "+autocmd User PackerComplete qa!" "+PackerSnapshotRollback packer.lock"
-
-fmt:
-	stylua lua/ init.lua
+clean: ## Clean the data dir
+	rm -rf "$(playground_path)"
