@@ -29,7 +29,7 @@ local function packages(use)
 
 	use({ "thinca/vim-visualstar", event = "User OnFileLoad" })
 
-	use("airblade/vim-rooter")
+	use({ "airblade/vim-rooter" })
 
 	-- Easymotion-style jumps
 	use({
