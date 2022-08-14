@@ -1,3 +1,4 @@
+pcall(require, "impatient")
 require("core.setup.nvim-options").setup()
 
 local function packages(use)
@@ -152,8 +153,8 @@ end
 
 -- Packer bootstrap
 local packer_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
-  print("Installing packer...")
+if vim.fn.filereadable(packer_path .. "/lua/packer.lua") == 0 then
+  print("Installing packer…")
   vim.fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", packer_path })
   vim.cmd("autocmd User PackerCompileDone luafile " .. vim.env.MYVIMRC)
   vim.cmd("packadd packer.nvim")
@@ -163,7 +164,6 @@ if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
 end
 
 require("packer").startup(packages)
-require("impatient").enable_profile()
 require("core.lib.theme").setup()
 require("core.setup.treesitter").setup()
 require("core.setup.alpha").setup()
