@@ -40,7 +40,7 @@ local function reload()
       package.loaded[k] = nil
     end
   end
-  vim.cmd([[luafile ~/.config/nvim/init.lua]])
+  vim.cmd("luafile " .. vim.env.MYVIMRC)
 end
 
 -- Autocmd convenience API

@@ -2,9 +2,9 @@ local wk = require("which-key")
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
-local has_hop = pcall(require, "hop")
-local has_bufferline = pcall(require, "bufferline")
-local has_telescope = pcall(require, "telescope")
+local has_hop = true -- pcall(require, "hop")
+local has_bufferline = true -- pcall(require, "bufferline")
+local has_telescope = true -- pcall(require, "telescope")
 
 -- Visual
 local VISUAL_BINDINGS = {

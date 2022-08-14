@@ -78,7 +78,7 @@ local function packages(use)
       require("core.setup.indent_blankline").setup()
     end,
   }) -- Indent indicators
-  use("nvim-lua/plenary.nvim") -- for Telescope and many others
+  use({ "nvim-lua/plenary.nvim", module = "plenary" }) -- Library for Telescope and many others
   use("nvim-lualine/lualine.nvim") -- Status line
   use({
     "akinsho/bufferline.nvim",
@@ -89,9 +89,12 @@ local function packages(use)
   }) -- tab line
   use({
     "nvim-telescope/telescope.nvim",
+    cmd = "telescope",
     requires = {
-      { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+    },
+    config = {
+      require("core.setup.telescope").setup(),
     },
   })
   use({ "stevearc/dressing.nvim", event = "VimEnter *" }) -- Improved appearance of vim.ui
@@ -180,7 +183,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
       require("core.setup.rooter").setup()
       require("core.extras.lsp_borders").setup()
       require("core.setup.nvim-autocmds").setup()
-      require("core.setup.telescope").setup()
       require("core.setup.cmp").setup()
       require("core.setup.which-key").setup()
       require("core.setup.zz-deferred").setup()
