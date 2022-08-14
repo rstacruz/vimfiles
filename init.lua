@@ -84,8 +84,10 @@ local function packages(use)
   use("folke/twilight.nvim") -- Isolate (leader-ot)
   use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
   use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
-  use("github/copilot.vim")
   use("airblade/vim-rooter")
+
+  -- Takes a lot of CPU sometimes
+  -- use("github/copilot.vim")
 end -- }}}
 
 -- Packer bootstrap

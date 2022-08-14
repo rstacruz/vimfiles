@@ -17,40 +17,52 @@ local function get_config()
     type = "group",
     val = {
       dashboard.button("e", "  New file", "<cmd>ene<cr>"),
+      dashboard.button("r", "  Open", "<cmd>lua require('core.actions').open_file_picker()<cr>"),
       dashboard.button("r", "  Recent files", "<cmd>Telescope oldfiles<cr>"),
       dashboard.button(",", "  Browse files", "<cmd>e .<cr>"),
       dashboard.button(".", "  Open terminal", "<cmd>term<cr>"),
-      dashboard.button("w", "  Open workspace", "<cmd>Telescope workspaces<cr>"),
+    },
+    opts = { spacing = 1, hl = "Normal" },
+  }
+
+  local section_buttons_2 = {
+    type = "group",
+    val = {
+      dashboard.button("w", "  Switch project…", "<cmd>Telescope workspaces<cr>"),
       dashboard.button("q", "  Quit", "<cmd>qa<cr>"),
     },
-    opts = { spacing = 1 },
+    opts = { spacing = 1, hl = "Normal" },
   }
+
   local config = {
     layout = {
       { type = "padding", val = 5 },
       {
         type = "text",
         val = { "╲    ╱", " ╲  ╱ ", "  ╲╱ ", "" },
-        opts = { position = "center", hl = "NonText", redraw = true },
+        opts = { position = "center", hl = "Comment", redraw = true },
       },
-      section_buttons,
-      { type = "padding", val = 2 },
       {
         type = "text",
         val = function()
           local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
           return " " .. cwd
         end,
-        opts = { position = "center", hl = "NonText", redraw = true },
+        opts = { position = "center", hl = "Type", redraw = true },
       },
       { type = "padding", val = 1 },
-      -- { type = "group", val = section_mru.val, },
-      -- { type = "padding", val = 1 },
+      section_buttons,
+      { type = "padding", val = 1 },
       {
         type = "text",
         val = "──",
-        opts = { position = "center", hl = "NonText", redraw = true },
+        opts = { position = "center", hl = "Comment", redraw = true },
       },
+      { type = "padding", val = 1 },
+      section_buttons_2,
+      { type = "padding", val = 1 },
+      -- { type = "group", val = section_mru.val, },
+      -- { type = "padding", val = 1 },
     },
     opts = {
       margin = 5,
