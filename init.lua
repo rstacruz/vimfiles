@@ -21,6 +21,9 @@ local function packages(use)
     end,
   })
 
+  -- Detect indents
+  use({ "Darazaki/indent-o-matic", event = "BufRead" })
+
   use({ "neovim/nvim-lspconfig", event = "User OnFileLoad" })
   -- use("williamboman/mason.nvim") -- Install LSP servers (:Mason)
   -- use("WhoIsSethDaniel/mason-tool-installer.nvim") -- Auto-install as needed
