@@ -73,6 +73,7 @@ local function bootstrap_packer(packages)
 	end
 
 	require("packer").startup(packages)
+	require("packer").install()
 	return true
 end
 
