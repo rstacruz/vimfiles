@@ -67,7 +67,6 @@ end
 
 local function setup_statusline_hooks()
   local laststatus
-  local showtabline
 
   local group = vim.api.nvim_create_augroup("alpha", { clear = true })
   local autocmd = vim.api.nvim_create_autocmd
@@ -76,9 +75,7 @@ local function setup_statusline_hooks()
     group = group,
     callback = function()
       laststatus = vim.opt.laststatus
-      showtabline = vim.opt.showtabline
       vim.opt.laststatus = 0
-      vim.opt.showtabline = 0
     end,
   })
   autocmd("BufUnload", {
@@ -86,7 +83,6 @@ local function setup_statusline_hooks()
     group = group,
     callback = function()
       vim.opt.laststatus = laststatus
-      vim.opt.showtabline = showtabline
     end,
   })
 end

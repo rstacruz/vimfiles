@@ -22,6 +22,8 @@ local function setup()
   vim.opt.timeoutlen = 200 -- for which-key
   vim.opt.wrap = false -- Word wrap
   vim.opt.clipboard = "unnamedplus" -- Use system clipboard
+  vim.opt.showtabline = 2
+  vim.opt.tabline = '%' -- Will load later
 
   -- Status
   vim.opt.title = true -- Show current file name in title bar

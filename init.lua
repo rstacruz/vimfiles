@@ -82,7 +82,7 @@ local function packages(use)
   use("nvim-lualine/lualine.nvim") -- Status line
   use({
     "akinsho/bufferline.nvim",
-    event = "user DeferredLoad",
+    event = "User DeferredLoad",
     config = function()
       require("core.setup.bufferline").setup() -- do after theme
     end,
