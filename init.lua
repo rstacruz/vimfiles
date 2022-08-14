@@ -70,7 +70,7 @@ local function packages(use)
 		"nvim-lualine/lualine.nvim",
 		event = "User OnIdle",
 		requires = {
-			{ "SmiteshP/nvim-gps" }, -- Breadcrumbs in the status line
+			-- { "SmiteshP/nvim-gps" }, -- Breadcrumbs in the status line
 		},
 		config = function()
 			require("coresetup.lualine").setup()
@@ -111,7 +111,9 @@ utils.on_vimenter(function()
 end)
 
 utils.on_file_load(function()
-	vim.cmd([[doautocmd User OnFileLoad]])
-	require("core.lsp").setup_lspconfig()
-	require("core.config_auto_reload").setup()
+	vim.schedule(function()
+    vim.cmd([[doautocmd User OnFileLoad]])
+    require("core.lsp").setup_lspconfig()
+    require("core.config_auto_reload").setup()
+	end)
 end)

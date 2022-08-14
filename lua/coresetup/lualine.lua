@@ -12,7 +12,7 @@ local function is_file()
 end
 
 local function get_theme(opts)
-	local has_gps, gps = pcall(require, "nvim-gps")
+	-- local has_gps, gps = pcall(require, "nvim-gps")
 
 	local terminal = {
 		function()
@@ -110,7 +110,7 @@ local function get_theme(opts)
 				filename,
 			},
 			lualine_c = {
-				has_gps and { gps.get_location, cond = gps.is_available, color = "lualine_c_inactive" } or {},
+				-- has_gps and { gps.get_location, cond = gps.is_available, color = "lualine_c_inactive" } or {},
 			},
 			lualine_x = { filetype },
 			lualine_y = {

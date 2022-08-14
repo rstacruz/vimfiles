@@ -53,6 +53,11 @@ local function setup()
 	-- left/right arrows will go to the next/previous line
 	vim.opt.whichwrap:append("<>[]hl")
 
+  -- clear out tabline and statusline, they will be populated later by plugins
+  vim.opt.showtabline = 2
+  vim.opt.tabline = " "
+  vim.opt.statusline = " "
+
 	-- leader keys
 	vim.g.mapleader = " "
 	vim.g.maplocalleader = ","

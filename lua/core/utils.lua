@@ -1,10 +1,15 @@
 -- Reload neovim config
 local function reload()
+  -- Refresh the impatient caches
+  vim.cmd("LuaCacheClear")
+
+  -- Unload everything from core and coresetup
 	for k, _ in pairs(package.loaded) do
 		if string.match(k, "^core") then
 			package.loaded[k] = nil
 		end
 	end
+
 	vim.cmd("luafile " .. vim.env.MYVIMRC)
 	require("packer").compile()
 end
