@@ -1,45 +1,44 @@
 local function apply()
 	local cmd = vim.cmd
 
-	-- cmd([[hi! HopNextKey guibg=#ffddaa guifg=#000000]])
-	-- cmd([[hi! HopNextKey1 guibg=#ffddaa guifg=#000000]])
-	-- cmd([[hi! HopNextKey2 guibg=#ffddaa guifg=#000000]])
-	cmd([[hi! link HopNextKey Search]])
-	cmd([[hi! link HopNextKey1 Search]])
-	cmd([[hi! link HopNextKey2 Search]])
+  vim.api.nvim_set_hl(0, "HopNextKey", { link = "Search" })
+  vim.api.nvim_set_hl(0, "HopNextKey1", { link = "Search" })
+  vim.api.nvim_set_hl(0, "HopNextKey2", { link = "Search" })
 
 	-- Custom styles
-	cmd([[hi! link XxLine LineNr]]) -- borders and lines. also: Vertsplit
+  vim.api.nvim_set_hl(0, "XxLine", { link = "LineNr" }) -- borders and lines. also: Vertsplit
 
-	cmd([[hi! link TelescopeNormal Pmenu]])
-	cmd([[hi! link TelescopeBorder Pmenu]])
-	cmd([[hi! link TelescopePreviewBorder Pmenu]])
-	cmd([[hi! link TelescopeResultsBorder Pmenu]])
-	cmd([[hi! link TelescopeTitle Search]])
+  -- Telescope
+  vim.api.nvim_set_hl(0, "TelescopeNormal", { link = "Pmenu" })
+  vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "Pmenu" })
+  vim.api.nvim_set_hl(0, "TelescopePreviewBorder", { link = "Pmenu" })
+  vim.api.nvim_set_hl(0, "TelescopeResultsBorder", { link = "Pmenu" })
+  vim.api.nvim_set_hl(0, "TelescopeTitle", { link = "Search" })
 
-	cmd([[hi! link TelescopePromptNormal CursorLine]])
-	cmd([[hi! link TelescopePromptPrefix DevIconsTsx]])
-	cmd([[hi! link TelescopePromptBorder CursorLine]])
-	cmd([[hi! link TelescopePromptTitle IncSearch]])
-	cmd([[hi! link TelescopePromptCounter NonText]])
+  vim.api.nvim_set_hl(0, "TelescopePromptNormal", { link = "CursorLine" })
+  vim.api.nvim_set_hl(0, "TelescopePromptPrefix", { link = "DevIconsTsx" })
+  vim.api.nvim_set_hl(0, "TelescopePromptBorder", { link = "CursorLine" })
+  vim.api.nvim_set_hl(0, "TelescopePromptTitle", { link = "IncSearch" })
+  vim.api.nvim_set_hl(0, "TelescopePromptCounter", { link = "NonText" })
 
-	cmd([[hi! link IndentBlanklineContextStart CursorLine]]) -- the indent line that started the context
-	cmd([[hi! link IndentBlanklineChar XxLine]])
-	cmd([[hi! link IndentBlanklineContextChar XxLine]])
+  -- Indent blankline
+  vim.api.nvim_set_hl(0, "IndentBlanklineContextStart", { link = "CursorLine" }) -- The line that started the context
+  vim.api.nvim_set_hl(0, "IndentBlanklineChar", { link = "XxLine" })
+  vim.api.nvim_set_hl(0, "IndentBlanklineContextChar", { link = "XxLine" })
 
-	cmd([[hi! link CmpBorder XxLine]]) -- Custom border for cmp completions
+  vim.api.nvim_set_hl(0, "CmpBorder", { link = "XxLine" }) -- Border for completions
 
-	cmd([[hi! link NvimTreeSpecialFile Comment]]) -- Make some files less visible
-	cmd([[hi! link NvimTreeIndentMarker NonText]]) -- Make some files less visible
-	cmd([[hi! link NvimTreeRootFolder Comment]]) -- make the heading less prominent
-	cmd([[hi! link NvimTreeWinSeparator EndOfBuffer]]) -- better visual boundary from tree sidebar to the buffer
+  vim.api.nvim_set_hl(0, "NvimTreeSpecialFile", { link = "Comment" }) -- Make some files less visible
+  vim.api.nvim_set_hl(0, "NvimTreeIndentMarker", { link = "NonText" }) -- Make some files less visible
+  vim.api.nvim_set_hl(0, "NvimTreeRootFolder", { link = "Comment" }) -- make the heading less prominent
+  vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { link = "EndOfBuffer" }) -- better visual boundary from tree sidebar to the buffer
 
 	local col = vim.g.colors_name
 	local bg = vim.opt.background:get()
 
 	-- different themes have different groups that look nice with borders
 	if col == "terafox" or col == "nightfox" or col == "carbonfox" then
-		cmd([[hi! link XxLine Conceal]])
+  vim.api.nvim_set_hl(0, "XxLine", { link = "Conceal" })
 	end
 
 	if col == "nibble" then
@@ -59,9 +58,7 @@ function setup()
   vim.api.nvim_create_autocmd("Colorscheme", {
     pattern = "*",
     group = augroup,
-    callback = function()
-      apply()
-    end,
+    callback = apply
   })
 end
 

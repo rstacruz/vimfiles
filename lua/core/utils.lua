@@ -49,23 +49,6 @@ local function on_vimenter(callback)
   })
 end
 
--- Automatically compile when writing init.lua
-local function setup_packer_autocmd()
-	local group = vim.api.nvim_create_augroup("PackerReload", { clear = true })
-
-	vim.api.nvim_create_autocmd("BufWritePost", {
-		pattern = vim.env.MYVIMRC,
-		group = group,
-		callback = function(s)
-      vim.schedule(function()
-        reload()
-        require("packer").compile()
-        print("Config reloaded :)")
-      end)
-		end,
-	})
-end
-
 -- Works like packer.startup(packages), but also downloads
 -- and installs packer. Returns "false" when processing should stop.
 local function bootstrap_packer(packages)
@@ -89,5 +72,4 @@ return {
 	on_file_load = on_file_load,
   on_vimenter = on_vimenter,
   bootstrap_packer = bootstrap_packer,
-  setup_packer_autocmd = setup_packer_autocmd
 }
