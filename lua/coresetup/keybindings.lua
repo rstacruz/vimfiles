@@ -7,7 +7,8 @@ local function get_default_mappings()
 
 				["<leader>s"] = { name = "[s]ettings…" },
 				["<leader>s,"] = { "<cmd>vsplit " .. vim.fn.stdpath("config") .. "/init.lua<cr>", "Edit Neovim settings" },
-				["<leader>sk"] = { "<cmd>vsplit " .. vim.fn.stdpath("config") .. "/lua/coresetup/keybindings.lua<cr>", "Edit [k]eybindings" },
+				["<leader>sc"] = { "<cmd>Telescope colorscheme<cr>", "Choose [c]olorscheme…" },
+				["<leader>sk"] = { "<cmd>vsplit " .. vim.fn.stdpath("config") .. "/lua/coresccup/keybindings.lua<cr>", "Edit [k]eybindings" },
 				["<leader>sr"] = {
 					"<cmd>lua require('core.utils').reload()<cr>",
 					"Reload config",
@@ -36,10 +37,7 @@ local function get_default_mappings()
 end
 
 local function apply_mappings(key)
-	local has, which_key = pcall(require, "which-key")
-	if not has then
-		return
-	end
+  local which_key = require("which-key")
 
 	local mappings = get_default_mappings()[key]
 	if not mappings then

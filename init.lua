@@ -9,18 +9,17 @@ local function packages(use)
 	use({ "wbthomason/packer.nvim" })
 
 	use({
-    "nvim-treesitter/nvim-treesitter",
-    module = "nvim-treesitter",
-    run = ":TSUpdate",
-    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSEnable", "TSDisable", "TSModuleInfo" },
-    requires = {
-      { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" }
-    },
-    config = function()
-      require("coresetup.treesitter").setup()
-    end
-  })
-
+		"nvim-treesitter/nvim-treesitter",
+		module = "nvim-treesitter",
+		run = ":TSUpdate",
+		cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSEnable", "TSDisable", "TSModuleInfo" },
+		requires = {
+			{ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
+		},
+		config = function()
+			require("coresetup.treesitter").setup()
+		end,
+	})
 
 	use({ "neovim/nvim-lspconfig", event = "User OnFileLoad" })
 	-- use("williamboman/mason.nvim") -- Install LSP servers (:Mason)
@@ -87,6 +86,13 @@ local function packages(use)
 	})
 
 	use({ "EdenEast/nightfox.nvim" })
+	use({ "projekt0n/github-nvim-theme" })
+	use({ "mcchrish/zenbones.nvim", requires = { "rktjmp/lush.nvim" } })
+	use({ "catppuccin/nvim", as = "catppuccin-nvim" })
+	use({ "dracula/vim", as = "dracula-vim" })
+	use({ "cmoscofian/nibble-vim" })
+	use({ "navarasu/onedark.nvim" })
+	use({ "embark-theme/vim", as = "embark-theme-vim" })
 end
 
 -- Bootstrap packer
