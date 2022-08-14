@@ -10,7 +10,7 @@ local function setup()
 
   vim.opt.backup = false -- No backup files
   vim.opt.fillchars = { eob = " ", vert = "▓" } -- end-of-buffer and vertical split
-  vim.opt.foldlevel = 99 -- Don't fold everything on first load
+  vim.opt.foldlevel = 0 -- Fold everything on first load
   vim.opt.gdefault = true -- Search/replace uses `g` flag by default
   vim.opt.mouse = "a" -- Enable mouse support
   vim.opt.pumheight = 10 -- Popup menu height

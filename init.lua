@@ -56,7 +56,12 @@ local function packages(use)
   })
   use("folke/lsp-colors.nvim") -- Infer some colours needed for LSP
   use("folke/which-key.nvim") -- Menu when pressing [space]
-  use("kyazdani42/nvim-tree.lua")
+  use({
+    "kyazdani42/nvim-tree.lua",
+    config = function()
+      require("core.setup.nvim-tree").setup()
+    end,
+  })
   use("kyazdani42/nvim-web-devicons")
   use({
     "lewis6991/gitsigns.nvim",
@@ -88,7 +93,7 @@ local function packages(use)
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
     },
   })
-  use({ "stevearc/dressing.nvim", event = "BufReadPost" }) -- Improved appearance of vim.ui
+  use({ "stevearc/dressing.nvim", event = "VimEnter *" }) -- Improved appearance of vim.ui
   use("rcarriga/nvim-notify")
 
   -- Optimisations
@@ -97,18 +102,30 @@ local function packages(use)
 
   -- Goodies
   use("Darazaki/indent-o-matic") -- Detect indentation automatically
-  use({ "akinsho/toggleterm.nvim", event = "BufReadPost" }) -- Terminal
+  use({
+    "akinsho/toggleterm.nvim",
+    event = "BufReadPost",
+    config = function()
+      require("core.setup.toggleterm").setup()
+    end,
+  }) -- Terminal
   use("jrudess/vim-foldtext") -- Improve appearance of fold text
   use({ "michaeljsmith/vim-indent-object", event = "BufReadPost" })
   use({ "nvim-pack/nvim-spectre", event = "BufReadPost" }) -- Find files
   use("phaazon/hop.nvim") -- Easymotion (gw)
-  use({ "rstacruz/vim-gitgrep", event = "BufReadPost" })
-  use({ "thinca/vim-visualstar", event = "BufReadPost" })
+  use({ "rstacruz/vim-gitgrep", event = "VimEnter *" })
+  use({ "thinca/vim-visualstar", event = "VimEnter *" })
   use({ "tpope/vim-fugitive", event = "BufReadPost" }) -- Git
   use({ "tpope/vim-rhubarb", event = "BufReadPost" }) -- Fugitive extension for GitHub commands
   use({ "tpope/vim-surround", event = "BufReadPost" })
   use("dstein64/vim-startuptime") -- Profile startup
-  use({ "numToStr/Comment.nvim", event = "BufReadPost" }) -- Comments
+  use({
+    "numToStr/Comment.nvim",
+    event = "BufReadPost",
+    config = function()
+      require("Comment").setup()
+    end,
+  }) -- Comments
   use({ "natecraddock/workspaces.nvim", event = "VimEnter" }) -- Manage workspaces
   use({ "kazhala/close-buffers.nvim", event = "BufReadPost" }) -- Close hidden buffers
 
@@ -157,7 +174,6 @@ vim.defer_fn(function()
   require("core.setup.rooter").setup()
   require("core.extras.lsp_borders").setup()
   require("core.setup.nvim-autocmds").setup()
-  require("core.setup.toggleterm").setup()
   require("core.setup.telescope").setup()
   require("core.setup.cmp").setup()
   require("core.setup.which-key").setup()

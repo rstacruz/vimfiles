@@ -86,14 +86,6 @@ local function setup_nightfox()
   })
 end
 
-local function setup_comment()
-  local has, comment = pcall(require, "Comment")
-  if not has then
-    return
-  end
-  comment.setup()
-end
-
 local function setup_workspaces()
   local has, workspaces = pcall(require, "workspaces")
   if not has then
@@ -116,53 +108,7 @@ local function setup_workspaces()
   end
 end
 
-local function setup_nvim_tree()
-  local has, nvim_tree = pcall(require, "nvim-tree")
-  if not has then
-    return
-  end
-
-  nvim_tree.setup({
-    sync_root_with_cwd = true,
-    view = {
-      width = 30,
-    },
-    renderer = {
-      add_trailing = false,
-      special_files = {
-        "Cargo.toml",
-        "Makefile",
-        ".gitignore",
-        -- docs
-        "README.md",
-        -- js
-        "package.json",
-        "package-lock.json",
-        "yarn.lock",
-        ".babelrc",
-        ".babel.config.js",
-        ".babel.config.cjs",
-        ".babel.config.mjs",
-        ".prettierrc",
-        ".npmrc",
-        "postcss.config.js",
-        "tailwind.config.js",
-        "tsconfig.json",
-        "jsconfig.json",
-        -- lua
-        ".luarc.json",
-        "packer.lock",
-        "stylua.toml",
-      },
-      indent_markers = {
-        enable = true,
-      },
-    },
-  })
-end
-
 local function setup_later()
-  setup_comment()
   setup_hop()
   setup_null_ls()
   setup_nvim_gps()
@@ -174,7 +120,6 @@ local function setup()
   setup_lualine()
   setup_nightfox()
   setup_notify()
-  setup_nvim_tree()
 end
 
 return { setup = setup, setup_later = setup_later }

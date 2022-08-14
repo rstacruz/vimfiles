@@ -56,6 +56,7 @@ local NORMAL_BINDINGS = {
   ["<leader>,"] = { name = "Experimental…" },
   ["<leader>,s"] = { "<cmd>split ~/.scratchpad<cr><C-w>H", "Open [s]cratchpad" },
   ["<leader>,g"] = { [[:lua require('core.actions').telescope_grep()<cr>]], "Search (telescope)…" },
+  ["<leader>,c"] = { "<cmd>lua require('core.utils').reload()<cr>:PackerClean<cr>", "Packer: [c]lean unused packages" },
 
   -- Leader: [w] window
   ["<leader>w"] = { name = "[w]indow…" },
@@ -79,8 +80,11 @@ local NORMAL_BINDINGS = {
   ["<leader>b<space>"] = has_bufferline and { "<cmd>BufferLineTogglePin<cr>", "Toggle [P]in" } or {},
   ["<leader>b."] = has_bufferline and { "<cmd>BufferLineCloseRight<cr>", "Close to the right" } or {},
   ["<leader>b,"] = has_bufferline and { "<cmd>BufferLineCloseLeft<cr>", "Close to the left" } or {},
-  ["<leader>bo"] = has_bufferline and { "<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>", "Close [o]ther tabs" } or {},
-  ["<leader>bO"] = has_bufferline and { "<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>", "Close [O]ther tabs (force)" } or {},
+  ["<leader>bo"] = has_bufferline and
+      { "<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>", "Close [o]ther tabs" } or {},
+  ["<leader>bO"] = has_bufferline and
+      { "<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>", "Close [O]ther tabs (force)" }
+      or {},
 
   -- Leader: [x] exit
   ["<leader>x"] = { name = "E[x]it…" },
@@ -96,12 +100,8 @@ local NORMAL_BINDINGS = {
   ["<leader>sr"] = { "<cmd>lua require('core.utils').reload()<cr>", "[r]eload Vim config" },
   ["<leader>sc"] = { "<cmd>Telescope colorscheme<cr>", "Choose [c]olour scheme" },
   ["<leader>st"] = { "<cmd>StartupTime<cr>", "Profile startup [t]ime" },
-
-  -- Leader: [sp] packer
-  ["<leader>sp"] = { name = "[p]acker…" },
-  ["<leader>spc"] = { "<cmd>lua require('core.utils').reload()<cr>:PackerClean<cr>", "Packer: [c]lean unused packages" },
-  ["<leader>spi"] = { "<cmd>lua require('core.utils').reload()<cr>:PackerInstall<cr>", "Packer: [i]nstall new packages" },
-  ["<leader>sps"] = { "<cmd>lua require('core.utils').reload()<cr>:PackerSync<cr>", "Packer: [s]ync packages" },
+  ["<leader>si"] = { "<cmd>lua require('core.utils').reload()<cr>:PackerInstall<cr>", "Packer: [i]nstall new packages" },
+  ["<leader>su"] = { "<cmd>lua require('core.utils').reload()<cr>:PackerSync<cr>", "Packer: [u]pdate packages" },
 
   -- Leader: [t] terminal
   ["<leader>t"] = { name = "[t]erminal…" },
@@ -160,10 +160,12 @@ local NORMAL_BINDINGS = {
   ["<leader>os"] = { "<cmd>set spell!<cr>", "Toggle [s]pell check" },
   ["<leader>on"] = { "<cmd>set number!<cr>", "Toggle line [n]umber" },
   ["<leader>or"] = { "<cmd>set relativenumber!<cr>", "Toggle [r]elative line number" },
-  ["<leader>of"] = vim.fn.has("g:neovide") and { "<cmd>let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle [f]ullscreen" } or {},
+  ["<leader>of"] = vim.fn.has("g:neovide") and
+      { "<cmd>let g:neovide_fullscreen=!g:neovide_fullscreen<cr>", "Toggle [f]ullscreen" } or {},
   ["<leader>ob"] = { "<cmd>lua require('core.lib.theme').toggle_theme()<cr>", "Toggle light/dark theme" },
   ["<leader>ot"] = { "<cmd>Twilight<cr>", "Toggle [t]wilight mode" },
-  ["<leader>oB"] = { "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>", "Toggle light/dark [B]ackground" },
+  ["<leader>oB"] = { "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
+    "Toggle light/dark [B]ackground" },
   ["<leader>oc"] = { "<cmd>lua vim.o.conceallevel = vim.o.conceallevel == 2 and 0 or 2<cr>", "Toggle [c]onceal" },
 
   -- Leader: [oD] diagnostic
