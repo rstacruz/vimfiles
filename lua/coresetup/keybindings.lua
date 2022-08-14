@@ -19,6 +19,35 @@ local function get_default_mappings()
 				["<tab>"] = { "<cmd>BufferLineCycleNext<cr>", "Buffer: next" } or {},
 				["<s-tab>"] = { "<cmd>BufferLineCyclePrev<cr>", "Buffer: previous" } or {},
 
+				-- Leader: [f] file
+				["<leader>f"] = { name = "[f]ile…" },
+				["<leader>fw"] = { "<cmd>w<cr>", "Save file [w]" },
+				["<leader>fs"] = { "<cmd>noa w<cr>", "[s]ave without formatting" },
+				["<leader>fr"] = { "<cmd>e!<cr>", "[r]evert changes in file" },
+				["<leader>fy"] = { [[:let @+=@% | echo '→ ' . @%<cr>]], "Cop[y] current path" },
+				["<leader>fY"] = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], "Cop[Y] full path" },
+
+				-- Leader: [o] toggle
+				["<leader>o"] = { name = "T[o]ggle…" },
+				["<leader>ow"] = { "<cmd>set wrap!<cr>", "Toggle [w]ord wrap" },
+				["<leader>os"] = { "<cmd>set spell!<cr>", "Toggle [s]pell check" },
+				["<leader>on"] = { "<cmd>set number!<cr>", "Toggle line [n]umber" },
+				["<leader>or"] = { "<cmd>set relativenumber!<cr>", "Toggle [r]elative line number" },
+				-- ["<leader>ob"] = { "<cmd>lua require('core.lib.theme').toggle_theme()<cr>", "Toggle light/dark theme" },
+				-- ["<leader>oB"] = { "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
+				-- "Toggle light/dark [B]ackground" },
+				["<leader>oc"] = {
+					"<cmd>lua vim.o.conceallevel = vim.o.conceallevel == 2 and 0 or 2<cr>",
+					"Toggle [c]onceal",
+				},
+
+				-- Leader: [od] diagnostic
+				["<leader>od"] = { name = "[d]iagnostic…" },
+				["<leader>odd"] = { "<cmd>lua vim.diagnostic.disable()<cr>", "[d]isable diagnostics" },
+				["<leader>ode"] = { "<cmd>lua vim.diagnostic.enable()<cr>", "[e]nable diagnostics" },
+				["<leader>odh"] = { "<cmd>lua vim.diagnostic.hide()<cr>", "[h]ide diagnostics" },
+				["<leader>ods"] = { "<cmd>lua vim.diagnostic.show()<cr>", "[s]how diagnostics" },
+
 				-- [s] settings
 				["<leader>s"] = { name = "[s]ettings…" },
 				["<leader>s,"] = {
