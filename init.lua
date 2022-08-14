@@ -4,6 +4,7 @@ require("coresetup.nvim-options").setup()
 vim.g.baseconfig = {
 	ui = {
 		theme_dark = "terafox", -- terafox | github_dimmed | catppuccin
+		theme_light = "github_light"
 	},
 }
 
@@ -74,7 +75,7 @@ local function packages(use)
 	use({
 		"nvim-telescope/telescope.nvim",
 		cmd = "Telescope",
-		module = "Telescope",
+		module = "telescope",
 		requires = {
 			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 		},
@@ -180,7 +181,7 @@ if utils.bootstrap_packer(packages) == false then
 end
 
 require("core.theme-overrides").setup()
-vim.cmd("colorscheme " .. vim.g.baseconfig.ui.theme_dark)
+require("core.theme-utils").setup()
 
 utils.on_vimenter(function()
 	vim.schedule(function()
@@ -191,6 +192,6 @@ end)
 utils.on_file_load(function()
 	vim.schedule(function()
 		vim.cmd([[doautocmd User OnFileLoad]])
-		require("core.config_auto_reload").setup()
+		require("core.config-auto-reload").setup()
 	end)
 end)

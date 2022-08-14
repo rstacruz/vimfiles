@@ -56,7 +56,7 @@ local function apply()
 	end
 end
 
-function setup()
+local function setup()
 	local augroup = vim.api.nvim_create_augroup("ThemeOverrides", { clear = true })
 	vim.api.nvim_create_autocmd("Colorscheme", {
 		pattern = "*",
