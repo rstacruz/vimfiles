@@ -209,12 +209,12 @@ local function setup_other_bindings()
   map("i", [[<c-v>]], [[<esc>:set paste<cr>a<c-r>+<esc>:set nopaste<cr>a]], opts) -- Paste
   map("v", [[<c-c>]], [["+y]], opts) -- Copy
   if pcall(require, "nvim-tree") then
-    map("n", [[-]], [[<cmd>:NvimTreeFindFile<cr>]], opts)
+    map("n", [[-]], [[<cmd>NvimTreeFindFile<cr>]], opts)
   elseif pcall(require, "neo-tree") then
-    map("n", [[-]], [[<cmd>:Neotree reveal<cr>]], opts)
+    map("n", [[-]], [[<cmd>Neotree reveal<cr>]], opts)
   end
   if pcall(require, "toggleterm") then
-    map("n", [[<c-j>]], [[:ToggleTerm<cr>]], opts) -- Toggle terminal
+    map("n", [[<c-j>]], [[<cmd>ToggleTerm<cr>]], opts) -- Toggle terminal
   end
 end
 
