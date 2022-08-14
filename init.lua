@@ -16,7 +16,7 @@ local function packages(use)
   -- use("williamboman/mason.nvim") -- Install LSP servers (:Mason)
   -- use("WhoIsSethDaniel/mason-tool-installer.nvim") -- Auto-install as needed
   -- use("jose-elias-alvarez/null-ls.nvim") -- Formatting and diagnostics
-  -- use("SmiteshP/nvim-gps") -- Breadcrumbs in the status line
+  use("SmiteshP/nvim-gps") -- Breadcrumbs in the status line
 
 	-- Improve startup time by optimising Lua cache
 	use({ "lewis6991/impatient.nvim" })
@@ -76,24 +76,21 @@ local function packages(use)
 	use({ "EdenEast/nightfox.nvim" })
 end
 
--- Packer bootstrap
-local packer_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if vim.fn.filereadable(packer_path .. "/lua/packer.lua") == 0 then
-	print("Installing packer…")
-	vim.fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", packer_path })
-	vim.cmd("autocmd User PackerCompileDone luafile " .. vim.env.MYVIMRC)
-	vim.cmd("packadd packer.nvim")
-	require("packer").startup(packages)
-	require("packer").sync()
-	return
+-- Bootstrap packer
+local utils = require("core.utils")
+if utils.bootstrap_packer(packages) == false then
+  return
 end
 
-require("packer").startup(packages)
 require("core.theme-overrides").setup()
 vim.cmd([[colorscheme terafox]])
 
-local utils = require("core.utils")
-utils.setup_deferred_loading()
+utils.on_vimenter(function()
+  vim.defer_fn(function()
+    vim.cmd([[doautocmd User OnIdle]])
+  end, 1)
+end)
+
 utils.on_file_load(function()
   vim.cmd([[doautocmd User OnFileLoad]])
   require("core.lsp").setup_lspconfig()

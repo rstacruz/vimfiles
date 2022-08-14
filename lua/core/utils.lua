@@ -9,37 +9,67 @@ local function reload()
 	require("packer").compile()
 end
 
-local function setup_deferred_loading(callback)
-	local group = vim.api.nvim_create_augroup("deferredload", { clear = true })
+---@class BindOnceOptions
+---@field group_name string
+---@field events String{}
+---@field callback Function
 
-	vim.api.nvim_create_autocmd("VimEnter", {
-		pattern = "*",
-		group = group,
-		callback = function()
-			vim.defer_fn(function()
-				vim.cmd([[doautocmd User OnIdle]])
-				if callback then callback() end
-			end, 1)
-		end,
-	})
-end
-
-local function on_file_load(callback)
-  local augroup_name = "on_file_load"
+-- Bind an event to an autocmd, but only fire it once.
+---@param options BindOnceOptions
+local function bind_once(options)
+  local augroup_name = options.group_name
+  local events = options.events
 	local group = vim.api.nvim_create_augroup(augroup_name, { clear = true })
 
-	vim.api.nvim_create_autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
+	vim.api.nvim_create_autocmd(events, {
 		pattern = "*",
 		group = group,
 		callback = function()
       vim.api.nvim_del_augroup_by_name(augroup_name)
-      callback()
+      options.callback()
 		end,
 	})
 end
 
+---@param callback Function
+local function on_file_load(callback)
+  bind_once({
+    group_name = "on_file_load",
+    events = { "BufRead", "BufWinEnter", "BufNewFile" },
+    callback = callback
+  })
+end
+
+---@param callback Function
+local function on_vimenter(callback)
+  bind_once({
+    group_name = "on_vimenter",
+    events = { "VimEnter" },
+    callback = callback
+  })
+end
+
+-- Works like packer.startup(packages), but also downloads
+-- and installs packer. Returns "false" when processing should stop.
+local function bootstrap_packer(packages)
+  local packer_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+  if vim.fn.filereadable(packer_path .. "/lua/packer.lua") == 0 then
+    print("Installing packer…")
+    vim.fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", packer_path })
+    vim.cmd("autocmd User PackerCompileDone luafile " .. vim.env.MYVIMRC)
+    vim.cmd("packadd packer.nvim")
+    require("packer").startup(packages)
+    require("packer").sync()
+    return false
+  end
+
+  require("packer").startup(packages)
+  return true
+end
+
 return {
 	reload = reload,
-	setup_deferred_loading = setup_deferred_loading,
 	on_file_load = on_file_load,
+  on_vimenter = on_vimenter,
+  bootstrap_packer = bootstrap_packer
 }

@@ -3,6 +3,7 @@ local function setup()
 	if not has then
 		return
 	end
+
 	local options = {
 		defaults = {
 			vimgrep_arguments = {
