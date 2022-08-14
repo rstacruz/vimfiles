@@ -2,7 +2,12 @@ local function get_default_mappings()
 	local mappings = {
 		default = {
 			n = {
-				["<leader>st"] = { "<cmd>StartupTime --tries 6<cr>", "Profile startup time" },
+				["-"] = { "<cmd>NvimTreeFindFile<cr>", "Open file explorer" },
+				["<c-p>"] = { "<cmd>Telescope find_files<cr>", "Open file…" },
+
+				["<leader>s"] = { name = "[s]ettings…" },
+				["<leader>s,"] = { "<cmd>vsplit ~/.config/nvim/init.lua<cr>", "Edit Neovim settings" },
+				["<leader>sk"] = { "<cmd>vsplit ~/.config/nvim/lua/core/keymaps.lua<cr>", "Edit [k]eybindings" },
 				["<leader>si"] = {
 					"<cmd>lua require('core.utils').reload()<cr>:PackerInstall<cr>",
 					"Packer: [i]nstall new packages",
@@ -11,7 +16,9 @@ local function get_default_mappings()
 					"<cmd>lua require('core.utils').reload()<cr>:PackerSync<cr>",
 					"Packer: [u]pdate packages",
 				},
-				-- ["-"] = { "<cmd>NvimTreeFindFile<cr>" },
+
+				["<leader>,"] = { name = "experimental…" },
+				["<leader>,p"] = { "<cmd>StartupTime --tries 6<cr>", "Profile startup time" },
 			},
 			v = {},
 			ctrl = {

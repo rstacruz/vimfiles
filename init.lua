@@ -1,12 +1,12 @@
 pcall(require, "impatient")
-require("core.setup.nvim-options").setup()
+require("coresetup.nvim-options").setup()
 
 vim.g.baseconfig = {
 	theme = "terafox",
 }
 
 local function packages(use)
-  use({ "wbthomason/packer.nvim", opt = true })
+	use({ "wbthomason/packer.nvim", opt = true })
 
 	-- Improve startup time by optimising Lua cache
 	use("lewis6991/impatient.nvim")
@@ -17,11 +17,12 @@ local function packages(use)
 	use({
 		"nvim-telescope/telescope.nvim",
 		cmd = "Telescope",
+		module = "Telescope",
 		requires = {
 			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 		},
 		config = function()
-			require("core.setup.telescope").setup()
+			require("coresetup.telescope").setup()
 		end,
 	})
 
@@ -32,7 +33,14 @@ local function packages(use)
 		"folke/which-key.nvim",
 		event = "User DeferredLoad",
 		config = function()
-			require("core.setup.keybindings").setup()
+			require("coresetup.keybindings").setup()
+		end,
+	})
+
+	use({
+		"kyazdani42/nvim-tree.lua",
+		config = function()
+			require("coresetup.nvim-tree").setup()
 		end,
 	})
 
@@ -53,23 +61,11 @@ end
 
 require("packer").startup(packages)
 
+-- Setup
+require("core.theme-overrides").setup()
 vim.cmd([[colorscheme terafox]])
 
-local function setup_deferred_loading(callback)
-	local group = vim.api.nvim_create_augroup("deferredload", { clear = true })
-
-	vim.api.nvim_create_autocmd("VimEnter", {
-		pattern = "*",
-		group = group,
-		callback = function()
-			vim.defer_fn(function()
-				vim.cmd([[doautocmd User DeferredLoad]])
-				callback()
-			end, 1)
-		end,
-	})
-end
-
-setup_deferred_loading(function()
+local utils = require("core.utils")
+utils.setup_deferred_loading(function()
 	-- pass
 end)
