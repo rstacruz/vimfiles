@@ -104,8 +104,8 @@ local NORMAL_BINDINGS = {
   ["<leader>t"] = { name = "[t]erminal..." },
   ["<leader>ta"] = { "<cmd>1ToggleTerm<cr>", "Terminal 1" },
   ["<leader>tr"] = { "<cmd>2ToggleTerm<cr>", "Terminal 2" },
-  ["<leader>ts"] = { "<cmd>3ToggleTerm<cr>", "Terminal 3" },
-  ["<leader>tt"] = { "<cmd>4ToggleTerm<cr>", "Terminal 4" },
+  ["<leader>ts"] = { "<cmd>vsplit<cr>:term fish<cr>", "Open terminal in [s]plit" },
+  ["<leader>tt"] = { "<cmd>tab term fish<cr>", "Open terminal in [t]ab" },
 
   -- Leader: [c] code
   ["<leader>c"] = { name = "[c]ode..." },
