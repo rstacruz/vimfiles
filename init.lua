@@ -1,14 +1,13 @@
--- Packer startup {{{
--- Proxy for checking if it's a dev environment
-local has_gcc = vim.fn.executable("gcc")
+require("core.setup.nvim-options").setup()
 
 local function packages(use)
+  local has_gcc = vim.fn.executable("gcc")
   use("wbthomason/packer.nvim")
 
   -- Language
   if has_gcc then
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-    use("nvim-treesitter/nvim-treesitter-textobjects")
+    use({ "nvim-treesitter/nvim-treesitter-textobjects", event = "BufReadPost" })
     use("neovim/nvim-lspconfig")
     use("williamboman/mason.nvim") -- Install LSP servers (:Mason)
     use("WhoIsSethDaniel/mason-tool-installer.nvim") -- Auto-install as needed
@@ -37,21 +36,45 @@ local function packages(use)
   use({ "embark-theme/vim", as = "embark-theme-vim" })
 
   -- File types
-  use("preservim/vim-markdown") -- Markdown (.md)
-  use("slim-template/vim-slim") -- Slim (.slim)
+  use({ "preservim/vim-markdown", ft = { "markdown" } }) -- Markdown (.md)
+  use({ "slim-template/vim-slim", ft = { "slim" } }) -- Slim (.slim)
 
   -- UI
   use("goolord/alpha-nvim")
-  use("dstein64/nvim-scrollview")
+  use({
+    "dstein64/nvim-scrollview",
+    event = "BufReadPost",
+    config = function()
+      require("core.setup.scrollview").setup()
+    end,
+  })
   use("folke/lsp-colors.nvim") -- Infer some colours needed for LSP
   use("folke/which-key.nvim") -- Menu when pressing [space]
   use("kyazdani42/nvim-tree.lua")
   use("kyazdani42/nvim-web-devicons")
-  use("lewis6991/gitsigns.nvim") -- Git indicators on the gutter
-  use("lukas-reineke/indent-blankline.nvim") -- Indent indicators
-  use("nvim-lua/plenary.nvim") -- for Telescope
+  use({
+    "lewis6991/gitsigns.nvim",
+    event = "BufReadPost",
+    config = function()
+      require("core.setup.gitsigns").setup()
+    end,
+  }) -- Git indicators on the gutter
+  use({
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufReadPost",
+    config = function()
+      require("core.setup.indent_blankline").setup()
+    end,
+  }) -- Indent indicators
+  use({ "nvim-lua/plenary.nvim", opt = true }) -- for Telescope
   use("nvim-lualine/lualine.nvim") -- Status line
-  use("akinsho/bufferline.nvim") -- tab line
+  use({
+    "akinsho/bufferline.nvim",
+    event = "BufRead",
+    config = function()
+      require("core.setup.bufferline").setup() -- do after theme
+    end,
+  }) -- tab line
   use("nvim-telescope/telescope.nvim")
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
   use("onsails/lspkind-nvim") -- Icons on LSP menus
@@ -81,14 +104,25 @@ local function packages(use)
   use("kazhala/close-buffers.nvim") -- Close hidden buffers
 
   -- Still trying it out
-  use("folke/twilight.nvim") -- Isolate (leader-ot)
-  use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
-  use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
+  use({ "folke/twilight.nvim", event = "VimEnter" }) -- Isolate (leader-ot)
+  use({
+    "TimUntersberger/neogit",
+    requires = "nvim-lua/plenary.nvim",
+    event = "VimEnter",
+    config = function()
+      require("core.setup.neogit").setup()
+    end,
+  })
+  use({
+    "sindrets/diffview.nvim",
+    requires = { "nvim-lua/plenary.nvim", "TimUntersberger/neogit" },
+    event = "VimEnter",
+  })
   use("airblade/vim-rooter")
 
   -- Takes a lot of CPU sometimes
   -- use("github/copilot.vim")
-end -- }}}
+end
 
 -- Packer bootstrap
 local packer_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
@@ -105,11 +139,8 @@ end
 require("packer").startup(packages)
 require("impatient")
 require("core.lib.theme").setup()
-require("core.setup.bufferline").setup() -- do after theme
-require("core.setup.nvim-options").setup()
 require("core.setup.treesitter").setup()
 require("core.setup.alpha").setup()
-require("core.setup.indent_blankline").setup()
 require("core.setup.zz-other").setup()
 
 vim.defer_fn(function()
@@ -117,7 +148,6 @@ vim.defer_fn(function()
   require("core.setup.rooter").setup()
   require("core.extras.lsp_borders").setup()
   require("core.setup.nvim-autocmds").setup()
-  require("core.setup.neogit").setup()
   require("core.setup.toggleterm").setup()
   require("core.setup.telescope").setup()
   require("core.setup.cmp").setup()
@@ -127,6 +157,6 @@ vim.defer_fn(function()
   require("core.lib.abbreviations").setup()
   require("core.lib.highlight_on_yank").setup()
   require("core.keymaps").setup()
-end, 400)
+end, 0)
 
--- vim:foldmethod=indent
+-- vim:foldmethod=indent:foldlevel=0

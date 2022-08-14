@@ -1,13 +1,3 @@
-local function setup_scrollview()
-  local has, scrollview = pcall(require, "scrollview")
-  if not has then
-    return
-  end
-
-  scrollview.setup()
-  vim.g.scrollview_excluded_filetypes = { "NvimTree" }
-end
-
 local function setup_lualine()
   local has, lualine = pcall(require, "lualine")
   if not has then
@@ -18,21 +8,6 @@ local function setup_lualine()
   local opts = require("core.lib.lualine-theme").get_theme({ theme = lualine_theme })
 
   lualine.setup(opts)
-end
-
-local function setup_gitsigns()
-  local has, gitsigns = pcall(require, "gitsigns")
-  if not has then
-    return
-  end
-
-  gitsigns.setup({
-    signs = {
-      changedelete = { text = "▌" }, -- Originally "~"
-      change = { text = "▌" },
-      add = { text = "▌" },
-    },
-  })
 end
 
 local function setup_nvim_gps()
@@ -188,11 +163,9 @@ end
 
 local function setup_later()
   setup_comment()
-  setup_gitsigns()
   setup_hop()
   setup_null_ls()
   setup_nvim_gps()
-  setup_scrollview()
   setup_spectre()
   setup_workspaces()
 end
