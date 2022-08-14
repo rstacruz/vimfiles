@@ -22,8 +22,6 @@ local function setup()
   vim.opt.timeoutlen = 200 -- for which-key
   vim.opt.wrap = false -- Word wrap
   vim.opt.clipboard = "unnamedplus" -- Use system clipboard
-  vim.opt.showtabline = 2
-  vim.opt.tabline = "%%" -- Will load later
 
   -- Status
   vim.opt.title = true -- Show current file name in title bar
@@ -54,6 +52,11 @@ local function setup()
 
   -- left/right arrows will go to the next/previous line
   vim.opt.whichwrap:append("<>[]hl")
+
+  -- clear out tabline and statusline, they will be populated later by plugins
+  vim.opt.showtabline = 2
+  vim.opt.tabline = " "
+  vim.opt.statusline = " "
 
   if not vim.fn.has("windows") then
     vim.opt.shell = "/bin/bash"

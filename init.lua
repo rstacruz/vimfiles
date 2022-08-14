@@ -83,7 +83,7 @@ local function packages(use)
       require("core.setup.indent_blankline").setup()
     end,
   }) -- Indent indicators
-  use({ "nvim-lua/plenary.nvim", module = "plenary" }) -- Library for Telescope and many others
+  use({ "nvim-lua/plenary.nvim", module = { "plenary", "plenary.async" } }) -- Library for Telescope and many others
   use("nvim-lualine/lualine.nvim") -- Status line
   use({
     "akinsho/bufferline.nvim",
@@ -123,7 +123,7 @@ local function packages(use)
   use({ "michaeljsmith/vim-indent-object", event = "User DeferredLoad" })
   use({ "nvim-pack/nvim-spectre", event = "User DeferredLoad" }) -- Find files
   use("phaazon/hop.nvim") -- Easymotion (gw)
-  use({ "rstacruz/vim-gitgrep", event = "VimEnter *" })
+  use({ "rstacruz/vim-gitgrep", command = "GG" })
   use({ "thinca/vim-visualstar", event = "VimEnter *" })
   use({ "tpope/vim-fugitive", event = "User DeferredLoad" }) -- Git
   use({ "tpope/vim-rhubarb", event = "User DeferredLoad" }) -- Fugitive extension for GitHub commands
@@ -200,3 +200,4 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 -- vim:foldmethod=indent:foldlevel=0
+
