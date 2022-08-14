@@ -27,7 +27,7 @@ local function get_default_mappings()
 				},
 				["<leader>sc"] = { "<cmd>Telescope colorscheme<cr>", "Choose [c]olorscheme…" },
 				["<leader>sk"] = {
-					"<cmd>vsplit " .. vim.fn.stdpath("config") .. "/lua/coresccup/keybindings.lua<cr>",
+					"<cmd>vsplit " .. vim.fn.stdpath("config") .. "/lua/coresetup/keybindings.lua<cr>",
 					"Edit [k]eybindings",
 				},
 				["<leader>sr"] = {
@@ -56,8 +56,20 @@ local function get_default_mappings()
 				["<leader>b<space>"] = { "<cmd>BufferLineTogglePin<cr>", "Toggle [P]in" },
 				["<leader>b."] = { "<cmd>BufferLineCloseRight<cr>", "Close to the right" },
 				["<leader>b,"] = { "<cmd>BufferLineCloseLeft<cr>", "Close to the left" },
-				["<leader>bo"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>", "Close [o]ther tabs" },
-				["<leader>bO"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>", "Close [O]ther tabs (force)" },
+				["<leader>bo"] = {
+					"<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>",
+					"Close [o]ther tabs",
+				},
+				["<leader>bO"] = {
+					"<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>",
+					"Close [O]ther tabs (force)",
+				},
+
+				-- Leader: [x] exit
+				["<leader>x"] = { name = "E[x]it…" },
+				["<leader>xz"] = { "<cmd>cq<cr>", "Exit Neovim [z]" },
+				["<leader>xd"] = { "<cmd>bd!<cr>", "[d]estroy this buffer" },
+				-- ["<leader>xa"] = { "<cmd>%bd! | Alpha<cr>", "Back to st[a]rt screen" },
 
 				-- [,] others
 				["<leader>,"] = { name = "experimental…" },
