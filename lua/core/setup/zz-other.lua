@@ -8,33 +8,6 @@ local function setup_scrollview()
   vim.g.scrollview_excluded_filetypes = { "NvimTree" }
 end
 
-local function setup_indent_blankline()
-  local has, indent_blankline = pcall(require, "indent_blankline")
-  if not has then
-    return
-  end
-
-  indent_blankline.setup({
-    space_char_blankline = " ",
-    show_current_context = true,
-    show_current_context_start = true,
-  })
-
-  vim.g.indent_blankline_show_first_indent_level = true
-  vim.g.indent_blankline_char_list = { "│" }
-  vim.g.indent_blankline_context_char_list = { "│" }
-  vim.g.indent_blankline_filetype_exclude = {
-    "lspinfo",
-    "packer",
-    "checkhealth",
-    "",
-    "startify",
-    "toggleterm",
-    "help",
-    "spectre_panel",
-  }
-end
-
 local function setup_lualine()
   local has, lualine = pcall(require, "lualine")
   if not has then
@@ -217,7 +190,6 @@ local function setup_later()
   setup_comment()
   setup_gitsigns()
   setup_hop()
-  setup_indent_blankline()
   setup_null_ls()
   setup_nvim_gps()
   setup_scrollview()

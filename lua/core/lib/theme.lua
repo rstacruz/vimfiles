@@ -44,9 +44,15 @@ local function get_theme(bgmode)
 end
 
 local function apply_overrides()
-  cmd([[hi! HopNextKey guibg=#ffddaa guifg=#000000]])
-  cmd([[hi! HopNextKey1 guibg=#ffddaa guifg=#000000]])
-  cmd([[hi! HopNextKey2 guibg=#ffddaa guifg=#000000]])
+  -- cmd([[hi! HopNextKey guibg=#ffddaa guifg=#000000]])
+  -- cmd([[hi! HopNextKey1 guibg=#ffddaa guifg=#000000]])
+  -- cmd([[hi! HopNextKey2 guibg=#ffddaa guifg=#000000]])
+  cmd([[hi! link HopNextKey Search]])
+  cmd([[hi! link HopNextKey1 Search]])
+  cmd([[hi! link HopNextKey2 Search]])
+
+  -- Custom styles
+  cmd([[hi! link XxLine LineNr]]) -- borders and lines. also: Vertsplit
 
   cmd([[hi! link TelescopeNormal Pmenu]])
   cmd([[hi! link TelescopeBorder Pmenu]])
@@ -61,16 +67,23 @@ local function apply_overrides()
   cmd([[hi! link TelescopePromptCounter NonText]])
 
   cmd([[hi! link IndentBlanklineContextStart CursorLine]]) -- the indent line that started the context
-  cmd([[hi! link IndentBlanklineChar VertSplit]])
-  cmd([[hi! link IndentBlanklineContextChar VertSplit]])
+  cmd([[hi! link IndentBlanklineChar XxLine]])
+  cmd([[hi! link IndentBlanklineContextChar XxLine]])
+
+  cmd([[hi! link CmpBorder XxLine]]) -- Custom border for cmp completions
 
   cmd([[hi! link NvimTreeSpecialFile Comment]]) -- Make some files less visible
-  cmd([[hi! link NvimTreeIndentMarker VertSplit]]) -- Make some files less visible
+  cmd([[hi! link NvimTreeIndentMarker NonText]]) -- Make some files less visible
   cmd([[hi! link NvimTreeRootFolder Comment]]) -- make the heading less prominent
   cmd([[hi! link NvimTreeWinSeparator EndOfBuffer]]) -- better visual boundary from tree sidebar to the buffer
 
   local col = vim.g.colors_name
   local bg = vim.o.background
+
+  -- different themes have different groups that look nice with borders
+  if col == "terafox" or col == "nightfox" or col == "carbonfox" then
+    cmd([[hi! link XxLine Conceal]])
+  end
 
   if col == "nibble" then
     cmd([[hi! Comment guifg=#8080cc guibg=none gui=italic]])

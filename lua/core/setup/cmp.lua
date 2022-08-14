@@ -38,11 +38,11 @@ local function setup()
   cmp.setup({
     window = {
       completion = {
-        border = border("NonText"),
+        border = border("CmpBorder"),
         winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
       },
       documentation = {
-        border = border("NonText"),
+        border = border("CmpBorder"),
         winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
       },
     },

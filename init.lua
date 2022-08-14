@@ -109,6 +109,7 @@ require("core.setup.bufferline").setup() -- do after theme
 require("core.setup.nvim-options").setup()
 require("core.setup.treesitter").setup()
 require("core.setup.alpha").setup()
+require("core.setup.indent_blankline").setup()
 require("core.setup.zz-other").setup()
 
 vim.defer_fn(function()
