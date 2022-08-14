@@ -25,7 +25,7 @@ local function packages(use)
 	})
 
 	-- Detect indents
-	use({ "Darazaki/indent-o-matic", event = "BufRead" })
+	use({ "Darazaki/indent-o-matic" })
 
 	use({ "thinca/vim-visualstar", event = "User OnFileLoad" })
 
@@ -124,47 +124,47 @@ local function packages(use)
 	})
 
 	-- TODO
-  -- use({
-  --   "hrsh7th/nvim-cmp",
-  --   requires = {
-  --     "onsails/lspkind-nvim",
-  --     { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
-  --     { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-  --     { "hrsh7th/cmp-path", after = "nvim-cmp" },
-  --     { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
-  --     { "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
-  --   },
-  -- })
+	-- use({
+	--	 "hrsh7th/nvim-cmp",
+	--	 requires = {
+	--		 "onsails/lspkind-nvim",
+	--		 { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+	--		 { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+	--		 { "hrsh7th/cmp-path", after = "nvim-cmp" },
+	--		 { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+	--		 { "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
+	--	 },
+	-- })
 
-  use({
-    "numToStr/Comment.nvim",
-    event = "User OnFileLoad",
-    config = function()
-      require("Comment").setup()
-    end,
-  }) -- Comments
+	use({
+		"numToStr/Comment.nvim",
+		event = "User OnFileLoad",
+		config = function()
+			require("Comment").setup()
+		end,
+	}) -- Comments
 
-  use({
-    "rstacruz/vim-gitgrep",
-    cmd = { "GG", "VG" }
-  })
+	use({
+		"rstacruz/vim-gitgrep",
+		cmd = { "GG", "VG" }
+	})
 
-  use({
-    "nvim-pack/nvim-spectre",
-    module = { "spectre" }
-  })
+	use({
+		"nvim-pack/nvim-spectre",
+		module = { "spectre" }
+	})
 
-  use({
-    "akinsho/bufferline.nvim",
-    event = "User OnIdle",
+	use({
+		"akinsho/bufferline.nvim",
+		event = "User OnIdle",
 		cmd = { "BufferLineCycleNext", "BufferLineCyclePrev" },
-    config = function()
-      require("coresetup.bufferline").setup()
-    end,
-  })
+		config = function()
+			require("coresetup.bufferline").setup()
+		end,
+	})
 
 	-- Close hidden buffers
-  use({ "kazhala/close-buffers.nvim", module = "close_buffers" })
+	use({ "kazhala/close-buffers.nvim", module = "close_buffers" })
 
 	use({ "EdenEast/nightfox.nvim" })
 	use({ "projekt0n/github-nvim-theme" })
