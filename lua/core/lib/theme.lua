@@ -24,8 +24,8 @@ local THEMES = {
     { if_pkg = "vim-microtone", colorscheme = "microtone", lualine = "dracula" },
   },
   dark = {
+    { if_pkg = "nightfox.nvim", colorscheme = "terafox", lualine = "auto" },
     { if_pkg = "onedark.nvim", colorscheme = "onedark", lualine = "auto" },
-    { if_pkg = "nightfox.nvim", colorscheme = "nightfox", lualine = "auto" },
     { if_pkg = "zenbones.nvim", colorscheme = "zenbones", lualine = "zenbones" },
     { if_pkg = "catppuccin-nvim", colorscheme = "catppuccin", lualine = "auto" },
     { if_pkg = "github-nvim-theme", colorscheme = "github_dimmed", lualine = "auto" },
@@ -60,9 +60,13 @@ local function apply_overrides()
   cmd([[hi! link TelescopePromptTitle IncSearch]])
   cmd([[hi! link TelescopePromptCounter NonText]])
 
-  -- cmd([[hi! link TelescopePreviewNormal Normal]])
-  -- cmd([[hi! link TelescopePreviewBorder Normal]])
+  cmd([[hi! link IndentBlanklineContextStart CursorLine]]) -- the indent line that started the context
+  cmd([[hi! link IndentBlanklineChar VertSplit]])
+  cmd([[hi! link IndentBlanklineContextChar VertSplit]])
 
+  cmd([[hi! link NvimTreeSpecialFile Comment]]) -- Make some files less visible
+  cmd([[hi! link NvimTreeIndentMarker VertSplit]]) -- Make some files less visible
+  cmd([[hi! link NvimTreeRootFolder Comment]]) -- make the heading less prominent
   cmd([[hi! link NvimTreeWinSeparator EndOfBuffer]]) -- better visual boundary from tree sidebar to the buffer
 
   local col = vim.g.colors_name

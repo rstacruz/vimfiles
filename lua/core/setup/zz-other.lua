@@ -17,6 +17,7 @@ local function setup_indent_blankline()
   indent_blankline.setup({
     space_char_blankline = " ",
     show_current_context = true,
+    show_current_context_start = true,
   })
 
   vim.g.indent_blankline_show_first_indent_level = true
@@ -180,6 +181,31 @@ local function setup_nvim_tree()
     },
     renderer = {
       add_trailing = false,
+      special_files = {
+        "Cargo.toml",
+        "Makefile",
+        ".gitignore",
+        -- docs
+        "README.md",
+        -- js
+        "package.json",
+        "package-lock.json",
+        "yarn.lock",
+        ".babelrc",
+        ".babel.config.js",
+        ".babel.config.cjs",
+        ".babel.config.mjs",
+        ".prettierrc",
+        ".npmrc",
+        "postcss.config.js",
+        "tailwind.config.js",
+        "tsconfig.json",
+        "jsconfig.json",
+        -- lua
+        ".luarc.json",
+        "packer.lock",
+        "stylua.toml",
+      },
       indent_markers = {
         enable = true,
       },
