@@ -107,9 +107,6 @@ local function packages(use)
 	use({
 		"nvim-lualine/lualine.nvim",
 		event = "User OnIdle",
-		requires = {
-			-- { "SmiteshP/nvim-gps" }, -- Breadcrumbs in the status line
-		},
 		config = function()
 			require("coresetup.lualine").setup()
 		end,

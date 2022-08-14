@@ -3,8 +3,6 @@ local function is_file()
 		toggleterm = true,
 		NvimTree = true,
 		["neo-tree"] = true,
-		startify = true,
-		vista_kind = true,
 		spectre_panel = true,
 		alpha = true,
 	}
@@ -23,15 +21,6 @@ local function get_theme(opts)
 		end,
 	}
 
-	local startify = {
-		function()
-			return [[ ]] .. vim.fn.getcwd()
-		end,
-		cond = function()
-			return vim.bo.filetype == "startify"
-		end,
-	}
-
 	local filename = {
 		"filename",
 		icon = "",
@@ -45,36 +34,6 @@ local function get_theme(opts)
 			return str:sub(1, 1)
 		end,
 		cond = is_file,
-	}
-	local tabs = {
-		"tabs",
-		mode = 0,
-		separator = { left = "█", right = "" },
-		component_separators = { left = " ", right = "" },
-		section_separators = { left = "", right = "" },
-		padding = { left = 2, right = 2 },
-		tabs_color = {
-			-- Same values as the general color option can be used here.
-			active = "lualine_a_normal",
-			inactive = "lualine_b_inactive",
-		},
-	}
-
-	local buffers = {
-		"buffers",
-		-- a	XXXXXX	e		......
-		--		......			XXXXXX		e		 ......
-		--		......	c		......				 XXXXXX		b
-		separator = { left = "", right = "" },
-		component_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
-		padding = { left = 1, right = 4 },
-		max_length = 200,
-		filetype_names = { NvimTree = "tree" },
-		buffers_color = {
-			active = "Preproc",
-			inactive = "lualine_c_inactive",
-		},
 	}
 
 	local filetype = {
@@ -116,18 +75,9 @@ local function get_theme(opts)
 			lualine_y = {
 				{ "location", icon = "", left_padding = 2, cond = is_file },
 				terminal,
-				startify,
 			},
 			lualine_z = { mode },
 		},
-		-- tabline = {
-		--	 lualine_a = { tabs },
-		--	 lualine_b = {},
-		--	 lualine_c = { buffers },
-		--	 lualine_y = {},
-		--	 lualine_x = {},
-		--	 lualine_z = {},
-		-- },
 	}
 end
 
@@ -137,10 +87,10 @@ local function setup()
 		return
 	end
 
-	local has_gps, gps = pcall(require, "nvim-gps")
-	if has_gps then
-		gps.setup({ separator = " ╱ " })
-	end
+	-- local has_gps, gps = pcall(require, "nvim-gps")
+	-- if has_gps then
+	-- 	gps.setup({ separator = " ╱ " })
+	-- end
 
 	local options = get_theme({ theme = "auto" })
 	lualine.setup(options)
