@@ -68,7 +68,7 @@ local function packages(use)
 	use({ "lewis6991/impatient.nvim" })
 
 	-- Library for Telescope and many others
-	use({ "nvim-lua/plenary.nvim", module = "plenary" })
+	use({ "nvim-lua/plenary.nvim", module = { "plenary", "plenary.async" } })
 
 	-- Telescope file picker
 	use({
@@ -143,6 +143,28 @@ local function packages(use)
       require("Comment").setup()
     end,
   }) -- Comments
+
+  use({
+    "rstacruz/vim-gitgrep",
+    cmd = { "GG", "VG" }
+  })
+
+  use({
+    "nvim-pack/nvim-spectre",
+    module = { "spectre" }
+  })
+
+  use({
+    "akinsho/bufferline.nvim",
+    event = "User OnIdle",
+		cmd = { "BufferLineCycleNext", "BufferLineCyclePrev" },
+    config = function()
+      require("coresetup.bufferline").setup()
+    end,
+  })
+
+	-- Close hidden buffers
+  use({ "kazhala/close-buffers.nvim", module = "close_buffers" })
 
 	use({ "EdenEast/nightfox.nvim" })
 	use({ "projekt0n/github-nvim-theme" })

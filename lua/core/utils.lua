@@ -12,6 +12,10 @@ local function reload()
 
   vim.cmd("luafile " .. vim.env.MYVIMRC)
   require("packer").compile()
+
+  -- Manually fire off the lazy-loaded modules
+  vim.cmd("doautocmd User OnIdle")
+  vim.cmd("doautocmd User OnFileLoad")
 end
 
 ---@class BindOnceOptions

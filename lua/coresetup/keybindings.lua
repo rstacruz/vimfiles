@@ -13,6 +13,12 @@ local function get_default_mappings()
         ["gi"] = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Implementation (lsp)…" },
         ["K"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show hover" },
 
+        -- buffer
+        ["gb"] = { "<cmd>BufferLineCycleNext<cr>", "Buffer: next" } or {},
+        ["gB"] = { "<cmd>BufferLineCyclePrev<cr>", "Buffer: previous" } or {},
+        ["<tab>"] = { "<cmd>BufferLineCycleNext<cr>", "Buffer: next" } or {},
+        ["<s-tab>"] = { "<cmd>BufferLineCyclePrev<cr>", "Buffer: previous" } or {},
+
         -- [s] settings
         ["<leader>s"] = { name = "[s]ettings…" },
         ["<leader>s,"] = {
@@ -44,8 +50,18 @@ local function get_default_mappings()
         ["<leader>cd"] = { "<cmd>Telescope diagnostics<CR>", "Show [d]iagnostics" },
         ["<leader>cf"] = { "<cmd>lua vim.lsp.buf.formatting_seq_sync()<cr>", "[f]ormat via LSP" },
 
+        -- Leader: [b] buffers
+        ["<leader>b"] = { name = "[b]uffers…" },
+        ["<leader>bp"] = { "<cmd>BufferLinePick<cr>", "[p]ick…" },
+        ["<leader>b<space>"] = { "<cmd>BufferLineTogglePin<cr>", "Toggle [P]in" },
+        ["<leader>b."] = { "<cmd>BufferLineCloseRight<cr>", "Close to the right" },
+        ["<leader>b,"] = { "<cmd>BufferLineCloseLeft<cr>", "Close to the left" },
+        ["<leader>bo"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>", "Close [o]ther tabs" },
+        ["<leader>bO"] = { "<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>", "Close [O]ther tabs (force)" },
+
         -- [,] others
         ["<leader>,"] = { name = "experimental…" },
+        ["<leader>,s"] = { "<cmd>split ~/.scratchpad<cr><C-w>H", "Open [s]cratchpad" },
         ["<leader>,p"] = { "<cmd>StartupTime --tries 12<cr>", "Profile startup time" },
       },
       nv = {
