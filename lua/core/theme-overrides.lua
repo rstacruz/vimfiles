@@ -1,11 +1,11 @@
 local function apply()
-	local cmd = vim.cmd
+  local cmd = vim.cmd
 
   vim.api.nvim_set_hl(0, "HopNextKey", { link = "Search" })
   vim.api.nvim_set_hl(0, "HopNextKey1", { link = "Search" })
   vim.api.nvim_set_hl(0, "HopNextKey2", { link = "Search" })
 
-	-- Custom styles
+  -- Custom styles
   vim.api.nvim_set_hl(0, "XxLine", { link = "LineNr" }) -- borders and lines. also: Vertsplit
 
   -- Telescope
@@ -33,24 +33,24 @@ local function apply()
   vim.api.nvim_set_hl(0, "NvimTreeRootFolder", { link = "Comment" }) -- make the heading less prominent
   vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { link = "EndOfBuffer" }) -- better visual boundary from tree sidebar to the buffer
 
-	local col = vim.g.colors_name
-	local bg = vim.opt.background:get()
+  local col = vim.g.colors_name
+  local bg = vim.opt.background:get()
 
-	-- different themes have different groups that look nice with borders
-	if col == "terafox" or col == "nightfox" or col == "carbonfox" then
+  -- different themes have different groups that look nice with borders
+  if col == "terafox" or col == "nightfox" or col == "carbonfox" then
   vim.api.nvim_set_hl(0, "XxLine", { link = "Conceal" })
-	end
+  end
 
-	if col == "nibble" then
-		cmd([[hi! Comment guifg=#8080cc guibg=none gui=italic]])
-		cmd([[hi! CursorLine gui=none guibg=#2020aa]]) -- Default was underline only
-		cmd([[hi! LineNr guifg=#5555bb gui=italic]])
-	end
+  if col == "nibble" then
+    cmd([[hi! Comment guifg=#8080cc guibg=none gui=italic]])
+    cmd([[hi! CursorLine gui=none guibg=#2020aa]]) -- Default was underline only
+    cmd([[hi! LineNr guifg=#5555bb gui=italic]])
+  end
 
-	if ({ seoulbones = 1, rosebones = 1, zenbones = 1, dayfox = 1 })[col] and bg == "light" then
-		cmd([[hi! Normal guibg=#ffffff]])
-		cmd([[hi! NormalNC guibg=#fafafc]])
-	end
+  if ({ seoulbones = 1, rosebones = 1, zenbones = 1, dayfox = 1 })[col] and bg == "light" then
+    cmd([[hi! Normal guibg=#ffffff]])
+    cmd([[hi! NormalNC guibg=#fafafc]])
+  end
 end
 
 function setup()

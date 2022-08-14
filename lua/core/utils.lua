@@ -4,14 +4,14 @@ local function reload()
   vim.cmd("LuaCacheClear")
 
   -- Unload everything from core and coresetup
-	for k, _ in pairs(package.loaded) do
-		if string.match(k, "^core") then
-			package.loaded[k] = nil
-		end
-	end
+  for k, _ in pairs(package.loaded) do
+    if string.match(k, "^core") then
+      package.loaded[k] = nil
+    end
+  end
 
-	vim.cmd("luafile " .. vim.env.MYVIMRC)
-	require("packer").compile()
+  vim.cmd("luafile " .. vim.env.MYVIMRC)
+  require("packer").compile()
 end
 
 ---@class BindOnceOptions
@@ -24,16 +24,16 @@ end
 local function bind_once(options)
   local augroup_name = options.group_name
   local events = options.events
-	local group = vim.api.nvim_create_augroup(augroup_name, { clear = true })
+  local group = vim.api.nvim_create_augroup(augroup_name, { clear = true })
 
-	vim.api.nvim_create_autocmd(events, {
-		pattern = "*",
-		group = group,
-		callback = function()
+  vim.api.nvim_create_autocmd(events, {
+    pattern = "*",
+    group = group,
+    callback = function()
       vim.api.nvim_del_augroup_by_name(augroup_name)
       options.callback()
-		end,
-	})
+    end,
+  })
 end
 
 ---@param callback Function
@@ -73,8 +73,8 @@ local function bootstrap_packer(packages)
 end
 
 return {
-	reload = reload,
-	on_file_load = on_file_load,
+  reload = reload,
+  on_file_load = on_file_load,
   on_vimenter = on_vimenter,
   bootstrap_packer = bootstrap_packer,
 }

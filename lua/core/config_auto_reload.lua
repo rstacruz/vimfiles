@@ -1,18 +1,18 @@
 -- Automatically compile when writing init.lua
 local function setup()
-	local group = vim.api.nvim_create_augroup("PackerReload", { clear = true })
+  local group = vim.api.nvim_create_augroup("PackerReload", { clear = true })
 
-	vim.api.nvim_create_autocmd("BufWritePost", {
-		pattern = vim.env.MYVIMRC,
-		group = group,
-		callback = function(s)
+  vim.api.nvim_create_autocmd("BufWritePost", {
+    pattern = vim.env.MYVIMRC,
+    group = group,
+    callback = function(s)
       vim.schedule(function()
         require("core.utils").reload()
         require("packer").compile()
         print("Config reloaded :)")
       end)
-		end,
-	})
+    end,
+  })
 end
 
 return { setup = setup }
