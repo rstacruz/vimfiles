@@ -47,7 +47,12 @@ local function packages(use)
   use({ "slim-template/vim-slim", ft = { "slim" } }) -- Slim (.slim)
 
   -- UI
-  use("goolord/alpha-nvim")
+  use({
+    "goolord/alpha-nvim",
+    config = function()
+      require("core.setup.alpha").setup()
+    end,
+  })
   use({
     "dstein64/nvim-scrollview",
     event = "User DeferredLoad",
@@ -89,7 +94,8 @@ local function packages(use)
   }) -- tab line
   use({
     "nvim-telescope/telescope.nvim",
-    cmd = "telescope",
+    cmd = "Telescope",
+    module = "telescope",
     requires = {
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
     },
@@ -169,7 +175,6 @@ end
 require("packer").startup(packages)
 require("core.lib.theme").setup()
 require("core.setup.treesitter").setup()
-require("core.setup.alpha").setup()
 require("core.setup.zz-other").setup()
 
 local group = vim.api.nvim_create_augroup("deferredload", { clear = true })
