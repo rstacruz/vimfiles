@@ -16,19 +16,25 @@ local function packages(use)
   end
 
   -- Completion
-  use("hrsh7th/cmp-nvim-lsp")
-  use("hrsh7th/cmp-buffer")
-  use("hrsh7th/cmp-path")
-  use("hrsh7th/cmp-cmdline")
-  use("hrsh7th/cmp-vsnip")
-  use("hrsh7th/nvim-cmp")
+  use({
+    "hrsh7th/nvim-cmp",
+    requires = {
+      "onsails/lspkind-nvim",
+      { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+      { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+      { "hrsh7th/cmp-path", after = "nvim-cmp" },
+      { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+      { "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
+    },
+  })
 
   -- Themes
   use("rstacruz/vim-microtone")
   use("projekt0n/github-nvim-theme")
-  use("rktjmp/lush.nvim") -- Required by zenbones
-  use("mcchrish/zenbones.nvim")
-  use({ "catppuccin/nvim", as = "catppuccininvim" })
+  use({ "mcchrish/zenbones.nvim", requires = {
+    "rktjmp/lush.nvim",
+  } })
+  use({ "catppuccin/nvim", as = "catppuccin-nvim" })
   use({ "dracula/vim", as = "dracula-vim" })
   use("cmoscofian/nibble-vim")
   use("EdenEast/nightfox.nvim")
@@ -66,7 +72,7 @@ local function packages(use)
       require("core.setup.indent_blankline").setup()
     end,
   }) -- Indent indicators
-  use({ "nvim-lua/plenary.nvim", opt = true }) -- for Telescope
+  use("nvim-lua/plenary.nvim") -- for Telescope and many others
   use("nvim-lualine/lualine.nvim") -- Status line
   use({
     "akinsho/bufferline.nvim",
@@ -75,12 +81,15 @@ local function packages(use)
       require("core.setup.bufferline").setup() -- do after theme
     end,
   }) -- tab line
-  use("nvim-telescope/telescope.nvim")
-  use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-  use("onsails/lspkind-nvim") -- Icons on LSP menus
-  use("stevearc/dressing.nvim") -- Improved appearance of vim.ui
+  use({
+    "nvim-telescope/telescope.nvim",
+    requires = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+    },
+  })
+  use({ "stevearc/dressing.nvim", event = "BufReadPost" }) -- Improved appearance of vim.ui
   use("rcarriga/nvim-notify")
-  use("RRethy/vim-illuminate")
 
   -- Optimisations
   use("lewis6991/impatient.nvim") -- Improve startup time by optimising Lua cache
@@ -88,20 +97,20 @@ local function packages(use)
 
   -- Goodies
   use("Darazaki/indent-o-matic") -- Detect indentation automatically
-  use("akinsho/toggleterm.nvim") -- Terminal
+  use({ "akinsho/toggleterm.nvim", event = "BufReadPost" }) -- Terminal
   use("jrudess/vim-foldtext") -- Improve appearance of fold text
-  use("michaeljsmith/vim-indent-object")
-  use("nvim-pack/nvim-spectre") -- Find files
+  use({ "michaeljsmith/vim-indent-object", event = "BufReadPost" })
+  use({ "nvim-pack/nvim-spectre", event = "BufReadPost" }) -- Find files
   use("phaazon/hop.nvim") -- Easymotion (gw)
-  use("rstacruz/vim-gitgrep")
-  use("thinca/vim-visualstar")
-  use("tpope/vim-fugitive") -- Git
-  use("tpope/vim-rhubarb") -- Fugitive extension for GitHub commands
-  use("tpope/vim-surround")
+  use({ "rstacruz/vim-gitgrep", event = "BufReadPost" })
+  use({ "thinca/vim-visualstar", event = "BufReadPost" })
+  use({ "tpope/vim-fugitive", event = "BufReadPost" }) -- Git
+  use({ "tpope/vim-rhubarb", event = "BufReadPost" }) -- Fugitive extension for GitHub commands
+  use({ "tpope/vim-surround", event = "BufReadPost" })
   use("dstein64/vim-startuptime") -- Profile startup
-  use("numToStr/Comment.nvim") -- Comments
-  use("natecraddock/workspaces.nvim") -- Manage workspaces
-  use("kazhala/close-buffers.nvim") -- Close hidden buffers
+  use({ "numToStr/Comment.nvim", event = "BufReadPost" }) -- Comments
+  use({ "natecraddock/workspaces.nvim", event = "VimEnter" }) -- Manage workspaces
+  use({ "kazhala/close-buffers.nvim", event = "BufReadPost" }) -- Close hidden buffers
 
   -- Still trying it out
   use({ "folke/twilight.nvim", event = "VimEnter" }) -- Isolate (leader-ot)
