@@ -60,6 +60,7 @@ local function packages(use)
 	-- File explorer
 	use({
 		"kyazdani42/nvim-tree.lua",
+		event = "User OnIdle",
 		config = function()
 			require("coresetup.nvim-tree").setup()
 		end,
