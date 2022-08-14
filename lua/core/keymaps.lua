@@ -99,7 +99,7 @@ local NORMAL_BINDINGS = {
   ["<leader>sk"] = { "<cmd>vsplit ~/.config/nvim/lua/core/keymaps.lua<cr>", "Edit [k]eybindings" },
   ["<leader>sr"] = { "<cmd>lua require('core.utils').reload()<cr>", "[r]eload Vim config" },
   ["<leader>sc"] = { "<cmd>Telescope colorscheme<cr>", "Choose [c]olour scheme" },
-  ["<leader>st"] = { "<cmd>StartupTime<cr>", "Profile startup [t]ime" },
+  ["<leader>st"] = { "<cmd>StartupTime --tries 6<cr>", "Profile startup [t]ime" },
   ["<leader>si"] = { "<cmd>lua require('core.utils').reload()<cr>:PackerInstall<cr>", "Packer: [i]nstall new packages" },
   ["<leader>su"] = { "<cmd>lua require('core.utils').reload()<cr>:PackerSync<cr>", "Packer: [u]pdate packages" },
 

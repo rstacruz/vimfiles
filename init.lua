@@ -1,13 +1,13 @@
 require("core.setup.nvim-options").setup()
 
 local function packages(use)
-  local has_gcc = vim.fn.executable("gcc")
+  local has_gcc = true -- vim.fn.executable("gcc")
   use("wbthomason/packer.nvim")
 
   -- Language
   if has_gcc then
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-    use({ "nvim-treesitter/nvim-treesitter-textobjects", event = "BufReadPost" })
+    use({ "nvim-treesitter/nvim-treesitter-textobjects", event = "User DeferredLoad" })
     use("neovim/nvim-lspconfig")
     use("williamboman/mason.nvim") -- Install LSP servers (:Mason)
     use("WhoIsSethDaniel/mason-tool-installer.nvim") -- Auto-install as needed
@@ -49,7 +49,7 @@ local function packages(use)
   use("goolord/alpha-nvim")
   use({
     "dstein64/nvim-scrollview",
-    event = "BufReadPost",
+    event = "User DeferredLoad",
     config = function()
       require("core.setup.scrollview").setup()
     end,
@@ -65,14 +65,14 @@ local function packages(use)
   use("kyazdani42/nvim-web-devicons")
   use({
     "lewis6991/gitsigns.nvim",
-    event = "BufReadPost",
+    event = "User DeferredLoad",
     config = function()
       require("core.setup.gitsigns").setup()
     end,
   }) -- Git indicators on the gutter
   use({
     "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPost",
+    event = "User DeferredLoad",
     config = function()
       require("core.setup.indent_blankline").setup()
     end,
@@ -81,7 +81,7 @@ local function packages(use)
   use("nvim-lualine/lualine.nvim") -- Status line
   use({
     "akinsho/bufferline.nvim",
-    event = "BufRead",
+    event = "user DeferredLoad",
     config = function()
       require("core.setup.bufferline").setup() -- do after theme
     end,
@@ -104,30 +104,30 @@ local function packages(use)
   use("Darazaki/indent-o-matic") -- Detect indentation automatically
   use({
     "akinsho/toggleterm.nvim",
-    event = "BufReadPost",
+    event = "User DeferredLoad",
     config = function()
       require("core.setup.toggleterm").setup()
     end,
   }) -- Terminal
   use("jrudess/vim-foldtext") -- Improve appearance of fold text
-  use({ "michaeljsmith/vim-indent-object", event = "BufReadPost" })
-  use({ "nvim-pack/nvim-spectre", event = "BufReadPost" }) -- Find files
+  use({ "michaeljsmith/vim-indent-object", event = "User DeferredLoad" })
+  use({ "nvim-pack/nvim-spectre", event = "User DeferredLoad" }) -- Find files
   use("phaazon/hop.nvim") -- Easymotion (gw)
   use({ "rstacruz/vim-gitgrep", event = "VimEnter *" })
   use({ "thinca/vim-visualstar", event = "VimEnter *" })
-  use({ "tpope/vim-fugitive", event = "BufReadPost" }) -- Git
-  use({ "tpope/vim-rhubarb", event = "BufReadPost" }) -- Fugitive extension for GitHub commands
-  use({ "tpope/vim-surround", event = "BufReadPost" })
+  use({ "tpope/vim-fugitive", event = "User DeferredLoad" }) -- Git
+  use({ "tpope/vim-rhubarb", event = "User DeferredLoad" }) -- Fugitive extension for GitHub commands
+  use({ "tpope/vim-surround", event = "User DeferredLoad" })
   use("dstein64/vim-startuptime") -- Profile startup
   use({
     "numToStr/Comment.nvim",
-    event = "BufReadPost",
+    event = "User DeferredLoad",
     config = function()
       require("Comment").setup()
     end,
   }) -- Comments
   use({ "natecraddock/workspaces.nvim", event = "VimEnter" }) -- Manage workspaces
-  use({ "kazhala/close-buffers.nvim", event = "BufReadPost" }) -- Close hidden buffers
+  use({ "kazhala/close-buffers.nvim", event = "User DeferredLoad" }) -- Close hidden buffers
 
   -- Still trying it out
   use({ "folke/twilight.nvim", event = "VimEnter" }) -- Isolate (leader-ot)
@@ -163,25 +163,33 @@ if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
 end
 
 require("packer").startup(packages)
-require("impatient")
+require("impatient").enable_profile()
 require("core.lib.theme").setup()
 require("core.setup.treesitter").setup()
 require("core.setup.alpha").setup()
 require("core.setup.zz-other").setup()
 
-vim.defer_fn(function()
-  require("core.setup.mason").setup()
-  require("core.setup.rooter").setup()
-  require("core.extras.lsp_borders").setup()
-  require("core.setup.nvim-autocmds").setup()
-  require("core.setup.telescope").setup()
-  require("core.setup.cmp").setup()
-  require("core.setup.which-key").setup()
-  require("core.setup.zz-deferred").setup()
-  require("core.setup.zz-other").setup_later()
-  require("core.lib.abbreviations").setup()
-  require("core.lib.highlight_on_yank").setup()
-  require("core.keymaps").setup()
-end, 0)
+local group = vim.api.nvim_create_augroup("deferredload", { clear = true })
+vim.api.nvim_create_autocmd("VimEnter", {
+  pattern = "*",
+  group = group,
+  callback = function()
+    vim.defer_fn(function()
+      vim.cmd([[doautocmd User DeferredLoad]])
+      require("core.setup.mason").setup()
+      require("core.setup.rooter").setup()
+      require("core.extras.lsp_borders").setup()
+      require("core.setup.nvim-autocmds").setup()
+      require("core.setup.telescope").setup()
+      require("core.setup.cmp").setup()
+      require("core.setup.which-key").setup()
+      require("core.setup.zz-deferred").setup()
+      require("core.setup.zz-other").setup_later()
+      require("core.lib.abbreviations").setup()
+      require("core.lib.highlight_on_yank").setup()
+      require("core.keymaps").setup()
+    end, 1)
+  end,
+})
 
 -- vim:foldmethod=indent:foldlevel=0
