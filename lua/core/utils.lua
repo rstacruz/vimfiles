@@ -16,8 +16,8 @@ end
 
 ---@class BindOnceOptions
 ---@field group_name string
----@field events String{}
----@field callback Function
+---@field events table<string>
+---@field callback function
 
 -- Bind an event to an autocmd, but only fire it once.
 ---@param options BindOnceOptions
@@ -36,7 +36,7 @@ local function bind_once(options)
   })
 end
 
----@param callback Function
+---@param callback function
 local function on_file_load(callback)
   bind_once({
     group_name = "on_file_load",
@@ -45,7 +45,7 @@ local function on_file_load(callback)
   })
 end
 
----@param callback Function
+---@param callback function
 local function on_vimenter(callback)
   bind_once({
     group_name = "on_vimenter",

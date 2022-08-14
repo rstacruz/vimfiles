@@ -2,8 +2,8 @@ local function apply()
   local cmd = vim.cmd
 
   vim.api.nvim_set_hl(0, "HopNextKey", { link = "Search" })
-  vim.api.nvim_set_hl(0, "HopNextKey1", { link = "Search" })
-  vim.api.nvim_set_hl(0, "HopNextKey2", { link = "Search" })
+  vim.api.nvim_set_hl(0, "HopNextKey1", { link = "HopNextKey" })
+  vim.api.nvim_set_hl(0, "HopNextKey2", { link = "HopNextKey" })
 
   -- Custom styles
   vim.api.nvim_set_hl(0, "XxLine", { link = "LineNr" }) -- borders and lines. also: Vertsplit
@@ -38,7 +38,10 @@ local function apply()
 
   -- different themes have different groups that look nice with borders
   if col == "terafox" or col == "nightfox" or col == "carbonfox" then
-  vim.api.nvim_set_hl(0, "XxLine", { link = "Conceal" })
+    vim.api.nvim_set_hl(0, "XxLine", { link = "Conceal" })
+  end
+  if col == "github_dimmed" then
+    vim.api.nvim_set_hl(0, "HopNextKey", { link = "IncSearch" }) -- "Search" is too muted
   end
 
   if col == "nibble" then
@@ -58,7 +61,7 @@ function setup()
   vim.api.nvim_create_autocmd("Colorscheme", {
     pattern = "*",
     group = augroup,
-    callback = apply
+    callback = apply,
   })
 end
 
