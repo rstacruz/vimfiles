@@ -7,7 +7,7 @@ local function setup()
 		group = group,
 		callback = function(s)
       vim.schedule(function()
-        reload()
+        require("core.utils").reload()
         require("packer").compile()
         print("Config reloaded :)")
       end)

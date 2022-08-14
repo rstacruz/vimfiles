@@ -98,9 +98,9 @@ require("core.theme-overrides").setup()
 vim.cmd([[colorscheme terafox]])
 
 utils.on_vimenter(function()
-	vim.defer_fn(function()
+	vim.schedule(function()
 		vim.cmd([[doautocmd User OnIdle]])
-	end, 1)
+	end)
 end)
 
 utils.on_file_load(function()
