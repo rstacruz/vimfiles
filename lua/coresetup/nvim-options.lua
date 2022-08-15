@@ -53,11 +53,12 @@ local function setup()
 	-- left/right arrows will go to the next/previous line
 	vim.opt.whichwrap:append("<>[]hl")
 
-	-- clear out tabline and statusline, they will be populated later by plugins
-	vim.opt.showtabline = 2
-	vim.opt.laststatus = 2
-	vim.opt.tabline = " "
-	-- vim.opt.statusline = " "
+	-- clear out statusline, they will be populated later by plugins
+	if BaseConfig.ui.lazy_load_statusline then
+		vim.opt.laststatus = 0
+	else
+		vim.opt.laststatus = vim.fn.has("nvim-0.7") and 3 or 2
+	end
 
 	-- leader keys
 	vim.g.mapleader = " "
@@ -68,9 +69,7 @@ local function setup()
 	end
 
 	if vim.fn.has("nvim-0.7") == 1 then
-		-- local vertchar = "▓" -- ▐
-		local vertchar = "▐" -- ▐
-		vim.opt.laststatus = 3 -- Global statusline
+		local vertchar = "▐"
 		vim.opt.fillchars = {
 			eob = " ",
 			vert = vertchar,
@@ -94,7 +93,7 @@ local function setup()
 		"netrwPlugin",
 		"netrwSettings",
 		"netrwFileHandlers",
-		--"matchit",
+		"matchit",
 		"tar",
 		"tarPlugin",
 		"rrhelper",

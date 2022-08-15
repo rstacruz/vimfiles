@@ -1,331 +1,354 @@
 pcall(require, "impatient")
-require("coresetup.nvim-options").setup()
 
 -- Configuration
 BaseConfig = {
-	ui = {
-		theme_dark = "terafox", -- terafox | github_dimmed | catppuccin
-		theme_light = "github_light",
+  ui = {
+    theme_dark = "terafox", -- terafox | github_dimmed | catppuccin
+    theme_light = "github_light",
 
-		-- Lazy load UI elements (tabline and status line). "true" makes startup
-		-- faster at the expense of a flash of unstyled UI
-		lazy_ui = false,
-	},
+    -- Lazy load UI elements (tabline and status line). "true" makes startup
+    -- faster at the expense of a flash of unstyled UI
+    lazy_load_statusline = true,
+  },
 
-	-- Feature toggles to optimise loading times for some environments
-	features = {
-		completions = true,
-		github_fugitive = true,
-		gitsigns = true,
-		indent_detection = true,
-		indent_guides = true,
-		auto_cd_root = true,
-		treesitter = true,
-		welcome_screen = false, -- a bit buggy, sometimes causes errors on startup
-	},
+  -- Feature toggles to optimise loading times for some environments
+  features = {
+    auto_cd_root = true,
+    lsp = true,
+    lsp_installer = true,
+    completions = true,
+    treesitter = true,
 
-	format = {
-		-- Auto-format on save
-		autoformat_files = "*.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs",
-	},
+    -- experimental
+    welcome_screen = false, -- a bit buggy, sometimes causes errors on startup
 
-	welcome_screen = {
-		-- Banner to show in the welcome screen
-		banner = { "╲		 ╱", " ╲	╱ ", "	╲╱ ", "" },
-	},
+    -- these might not be worth disabling I think
+    github_fugitive = true,
+    hop = true,
+    file_explorer = true,
+    autopairs = true,
+    gitsigns = true,
+    indent_detection = true,
+    indent_guides = true,
+  },
 
-	treesitter = {
-		ensure_installed = {
-			"javascript",
-			"css",
-			"lua",
-			"markdown",
-			"ruby",
-			"yaml",
-			"json",
-			"html",
-			"python",
-			"svelte",
-			"typescript",
-			"fish",
-			"dockerfile",
-			"make",
-			"jsdoc",
-			"scss",
-		},
-	},
+  format = {
+    -- Auto-format on save
+    autoformat_files = "*.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs",
+  },
+
+  welcome_screen = {
+    -- Banner to show in the welcome screen
+    banner = { "╲		 ╱", " ╲	╱ ", "	╲╱ ", "" },
+  },
+
+  treesitter = {
+    ensure_installed = {
+      "css",
+      "dockerfile",
+      "fish",
+      "html",
+      "javascript",
+      "jsdoc",
+      "json",
+      "lua",
+      "make",
+      "markdown",
+      "python",
+      "ruby",
+      "scss",
+      "svelte",
+      "typescript",
+      "yaml",
+    },
+  },
 }
 
 -- Custom config
 require("core.config-utils").apply_overrides("baseconfig", BaseConfig)
 
+-- Set options
+require("coresetup.nvim-options").setup()
+
 -- Packer packages
 local function packages(use)
-	local features = BaseConfig.features
-	use({ "wbthomason/packer.nvim" })
+  local features = BaseConfig.features
+  use({ "wbthomason/packer.nvim" })
 
-	if features.treesitter then
-		use({
-			"nvim-treesitter/nvim-treesitter",
-			module = "nvim-treesitter",
-			run = ":TSUpdate",
-			cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSEnable", "TSDisable", "TSModuleInfo" },
-			event = { "BufRead" },
-			requires = {
-				{ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
-			},
-			config = function()
-				require("coresetup.treesitter").setup()
-			end,
-		})
+  -- Improve startup time by optimising Lua cache
+  use({ "lewis6991/impatient.nvim" })
 
-		use({
-			"kylechui/nvim-surround",
-			event = { "BufRead", "CursorMoved" },
-			config = function()
-				require("coresetup.nvim-surround").setup()
-			end,
-		})
-	end
+  -- Library for Telescope and many others
+  use({ "nvim-lua/plenary.nvim", module = { "plenary", "plenary.async" } })
 
-	if features.indent_detection then
-		-- Detect indents
-		use({ "Darazaki/indent-o-matic" })
-	end
+  if features.treesitter then
+    use({
+      "nvim-treesitter/nvim-treesitter",
+      module = "nvim-treesitter",
+      run = ":TSUpdate",
+      cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSEnable", "TSDisable", "TSModuleInfo" },
+      event = { "BufRead" },
+      requires = {
+        { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
+      },
+      config = function()
+        require("coresetup.treesitter").setup()
+      end,
+    })
 
-	use({ "thinca/vim-visualstar", keys = { "*", "#" } })
+    use({
+      "kylechui/nvim-surround",
+      event = { "BufRead", "CursorMoved" },
+      config = function()
+        require("coresetup.nvim-surround").setup()
+      end,
+    })
+  end
 
-	if features.auto_cd_root then
-		use({ "airblade/vim-rooter" })
-	end
+  if features.indent_detection then
+    -- Detect indents
+    use({ "Darazaki/indent-o-matic" })
+  end
 
-	if features.welcome_screen then
-		use({
-			"goolord/alpha-nvim",
-			config = function()
-				require("coresetup.alpha").setup()
-			end,
-		})
-	end
+  if features.auto_cd_root then
+    use({ "airblade/vim-rooter" })
+  end
 
-	-- Easymotion-style jumps
-	use({
-		"phaazon/hop.nvim",
-		cmd = { "HopLine", "HopWord" },
-		config = function()
-			require("hop").setup({ keys = "arstgmneiowfpyulcdh" })
-		end,
-	})
+  if features.welcome_screen then
+    use({
+      "goolord/alpha-nvim",
+      config = function()
+        require("coresetup.alpha").setup()
+      end,
+    })
+  end
 
-	-- Install LSP servers (:Mason)
-	use({
-		"williamboman/mason.nvim",
-		cmd = { "Mason", "MasonInstall" },
-		module = { "mason" },
-		config = function()
-			require("mason").setup()
-		end,
-	})
+  if features.hop then
+    -- Easymotion-style jumps
+    use({
+      "phaazon/hop.nvim",
+      cmd = { "HopLine", "HopWord" },
+      config = function()
+        require("hop").setup({ keys = "arstgmneiowfpyulcdh" })
+      end,
+    })
+  end
 
-	use({
-		"neovim/nvim-lspconfig",
-		event = "User OnFileLoad",
-		config = function()
-			require("core.lsp").setup()
-		end,
-	})
+  if features.lsp and features.lsp_installer then
+    -- Install LSP servers (:Mason)
+    use({
+      "williamboman/mason.nvim",
+      cmd = { "Mason", "MasonInstall" },
+      module = { "mason" },
+      config = function()
+        require("mason").setup()
+      end,
+    })
+  end
 
-	use({
-		"SmiteshP/nvim-navic",
-		module = "nvim-navic",
-		config = function()
-			vim.g.navic_available = true
-			require("coresetup.nvim-navic").setup()
-		end,
-	})
+  if features.lsp then
+    use({
+      "neovim/nvim-lspconfig",
+      event = "User OnFileLoad",
+      config = function()
+        require("core.lsp").setup()
+      end,
+    })
 
-	-- Formatting and diagnostics
-	use({
-		"jose-elias-alvarez/null-ls.nvim",
-		module = "null-ls",
-	})
+    use({
+      "SmiteshP/nvim-navic",
+      module = "nvim-navic",
+      config = function()
+        vim.g.navic_available = true
+        require("coresetup.nvim-navic").setup()
+      end,
+    })
 
-	-- Improve startup time by optimising Lua cache
-	use({ "lewis6991/impatient.nvim" })
+    -- Formatting and diagnostics
+    use({
+      "jose-elias-alvarez/null-ls.nvim",
+      module = "null-ls",
+    })
+  end
 
-	-- Library for Telescope and many others
-	use({ "nvim-lua/plenary.nvim", module = { "plenary", "plenary.async" } })
+  if features.file_explorer then
+    -- File explorer
+    use({
+      "kyazdani42/nvim-tree.lua",
+      event = "User OnIdle",
+      config = function()
+        require("coresetup.nvim-tree").setup()
+      end,
+    })
+  end
 
-	-- Telescope file picker
-	use({
-		"nvim-telescope/telescope.nvim",
-		-- cmd = "Telescope",
-		-- module = "telescope",
-		-- Ideally :cmd should take care of lazy-loading, but it has problems with
-		-- hot reloading
-		event = "User OnIdle",
-		requires = {
-			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-		},
-		config = function()
-			require("coresetup.telescope").setup()
-		end,
-	})
+  if features.gitsigns then
+    -- Git indicators on the gutter
+    use({
+      "lewis6991/gitsigns.nvim",
+      event = "User OnFileLoad",
+      module = "gitsigns",
+      config = function()
+        require("coresetup.gitsigns").setup()
+      end,
+    })
+  end
 
-	-- Profile startup with :StartupTime
-	use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
+  if features.indent_guides then
+    use({
+      "lukas-reineke/indent-blankline.nvim",
+      event = { "BufRead", "CursorMoved" },
+      config = function()
+        require("coresetup.indent-blankline").setup()
+      end,
+    })
+  end
 
-	use({
-		"folke/which-key.nvim",
-		event = "User OnIdle",
-		config = function()
-			require("coresetup.which-key").setup()
-			require("coresetup.keybindings").setup()
-		end,
-	})
+  -- Telescope file picker
+  use({
+    "nvim-telescope/telescope.nvim",
+    -- cmd = "Telescope",
+    -- module = "telescope",
+    -- Ideally :cmd should take care of lazy-loading, but it has problems with
+    -- hot reloading
+    event = "User OnIdle",
+    requires = {
+      { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+    },
+    config = function()
+      require("coresetup.telescope").setup()
+    end,
+  })
 
-	-- File explorer
-	use({
-		"kyazdani42/nvim-tree.lua",
-		event = "User OnIdle",
-		config = function()
-			require("coresetup.nvim-tree").setup()
-		end,
-	})
+  -- Profile startup with :StartupTime
+  use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
 
-	-- Status line
-	use({
-		"nvim-lualine/lualine.nvim",
-		event = BaseConfig.ui.lazy_ui and "User OnIdle" or nil,
-		module = BaseConfig.ui.lazy_ui and { "lualine" } or nil,
-		config = function()
-			require("coresetup.lualine").setup()
-		end,
-	})
+  use({
+    "folke/which-key.nvim",
+    event = "User OnIdle",
+    config = function()
+      require("coresetup.which-key").setup()
+      require("coresetup.keybindings").setup()
+    end,
+  })
 
-	if features.gitsigns then
-		-- Git indicators on the gutter
-		use({
-			"lewis6991/gitsigns.nvim",
-			event = "User OnFileLoad",
-			module = "gitsigns",
-			config = function()
-				require("coresetup.gitsigns").setup()
-			end,
-		})
-	end
+  use({ "thinca/vim-visualstar", keys = { "*", "#" } })
 
-	use({ "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" })
+  -- Status line
+  use({
+    "nvim-lualine/lualine.nvim",
+    event = BaseConfig.ui.lazy_load_statusline and "User OnIdle" or nil,
+    module = BaseConfig.ui.lazy_load_statusline and { "lualine" } or nil,
+    config = function()
+      require("coresetup.lualine").setup()
+    end,
+  })
 
-	if features.indent_guides then
-		use({
-			"lukas-reineke/indent-blankline.nvim",
-			event = { "BufRead", "CursorMoved" },
-			config = function()
-				require("coresetup.indent-blankline").setup()
-			end,
-		})
-	end
+  use({ "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" })
 
-	if features.completions then
-		-- Completions
-		use({
-			"hrsh7th/nvim-cmp",
-			event = { "InsertEnter", "CmdlineEnter" },
-			requires = {
-				"onsails/lspkind-nvim",
-				{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
-				{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-				{ "hrsh7th/cmp-path", after = "nvim-cmp" },
-				{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
-				{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
-			},
-			config = function()
-				require("coresetup.cmp").setup()
-			end,
-		})
+  if features.completions then
+    -- Completions
+    use({
+      "hrsh7th/nvim-cmp",
+      event = { "InsertEnter", "CmdlineEnter" },
+      requires = {
+        "onsails/lspkind-nvim",
+        { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+        { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+        { "hrsh7th/cmp-path", after = "nvim-cmp" },
+        { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+        { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
+      },
+      config = function()
+        require("coresetup.cmp").setup()
+      end,
+    })
 
-		use({ "L3MON4D3/LuaSnip", module = "luasnip" })
-	end
+    use({ "L3MON4D3/LuaSnip", module = "luasnip" })
+  end
 
-	use({
-		"numToStr/Comment.nvim",
-		event = "User OnFileLoad",
-		config = function()
-			require("Comment").setup()
-		end,
-	}) -- Comments
+  use({
+    "numToStr/Comment.nvim",
+    event = "User OnFileLoad",
+    config = function()
+      require("Comment").setup()
+    end,
+  }) -- Comments
 
-	use({
-		"rstacruz/vim-gitgrep",
-		cmd = { "GG", "VG" },
-	})
+  use({
+    "rstacruz/vim-gitgrep",
+    cmd = { "GG", "VG" },
+  })
 
-	use({
-		"nvim-pack/nvim-spectre",
-		module = { "spectre" },
-	})
+  use({
+    "nvim-pack/nvim-spectre",
+    module = { "spectre" },
+  })
 
-	use({
-		"akinsho/bufferline.nvim",
-		event = BaseConfig.ui.lazy_ui and "User OnIdle" or nil,
-		cmd = BaseConfig.ui.lazy_ui and { "BufferLineCycleNext", "BufferLineCyclePrev" } or nil,
-		config = function()
-			require("coresetup.bufferline").setup()
-		end,
-	})
+  use({
+    "akinsho/bufferline.nvim",
+    event = "User OnIdle" or nil,
+    cmd = { "BufferLineCycleNext", "BufferLineCyclePrev" } or nil,
+    config = function()
+      require("coresetup.bufferline").setup()
+    end,
+  })
 
-	-- Improve appearance of fold text
-	use({ "jrudess/vim-foldtext", event = "BufRead" })
+  -- Improve appearance of fold text
+  use({ "jrudess/vim-foldtext", event = "BufRead" })
 
-	if features.github_fugitive then
-		-- Git blame
-		use({ "tpope/vim-fugitive", cmd = { "Git", "GBrowse", "GBrowse!" } })
+  if features.github_fugitive then
+    -- Git blame
+    use({ "tpope/vim-fugitive", cmd = { "Git", "GBrowse", "GBrowse!" } })
 
-		-- Open in GitHub
-		use({ "tpope/vim-rhubarb", cmd = { "GBrowse", "GBrowse!" } })
-	end
+    -- Open in GitHub
+    use({ "tpope/vim-rhubarb", cmd = { "GBrowse", "GBrowse!" } })
+  end
 
-	use({
-		"windwp/nvim-autopairs",
-		event = { "InsertEnter" },
-		config = function()
-			require("coresetup.nvim-autopairs").setup()
-		end,
-	})
+  if features.autopairs then
+    use({
+      "windwp/nvim-autopairs",
+      event = { "InsertEnter" },
+      config = function()
+        require("coresetup.nvim-autopairs").setup()
+      end,
+    })
+  end
 
-	-- Close hidden buffers
-	use({ "kazhala/close-buffers.nvim", module = "close_buffers" })
+  -- Close hidden buffers
+  use({ "kazhala/close-buffers.nvim", module = "close_buffers" })
 
-	use({ "EdenEast/nightfox.nvim" })
-	use({ "projekt0n/github-nvim-theme" })
-	-- use({ "mcchrish/zenbones.nvim", requires = { "rktjmp/lush.nvim" } })
-	-- use({ "catppuccin/nvim", as = "catppuccin-nvim" })
-	-- use({ "dracula/vim", as = "dracula-vim" })
-	-- use({ "cmoscofian/nibble-vim" })
-	-- use({ "navarasu/onedark.nvim" })
-	-- use({ "embark-theme/vim", as = "embark-theme-vim" })
+  use({ "EdenEast/nightfox.nvim" })
+  use({ "projekt0n/github-nvim-theme" })
+  -- use({ "mcchrish/zenbones.nvim", requires = { "rktjmp/lush.nvim" } })
+  -- use({ "catppuccin/nvim", as = "catppuccin-nvim" })
+  -- use({ "dracula/vim", as = "dracula-vim" })
+  -- use({ "cmoscofian/nibble-vim" })
+  -- use({ "navarasu/onedark.nvim" })
+  -- use({ "embark-theme/vim", as = "embark-theme-vim" })
 end
 
 -- Bootstrap packer
 if require("core.packer-utils").bootstrap_packer(packages) == false then
-	return
+  return
 end
 
 require("core.theme-overrides").setup()
 require("core.theme-utils").setup()
 
 local utils = require("core.utils")
+
+-- Defer loading some plugins until Vim is idle
 utils.on_vimenter(function()
-	vim.schedule(function()
-		vim.cmd([[doautocmd User OnIdle]])
-	end)
+  vim.schedule(function()
+    vim.cmd([[doautocmd User OnIdle]])
+  end)
 end)
 
 utils.on_file_load(function()
-	vim.schedule(function()
-		vim.cmd([[doautocmd User OnFileLoad]])
-		require("core.reload-utils").setup()
-		require("core.auto-format").setup()
-	end)
+  vim.schedule(function()
+    vim.cmd([[doautocmd User OnFileLoad]])
+    require("core.reload-utils").setup()
+    require("core.auto-format").setup()
+  end)
 end)

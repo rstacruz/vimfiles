@@ -3,39 +3,39 @@ local function get_default_mappings()
 
 	local mappings = {
 		n = {
-			["-"] = { "<cmd>NvimTreeFindFile<cr>", "Open file explorer" },
+			["-"] = features.file_explorer and { "<cmd>NvimTreeFindFile<cr>", "Open file explorer" },
 			["<c-p>"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open file…" },
 			["gs"] = { ":%s~~", "Replace with..." },
-			["]g"] = features.gitsigns and { "<cmd>lua require('gitsigns').next_hunk()<cr>", "Next Git change" } or {},
+			["]g"] = features.gitsigns and { "<cmd>lua require('gitsigns').next_hunk()<cr>", "Next Git change" },
 			["[g"] = features.gitsigns and { "<cmd>lua require('gitsigns').prev_hunk()<cr>", "Previous Git change" }
-				or {},
+					or nil,
 
 			-- lsp
-			["gd"] = { "<cmd>Telescope lsp_definitions<cr>", "Definitions (lsp)…" },
-			["gr"] = { "<cmd>Telescope lsp_references<cr>", "References (lsp)…" },
-			["gh"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show hover" },
-			["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Declaration (lsp)…" },
-			["gi"] = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Implementation (lsp)…" },
-			["K"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show hover" },
+			["gd"] = features.lsp and { "<cmd>Telescope lsp_definitions<cr>", "Definitions (lsp)…" },
+			["gr"] = features.lsp and { "<cmd>Telescope lsp_references<cr>", "References (lsp)…" },
+			["gh"] = features.lsp and { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show hover" },
+			["gD"] = features.lsp and { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Declaration (lsp)…" },
+			["gi"] = features.lsp and { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Implementation (lsp)…" },
+			["K"] = features.lsp and { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show hover" },
 
 			-- buffer
-			["gb"] = { "<cmd>BufferLineCycleNext<cr>", "Buffer: next" } or {},
-			["gB"] = { "<cmd>BufferLineCyclePrev<cr>", "Buffer: previous" } or {},
-			["<tab>"] = { "<cmd>BufferLineCycleNext<cr>", "Buffer: next" } or {},
-			["<s-tab>"] = { "<cmd>BufferLineCyclePrev<cr>", "Buffer: previous" } or {},
+			["gb"] = { "<cmd>BufferLineCycleNext<cr>", "Buffer: next" },
+			["gB"] = { "<cmd>BufferLineCyclePrev<cr>", "Buffer: previous" },
+			["<tab>"] = { "<cmd>BufferLineCycleNext<cr>", "Buffer: next" },
+			["<s-tab>"] = { "<cmd>BufferLineCyclePrev<cr>", "Buffer: previous" },
 
 			-- Leader: [f] file
 			["<leader>f"] = { name = "File…" },
-			["<leader>fs"] = { "<cmd>noa w<cr>", " Save without formatting" },
+			["<leader>fw"] = { "<cmd>noa w<cr>", " Save without formatting" },
 			["<leader>fr"] = { "<cmd>e!<cr>", " Revert changes in file" },
 			["<leader>fy"] = { [[:let @+=@% | echo '→ ' . @%<cr>]], " Copy current path" },
 			["<leader>fY"] = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], " Copy full path" },
 
 			-- Leader: [g] git
-			["<leader>g"] = { name = "Git…" },
-			["<leader>gb"] = features.github_fugitive and { "<cmd>Git blame<cr>", " Blame" } or {},
-			["<leader>gy"] = features.github_fugitive and { "<cmd>GBrowse!<cr>", " Copy GitHub URL" } or {},
-			["<leader>gY"] = features.github_fugitive and { "<cmd>GBrowse<cr>", " Open in GitHub" } or {},
+			["<leader>g"] = features.github_fugitive and { name = "Git…" },
+			["<leader>gb"] = features.github_fugitive and { "<cmd>Git blame<cr>", " Blame" },
+			["<leader>gy"] = features.github_fugitive and { "<cmd>GBrowse!<cr>", " Copy GitHub URL" },
+			["<leader>gY"] = features.github_fugitive and { "<cmd>GBrowse<cr>", " Open in GitHub" },
 
 			-- Leader: [o] toggle
 			["<leader>o"] = { name = "Toggle…" },
@@ -55,11 +55,13 @@ local function get_default_mappings()
 			},
 
 			-- Leader: [od] diagnostic
-			["<leader>od"] = { name = "Diagnostic…" },
-			["<leader>odd"] = { "<cmd>lua vim.diagnostic.disable()<cr>", "[d]isable diagnostics" },
-			["<leader>ode"] = { "<cmd>lua vim.diagnostic.enable()<cr>", "[e]nable diagnostics" },
-			["<leader>odh"] = { "<cmd>lua vim.diagnostic.hide()<cr>", "[h]ide diagnostics" },
-			["<leader>ods"] = { "<cmd>lua vim.diagnostic.show()<cr>", "[s]how diagnostics" },
+			["<leader>od"] = features.lsp and { name = "Diagnostic…" },
+			["<leader>odd"] = features.lsp and { "<cmd>lua vim.diagnostic.disable()<cr>", "[d]isable diagnostics" }
+					or nil,
+			["<leader>ode"] = features.lsp and { "<cmd>lua vim.diagnostic.enable()<cr>", "[e]nable diagnostics" }
+					or nil,
+			["<leader>odh"] = features.lsp and { "<cmd>lua vim.diagnostic.hide()<cr>", "[h]ide diagnostics" },
+			["<leader>ods"] = features.lsp and { "<cmd>lua vim.diagnostic.show()<cr>", "[s]how diagnostics" },
 
 			-- [s] settings
 			["<leader>s"] = { name = "Settings…" },
@@ -90,11 +92,14 @@ local function get_default_mappings()
 			},
 
 			-- Leader: [c] code
-			["<leader>c"] = { name = "Code…" },
-			["<leader>ca"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", " Actions…" },
-			["<leader>cr"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", " Rename symbol…" },
-			["<leader>cd"] = { "<cmd>Telescope diagnostics<CR>", " Show diagnostics…" },
-			["<leader>cf"] = { "<cmd>lua vim.lsp.buf.formatting_seq_sync()<cr>", " Format via LSP" },
+			["<leader>c"] = features.lsp and { name = "Code…" },
+			["<leader>ca"] = features.lsp and { "<cmd>lua vim.lsp.buf.code_action()<cr>", " Actions…" },
+			["<leader>cr"] = features.lsp and { "<cmd>lua vim.lsp.buf.rename()<cr>", " Rename symbol…" },
+			["<leader>cd"] = features.lsp and { "<cmd>Telescope diagnostics<CR>", " Show diagnostics…" },
+			["<leader>cf"] = features.lsp and {
+				"<cmd>lua vim.lsp.buf.formatting_seq_sync()<cr>",
+				" Format via LSP",
+			},
 
 			-- Leader: [b] buffers
 			["<leader>b"] = { name = "Buffers…" },
@@ -127,8 +132,8 @@ local function get_default_mappings()
 			["<leader>,p"] = { "<cmd>StartupTime --tries 12<cr>", "Profile startup time" },
 		},
 		nv = {
-			["gl"] = { "<cmd>HopLine<cr>", "Go to line" },
-			["gw"] = { "<cmd>HopWord<cr>", "Go to word" },
+			["gl"] = features.hop and { "<cmd>HopLine<cr>", "Go to line" },
+			["gw"] = features.hop and { "<cmd>HopWord<cr>", "Go to word" },
 		},
 		v = {
 			["gs"] = { ":s~~", "Replace with..." },
@@ -143,21 +148,24 @@ local function get_default_mappings()
 end
 
 local function apply_mappings()
-	local which_key = require("which-key")
+	local has, which_key = pcall(require, "which-key")
+	if not has then
+		return
+	end
 
 	local mappings = get_default_mappings()
 	if not mappings then
 		return
 	end
 
-	which_key.register(mappings.n or {}, { mode = "n" })
-	which_key.register(mappings.v or {}, { mode = "v" })
-	which_key.register(mappings.nv or {}, { mode = "n" })
-	which_key.register(mappings.nv or {}, { mode = "v" })
-	which_key.register(mappings.ctrl or {}, { mode = "i" })
-	which_key.register(mappings.ctrl or {}, { mode = "t" })
-	which_key.register(mappings.ctrl or {}, { mode = "n" })
-	which_key.register(mappings.ctrl or {}, { mode = "v" })
+	which_key.register(mappings.n, { mode = "n" })
+	which_key.register(mappings.v, { mode = "v" })
+	which_key.register(mappings.nv, { mode = "n" })
+	which_key.register(mappings.nv, { mode = "v" })
+	which_key.register(mappings.ctrl, { mode = "i" })
+	which_key.register(mappings.ctrl, { mode = "t" })
+	which_key.register(mappings.ctrl, { mode = "n" })
+	which_key.register(mappings.ctrl, { mode = "v" })
 end
 
 local function setup()

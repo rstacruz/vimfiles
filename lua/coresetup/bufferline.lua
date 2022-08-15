@@ -35,13 +35,19 @@ local function apply_options()
 			show_close_icon = false, -- Close on the top-right (default false)
 			sort_by = "insert_after_current", -- Works like the browser I guess
 
+			-- Don't show the bufferline when there's only one file open. This makes startup feel faster,
+			-- because it often takes a few moments before the bufferline appears on startup.
+			always_show_bufferline = false,
+
 			-- diagnostics_indicator = function(count, level)
 			--	 local icon = level:match("error") and "" or ""
 			--	 return " " .. icon .. count
 			-- end,
 			groups = {
 				options = {
-					toggle_hidden_on_enter = true, -- when you re-enter a hidden group this options re-opens that group so the buffer is visible
+					-- When you re-enter a hidden group this options re-opens that group
+					-- so the buffer is visible
+					toggle_hidden_on_enter = true,
 				},
 				items = {
 					has_groups and groups.builtin.ungrouped or nil,
