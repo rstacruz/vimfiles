@@ -182,6 +182,22 @@ local function packages(use)
 	-- Open in GitHub
 	use({ "tpope/vim-rhubarb", cmd = { "GBrowse", "GBrowse!" } })
 
+	use({
+		"kylechui/nvim-surround",
+    event = {"BufRead", "CursorMoved"},
+		config = function()
+			require("coresetup.nvim-surround").setup()
+		end,
+	})
+
+  use({
+    "windwp/nvim-autopairs",
+    event = {"InsertEnter"},
+		config = function()
+			require("coresetup.nvim-autopairs").setup()
+		end,
+	})
+
 	-- Close hidden buffers
 	use({ "kazhala/close-buffers.nvim", module = "close_buffers" })
 
