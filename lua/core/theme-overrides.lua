@@ -25,6 +25,11 @@ local config = {
 		IndentBlanklineChar = { link = "XxLine" },
 		IndentBlanklineContextChar = { link = "XxLine" },
 
+		-- https://github.com/folke/which-key.nvim
+		WhichKeyFloat = { link = "Pmenu" }, -- Nicer background especaiily github_dark
+		WhichKeyDesc = { link = "Pmenu" },
+		WhichKeyGroup = { link = "Type" },
+
 		CmpBorder = { link = "XxLine" }, -- Border for completions
 		BufferLineFill = { link = "TabLineFill" }, -- looks better in github_light
 

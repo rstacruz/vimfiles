@@ -21,24 +21,24 @@ local function get_default_mappings()
 
 			-- Leader: [f] file
 			["<leader>f"] = { name = "File…" },
-			["<leader>fw"] = { "<cmd>w<cr>", "Save file [w]" },
-			["<leader>fs"] = { "<cmd>noa w<cr>", "[s]ave without formatting" },
-			["<leader>fr"] = { "<cmd>e!<cr>", "[r]evert changes in file" },
-			["<leader>fy"] = { [[:let @+=@% | echo '→ ' . @%<cr>]], "Cop[y] current path" },
-			["<leader>fY"] = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], "Cop[Y] full path" },
+			["<leader>fw"] = { "<cmd>w<cr>", " Save file" },
+			["<leader>fs"] = { "<cmd>noa w<cr>", " Save without formatting" },
+			["<leader>fr"] = { "<cmd>e!<cr>", " Revert changes in file" },
+			["<leader>fy"] = { [[:let @+=@% | echo '→ ' . @%<cr>]], " Copy current path" },
+			["<leader>fY"] = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], " Copy full path" },
 
 			-- Leader: [o] toggle
 			["<leader>o"] = { name = "Toggle…" },
-			["<leader>ow"] = { "<cmd>set wrap!<cr>", "Toggle [w]ord wrap" },
-			["<leader>os"] = { "<cmd>set spell!<cr>", "Toggle [s]pell check" },
-			["<leader>on"] = { "<cmd>set number!<cr>", "Toggle line [n]umber" },
-			["<leader>or"] = { "<cmd>set relativenumber!<cr>", "Toggle [r]elative line number" },
-			["<leader>ob"] = { "<cmd>lua require('core.theme-utils').toggle_theme()<cr>", "Toggle light/dark theme" },
+			["<leader>ow"] = { "<cmd>set wrap!<cr>", " Toggle word wrap" },
+			["<leader>os"] = { "<cmd>set spell!<cr>", " Toggle Spell check" },
+			["<leader>on"] = { "<cmd>set number!<cr>", " Toggle line numbers" },
+			["<leader>or"] = { "<cmd>set relativenumber!<cr>", " Toggle relative line number" },
+			["<leader>ob"] = { "<cmd>lua require('core.theme-utils').toggle_theme()<cr>", " Toggle light/dark theme" },
 			-- ["<leader>oB"] = { "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
 			-- "Toggle light/dark [B]ackground" },
 			["<leader>oc"] = {
 				"<cmd>lua vim.o.conceallevel = vim.o.conceallevel == 2 and 0 or 2<cr>",
-				"Toggle [c]onceal",
+				" Toggle conceal",
 			},
 
 			-- Leader: [od] diagnostic
@@ -52,52 +52,53 @@ local function get_default_mappings()
 			["<leader>s"] = { name = "Settings…" },
 			["<leader>s,"] = {
 				"<cmd>vsplit " .. vim.fn.stdpath("config") .. "/init.lua<cr>",
-				"Edit Neovim settings",
+				" Edit Neovim settings",
 			},
-			["<leader>sc"] = { "<cmd>Telescope colorscheme<cr>", "Choose [c]olorscheme…" },
+			["<leader>sc"] = { "<cmd>Telescope colorscheme<cr>", " Choose colorscheme…" },
 			["<leader>sk"] = {
 				"<cmd>vsplit " .. vim.fn.stdpath("config") .. "/lua/coresetup/keybindings.lua<cr>",
-				"Edit [k]eybindings",
+				" Edit keybindings",
 			},
 			["<leader>sr"] = {
 				"<cmd>lua require('core.reload-utils').reload()<cr>",
-				"Reload config",
+				" Reload config",
 			},
 			["<leader>si"] = {
 				"<cmd>lua require('core.reload-utils').reload()<cr>:PackerInstall<cr>",
-				"Packer: [i]nstall new packages",
+				" Packer: Install new packages",
 			},
 			["<leader>su"] = {
 				"<cmd>lua require('core.reload-utils').reload()<cr>:PackerSync<cr>",
-				"Packer: [u]pdate packages",
+				" Packer: Update packages",
 			},
 
 			-- Leader: [c] code
 			["<leader>c"] = { name = "Code…" },
-			["<leader>ca"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "[a]ctions…" },
-			["<leader>cr"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "[r]ename symbol…" },
-			["<leader>cd"] = { "<cmd>Telescope diagnostics<CR>", "Show [d]iagnostics" },
-			["<leader>cf"] = { "<cmd>lua vim.lsp.buf.formatting_seq_sync()<cr>", "[f]ormat via LSP" },
+			["<leader>ca"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", " Actions…" },
+			["<leader>cr"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", " Rename symbol…" },
+			["<leader>cd"] = { "<cmd>Telescope diagnostics<CR>", " Show diagnostics…" },
+			["<leader>cf"] = { "<cmd>lua vim.lsp.buf.formatting_seq_sync()<cr>", " Format via LSP" },
 
 			-- Leader: [b] buffers
 			["<leader>b"] = { name = "Buffers…" },
-			["<leader>bp"] = { "<cmd>BufferLinePick<cr>", "[p]ick…" },
-			["<leader>b<space>"] = { "<cmd>BufferLineTogglePin<cr>", "Toggle [P]in" },
-			["<leader>b."] = { "<cmd>BufferLineCloseRight<cr>", "Close to the right" },
-			["<leader>b,"] = { "<cmd>BufferLineCloseLeft<cr>", "Close to the left" },
+			["<leader>bp"] = { "<cmd>BufferLinePick<cr>", " Pick…" },
+			["<leader>b<space>"] = { "<cmd>BufferLineTogglePin<cr>", " Toggle pin" },
+			["<leader>b."] = { "<cmd>BufferLineCloseRight<cr>", " Close to the right" },
+			["<leader>b,"] = { "<cmd>BufferLineCloseLeft<cr>", " Close to the left" },
 			["<leader>bo"] = {
 				"<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>",
-				"Close [o]ther tabs",
+				" Close other tabs",
 			},
 			["<leader>bO"] = {
 				"<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>",
-				"Close [O]ther tabs (force)",
+				" Close other tabs (force)",
 			},
 
 			-- Leader: [x] exit
 			["<leader>x"] = { name = "Exit…" },
-			["<leader>xz"] = { "<cmd>cq<cr>", "Exit Neovim [z]" },
-			["<leader>xd"] = { "<cmd>bd!<cr>", "[d]estroy this buffer" },
+			["<leader>xz"] = { "<cmd>cq<cr>", " Exit Neovim" },
+			["<leader>xd"] = { "<cmd>bd!<cr>", " Destroy this buffer" },
+			["<leader>xc"] = { "<cmd>bd!<cr>", " Close this buffer" },
 			-- ["<leader>xa"] = { "<cmd>%bd! | Alpha<cr>", "Back to st[a]rt screen" },
 
 			-- [,] others
