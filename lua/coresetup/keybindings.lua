@@ -39,7 +39,10 @@ local function get_default_mappings()
 			["<leader>os"] = { "<cmd>set spell!<cr>", " Toggle Spell check" },
 			["<leader>on"] = { "<cmd>set number!<cr>", " Toggle line numbers" },
 			["<leader>or"] = { "<cmd>set relativenumber!<cr>", " Toggle relative line number" },
-			["<leader>ob"] = { "<cmd>lua require('core.theme-utils').toggle_theme()<cr>", " Toggle light/dark theme" },
+			["<leader>ob"] = {
+				"<cmd>lua require('core.theme-utils').toggle_theme()<cr>",
+				" Toggle light/dark theme",
+			},
 			-- ["<leader>oB"] = { "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
 			-- "Toggle light/dark [B]ackground" },
 			["<leader>oc"] = {

@@ -15,7 +15,7 @@ local function setup()
 	end
 
 	local has_navic, navic = pcall(require, "nvim-navic")
-  local on_attach = has_navic and navic.attach or nil
+	local on_attach = has_navic and navic.attach or nil
 
 	local has_null_ls, null_ls = pcall(require, "null-ls")
 	local null_sources = {}

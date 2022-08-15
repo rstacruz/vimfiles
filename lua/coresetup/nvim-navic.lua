@@ -5,7 +5,7 @@ local function setup()
 	end
 
 	local options = {
-		separator = " ╱ "
+		separator = " ╱ ",
 	}
 
 	navic.setup(options)

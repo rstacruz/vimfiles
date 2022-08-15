@@ -4,8 +4,7 @@ local function setup()
 		return
 	end
 
-	local options = {
-	}
+	local options = {}
 
 	autopairs.setup(options)
 end

@@ -62,16 +62,14 @@ local function packages(use)
 		end,
 	})
 
-	use(
-		{
-			"SmiteshP/nvim-navic",
-			module = "nvim-navic",
-			config = function()
-				vim.g.navic_available = true
-				require("coresetup.nvim-navic").setup()
-			end,
-		}
-	)
+	use({
+		"SmiteshP/nvim-navic",
+		module = "nvim-navic",
+		config = function()
+			vim.g.navic_available = true
+			require("coresetup.nvim-navic").setup()
+		end,
+	})
 
 	-- Formatting and diagnostics
 	use({
@@ -131,6 +129,8 @@ local function packages(use)
 			require("coresetup.lualine").setup()
 		end,
 	})
+
+	use({ "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" })
 
 	use({
 		"lukas-reineke/indent-blankline.nvim",

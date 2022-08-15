@@ -44,6 +44,7 @@ local function get_theme(opts)
 
 	return {
 		options = {
+			icons_enabled = true,
 			theme = opts["theme"],
 			component_separators = { left = "", right = "" },
 			section_separators = { left = "", right = "" },
@@ -57,15 +58,14 @@ local function get_theme(opts)
 			lualine_z = {},
 		},
 		sections = {
-			lualine_a = {
+			lualine_a = {},
+			lualine_b = {
+				filename,
 				{
 					"diagnostics",
 					source = { "nvim" },
 					sections = { "error" },
 				},
-			},
-			lualine_b = {
-				filename,
 			},
 			lualine_c = {
 				{
@@ -93,6 +93,8 @@ local function get_theme(opts)
 end
 
 local function setup()
+	pcall(require, "nvim-web-devicons")
+
 	local has, lualine = pcall(require, "lualine")
 	if not has then
 		return
