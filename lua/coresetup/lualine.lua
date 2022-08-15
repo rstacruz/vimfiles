@@ -4,6 +4,7 @@ local function is_file()
 		NvimTree = true,
 		["neo-tree"] = true,
 		spectre_panel = true,
+		TelescopePrompt = true,
 		alpha = true,
 	}
 	return not (nonfile_types[vim.bo.filetype] or false)

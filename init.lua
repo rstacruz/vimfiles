@@ -7,8 +7,8 @@ vim.g.baseconfig = {
 		theme_light = "github_light",
 	},
 	loading = {
-		lazy_ui = false
-	}
+		lazy_ui = false,
+	},
 }
 
 local function packages(use)
@@ -82,6 +82,10 @@ local function packages(use)
 		requires = {
 			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 		},
+		setup = function()
+			-- Force loading Telescope again when hot-reloading config
+			vim.g.loaded_telescope = 0
+		end,
 		config = function()
 			require("coresetup.telescope").setup()
 		end,
@@ -126,7 +130,7 @@ local function packages(use)
 		end,
 	})
 
-  -- Completions
+	-- Completions
 	use({
 		"hrsh7th/nvim-cmp",
 		event = { "InsertEnter", "CmdlineEnter" },
