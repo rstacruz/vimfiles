@@ -133,6 +133,16 @@ local function packages(use)
 		end,
 	})
 
+	-- Git indicators on the gutter
+	use({
+		"lewis6991/gitsigns.nvim",
+		event = "User OnFileLoad",
+		module = "gitsigns",
+		config = function()
+			require("coresetup.gitsigns").setup()
+		end,
+	})
+
 	use({ "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" })
 
 	use({

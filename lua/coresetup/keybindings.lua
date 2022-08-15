@@ -4,6 +4,8 @@ local function get_default_mappings()
 			["-"] = { "<cmd>NvimTreeFindFile<cr>", "Open file explorer" },
 			["<c-p>"] = { "<cmd>Telescope find_files<cr>", "Open file…" },
 			["gs"] = { ":%s~~", "Replace with..." },
+			["]g"] = { "<cmd>lua require('gitsigns').next_hunk()<cr>", "Next Git change" },
+			["[g"] = { "<cmd>lua require('gitsigns').prev_hunk()<cr>", "Previous Git change" },
 
 			-- lsp
 			["gd"] = { "<cmd>Telescope lsp_definitions<cr>", "Definitions (lsp)…" },
