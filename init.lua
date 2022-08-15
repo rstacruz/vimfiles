@@ -127,7 +127,7 @@ local function packages(use)
   -- Completions
 	use({
 		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
+		event = { "InsertEnter", "CmdlineEnter" },
 		requires = {
 			"onsails/lspkind-nvim",
 			{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
