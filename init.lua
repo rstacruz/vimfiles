@@ -20,6 +20,7 @@ BaseConfig = {
 		indent_detection = true,
 		indent_guides = true,
 		auto_cd_root = true,
+		treesitter = true,
 		welcome_screen = false, -- a bit buggy, sometimes causes errors on startup
 	},
 
@@ -42,19 +43,29 @@ local function packages(use)
 	local features = BaseConfig.features
 	use({ "wbthomason/packer.nvim" })
 
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		module = "nvim-treesitter",
-		run = ":TSUpdate",
-		cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSEnable", "TSDisable", "TSModuleInfo" },
-		event = { "BufRead" },
-		requires = {
-			{ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
-		},
-		config = function()
-			require("coresetup.treesitter").setup()
-		end,
-	})
+	if features.treesitter then
+    use({
+      "nvim-treesitter/nvim-treesitter",
+      module = "nvim-treesitter",
+      run = ":TSUpdate",
+      cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSEnable", "TSDisable", "TSModuleInfo" },
+      event = { "BufRead" },
+      requires = {
+        { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
+      },
+      config = function()
+        require("coresetup.treesitter").setup()
+      end,
+    })
+
+		use({
+			"kylechui/nvim-surround",
+			event = { "BufRead", "CursorMoved" },
+			config = function()
+				require("coresetup.nvim-surround").setup()
+			end,
+		})
+	end
 
 	if features.indent_detection then
 		-- Detect indents
@@ -253,14 +264,6 @@ local function packages(use)
 		-- Open in GitHub
 		use({ "tpope/vim-rhubarb", cmd = { "GBrowse", "GBrowse!" } })
 	end
-
-	use({
-		"kylechui/nvim-surround",
-		event = { "BufRead", "CursorMoved" },
-		config = function()
-			require("coresetup.nvim-surround").setup()
-		end,
-	})
 
 	use({
 		"windwp/nvim-autopairs",
