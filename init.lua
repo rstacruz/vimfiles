@@ -1,20 +1,37 @@
 pcall(require, "impatient")
 require("coresetup.nvim-options").setup()
 
+-- Configuration
 vim.g.baseconfig = {
 	ui = {
 		theme_dark = "terafox", -- terafox | github_dimmed | catppuccin
 		theme_light = "github_light",
 	},
 	loading = {
+		-- Lazy load UI elements (tabline and status line). "true" makes startup
+		-- faster at the expense of a flash of unstyled UI
 		lazy_ui = false,
 	},
+
+	-- Feature toggles to optimise loading times for some environments
+	features = {
+		completions = true,
+		github_fugitive = true,
+		gitsigns = true,
+		indent_detection = true,
+		indent_guides = true,
+		auto_cd_root = true,
+	},
+
 	format = {
+		-- Auto-format on save
 		autoformat_files = "*.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs",
 	},
 }
 
+-- Packer packages
 local function packages(use)
+	local features = vim.g.baseconfig.features
 	use({ "wbthomason/packer.nvim" })
 
 	use({
@@ -31,12 +48,16 @@ local function packages(use)
 		end,
 	})
 
-	-- Detect indents
-	use({ "Darazaki/indent-o-matic" })
+	if features.indent_detection then
+		-- Detect indents
+		use({ "Darazaki/indent-o-matic" })
+	end
 
-	use({ "thinca/vim-visualstar", event = "User OnFileLoad" })
+	use({ "thinca/vim-visualstar", keys = { "*", "#" } })
 
-	use({ "airblade/vim-rooter" })
+	if features.auto_cd_root then
+		use({ "airblade/vim-rooter" })
+	end
 
 	-- Easymotion-style jumps
 	use({
@@ -127,48 +148,54 @@ local function packages(use)
 	use({
 		"nvim-lualine/lualine.nvim",
 		event = vim.g.baseconfig.loading.lazy_ui and "User OnIdle" or nil,
-		module = vim.g.baseconfig.loading.lazy_ui and { "lualine" } or nil,
+		module = vim.g.baseconfig.loading.lazy_ui and { "lualine", "lualine.utils.notices" } or nil,
 		config = function()
 			require("coresetup.lualine").setup()
 		end,
 	})
 
-	-- Git indicators on the gutter
-	use({
-		"lewis6991/gitsigns.nvim",
-		event = "User OnFileLoad",
-		module = "gitsigns",
-		config = function()
-			require("coresetup.gitsigns").setup()
-		end,
-	})
+	if features.gitsigns then
+		-- Git indicators on the gutter
+		use({
+			"lewis6991/gitsigns.nvim",
+			event = "User OnFileLoad",
+			module = "gitsigns",
+			config = function()
+				require("coresetup.gitsigns").setup()
+			end,
+		})
+	end
 
 	use({ "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" })
 
-	use({
-		"lukas-reineke/indent-blankline.nvim",
-		event = { "BufRead", "CursorMoved" },
-		config = function()
-			require("coresetup.indent-blankline").setup()
-		end,
-	})
+	if features.indent_guides then
+		use({
+			"lukas-reineke/indent-blankline.nvim",
+			event = { "BufRead", "CursorMoved" },
+			config = function()
+				require("coresetup.indent-blankline").setup()
+			end,
+		})
+	end
 
-	-- Completions
-	use({
-		"hrsh7th/nvim-cmp",
-		event = { "InsertEnter", "CmdlineEnter" },
-		requires = {
-			"onsails/lspkind-nvim",
-			{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
-			{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-			{ "hrsh7th/cmp-path", after = "nvim-cmp" },
-			{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
-			{ "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
-		},
-		config = function()
-			require("coresetup.cmp").setup()
-		end,
-	})
+	if features.completions then
+		-- Completions
+		use({
+			"hrsh7th/nvim-cmp",
+			event = { "InsertEnter", "CmdlineEnter" },
+			requires = {
+				"onsails/lspkind-nvim",
+				{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+				{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+				{ "hrsh7th/cmp-path", after = "nvim-cmp" },
+				{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+				{ "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
+			},
+			config = function()
+				require("coresetup.cmp").setup()
+			end,
+		})
+	end
 
 	use({
 		"numToStr/Comment.nvim",
@@ -200,11 +227,13 @@ local function packages(use)
 	-- Improve appearance of fold text
 	use({ "jrudess/vim-foldtext", event = "BufRead" })
 
-	-- Git blame
-	use({ "tpope/vim-fugitive", cmd = { "Git", "GBrowse", "GBrowse!" } })
+	if features.github_fugitive then
+		-- Git blame
+		use({ "tpope/vim-fugitive", cmd = { "Git", "GBrowse", "GBrowse!" } })
 
-	-- Open in GitHub
-	use({ "tpope/vim-rhubarb", cmd = { "GBrowse", "GBrowse!" } })
+		-- Open in GitHub
+		use({ "tpope/vim-rhubarb", cmd = { "GBrowse", "GBrowse!" } })
+	end
 
 	use({
 		"kylechui/nvim-surround",

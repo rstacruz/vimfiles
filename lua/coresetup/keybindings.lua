@@ -1,11 +1,14 @@
 local function get_default_mappings()
+	local features = vim.g.baseconfig.features
+
 	local mappings = {
 		n = {
 			["-"] = { "<cmd>NvimTreeFindFile<cr>", "Open file explorer" },
 			["<c-p>"] = { "<cmd>Telescope find_files<cr>", "Open file…" },
 			["gs"] = { ":%s~~", "Replace with..." },
-			["]g"] = { "<cmd>lua require('gitsigns').next_hunk()<cr>", "Next Git change" },
-			["[g"] = { "<cmd>lua require('gitsigns').prev_hunk()<cr>", "Previous Git change" },
+			["]g"] = features.gitsigns and { "<cmd>lua require('gitsigns').next_hunk()<cr>", "Next Git change" } or {},
+			["[g"] = features.gitsigns and { "<cmd>lua require('gitsigns').prev_hunk()<cr>", "Previous Git change" }
+				or {},
 
 			-- lsp
 			["gd"] = { "<cmd>Telescope lsp_definitions<cr>", "Definitions (lsp)…" },
@@ -30,9 +33,9 @@ local function get_default_mappings()
 
 			-- Leader: [g] git
 			["<leader>g"] = { name = "Git…" },
-			["<leader>gb"] = { "<cmd>Git blame<cr>", " Blame" },
-			["<leader>gy"] = { "<cmd>GBrowse!<cr>", " Copy GitHub URL" },
-			["<leader>gY"] = { "<cmd>GBrowse<cr>", " Open in GitHub" },
+			["<leader>gb"] = features.github_fugitive and { "<cmd>Git blame<cr>", " Blame" } or {},
+			["<leader>gy"] = features.github_fugitive and { "<cmd>GBrowse!<cr>", " Copy GitHub URL" } or {},
+			["<leader>gY"] = features.github_fugitive and { "<cmd>GBrowse<cr>", " Open in GitHub" } or {},
 
 			-- Leader: [o] toggle
 			["<leader>o"] = { name = "Toggle…" },
