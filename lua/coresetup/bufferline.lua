@@ -9,7 +9,7 @@ local function setup_colorscheme_hook(callback)
 	})
 end
 
-local function setup()
+local function apply_options()
 	local has, bufferline = pcall(require, "bufferline")
 	if not has then
 		return
@@ -58,9 +58,15 @@ local function setup()
 	}
 
 	bufferline.setup(options)
+end
+
+local function setup()
+	apply_options()
 
 	setup_colorscheme_hook(function()
-		bufferline.setup(options)
+		vim.schedule(function()
+			apply_options()
+		end)
 	end)
 end
 
