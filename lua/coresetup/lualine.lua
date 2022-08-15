@@ -11,8 +11,6 @@ local function is_file()
 end
 
 local function get_theme(opts)
-	-- local has_gps, gps = pcall(require, "nvim-gps")
-
 	local terminal = {
 		function()
 			return [[ ]] .. (vim.b.toggle_number or "0")
@@ -70,7 +68,19 @@ local function get_theme(opts)
 				filename,
 			},
 			lualine_c = {
-				-- has_gps and { gps.get_location, cond = gps.is_available, color = "lualine_c_inactive" } or {},
+				{
+					function()
+						return require("nvim-navic").get_location()
+					end,
+					cond = function()
+						if not vim.g.navic_available then
+							return
+						end
+						local has_navic, navic = pcall(require, "nvim-navic")
+						return has_navic and navic.is_available()
+					end,
+					-- color = "lualine_c_inactive"
+				},
 			},
 			lualine_x = { filetype },
 			lualine_y = {
@@ -87,11 +97,6 @@ local function setup()
 	if not has then
 		return
 	end
-
-	-- local has_gps, gps = pcall(require, "nvim-gps")
-	-- if has_gps then
-	-- 	gps.setup({ separator = " ╱ " })
-	-- end
 
 	local options = get_theme({ theme = "auto" })
 	lualine.setup(options)

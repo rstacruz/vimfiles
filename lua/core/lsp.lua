@@ -14,15 +14,18 @@ local function setup()
 		return
 	end
 
+	local has_navic, navic = pcall(require, "nvim-navic")
+  local on_attach = has_navic and navic.attach or nil
+
 	local has_null_ls, null_ls = pcall(require, "null-ls")
 	local null_sources = {}
 
 	if has_bin("lua-language-server") then
-		lspconfig.sumneko_lua.setup({})
+		lspconfig.sumneko_lua.setup({ on_attach = on_attach })
 	end
 
 	if has_bin("typescript-language-server") then
-		lspconfig.tsserver.setup({})
+		lspconfig.tsserver.setup({ on_attach = on_attach })
 	end
 
 	if has_bin("stylua") then

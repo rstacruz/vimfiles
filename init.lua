@@ -62,6 +62,17 @@ local function packages(use)
 		end,
 	})
 
+	use(
+		{
+			"SmiteshP/nvim-navic",
+			module = "nvim-navic",
+			config = function()
+				vim.g.navic_available = true
+				require("coresetup.nvim-navic").setup()
+			end,
+		}
+	)
+
 	-- Formatting and diagnostics
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
@@ -184,15 +195,15 @@ local function packages(use)
 
 	use({
 		"kylechui/nvim-surround",
-    event = {"BufRead", "CursorMoved"},
+		event = { "BufRead", "CursorMoved" },
 		config = function()
 			require("coresetup.nvim-surround").setup()
 		end,
 	})
 
-  use({
-    "windwp/nvim-autopairs",
-    event = {"InsertEnter"},
+	use({
+		"windwp/nvim-autopairs",
+		event = { "InsertEnter" },
 		config = function()
 			require("coresetup.nvim-autopairs").setup()
 		end,
