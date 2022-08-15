@@ -6,6 +6,9 @@ vim.g.baseconfig = {
 		theme_dark = "terafox", -- terafox | github_dimmed | catppuccin
 		theme_light = "github_light",
 	},
+	loading = {
+		lazy_ui = true
+	}
 }
 
 local function packages(use)
@@ -107,7 +110,7 @@ local function packages(use)
 	-- Status line
 	use({
 		"nvim-lualine/lualine.nvim",
-		event = "User OnIdle",
+		event = vim.g.baseconfig.loading.lazy_ui and "User OnIdle" or nil,
 		config = function()
 			require("coresetup.lualine").setup()
 		end,
@@ -158,8 +161,8 @@ local function packages(use)
 
 	use({
 		"akinsho/bufferline.nvim",
-		event = "User OnIdle",
-		cmd = { "BufferLineCycleNext", "BufferLineCyclePrev" },
+		event = vim.g.baseconfig.loading.lazy_ui and "User OnIdle" or nil,
+		cmd = vim.g.baseconfig.loading.lazy_ui and { "BufferLineCycleNext", "BufferLineCyclePrev" } or nil,
 		config = function()
 			require("coresetup.bufferline").setup()
 		end,

@@ -61,6 +61,12 @@ end
 -- Works like packer.startup(packages), but also downloads
 -- and installs packer. Returns "false" when processing should stop.
 local function bootstrap_packer(packages)
+	-- On subsequent runs, skip the bootstrapping routine
+	if vim.g.packer_bootstrapped then
+		require("packer").startup(packages)
+		return true
+	end
+
 	local packer_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 	if vim.fn.filereadable(packer_path .. "/lua/packer.lua") == 0 then
 		print("Installing packer…")
@@ -74,6 +80,8 @@ local function bootstrap_packer(packages)
 
 	require("packer").startup(packages)
 	require("packer").install()
+
+	vim.g.packer_bootstrapped = true
 	return true
 end
 

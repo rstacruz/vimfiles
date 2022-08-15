@@ -57,7 +57,7 @@ local function setup()
 	vim.opt.showtabline = 2
 	vim.opt.laststatus = 2
 	vim.opt.tabline = " "
-	vim.opt.statusline = " "
+	-- vim.opt.statusline = " "
 
 	-- leader keys
 	vim.g.mapleader = " "
