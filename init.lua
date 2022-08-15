@@ -7,7 +7,7 @@ vim.g.baseconfig = {
 		theme_light = "github_light",
 	},
 	loading = {
-		lazy_ui = true
+		lazy_ui = false
 	}
 }
 
@@ -111,6 +111,7 @@ local function packages(use)
 	use({
 		"nvim-lualine/lualine.nvim",
 		event = vim.g.baseconfig.loading.lazy_ui and "User OnIdle" or nil,
+		-- module = vim.g.baseconfig.loading.lazy_ui and { "lualine" },
 		config = function()
 			require("coresetup.lualine").setup()
 		end,
