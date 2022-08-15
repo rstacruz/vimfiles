@@ -4,26 +4,26 @@ local function setup()
 		return
 	end
 
-	indent_blankline.setup({
+	local options = {
 		space_char_blankline = " ",
+		char_list = { "│" },
+		context_char_list = { "│" },
 		show_current_context = true,
 		show_current_context_start = true,
-	})
-
-	vim.g.indent_blankline_show_first_indent_level = true
-	vim.g.indent_blankline_char_list = { "│" }
-	vim.g.indent_blankline_context_char_list = { "│" }
-	vim.g.indent_blankline_use_treesitter_scope = true
-	vim.g.indent_blankline_filetype_exclude = {
-		"lspinfo",
-		"packer",
-		"checkhealth",
-		"",
-		"startify",
-		"toggleterm",
-		"help",
-		"spectre_panel",
+		show_first_indent_level = false,
+		filetype_exclude = {
+			"lspinfo",
+			"packer",
+			"checkhealth",
+			"",
+			"startify",
+			"toggleterm",
+			"help",
+			"spectre_panel",
+		},
 	}
+
+	indent_blankline.setup(options)
 end
 
 return { setup = setup }
