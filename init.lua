@@ -9,6 +9,9 @@ vim.g.baseconfig = {
 	loading = {
 		lazy_ui = false,
 	},
+	format = {
+		autoformat_files = "*.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs",
+	},
 }
 
 local function packages(use)
@@ -241,5 +244,6 @@ utils.on_file_load(function()
 	vim.schedule(function()
 		vim.cmd([[doautocmd User OnFileLoad]])
 		require("core.reload-utils").setup()
+		require("core.auto-format").setup()
 	end)
 end)

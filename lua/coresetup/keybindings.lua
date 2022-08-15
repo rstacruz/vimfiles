@@ -21,7 +21,6 @@ local function get_default_mappings()
 
 			-- Leader: [f] file
 			["<leader>f"] = { name = "File…" },
-			["<leader>fw"] = { "<cmd>w<cr>", " Save file" },
 			["<leader>fs"] = { "<cmd>noa w<cr>", " Save without formatting" },
 			["<leader>fr"] = { "<cmd>e!<cr>", " Revert changes in file" },
 			["<leader>fy"] = { [[:let @+=@% | echo '→ ' . @%<cr>]], " Copy current path" },
