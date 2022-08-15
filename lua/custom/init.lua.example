@@ -1,0 +1,8 @@
+-- copy to init.lua
+
+local function config(baseconfig)
+	-- example: disable git signs
+	baseconfig.features.gitsigns = false
+end
+
+return { config = config }

@@ -29,6 +29,12 @@ vim.g.baseconfig = {
 	},
 }
 
+-- Custom config
+local has_custom, custom = pcall(require, "custom")
+if has_custom and custom.config then
+	custom.config(vim.g.baseconfig)
+end
+
 -- Packer packages
 local function packages(use)
 	local features = vim.g.baseconfig.features

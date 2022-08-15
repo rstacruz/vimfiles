@@ -9,3 +9,4 @@
 /plugin/*.local.vim
 /plugin/packer_compiled.lua
 .neovim_playground_env
+/lua/custom/init.lua

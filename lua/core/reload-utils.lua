@@ -5,7 +5,7 @@ local function reload()
 
 	-- Unload everything from core and coresetup
 	for k, _ in pairs(package.loaded) do
-		if string.match(k, "^core") then
+		if string.match(k, "^(core|custom)") then
 			package.loaded[k] = nil
 		end
 	end
