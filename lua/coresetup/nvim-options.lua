@@ -54,11 +54,11 @@ local function setup()
 	vim.opt.whichwrap:append("<>[]hl")
 
 	-- clear out statusline, they will be populated later by plugins
-	if BaseConfig.ui.lazy_load_statusline then
-		vim.opt.laststatus = 0
-	else
+	-- if BaseConfig.ui.lazy_load_statusline then
+	-- 	vim.opt.laststatus = 0
+	-- else
 		vim.opt.laststatus = vim.fn.has("nvim-0.7") and 3 or 2
-	end
+	-- end
 
 	-- leader keys
 	vim.g.mapleader = " "

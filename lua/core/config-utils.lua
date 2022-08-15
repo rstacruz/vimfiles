@@ -1,5 +1,6 @@
 local function apply_overrides(key, config)
 	local has, custom = pcall(require, "custom.init")
+
 	if has and custom[key] then
 		local result = custom[key](config)
 		if result then
@@ -9,6 +10,8 @@ local function apply_overrides(key, config)
 			-- mutating an object
 			return config
 		end
+	else
+		return config
 	end
 end
 
