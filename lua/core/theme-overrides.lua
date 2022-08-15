@@ -1,41 +1,49 @@
+local config = {
+	base = {
+		HopNextKey = { link = "Search" },
+		HopNextKey1 = { link = "HopNextKey" },
+		HopNextKey2 = { link = "HopNextKey" },
+
+		-- Custom styles
+		XxLine = { link = "LineNr" }, -- borders and lines. also: Vertsplit
+
+		-- Telescope
+		TelescopeNormal = { link = "Pmenu" },
+		TelescopeBorder = { link = "Pmenu" },
+		TelescopePreviewBorder = { link = "Pmenu" },
+		TelescopeResultsBorder = { link = "Pmenu" },
+		TelescopeTitle = { link = "Search" },
+
+		TelescopePromptNormal = { link = "CursorLine" },
+		TelescopePromptPrefix = { link = "DevIconsTsx" },
+		TelescopePromptBorder = { link = "CursorLine" },
+		TelescopePromptTitle = { link = "IncSearch" },
+		TelescopePromptCounter = { link = "NonText" },
+
+		-- Indent blankline
+		IndentBlanklineContextStart = { link = "CursorLine" }, -- The line that started the context
+		IndentBlanklineChar = { link = "XxLine" },
+		IndentBlanklineContextChar = { link = "XxLine" },
+
+		CmpBorder = { link = "XxLine" }, -- Border for completions
+		BufferLineFill = { link = "TabLineFill" }, -- looks better in github_light
+
+		NvimTreeSpecialFile = { link = "Comment" }, -- Make some files less visible
+		NvimTreeIndentMarker = { link = "NonText" }, -- Make some files less visible
+		NvimTreeRootFolder = { link = "Comment" }, -- make the heading less prominent
+		NvimTreeWinSeparator = { link = "EndOfBuffer" }, -- better visual boundary from tree sidebar to the buffer
+	},
+}
+
 local function apply()
 	local cmd = vim.cmd
 
-	vim.api.nvim_set_hl(0, "HopNextKey", { link = "Search" })
-	vim.api.nvim_set_hl(0, "HopNextKey1", { link = "HopNextKey" })
-	vim.api.nvim_set_hl(0, "HopNextKey2", { link = "HopNextKey" })
-
-	-- Custom styles
-	vim.api.nvim_set_hl(0, "XxLine", { link = "LineNr" }) -- borders and lines. also: Vertsplit
-
-	-- Telescope
-	vim.api.nvim_set_hl(0, "TelescopeNormal", { link = "Pmenu" })
-	vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "Pmenu" })
-	vim.api.nvim_set_hl(0, "TelescopePreviewBorder", { link = "Pmenu" })
-	vim.api.nvim_set_hl(0, "TelescopeResultsBorder", { link = "Pmenu" })
-	vim.api.nvim_set_hl(0, "TelescopeTitle", { link = "Search" })
-
-	vim.api.nvim_set_hl(0, "TelescopePromptNormal", { link = "CursorLine" })
-	vim.api.nvim_set_hl(0, "TelescopePromptPrefix", { link = "DevIconsTsx" })
-	vim.api.nvim_set_hl(0, "TelescopePromptBorder", { link = "CursorLine" })
-	vim.api.nvim_set_hl(0, "TelescopePromptTitle", { link = "IncSearch" })
-	vim.api.nvim_set_hl(0, "TelescopePromptCounter", { link = "NonText" })
-
-	-- Indent blankline
-	vim.api.nvim_set_hl(0, "IndentBlanklineContextStart", { link = "CursorLine" }) -- The line that started the context
-	vim.api.nvim_set_hl(0, "IndentBlanklineChar", { link = "XxLine" })
-	vim.api.nvim_set_hl(0, "IndentBlanklineContextChar", { link = "XxLine" })
-
-	vim.api.nvim_set_hl(0, "CmpBorder", { link = "XxLine" }) -- Border for completions
-	vim.api.nvim_set_hl(0, "BufferLineFill", { link = "TabLineFill" }) -- looks better in github_light
-
-	vim.api.nvim_set_hl(0, "NvimTreeSpecialFile", { link = "Comment" }) -- Make some files less visible
-	vim.api.nvim_set_hl(0, "NvimTreeIndentMarker", { link = "NonText" }) -- Make some files less visible
-	vim.api.nvim_set_hl(0, "NvimTreeRootFolder", { link = "Comment" }) -- make the heading less prominent
-	vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { link = "EndOfBuffer" }) -- better visual boundary from tree sidebar to the buffer
-
 	local col = vim.g.colors_name
 	local bg = vim.opt.background:get()
+
+	for key, value in pairs(config.base) do
+		vim.api.nvim_set_hl(0, key, value)
+	end
 
 	-- different themes have different groups that look nice with borders
 	if col == "terafox" or col == "nightfox" or col == "carbonfox" then

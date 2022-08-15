@@ -119,7 +119,7 @@ local function packages(use)
 
 	use({
 		"lukas-reineke/indent-blankline.nvim",
-		event = "User OnIdle",
+		event = { "BufRead", "CursorMoved" },
 		config = function()
 			require("coresetup.indent-blankline").setup()
 		end,
