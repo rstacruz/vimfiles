@@ -27,6 +27,12 @@ local function get_default_mappings()
 			["<leader>fy"] = { [[:let @+=@% | echo '→ ' . @%<cr>]], " Copy current path" },
 			["<leader>fY"] = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], " Copy full path" },
 
+			-- Leader: [g] git
+			["<leader>g"] = { name = "Git…" },
+			["<leader>gb"] = { "<cmd>Git blame<cr>", " Blame" },
+			["<leader>gy"] = { "<cmd>GBrowse!<cr>", " Copy GitHub URL" },
+			["<leader>gY"] = { "<cmd>GBrowse<cr>", " Open in GitHub" },
+
 			-- Leader: [o] toggle
 			["<leader>o"] = { name = "Toggle…" },
 			["<leader>ow"] = { "<cmd>set wrap!<cr>", " Toggle word wrap" },

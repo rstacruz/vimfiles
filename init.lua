@@ -173,6 +173,15 @@ local function packages(use)
 		end,
 	})
 
+	-- Improve appearance of fold text
+	use({ "jrudess/vim-foldtext", event = "BufRead" })
+
+	-- Git blame
+	use({ "tpope/vim-fugitive", cmd = { "Git", "GBrowse", "GBrowse!" } })
+
+	-- Open in GitHub
+	use({ "tpope/vim-rhubarb", cmd = { "GBrowse", "GBrowse!" } })
+
 	-- Close hidden buffers
 	use({ "kazhala/close-buffers.nvim", module = "close_buffers" })
 
