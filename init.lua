@@ -36,11 +36,24 @@ BaseConfig = {
 
 	treesitter = {
 		ensure_installed = {
-			"javascript", "css", "lua", "markdown", "ruby", "yaml",
-			"json", "html", "python", "svelte", "typescript",
-			"fish", "dockerfile", "make", "jsdoc", "scss"
+			"javascript",
+			"css",
+			"lua",
+			"markdown",
+			"ruby",
+			"yaml",
+			"json",
+			"html",
+			"python",
+			"svelte",
+			"typescript",
+			"fish",
+			"dockerfile",
+			"make",
+			"jsdoc",
+			"scss",
 		},
-	}
+	},
 }
 
 -- Custom config
