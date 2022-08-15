@@ -55,6 +55,7 @@ local function setup()
 
 	-- clear out tabline and statusline, they will be populated later by plugins
 	vim.opt.showtabline = 2
+	vim.opt.laststatus = 2
 	vim.opt.tabline = " "
 	vim.opt.statusline = " "
 

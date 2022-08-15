@@ -4,7 +4,7 @@ require("coresetup.nvim-options").setup()
 vim.g.baseconfig = {
 	ui = {
 		theme_dark = "terafox", -- terafox | github_dimmed | catppuccin
-		theme_light = "github_light"
+		theme_light = "github_light",
 	},
 }
 
@@ -121,18 +121,22 @@ local function packages(use)
 		end,
 	})
 
-	-- TODO
-	-- use({
-	--	 "hrsh7th/nvim-cmp",
-	--	 requires = {
-	--		 "onsails/lspkind-nvim",
-	--		 { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
-	--		 { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-	--		 { "hrsh7th/cmp-path", after = "nvim-cmp" },
-	--		 { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
-	--		 { "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
-	--	 },
-	-- })
+  -- Completions
+	use({
+		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
+		requires = {
+			"onsails/lspkind-nvim",
+			{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+			{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+			{ "hrsh7th/cmp-path", after = "nvim-cmp" },
+			{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+			{ "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
+		},
+		config = function()
+			require("coresetup.cmp").setup()
+		end,
+	})
 
 	use({
 		"numToStr/Comment.nvim",
@@ -144,12 +148,12 @@ local function packages(use)
 
 	use({
 		"rstacruz/vim-gitgrep",
-		cmd = { "GG", "VG" }
+		cmd = { "GG", "VG" },
 	})
 
 	use({
 		"nvim-pack/nvim-spectre",
-		module = { "spectre" }
+		module = { "spectre" },
 	})
 
 	use({
