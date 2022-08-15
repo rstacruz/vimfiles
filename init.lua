@@ -6,8 +6,7 @@ BaseConfig = {
 	ui = {
 		theme_dark = "terafox", -- terafox | github_dimmed | catppuccin
 		theme_light = "github_light",
-	},
-	loading = {
+
 		-- Lazy load UI elements (tabline and status line). "true" makes startup
 		-- faster at the expense of a flash of unstyled UI
 		lazy_ui = false,
@@ -21,11 +20,17 @@ BaseConfig = {
 		indent_detection = true,
 		indent_guides = true,
 		auto_cd_root = true,
+		welcome_screen = false, -- a bit buggy, sometimes causes errors on startup
 	},
 
 	format = {
 		-- Auto-format on save
 		autoformat_files = "*.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs",
+	},
+
+	welcome_screen = {
+		-- Banner to show in the welcome screen
+		banner = { "╲		 ╱", " ╲  ╱ ", "  ╲╱ ", "" },
 	},
 }
 
@@ -60,6 +65,15 @@ local function packages(use)
 
 	if features.auto_cd_root then
 		use({ "airblade/vim-rooter" })
+	end
+
+	if features.welcome_screen then
+		use({
+			"goolord/alpha-nvim",
+			config = function()
+				require("coresetup.alpha").setup()
+			end,
+		})
 	end
 
 	-- Easymotion-style jumps
@@ -150,8 +164,8 @@ local function packages(use)
 	-- Status line
 	use({
 		"nvim-lualine/lualine.nvim",
-		event = BaseConfig.loading.lazy_ui and "User OnIdle" or nil,
-		module = BaseConfig.loading.lazy_ui and { "lualine", "lualine.utils.notices" } or nil,
+		event = BaseConfig.ui.lazy_ui and "User OnIdle" or nil,
+		module = BaseConfig.ui.lazy_ui and { "lualine" } or nil,
 		config = function()
 			require("coresetup.lualine").setup()
 		end,
@@ -222,8 +236,8 @@ local function packages(use)
 
 	use({
 		"akinsho/bufferline.nvim",
-		event = BaseConfig.loading.lazy_ui and "User OnIdle" or nil,
-		cmd = BaseConfig.loading.lazy_ui and { "BufferLineCycleNext", "BufferLineCyclePrev" } or nil,
+		event = BaseConfig.ui.lazy_ui and "User OnIdle" or nil,
+		cmd = BaseConfig.ui.lazy_ui and { "BufferLineCycleNext", "BufferLineCyclePrev" } or nil,
 		config = function()
 			require("coresetup.bufferline").setup()
 		end,

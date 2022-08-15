@@ -4,7 +4,7 @@ local function get_default_mappings()
 	local mappings = {
 		n = {
 			["-"] = { "<cmd>NvimTreeFindFile<cr>", "Open file explorer" },
-			["<c-p>"] = { "<cmd>Telescope find_files<cr>", "Open file…" },
+			["<c-p>"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open file…" },
 			["gs"] = { ":%s~~", "Replace with..." },
 			["]g"] = features.gitsigns and { "<cmd>lua require('gitsigns').next_hunk()<cr>", "Next Git change" } or {},
 			["[g"] = features.gitsigns and { "<cmd>lua require('gitsigns').prev_hunk()<cr>", "Previous Git change" }
@@ -116,7 +116,10 @@ local function get_default_mappings()
 			["<leader>xz"] = { "<cmd>cq<cr>", " Exit Neovim" },
 			["<leader>xd"] = { "<cmd>bd!<cr>", " Destroy this buffer" },
 			["<leader>xc"] = { "<cmd>bd!<cr>", " Close this buffer" },
-			-- ["<leader>xa"] = { "<cmd>%bd! | Alpha<cr>", "Back to st[a]rt screen" },
+			["<leader>xa"] = features.welcome_screen and { "<cmd>%bd! | Alpha<cr>", "  Close all" } or {
+				"<cmd>%bd!<cr>",
+				"  Close all",
+			},
 
 			-- [,] others
 			["<leader>,"] = { name = "Experimental…" },

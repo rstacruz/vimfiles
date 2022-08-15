@@ -29,13 +29,14 @@ local function setup()
 		pattern = {
 			vim.env.MYVIMRC,
 			vim.fn.stdpath("config") .. "/lua/custom/init.lua",
+			vim.fn.stdpath("config") .. "/lua/coresetup/keybindings.lua",
 		},
 		group = group,
 		callback = function()
 			vim.schedule(function()
 				reload()
 				require("packer").compile()
-				print("Config reloaded :)")
+				vim.notify("Config reloaded :)")
 			end)
 		end,
 	})
