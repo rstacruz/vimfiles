@@ -94,6 +94,7 @@ local function packages(use)
 		"folke/which-key.nvim",
 		event = "User OnIdle",
 		config = function()
+			require("coresetup.which-key").setup()
 			require("coresetup.keybindings").setup()
 		end,
 	})

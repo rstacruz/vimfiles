@@ -20,7 +20,7 @@ local function get_default_mappings()
 			["<s-tab>"] = { "<cmd>BufferLineCyclePrev<cr>", "Buffer: previous" } or {},
 
 			-- Leader: [f] file
-			["<leader>f"] = { name = "[f]ile…" },
+			["<leader>f"] = { name = "File…" },
 			["<leader>fw"] = { "<cmd>w<cr>", "Save file [w]" },
 			["<leader>fs"] = { "<cmd>noa w<cr>", "[s]ave without formatting" },
 			["<leader>fr"] = { "<cmd>e!<cr>", "[r]evert changes in file" },
@@ -28,7 +28,7 @@ local function get_default_mappings()
 			["<leader>fY"] = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], "Cop[Y] full path" },
 
 			-- Leader: [o] toggle
-			["<leader>o"] = { name = "T[o]ggle…" },
+			["<leader>o"] = { name = "Toggle…" },
 			["<leader>ow"] = { "<cmd>set wrap!<cr>", "Toggle [w]ord wrap" },
 			["<leader>os"] = { "<cmd>set spell!<cr>", "Toggle [s]pell check" },
 			["<leader>on"] = { "<cmd>set number!<cr>", "Toggle line [n]umber" },
@@ -42,14 +42,14 @@ local function get_default_mappings()
 			},
 
 			-- Leader: [od] diagnostic
-			["<leader>od"] = { name = "[d]iagnostic…" },
+			["<leader>od"] = { name = "Diagnostic…" },
 			["<leader>odd"] = { "<cmd>lua vim.diagnostic.disable()<cr>", "[d]isable diagnostics" },
 			["<leader>ode"] = { "<cmd>lua vim.diagnostic.enable()<cr>", "[e]nable diagnostics" },
 			["<leader>odh"] = { "<cmd>lua vim.diagnostic.hide()<cr>", "[h]ide diagnostics" },
 			["<leader>ods"] = { "<cmd>lua vim.diagnostic.show()<cr>", "[s]how diagnostics" },
 
 			-- [s] settings
-			["<leader>s"] = { name = "[s]ettings…" },
+			["<leader>s"] = { name = "Settings…" },
 			["<leader>s,"] = {
 				"<cmd>vsplit " .. vim.fn.stdpath("config") .. "/init.lua<cr>",
 				"Edit Neovim settings",
@@ -73,14 +73,14 @@ local function get_default_mappings()
 			},
 
 			-- Leader: [c] code
-			["<leader>c"] = { name = "[c]ode…" },
+			["<leader>c"] = { name = "Code…" },
 			["<leader>ca"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "[a]ctions…" },
 			["<leader>cr"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "[r]ename symbol…" },
 			["<leader>cd"] = { "<cmd>Telescope diagnostics<CR>", "Show [d]iagnostics" },
 			["<leader>cf"] = { "<cmd>lua vim.lsp.buf.formatting_seq_sync()<cr>", "[f]ormat via LSP" },
 
 			-- Leader: [b] buffers
-			["<leader>b"] = { name = "[b]uffers…" },
+			["<leader>b"] = { name = "Buffers…" },
 			["<leader>bp"] = { "<cmd>BufferLinePick<cr>", "[p]ick…" },
 			["<leader>b<space>"] = { "<cmd>BufferLineTogglePin<cr>", "Toggle [P]in" },
 			["<leader>b."] = { "<cmd>BufferLineCloseRight<cr>", "Close to the right" },
@@ -95,13 +95,13 @@ local function get_default_mappings()
 			},
 
 			-- Leader: [x] exit
-			["<leader>x"] = { name = "E[x]it…" },
+			["<leader>x"] = { name = "Exit…" },
 			["<leader>xz"] = { "<cmd>cq<cr>", "Exit Neovim [z]" },
 			["<leader>xd"] = { "<cmd>bd!<cr>", "[d]estroy this buffer" },
 			-- ["<leader>xa"] = { "<cmd>%bd! | Alpha<cr>", "Back to st[a]rt screen" },
 
 			-- [,] others
-			["<leader>,"] = { name = "experimental…" },
+			["<leader>,"] = { name = "Experimental…" },
 			["<leader>,s"] = { "<cmd>split ~/.scratchpad<cr><C-w>H", "Open [s]cratchpad" },
 			["<leader>,p"] = { "<cmd>StartupTime --tries 12<cr>", "Profile startup time" },
 		},
@@ -109,9 +109,9 @@ local function get_default_mappings()
 			["gl"] = { "<cmd>HopLine<cr>", "Go to line" },
 			["gw"] = { "<cmd>HopWord<cr>", "Go to word" },
 		},
-    v = {
+		v = {
 			["gs"] = { ":s~~", "Replace with..." },
-    },
+		},
 		ctrl = {
 			["<c-h>"] = { [[<cmd>wincmd W | set winwidth=80 | set winwidth=20<cr>]], "Focus previous pane" },
 			["<c-n>"] = { [[<cmd>wincmd w | set winwidth=80 | set winwidth=20<cr>]], "Focus next pane" },
