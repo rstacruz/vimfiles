@@ -5,7 +5,7 @@ local function reload()
 
 	-- Unload everything from core and coresetup
 	for k, _ in pairs(package.loaded) do
-		if string.match(k, "^(core|custom)") then
+		if string.match(k, "^core") or string.match(k, "^custom") then
 			package.loaded[k] = nil
 		end
 	end
@@ -26,7 +26,10 @@ local function setup()
 	local group = vim.api.nvim_create_augroup("PackerReload", { clear = true })
 
 	vim.api.nvim_create_autocmd("BufWritePost", {
-		pattern = vim.env.MYVIMRC,
+		pattern = {
+			vim.env.MYVIMRC,
+			vim.fn.stdpath("config") .. "/lua/custom/init.lua",
+		},
 		group = group,
 		callback = function()
 			vim.schedule(function()

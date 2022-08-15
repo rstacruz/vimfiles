@@ -1,6 +1,6 @@
 -- Automatically run formatting
 local function setup()
-	local pattern = vim.g.baseconfig.format.autoformat_files
+	local pattern = BaseConfig.format.autoformat_files
 
 	if not pattern then
 		return

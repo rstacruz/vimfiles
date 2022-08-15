@@ -1,8 +1,6 @@
--- copy to init.lua
+-- vim:ft=lua
+-- Instructions: copy to init.lua.
 
-local function config(baseconfig)
-	-- example: disable git signs
-	baseconfig.features.gitsigns = false
-end
-
-return { config = config }
+-- Example: change theme
+BaseConfig.ui.theme_dark = "github_dark"
+BaseConfig.ui.theme_light = "github_light"

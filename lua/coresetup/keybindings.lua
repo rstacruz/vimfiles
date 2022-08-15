@@ -1,5 +1,5 @@
 local function get_default_mappings()
-	local features = vim.g.baseconfig.features
+	local features = BaseConfig.features
 
 	local mappings = {
 		n = {
@@ -66,6 +66,10 @@ local function get_default_mappings()
 			["<leader>s,"] = {
 				"<cmd>vsplit " .. vim.fn.stdpath("config") .. "/init.lua<cr>",
 				" Edit Neovim settings",
+			},
+			["<leader>s."] = {
+				"<cmd>vsplit " .. vim.fn.stdpath("config") .. "/lua/custom/init.lua<cr>",
+				" Edit custom settings",
 			},
 			["<leader>sc"] = { "<cmd>Telescope colorscheme<cr>", " Choose colorscheme…" },
 			["<leader>sk"] = {

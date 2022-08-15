@@ -21,9 +21,9 @@ end
 
 local function apply(mode)
 	if mode == "dark" then
-		vim.cmd("colorscheme " .. vim.g.baseconfig.ui.theme_dark)
+		vim.cmd("colorscheme " .. BaseConfig.ui.theme_dark)
 	else
-		vim.cmd("colorscheme " .. vim.g.baseconfig.ui.theme_light)
+		vim.cmd("colorscheme " .. BaseConfig.ui.theme_light)
 	end
 
 	State.mode = mode

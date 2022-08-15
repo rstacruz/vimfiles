@@ -2,7 +2,7 @@ pcall(require, "impatient")
 require("coresetup.nvim-options").setup()
 
 -- Configuration
-vim.g.baseconfig = {
+BaseConfig = {
 	ui = {
 		theme_dark = "terafox", -- terafox | github_dimmed | catppuccin
 		theme_light = "github_light",
@@ -30,14 +30,11 @@ vim.g.baseconfig = {
 }
 
 -- Custom config
-local has_custom, custom = pcall(require, "custom")
-if has_custom and custom.config then
-	custom.config(vim.g.baseconfig)
-end
+pcall(require, "custom.init")
 
 -- Packer packages
 local function packages(use)
-	local features = vim.g.baseconfig.features
+	local features = BaseConfig.features
 	use({ "wbthomason/packer.nvim" })
 
 	use({
@@ -153,8 +150,8 @@ local function packages(use)
 	-- Status line
 	use({
 		"nvim-lualine/lualine.nvim",
-		event = vim.g.baseconfig.loading.lazy_ui and "User OnIdle" or nil,
-		module = vim.g.baseconfig.loading.lazy_ui and { "lualine", "lualine.utils.notices" } or nil,
+		event = BaseConfig.loading.lazy_ui and "User OnIdle" or nil,
+		module = BaseConfig.loading.lazy_ui and { "lualine", "lualine.utils.notices" } or nil,
 		config = function()
 			require("coresetup.lualine").setup()
 		end,
@@ -223,8 +220,8 @@ local function packages(use)
 
 	use({
 		"akinsho/bufferline.nvim",
-		event = vim.g.baseconfig.loading.lazy_ui and "User OnIdle" or nil,
-		cmd = vim.g.baseconfig.loading.lazy_ui and { "BufferLineCycleNext", "BufferLineCyclePrev" } or nil,
+		event = BaseConfig.loading.lazy_ui and "User OnIdle" or nil,
+		cmd = BaseConfig.loading.lazy_ui and { "BufferLineCycleNext", "BufferLineCyclePrev" } or nil,
 		config = function()
 			require("coresetup.bufferline").setup()
 		end,
