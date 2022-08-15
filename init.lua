@@ -77,15 +77,14 @@ local function packages(use)
 	-- Telescope file picker
 	use({
 		"nvim-telescope/telescope.nvim",
-		cmd = "Telescope",
-		module = "telescope",
+		-- cmd = "Telescope",
+		-- module = "telescope",
+		-- Ideally :cmd should take care of lazy-loading, but it has problems with
+		-- hot reloading
+		event = "User OnIdle",
 		requires = {
 			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 		},
-		setup = function()
-			-- Force loading Telescope again when hot-reloading config
-			vim.g.loaded_telescope = 0
-		end,
 		config = function()
 			require("coresetup.telescope").setup()
 		end,
@@ -116,7 +115,7 @@ local function packages(use)
 	use({
 		"nvim-lualine/lualine.nvim",
 		event = vim.g.baseconfig.loading.lazy_ui and "User OnIdle" or nil,
-		-- module = vim.g.baseconfig.loading.lazy_ui and { "lualine" },
+		module = vim.g.baseconfig.loading.lazy_ui and { "lualine" } or nil,
 		config = function()
 			require("coresetup.lualine").setup()
 		end,
@@ -188,14 +187,14 @@ local function packages(use)
 end
 
 -- Bootstrap packer
-local utils = require("core.utils")
-if utils.bootstrap_packer(packages) == false then
+if require("core.packer-utils").bootstrap_packer(packages) == false then
 	return
 end
 
 require("core.theme-overrides").setup()
 require("core.theme-utils").setup()
 
+local utils = require("core.utils")
 utils.on_vimenter(function()
 	vim.schedule(function()
 		vim.cmd([[doautocmd User OnIdle]])
@@ -205,6 +204,6 @@ end)
 utils.on_file_load(function()
 	vim.schedule(function()
 		vim.cmd([[doautocmd User OnFileLoad]])
-		require("core.config-auto-reload").setup()
+		require("core.reload-utils").setup()
 	end)
 end)

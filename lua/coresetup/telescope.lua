@@ -55,7 +55,6 @@ local function setup()
 			},
 		},
 	}
-	vim.g.tele_loaded = 1
 
 	telescope.setup(options)
 

@@ -60,15 +60,15 @@ local function get_default_mappings()
 				"Edit [k]eybindings",
 			},
 			["<leader>sr"] = {
-				"<cmd>lua require('core.utils').reload()<cr>",
+				"<cmd>lua require('core.reload-utils').reload()<cr>",
 				"Reload config",
 			},
 			["<leader>si"] = {
-				"<cmd>lua require('core.utils').reload()<cr>:PackerInstall<cr>",
+				"<cmd>lua require('core.reload-utils').reload()<cr>:PackerInstall<cr>",
 				"Packer: [i]nstall new packages",
 			},
 			["<leader>su"] = {
-				"<cmd>lua require('core.utils').reload()<cr>:PackerSync<cr>",
+				"<cmd>lua require('core.reload-utils').reload()<cr>:PackerSync<cr>",
 				"Packer: [u]pdate packages",
 			},
 
