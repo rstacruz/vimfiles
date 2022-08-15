@@ -25,7 +25,7 @@ local function setup()
 					maxwidth = 50,
 				}),
 			}
-		or {}
+			or {}
 
 	local mapping = cmp.mapping.preset.insert({
 		["<cr>"] = cmp.mapping.confirm(),
@@ -75,6 +75,7 @@ local function setup()
 		},
 	})
 
+	-- BUG: hot-reloading will have path entries listed twice
 	cmp.setup.cmdline(":", {
 		mapping = cmp.mapping.preset.cmdline(),
 		sources = cmp.config.sources({

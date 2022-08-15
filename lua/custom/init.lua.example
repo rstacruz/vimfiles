@@ -1,6 +1,13 @@
 -- vim:ft=lua
 -- Instructions: copy to init.lua.
 
--- Example: change theme
-BaseConfig.ui.theme_dark = "github_dark"
-BaseConfig.ui.theme_light = "github_light"
+return {
+  baseconfig = function(config)
+    -- Example: change theme
+    config.ui.theme_dark = "github_dark"
+    config.ui.theme_light = "github_light"
+
+    config.features.gitsigns = true
+    config.features.indent_guides = true
+  end,
+}
