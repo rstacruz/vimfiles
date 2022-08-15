@@ -5,27 +5,7 @@ local function setup()
 	end
 
 	nvim_treesitter.setup({
-		ensure_installed = {
-			"c",
-			"cpp",
-			"javascript",
-			"css",
-			"lua",
-			"markdown",
-			"ruby",
-			"yaml",
-			"json",
-			"html",
-			"python",
-			"svelte",
-			"typescript",
-			"fish",
-			"dockerfile",
-			"make",
-			"jsdoc",
-			"scss",
-			"vim",
-		},
+		ensure_installed = BaseConfig.treesitter.ensure_installed,
 		matchup = { enable = true },
 		indent = { enable = true },
 		autotag = { enable = true },

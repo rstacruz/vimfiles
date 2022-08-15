@@ -31,8 +31,16 @@ BaseConfig = {
 
 	welcome_screen = {
 		-- Banner to show in the welcome screen
-		banner = { "╲		 ╱", " ╲  ╱ ", "  ╲╱ ", "" },
+		banner = { "╲		 ╱", " ╲	╱ ", "	╲╱ ", "" },
 	},
+
+	treesitter = {
+		ensure_installed = {
+			"javascript", "css", "lua", "markdown", "ruby", "yaml",
+			"json", "html", "python", "svelte", "typescript",
+			"fish", "dockerfile", "make", "jsdoc", "scss"
+		},
+	}
 }
 
 -- Custom config
@@ -44,19 +52,19 @@ local function packages(use)
 	use({ "wbthomason/packer.nvim" })
 
 	if features.treesitter then
-    use({
-      "nvim-treesitter/nvim-treesitter",
-      module = "nvim-treesitter",
-      run = ":TSUpdate",
-      cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSEnable", "TSDisable", "TSModuleInfo" },
-      event = { "BufRead" },
-      requires = {
-        { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
-      },
-      config = function()
-        require("coresetup.treesitter").setup()
-      end,
-    })
+		use({
+			"nvim-treesitter/nvim-treesitter",
+			module = "nvim-treesitter",
+			run = ":TSUpdate",
+			cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSEnable", "TSDisable", "TSModuleInfo" },
+			event = { "BufRead" },
+			requires = {
+				{ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
+			},
+			config = function()
+				require("coresetup.treesitter").setup()
+			end,
+		})
 
 		use({
 			"kylechui/nvim-surround",
