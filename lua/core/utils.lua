@@ -45,7 +45,7 @@ local function on_file_load(callback)
 	bind_once({
 		group_name = "on_file_load",
 		events = { "BufRead", "BufWinEnter", "BufNewFile" },
-		callback = callback
+		callback = callback,
 	})
 end
 
@@ -54,7 +54,7 @@ local function on_vimenter(callback)
 	bind_once({
 		group_name = "on_vimenter",
 		events = { "VimEnter" },
-		callback = callback
+		callback = callback,
 	})
 end
 

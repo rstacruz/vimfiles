@@ -5,7 +5,7 @@ local function setup_colorscheme_hook(callback)
 	vim.api.nvim_create_autocmd("Colorscheme", {
 		pattern = "*",
 		group = group,
-		callback = callback
+		callback = callback,
 	})
 end
 
@@ -40,20 +40,20 @@ local function apply_options()
 			--	 return " " .. icon .. count
 			-- end,
 			groups = has_groups
-					and {
-						options = {
-							toggle_hidden_on_enter = true, -- when you re-enter a hidden group this options re-opens that group so the buffer is visible
-						},
-						items = {
-							groups.builtin.ungrouped,
-							{
-								name = "Docs",
-								matcher = function(buf)
-									return buf.filename:match("%.md") or buf.filename:match("%.txt")
-								end,
-							},
+				and {
+					options = {
+						toggle_hidden_on_enter = true, -- when you re-enter a hidden group this options re-opens that group so the buffer is visible
+					},
+					items = {
+						groups.builtin.ungrouped,
+						{
+							name = "Docs",
+							matcher = function(buf)
+								return buf.filename:match("%.md") or buf.filename:match("%.txt")
+							end,
 						},
 					},
+				},
 		},
 	}
 
