@@ -15,7 +15,7 @@ local defaults = {
 		workspaces = false,
 		project_switcher = true,
 		status_line = true,
-		welcome_screen = false,
+		welcome_screen = true,
 
 		-- Use alternate implementation of filetype detection. Supposedly faster,
 		-- but doesn't really make a difference in my testing, at least with Neovim 0.7.
