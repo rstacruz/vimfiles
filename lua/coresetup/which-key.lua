@@ -22,7 +22,7 @@ local function setup()
 		icons = {
 			breadcrumb = "›", -- in the command line area
 			separator = "┄", -- between a key and it's label
-			group = " ",
+			group = "", -- 
 		},
 	}
 	which_key.setup(options)

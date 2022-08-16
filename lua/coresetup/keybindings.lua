@@ -23,21 +23,41 @@ local function get_default_mappings()
 			["<tab>"] = { "<cmd>BufferLineCycleNext<cr>", "Buffer: next" },
 			["<s-tab>"] = { "<cmd>BufferLineCyclePrev<cr>", "Buffer: previous" },
 
+			-- others
+			["<leader>*"] = { ":GG <c-r><c-w><cr>", " Search for word in cursor…" },
+			["<leader>."] = { "<cmd>vsplit<cr>:term fish<cr>", " Open terminal" },
+
 			-- Leader: [f] file
-			["<leader>f"] = { name = "File…" },
+			["<leader>f"] = { name = " File…" },
 			["<leader>fw"] = { "<cmd>noa w<cr>", " Save without formatting" },
 			["<leader>fr"] = { "<cmd>e!<cr>", " Revert changes in file" },
 			["<leader>fy"] = { [[:let @+=@% | echo '→ ' . @%<cr>]], " Copy current path" },
 			["<leader>fY"] = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], " Copy full path" },
 
 			-- Leader: [g] git
-			["<leader>g"] = features.github_fugitive and { name = "Git…" },
+			["<leader>g"] = features.github_fugitive and { name = " Git…" },
 			["<leader>gb"] = features.github_fugitive and { "<cmd>Git blame<cr>", " Blame" },
 			["<leader>gy"] = features.github_fugitive and { "<cmd>GBrowse!<cr>", " Copy GitHub URL" },
 			["<leader>gY"] = features.github_fugitive and { "<cmd>GBrowse<cr>", " Open in GitHub" },
 
+			-- Leader: [p] pick
+			["<leader>p"] = { name = " Pick…" },
+			["<leader>pb"] = { "<cmd>Telescope buffers<cr>", " List buffers…" },
+			-- ["<leader>pf"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open [f]ile…" },
+			-- ["<leader>pw"] = { "<cmd>Telescope workspaces<cr>", "Open [w]orkspace…" },
+			["<leader>pr"] = {
+				"<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>",
+				" Open recent file…",
+			},
+			["<leader>pg"] = { [[<cmd>Telescope git_status<cr>]], " Files changed in Git…" },
+			-- ["<leader>ps"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Show [s]ymbols…" },
+			-- ["<leader>pg"] = { [[<cmd>lua require('spectre').open({ is_insert_mode = true })<cr>]], "Find in files ([g]rep)…" },
+			-- ["<leader>pW"] = { name = "[w]orkspaces…" },
+			-- ["<leader>pWa"] = { "<cmd>WorkspacesAdd<cr>", "Workspace: [a]dd this folder" },
+			-- ["<leader>pWd"] = { "<cmd>WorkspacesRemove<cr>", "Workspace: [d]dd this folder" },
+
 			-- Leader: [o] toggle
-			["<leader>o"] = { name = "Toggle…" },
+			["<leader>o"] = { name = " Toggle…" },
 			["<leader>ow"] = { "<cmd>set wrap!<cr>", " Toggle word wrap" },
 			["<leader>os"] = { "<cmd>set spell!<cr>", " Toggle Spell check" },
 			["<leader>on"] = { "<cmd>set number!<cr>", " Toggle line numbers" },
@@ -54,14 +74,14 @@ local function get_default_mappings()
 			},
 
 			-- Leader: [od] diagnostic
-			["<leader>od"] = features.lsp and { name = "Diagnostic…" },
+			["<leader>od"] = features.lsp and { name = " Diagnostic…" },
 			["<leader>odd"] = features.lsp and { "<cmd>lua vim.diagnostic.disable()<cr>", "[d]isable diagnostics" },
 			["<leader>ode"] = features.lsp and { "<cmd>lua vim.diagnostic.enable()<cr>", "[e]nable diagnostics" },
 			["<leader>odh"] = features.lsp and { "<cmd>lua vim.diagnostic.hide()<cr>", "[h]ide diagnostics" },
 			["<leader>ods"] = features.lsp and { "<cmd>lua vim.diagnostic.show()<cr>", "[s]how diagnostics" },
 
 			-- [s] settings
-			["<leader>s"] = { name = "Settings…" },
+			["<leader>s"] = { name = " Settings…" },
 			["<leader>s,"] = {
 				"<cmd>vsplit " .. vim.fn.stdpath("config") .. "/init.lua<cr>",
 				" Edit Neovim settings",
@@ -89,7 +109,7 @@ local function get_default_mappings()
 			},
 
 			-- Leader: [c] code
-			["<leader>c"] = features.lsp and { name = "Code…" },
+			["<leader>c"] = features.lsp and { name = " Code…" },
 			["<leader>ca"] = features.lsp and { "<cmd>lua vim.lsp.buf.code_action()<cr>", " Actions…" },
 			["<leader>cr"] = features.lsp and { "<cmd>lua vim.lsp.buf.rename()<cr>", " Rename symbol…" },
 			["<leader>cd"] = features.lsp and { "<cmd>Telescope diagnostics<CR>", " Show diagnostics…" },
@@ -99,34 +119,37 @@ local function get_default_mappings()
 			},
 
 			-- Leader: [b] buffers
-			["<leader>b"] = { name = "Buffers…" },
+			["<leader>b"] = { name = " Buffers…" },
 			["<leader>bp"] = { "<cmd>BufferLinePick<cr>", " Pick…" },
 			["<leader>b<space>"] = { "<cmd>BufferLineTogglePin<cr>", " Toggle pin" },
 			["<leader>b."] = { "<cmd>BufferLineCloseRight<cr>", " Close to the right" },
 			["<leader>b,"] = { "<cmd>BufferLineCloseLeft<cr>", " Close to the left" },
-			["<leader>bo"] = {
-				"<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>",
-				" Close other tabs",
-			},
-			["<leader>bO"] = {
-				"<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>",
-				" Close other tabs (force)",
-			},
 
 			-- Leader: [x] exit
-			["<leader>x"] = { name = "Exit…" },
+			["<leader>x"] = { name = " Exit…" },
 			["<leader>xz"] = { "<cmd>cq<cr>", " Exit Neovim" },
-			["<leader>xd"] = { "<cmd>bd!<cr>", " Destroy this buffer" },
-			["<leader>xc"] = { "<cmd>bd!<cr>", " Close this buffer" },
+			["<leader>xd"] = { "<cmd>bd!<cr>", " Destroy this buffer" },
+			["<leader>xc"] = { "<c-w>q", " Close this tab" },
 			["<leader>xa"] = features.welcome_screen and { "<cmd>%bd! | Alpha<cr>", "  Close all" } or {
 				"<cmd>%bd!<cr>",
-				"  Close all",
+				" Close all",
+			},
+			["<leader>xo"] = {
+				"<cmd>lua require('close_buffers').delete({ type = 'hidden' })<cr>",
+				" Close hidden tabs",
+			},
+			["<leader>xO"] = {
+				"<cmd>lua require('close_buffers').delete({ type = 'hidden', force = true })<cr>",
+				" Close hidden tabs (force)",
 			},
 
 			-- [,] others
-			["<leader>,"] = { name = "Experimental…" },
-			["<leader>,s"] = { "<cmd>split ~/.scratchpad<cr><C-w>H", "Open [s]cratchpad" },
+			["<leader>,"] = { name = " Experimental…" },
+			["<leader>,s"] = { "<cmd>split ~/.scratchpad<cr><C-w>H", "Open scratchpad" },
 			["<leader>,p"] = { "<cmd>StartupTime --tries 12<cr>", "Profile startup time" },
+		},
+		t = {
+			["<c-x>"] = { "<c-\\><c-n>" }, -- escape
 		},
 		nv = {
 			["gl"] = features.hop and { "<cmd>HopLine<cr>", "Go to line" },
@@ -134,7 +157,6 @@ local function get_default_mappings()
 		},
 		v = {
 			["gs"] = { ":s~~", "Replace with..." },
-
 			["<leader>g"] = features.github_fugitive and { name = "Git…" },
 			["<leader>gy"] = features.github_fugitive and { ":GBrowse!<cr>", " Copy GitHub URL" },
 			["<leader>gY"] = features.github_fugitive and { ":GBrowse<cr>", " Open in GitHub" },
@@ -148,29 +170,43 @@ local function get_default_mappings()
 	return mappings
 end
 
-local function apply_mappings()
+---@class RegisterOptions
+---@field mode string
+
+---@param mappings any
+---@param options RegisterOptions
+local function register(mappings, options)
+	for key, value in pairs(mappings) do
+		vim.api.nvim_set_keymap(options.mode, key, value[1], {
+			noremap = true,
+			silent = true,
+			desc = value[2],
+		})
+	end
+end
+
+local function apply_mappings(mappings)
 	local has, which_key = pcall(require, "which-key")
 	if not has then
 		return
 	end
 
-	local mappings = get_default_mappings()
-	if not mappings then
-		return
-	end
-
-	which_key.register(mappings.n, { mode = "n" })
-	which_key.register(mappings.v, { mode = "v" })
 	which_key.register(mappings.nv, { mode = "n" })
 	which_key.register(mappings.nv, { mode = "v" })
+	which_key.register(mappings.n, { mode = "n" })
+	which_key.register(mappings.v, { mode = "v" })
 	which_key.register(mappings.ctrl, { mode = "i" })
 	which_key.register(mappings.ctrl, { mode = "t" })
 	which_key.register(mappings.ctrl, { mode = "n" })
 	which_key.register(mappings.ctrl, { mode = "v" })
+
+	-- Which-Key doesn't seem to handle terminal mappings
+	register(mappings.t, { mode = "t" })
 end
 
 local function setup()
-	apply_mappings()
+	local mappings = get_default_mappings()
+	apply_mappings(mappings)
 end
 
 return { setup = setup, apply_mappings = apply_mappings }
