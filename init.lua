@@ -364,6 +364,7 @@ utils.on_vimenter(function()
 		vim.cmd([[doautocmd User OnIdle]])
 		require("core.auto-format").setup()
 		require("core.reload-utils").setup()
+		require("coresetup.autocmds").setup()
 	end, 50)
 end)
 
