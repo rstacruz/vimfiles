@@ -1,13 +1,17 @@
+-- For these filetypes, hide some elements
+local excluded_filetypes = {
+	"toggleterm",
+	"NvimTree",
+	"DiffviewFiles",
+	"neo-tree",
+	"spectre_panel",
+	"TelescopePrompt",
+	"alpha",
+	"NeogitStatus",
+}
+
 local function is_file()
-	local nonfile_types = {
-		toggleterm = true,
-		NvimTree = true,
-		["neo-tree"] = true,
-		spectre_panel = true,
-		TelescopePrompt = true,
-		alpha = true,
-	}
-	return not (nonfile_types[vim.bo.filetype] or false)
+	return not vim.tbl_contains(excluded_filetypes, vim.bo.filetype or nil)
 end
 
 local function filename()
@@ -32,7 +36,7 @@ end
 local function terminal()
 	return {
 		function()
-			return [[ ]] .. (vim.b.toggle_number or "0")
+			return " " .. (vim.b.toggle_number or "0")
 		end,
 		cond = function()
 			return vim.bo.filetype == "toggleterm"
@@ -43,6 +47,16 @@ end
 local function filetype()
 	return {
 		"filetype",
+		cond = function()
+			return is_file() and vim.o.columns > 100
+		end,
+		color = "lualine_c_inactive",
+	}
+end
+
+local function branch()
+	return {
+		"branch",
 		cond = function()
 			return is_file() and vim.o.columns > 100
 		end,
@@ -113,7 +127,7 @@ local function get_full_options()
 			lualine_a = {},
 			lualine_b = { filename(), diagnostics() },
 			lualine_c = { navic() },
-			lualine_x = { { "branch", color = "lualine_c_inactive" }, filetype(), location() },
+			lualine_x = { branch(), filetype(), location() },
 			lualine_y = { terminal() },
 			lualine_z = {},
 		},

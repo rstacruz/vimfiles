@@ -27,6 +27,7 @@ local defaults = {
 		indent_detection = true,
 		indent_guides = true,
 		scrollbars = true,
+		neogit = true,
 
 		-- Lazy load UI elements (status line). "true" makes startup
 		-- faster at the expense of a flash of unstyled UI
@@ -34,7 +35,8 @@ local defaults = {
 	},
 
 	pane_navigation = {
-		excluded_filetypes = { "NvimTree" },
+		-- Don't resize these sidebars
+		excluded_filetypes = { "NvimTree", "DiffviewFiles" },
 
 		-- Minimum width of panes when navigating using ctrl-h and ctrl+n. Use -1
 		-- to disable
@@ -319,6 +321,17 @@ local function packages(use)
 			requires = { "tpope/vim-rhubarb" },
 			-- not quite working
 			-- cmd = { "Git", "GBrowse", "GBrowse!" },
+		})
+	end
+
+	if features.neogit then
+		use({
+			"TimUntersberger/neogit",
+			requires = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" },
+			cmd = { "Neogit" },
+			config = function()
+				require("coresetup.neogit").setup()
+			end,
 		})
 	end
 

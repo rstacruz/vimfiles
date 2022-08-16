@@ -20,6 +20,7 @@ local function reload()
 
 	vim.cmd("luafile " .. vim.env.MYVIMRC)
 	require("packer").compile()
+	require("packer").install()
 
 	if not vim.deep_equal(BaseConfig.features, before) then
 		vim.notify(" Feature config has been updated. Restart vim to see changes!")
