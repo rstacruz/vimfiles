@@ -106,6 +106,8 @@ local function setup()
 		"compiler",
 		"bugreport",
 		"ftplugin",
+		"netrwSettings",
+		"netrwFileHandlers",
 	}
 
 	-- Fugitive relies on netrw for :GBrowse
@@ -113,8 +115,6 @@ local function setup()
 		vim.list_extend(default_plugins, {
 			"netrw",
 			"netrwPlugin",
-			"netrwSettings",
-			"netrwFileHandlers",
 		})
 	end
 

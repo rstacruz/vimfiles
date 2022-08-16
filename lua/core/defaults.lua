@@ -34,7 +34,7 @@ local defaults = {
 
 		-- Lazy load UI elements (status line). "true" makes startup
 		-- faster at the expense of a flash of unstyled UI
-		lazy_load_statusline = true,
+		lazy_load_statusline = false,
 	},
 
 	pane_navigation = {
