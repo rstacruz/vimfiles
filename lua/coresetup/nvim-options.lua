@@ -57,7 +57,7 @@ local function setup()
 	-- if BaseConfig.ui.lazy_load_statusline then
 	-- 	vim.opt.laststatus = 0
 	-- else
-		vim.opt.laststatus = vim.fn.has("nvim-0.7") and 3 or 2
+	vim.opt.laststatus = vim.fn.has("nvim-0.7") and 3 or 2
 	-- end
 
 	-- leader keys
@@ -89,10 +89,6 @@ local function setup()
 		"getscriptPlugin",
 		"gzip",
 		"logipat",
-		"netrw",
-		"netrwPlugin",
-		"netrwSettings",
-		"netrwFileHandlers",
 		"matchit",
 		"tar",
 		"tarPlugin",
@@ -111,6 +107,16 @@ local function setup()
 		"bugreport",
 		"ftplugin",
 	}
+
+	-- Fugitive relies on netrw for :GBrowse
+	if not BaseConfig.features.github_fugitive then
+		vim.list_extend(default_plugins, {
+			"netrw",
+			"netrwPlugin",
+			"netrwSettings",
+			"netrwFileHandlers",
+		})
+	end
 
 	for _, plugin in pairs(default_plugins) do
 		vim.g["loaded_" .. plugin] = 1

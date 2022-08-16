@@ -134,6 +134,10 @@ local function get_default_mappings()
 		},
 		v = {
 			["gs"] = { ":s~~", "Replace with..." },
+
+			["<leader>g"] = features.github_fugitive and { name = "Git…" },
+			["<leader>gy"] = features.github_fugitive and { ":GBrowse!<cr>", " Copy GitHub URL" },
+			["<leader>gY"] = features.github_fugitive and { ":GBrowse<cr>", " Open in GitHub" },
 		},
 		ctrl = {
 			["<c-h>"] = { [[<cmd>wincmd W | set winwidth=80 | set winwidth=20<cr>]], "Focus previous pane" },

@@ -18,12 +18,12 @@ BaseConfig = {
 		lsp_installer = true,
 		completions = true,
 		treesitter = true,
+		github_fugitive = true,
 
 		-- experimental
 		welcome_screen = false, -- a bit buggy, sometimes causes errors on startup
 
 		-- these might not be worth disabling I think
-		github_fugitive = true,
 		hop = true,
 		file_explorer = true,
 		autopairs = true,
@@ -298,11 +298,14 @@ local function packages(use)
 	use({ "jrudess/vim-foldtext", event = "BufRead" })
 
 	if features.github_fugitive then
-		-- Git blame
-		use({ "tpope/vim-fugitive", cmd = { "Git", "GBrowse", "GBrowse!" } })
-
-		-- Open in GitHub
-		use({ "tpope/vim-rhubarb", cmd = { "GBrowse", "GBrowse!" } })
+		-- Git blame and open in GitHub
+		use({
+			"tpope/vim-fugitive",
+			event = { "User OnIdle" },
+			requires = { "tpope/vim-rhubarb" },
+			-- not quite working
+			-- cmd = { "Git", "GBrowse", "GBrowse!" },
+		})
 	end
 
 	if features.autopairs then
