@@ -4,6 +4,7 @@ local function get_default_mappings()
 	local mappings = {
 		n = {
 			["-"] = features.file_explorer and { "<cmd>NvimTreeFindFile<cr>", "Open file explorer" } or nil,
+			["+"] = { "za", "Toggle fold under cursor" } or nil,
 			["<c-p>"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open file…" },
 			["gs"] = { ":%s~~", "Replace with..." },
 			["]g"] = features.gitsigns and { "<cmd>lua require('gitsigns').next_hunk()<cr>", "Next Git change" } or nil,
