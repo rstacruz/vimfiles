@@ -46,6 +46,7 @@ local function filetype()
 		cond = function()
 			return is_file() and vim.o.columns > 100
 		end,
+		color = "lualine_c_inactive",
 	}
 end
 
@@ -58,7 +59,8 @@ local function diagnostics()
 end
 
 local function location()
-	return { "location", icon = "", left_padding = 2, cond = is_file }
+	return { "location", icon = "", left_padding = 2, cond = is_file }
+	-- 
 end
 
 local function navic()
@@ -73,7 +75,7 @@ local function navic()
 			local has_navic, nvim_navic = pcall(require, "nvim-navic")
 			return has_navic and nvim_navic.is_available()
 		end,
-		-- color = "lualine_c_inactive"
+		color = "lualine_c_inactive",
 	}
 end
 
@@ -111,9 +113,9 @@ local function get_full_options()
 			lualine_a = {},
 			lualine_b = { filename(), diagnostics() },
 			lualine_c = { navic() },
-			lualine_x = { filetype() },
-			lualine_y = { location(), terminal() },
-			lualine_z = { mode() },
+			lualine_x = { { "branch", color = "lualine_c_inactive" }, filetype(), location() },
+			lualine_y = { terminal() },
+			lualine_z = {},
 		},
 	}
 
