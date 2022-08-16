@@ -13,20 +13,11 @@ local function open_terminal()
 	vim.cmd("term " .. shell)
 end
 
--- Focus on the next pane, resizing it as needed.
-local function next_pane(offset)
-	local settings = BaseConfig.pane_navigation
-	vim.cmd(offset == -1 and "wincmd w" or "wincmd W")
+local function open_colorscheme_picker()
+	-- Lazy-load all the available colors
+	vim.cmd("doautocmd User ColorAll")
 
-	if not vim.tbl_contains(settings.excluded_filetypes, vim.o.filetype) and settings.min_width ~= -1 then
-		local before = vim.o.winwidth
-		vim.o.winwidth = settings.min_width
-		vim.o.winwidth = before
-	end
-end
-
-local function prev_pane()
-	return next_pane(-1)
+	require("telescope.builtin").colorscheme({ enable_preview = true })
 end
 
 local function open_custom_settings()
@@ -45,6 +36,5 @@ return {
 	open_file_picker = open_file_picker,
 	open_terminal = open_terminal,
 	open_custom_settings = open_custom_settings,
-	next_pane = next_pane,
-	prev_pane = prev_pane,
+	open_colorscheme_picker = open_colorscheme_picker,
 }

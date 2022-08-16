@@ -96,8 +96,10 @@ local function get_default_mappings()
 				"<cmd>lua require('core.theme-utils').toggle_theme()<cr>",
 				" Toggle light/dark theme",
 			},
-			-- ["<leader>oB"] = { "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
-			-- "Toggle light/dark [B]ackground" },
+			["<leader>oB"] = {
+				"<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
+				" Toggle light/dark background",
+			},
 			["<leader>oc"] = {
 				"<cmd>lua vim.o.conceallevel = vim.o.conceallevel == 2 and 0 or 2<cr>",
 				" Toggle conceal",
@@ -127,7 +129,7 @@ local function get_default_mappings()
 				" Edit custom settings",
 			},
 			["<leader>sc"] = {
-				"<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>",
+				"<cmd>lua require('core.actions').open_colorscheme_picker()<cr>",
 				" Choose colorscheme…",
 			},
 			["<leader>sk"] = {

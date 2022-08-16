@@ -20,11 +20,19 @@ local function get_lightness()
 end
 
 local function apply(mode)
+	local colorscheme = nil
 	if mode == "dark" then
-		vim.cmd("colorscheme " .. BaseConfig.ui.theme_dark)
+		colorscheme = BaseConfig.ui.theme_dark
 	else
-		vim.cmd("colorscheme " .. BaseConfig.ui.theme_light)
+		colorscheme = BaseConfig.ui.theme_light
 	end
+
+	-- Lazy-laod the colors
+	vim.notify("Color: " .. colorscheme .. " (" .. mode .. ")")
+
+	vim.cmd("doautocmd User Color_" .. colorscheme)
+	vim.opt.background = mode
+	vim.cmd("colorscheme " .. colorscheme)
 
 	State.mode = mode
 end
