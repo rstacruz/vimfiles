@@ -8,7 +8,7 @@ BaseConfig = {
 
 		-- Lazy load UI elements (status line). "true" makes startup
 		-- faster at the expense of a flash of unstyled UI
-		lazy_load_statusline = false,
+		lazy_load_statusline = true,
 	},
 
 	-- Feature toggles to optimise loading times for some environments
@@ -118,7 +118,10 @@ local function packages(use)
 			"phaazon/hop.nvim",
 			cmd = { "HopLine", "HopWord" },
 			config = function()
-				require("hop").setup({ keys = "arstgmneiowfpyulcdh" })
+				local has, hop = pcall(require, "hop")
+				if has then
+					hop.setup({ keys = "arstgmneiowfpyulcdh" })
+				end
 			end,
 		})
 	end
@@ -130,7 +133,10 @@ local function packages(use)
 			cmd = { "Mason", "MasonInstall" },
 			module = { "mason" },
 			config = function()
-				require("mason").setup()
+				local has, mason = pcall(require, "mason")
+				if has then
+					mason.setup()
+				end
 			end,
 		})
 	end
