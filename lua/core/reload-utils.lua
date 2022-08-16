@@ -22,7 +22,7 @@ local function reload()
 	require("packer").compile()
 
 	if not vim.deep_equal(BaseConfig.features, before) then
-		vim.notify("Feature config has been updated. Restart vim to see changes!\n")
+		vim.notify(" Feature config has been updated. Restart vim to see changes!")
 		BaseConfig.features = before
 	else
 		vim.notify(" Config reloaded")
