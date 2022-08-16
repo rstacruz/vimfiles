@@ -37,6 +37,10 @@ BaseConfig = {
 		autoformat_files = "*.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs",
 	},
 
+	terminal = {
+		shell = nil,
+	},
+
 	welcome_screen = {
 		-- Banner to show in the welcome screen
 		banner = { "╲		 ╱", " ╲	╱ ", "	╲╱ ", "" },

@@ -22,7 +22,11 @@ return {
 		-- config.features.indent_guides = true
 
 		-- config.format.autoformat_files = "*.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs",
+
 		-- config.treesitter.ensure_installed = { "lua" }
 		-- config.treesitter.ensure_installed = { "css", "dockerfile", "fish", "html", "javascript", "jsdoc", "json", "lua", "make", "markdown", "python", "ruby", "scss", "svelte", "typescript", "yaml" }
+
+		-- config.terminal.shell = nil
+		-- config.terminal.shell = "fish"
 	end,
 }

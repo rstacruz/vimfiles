@@ -3,19 +3,20 @@ local function get_default_mappings()
 
 	local mappings = {
 		n = {
-			["-"] = features.file_explorer and { "<cmd>NvimTreeFindFile<cr>", "Open file explorer" },
+			["-"] = features.file_explorer and { "<cmd>NvimTreeFindFile<cr>", "Open file explorer" } or nil,
 			["<c-p>"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open file…" },
 			["gs"] = { ":%s~~", "Replace with..." },
-			["]g"] = features.gitsigns and { "<cmd>lua require('gitsigns').next_hunk()<cr>", "Next Git change" },
-			["[g"] = features.gitsigns and { "<cmd>lua require('gitsigns').prev_hunk()<cr>", "Previous Git change" },
+			["]g"] = features.gitsigns and { "<cmd>lua require('gitsigns').next_hunk()<cr>", "Next Git change" } or nil,
+			["[g"] = features.gitsigns and { "<cmd>lua require('gitsigns').prev_hunk()<cr>", "Previous Git change" }
+				or nil,
 
 			-- lsp
-			["gd"] = features.lsp and { "<cmd>Telescope lsp_definitions<cr>", "Definitions (lsp)…" },
-			["gr"] = features.lsp and { "<cmd>Telescope lsp_references<cr>", "References (lsp)…" },
-			["gh"] = features.lsp and { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show hover" },
-			["gD"] = features.lsp and { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Declaration (lsp)…" },
-			["gi"] = features.lsp and { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Implementation (lsp)…" },
-			["K"] = features.lsp and { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show hover" },
+			["gd"] = features.lsp and { "<cmd>Telescope lsp_definitions<cr>", "Definitions (lsp)…" } or nil,
+			["gr"] = features.lsp and { "<cmd>Telescope lsp_references<cr>", "References (lsp)…" } or nil,
+			["gh"] = features.lsp and { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show hover" } or nil,
+			["gD"] = features.lsp and { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Declaration (lsp)…" } or nil,
+			["gi"] = features.lsp and { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Implementation (lsp)…" } or nil,
+			["K"] = features.lsp and { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show hover" } or nil,
 
 			-- buffer
 			["gb"] = { "<cmd>BufferLineCycleNext<cr>", "Buffer: next" },
@@ -25,7 +26,7 @@ local function get_default_mappings()
 
 			-- others
 			["<leader>*"] = { ":GG <c-r><c-w><cr>", " Search for word in cursor…" },
-			["<leader>."] = { "<cmd>vsplit<cr>:term fish<cr>", " Open terminal" },
+			["<leader>."] = { "<cmd>lua require('core.actions').open_terminal()<cr>", " Open terminal" },
 
 			-- Leader: [f] file
 			["<leader>f"] = { name = " File…" },
@@ -35,10 +36,10 @@ local function get_default_mappings()
 			["<leader>fY"] = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], " Copy full path" },
 
 			-- Leader: [g] git
-			["<leader>g"] = features.github_fugitive and { name = " Git…" },
-			["<leader>gb"] = features.github_fugitive and { "<cmd>Git blame<cr>", " Blame" },
-			["<leader>gy"] = features.github_fugitive and { "<cmd>GBrowse!<cr>", " Copy GitHub URL" },
-			["<leader>gY"] = features.github_fugitive and { "<cmd>GBrowse<cr>", " Open in GitHub" },
+			["<leader>g"] = features.github_fugitive and { name = " Git…" } or nil,
+			["<leader>gb"] = features.github_fugitive and { "<cmd>Git blame<cr>", " Blame" } or nil,
+			["<leader>gy"] = features.github_fugitive and { "<cmd>GBrowse!<cr>", " Copy GitHub URL" } or nil,
+			["<leader>gY"] = features.github_fugitive and { "<cmd>GBrowse<cr>", " Open in GitHub" } or nil,
 
 			-- Leader: [p] pick
 			["<leader>p"] = { name = " Pick…" },
@@ -74,11 +75,13 @@ local function get_default_mappings()
 			},
 
 			-- Leader: [od] diagnostic
-			["<leader>od"] = features.lsp and { name = " Diagnostic…" },
-			["<leader>odd"] = features.lsp and { "<cmd>lua vim.diagnostic.disable()<cr>", "[d]isable diagnostics" },
-			["<leader>ode"] = features.lsp and { "<cmd>lua vim.diagnostic.enable()<cr>", "[e]nable diagnostics" },
-			["<leader>odh"] = features.lsp and { "<cmd>lua vim.diagnostic.hide()<cr>", "[h]ide diagnostics" },
-			["<leader>ods"] = features.lsp and { "<cmd>lua vim.diagnostic.show()<cr>", "[s]how diagnostics" },
+			["<leader>od"] = features.lsp and { name = " Diagnostic…" } or nil,
+			["<leader>odd"] = features.lsp and { "<cmd>lua vim.diagnostic.disable()<cr>", "[d]isable diagnostics" }
+				or nil,
+			["<leader>ode"] = features.lsp and { "<cmd>lua vim.diagnostic.enable()<cr>", "[e]nable diagnostics" }
+				or nil,
+			["<leader>odh"] = features.lsp and { "<cmd>lua vim.diagnostic.hide()<cr>", "[h]ide diagnostics" } or nil,
+			["<leader>ods"] = features.lsp and { "<cmd>lua vim.diagnostic.show()<cr>", "[s]how diagnostics" } or nil,
 
 			-- [s] settings
 			["<leader>s"] = { name = " Settings…" },
@@ -109,14 +112,14 @@ local function get_default_mappings()
 			},
 
 			-- Leader: [c] code
-			["<leader>c"] = features.lsp and { name = " Code…" },
-			["<leader>ca"] = features.lsp and { "<cmd>lua vim.lsp.buf.code_action()<cr>", " Actions…" },
-			["<leader>cr"] = features.lsp and { "<cmd>lua vim.lsp.buf.rename()<cr>", " Rename symbol…" },
-			["<leader>cd"] = features.lsp and { "<cmd>Telescope diagnostics<CR>", " Show diagnostics…" },
+			["<leader>c"] = features.lsp and { name = " Code…" } or nil,
+			["<leader>ca"] = features.lsp and { "<cmd>lua vim.lsp.buf.code_action()<cr>", " Actions…" } or nil,
+			["<leader>cr"] = features.lsp and { "<cmd>lua vim.lsp.buf.rename()<cr>", " Rename symbol…" } or nil,
+			["<leader>cd"] = features.lsp and { "<cmd>Telescope diagnostics<CR>", " Show diagnostics…" } or nil,
 			["<leader>cf"] = features.lsp and {
 				"<cmd>lua vim.lsp.buf.formatting_seq_sync()<cr>",
 				" Format via LSP",
-			},
+			} or nil,
 
 			-- Leader: [b] buffers
 			["<leader>b"] = { name = " Buffers…" },
@@ -152,14 +155,14 @@ local function get_default_mappings()
 			["<c-x>"] = { "<c-\\><c-n>" }, -- escape
 		},
 		nv = {
-			["gl"] = features.hop and { "<cmd>HopLine<cr>", "Go to line" },
-			["gw"] = features.hop and { "<cmd>HopWord<cr>", "Go to word" },
+			["gl"] = features.hop and { "<cmd>HopLine<cr>", "Go to line" } or nil,
+			["gw"] = features.hop and { "<cmd>HopWord<cr>", "Go to word" } or nil,
 		},
 		v = {
 			["gs"] = { ":s~~", "Replace with..." },
-			["<leader>g"] = features.github_fugitive and { name = "Git…" },
-			["<leader>gy"] = features.github_fugitive and { ":GBrowse!<cr>", " Copy GitHub URL" },
-			["<leader>gY"] = features.github_fugitive and { ":GBrowse<cr>", " Open in GitHub" },
+			["<leader>g"] = features.github_fugitive and { name = "Git…" } or nil,
+			["<leader>gy"] = features.github_fugitive and { ":GBrowse!<cr>", " Copy GitHub URL" } or nil,
+			["<leader>gY"] = features.github_fugitive and { ":GBrowse<cr>", " Open in GitHub" } or nil,
 		},
 		ctrl = {
 			["<c-h>"] = { [[<cmd>wincmd W | set winwidth=80 | set winwidth=20<cr>]], "Focus previous pane" },

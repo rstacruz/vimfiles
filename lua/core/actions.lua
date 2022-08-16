@@ -7,6 +7,13 @@ local function open_file_picker()
 	end
 end
 
+local function open_terminal()
+	local shell = BaseConfig.terminal.shell or vim.env.SHELL
+	vim.cmd("vsplit")
+	vim.cmd("term " .. shell)
+end
+
 return {
 	open_file_picker = open_file_picker,
+	open_terminal = open_terminal,
 }
