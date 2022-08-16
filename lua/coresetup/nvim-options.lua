@@ -9,7 +9,6 @@ local function setup()
 		vim.g.do_filetype_lua = 1
 	end
 
-	vim.opt.lazyredraw = true
 	vim.opt.backup = false -- No backup files
 	vim.opt.fillchars = { eob = " ", vert = "▓" } -- end-of-buffer and vertical split
 	vim.opt.foldlevel = 99 -- Fold everything on first load
