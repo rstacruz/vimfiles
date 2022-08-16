@@ -30,6 +30,8 @@ local config = {
 		WhichKeyDesc = { link = "Pmenu" },
 		WhichKeyGroup = { link = "Type" },
 
+		NavicSeparator = { link = "XxLine" },
+
 		CmpBorder = { link = "XxLine" }, -- Border for completions
 		BufferLineFill = { link = "TabLineFill" }, -- looks better in github_light
 

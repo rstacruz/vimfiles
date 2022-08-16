@@ -11,14 +11,41 @@ local excluded_filetypes = {
 }
 
 local function is_file()
-	return not vim.tbl_contains(excluded_filetypes, vim.bo.filetype or nil)
+	return not vim.tbl_contains(excluded_filetypes, vim.bo.filetype)
+end
+
+local function is_blank()
+	-- Prevent "[No Name]" from appearing
+	return vim.bo.modified == false and vim.fn.expand("%:t") == ""
+end
+
+local function cwd()
+	return {
+		function()
+			local pwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+			return " " .. pwd
+		end,
+		-- color = "lualine_c_inactive",
+	}
+end
+
+local function welcome()
+	return {
+		function()
+			return "Press <space> to get started"
+		end,
+		color = "lualine_c_inactive",
+		cond = is_blank,
+	}
 end
 
 local function filename()
 	return {
 		"filename",
 		icon = "",
-		cond = is_file,
+		cond = function()
+			return is_file() and not is_blank()
+		end,
 		symbols = { modified = " ●", readonly = " " },
 	}
 end
@@ -50,17 +77,18 @@ local function filetype()
 		cond = function()
 			return is_file() and vim.o.columns > 100
 		end,
-		color = "lualine_c_inactive",
+		-- color = "lualine_c_inactive",
 	}
 end
 
 local function branch()
 	return {
 		"branch",
+		icon = "",
 		cond = function()
 			return is_file() and vim.o.columns > 100
 		end,
-		color = "lualine_c_inactive",
+		-- color = "lualine_c_inactive",
 	}
 end
 
@@ -73,7 +101,7 @@ local function diagnostics()
 end
 
 local function location()
-	return { "location", icon = "", left_padding = 2, cond = is_file }
+	return { "location", icon = "", cond = is_file }
 	-- 
 end
 
@@ -126,9 +154,9 @@ local function get_full_options()
 		sections = {
 			lualine_a = {},
 			lualine_b = { filename(), diagnostics() },
-			lualine_c = { navic() },
-			lualine_x = { branch(), filetype(), location() },
-			lualine_y = { terminal() },
+			lualine_c = { welcome(), navic() },
+			lualine_x = { filetype(), cwd(), branch() },
+			lualine_y = { terminal(), location() },
 			lualine_z = {},
 		},
 	}
