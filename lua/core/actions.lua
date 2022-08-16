@@ -15,7 +15,7 @@ end
 
 -- Focus on the next pane, resizing it as needed.
 local function next_pane(offset)
-	local settings = BaseSettings.pane_navigation
+	local settings = BaseConfig.pane_navigation
 	vim.cmd(offset == -1 and "wincmd w" or "wincmd W")
 
 	if not vim.tbl_contains(settings.excluded_filetypes, vim.o.filetype) and settings.min_width ~= -1 then

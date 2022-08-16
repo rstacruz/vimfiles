@@ -3,8 +3,6 @@ local function reload()
 	-- Refresh the impatient caches
 	vim.cmd("LuaCacheClear")
 
-	local before = vim.deepcopy(BaseConfig.features)
-
 	-- Unload everything from core and coresetup
 	for k, _ in pairs(package.loaded) do
 		if string.match(k, "^core") or string.match(k, "^custom") then
@@ -21,13 +19,7 @@ local function reload()
 	vim.cmd("luafile " .. vim.env.MYVIMRC)
 	require("packer").compile()
 	require("packer").install()
-
-	if not vim.deep_equal(BaseConfig.features, before) then
-		vim.notify(" Feature config has been updated. Restart vim to see changes!")
-		BaseConfig.features = before
-	else
-		vim.notify(" Config reloaded")
-	end
+	vim.notify(" Config reloaded")
 
 	-- Manually fire off the lazy-loaded modules
 	vim.cmd("doautocmd User OnIdle")

@@ -3,7 +3,7 @@ pcall(require, "impatient")
 -- Configuration
 local defaults = {
 	ui = {
-		theme_dark = "terafox", -- terafox | github_dimmed | catppuccin
+		theme_dark = "github_dark", -- terafox | github_dimmed | catppuccin
 		theme_light = "github_light",
 	},
 
@@ -18,7 +18,7 @@ local defaults = {
 		workspaces = false,
 		project_switcher = true,
 		status_line = true,
-		welcome_screen = true,
+		welcome_screen = false,
 
 		-- Use alternate implementation of filetype detection. Supposedly faster,
 		-- but doesn't really make a difference in my testing, at least with Neovim 0.7.
@@ -95,7 +95,7 @@ local packages = {
 		module = "nvim-treesitter",
 		run = ":TSUpdate",
 		cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSEnable", "TSDisable", "TSModuleInfo" },
-		event = { "BufRead" },
+		event = { "BufRead", "User PackerComplete" },
 		requires = {
 			{ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
 		},
@@ -107,7 +107,7 @@ local packages = {
 	{ -- nvim-surround: surround keybindings (cs, ds, ys)
 		"kylechui/nvim-surround",
 		disable = not features.treesitter,
-		event = { "BufRead", "CursorMoved" },
+		event = { "User OnIdle", "InsertEnter" },
 		config = function()
 			require("coresetup.nvim-surround").setup()
 		end,
@@ -198,6 +198,7 @@ local packages = {
 		disable = not features.gitsigns,
 		event = "User OnFileLoad",
 		module = "gitsigns",
+		cmd = { "Gitsigns" },
 		config = function()
 			require("coresetup.gitsigns").setup()
 		end,
@@ -206,7 +207,7 @@ local packages = {
 	{ -- indent-blankline: Indent guides
 		"lukas-reineke/indent-blankline.nvim",
 		disable = not features.indent_guides,
-		event = { "User OnIdle" }, -- { "BufRead", "CursorMoved" },
+		event = { "User OnIdle" }, -- { "BufRead" },
 		config = function()
 			require("coresetup.indent-blankline").setup()
 		end,
@@ -244,6 +245,11 @@ local packages = {
 		"stevearc/dressing.nvim",
 		disable = not (features.workspaces or features.lsp),
 		module = "dressing",
+	},
+
+	{
+		"tpope/vim-rhubarb",
+		event = { "User OnIdle" },
 	},
 
 	{ -- fugitive: Git blame and open in GitHub
@@ -284,6 +290,8 @@ local packages = {
 		end,
 	},
 
+	{ "onsails/lspkind-nvim", module = "lspkind" },
+
 	{ -- cmp: Completions
 		"hrsh7th/nvim-cmp",
 		disable = not features.completions,
@@ -312,6 +320,8 @@ local packages = {
 		disable = not features.alternate_filetypes,
 	},
 
+	{ "nvim-telescope/telescope-fzf-native.nvim", run = "make", opt = true },
+
 	{ -- telescope: file picker UI
 		"nvim-telescope/telescope.nvim",
 		-- cmd = "Telescope",
@@ -320,7 +330,7 @@ local packages = {
 		-- hot reloading
 		event = "User OnIdle",
 		requires = {
-			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+			"nvim-telescope/telescope-fzf-native.nvim",
 		},
 		config = function()
 			require("coresetup.telescope").setup()
@@ -358,7 +368,7 @@ local packages = {
 
 	{ -- comment
 		"numToStr/Comment.nvim",
-		event = { "User OnIdle", "CursorMoved" },
+		event = { "User OnIdle" },
 		config = function()
 			require("Comment").setup()
 		end,
@@ -397,13 +407,13 @@ local packages = {
 	{ "kazhala/close-buffers.nvim", module = "close_buffers" },
 
 	-- Themes
-	{ "EdenEast/nightfox.nvim" },
+	-- { "EdenEast/nightfox.nvim" },
+	{ "navarasu/onedark.nvim" },
 	{ "projekt0n/github-nvim-theme" },
 	-- { "mcchrish/zenbones.nvim", requires = { "rktjmp/lush.nvim" } },
 	-- { "catppuccin/nvim", as = "catppuccin-nvim" },
 	-- { "dracula/vim", as = "dracula-vim" },
 	-- { "cmoscofian/nibble-vim" }
-	-- { "navarasu/onedark.nvim" }
 	-- { "embark-theme/vim", as = "embark-theme-vim" }
 }
 
@@ -423,7 +433,7 @@ utils.on_vimenter(function()
 		vim.cmd([[doautocmd User OnIdle]])
 		require("core.auto-format").setup()
 		require("core.reload-utils").setup()
-	end, 1)
+	end, 50)
 end)
 
 utils.on_file_load(function()

@@ -9,6 +9,8 @@ local function get_default_mappings()
 			["<s-del>"] = { "<cmd>w<cr>:bd<cr>", "Save and close" },
 			["<c-p>"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open file…" },
 			["gs"] = { ":%s~~", "Replace with..." },
+			["]q"] = { "<cmd>cnext<CR>", "Next quickfix item" },
+			["[q"] = { "<cmd>cprev<CR>", "Prev quickfix item" },
 			["]g"] = features.gitsigns and {
 				"<cmd>lua require('gitsigns').next_hunk()<cr>",
 				"Next Git change",
@@ -47,13 +49,17 @@ local function get_default_mappings()
 			["<leader>g"] = (features.github_fugitive or features.neogit) and { name = " Git…" } or nil,
 			["<leader>gs"] = features.neogit and { "<cmd>Neogit<cr>", " Git status…" } or nil,
 			["<leader>gc"] = features.neogit and { "<cmd>Neogit commit<cr>", " Git commit…" } or nil,
+			["<leader>gd"] = features.github_fugitive and { "<cmd>Gitsigns diffthis HEAD<cr>", " Diff…" } or nil,
 			["<leader>gb"] = features.github_fugitive and { "<cmd>Git blame<cr>", " Blame" } or nil,
 			["<leader>gy"] = features.github_fugitive and { "<cmd>GBrowse!<cr>", " Copy GitHub URL" } or nil,
 			["<leader>gY"] = features.github_fugitive and { "<cmd>GBrowse<cr>", " Open in GitHub" } or nil,
 
 			-- Leader: [p] pick
 			["<leader>p"] = { name = " Pick…" },
+			["<leader>p<space>"] = { "<cmd>Telescope resume<cr>", "  Resume last search…" },
 			["<leader>pb"] = { "<cmd>Telescope buffers<cr>", " List buffers…" },
+			["<leader>p/"] = { "<cmd>Telescope live_grep<cr>", " Grep…" },
+			["<leader>p*"] = { "<cmd>Telescope grep_string<cr>", " Grep word in cursor…" },
 			-- ["<leader>pf"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open [f]ile…" },
 			["<leader>pp"] = features.project_switcher and {
 				"<cmd>Telescope projects<cr>",
@@ -120,7 +126,10 @@ local function get_default_mappings()
 				"<cmd>lua require('core.actions').open_custom_settings()<cr>",
 				" Edit custom settings",
 			},
-			["<leader>sc"] = { "<cmd>Telescope colorscheme<cr>", " Choose colorscheme…" },
+			["<leader>sc"] = {
+				"<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>",
+				" Choose colorscheme…",
+			},
 			["<leader>sk"] = {
 				"<cmd>vsplit " .. vim.fn.stdpath("config") .. "/lua/coresetup/keybindings.lua<cr>",
 				" Edit keybindings",
@@ -199,6 +208,13 @@ local function get_default_mappings()
 			["<s-del>"] = { "<cmd>w<cr>:bd<cr>", "Save and close" },
 		},
 		v = {
+			-- Better indenting
+			["<"] = { "<gv", "Reduce indent" },
+			[">"] = { ">gv", "Increase indent" },
+
+			-- Move selected line / block of text in visual mode
+			["K"] = { ":move '<-2<CR>gv-gv", "Move line down" },
+			["J"] = { ":move '>+1<CR>gv-gv", "Mode line up" },
 			["gs"] = { ":s~~", "Replace with..." },
 			["<leader>g"] = features.github_fugitive and { name = "Git…" } or nil,
 			["<leader>gy"] = features.github_fugitive and { ":GBrowse!<cr>", " Copy GitHub URL" } or nil,
@@ -220,11 +236,15 @@ end
 ---@param options RegisterOptions
 local function register(mappings, options)
 	for key, value in pairs(mappings) do
-		vim.api.nvim_set_keymap(options.mode, key, value[1], {
-			noremap = true,
-			silent = true,
-			desc = value[2],
-		})
+		if value ~= nil then
+			pcall(function()
+				vim.api.nvim_set_keymap(options.mode, key, value[1], {
+					noremap = true,
+					silent = true,
+					desc = value[2] or "",
+				})
+			end)
+		end
 	end
 end
 
@@ -238,7 +258,6 @@ local function apply_mappings(mappings)
 	which_key.register(mappings.nv, { mode = "v" })
 	which_key.register(mappings.i, { mode = "i" })
 	which_key.register(mappings.n, { mode = "n" })
-	which_key.register(mappings.v, { mode = "v" })
 	which_key.register(mappings.ctrl, { mode = "i" })
 	which_key.register(mappings.ctrl, { mode = "t" })
 	which_key.register(mappings.ctrl, { mode = "n" })
@@ -246,6 +265,7 @@ local function apply_mappings(mappings)
 
 	-- Which-Key doesn't seem to handle terminal mappings
 	register(mappings.t, { mode = "t" })
+	register(mappings.v, { mode = "v" })
 end
 
 local function setup()
