@@ -42,7 +42,6 @@ end
 local function filename()
 	return {
 		"filename",
-		icon = "",
 		cond = function()
 			return is_file() and not is_blank()
 		end,
@@ -77,7 +76,7 @@ local function filetype()
 		cond = function()
 			return is_file() and vim.o.columns > 100
 		end,
-		-- color = "lualine_c_inactive",
+		icon_only = true,
 	}
 end
 
@@ -88,7 +87,7 @@ local function branch()
 		cond = function()
 			return is_file() and vim.o.columns > 100
 		end,
-		-- color = "lualine_c_inactive",
+		color = "lualine_c_inactive",
 	}
 end
 
@@ -129,6 +128,11 @@ local function get_simple_options()
 			theme = "auto",
 			component_separators = { left = "", right = "" },
 			section_separators = { left = "", right = "" },
+			globalstatus = true,
+
+			-- When globalstatus is on, don't update the status line when in the file
+			-- explorer sidebar (among other things).
+			ignore_focus = excluded_filetypes,
 		},
 		sections = {
 			lualine_a = {},
@@ -146,16 +150,16 @@ local function get_full_options()
 		inactive_sections = {
 			lualine_a = {},
 			lualine_b = {},
-			lualine_c = { filename(), terminal() },
+			lualine_c = { filetype(), filename(), terminal() },
 			lualine_x = {},
 			lualine_y = {},
 			lualine_z = {},
 		},
 		sections = {
 			lualine_a = {},
-			lualine_b = { filename(), diagnostics() },
+			lualine_b = { filetype(), filename(), diagnostics() },
 			lualine_c = { welcome(), navic() },
-			lualine_x = { filetype(), cwd(), branch() },
+			lualine_x = { branch(), cwd() },
 			lualine_y = { terminal(), location() },
 			lualine_z = {},
 		},
@@ -179,8 +183,6 @@ local function setup()
 			lualine.setup(get_full_options())
 		end)
 	end
-
-	vim.opt.laststatus = vim.fn.has("nvim-0.7") and 3 or 2
 end
 
 return { setup = setup }
