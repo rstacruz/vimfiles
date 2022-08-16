@@ -6,8 +6,8 @@ local function setup()
 
 	neogit.setup({
 		signs = {
-			section = { "▶ ", "▼ " },
-			item = { " ▶", " ▼" },
+			section = { " ", " " },
+			item = { " ", " " },
 		},
 		integrations = {
 			diffview = true, -- uses sindrets/diffview.nvim
