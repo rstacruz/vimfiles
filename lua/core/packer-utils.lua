@@ -1,9 +1,15 @@
--- Works like packer.startup(packages), but also downloads
+-- Works like packer.startup(packages_fn), but also downloads
 -- and installs packer. Returns "false" when processing should stop.
 local function bootstrap_packer(packages)
+	local packages_fn = function()
+		for i, package in ipairs(packages) do
+			use(package)
+		end
+	end
+
 	-- On subsequent runs, skip the bootstrapping routine
 	if vim.g.packer_bootstrapped then
-		require("packer").startup(packages)
+		require("packer").startup(packages_fn)
 		return true
 	end
 
@@ -13,12 +19,12 @@ local function bootstrap_packer(packages)
 		vim.fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", packer_path })
 		vim.cmd("autocmd User PackerCompileDone luafile " .. vim.env.MYVIMRC)
 		vim.cmd("packadd packer.nvim")
-		require("packer").startup(packages)
+		require("packer").startup(packages_fn)
 		require("packer").sync()
 		return false
 	end
 
-	require("packer").startup(packages)
+	require("packer").startup(packages_fn)
 	require("packer").install()
 
 	vim.g.packer_bootstrapped = true
