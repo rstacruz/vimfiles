@@ -271,11 +271,10 @@ local packages = {
 		"TimUntersberger/neogit",
 		disable = not features.neogit,
 		cmd = { "Neogit" },
-		setup = function()
-			-- Force-load these plugins before loading Neogit
-			pcall(require, "plenary")
-			pcall(require, "diffview")
-		end,
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"sindrets/diffview.nvim",
+		},
 		config = function()
 			require("coresetup.neogit").setup()
 		end,
