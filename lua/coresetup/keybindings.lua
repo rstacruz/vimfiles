@@ -55,7 +55,10 @@ local function get_default_mappings()
 			["<leader>p"] = { name = " Pick…" },
 			["<leader>pb"] = { "<cmd>Telescope buffers<cr>", " List buffers…" },
 			-- ["<leader>pf"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open [f]ile…" },
-			-- ["<leader>pw"] = { "<cmd>Telescope workspaces<cr>", "Open [w]orkspace…" },
+			["<leader>pw"] = {
+				"<cmd>lua pcall(require, 'workspaces')<cr>:Telescope workspaces<cr>",
+				" Open workspace…",
+			},
 			["<leader>pr"] = {
 				"<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>",
 				" Open recent file…",
@@ -64,8 +67,8 @@ local function get_default_mappings()
 			-- ["<leader>ps"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Show [s]ymbols…" },
 			-- ["<leader>pg"] = { [[<cmd>lua require('spectre').open({ is_insert_mode = true })<cr>]], "Find in files ([g]rep)…" },
 			-- ["<leader>pW"] = { name = "[w]orkspaces…" },
-			-- ["<leader>pWa"] = { "<cmd>WorkspacesAdd<cr>", "Workspace: [a]dd this folder" },
-			-- ["<leader>pWd"] = { "<cmd>WorkspacesRemove<cr>", "Workspace: [d]dd this folder" },
+			["<leader>pWa"] = { "<cmd>WorkspacesAdd<cr>", "Workspace: [a]dd this folder" },
+			["<leader>pWd"] = { "<cmd>WorkspacesRemove<cr>", "Workspace: [d]dd this folder" },
 
 			-- Leader: [o] toggle
 			["<leader>o"] = { name = " Toggle…" },

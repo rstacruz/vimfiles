@@ -15,6 +15,7 @@ local defaults = {
 		completions = true,
 		treesitter = true,
 		github_fugitive = true,
+		workspaces = true,
 
 		-- experimental
 		welcome_screen = false, -- a bit buggy, sometimes causes errors on startup
@@ -216,6 +217,17 @@ local function packages(use)
 			event = "User OnFileLoad",
 			config = function()
 				require("coresetup.scrollview").setup()
+			end,
+		})
+	end
+
+	if features.workspaces then
+		use({
+			"natecraddock/workspaces.nvim",
+			module = "workspaces",
+			cmd = { "WorkspacesAdd", "WorkspacesRemove", "WorkspacesList", "WorkspacesOpen" },
+			config = function()
+				require("coresetup.workspaces").setup()
 			end,
 		})
 	end
