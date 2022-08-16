@@ -235,6 +235,9 @@ local function packages(use)
 				require("coresetup.workspaces").setup()
 			end,
 		})
+
+		-- Improve vim.ui.select for :WorkspacesList
+		use({ "stevearc/dressing.nvim", module = "dressing" })
 	end
 
 	if features.github_fugitive then
