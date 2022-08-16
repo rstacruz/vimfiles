@@ -4,7 +4,9 @@ local function get_default_mappings()
   local mappings = {
     n = {
       ["-"] = features.file_explorer and { "<cmd>NvimTreeFindFile<cr>", "Open file explorer" } or nil,
-      ["+"] = { "za", "Toggle fold under cursor" } or nil,
+      ["+"] = { "za", "Toggle fold under cursor" },
+      ["<del>"] = { "<cmd>bd!<cr>", "Destroy this buffer" },
+      ["<s-del>"] = { "<cmd>w<cr>:bd<cr>", "Save and close" },
       ["<c-p>"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open file…" },
       ["gs"] = { ":%s~~", "Replace with..." },
       ["]g"] = features.gitsigns and { "<cmd>lua require('gitsigns').next_hunk()<cr>", "Next Git change" } or nil,
@@ -134,8 +136,9 @@ local function get_default_mappings()
       -- Leader: [x] exit
       ["<leader>x"] = { name = " Exit…" },
       ["<leader>xz"] = { "<cmd>cq<cr>", " Exit Neovim" },
-      ["<leader>xd"] = { "<cmd>bd!<cr>", " Destroy this buffer" },
-      ["<leader>xc"] = { "<c-w>q", " Close this tab" },
+      ["<leader>xd"] = { "<cmd>bd!<cr>", " Destroy" },
+      ["<leader>xc"] = { "<c-w>q", " Close" },
+      ["<leader>xv"] = { "<cmd>w<cr>:bd<cr>", " Destroy and save" },
       ["<leader>xa"] = features.welcome_screen and { "<cmd>%bd! | Alpha<cr>", "  Close all" } or {
         "<cmd>%bd!<cr>",
         " Close all",
@@ -160,6 +163,9 @@ local function get_default_mappings()
     nv = {
       ["gl"] = features.hop and { "<cmd>HopLine<cr>", "Go to line" } or nil,
       ["gw"] = features.hop and { "<cmd>HopWord<cr>", "Go to word" } or nil,
+    },
+    i = {
+      ["<s-del>"] = { "<cmd>w<cr>:bd<cr>", "Save and close" },
     },
     v = {
       ["gs"] = { ":s~~", "Replace with..." },
@@ -199,6 +205,7 @@ local function apply_mappings(mappings)
 
   which_key.register(mappings.nv, { mode = "n" })
   which_key.register(mappings.nv, { mode = "v" })
+  which_key.register(mappings.i, { mode = "i" })
   which_key.register(mappings.n, { mode = "n" })
   which_key.register(mappings.v, { mode = "v" })
   which_key.register(mappings.ctrl, { mode = "i" })
