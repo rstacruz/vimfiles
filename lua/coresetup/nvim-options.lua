@@ -34,6 +34,7 @@ local function setup()
 		vim.g.do_filetype_lua = 1
 	end
 
+	vim.opt.lazyredraw = true
 	vim.opt.backup = false -- No backup files
 	vim.opt.fillchars = { eob = " ", vert = "▓" } -- end-of-buffer and vertical split
 	vim.opt.foldlevel = 99 -- Fold everything on first load
@@ -80,11 +81,9 @@ local function setup()
 	vim.opt.whichwrap:append("<>[]hl")
 
 	-- clear out statusline, they will be populated later by plugins
-	-- if BaseConfig.ui.lazy_load_statusline then
-	-- 	vim.opt.laststatus = 0
-	-- else
-	vim.opt.laststatus = vim.fn.has("nvim-0.7") and 3 or 2
-	-- end
+	if BaseConfig.features.lazy_load_statusline then
+		vim.opt.laststatus = 0
+	end
 
 	-- leader keys
 	vim.g.mapleader = " "

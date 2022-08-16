@@ -123,14 +123,12 @@ local function get_full_options()
 end
 
 local function setup()
-	pcall(require, "nvim-web-devicons")
-
 	local has, lualine = pcall(require, "lualine")
 	if not has then
 		return
 	end
 
-	if BaseConfig.ui.lazy_load_statusline then
+	if BaseConfig.features.lazy_load_statusline then
 		lualine.setup(get_full_options())
 	else
 		lualine.setup(get_simple_options())
@@ -139,6 +137,8 @@ local function setup()
 			lualine.setup(get_full_options())
 		end)
 	end
+
+	vim.opt.laststatus = vim.fn.has("nvim-0.7") and 3 or 2
 end
 
 return { setup = setup }

@@ -1,14 +1,10 @@
 pcall(require, "impatient")
 
 -- Configuration
-BaseConfig = {
+local defaults = {
 	ui = {
 		theme_dark = "terafox", -- terafox | github_dimmed | catppuccin
 		theme_light = "github_light",
-
-		-- Lazy load UI elements (status line). "true" makes startup
-		-- faster at the expense of a flash of unstyled UI
-		lazy_load_statusline = true,
 	},
 
 	-- Feature toggles to optimise loading times for some environments
@@ -30,6 +26,10 @@ BaseConfig = {
 		gitsigns = true,
 		indent_detection = true,
 		indent_guides = true,
+
+		-- Lazy load UI elements (status line). "true" makes startup
+		-- faster at the expense of a flash of unstyled UI
+		lazy_load_statusline = false,
 	},
 
 	format = {
@@ -54,7 +54,7 @@ BaseConfig = {
 }
 
 -- Custom config
-BaseConfig = require("core.config-utils").apply_overrides("baseconfig", BaseConfig)
+BaseConfig = require("core.config-utils").apply_overrides("baseconfig", defaults)
 
 -- Set options
 require("coresetup.nvim-options").setup()
@@ -232,8 +232,8 @@ local function packages(use)
 	-- Status line
 	use({
 		"nvim-lualine/lualine.nvim",
-		event = BaseConfig.ui.lazy_load_statusline and "User OnIdle" or nil,
-		module = BaseConfig.ui.lazy_load_statusline and { "lualine" } or nil,
+		event = BaseConfig.features.lazy_load_statusline and "User OnIdle" or nil,
+		module = BaseConfig.features.lazy_load_statusline and { "lualine" } or nil,
 		config = function()
 			require("coresetup.lualine").setup()
 		end,
