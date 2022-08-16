@@ -6,7 +6,9 @@ local function setup()
 
 	local options = {
 		separator = " ╱ ",
-		highlight = true,
+
+		-- Provide different highlights. But it's not very reliable
+		-- highlight = true,
 	}
 
 	navic.setup(options)

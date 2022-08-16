@@ -325,13 +325,15 @@ local function packages(use)
 	end
 
 	if features.neogit then
+		use({ "sindrets/diffview.nvim", module = "diffview" })
+
 		use({
 			"TimUntersberger/neogit",
-			requires = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" },
 			cmd = { "Neogit" },
 			setup = function()
-				-- diffview requires plenary to be loaded before it
+				-- Force-load these plugins before loading Neogit
 				pcall(require, "plenary")
+				pcall(require, "diffview")
 			end,
 			config = function()
 				require("coresetup.neogit").setup()
