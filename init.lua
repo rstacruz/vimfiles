@@ -17,8 +17,13 @@ local defaults = {
 		github_fugitive = true,
 		workspaces = true,
 
-		-- experimental
-		welcome_screen = false, -- a bit buggy, sometimes causes errors on startup
+		-- A bit buggy, sometimes causes errors on startup
+		experimental_welcome_screen = false,
+
+		-- Use alternate implementation of filetype detection. Supposedly faster,
+		-- but doesn't really make a difference in my testing, at least with Neovim 0.7.
+		-- However, it can detect more file types than Neovim's default (eg, .astro).
+		alternate_filetypes = false,
 
 		-- these might not be worth disabling I think
 		hop = true,
@@ -115,7 +120,7 @@ local function packages(use)
 		use({ "airblade/vim-rooter" })
 	end
 
-	if features.welcome_screen then
+	if features.experimental_welcome_screen then
 		use({
 			"goolord/alpha-nvim",
 			config = function()
@@ -289,6 +294,10 @@ local function packages(use)
 		})
 
 		use({ "L3MON4D3/LuaSnip", module = "luasnip" })
+	end
+
+	if features.alternate_filetypes then
+		use({ "nathom/filetype.nvim" })
 	end
 
 	-- Telescope file picker

@@ -14,7 +14,11 @@ local function setup()
 			special_files = {
 				"Cargo.toml",
 				"Makefile",
+				-- git
+				".git",
 				".gitignore",
+				".gitattributes",
+				".gitmodules",
 				-- docs
 				"README.md",
 				-- js
@@ -26,15 +30,23 @@ local function setup()
 				".babel.config.cjs",
 				".babel.config.mjs",
 				".prettierrc",
+				".prettierignore",
 				".npmrc",
+				".npmignore",
 				"postcss.config.js",
 				"tailwind.config.js",
 				"tsconfig.json",
 				"jsconfig.json",
+				-- Docker
+				".dockerignore",
 				-- lua
 				".luarc.json",
 				"packer.lock",
 				"stylua.toml",
+				-- special
+				".vscode",
+				".obsidian",
+				".stignore",
 			},
 			indent_markers = {
 				enable = true,
