@@ -1,7 +1,7 @@
 local function apply_overrides(key, config)
 	local has, custom = pcall(require, "custom.init")
 
-	if has and custom[key] then
+	if has and type(custom) == "table" and custom[key] then
 		local result = custom[key](config)
 		if result then
 			-- returning an object will merge it

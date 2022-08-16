@@ -43,27 +43,12 @@ BaseConfig = {
 
 	welcome_screen = {
 		-- Banner to show in the welcome screen
-		banner = { "╲		 ╱", " ╲	╱ ", "	╲╱ ", "" },
+		banner = { "╲    ╱", " ╲  ╱ ", "	╲╱ ", "" },
 	},
 
 	treesitter = {
 		ensure_installed = {
-			"css",
-			"dockerfile",
-			"fish",
-			"html",
-			"javascript",
-			"jsdoc",
-			"json",
 			"lua",
-			"make",
-			"markdown",
-			"python",
-			"ruby",
-			"scss",
-			"svelte",
-			"typescript",
-			"yaml",
 		},
 	},
 }

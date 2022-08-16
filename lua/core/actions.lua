@@ -13,7 +13,20 @@ local function open_terminal()
 	vim.cmd("term " .. shell)
 end
 
+local function open_custom_settings()
+	local fname = vim.fn.stdpath("config") .. "/lua/custom/init.lua"
+	vim.cmd("vsplit " .. fname)
+
+	if vim.fn.getbufinfo("%")[1].linecount == 1 then
+		local example = vim.fn.stdpath("config") .. "/lua/custom/init.lua.example"
+		local lines = vim.fn.readfile(example, "", 999)
+		local offset = 3 -- Skip the first few lines
+		vim.fn.append(0, vim.list_slice(lines, offset + 1))
+	end
+end
+
 return {
 	open_file_picker = open_file_picker,
 	open_terminal = open_terminal,
+	open_custom_settings = open_custom_settings,
 }

@@ -90,7 +90,7 @@ local function get_default_mappings()
 				" Edit Neovim settings",
 			},
 			["<leader>s."] = {
-				"<cmd>vsplit " .. vim.fn.stdpath("config") .. "/lua/custom/init.lua<cr>",
+				"<cmd>lua require('core.actions').open_custom_settings()<cr>",
 				" Edit custom settings",
 			},
 			["<leader>sc"] = { "<cmd>Telescope colorscheme<cr>", " Choose colorscheme…" },
