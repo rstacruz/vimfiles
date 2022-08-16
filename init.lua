@@ -235,8 +235,10 @@ local function packages(use)
 				require("coresetup.workspaces").setup()
 			end,
 		})
+	end
 
-		-- Improve vim.ui.select for :WorkspacesList
+	if features.workspaces or features.lsp then
+		-- Improve vim.ui.select for :WorkspacesList and LSP rename
 		use({ "stevearc/dressing.nvim", module = "dressing" })
 	end
 
