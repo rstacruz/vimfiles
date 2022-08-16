@@ -7,7 +7,7 @@ playground_data_path = $(playground_path)/data
 env = XDG_CONFIG_HOME="$(playground_config_path)" XDG_DATA_HOME="$(playground_data_path)"
 
 format:
-	stylua init.lua lua/**/*.lua
+	stylua init.lua lua/**/*.lua lua/**/*.lua.example
 
 nvim: setup # Launch neovim with this config
 	$(env) nvim

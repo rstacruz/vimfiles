@@ -2,12 +2,27 @@
 -- Instructions: copy to init.lua.
 
 return {
-  baseconfig = function(config)
-    -- Example: change theme
-    config.ui.theme_dark = "github_dark"
-    config.ui.theme_light = "github_light"
+	baseconfig = function(config)
+		-- config.ui.theme_dark = "terafox" -- terafox | github_dimmed | catppuccin
+		-- config.ui.theme_light = "github_light"
 
-    config.features.gitsigns = true
-    config.features.indent_guides = true
-  end,
+		-- config.features.auto_cd_root = true
+		-- config.features.lsp = true
+		-- config.features.lsp_installer = true
+		-- config.features.completions = true
+		-- config.features.treesitter = true
+		-- config.features.github_fugitive = true
+		-- config.features.gitsigns = true
+		-- config.features.indent_guides = true
+		-- config.features.hop = true
+		-- config.features.file_explorer = true
+		-- config.features.autopairs = true
+		-- config.features.gitsigns = true
+		-- config.features.indent_detection = true
+		-- config.features.indent_guides = true
+
+		-- config.format.autoformat_files = "*.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs",
+		-- config.treesitter.ensure_installed = { "lua" }
+		-- config.treesitter.ensure_installed = { "css", "dockerfile", "fish", "html", "javascript", "jsdoc", "json", "lua", "make", "markdown", "python", "ruby", "scss", "svelte", "typescript", "yaml" }
+	end,
 }
