@@ -55,7 +55,6 @@ local function get_config()
 			},
 			{ type = "padding", val = 1 },
 			section_buttons,
-			{ type = "padding", val = 1 },
 			{
 				type = "text",
 				val = "┄─┄",

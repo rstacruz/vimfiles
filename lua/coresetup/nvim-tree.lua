@@ -28,11 +28,13 @@ local special_files = {
 	".dockerignore",
 	-- lua
 	".luarc.json",
+	".luacheckrc",
 	"packer.lock",
 	"stylua.toml",
 	-- special
 	".vscode",
 	".obsidian",
+	".pre-commit-config.yaml",
 	".stignore",
 }
 
@@ -62,7 +64,29 @@ local function setup()
 			icons = {
 				-- Show git (default: "before")
 				git_placement = "after",
+				glyphs = {
+					default = "",
+					symlink = "",
+					git = {
+						unstaged = "",
+						staged = "●",
+						unmerged = "",
+						renamed = "➜",
+						deleted = "",
+						untracked = "◌",
+						ignored = "◌",
+					},
+				},
 			},
+			-- Display staged files with a different colour
+			highlight_git = true,
+			-- Only show "nvim" rather than "~/.config/nvim"
+			root_folder_modifier = ":t",
+		},
+		filters = {
+			dotfiles = false,
+			custom = { "node_modules", "\\.cache" },
+			exclude = {},
 		},
 		actions = {
 			open_file = {
