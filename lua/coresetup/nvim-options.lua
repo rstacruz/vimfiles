@@ -25,6 +25,7 @@ local function setup_gitcommit_overrides()
 end
 
 local function setup()
+	local features = BaseConfig.features
 	vim.g.vim_version = vim.version().minor
 
 	-- use filetype.lua instead of filetype.vim. it's enabled by default in
@@ -81,7 +82,7 @@ local function setup()
 	vim.opt.whichwrap:append("<>[]hl")
 
 	-- clear out statusline, they will be populated later by plugins
-	if BaseConfig.features.lazy_load_statusline then
+	if features.lazy_load_statusline and features.status_line then
 		vim.opt.laststatus = 0
 	end
 
@@ -134,7 +135,7 @@ local function setup()
 	}
 
 	-- Fugitive relies on netrw for :GBrowse
-	if not BaseConfig.features.github_fugitive then
+	if not features.github_fugitive then
 		vim.list_extend(default_plugins, {
 			"netrw",
 			"netrwPlugin",

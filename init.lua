@@ -16,6 +16,7 @@ local defaults = {
 		treesitter = true,
 		github_fugitive = true,
 		workspaces = true,
+		status_line = true,
 
 		-- A bit buggy, sometimes causes errors on startup
 		experimental_welcome_screen = false,
@@ -335,15 +336,17 @@ local function packages(use)
 
 	use({ "thinca/vim-visualstar", keys = { "*", "#" } })
 
-	-- Status line
-	use({
-		"nvim-lualine/lualine.nvim",
-		event = BaseConfig.features.lazy_load_statusline and "User OnIdle" or nil,
-		module = BaseConfig.features.lazy_load_statusline and { "lualine" } or nil,
-		config = function()
-			require("coresetup.lualine").setup()
-		end,
-	})
+	if features.status_line then
+		-- Status line
+		use({
+			"nvim-lualine/lualine.nvim",
+			event = features.lazy_load_statusline and "User OnIdle" or nil,
+			module = features.lazy_load_statusline and { "lualine" } or nil,
+			config = function()
+				require("coresetup.lualine").setup()
+			end,
+		})
+	end
 
 	use({ "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" })
 
