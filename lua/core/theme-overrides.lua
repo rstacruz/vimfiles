@@ -53,10 +53,11 @@ local function apply()
 	end
 
 	-- different themes have different groups that look nice with borders
-	if col == "terafox" or col == "nightfox" or col == "carbonfox" then
+	if vim.tbl_contains({ "terafox", "nightfox", "carbonfox" }, col) then
 		vim.api.nvim_set_hl(0, "XxLine", { link = "Conceal" })
 	end
-	if col == "github_dimmed" then
+
+	if vim.tbl_contains({ "github_dark", "github_dimmed" }, col) then
 		vim.api.nvim_set_hl(0, "HopNextKey", { link = "IncSearch" }) -- "Search" is too muted
 	end
 

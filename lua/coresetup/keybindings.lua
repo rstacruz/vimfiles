@@ -163,8 +163,11 @@ local function get_default_mappings()
 			["<leader>xd"] = { "<cmd>bd!<cr>", " Destroy [del]" },
 			["<leader>xc"] = { "<c-w>q", " Close" },
 			["<leader>xv"] = { "<cmd>w<cr>:bd<cr>", " Destroy and save [shift-del]" },
-			["<leader>xa"] = features.welcome_screen and { "<cmd>%bd! | Alpha<cr>", "  Close all" } or {
-				"<cmd>%bd!<cr>",
+			["<leader>xa"] = features.welcome_screen and {
+				"<cmd>silent %bd! | Alpha<cr>",
+				" Close all",
+			} or {
+				"<cmd>silent %bd!<cr>",
 				" Close all",
 			},
 			["<leader>xo"] = {
