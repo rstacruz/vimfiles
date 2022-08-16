@@ -289,8 +289,6 @@ local packages = {
 	{ -- Status line
 		"nvim-lualine/lualine.nvim",
 		disable = not features.status_line,
-		event = features.lazy_load_statusline and "VimEnter" or nil,
-		module = features.lazy_load_statusline and { "lualine" } or nil,
 		config = function()
 			require("coresetup.lualine").setup()
 		end,
@@ -360,12 +358,12 @@ local utils = require("core.utils")
 
 -- Defer loading some plugins until Vim is idle
 utils.on_vimenter(function()
-	vim.defer_fn(function()
+	vim.schedule(function()
 		vim.cmd([[doautocmd User OnIdle]])
 		require("core.auto-format").setup()
 		require("core.reload-utils").setup()
 		require("coresetup.autocmds").setup()
-	end, 50)
+	end)
 end)
 
 utils.on_file_load(function()

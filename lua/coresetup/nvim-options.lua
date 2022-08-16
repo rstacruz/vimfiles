@@ -54,11 +54,6 @@ local function setup()
 	-- left/right arrows will go to the next/previous line
 	vim.opt.whichwrap:append("<>[]hl")
 
-	-- clear out statusline, they will be populated later by plugins
-	if features.lazy_load_statusline and features.status_line then
-		vim.opt.laststatus = 0
-	end
-
 	-- leader keys
 	vim.g.mapleader = " "
 	vim.g.maplocalleader = ","

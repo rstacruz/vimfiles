@@ -174,15 +174,11 @@ local function setup()
 		return
 	end
 
-	if BaseConfig.features.lazy_load_statusline then
-		lualine.setup(get_full_options())
-	else
-		lualine.setup(get_simple_options())
+	lualine.setup(get_simple_options())
 
-		vim.schedule(function()
-			lualine.setup(get_full_options())
-		end)
-	end
+	vim.schedule(function()
+		lualine.setup(get_full_options())
+	end)
 end
 
 return { setup = setup }

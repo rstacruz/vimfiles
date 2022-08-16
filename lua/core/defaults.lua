@@ -31,10 +31,6 @@ local defaults = {
 		indent_guides = true,
 		scrollbars = true,
 		neogit = true,
-
-		-- Lazy load UI elements (status line). "true" makes startup
-		-- faster at the expense of a flash of unstyled UI
-		lazy_load_statusline = false,
 	},
 
 	pane_navigation = {

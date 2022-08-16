@@ -24,7 +24,6 @@
 -- BaseConfig.features.scrollbars = true
 -- BaseConfig.features.workspaces = true
 -- BaseConfig.features.alternate_filetypes = false
--- BaseConfig.features.lazy_load_statusline = false
 
 -- BaseConfig.format.autoformat_files = "*.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs",
 
