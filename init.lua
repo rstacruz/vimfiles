@@ -232,6 +232,65 @@ local function packages(use)
 		})
 	end
 
+	if features.github_fugitive then
+		-- Git blame and open in GitHub
+		use({
+			"tpope/vim-fugitive",
+			event = { "User OnIdle" },
+			requires = { "tpope/vim-rhubarb" },
+			-- not quite working
+			-- cmd = { "Git", "GBrowse", "GBrowse!" },
+		})
+	end
+
+	if features.neogit then
+		use({ "sindrets/diffview.nvim", module = "diffview" })
+
+		use({
+			"TimUntersberger/neogit",
+			cmd = { "Neogit" },
+			setup = function()
+				-- Force-load these plugins before loading Neogit
+				pcall(require, "plenary")
+				pcall(require, "diffview")
+			end,
+			config = function()
+				require("coresetup.neogit").setup()
+			end,
+		})
+	end
+
+	if features.autopairs then
+		use({
+			"windwp/nvim-autopairs",
+			event = { "InsertEnter" },
+			config = function()
+				require("coresetup.nvim-autopairs").setup()
+			end,
+		})
+	end
+
+	if features.completions then
+		-- Completions
+		use({
+			"hrsh7th/nvim-cmp",
+			event = { "InsertEnter", "CmdlineEnter" },
+			requires = {
+				"onsails/lspkind-nvim",
+				{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+				{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+				{ "hrsh7th/cmp-path", after = "nvim-cmp" },
+				{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+				{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
+			},
+			config = function()
+				require("coresetup.cmp").setup()
+			end,
+		})
+
+		use({ "L3MON4D3/LuaSnip", module = "luasnip" })
+	end
+
 	-- Telescope file picker
 	use({
 		"nvim-telescope/telescope.nvim",
@@ -274,27 +333,6 @@ local function packages(use)
 
 	use({ "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" })
 
-	if features.completions then
-		-- Completions
-		use({
-			"hrsh7th/nvim-cmp",
-			event = { "InsertEnter", "CmdlineEnter" },
-			requires = {
-				"onsails/lspkind-nvim",
-				{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
-				{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-				{ "hrsh7th/cmp-path", after = "nvim-cmp" },
-				{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
-				{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
-			},
-			config = function()
-				require("coresetup.cmp").setup()
-			end,
-		})
-
-		use({ "L3MON4D3/LuaSnip", module = "luasnip" })
-	end
-
 	use({
 		"numToStr/Comment.nvim",
 		event = "User OnFileLoad",
@@ -324,44 +362,6 @@ local function packages(use)
 
 	-- Improve appearance of fold text
 	use({ "jrudess/vim-foldtext", event = "BufRead" })
-
-	if features.github_fugitive then
-		-- Git blame and open in GitHub
-		use({
-			"tpope/vim-fugitive",
-			event = { "User OnIdle" },
-			requires = { "tpope/vim-rhubarb" },
-			-- not quite working
-			-- cmd = { "Git", "GBrowse", "GBrowse!" },
-		})
-	end
-
-	if features.neogit then
-		use({ "sindrets/diffview.nvim", module = "diffview" })
-
-		use({
-			"TimUntersberger/neogit",
-			cmd = { "Neogit" },
-			setup = function()
-				-- Force-load these plugins before loading Neogit
-				pcall(require, "plenary")
-				pcall(require, "diffview")
-			end,
-			config = function()
-				require("coresetup.neogit").setup()
-			end,
-		})
-	end
-
-	if features.autopairs then
-		use({
-			"windwp/nvim-autopairs",
-			event = { "InsertEnter" },
-			config = function()
-				require("coresetup.nvim-autopairs").setup()
-			end,
-		})
-	end
 
 	-- Close hidden buffers
 	use({ "kazhala/close-buffers.nvim", module = "close_buffers" })
