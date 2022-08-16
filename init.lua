@@ -26,6 +26,7 @@ local defaults = {
 		gitsigns = true,
 		indent_detection = true,
 		indent_guides = true,
+		scrollbars = true,
 
 		-- Lazy load UI elements (status line). "true" makes startup
 		-- faster at the expense of a flash of unstyled UI
@@ -195,6 +196,16 @@ local function packages(use)
 			event = { "BufRead", "CursorMoved" },
 			config = function()
 				require("coresetup.indent-blankline").setup()
+			end,
+		})
+	end
+
+	if features.scrollbars then
+		use({
+			"dstein64/nvim-scrollview",
+			event = "User OnFileLoad",
+			config = function()
+				require("coresetup.scrollview").setup()
 			end,
 		})
 	end

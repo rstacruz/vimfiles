@@ -20,6 +20,7 @@ return {
 		-- config.features.gitsigns = true
 		-- config.features.indent_detection = true
 		-- config.features.indent_guides = true
+		-- config.features.scrollbars = true
 		-- config.features.lazy_load_statusline = false
 
 		-- config.format.autoformat_files = "*.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs",
