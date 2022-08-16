@@ -26,7 +26,12 @@ return {
 		-- config.format.autoformat_files = "*.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs",
 
 		-- config.treesitter.ensure_installed = { "lua" }
-		-- config.treesitter.ensure_installed = { "css", "dockerfile", "fish", "html", "javascript", "jsdoc", "json", "lua", "make", "markdown", "python", "ruby", "scss", "svelte", "typescript", "yaml" }
+		-- vim.list_extend(config.treesitter.ensure_installed, { "javascript", "jsdoc", "json", "typescript" })
+		-- vim.list_extend(config.treesitter.ensure_installed, { "css", "html", "scss" })
+		-- vim.list_extend(config.treesitter.ensure_installed, { "ruby" })
+		-- vim.list_extend(config.treesitter.ensure_installed, { "scss" })
+		-- vim.list_extend(config.treesitter.ensure_installed, { "python" })
+		-- vim.list_extend(config.treesitter.ensure_installed, { "make", "markdown" })
 
 		-- config.terminal.shell = nil
 		-- config.terminal.shell = "fish"
