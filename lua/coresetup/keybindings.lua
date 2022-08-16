@@ -165,8 +165,8 @@ local function get_default_mappings()
 			["<leader>gY"] = features.github_fugitive and { ":GBrowse<cr>", " Open in GitHub" } or nil,
 		},
 		ctrl = {
-			["<c-h>"] = { [[<cmd>wincmd W | set winwidth=80 | set winwidth=20<cr>]], "Focus previous pane" },
-			["<c-n>"] = { [[<cmd>wincmd w | set winwidth=80 | set winwidth=20<cr>]], "Focus next pane" },
+			["<c-h>"] = { [[<cmd>lua require('core.pane-utils').next_pane()<cr>]], "Focus previous pane" },
+			["<c-n>"] = { [[<cmd>lua require('core.pane-utils').prev_pane()<cr>]], "Focus next pane" },
 			["<c-s>"] = { [[<cmd>w<cr><esc>]], "Save file" },
 		},
 	}

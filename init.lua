@@ -33,6 +33,14 @@ local defaults = {
 		lazy_load_statusline = false,
 	},
 
+	pane_navigation = {
+		excluded_filetypes = { "NvimTree" },
+
+		-- Minimum width of panes when navigating using ctrl-h and ctrl+n. Use -1
+		-- to disable
+		min_width = 80,
+	},
+
 	format = {
 		-- Auto-format on save
 		autoformat_files = "*.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs",
