@@ -15,7 +15,8 @@ local defaults = {
 		completions = true,
 		treesitter = true,
 		github_fugitive = true,
-		workspaces = true,
+		workspaces = false,
+		project_switcher = true,
 		status_line = true,
 		welcome_screen = true,
 
@@ -59,7 +60,7 @@ local defaults = {
 
 	welcome_screen = {
 		-- Banner to show in the welcome screen
-		banner = { "╲    ╱", " ╲  ╱ ", "	╲╱ ", "" },
+		banner = { "╲    ╱", " ╲  ╱ ", "  ╲╱ ", "" },
 	},
 
 	treesitter = {
@@ -205,7 +206,7 @@ local packages = {
 	{ -- indent-blankline: Indent guides
 		"lukas-reineke/indent-blankline.nvim",
 		disable = not features.indent_guides,
-		event = { "BufRead", "CursorMoved" },
+		event = { "User OnIdle" }, -- { "BufRead", "CursorMoved" },
 		config = function()
 			require("coresetup.indent-blankline").setup()
 		end,
@@ -227,6 +228,15 @@ local packages = {
 		cmd = { "WorkspacesAdd", "WorkspacesRemove", "WorkspacesList", "WorkspacesOpen" },
 		config = function()
 			require("coresetup.workspaces").setup()
+		end,
+	},
+
+	{ -- project: project switcher
+		"ahmedkhalf/project.nvim",
+		disable = not features.project_switcher,
+		module = { "project_nvim", "telescope._extensions.projects" },
+		config = function()
+			require("coresetup.project").setup()
 		end,
 	},
 
@@ -366,8 +376,8 @@ local packages = {
 
 	{ -- bufferline
 		"akinsho/bufferline.nvim",
-		event = "User OnIdle" or nil,
-		cmd = { "BufferLineCycleNext", "BufferLineCyclePrev" } or nil,
+		event = "User OnIdle",
+		cmd = { "BufferLineCycleNext", "BufferLineCyclePrev" },
 		config = function()
 			require("coresetup.bufferline").setup()
 		end,

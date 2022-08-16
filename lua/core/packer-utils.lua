@@ -1,8 +1,8 @@
 -- Works like packer.startup(packages_fn), but also downloads
 -- and installs packer. Returns "false" when processing should stop.
 local function bootstrap_packer(packages)
-	local packages_fn = function()
-		for i, package in ipairs(packages) do
+	local packages_fn = function(use)
+		for _, package in ipairs(packages) do
 			use(package)
 		end
 	end

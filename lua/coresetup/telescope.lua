@@ -14,6 +14,8 @@ local function setup()
 				"--line-number",
 				"--column",
 				"--smart-case",
+				"--hidden",
+				"--glob=!.git/",
 			},
 			prompt_prefix = "   ",
 			selection_caret = "› ",
@@ -58,10 +60,13 @@ local function setup()
 
 	telescope.setup(options)
 
-	local has_fzf, _ = pcall(require, "telescope._extensions.fzf")
-	if has_fzf then
+	pcall(function()
 		telescope.load_extension("fzf")
-	end
+	end)
+
+	pcall(function()
+		telescope.load_extension("projects")
+	end)
 end
 
 return { setup = setup }

@@ -55,6 +55,10 @@ local function get_default_mappings()
 			["<leader>p"] = { name = " Pick…" },
 			["<leader>pb"] = { "<cmd>Telescope buffers<cr>", " List buffers…" },
 			-- ["<leader>pf"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open [f]ile…" },
+			["<leader>pp"] = features.project_switcher and {
+				"<cmd>Telescope projects<cr>",
+				" Switch project…",
+			} or nil,
 			["<leader>pw"] = features.workspaces and {
 				"<cmd>WorkspacesOpen<cr>",
 				" Open workspace…",

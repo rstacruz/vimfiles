@@ -20,16 +20,16 @@ local function button(shortcut, text, command)
 end
 
 local function get_config()
-	local has_explorer = BaseConfig.features.file_explorer
+	local features = BaseConfig.features
 
 	-- buttons
 	local section_buttons = {
 		type = "group",
 		val = {
 			button("o", "  Open file…", "<cmd>lua require('core.actions').open_file_picker()<cr>"),
-			button("r", "  Recent files…", "<cmd>Telescope oldfiles<cr>"),
-			has_explorer and button("-", "  Browse files", "<cmd>e .<cr>"),
-			button(".", "  Open terminal", "<cmd>lua require('core.actions').open_terminal()<cr>"),
+			button("r", "  Recent files…", "<cmd>Telescope oldfiles<cr>"),
+			button("-", "  Browse files", "<cmd>e .<cr>"),
+			button(".", "  Terminal", "<cmd>lua require('core.actions').open_terminal()<cr>"),
 		},
 		opts = { spacing = 1, hl = "Normal" },
 	}
@@ -38,7 +38,8 @@ local function get_config()
 		type = "group",
 		val = {
 			button("e", "  New file", "<cmd>ene<cr>"),
-			button("w", "  Switch project…", "<cmd>WorkspacesList<cr>"),
+			features.workspaces and button("w", "  Open workspace…", "<cmd>WorkspacesList<cr>") or nil,
+			features.project_switcher and button("p", "  Switch project…", "<cmd>Telescope projects<cr>") or nil,
 			button("q", "  Quit", "<cmd>qa<cr>"),
 		},
 		opts = { spacing = 1, hl = "Normal" },

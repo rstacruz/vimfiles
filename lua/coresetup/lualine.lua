@@ -32,7 +32,7 @@ end
 local function welcome()
 	return {
 		function()
-			return "Press <space> to get started"
+			return ""
 		end,
 		color = "lualine_c_inactive",
 		cond = is_blank,
