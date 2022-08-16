@@ -27,10 +27,6 @@ local function apply(mode)
 		colorscheme = BaseConfig.ui.theme_light
 	end
 
-	-- Lazy-laod the colors
-	vim.notify("Color: " .. colorscheme .. " (" .. mode .. ")")
-
-	vim.cmd("doautocmd User Color_" .. colorscheme)
 	vim.opt.background = mode
 	vim.cmd("colorscheme " .. colorscheme)
 
