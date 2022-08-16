@@ -88,223 +88,214 @@ local function packages(use)
 	-- Library for Telescope and many others
 	use({ "nvim-lua/plenary.nvim", module = { "plenary", "plenary.async" } })
 
-	if features.treesitter then
-		use({
-			"nvim-treesitter/nvim-treesitter",
-			module = "nvim-treesitter",
-			run = ":TSUpdate",
-			cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSEnable", "TSDisable", "TSModuleInfo" },
-			event = { "BufRead" },
-			requires = {
-				{ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
-			},
-			config = function()
-				require("coresetup.treesitter").setup()
-			end,
-		})
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		disable = not features.treesitter,
+		module = "nvim-treesitter",
+		run = ":TSUpdate",
+		cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSEnable", "TSDisable", "TSModuleInfo" },
+		event = { "BufRead" },
+		requires = {
+			{ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
+		},
+		config = function()
+			require("coresetup.treesitter").setup()
+		end,
+	})
 
-		use({
-			"kylechui/nvim-surround",
-			event = { "BufRead", "CursorMoved" },
-			config = function()
-				require("coresetup.nvim-surround").setup()
-			end,
-		})
-	end
+	use({
+		"kylechui/nvim-surround",
+		disable = not features.treesitter,
+		event = { "BufRead", "CursorMoved" },
+		config = function()
+			require("coresetup.nvim-surround").setup()
+		end,
+	})
 
-	if features.indent_detection then
-		-- Detect indents
-		use({ "Darazaki/indent-o-matic" })
-	end
+	-- Detect indents
+	use({
+		"Darazaki/indent-o-matic",
+		disable = not features.indent_detection,
+	})
 
-	if features.auto_cd_root then
-		use({ "airblade/vim-rooter" })
-	end
+	use({ "airblade/vim-rooter", disable = not features.auto_cd_root })
 
-	if features.experimental_welcome_screen then
-		use({
-			"goolord/alpha-nvim",
-			config = function()
-				require("coresetup.alpha").setup()
-			end,
-		})
-	end
+	use({
+		"goolord/alpha-nvim",
+		disable = not features.experimental_welcome_screen,
+		config = function()
+			require("coresetup.alpha").setup()
+		end,
+	})
 
-	if features.hop then
-		-- Easymotion-style jumps
-		use({
-			"phaazon/hop.nvim",
-			cmd = { "HopLine", "HopWord" },
-			config = function()
-				local has, hop = pcall(require, "hop")
-				if has then
-					hop.setup({ keys = "arstgmneiowfpyulcdh" })
-				end
-			end,
-		})
-	end
+	-- Easymotion-style jumps
+	use({
+		"phaazon/hop.nvim",
+		disable = not features.hop,
+		cmd = { "HopLine", "HopWord" },
+		config = function()
+			local has, hop = pcall(require, "hop")
+			if has then
+				hop.setup({ keys = "arstgmneiowfpyulcdh" })
+			end
+		end,
+	})
 
-	if features.lsp and features.lsp_installer then
-		-- Install LSP servers (:Mason)
-		use({
-			"williamboman/mason.nvim",
-			cmd = { "Mason", "MasonInstall" },
-			module = { "mason" },
-			config = function()
-				local has, mason = pcall(require, "mason")
-				if has then
-					mason.setup()
-				end
-			end,
-		})
-	end
+	-- Install LSP servers (:Mason)
+	use({
+		"williamboman/mason.nvim",
+		disable = not (features.lsp and features.lsp_installer),
+		cmd = { "Mason", "MasonInstall" },
+		module = { "mason" },
+		config = function()
+			local has, mason = pcall(require, "mason")
+			if has then
+				mason.setup()
+			end
+		end,
+	})
 
-	if features.lsp then
-		use({
-			"neovim/nvim-lspconfig",
-			event = "User OnFileLoad",
-			config = function()
-				require("core.lsp").setup()
-			end,
-		})
+	use({
+		"neovim/nvim-lspconfig",
+		disable = not features.lsp,
+		event = "User OnFileLoad",
+		config = function()
+			require("core.lsp").setup()
+		end,
+	})
 
-		use({
-			"SmiteshP/nvim-navic",
-			module = "nvim-navic",
-			config = function()
-				vim.g.navic_available = true
-				require("coresetup.nvim-navic").setup()
-			end,
-		})
+	use({
+		"SmiteshP/nvim-navic",
+		disable = not features.lsp,
+		module = "nvim-navic",
+		config = function()
+			vim.g.navic_available = true
+			require("coresetup.nvim-navic").setup()
+		end,
+	})
 
-		-- Formatting and diagnostics
-		use({
-			"jose-elias-alvarez/null-ls.nvim",
-			module = "null-ls",
-		})
-	end
+	-- Formatting and diagnostics
+	use({
+		"jose-elias-alvarez/null-ls.nvim",
+		disable = not features.lsp,
+		module = "null-ls",
+	})
 
-	if features.file_explorer then
-		-- File explorer
-		use({
-			"kyazdani42/nvim-tree.lua",
-			event = "User OnIdle",
-			config = function()
-				require("coresetup.nvim-tree").setup()
-			end,
-		})
-	end
+	-- File explorer
+	use({
+		"kyazdani42/nvim-tree.lua",
+		disable = not features.file_explorer,
+		event = "User OnIdle",
+		config = function()
+			require("coresetup.nvim-tree").setup()
+		end,
+	})
 
-	if features.gitsigns then
-		-- Git indicators on the gutter
-		use({
-			"lewis6991/gitsigns.nvim",
-			event = "User OnFileLoad",
-			module = "gitsigns",
-			config = function()
-				require("coresetup.gitsigns").setup()
-			end,
-		})
-	end
+	-- Git indicators on the gutter
+	use({
+		"lewis6991/gitsigns.nvim",
+		disable = not features.gitsigns,
+		event = "User OnFileLoad",
+		module = "gitsigns",
+		config = function()
+			require("coresetup.gitsigns").setup()
+		end,
+	})
 
-	if features.indent_guides then
-		use({
-			"lukas-reineke/indent-blankline.nvim",
-			event = { "BufRead", "CursorMoved" },
-			config = function()
-				require("coresetup.indent-blankline").setup()
-			end,
-		})
-	end
+	use({
+		"lukas-reineke/indent-blankline.nvim",
+		disable = not features.indent_guides,
+		event = { "BufRead", "CursorMoved" },
+		config = function()
+			require("coresetup.indent-blankline").setup()
+		end,
+	})
 
-	if features.scrollbars then
-		use({
-			"dstein64/nvim-scrollview",
-			event = "User OnIdle",
-			config = function()
-				require("coresetup.scrollview").setup()
-			end,
-		})
-	end
+	use({
+		"dstein64/nvim-scrollview",
+		disable = not features.scrollbars,
+		event = "User OnIdle",
+		config = function()
+			require("coresetup.scrollview").setup()
+		end,
+	})
 
-	if features.workspaces then
-		use({
-			"natecraddock/workspaces.nvim",
-			module = "workspaces",
-			cmd = { "WorkspacesAdd", "WorkspacesRemove", "WorkspacesList", "WorkspacesOpen" },
-			config = function()
-				require("coresetup.workspaces").setup()
-			end,
-		})
-	end
+	use({
+		"natecraddock/workspaces.nvim",
+		disable = not features.workspaces,
+		module = "workspaces",
+		cmd = { "WorkspacesAdd", "WorkspacesRemove", "WorkspacesList", "WorkspacesOpen" },
+		config = function()
+			require("coresetup.workspaces").setup()
+		end,
+	})
 
-	if features.workspaces or features.lsp then
-		-- Improve vim.ui.select for :WorkspacesList and LSP rename
-		use({ "stevearc/dressing.nvim", module = "dressing" })
-	end
+	-- Improve vim.ui.select for :WorkspacesList and LSP rename
+	use({ "stevearc/dressing.nvim", disable = not (features.workspaces or features.lsp), module = "dressing" })
 
-	if features.github_fugitive then
-		-- Git blame and open in GitHub
-		use({
-			"tpope/vim-fugitive",
-			event = { "User OnIdle" },
-			requires = { "tpope/vim-rhubarb" },
-			-- not quite working
-			-- cmd = { "Git", "GBrowse", "GBrowse!" },
-		})
-	end
+	-- Git blame and open in GitHub
+	use({
+		"tpope/vim-fugitive",
+		disable = not features.github_fugitive,
+		event = { "User OnIdle" },
+		requires = { "tpope/vim-rhubarb" },
+		-- not quite working
+		-- cmd = { "Git", "GBrowse", "GBrowse!" },
+	})
 
-	if features.neogit then
-		use({ "sindrets/diffview.nvim", module = "diffview" })
+	use({
+		"sindrets/diffview.nvim",
+		disable = not features.neogit,
+		module = "diffview",
+	})
 
-		use({
-			"TimUntersberger/neogit",
-			cmd = { "Neogit" },
-			setup = function()
-				-- Force-load these plugins before loading Neogit
-				pcall(require, "plenary")
-				pcall(require, "diffview")
-			end,
-			config = function()
-				require("coresetup.neogit").setup()
-			end,
-		})
-	end
+	use({
+		"TimUntersberger/neogit",
+		disable = not features.neogit,
+		cmd = { "Neogit" },
+		setup = function()
+			-- Force-load these plugins before loading Neogit
+			pcall(require, "plenary")
+			pcall(require, "diffview")
+		end,
+		config = function()
+			require("coresetup.neogit").setup()
+		end,
+	})
 
-	if features.autopairs then
-		use({
-			"windwp/nvim-autopairs",
-			event = { "InsertEnter" },
-			config = function()
-				require("coresetup.nvim-autopairs").setup()
-			end,
-		})
-	end
+	use({
+		"windwp/nvim-autopairs",
+		disable = not features.autopairs,
+		event = { "InsertEnter" },
+		config = function()
+			require("coresetup.nvim-autopairs").setup()
+		end,
+	})
 
-	if features.completions then
-		-- Completions
-		use({
-			"hrsh7th/nvim-cmp",
-			event = { "InsertEnter", "CmdlineEnter" },
-			requires = {
-				"onsails/lspkind-nvim",
-				{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
-				{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-				{ "hrsh7th/cmp-path", after = "nvim-cmp" },
-				{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
-				{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
-			},
-			config = function()
-				require("coresetup.cmp").setup()
-			end,
-		})
+	-- Completions
+	use({
+		"hrsh7th/nvim-cmp",
+		disable = not features.completions,
+		event = { "InsertEnter", "CmdlineEnter" },
+		requires = {
+			"onsails/lspkind-nvim",
+			{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+			{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+			{ "hrsh7th/cmp-path", after = "nvim-cmp" },
+			{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+			{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
+		},
+		config = function()
+			require("coresetup.cmp").setup()
+		end,
+	})
 
-		use({ "L3MON4D3/LuaSnip", module = "luasnip" })
-	end
+	use({ "L3MON4D3/LuaSnip", disable = not features.completions, module = "luasnip" })
 
-	if features.alternate_filetypes then
-		use({ "nathom/filetype.nvim" })
-	end
+	use({
+		"nathom/filetype.nvim",
+		disable = not features.alternate_filetypes,
+	})
 
 	-- Telescope file picker
 	use({
@@ -336,17 +327,16 @@ local function packages(use)
 
 	use({ "thinca/vim-visualstar", keys = { "*", "#" } })
 
-	if features.status_line then
-		-- Status line
-		use({
-			"nvim-lualine/lualine.nvim",
-			event = features.lazy_load_statusline and "VimEnter" or nil,
-			module = features.lazy_load_statusline and { "lualine" } or nil,
-			config = function()
-				require("coresetup.lualine").setup()
-			end,
-		})
-	end
+	-- Status line
+	use({
+		"nvim-lualine/lualine.nvim",
+		disable = not features.status_line,
+		event = features.lazy_load_statusline and "VimEnter" or nil,
+		module = features.lazy_load_statusline and { "lualine" } or nil,
+		config = function()
+			require("coresetup.lualine").setup()
+		end,
+	})
 
 	use({ "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" })
 
