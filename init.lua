@@ -38,7 +38,7 @@ local defaults = {
 
 		-- Lazy load UI elements (status line). "true" makes startup
 		-- faster at the expense of a flash of unstyled UI
-		lazy_load_statusline = false,
+		lazy_load_statusline = true,
 	},
 
 	pane_navigation = {
@@ -220,7 +220,7 @@ local function packages(use)
 	if features.scrollbars then
 		use({
 			"dstein64/nvim-scrollview",
-			event = "User OnFileLoad",
+			event = "User OnIdle",
 			config = function()
 				require("coresetup.scrollview").setup()
 			end,
@@ -340,7 +340,7 @@ local function packages(use)
 		-- Status line
 		use({
 			"nvim-lualine/lualine.nvim",
-			event = features.lazy_load_statusline and "User OnIdle" or nil,
+			event = features.lazy_load_statusline and "VimEnter" or nil,
 			module = features.lazy_load_statusline and { "lualine" } or nil,
 			config = function()
 				require("coresetup.lualine").setup()
@@ -352,7 +352,7 @@ local function packages(use)
 
 	use({
 		"numToStr/Comment.nvim",
-		event = "User OnFileLoad",
+		event = { "User OnIdle", "CursorMoved" },
 		config = function()
 			require("Comment").setup()
 		end,
@@ -405,15 +405,15 @@ local utils = require("core.utils")
 
 -- Defer loading some plugins until Vim is idle
 utils.on_vimenter(function()
-	vim.schedule(function()
+	vim.defer_fn(function()
 		vim.cmd([[doautocmd User OnIdle]])
-	end)
+		require("core.auto-format").setup()
+		require("core.reload-utils").setup()
+	end, 160)
 end)
 
 utils.on_file_load(function()
 	vim.schedule(function()
 		vim.cmd([[doautocmd User OnFileLoad]])
-		require("core.reload-utils").setup()
-		require("core.auto-format").setup()
 	end)
 end)
