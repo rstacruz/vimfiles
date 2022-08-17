@@ -14,9 +14,6 @@ local function open_terminal()
 end
 
 local function open_colorscheme_picker()
-	-- Lazy-load all the available colors
-	vim.cmd("doautocmd User ColorAll")
-
 	require("telescope.builtin").colorscheme({ enable_preview = true })
 end
 
