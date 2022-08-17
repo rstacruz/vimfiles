@@ -15,12 +15,6 @@ local function reload(options)
 		end
 	end
 
-	-- Force-reload telescope
-	vim.g.loaded_telescope = 0
-
-	-- Signal to some configs that this is a hot-reload
-	vim.g.hot_reload = 1
-
 	local do_reload = function()
 		vim.cmd("luafile " .. vim.env.MYVIMRC)
 		require("packer").compile()
@@ -61,5 +55,3 @@ local function setup()
 		end,
 	})
 end
-
-return { setup = setup, reload = reload }
