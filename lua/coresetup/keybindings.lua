@@ -70,7 +70,7 @@ local function get_default_mappings()
 				" Open workspace…",
 			} or nil,
 			["<leader>pr"] = {
-				"<cmd>lua require('telescope.builtin').oldfiles({only_cwd=true})<cr>",
+				"<cmd>Telescope oldfiles only_cwd=true<cr>",
 				" Open recent file…",
 			},
 			["<leader>pg"] = { [[<cmd>Telescope git_status<cr>]], " Files changed in Git…" },

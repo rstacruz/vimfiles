@@ -27,7 +27,7 @@ local function get_config()
 		type = "group",
 		val = {
 			button("o", "  Open file…", "<cmd>lua require('core.actions').open_file_picker()<cr>"),
-			button("r", "  Recent files…", "<cmd>Telescope oldfiles<cr>"),
+			button("r", "  Recent files…", "<cmd>Telescope oldfiles only_cwd=true<cr>"),
 			button("-", "  Browse files", "<cmd>e .<cr>"),
 			button(".", "  Terminal", "<cmd>lua require('core.actions').open_terminal()<cr>"),
 		},
