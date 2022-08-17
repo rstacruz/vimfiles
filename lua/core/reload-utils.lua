@@ -1,5 +1,7 @@
 -- Reload neovim config
-local function reload()
+local function reload(options)
+	local opts = options or {}
+
 	-- Refresh the impatient caches
 	vim.cmd("LuaCacheClear")
 
@@ -16,14 +18,25 @@ local function reload()
 	-- Signal to some configs that this is a hot-reload
 	vim.g.hot_reload = 1
 
-	vim.cmd("luafile " .. vim.env.MYVIMRC)
-	require("packer").compile()
-	require("packer").install()
-	vim.notify(" Config reloaded")
+	local do_reload = function()
+		vim.cmd("luafile " .. vim.env.MYVIMRC)
+		require("packer").compile()
+		require("packer").install()
+		vim.notify(" Config reloaded")
 
-	-- Manually fire off the lazy-loaded modules
-	vim.cmd("doautocmd User OnIdle")
-	vim.cmd("doautocmd User OnFileLoad")
+		-- Manually fire off the lazy-loaded modules
+		vim.cmd("doautocmd User OnIdle")
+		vim.cmd("doautocmd User OnFileLoad")
+	end
+
+	if opts.safe then
+		local is_ok, _ = pcall(do_reload)
+		if not is_ok then
+			vim.notify(" Config reloading didn't work. Try 'leader-sr' to reload again and show errors.")
+		end
+	else
+		do_reload()
+	end
 end
 
 -- Automatically compile when writing init.lua
@@ -33,13 +46,14 @@ local function setup()
 	vim.api.nvim_create_autocmd("BufWritePost", {
 		pattern = {
 			vim.env.MYVIMRC,
-			vim.fn.stdpath("config") .. "/lua/custom/init.lua",
-			vim.fn.stdpath("config") .. "/lua/coresetup/keybindings.lua",
+			vim.fn.stdpath("config") .. "/lua/custom/*.lua",
+			vim.fn.stdpath("config") .. "/lua/core/*.lua",
+			vim.fn.stdpath("config") .. "/lua/coresetup/*.lua",
 		},
 		group = group,
 		callback = function()
 			vim.schedule(function()
-				reload()
+				reload({ safe = true })
 			end)
 		end,
 	})
