@@ -55,3 +55,5 @@ local function setup()
 		end,
 	})
 end
+
+return { reload = reload, setup = setup }
