@@ -1,4 +1,7 @@
 -- Reload neovim config
+--   reload()
+--   reload({ safe = true }) -- Suppress errors
+
 local function reload(options)
 	local opts = options or {}
 
