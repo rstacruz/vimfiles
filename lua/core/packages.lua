@@ -165,6 +165,7 @@ local function get_packages(features)
 		{ -- dressing: Improve vim.ui.select for :WorkspacesList and LSP rename
 			"stevearc/dressing.nvim",
 			disable = not (features.workspaces or features.lsp),
+			event = { "User OnIdle" },
 			module = "dressing",
 		},
 

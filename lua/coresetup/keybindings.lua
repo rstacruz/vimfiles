@@ -151,12 +151,16 @@ local function get_default_mappings()
 
 			-- Leader: [c] code
 			["<leader>c"] = features.lsp and { name = " Code…" } or nil,
+			["<leader>ci"] = features.lsp and features.lsp_installer and {
+				"<cmd>Mason<cr>",
+				" Install tool…",
+			} or nil,
 			["<leader>ca"] = features.lsp and {
-				"<cmd>lua require('dressing')<cr>:lua vim.lsp.buf.code_action()<cr>",
+				"<cmd>lua vim.lsp.buf.code_action()<cr>",
 				" Actions…",
 			} or nil,
 			["<leader>cr"] = features.lsp and {
-				"<cmd>lua require('dressing')<cr>:lua vim.lsp.buf.rename()<cr>",
+				"<cmd>lua vim.lsp.buf.rename()<cr>",
 				" Rename symbol…",
 			} or nil,
 			["<leader>cd"] = features.lsp and { "<cmd>Telescope diagnostics<CR>", " Show diagnostics…" } or nil,
