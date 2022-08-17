@@ -67,6 +67,9 @@ local defaults = {
 	--
 	-- null-ls tools are available here:
 	-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+	--
+	-- Install the tools with :Mason (leader-ci), then if the tool is installed,
+	-- they can be used here
 	lsp_tools = {
 		{ bin = "lua-language-server", lspconfig = "sumneko_lua" },
 		{ bin = "typescript-language-server", lspconfig = "tsserver" },
@@ -74,7 +77,13 @@ local defaults = {
 		{ bin = "svelte-language-server", lspconfig = "svelte" },
 		{ bin = "solargraph", lspconfig = "solargraph" },
 		{ bin = "stylua", null_ls_formatting = "stylua" },
-		{ bin = "prettierd", null_ls_formatting = "prettierd" },
+		{
+			bin = "prettierd",
+			null_ls_formatting = "prettierd",
+			root_pattern = { ".prettierrc", ".prettierignore", ".prettierrc.js" },
+		},
+		-- { bin = "marksman", lspconfig = "marksman", root_pattern = { ".marksman.toml" } },
+		{ bin = "zk", lspconfig = "zk", root_pattern = { ".zk" } },
 	},
 }
 

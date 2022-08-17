@@ -1,5 +1,12 @@
-local function has_bin(bin_name)
+local function has_mason_bin(bin_name)
 	return vim.fn.filereadable(vim.fn.stdpath("data") .. "/mason/bin/" .. bin_name) == 1
+end
+
+-- Checks if the tool `bin_name` is available. It checks Mason separately
+-- because executable() can be expensive for some systems (eg, WSL2 that might
+-- traverse NTFS to check for executables).
+local function has_bin(bin_name)
+	return has_mason_bin(bin_name) or vim.fn.executable(bin_name)
 end
 
 local function setup()
@@ -24,8 +31,15 @@ local function setup()
 
 	for _, tool in ipairs(tools) do
 		if has_bin(tool.bin) then
+			local root_dir = nil
+			if tool.root_pattern then
+				root_dir = lspconfig.util.root_pattern(unpack(tool.root_pattern))
+			end
 			if tool.lspconfig then
-				lspconfig[tool.lspconfig].setup({ on_attach = on_attach })
+				lspconfig[tool.lspconfig].setup({
+					on_attach = on_attach,
+					root_dir = root_dir,
+				})
 			end
 			if tool.null_ls_formatting then
 				table.insert(null_sources, null_ls.builtins.formatting[tool.null_ls_formatting])
