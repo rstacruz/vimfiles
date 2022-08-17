@@ -51,7 +51,7 @@ local function get_config()
 			{
 				type = "text",
 				val = BaseConfig.welcome_screen.banner,
-				opts = { position = "center", hl = "Comment", redraw = true },
+				opts = { position = "center", hl = "VertSplit", redraw = false },
 			},
 			{ type = "padding", val = 1 },
 			section_buttons,
