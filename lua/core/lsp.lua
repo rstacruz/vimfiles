@@ -8,6 +8,7 @@ local tools = {
 	{ bin = "lua-language-server", lspconfig = "sumneko_lua" },
 	{ bin = "typescript-language-server", lspconfig = "tsserver" },
 	{ bin = "astro-language-server", lspconfig = "astro" },
+	{ bin = "solargraph", lspconfig = "solargraph" },
 	{ bin = "stylua", null_ls_formatting = "stylua" },
 	{ bin = "prettierd", null_ls_formatting = "prettierd" },
 }
