@@ -2,17 +2,6 @@ local function has_bin(bin_name)
 	return vim.fn.filereadable(vim.fn.stdpath("data") .. "/mason/bin/" .. bin_name) == 1
 end
 
--- Mappings are available here:
--- https://github.com/williamboman/mason-lspconfig.nvim/blob/main/lua/mason-lspconfig/mappings/server.lua
-local tools = {
-	{ bin = "lua-language-server", lspconfig = "sumneko_lua" },
-	{ bin = "typescript-language-server", lspconfig = "tsserver" },
-	{ bin = "astro-language-server", lspconfig = "astro" },
-	{ bin = "solargraph", lspconfig = "solargraph" },
-	{ bin = "stylua", null_ls_formatting = "stylua" },
-	{ bin = "prettierd", null_ls_formatting = "prettierd" },
-}
-
 local function setup()
 	-- Ensure mason is loaded first. This makes it so that the mason bin's are available
 	local has_mason, mason = pcall(require, "mason")
@@ -30,6 +19,8 @@ local function setup()
 
 	local has_null_ls, null_ls = pcall(require, "null-ls")
 	local null_sources = {}
+
+	local tools = BaseConfig.lsp_tools
 
 	for _, tool in ipairs(tools) do
 		if has_bin(tool.bin) then

@@ -61,6 +61,21 @@ local defaults = {
 			"lua",
 		},
 	},
+
+	-- lspconfig mappings are available here:
+	-- https://github.com/williamboman/mason-lspconfig.nvim/blob/main/lua/mason-lspconfig/mappings/server.lua
+	--
+	-- null-ls tools are available here:
+	-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+	lsp_tools = {
+		{ bin = "lua-language-server", lspconfig = "sumneko_lua" },
+		{ bin = "typescript-language-server", lspconfig = "tsserver" },
+		{ bin = "astro-language-server", lspconfig = "astro" },
+		{ bin = "svelte-language-server", lspconfig = "svelte" },
+		{ bin = "solargraph", lspconfig = "solargraph" },
+		{ bin = "stylua", null_ls_formatting = "stylua" },
+		{ bin = "prettierd", null_ls_formatting = "prettierd" },
+	},
 }
 
 return { defaults = defaults }
