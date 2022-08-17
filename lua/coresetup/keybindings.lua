@@ -9,8 +9,8 @@ local function get_default_mappings()
 			["<s-del>"] = { "<cmd>w<cr>:bd<cr>", "Save and close" },
 			["<c-p>"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open file…" },
 			["gs"] = { ":%s~~", "Replace with..." },
-			["]q"] = { "<cmd>cnext<CR>", "Next quickfix item" },
-			["[q"] = { "<cmd>cprev<CR>", "Prev quickfix item" },
+			["]c"] = { "<cmd>cnext<CR>", "Next quickfix item" },
+			["[c"] = { "<cmd>cprev<CR>", "Prev quickfix item" },
 			["]g"] = features.gitsigns and {
 				"<cmd>lua require('gitsigns').next_hunk()<cr>",
 				"Next Git change",
