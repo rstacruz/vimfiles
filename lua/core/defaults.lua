@@ -85,6 +85,9 @@ local defaults = {
 		-- { bin = "marksman", lspconfig = "marksman", root_pattern = { ".marksman.toml" } },
 		{ bin = "zk", lspconfig = "zk", root_pattern = { ".zk" } },
 	},
+
+	-- Configuration overrides for Neovim plugins
+	plugins: {}
 }
 
 return { defaults = defaults }

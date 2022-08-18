@@ -8,8 +8,7 @@ pcall(require, "custom.init")
 require("coresetup.nvim-options").setup()
 
 -- Packer packages
-local features = BaseConfig.features
-local packages = require("core.packages").get_packages(features)
+local packages = require("core.packages").get_packages(BaseConfig.features)
 
 -- Install packer and install packages
 if require("core.packer-utils").bootstrap_packer(packages) == false then
