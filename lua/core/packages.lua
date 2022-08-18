@@ -324,6 +324,16 @@ local function get_packages(features)
 		-- Close hidden buffers
 		{ "kazhala/close-buffers.nvim", module = "close_buffers" },
 
+		{
+			"j-hui/fidget.nvim",
+			disable = not features.lsp,
+			module = "fidget",
+			event = "User OnIdle",
+			config = function()
+				require("coresetup.fidget").setup()
+			end
+		},
+
 		-- Themes
 		{ "EdenEast/nightfox.nvim" },
 		{ "navarasu/onedark.nvim" }, --, event = { "User ColorAll", "User Color_onedark" },
