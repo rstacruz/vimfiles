@@ -1,12 +1,6 @@
 -- Automatically re-apply bufferline when changing colorschemes.
-local function setup_colorscheme_hook(callback)
-	local group = vim.api.nvim_create_augroup("BufferlineColorschemeHook", { clear = true })
-
-	vim.api.nvim_create_autocmd("Colorscheme", {
-		pattern = "*",
-		group = group,
-		callback = callback,
-	})
+local function on_colorscheme_change(callback)
+	require("core.utils").on_colorscheme_change({ prefix = "Bufferline", callback = callback })
 end
 
 local function apply_options()
@@ -68,7 +62,8 @@ end
 local function setup()
 	apply_options()
 
-	setup_colorscheme_hook(function()
+	on_colorscheme_change(function()
+		-- use vim.schedule to defer it. Colorscheme will run on startup
 		vim.schedule(function()
 			apply_options()
 		end)

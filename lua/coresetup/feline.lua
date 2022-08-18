@@ -27,12 +27,7 @@ local function extract_color(color_groups, what)
 end
 
 local function on_colorscheme_change(callback)
-	local group = vim.api.nvim_create_augroup("FelineColorscheme", { clear = true })
-	vim.api.nvim_create_autocmd("Colorscheme", {
-		pattern = "*",
-		group = group,
-		callback = callback,
-	})
+	require("core.utils").on_colorscheme_change({ prefix = "Feline", callback = callback })
 end
 
 local function setup_theme()
@@ -126,10 +121,11 @@ local function setup()
 	}
 
 	local rsep = { provider = "  " }
+	local sep = { provider = "  " }
 
 	local components = {
-		-- active = { { modeleft, pad, fileinfo }, {}, { branch, rsep, position, rsep } },
-		active = { { modeleft, rsep, position }, { branch, rsep, fileinfo, rsep, capright } },
+		active = { { modeleft, sep, fileinfo }, {}, { branch, rsep, position, rsep, capright } }, -- left
+		-- active = { { modeleft, rsep, position }, { branch, rsep, fileinfo, rsep, capright } }, -- right
 		inactive = { { modeleft, rsep }, { capright } },
 	}
 

@@ -39,7 +39,19 @@ local function apply_config_overrides(object, override)
 	end
 end
 
+local function on_colorscheme_change(options)
+	local prefix = options.prefix or ""
+	local callback = options.callback
+	local group = vim.api.nvim_create_augroup(prefix .. "Colorscheme", { clear = true })
+	vim.api.nvim_create_autocmd("Colorscheme", {
+		pattern = "*",
+		group = group,
+		callback = callback,
+	})
+end
+
 return {
 	once = once,
 	apply_config_overrides = apply_config_overrides,
+	on_colorscheme_change = on_colorscheme_change,
 }
