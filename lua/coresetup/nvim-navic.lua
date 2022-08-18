@@ -11,6 +11,9 @@ local function setup()
 		-- highlight = true,
 	}
 
+	-- Silence warnings
+	vim.g.navic_silence = true
+
 	navic.setup(options)
 end
 
