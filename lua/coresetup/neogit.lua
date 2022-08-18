@@ -4,7 +4,7 @@ local function setup()
 		return
 	end
 
-	neogit.setup({
+	local options = {
 		signs = {
 			section = { " ", " " },
 			item = { " ", " " },
@@ -12,7 +12,11 @@ local function setup()
 		integrations = {
 			diffview = true, -- uses sindrets/diffview.nvim
 		},
-	})
+	}
+
+	require("core.utils").apply_config_overrides(options, BaseConfig.plugins.neogit)
+
+	neogit.setup(options)
 end
 
 return { setup = setup }

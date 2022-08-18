@@ -86,7 +86,7 @@ local defaults = {
 		{ bin = "zk", lspconfig = "zk", root_pattern = { ".zk" } },
 	},
 
-	-- Configuration overrides for Neovim plugins
+	-- Plugin setup overrides
 	plugins = {},
 }
 

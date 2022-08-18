@@ -38,7 +38,10 @@
 -- BaseConfig.terminal.shell = nil
 -- BaseConfig.terminal.shell = "fish"
 
--- ## Plugin overrides
+-- ## Plugin setup overrides
 -- These can be tables (will be extended) of functions (will be passed the config)
 -- BaseConfig.plugins.nvim_tree = {}
 -- BaseConfig.plugins.nvim_surround = {}
+-- BaseConfig.plugins.nvim_autopairs = {}
+-- BaseConfig.plugins.navic = {}
+-- BaseConfig.plugins.neogit = {}

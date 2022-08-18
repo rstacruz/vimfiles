@@ -56,6 +56,7 @@ local function get_default_mappings()
 
 			-- Leader: [p] pick
 			["<leader>p"] = { name = " Pick…" },
+			["<leader>p?"] = { "<cmd>Telescope help_tags<cr>", " Vim help…" },
 			["<leader>p<space>"] = { "<cmd>Telescope resume<cr>", "  Resume last search…" },
 			["<leader>pb"] = { "<cmd>Telescope buffers<cr>", " List buffers…" },
 			["<leader>p/"] = { "<cmd>Telescope live_grep<cr>", " Grep…" },
