@@ -24,6 +24,8 @@
 -- BaseConfig.features.scrollbars = true
 -- BaseConfig.features.workspaces = true
 -- BaseConfig.features.alternate_filetypes = false
+-- BaseConfig.features.status_line = true
+-- BaseConfig.features.status_line = "feline"
 
 -- BaseConfig.format.autoformat_files = "*.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs",
 

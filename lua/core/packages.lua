@@ -278,9 +278,17 @@ local function get_packages(features)
 
 		{ -- Status line
 			"nvim-lualine/lualine.nvim",
-			disable = not features.status_line,
+			disable = features.status_line ~= true,
 			config = function()
 				require("coresetup.lualine").setup()
+			end,
+		},
+
+		{ -- Status line
+			"feline-nvim/feline.nvim",
+			disable = features.status_line ~= "feline",
+			config = function()
+				require("coresetup.feline").setup()
 			end,
 		},
 
