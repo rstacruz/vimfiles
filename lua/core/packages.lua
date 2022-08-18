@@ -278,7 +278,7 @@ local function get_packages(features)
 
 		{ -- Status line
 			"nvim-lualine/lualine.nvim",
-			disable = features.status_line ~= true,
+			disable = features.status_line ~= "lualine",
 			config = function()
 				require("coresetup.lualine").setup()
 			end,
@@ -286,7 +286,7 @@ local function get_packages(features)
 
 		{ -- Status line
 			"feline-nvim/feline.nvim",
-			disable = features.status_line ~= "feline",
+			disable = not (features.status_line == "feline" or features.status_line == true),
 			config = function()
 				require("coresetup.feline").setup()
 			end,
@@ -339,7 +339,7 @@ local function get_packages(features)
 			event = "User OnIdle",
 			config = function()
 				require("coresetup.fidget").setup()
-			end
+			end,
 		},
 
 		-- Themes
