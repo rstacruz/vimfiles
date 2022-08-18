@@ -7,7 +7,7 @@ local function setup_autoformat()
 
 	local group = vim.api.nvim_create_augroup("NullFormat", { clear = true })
 
-	vim.api.nvim_creaute_autocmd("BufWritePre", {
+	vim.api.nvim_create_autocmd("BufWritePre", {
 		pattern = pattern,
 		group = group,
 		callback = function()
