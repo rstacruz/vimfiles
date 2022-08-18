@@ -12,6 +12,11 @@ local function get_borders(hl_name)
 end
 
 local function setup()
+	-- Without this, hot-reload will make entries appear twice or more
+	if vim.g.hot_reload then
+		require("plenary.reload").reload_module("cmp")
+	end
+
 	local has_cmp, cmp = pcall(require, "cmp")
 	if not has_cmp then
 		return
