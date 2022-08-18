@@ -129,7 +129,7 @@ local function setup()
 
 	local components = {
 		-- active = { { modeleft, pad, fileinfo }, {}, { branch, rsep, position, rsep } },
-		active = { { modeleft, rsep, position, rsep, branch, rsep }, { fileinfo, rsep, capright } },
+		active = { { modeleft, rsep, position }, { branch, rsep, fileinfo, rsep, capright } },
 		inactive = { { modeleft, rsep }, { capright } },
 	}
 
