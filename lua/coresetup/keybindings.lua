@@ -201,6 +201,7 @@ local function get_default_mappings()
 
 			-- [,] others
 			["<leader>,"] = { name = " Experimental…" },
+			["<leader>,e"] = { ":lua vim.notify(vim.inspect())<left><left>", "Evaluate lua line…" },
 			["<leader>,s"] = { "<cmd>split ~/.scratchpad<cr><C-w>H", "Open scratchpad" },
 			["<leader>,p"] = { "<cmd>StartupTime --tries 6<cr>", "Profile startup time" },
 		},

@@ -43,6 +43,10 @@ local function setup()
 	vim.opt.numberwidth = 2 -- Line numbers
 	vim.opt.ruler = false -- No "1,1" in status line
 
+	if features.status_line == "feline" then
+		vim.opt.laststatus = 3
+	end
+
 	-- Disable nvim intro
 	vim.opt.shortmess:append("sI")
 	vim.opt.signcolumn = "yes"
