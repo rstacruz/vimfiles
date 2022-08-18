@@ -168,7 +168,7 @@ local function get_packages(features)
 			module = "dressing",
 		},
 
-		{
+		{ -- rhubarb: browse on GitHub
 			"tpope/vim-rhubarb",
 			event = { "User OnIdle" },
 		},
