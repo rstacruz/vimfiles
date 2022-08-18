@@ -19,52 +19,71 @@ local function button(shortcut, text, command)
 	}
 end
 
+local function to_buttons(buttons)
+	local result = {}
+	for _, item in ipairs(buttons) do
+		if type(item) == "table" then
+			table.insert(result, button(item[1], item[2], item[3]))
+		end
+	end
+	return result
+end
+
 local function get_config()
 	local features = BaseConfig.features
 
-	-- buttons
-	local section_buttons = {
-		type = "group",
-		val = {
-			button("o", "  Open file…", "<cmd>lua require('core.actions').open_file_picker()<cr>"),
-			button("r", "  Recent files…", "<cmd>Telescope oldfiles only_cwd=true<cr>"),
-			button("-", "  Browse files", "<cmd>e .<cr>"),
-			button(".", "  Terminal", "<cmd>lua require('core.actions').open_terminal()<cr>"),
+	local buttons = {
+		top = {
+			{ "o", "  Open file…", "<cmd>lua require('core.actions').open_file_picker()<cr>" },
+			{ "r", "  Recent files…", "<cmd>Telescope oldfiles only_cwd=true<cr>" },
+			{ "-", "  Browse files", "<cmd>e .<cr>" },
+			{ ".", "  Terminal", "<cmd>lua require('core.actions').open_terminal()<cr>" },
 		},
-		opts = { spacing = 1, hl = "Normal" },
+		bottom = {
+			{ "e", "  New file", "<cmd>ene<cr>" },
+			features.workspaces and { "w", "  Open workspace…", "<cmd>WorkspacesList<cr>" } or false,
+			features.project_switcher and { "p", "  Switch project…", "<cmd>Telescope projects<cr>" } or false,
+			{ "q", "  Quit", "<cmd>qa<cr>" },
+		},
 	}
 
-	local section_buttons_2 = {
-		type = "group",
-		val = {
-			button("e", "  New file", "<cmd>ene<cr>"),
-			features.workspaces and button("w", "  Open workspace…", "<cmd>WorkspacesList<cr>") or nil,
-			features.project_switcher and button("p", "  Switch project…", "<cmd>Telescope projects<cr>") or nil,
-			button("q", "  Quit", "<cmd>qa<cr>"),
+	require("core.utils").apply_config_overrides(buttons, BaseConfig.plugins.alpha_buttons)
+
+	-- buttons
+	local sections = {
+		banner = {
+			type = "text",
+			val = BaseConfig.welcome_screen.banner,
+			opts = { position = "center", hl = "VertSplit", redraw = false },
 		},
-		opts = { spacing = 1, hl = "Normal" },
+		buttons_top = {
+			type = "group",
+			val = to_buttons(buttons.top),
+			opts = { spacing = 1, hl = "Normal" },
+		},
+
+		buttons_bottom = {
+			type = "group",
+			val = to_buttons(buttons.bottom),
+			opts = { spacing = 1, hl = "Normal" },
+		},
+		hr = {
+			type = "text",
+			val = "┄─┄",
+			opts = { position = "center", hl = "VertSplit", redraw = true },
+		},
 	}
 
 	local config = {
 		layout = {
 			{ type = "padding", val = 5 },
-			{
-				type = "text",
-				val = BaseConfig.welcome_screen.banner,
-				opts = { position = "center", hl = "VertSplit", redraw = false },
-			},
+			sections.banner,
 			{ type = "padding", val = 1 },
-			section_buttons,
-			{
-				type = "text",
-				val = "┄─┄",
-				opts = { position = "center", hl = "VertSplit", redraw = true },
-			},
+			sections.buttons_top,
+			sections.hr,
 			{ type = "padding", val = 1 },
-			section_buttons_2,
+			sections.buttons_bottom,
 			{ type = "padding", val = 1 },
-			-- { type = "group", val = section_mru.val, },
-			-- { type = "padding", val = 1 },
 		},
 		opts = {
 			margin = 5,
@@ -84,4 +103,4 @@ local function setup()
 	alpha.setup(config)
 end
 
-return { setup = setup }
+return { setup = setup, get_config = get_config }
