@@ -147,6 +147,7 @@ end
 
 local function get_full_options()
 	local options = {
+		options = get_simple_options().options,
 		inactive_sections = {
 			lualine_a = {},
 			lualine_b = {},
@@ -165,7 +166,7 @@ local function get_full_options()
 		},
 	}
 
-	return vim.tbl_deep_extend("force", get_simple_options(), options)
+	return options
 end
 
 local function setup()

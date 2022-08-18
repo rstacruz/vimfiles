@@ -82,7 +82,7 @@ local function get_packages(features)
 		{ -- lspconfig
 			"neovim/nvim-lspconfig",
 			disable = not features.lsp,
-			event = "User OnFileLoad",
+			event = "User OnIdle",
 			config = function()
 				require("core.lsp").setup()
 			end,
@@ -116,7 +116,7 @@ local function get_packages(features)
 		{ -- gitsigns: Git indicators on the gutter
 			"lewis6991/gitsigns.nvim",
 			disable = not features.gitsigns,
-			event = "User OnFileLoad",
+			event = "User OnIdle",
 			module = "gitsigns",
 			cmd = { "Gitsigns" },
 			config = function()
@@ -338,4 +338,3 @@ local function get_packages(features)
 end
 
 return { get_packages = get_packages }
-
