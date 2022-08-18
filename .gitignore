@@ -10,3 +10,7 @@
 /plugin/packer_compiled.lua
 .neovim_playground_env
 /lua/custom/init.lua
+
+# when using plenary.profile to profile performance
+/profile.svg
+/profile.log

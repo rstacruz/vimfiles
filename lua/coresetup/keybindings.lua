@@ -202,7 +202,7 @@ local function get_default_mappings()
 			-- [,] others
 			["<leader>,"] = { name = " Experimental…" },
 			["<leader>,s"] = { "<cmd>split ~/.scratchpad<cr><C-w>H", "Open scratchpad" },
-			["<leader>,p"] = { "<cmd>StartupTime --tries 12<cr>", "Profile startup time" },
+			["<leader>,p"] = { "<cmd>StartupTime --tries 6<cr>", "Profile startup time" },
 		},
 		t = {
 			["<c-x>"] = { "<c-\\><c-n>" }, -- escape
