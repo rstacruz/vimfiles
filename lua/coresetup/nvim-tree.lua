@@ -44,7 +44,7 @@ local function setup()
 		return
 	end
 
-	nvim_tree.setup({
+	local options = {
 		sync_root_with_cwd = true,
 		view = {
 			width = 30,
@@ -91,11 +91,16 @@ local function setup()
 		actions = {
 			open_file = {
 				window_picker = {
-					chars = "arstwfpcdoienyul",
+					-- Disable the "pick window" behaviour when there is more than one open.
+					-- Instead, choose the last window.
+					enable = false,
 				},
 			},
 		},
-	})
+	}
+
+	require("core.utils").apply_config_overrides(options, BaseConfig.plugins.nvim_tree)
+	nvim_tree.setup(options)
 end
 
 return { setup = setup }

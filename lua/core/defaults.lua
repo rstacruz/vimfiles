@@ -87,7 +87,7 @@ local defaults = {
 	},
 
 	-- Configuration overrides for Neovim plugins
-	plugins: {}
+	plugins = {},
 }
 
 return { defaults = defaults }

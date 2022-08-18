@@ -38,7 +38,32 @@ local function on_vimenter(callback)
 	})
 end
 
+-- Applies overrides to a configuation.
+--   local config = { show = true }
+--
+--   Tables: extend the config
+--   apply_config_overrides(config, { quiet = false })
+--   --> { show = true, quiet = false }
+--
+--   Functions: run it
+--   apply_config_overrides(config, function(config)
+--     config.quiet = false
+--   end)
+--   --> { show = true, quiet = false }
+--
+local function apply_config_overrides(object, override)
+	if not override then
+		return object
+	elseif type(override) == "function" then
+		local result = override(object)
+		return result or object
+	elseif type(override) == "table" then
+		return vim.tbl_deep_extend("force", object, override)
+	end
+end
+
 return {
 	on_file_load = on_file_load,
 	on_vimenter = on_vimenter,
+	apply_config_overrides = apply_config_overrides,
 }
