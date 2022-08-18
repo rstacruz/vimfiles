@@ -1,12 +1,12 @@
 local function has_mason_bin(bin_name)
-	return vim.fn.filereadable(vim.fn.stdpath("data") .. "/mason/bin/" .. bin_name) == 1
+	return vim.fn.executable(vim.fn.stdpath("data") .. "/mason/bin/" .. bin_name) == 1
 end
 
 -- Checks if the tool `bin_name` is available. It checks Mason separately
 -- because executable() can be expensive for some systems (eg, WSL2 that might
 -- traverse NTFS to check for executables).
 local function has_bin(bin_name)
-	return has_mason_bin(bin_name) or vim.fn.executable(bin_name)
+	return has_mason_bin(bin_name) or vim.fn.executable(bin_name) == 1
 end
 
 local function setup()
