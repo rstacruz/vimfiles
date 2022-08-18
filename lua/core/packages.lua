@@ -7,7 +7,6 @@ local function get_packages(features)
 
 		{ -- Plenary: Library for Telescope and many others
 			"nvim-lua/plenary.nvim",
-			module = { "plenary", "plenary.async" },
 		},
 
 		{ -- Treesitter
@@ -339,3 +338,4 @@ local function get_packages(features)
 end
 
 return { get_packages = get_packages }
+
