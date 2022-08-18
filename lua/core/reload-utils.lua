@@ -1,30 +1,26 @@
+local do_reload = function()
+	vim.cmd("luafile " .. vim.env.MYVIMRC)
+	require("packer").compile()
+	require("packer").install()
+	vim.notify(" Config reloaded")
+
+	-- Manually fire off the lazy-loaded modules
+	vim.cmd("doautocmd User OnIdle")
+	vim.cmd("doautocmd User OnFileLoad")
+end
+
 -- Reload neovim config
 --   reload()
 --   reload({ safe = true }) -- Suppress errors
 
 local function reload(options)
 	local opts = options or {}
+	vim.g.hot_reload = true
 
-	-- Refresh the impatient caches
-	vim.cmd("LuaCacheClear")
-
-	-- Unload everything from core and coresetup
-	for k, _ in pairs(package.loaded) do
-		if string.match(k, "^core") or string.match(k, "^custom") then
-			package.loaded[k] = nil
-		end
-	end
-
-	local do_reload = function()
-		vim.cmd("luafile " .. vim.env.MYVIMRC)
-		require("packer").compile()
-		require("packer").install()
-		vim.notify(" Config reloaded")
-
-		-- Manually fire off the lazy-loaded modules
-		vim.cmd("doautocmd User OnIdle")
-		vim.cmd("doautocmd User OnFileLoad")
-	end
+	local reload_module = require("plenary.reload").reload_module
+	reload_module("core")
+	reload_module("coresetup")
+	reload_module("custom")
 
 	if opts.safe then
 		local is_ok, _ = pcall(do_reload)
