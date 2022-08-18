@@ -1,4 +1,4 @@
-9-- Run formatting before saving files
+-- Run formatting before saving files
 local function setup_autoformat()
 	local pattern = BaseConfig.format.autoformat_files
 	if not pattern then
