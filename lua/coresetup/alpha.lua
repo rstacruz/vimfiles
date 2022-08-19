@@ -49,6 +49,8 @@ local function get_config()
 
 	require("core.utils").apply_config_overrides(buttons, BaseConfig.plugins.alpha_buttons)
 
+	local spacing = vim.o.lines > 25 and 1 or 0
+
 	-- buttons
 	local sections = {
 		banner = {
@@ -59,13 +61,13 @@ local function get_config()
 		buttons_top = {
 			type = "group",
 			val = to_buttons(buttons.top),
-			opts = { spacing = 1, hl = "Normal" },
+			opts = { spacing = spacing, hl = "Normal" },
 		},
 
 		buttons_bottom = {
 			type = "group",
 			val = to_buttons(buttons.bottom),
-			opts = { spacing = 1, hl = "Normal" },
+			opts = { spacing = spacing, hl = "Normal" },
 		},
 		hr = {
 			type = "text",
@@ -76,7 +78,7 @@ local function get_config()
 
 	local config = {
 		layout = {
-			{ type = "padding", val = 5 },
+			{ type = "padding", val = 2 },
 			sections.banner,
 			{ type = "padding", val = 1 },
 			sections.buttons_top,
