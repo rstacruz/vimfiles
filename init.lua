@@ -15,13 +15,12 @@ if require("core.packer-utils").bootstrap_packer(packages) == false then
 	return
 end
 
+-- Apply theme
 require("core.theme-overrides").setup()
 require("core.theme-utils").setup()
 
-local utils = require("core.utils")
-
 -- Defer loading some plugins until Vim is idle
-utils.once("UIEnter", function()
+require("core.utils").once("UIEnter", function()
 	vim.defer_fn(function()
 		vim.cmd([[doautocmd User OnIdle]])
 		require("core.reload-utils").setup()
