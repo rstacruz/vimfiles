@@ -30,6 +30,26 @@ local function on_colorscheme_change(callback)
 	require("core.utils").on_colorscheme_change({ prefix = "Feline", callback = callback })
 end
 
+local function indent()
+	return {
+		provider = function()
+			if vim.bo.expandtab == false then
+			  return ""
+			else
+				local val = vim.bo.softtabstop
+				local sval = {
+					[1] = "¹",
+					[2] = "²",
+					[4] = "⁴",
+					[8] = "⁸",
+				}
+				return string.format("%s", sval[val] or val)
+      end
+		end,
+		hl = { fg = "mute2" },
+	}
+end
+
 local function rslash()
 	return {
 		provider = "    ",
@@ -190,7 +210,7 @@ local function setup()
 		active = {
 			{ capleft, sep, fileinfo, sep, navic() },
 			{},
-			{ branch, rslash(), position, mode(), capright },
+			{ branch, rslash(), indent(), sep, position, mode(), capright },
 		}, -- left
 		-- active = { { capleft, rsep, position }, { branch, rsep, fileinfo, rsep, capright } }, -- right
 		inactive = { { capleft, sep }, { capright } },
