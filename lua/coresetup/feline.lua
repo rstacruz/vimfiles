@@ -30,6 +30,25 @@ local function on_colorscheme_change(callback)
 	require("core.utils").on_colorscheme_change({ prefix = "Feline", callback = callback })
 end
 
+local function navic()
+	return {
+		provider = function()
+			if not vim.g.navic_available then
+				return nil
+			end
+			local has_navic, nvim_navic = pcall(require, "nvim-navic")
+			return has_navic and nvim_navic and string.format("╱ %s", nvim_navic.get_location())
+		end,
+		enabled = function()
+			if not vim.g.navic_available then
+				return nil
+			end
+			local has_navic, nvim_navic = pcall(require, "nvim-navic")
+			return has_navic and nvim_navic and nvim_navic.is_available()
+		end,
+	}
+end
+
 local function setup_theme()
 	local has, feline = pcall(require, "feline")
 	if not has then
@@ -121,10 +140,10 @@ local function setup()
 	}
 
 	local rsep = { provider = "  " }
-	local sep = { provider = "  " }
+	local sep = { provider = " " }
 
 	local components = {
-		active = { { modeleft, sep, fileinfo }, {}, { branch, rsep, position, rsep, capright } }, -- left
+		active = { { modeleft, sep, fileinfo, sep, navic() }, {}, { branch, rsep, position, rsep, capright } }, -- left
 		-- active = { { modeleft, rsep, position }, { branch, rsep, fileinfo, rsep, capright } }, -- right
 		inactive = { { modeleft, rsep }, { capright } },
 	}
