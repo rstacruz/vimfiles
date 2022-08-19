@@ -5,7 +5,7 @@ local function setup()
 	end
 
 	local options = {
-		separator = " ╱ ",
+		separator = "  ",
 
 		-- Provide different highlights. But it's not very reliable
 		-- highlight = true,

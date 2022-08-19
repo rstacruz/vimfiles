@@ -8,7 +8,7 @@ local function setup()
 		window = {
 			border = "none", -- none single double shadow
 			position = "bottom",
-			margin = { 0, 0, 1, 0 }, -- trbl
+			margin = { 0, 10, 2, 10 }, -- trbl
 		},
 		layout = {
 			spacing = 6,
