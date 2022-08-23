@@ -342,6 +342,16 @@ local function get_packages(features)
 			end,
 		},
 
+		{
+			"ThePrimeagen/refactoring.nvim",
+			disable = not features.refactoring,
+			event = "User OnIdle",
+			requires = {
+				{ "nvim-lua/plenary.nvim" },
+				{ "nvim-treesitter/nvim-treesitter" },
+			},
+		},
+
 		-- Themes
 		{ "EdenEast/nightfox.nvim" },
 		{ "navarasu/onedark.nvim" }, --, event = { "User ColorAll", "User Color_onedark" },

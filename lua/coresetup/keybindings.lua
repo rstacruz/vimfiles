@@ -227,6 +227,11 @@ local function get_default_mappings()
 			["<leader>g"] = features.github_fugitive and { name = "Git…" } or nil,
 			["<leader>gy"] = features.github_fugitive and { ":GBrowse!<cr>", " Copy GitHub URL" } or nil,
 			["<leader>gY"] = features.github_fugitive and { ":GBrowse<cr>", " Open in GitHub" } or nil,
+			["<leader>r"] = features.refactoring and { name = "Refactoring…" },
+			["<leader>rr"] = features.refactoring and {
+				":lua require('telescope').extensions.refactoring.refactors()<cr>",
+				"  Refactor…",
+			} or nil,
 		},
 		ctrl = {
 			["<c-h>"] = { [[<cmd>lua require('core.pane-utils').next_pane()<cr>]], "Focus previous pane" },

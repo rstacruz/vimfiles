@@ -34,7 +34,7 @@ local function indent()
 	return {
 		provider = function()
 			if vim.bo.expandtab == false then
-			  return ""
+				return ""
 			else
 				local val = vim.bo.softtabstop
 				local sval = {
@@ -44,7 +44,7 @@ local function indent()
 					[8] = "⁸",
 				}
 				return string.format("%s", sval[val] or val)
-      end
+			end
 		end,
 		hl = { fg = "mute2" },
 	}
