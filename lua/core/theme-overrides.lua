@@ -40,17 +40,25 @@ local config = {
 		NvimTreeRootFolder = { link = "Comment" }, -- make the heading less prominent
 		NvimTreeWinSeparator = { link = "EndOfBuffer" }, -- better visual boundary from tree sidebar to the buffer
 	},
+	nibble = {
+		Comment = { fg = "#8080cc", bg = "none", italic = 1 },
+		CursorLine = { italic = 0, bg = "#2020aa" }, -- Default was underline
+		LineNr = { fg = "#5555bb", italic = 0 },
+		-- Normal = { bg = "#333366" },
+		-- NormalNC = { bg = "#333366" },
+	},
 }
 
-local function apply()
-	local cmd = vim.cmd
-
-	local col = vim.g.colors_name
-	local bg = vim.opt.background:get()
-
-	for key, value in pairs(config.base) do
+local function apply_list(list)
+	for key, value in pairs(list) do
 		vim.api.nvim_set_hl(0, key, value)
 	end
+end
+
+local function apply()
+	local col = vim.g.colors_name
+
+	apply_list(config.base)
 
 	-- different themes have different groups that look nice with borders
 	if vim.tbl_contains({ "terafox", "nightfox", "carbonfox" }, col) then
@@ -62,9 +70,7 @@ local function apply()
 	end
 
 	if col == "nibble" then
-		cmd([[hi! Comment guifg=#8080cc guibg=none gui=italic]])
-		cmd([[hi! CursorLine gui=none guibg=#2020aa]]) -- Default was underline only
-		cmd([[hi! LineNr guifg=#5555bb gui=italic]])
+		apply_list(config.nibble)
 	end
 
 	-- if ({ seoulbones = 1, rosebones = 1, zenbones = 1, dayfox = 1 })[col] and bg == "light" then
