@@ -67,10 +67,10 @@ local function apply()
 		cmd([[hi! LineNr guifg=#5555bb gui=italic]])
 	end
 
-	if ({ seoulbones = 1, rosebones = 1, zenbones = 1, dayfox = 1 })[col] and bg == "light" then
-		cmd([[hi! Normal guibg=#ffffff]])
-		cmd([[hi! NormalNC guibg=#fafafc]])
-	end
+	-- if ({ seoulbones = 1, rosebones = 1, zenbones = 1, dayfox = 1 })[col] and bg == "light" then
+	-- 	cmd([[hi! Normal guibg=#ffffff]])
+	-- 	cmd([[hi! NormalNC guibg=#fafafc]])
+	-- end
 end
 
 local function setup()
