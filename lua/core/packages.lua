@@ -354,6 +354,7 @@ local function get_packages(features)
 
 		-- Themes
 		{ "EdenEast/nightfox.nvim" },
+		{ "cmoscofian/nibble-vim" },
 		{ "navarasu/onedark.nvim" }, --, event = { "User ColorAll", "User Color_onedark" },
 		{ "projekt0n/github-nvim-theme" },
 		{ "rktjmp/lush.nvim", module = "lush" }, -- required by Zenbones
