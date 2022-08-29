@@ -43,7 +43,9 @@ local function get_default_mappings()
 			["<leader>fw"] = { "<cmd>noa w<cr>", " Save without formatting" },
 			["<leader>fr"] = { "<cmd>e!<cr>", " Revert changes in file" },
 			["<leader>fy"] = { [[:let @+=@% | echo '→ ' . @%<cr>]], " Copy current path" },
-			["<leader>fY"] = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], " Copy full path" },
+			["<leader>fY"] = { name = " Copy options…" },
+			["<leader>fYp"] = { [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]], " Copy full path" },
+			["<leader>fYt"] = { [[:let @+=expand('%:t') | echo '→ ' . expand('%:t')<cr>]], " Copy basename" },
 
 			-- Leader: [g] git
 			["<leader>g"] = (features.github_fugitive or features.neogit) and { name = " Git…" } or nil,
