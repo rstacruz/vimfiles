@@ -101,7 +101,7 @@ local function setup()
 	vim.opt.numberwidth = 2 -- Line numbers
 	vim.opt.ruler = false -- No "1,1" in status line
 
-	if features.status_line == "feline" then
+	if features.status_line then
 		vim.opt.laststatus = 3
 	end
 
