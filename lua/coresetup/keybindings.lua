@@ -23,6 +23,7 @@ local function get_default_mappings()
 			-- lsp
 			["gd"] = features.lsp and { "<cmd>Telescope lsp_definitions<cr>", "Definitions (lsp)…" } or nil,
 			["gr"] = features.lsp and { "<cmd>Telescope lsp_references<cr>", "References (lsp)…" } or nil,
+			["gR"] = features.lsp and { "<cmd>lua vim.lsp.buf.references()<cr>", "References to this file…" } or nil,
 			["gh"] = features.lsp and { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show hover" } or nil,
 			["gD"] = features.lsp and { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Declaration (lsp)…" } or nil,
 			["gi"] = features.lsp and { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Implementation (lsp)…" } or nil,
@@ -160,7 +161,7 @@ local function get_default_mappings()
 			} or nil,
 			["<leader>ca"] = features.lsp and {
 				"<cmd>lua vim.lsp.buf.code_action()<cr>",
-				" Actions…",
+				" Code actions…",
 			} or nil,
 			["<leader>cr"] = features.lsp and {
 				"<cmd>lua vim.lsp.buf.rename()<cr>",
@@ -227,6 +228,10 @@ local function get_default_mappings()
 			["K"] = { ":move '<-2<CR>gv-gv", "Move line down" },
 			["J"] = { ":move '>+1<CR>gv-gv", "Mode line up" },
 			["gs"] = { ":s~~", "Replace with..." },
+			["<leader>ca"] = features.lsp and {
+				":'<,'>lua vim.lsp.buf.range_code_action()<cr>",
+				" Code actions…",
+			} or nil,
 			["<leader>g"] = features.github_fugitive and { name = "Git…" } or nil,
 			["<leader>gy"] = features.github_fugitive and { ":GBrowse!<cr>", " Copy GitHub URL" } or nil,
 			["<leader>gY"] = features.github_fugitive and { ":GBrowse<cr>", " Open in GitHub" } or nil,

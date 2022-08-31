@@ -357,6 +357,7 @@ local function get_packages(features)
 			"mickael-menu/zk-nvim",
 			disable = not features.zk,
 			event = "User OnIdle",
+			module = { "zk" },
 			config = function()
 				require("coresetup.zk").setup()
 			end,

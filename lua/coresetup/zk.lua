@@ -4,7 +4,10 @@ local function setup()
 		return
 	end
 
-	local options = {}
+	local options = {
+		-- use Telescope rather than vim.ui.select
+		picker = "telescope",
+	}
 
 	zk.setup(options)
 end
