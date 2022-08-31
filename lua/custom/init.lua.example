@@ -26,6 +26,7 @@
 -- BaseConfig.features.alternate_filetypes = false
 -- BaseConfig.features.treesitter_playground = true
 -- BaseConfig.features.status_line = true
+-- BaseConfig.features.zk = false
 
 -- BaseConfig.format.autoformat_files = "*.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs",
 

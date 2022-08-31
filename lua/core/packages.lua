@@ -353,6 +353,15 @@ local function get_packages(features)
 			},
 		},
 
+		{
+			"mickael-menu/zk-nvim",
+			disable = not features.zk,
+			event = "User OnIdle",
+			config = function()
+				require("coresetup.zk").setup()
+			end,
+		},
+
 		-- Themes
 		{ "EdenEast/nightfox.nvim" },
 		{ "cmoscofian/nibble-vim" },
