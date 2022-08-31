@@ -6,6 +6,8 @@ local function setup()
 
 	nvim_treesitter.setup({
 		ensure_installed = BaseConfig.treesitter.ensure_installed,
+		-- Auto install when entering buffers
+		auto_install = true,
 		matchup = { enable = true },
 		indent = { enable = true },
 		autotag = { enable = true },
