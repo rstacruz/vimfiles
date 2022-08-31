@@ -352,6 +352,15 @@ local function get_packages(features)
 			},
 		},
 
+		{
+			"nvim-treesitter/playground",
+			disable = not features.treesitter_playground,
+			event = "User OnIdle",
+			requires = {
+				{ "nvim-treesitter/nvim-treesitter" },
+			},
+		},
+
 		-- Themes
 		{ "EdenEast/nightfox.nvim" },
 		{ "cmoscofian/nibble-vim" },

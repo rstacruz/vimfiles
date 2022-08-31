@@ -206,6 +206,7 @@ local function get_default_mappings()
 			["<leader>,e"] = { ":lua vim.notify(vim.inspect())<left><left>", "Evaluate lua line…" },
 			["<leader>,s"] = { "<cmd>split ~/.scratchpad<cr><C-w>H", "Open scratchpad" },
 			["<leader>,p"] = { "<cmd>StartupTime --tries 6<cr>", "Profile startup time" },
+			["<leader>,h"] = { "<cmd>TSHighlightCapturesUnderCursor<cr>", "Show highlight info at cursor" },
 		},
 		t = {
 			["<c-x>"] = { "<c-\\><c-n>" }, -- escape
