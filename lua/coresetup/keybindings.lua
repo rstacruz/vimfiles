@@ -148,6 +148,10 @@ local function get_default_mappings()
 				"<cmd>lua require('core.reload-utils').reload()<cr>:PackerInstall<cr>",
 				" Packer: Install new packages",
 			},
+			["<leader>sU"] = {
+				"<cmd>lua require('core.update-utils').update()<cr>",
+				"  Pull vim settings",
+			},
 			["<leader>su"] = {
 				"<cmd>lua require('core.reload-utils').reload()<cr>:PackerSync<cr>",
 				" Packer: Update packages",
