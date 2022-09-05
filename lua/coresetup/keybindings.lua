@@ -3,6 +3,15 @@ local function get_default_mappings()
 
 	local mappings = {
 		n = {
+			-- Open all folds (recursive). Pressing `zO` in an already-open fold won't
+			-- unfold all descendants, but pressing `zc` before that will force it.
+			["zO"] = { "zczO" },
+
+			-- Close all folds (recursive). Also do `zx`, which with treesitter's folding
+			-- implementation, will "reset" folds (usually needed for Markdown).
+			["zM"] = { "zxzM" },
+
+			-- Open sidebar. Inspired by vim-vinegar.
 			["-"] = features.file_explorer and { "<cmd>NvimTreeFindFile<cr>", "Open file explorer" } or nil,
 			["+"] = { "za", "Toggle fold under cursor" },
 			["<del>"] = { "<cmd>bd!<cr>", "Destroy this buffer" },
