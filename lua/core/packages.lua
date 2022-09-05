@@ -266,6 +266,7 @@ local function get_packages(features)
 		{ -- which-key
 			"folke/which-key.nvim",
 			event = "User OnIdle",
+			commit = "9c190ea91939eba8c2d45660127e0403a5300b5a~1", -- https://github.com/folke/which-key.nvim/issues/330 (5 Sep 2022)
 			config = function()
 				require("coresetup.which-key").setup()
 				require("coresetup.keybindings").setup()
