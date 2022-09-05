@@ -2,7 +2,7 @@ local function get_default_mappings()
 	local features = BaseConfig.features
 
 	local mappings = {
-		n = {
+		n2 = {
 			-- Open all folds (recursive). Pressing `zO` in an already-open fold won't
 			-- unfold all descendants, but pressing `zc` before that will force it.
 			["zO"] = { "zczO" },
@@ -10,7 +10,8 @@ local function get_default_mappings()
 			-- Close all folds (recursive). Also do `zx`, which with treesitter's folding
 			-- implementation, will "reset" folds (usually needed for Markdown).
 			["zM"] = { "zxzM" },
-
+		},
+		n = {
 			-- Open sidebar. Inspired by vim-vinegar.
 			["-"] = features.file_explorer and { "<cmd>NvimTreeFindFile<cr>", "Open file explorer" } or nil,
 			["+"] = { "za", "Toggle fold under cursor" },
@@ -300,6 +301,9 @@ local function apply_mappings(mappings)
 	-- Which-Key doesn't seem to handle terminal mappings
 	register(mappings.t, { mode = "t" })
 	register(mappings.v, { mode = "v" })
+
+	-- idk, these key mappings don't like which-key
+	register(mappings.n2, { mode = "n" })
 end
 
 local function setup()
