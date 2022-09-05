@@ -30,7 +30,7 @@ local function setup()
 					maxwidth = 50,
 				}),
 			}
-		or {}
+			or {}
 
 	local mapping = cmp.mapping.preset.insert({
 		["<cr>"] = cmp.mapping.confirm(),
@@ -54,7 +54,7 @@ local function setup()
 		}),
 	})
 
-	cmp.setup({
+	local options = {
 		window = {
 			completion = {
 				border = get_borders("CmpBorder"),
@@ -80,10 +80,13 @@ local function setup()
 			{ name = "nvim_lsp" },
 			{ name = "nvim_lua" },
 			{ name = "path" },
+			{ name = "emoji" },
 		}, {
 			{ name = "buffer" },
 		}),
-	})
+	}
+
+	cmp.setup(options)
 
 	cmp.setup.cmdline("/", {
 		mapping = cmp.mapping.preset.cmdline(),
