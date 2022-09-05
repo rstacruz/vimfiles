@@ -78,6 +78,7 @@ local function setup()
 	vim.opt.timeoutlen = 200 -- for which-key
 	vim.opt.wrap = false -- Word wrap
 	vim.opt.clipboard = "unnamedplus" -- Use system clipboard
+	vim.opt.fileformats = { "unix", "dos" } -- Force LF even on Windows
 
 	-- Status
 	vim.opt.title = true -- Show current file name in title bar
