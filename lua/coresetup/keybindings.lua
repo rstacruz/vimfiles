@@ -14,6 +14,10 @@ local function get_default_mappings()
 		n = {
 			-- Open sidebar. Inspired by vim-vinegar.
 			["-"] = features.file_explorer and { "<cmd>NvimTreeFindFile<cr>", "Open file explorer" } or nil,
+
+			-- Use "123," to go to line 123. This just makes things easier to press
+			-- (no shift key needed).
+			[","] = { "G", "Go to line" },
 			["+"] = { "za", "Toggle fold under cursor" },
 			["<del>"] = { "<cmd>bd!<cr>", "Destroy this buffer" },
 			["<s-del>"] = { "<cmd>w<cr>:bd<cr>", "Save and close" },
