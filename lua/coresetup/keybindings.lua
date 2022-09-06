@@ -243,8 +243,10 @@ local function get_default_mappings()
 			[">"] = { ">gv", "Increase indent" },
 
 			-- Move selected line / block of text in visual mode
-			["K"] = { ":move '<-2<CR>gv-gv", "Move line down" },
-			["J"] = { ":move '>+1<CR>gv-gv", "Mode line up" },
+			-- Taken from nvchad. I don't like how it interferes with J
+			-- ["K"] = { ":move '<-2<CR>gv-gv", "Move line down" },
+			-- ["J"] = { ":move '>+1<CR>gv-gv", "Mode line up" },
+
 			["gs"] = { ":s~~", "Replace with..." },
 			["<leader>ca"] = features.lsp and {
 				":'<,'>lua vim.lsp.buf.range_code_action()<cr>",
