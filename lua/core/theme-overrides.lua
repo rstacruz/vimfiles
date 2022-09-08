@@ -25,6 +25,9 @@ local config = {
 		IndentBlanklineChar = { link = "XxLine" },
 		IndentBlanklineContextChar = { link = "XxLine" },
 
+		-- Treesitter Context
+		TreesitterContext = { link = "CursorLine" },
+
 		-- https://github.com/folke/which-key.nvim
 		WhichKeyFloat = { link = "Pmenu" }, -- Nicer background especaiily github_dark
 		WhichKeyDesc = { link = "Pmenu" },

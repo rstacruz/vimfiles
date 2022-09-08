@@ -24,6 +24,15 @@ local function get_packages(features)
 			end,
 		},
 
+		{
+			"nvim-treesitter/nvim-treesitter-context",
+			disable = not features.treesitter_context,
+			-- event = { "User OnIdle", "BufRead" },
+			config = function()
+				require("coresetup.treesitter-context").setup()
+			end,
+		},
+
 		{ -- nvim-surround: surround keybindings (cs, ds, ys)
 			"kylechui/nvim-surround",
 			disable = not features.treesitter,
