@@ -24,8 +24,9 @@ local function get_default_mappings()
 			["<s-del>"] = { "<cmd>w<cr>:bd<cr>", "Save and close" },
 			["<c-p>"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open file…" },
 			["gs"] = { ":%s~~", "Replace with…" },
-			["gp"] = features.pounce and { "<cmd>Pounce<cr>", "Find…" } or nil,
-			["gP"] = features.pounce and { "<cmd>PounceRepeat<cr>", "Find (repeat)…" } or nil,
+			["gp"] = features.hop and { "<cmd>HopPattern<cr>", "Find pattern…" } or nil,
+			["gP"] = features.hop and { "<cmd>HopPatternMW<cr>", "Find pattern (all windows)…" } or nil,
+			-- ["gP"] = features.pounce and { "<cmd>Pounce<cr>", "Find pattern…" } or nil,
 			["]c"] = { "<cmd>cnext<CR>", "Next quickfix item" },
 			["[c"] = { "<cmd>cprev<CR>", "Prev quickfix item" },
 			["]g"] = features.gitsigns and {
@@ -55,7 +56,7 @@ local function get_default_mappings()
 			-- others
 			["<leader>*"] = { ":GG <c-r><c-w><cr>", " Search for word in cursor…" },
 			["<leader>."] = { "<cmd>lua require('core.actions').open_terminal()<cr>", " Open terminal" },
-			["<leader>/"] = features.pounce and { "<cmd>Pounce<cr>", "Find…" } or nil,
+			["<leader>/"] = { "<cmd>HopPatternMW<cr>", "Find pattern…" } or nil,
 
 			-- Leader: [f] file
 			["<leader>f"] = { name = " File…" },
@@ -237,7 +238,9 @@ local function get_default_mappings()
 		nv = {
 			["gl"] = features.hop and { "<cmd>HopLine<cr>", "Go to line" } or nil,
 			["gw"] = features.hop and { "<cmd>HopWord<cr>", "Go to word" } or nil,
-			["gp"] = features.pounce and { "<cmd>Pounce<cr>", "Find…" } or nil,
+			["gp"] = features.hop and { "<cmd>HopPattern<cr>", "Find pattern…" } or nil,
+			["gP"] = features.hop and { "<cmd>HopPatternMW<cr>", "Find pattern (all windows)…" } or nil,
+			-- ["gP"] = features.pounce and { "<cmd>Pounce<cr>", "Find…" } or nil,
 		},
 		i = {
 			["<s-del>"] = { "<cmd>w<cr>:bd<cr>", "Save and close" },
