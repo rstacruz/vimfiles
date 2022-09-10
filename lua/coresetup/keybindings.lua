@@ -2,6 +2,7 @@ local function get_default_mappings()
 	local features = BaseConfig.features
 
 	local mappings = {
+		-- Normal mappings, but bypassing which-key
 		n2 = {
 			-- Open all folds (recursive). Pressing `zO` in an already-open fold won't
 			-- unfold all descendants, but pressing `zc` before that will force it.
@@ -22,7 +23,9 @@ local function get_default_mappings()
 			["<del>"] = { "<cmd>bd!<cr>", "Destroy this buffer" },
 			["<s-del>"] = { "<cmd>w<cr>:bd<cr>", "Save and close" },
 			["<c-p>"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open file…" },
-			["gs"] = { ":%s~~", "Replace with..." },
+			["gs"] = { ":%s~~", "Replace with…" },
+			["gp"] = features.pounce and { "<cmd>Pounce<cr>", "Find…" } or nil,
+			["gP"] = features.pounce and { "<cmd>PounceRepeat<cr>", "Find (repeat)…" } or nil,
 			["]c"] = { "<cmd>cnext<CR>", "Next quickfix item" },
 			["[c"] = { "<cmd>cprev<CR>", "Prev quickfix item" },
 			["]g"] = features.gitsigns and {
@@ -52,6 +55,7 @@ local function get_default_mappings()
 			-- others
 			["<leader>*"] = { ":GG <c-r><c-w><cr>", " Search for word in cursor…" },
 			["<leader>."] = { "<cmd>lua require('core.actions').open_terminal()<cr>", " Open terminal" },
+			["<leader>/"] = features.pounce and { "<cmd>Pounce<cr>", "Find…" } or nil,
 
 			-- Leader: [f] file
 			["<leader>f"] = { name = " File…" },
@@ -233,6 +237,7 @@ local function get_default_mappings()
 		nv = {
 			["gl"] = features.hop and { "<cmd>HopLine<cr>", "Go to line" } or nil,
 			["gw"] = features.hop and { "<cmd>HopWord<cr>", "Go to word" } or nil,
+			["gp"] = features.pounce and { "<cmd>Pounce<cr>", "Find…" } or nil,
 		},
 		i = {
 			["<s-del>"] = { "<cmd>w<cr>:bd<cr>", "Save and close" },

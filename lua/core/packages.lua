@@ -373,6 +373,14 @@ local function get_packages(features)
 				require("coresetup.zk").setup()
 			end,
 		},
+		{
+			"rlane/pounce.nvim",
+			disabled = not features.pounce,
+			command = { "Pounce", "PounceRepeat" },
+			config = function()
+				require("coresetup.pounce").setup()
+			end,
+		},
 
 		-- Themes
 		{ "EdenEast/nightfox.nvim" },

@@ -7,6 +7,11 @@ local config = {
 		-- Custom styles
 		XxLine = { link = "LineNr" }, -- borders and lines. also: Vertsplit
 
+		-- Pounce
+		PounceMatch = { link = "CursorLine" }, -- whats being searched
+		PounceAccept = { link = "TSTodo" }, -- keys to press
+		PounceAcceptBest = { link = "CurSearch" }, -- keys to press (enter to accept)
+
 		-- Telescope
 		TelescopeNormal = { link = "Pmenu" },
 		TelescopeBorder = { link = "Pmenu" },

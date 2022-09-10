@@ -21,6 +21,7 @@ local defaults = {
 		refactoring = false,
 		treesitter_playground = true,
 		treesitter_context = true,
+		pounce = true,
 		zk = false,
 
 		-- Use alternate implementation of filetype detection. Supposedly faster,
