@@ -79,7 +79,7 @@ local function get_default_mappings()
 			-- Leader: [p] pick
 			["<leader>p"] = { name = " Pick…" },
 			["<leader>p?"] = { "<cmd>Telescope help_tags<cr>", " Vim help…" },
-			["<leader>p<space>"] = { "<cmd>Telescope resume<cr>", "  Resume last search…" },
+			["<leader>p<space>"] = { "<cmd>Telescope resume<cr>", "· Resume last search…" },
 			["<leader>pb"] = { "<cmd>Telescope buffers<cr>", " List buffers…" },
 			["<leader>p/"] = { "<cmd>Telescope live_grep<cr>", " Grep…" },
 			["<leader>p*"] = { "<cmd>Telescope grep_string<cr>", " Grep word in cursor…" },
@@ -118,6 +118,10 @@ local function get_default_mappings()
 			["<leader>ob"] = {
 				"<cmd>lua require('core.theme-utils').toggle_theme()<cr>",
 				" Toggle light/dark theme",
+			},
+			["<leader>oC"] = {
+				"<cmd>lua vim.o.background = vim.o.clipboard == 'unnamedplus' and '' or 'unnamedplus'<cr>",
+				"· Toggle system clipboard",
 			},
 			["<leader>oB"] = {
 				"<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
@@ -169,7 +173,7 @@ local function get_default_mappings()
 			},
 			["<leader>sU"] = {
 				"<cmd>lua require('core.update-utils').update()<cr>",
-				"  Pull vim settings",
+				"· Pull vim settings",
 			},
 			["<leader>su"] = {
 				"<cmd>lua require('core.reload-utils').reload()<cr>:PackerSync<cr>",
@@ -266,7 +270,7 @@ local function get_default_mappings()
 			["<leader>r"] = features.refactoring and { name = "Refactoring…" },
 			["<leader>rr"] = features.refactoring and {
 				":lua require('telescope').extensions.refactoring.refactors()<cr>",
-				"  Refactor…",
+				"· Refactor…",
 			} or nil,
 		},
 		ctrl = {
