@@ -382,6 +382,11 @@ local function get_packages(features)
 			end,
 		},
 
+		{
+			"slim-template/vim-slim",
+			ft = { "slim" },
+		},
+
 		-- Themes
 		{ "EdenEast/nightfox.nvim" },
 		{ "cmoscofian/nibble-vim" },
