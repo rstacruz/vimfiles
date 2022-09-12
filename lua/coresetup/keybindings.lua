@@ -120,7 +120,7 @@ local function get_default_mappings()
 				" Toggle light/dark theme",
 			},
 			["<leader>oC"] = {
-				"<cmd>lua vim.o.background = vim.o.clipboard == 'unnamedplus' and '' or 'unnamedplus'<cr>",
+				"<cmd>lua vim.o.clipboard = vim.o.clipboard == 'unnamedplus' and '' or 'unnamedplus'<cr>",
 				"· Toggle system clipboard",
 			},
 			["<leader>oB"] = {
