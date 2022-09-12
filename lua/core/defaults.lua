@@ -90,7 +90,7 @@ local defaults = {
 			root_pattern = { ".prettierrc", ".prettierignore", ".prettierrc.js" },
 		},
 		-- { bin = "marksman", lspconfig = "marksman", root_pattern = { ".marksman.toml" } },
-		{ bin = "zk", lspconfig = "zk", root_pattern = { ".zk" } },
+		-- { bin = "zk", lspconfig = "zk", root_pattern = { ".zk" } },
 	},
 
 	-- Plugin setup overrides
