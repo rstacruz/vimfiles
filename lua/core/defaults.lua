@@ -24,6 +24,9 @@ local defaults = {
 		pounce = false,
 		zk = false,
 
+		-- set to true to enable plugins that are probably not 0.8 compatible
+		nvim08_incompatible_plugins = vim.fn.has("nvim-0.8") ~= 1,
+
 		-- Use alternate implementation of filetype detection. Supposedly faster,
 		-- but doesn't really make a difference in my testing, at least with Neovim 0.7.
 		-- However, it can detect more file types than Neovim's default (eg, .astro).

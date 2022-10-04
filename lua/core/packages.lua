@@ -124,7 +124,7 @@ local function get_packages(features)
 
 		{ -- gitsigns: Git indicators on the gutter
 			"lewis6991/gitsigns.nvim",
-			disable = not features.gitsigns,
+			disable = not features.gitsigns or not features.nvim08_incompatible_plugins,
 			event = "User OnIdle",
 			module = "gitsigns",
 			cmd = { "Gitsigns" },
@@ -135,7 +135,7 @@ local function get_packages(features)
 
 		{ -- indent-blankline: Indent guides
 			"lukas-reineke/indent-blankline.nvim",
-			disable = not features.indent_guides,
+			disable = not features.indent_guides or not features.nvim08_incompatible_plugins,
 			event = { "User OnIdle" }, -- { "BufRead" },
 			config = function()
 				require("coresetup.indent-blankline").setup()
