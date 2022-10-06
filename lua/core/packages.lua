@@ -394,7 +394,7 @@ local function get_packages(features)
 		{ "projekt0n/github-nvim-theme" },
 		{ "rktjmp/lush.nvim", module = "lush" }, -- required by Zenbones
 		{ "mcchrish/zenbones.nvim" },
-		{ "catppuccin/nvim", as = "catppuccin-nvim" },
+		{ "catppuccin/nvim", as = "catppuccin-nvim", tag = "v0.2" },
 		-- { "dracula/vim", as = "dracula-vim" },
 		-- { "cmoscofian/nibble-vim" }
 		-- { "embark-theme/vim", as = "embark-theme-vim" }
