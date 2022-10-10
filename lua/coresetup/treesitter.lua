@@ -5,9 +5,11 @@ local function setup()
 	end
 
 	nvim_treesitter.setup({
-		ensure_installed = BaseConfig.treesitter.ensure_installed,
-		-- Auto install when entering buffers
-		auto_install = true,
+		ensure_installed = { "lua" },
+		auto_install = true, -- Auto install when entering buffers
+		ignore_install = {
+			"ruby", -- As of Neovim 0.8, it hangs in ERB
+		},
 		matchup = { enable = true },
 		indent = { enable = true },
 		autotag = { enable = true },
