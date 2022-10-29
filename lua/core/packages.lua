@@ -282,11 +282,6 @@ local function get_packages(features)
 			end,
 		},
 
-		{ -- visualstar: press * or # on a selection
-			"thinca/vim-visualstar",
-			keys = { "*", "#" },
-		},
-
 		{ -- Status line
 			"feline-nvim/feline.nvim",
 			disable = not features.status_line,
