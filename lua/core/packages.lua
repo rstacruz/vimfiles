@@ -66,7 +66,16 @@ local function get_packages(features)
 		{ -- hop: Easymotion-style jumps
 			"phaazon/hop.nvim",
 			disable = not features.hop,
-			cmd = { "HopLine", "HopWord", "HopPattern", "HopPatternMW" },
+			cmd = {
+				"HopLine",
+				"HopWord",
+				"HopPattern",
+				"HopPatternMW",
+				"HopChar1",
+				"HopChar1MW",
+				"HopChar2",
+				"HopChar2MW",
+			},
 			config = function()
 				local has, hop = pcall(require, "hop")
 				if has then
