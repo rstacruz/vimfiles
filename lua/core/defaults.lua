@@ -24,9 +24,6 @@ local defaults = {
 		pounce = false,
 		zk = false,
 
-		-- set to true to enable plugins that are probably not 0.8 compatible
-		nvim08_incompatible_plugins = vim.fn.has("nvim-0.8") ~= 1,
-
 		-- these might not be worth disabling I think
 		hop = true,
 		file_explorer = true,
