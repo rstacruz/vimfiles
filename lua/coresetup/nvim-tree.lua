@@ -99,7 +99,6 @@ local function setup()
 		},
 	}
 
-	require("core.utils").apply_config_overrides(options, BaseConfig.plugins.nvim_tree)
 	nvim_tree.setup(options)
 end
 

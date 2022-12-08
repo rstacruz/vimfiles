@@ -47,48 +47,14 @@ local defaults = {
 		min_width = 80,
 	},
 
-	format = {
-		-- Auto-format on save
-		autoformat_files = "*.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs",
-	},
-
 	terminal = {
 		shell = nil,
-	},
-
-	welcome_screen = {
-		-- Banner to show in the welcome screen
-		banner = { "╲    ╱", " ╲  ╱ ", "  ╲╱ ", "" },
 	},
 
 	treesitter = {
 		ensure_installed = {
 			"lua",
 		},
-	},
-
-	-- lspconfig mappings are available here:
-	-- https://github.com/williamboman/mason-lspconfig.nvim/blob/main/lua/mason-lspconfig/mappings/server.lua
-	--
-	-- null-ls tools are available here:
-	-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
-	--
-	-- Install the tools with :Mason (leader-ci), then if the tool is installed,
-	-- they can be used here
-	lsp_tools = {
-		{ bin = "lua-language-server", lspconfig = "sumneko_lua" },
-		{ bin = "typescript-language-server", lspconfig = "tsserver" },
-		{ bin = "astro-language-server", lspconfig = "astro" },
-		{ bin = "svelte-language-server", lspconfig = "svelte" },
-		{ bin = "solargraph", lspconfig = "solargraph" },
-		{ bin = "stylua", null_ls_formatting = "stylua" },
-		{
-			bin = "prettierd",
-			null_ls_formatting = "prettierd",
-			root_pattern = { ".prettierrc", ".prettierignore", ".prettierrc.js" },
-		},
-		-- { bin = "marksman", lspconfig = "marksman", root_pattern = { ".marksman.toml" } },
-		-- { bin = "zk", lspconfig = "zk", root_pattern = { ".zk" } },
 	},
 
 	-- Plugin setup overrides

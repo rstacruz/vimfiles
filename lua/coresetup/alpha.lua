@@ -1,3 +1,8 @@
+local config = {
+	-- Banner to show in the welcome screen
+	banner = { "╲    ╱", " ╲  ╱ ", "  ╲╱ ", "" },
+}
+
 -- https://github.com/goolord/alpha-nvim/blob/main/lua/alpha/themes/darshboard.lua
 local function button(shortcut, text, command)
 	return {
@@ -47,15 +52,13 @@ local function get_config()
 		},
 	}
 
-	require("core.utils").apply_config_overrides(buttons, BaseConfig.plugins.alpha_buttons)
-
 	local spacing = vim.o.lines > 25 and 1 or 0
 
 	-- buttons
 	local sections = {
 		banner = {
 			type = "text",
-			val = BaseConfig.welcome_screen.banner,
+			val = config.banner,
 			opts = { position = "center", hl = "VertSplit", redraw = false },
 		},
 		buttons_top = {
@@ -76,7 +79,7 @@ local function get_config()
 		},
 	}
 
-	local config = {
+	local plugin_config = {
 		layout = {
 			{ type = "padding", val = 2 },
 			sections.banner,
@@ -92,7 +95,7 @@ local function get_config()
 		},
 	}
 
-	return config
+	return plugin_config
 end
 
 local function setup()

@@ -14,8 +14,6 @@ local function setup()
 		},
 	}
 
-	require("core.utils").apply_config_overrides(options, BaseConfig.plugins.neogit)
-
 	neogit.setup(options)
 end
 

@@ -28,8 +28,6 @@
 -- BaseConfig.features.status_line = true
 -- BaseConfig.features.zk = false
 
--- BaseConfig.format.autoformat_files = "*.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs",
-
 -- BaseConfig.treesitter.ensure_installed = { "lua" }
 -- vim.list_extend(BaseConfig.treesitter.ensure_installed, { "javascript", "jsdoc", "json", "typescript" })
 -- vim.list_extend(BaseConfig.treesitter.ensure_installed, { "css", "html", "scss" })
@@ -40,11 +38,3 @@
 
 -- BaseConfig.terminal.shell = nil
 -- BaseConfig.terminal.shell = "fish"
-
--- ## Plugin setup overrides
--- These can be tables (will be extended) of functions (will be passed the config)
--- BaseConfig.plugins.nvim_tree = {}
--- BaseConfig.plugins.nvim_surround = {}
--- BaseConfig.plugins.nvim_autopairs = {}
--- BaseConfig.plugins.navic = {}
--- BaseConfig.plugins.neogit = {}

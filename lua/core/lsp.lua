@@ -1,3 +1,29 @@
+-- lspconfig mappings are available here:
+-- https://github.com/williamboman/mason-lspconfig.nvim/blob/main/lua/mason-lspconfig/mappings/server.lua
+--
+-- null-ls tools are available here:
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+--
+-- Install the tools with :Mason (leader-ci), then if the tool is installed,
+-- they can be used here
+local config = {
+	tools = {
+		{ bin = "lua-language-server", lspconfig = "sumneko_lua" },
+		{ bin = "typescript-language-server", lspconfig = "tsserver" },
+		{ bin = "astro-language-server", lspconfig = "astro" },
+		{ bin = "svelte-language-server", lspconfig = "svelte" },
+		{ bin = "solargraph", lspconfig = "solargraph" },
+		{ bin = "stylua", null_ls_formatting = "stylua" },
+		{
+			bin = "prettierd",
+			null_ls_formatting = "prettierd",
+			root_pattern = { ".prettierrc", ".prettierignore", ".prettierrc.js" },
+		},
+		-- { bin = "marksman", lspconfig = "marksman", root_pattern = { ".marksman.toml" } },
+		-- { bin = "zk", lspconfig = "zk", root_pattern = { ".zk" } },
+	},
+}
+
 local function has_mason_bin(bin_name)
 	return vim.fn.executable(vim.fn.stdpath("data") .. "/mason/bin/" .. bin_name) == 1
 end
@@ -27,9 +53,7 @@ local function setup()
 	local has_null_ls, null_ls = pcall(require, "null-ls")
 	local null_sources = {}
 
-	local tools = BaseConfig.lsp_tools
-
-	for _, tool in ipairs(tools) do
+	for _, tool in ipairs(config.tools) do
 		if has_bin(tool.bin) then
 			local root_dir = nil
 			if tool.root_pattern then
@@ -61,4 +85,4 @@ local function setup()
 	end
 end
 
-return { setup = setup }
+return { setup = setup, config = config }

@@ -1,6 +1,11 @@
+local config = {
+	-- Auto-format on save
+	autoformat_files = "*.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs",
+}
+
 -- Run formatting before saving files
 local function setup_autoformat()
-	local pattern = BaseConfig.format.autoformat_files
+	local pattern = config.autoformat_files
 	if not pattern then
 		return
 	end
@@ -56,4 +61,4 @@ local function setup()
 	setup_gitcommit_overrides()
 end
 
-return { setup = setup }
+return { setup = setup, config = config }
