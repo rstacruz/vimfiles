@@ -35,4 +35,4 @@ local function setup()
 	vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 end
 
-return { setup = setup }
+return { setup = setup, config = config }

@@ -46,19 +46,6 @@ local defaults = {
 		-- to disable
 		min_width = 80,
 	},
-
-	terminal = {
-		shell = nil,
-	},
-
-	treesitter = {
-		ensure_installed = {
-			"lua",
-		},
-	},
-
-	-- Plugin setup overrides
-	plugins = {},
 }
 
 return { defaults = defaults }
