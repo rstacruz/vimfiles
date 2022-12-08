@@ -243,7 +243,9 @@ local function get_default_mappings()
 		},
 		nv = {
 			["gl"] = features.hop and { "<cmd>HopLine<cr>", "Go to line" } or nil,
+			["gL"] = features.hop and { "<cmd>HopLineMW<cr>", "Go to line (all windows)…" } or nil,
 			["gw"] = features.hop and { "<cmd>HopWord<cr>", "Go to word" } or nil,
+			["gW"] = features.hop and { "<cmd>HopWordMW<cr>", "Go to word (all windows)…" } or nil,
 			["gp"] = features.hop and { "<cmd>HopPattern<cr>", "Find pattern…" } or nil,
 			["gP"] = features.hop and { "<cmd>HopPatternMW<cr>", "Find pattern (all windows)…" } or nil,
 			-- ["gP"] = features.pounce and { "<cmd>Pounce<cr>", "Find…" } or nil,

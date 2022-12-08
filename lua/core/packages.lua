@@ -68,7 +68,9 @@ local function get_packages(features)
 			disable = not features.hop,
 			cmd = {
 				"HopLine",
+				"HopLineMW",
 				"HopWord",
+				"HopWordMW",
 				"HopPattern",
 				"HopPatternMW",
 				"HopChar1",
