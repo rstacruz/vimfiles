@@ -73,6 +73,10 @@ local function apply()
 		vim.api.nvim_set_hl(0, "XxLine", { link = "Conceal" })
 	end
 
+	if vim.tbl_contains({ "dayfox" }, col) then
+		vim.api.nvim_set_hl(0, "XxLine", { link = "VertSplit" })
+	end
+
 	if vim.tbl_contains({ "github_dark", "github_dimmed" }, col) then
 		vim.api.nvim_set_hl(0, "HopNextKey", { link = "IncSearch" }) -- "Search" is too muted
 	end
