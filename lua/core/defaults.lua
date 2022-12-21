@@ -1,6 +1,7 @@
 local defaults = {
 	ui = {
-		theme_dark = "github_dark", -- terafox | github_dimmed | catppuccin
+		-- github_dark | terafox | github_dimmed | catppuccin
+		theme_dark = "zenburned",
 		theme_light = "github_light",
 	},
 
