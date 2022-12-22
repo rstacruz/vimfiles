@@ -197,7 +197,7 @@ local function get_default_mappings()
 			} or nil,
 			["<leader>cd"] = features.lsp and { "<cmd>Telescope diagnostics<CR>", " Show diagnostics…" } or nil,
 			["<leader>cf"] = features.lsp and {
-				"<cmd>lua vim.lsp.buf.formatting_seq_sync()<cr>",
+				"<cmd>lua vim.lsp.buf.format()<cr>",
 				" Format via LSP",
 			} or nil,
 
