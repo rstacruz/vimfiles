@@ -236,6 +236,7 @@ local function get_default_mappings()
 			["<leader>,s"] = { "<cmd>split ~/.scratchpad<cr><C-w>H", "Open scratchpad" },
 			["<leader>,p"] = { "<cmd>StartupTime --tries 6<cr>", "Profile startup time" },
 			["<leader>,h"] = { "<cmd>TSHighlightCapturesUnderCursor<cr>", "Show highlight info at cursor" },
+			["<leader>?"] = { "<cmd>Telescope keymaps<cr>", "Show keybindings…" },
 		},
 		t = {
 			["<c-x>"] = { "<c-\\><c-n>" }, -- escape
@@ -290,7 +291,7 @@ end
 
 ---@param mappings any
 ---@param options RegisterOptions
-local function register(mappings, options)
+local function register_nvim(mappings, options)
 	for key, value in pairs(mappings) do
 		if value ~= nil then
 			pcall(function()
@@ -304,27 +305,36 @@ local function register(mappings, options)
 	end
 end
 
+--- Registers keymaps to both nvim and whichkey. The nvim bindings provides `desc`
+--- for `:Telescope keymaps`, while the which_key one can provide group descriptions.
+---@param mappings any
+---@param options RegisterOptions
+local function register_both(mappings, options)
+	require("which-key").register(mappings, options)
+	register_nvim(mappings, options)
+end
+
 local function apply_mappings(mappings)
 	local has, which_key = pcall(require, "which-key")
 	if not has then
 		return
 	end
 
-	which_key.register(mappings.nv, { mode = "n" })
-	which_key.register(mappings.nv, { mode = "v" })
-	which_key.register(mappings.i, { mode = "i" })
-	which_key.register(mappings.n, { mode = "n" })
-	which_key.register(mappings.ctrl, { mode = "i" })
-	which_key.register(mappings.ctrl, { mode = "t" })
-	which_key.register(mappings.ctrl, { mode = "n" })
-	which_key.register(mappings.ctrl, { mode = "v" })
+	register_both(mappings.nv, { mode = "n" })
+	register_both(mappings.nv, { mode = "v" })
+	register_both(mappings.i, { mode = "i" })
+	register_both(mappings.n, { mode = "n" })
+	register_both(mappings.ctrl, { mode = "i" })
+	register_both(mappings.ctrl, { mode = "t" })
+	register_both(mappings.ctrl, { mode = "n" })
+	register_both(mappings.ctrl, { mode = "v" })
 
 	-- Which-Key doesn't seem to handle terminal mappings
-	register(mappings.t, { mode = "t" })
-	register(mappings.v, { mode = "v" })
+	register_nvim(mappings.t, { mode = "t" })
+	register_nvim(mappings.v, { mode = "v" })
 
 	-- idk, these key mappings don't like which-key
-	register(mappings.n2, { mode = "n" })
+	register_nvim(mappings.n2, { mode = "n" })
 end
 
 local function setup()
