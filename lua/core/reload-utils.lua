@@ -1,12 +1,7 @@
 local do_reload = function()
 	vim.cmd("luafile " .. vim.env.MYVIMRC)
-	require("packer").compile()
-	require("packer").install()
+	-- TODO: reload via lazy
 	vim.notify(" Config reloaded")
-
-	-- Manually fire off the lazy-loaded modules
-	vim.cmd("doautocmd User OnIdle")
-	vim.cmd("doautocmd User OnFileLoad")
 end
 
 -- Reload neovim config

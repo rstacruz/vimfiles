@@ -36,7 +36,6 @@ local defaults = {
 
 		-- To be removed
 		autopairs = false, -- I don't like it
-		alternate_filetypes = false, -- Used for better Astro support, but Treesitter now supports .astro
 	},
 
 	pane_navigation = {

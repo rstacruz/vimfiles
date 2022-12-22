@@ -1,12 +1,8 @@
 local function get_packages(features)
 	return {
-		{ "wbthomason/packer.nvim" },
-
-		-- Improve startup time by optimising Lua cache
-		{ "lewis6991/impatient.nvim" },
-
 		{ -- Plenary: Library for Telescope and many others
 			"nvim-lua/plenary.nvim",
+			module = "plenary",
 		},
 
 		{ -- Treesitter
@@ -15,7 +11,6 @@ local function get_packages(features)
 			module = "nvim-treesitter",
 			run = ":TSUpdate",
 			cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSEnable", "TSDisable", "TSModuleInfo" },
-			event = { "BufRead", "User PackerComplete" },
 			requires = {
 				{ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
 			},
@@ -27,7 +22,7 @@ local function get_packages(features)
 		{
 			"nvim-treesitter/nvim-treesitter-context",
 			disable = not features.treesitter_context,
-			-- event = { "User OnIdle", "BufRead" },
+			event = "BufReadPre",
 			config = function()
 				require("coresetup.treesitter-context").setup()
 			end,
@@ -36,7 +31,7 @@ local function get_packages(features)
 		{ -- nvim-surround: surround keybindings (cs, ds, ys)
 			"kylechui/nvim-surround",
 			disable = not features.treesitter,
-			event = { "User OnIdle", "InsertEnter" },
+			event = "VeryLazy",
 			config = function()
 				require("coresetup.nvim-surround").setup()
 			end,
@@ -57,7 +52,7 @@ local function get_packages(features)
 			disable = not features.welcome_screen,
 			cmd = { "Alpha" },
 			module = "alpha",
-			event = "VimEnter",
+			event = { "VimEnter" },
 			config = function()
 				require("coresetup.alpha").setup()
 			end,
@@ -102,7 +97,7 @@ local function get_packages(features)
 		{ -- lspconfig
 			"neovim/nvim-lspconfig",
 			disable = not features.lsp,
-			event = "User OnIdle",
+			event = "VeryLazy",
 			config = function()
 				require("core.lsp").setup()
 			end,
@@ -127,7 +122,7 @@ local function get_packages(features)
 		{ -- nvim-tree: File explorer
 			"kyazdani42/nvim-tree.lua",
 			disable = not features.file_explorer,
-			event = "User OnIdle",
+			event = "VeryLazy",
 			config = function()
 				require("coresetup.nvim-tree").setup()
 			end,
@@ -136,7 +131,7 @@ local function get_packages(features)
 		{ -- gitsigns: Git indicators on the gutter
 			"lewis6991/gitsigns.nvim",
 			disable = not features.gitsigns,
-			event = "User OnIdle",
+			event = "VeryLazy",
 			module = "gitsigns",
 			cmd = { "Gitsigns" },
 			config = function()
@@ -147,7 +142,7 @@ local function get_packages(features)
 		{ -- indent-blankline: Indent guides
 			"lukas-reineke/indent-blankline.nvim",
 			disable = not features.indent_guides,
-			event = { "User OnIdle" }, -- { "BufRead" },
+			event = "VeryLazy",
 			config = function()
 				require("coresetup.indent-blankline").setup()
 			end,
@@ -156,7 +151,7 @@ local function get_packages(features)
 		{ -- scrollview: Scroll bars
 			"dstein64/nvim-scrollview",
 			disable = not features.scrollbars,
-			event = "User OnIdle",
+			event = "VeryLazy",
 			config = function()
 				require("coresetup.scrollview").setup()
 			end,
@@ -184,19 +179,19 @@ local function get_packages(features)
 		{ -- dressing: Improve vim.ui.select for :WorkspacesList and LSP rename
 			"stevearc/dressing.nvim",
 			disable = not (features.workspaces or features.lsp),
-			event = { "User OnIdle" },
+			event = "VeryLazy",
 			module = "dressing",
 		},
 
 		{ -- rhubarb: browse on GitHub
 			"tpope/vim-rhubarb",
-			event = { "User OnIdle" },
+			event = "VeryLazy",
 		},
 
 		{ -- fugitive: Git blame and open in GitHub
 			"tpope/vim-fugitive",
 			disable = not features.github_fugitive,
-			event = { "User OnIdle" },
+			event = "VeryLazy",
 			requires = { "tpope/vim-rhubarb" },
 			-- not quite working
 			-- cmd = { "Git", "GBrowse", "GBrowse!" },
@@ -224,18 +219,21 @@ local function get_packages(features)
 		{ -- autopairs
 			"windwp/nvim-autopairs",
 			disable = not features.autopairs,
-			event = { "InsertEnter" },
+			event = "VeryLazy",
 			config = function()
 				require("coresetup.nvim-autopairs").setup()
 			end,
 		},
 
-		{ "onsails/lspkind-nvim", module = "lspkind" },
+		{
+			"onsails/lspkind-nvim",
+			module = "lspkind",
+		},
 
 		{ -- cmp: Completions
 			"hrsh7th/nvim-cmp",
 			disable = not features.completions,
-			event = { "InsertEnter", "CmdlineEnter" },
+			event = "VeryLazy",
 			requires = {
 				"onsails/lspkind-nvim",
 				{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
@@ -256,11 +254,6 @@ local function get_packages(features)
 			module = "luasnip",
 		},
 
-		{ -- filetype: alternate filetypes
-			"nathom/filetype.nvim",
-			disable = not features.alternate_filetypes,
-		},
-
 		{ "nvim-telescope/telescope-fzf-native.nvim", run = "make", opt = true },
 
 		{ -- telescope: file picker UI
@@ -269,7 +262,7 @@ local function get_packages(features)
 			-- module = "telescope",
 			-- Ideally :cmd should take care of lazy-loading, but it has problems with
 			-- hot reloading
-			event = "User OnIdle",
+			event = "VeryLazy",
 			requires = {
 				"nvim-telescope/telescope-fzf-native.nvim",
 			},
@@ -281,20 +274,23 @@ local function get_packages(features)
 		{ -- Profile startup with :StartupTime
 			"dstein64/vim-startuptime",
 			cmd = "StartupTime",
+			config = function()
+				vim.g.startuptime_tries = 10
+			end,
 		},
 
 		{ -- which-key
 			"folke/which-key.nvim",
-			event = "User OnIdle",
-			commit = "9c190ea91939eba8c2d45660127e0403a5300b5a~1", -- https://github.com/folke/which-key.nvim/issues/330 (5 Sep 2022)
+			event = "VeryLazy",
 			config = function()
 				require("coresetup.which-key").setup()
-				require("coresetup.keybindings").setup()
+				require("coresetup.keymap").setup()
 			end,
 		},
 
 		{ -- Status line
 			"feline-nvim/feline.nvim",
+			lazy = false,
 			disable = not features.status_line,
 			config = function()
 				require("coresetup.feline").setup()
@@ -303,7 +299,7 @@ local function get_packages(features)
 
 		{ -- comment
 			"numToStr/Comment.nvim",
-			event = { "User OnIdle" },
+			event = "VeryLazy",
 			config = function()
 				require("Comment").setup()
 			end,
@@ -321,7 +317,7 @@ local function get_packages(features)
 
 		{ -- bufferline
 			"akinsho/bufferline.nvim",
-			event = "User OnIdle",
+			event = "VeryLazy",
 			cmd = { "BufferLineCycleNext", "BufferLineCyclePrev" },
 			config = function()
 				require("coresetup.bufferline").setup()
@@ -335,7 +331,7 @@ local function get_packages(features)
 
 		{ -- vim-foldtext: Improve appearance of fold text
 			"jrudess/vim-foldtext",
-			event = "BufRead",
+			event = "VeryLazy",
 		},
 
 		-- Close hidden buffers
@@ -345,7 +341,7 @@ local function get_packages(features)
 			"j-hui/fidget.nvim",
 			disable = not features.lsp,
 			module = "fidget",
-			event = "User OnIdle",
+			event = "VeryLazy",
 			config = function()
 				require("coresetup.fidget").setup()
 			end,
@@ -354,7 +350,7 @@ local function get_packages(features)
 		{
 			"ThePrimeagen/refactoring.nvim",
 			disable = not features.refactoring,
-			event = "User OnIdle",
+			event = "VeryLazy",
 			requires = {
 				{ "nvim-lua/plenary.nvim" },
 				{ "nvim-treesitter/nvim-treesitter" },
@@ -364,7 +360,7 @@ local function get_packages(features)
 		{
 			"nvim-treesitter/playground",
 			disable = not features.treesitter_playground,
-			event = "User OnIdle",
+			event = "VeryLazy",
 			requires = {
 				{ "nvim-treesitter/nvim-treesitter" },
 			},
@@ -373,7 +369,7 @@ local function get_packages(features)
 		{
 			"mickael-menu/zk-nvim",
 			disable = not features.zk,
-			event = "User OnIdle",
+			event = "VeryLazy",
 			module = { "zk" },
 			config = function()
 				require("coresetup.zk").setup()
@@ -394,13 +390,13 @@ local function get_packages(features)
 		},
 
 		-- Themes
-		{ "EdenEast/nightfox.nvim" },
-		{ "cmoscofian/nibble-vim" },
-		{ "navarasu/onedark.nvim" }, --, event = { "User ColorAll", "User Color_onedark" },
-		{ "projekt0n/github-nvim-theme" },
+		{ "EdenEast/nightfox.nvim", lazy = true },
+		{ "cmoscofian/nibble-vim", lazy = true },
+		{ "navarasu/onedark.nvim", lazy = true }, --, event = { "User ColorAll", "User Color_onedark" },
+		{ "projekt0n/github-nvim-theme", lazy = true },
 		{ "rktjmp/lush.nvim", module = "lush" }, -- required by Zenbones
-		{ "mcchrish/zenbones.nvim" },
-		{ "catppuccin/nvim", as = "catppuccin-nvim", tag = "v0.2" },
+		{ "mcchrish/zenbones.nvim", lazy = true },
+		{ "catppuccin/nvim", as = "catppuccin-nvim", tag = "v0.2", lazy = true },
 		-- { "dracula/vim", as = "dracula-vim" },
 		-- { "cmoscofian/nibble-vim" }
 		-- { "embark-theme/vim", as = "embark-theme-vim" }

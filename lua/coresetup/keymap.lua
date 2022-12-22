@@ -161,24 +161,24 @@ local function get_default_mappings()
 				" Choose colorscheme…",
 			},
 			["<leader>sk"] = {
-				"<cmd>vsplit " .. vim.fn.stdpath("config") .. "/lua/coresetup/keybindings.lua<cr>",
-				" Edit keybindings",
+				"<cmd>vsplit " .. vim.fn.stdpath("config") .. "/lua/coresetup/keymap.lua<cr>",
+				" Edit keymap",
 			},
 			["<leader>sr"] = {
 				"<cmd>lua require('core.reload-utils').reload()<cr>",
 				" Reload config",
-			},
-			["<leader>si"] = {
-				"<cmd>lua require('core.reload-utils').reload()<cr>:PackerInstall<cr>",
-				" Packer: Install new packages",
 			},
 			["<leader>sU"] = {
 				"<cmd>lua require('core.update-utils').update()<cr>",
 				"· Pull vim settings",
 			},
 			["<leader>su"] = {
-				"<cmd>lua require('core.reload-utils').reload()<cr>:PackerSync<cr>",
-				" Packer: Update packages",
+				"<cmd>lua require('core.reload-utils').reload()<cr>:Lazy sync<cr>",
+				" Lazy: Update packages",
+			},
+			["<leader>sp"] = {
+				"<cmd>Lazy profile<cr>",
+				" Lazy: Profile packages",
 			},
 
 			-- Leader: [c] code
@@ -234,7 +234,7 @@ local function get_default_mappings()
 			["<leader>,"] = { name = " Experimental…" },
 			["<leader>,e"] = { ":lua vim.notify(vim.inspect())<left><left>", "Evaluate lua line…" },
 			["<leader>,s"] = { "<cmd>split ~/.scratchpad<cr><C-w>H", "Open scratchpad" },
-			["<leader>,p"] = { "<cmd>StartupTime --tries 6<cr>", "Profile startup time" },
+			["<leader>,p"] = { "<cmd>StartupTime<cr>", "Profile startup time" },
 			["<leader>,h"] = { "<cmd>TSHighlightCapturesUnderCursor<cr>", "Show highlight info at cursor" },
 			["<leader>?"] = { "<cmd>Telescope keymaps<cr>", "Show keybindings…" },
 		},
@@ -305,29 +305,20 @@ local function register_nvim(mappings, options)
 	end
 end
 
---- Registers keymaps to both nvim and whichkey. The nvim bindings provides `desc`
---- for `:Telescope keymaps`, while the which_key one can provide group descriptions.
----@param mappings any
----@param options RegisterOptions
-local function register_both(mappings, options)
-	require("which-key").register(mappings, options)
-	register_nvim(mappings, options)
-end
-
 local function apply_mappings(mappings)
 	local has, which_key = pcall(require, "which-key")
 	if not has then
 		return
 	end
 
-	register_both(mappings.nv, { mode = "n" })
-	register_both(mappings.nv, { mode = "v" })
-	register_both(mappings.i, { mode = "i" })
-	register_both(mappings.n, { mode = "n" })
-	register_both(mappings.ctrl, { mode = "i" })
-	register_both(mappings.ctrl, { mode = "t" })
-	register_both(mappings.ctrl, { mode = "n" })
-	register_both(mappings.ctrl, { mode = "v" })
+	which_key.register(mappings.nv, { mode = "n" })
+	which_key.register(mappings.nv, { mode = "v" })
+	which_key.register(mappings.i, { mode = "i" })
+	which_key.register(mappings.n, { mode = "n" })
+	which_key.register(mappings.ctrl, { mode = "i" })
+	which_key.register(mappings.ctrl, { mode = "t" })
+	which_key.register(mappings.ctrl, { mode = "n" })
+	which_key.register(mappings.ctrl, { mode = "v" })
 
 	-- Which-Key doesn't seem to handle terminal mappings
 	register_nvim(mappings.t, { mode = "t" })
