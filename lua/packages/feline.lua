@@ -136,6 +136,9 @@ function M.config()
 		require("plenary.reload").reload_module("feline")
 	end
 
+	-- When cmdheight is 0, extend the statusbar all the way out
+	local is_full_width = vim.opt.cmdheight == 0
+
 	local has, feline = pcall(require, "feline")
 	if not has then
 		return
@@ -193,14 +196,14 @@ function M.config()
 		hl = function()
 			return { bg = "normal", fg = "bg" }
 		end,
-		icon = { str = " ", always_visible = true },
+		icon = { str = is_full_width and " " or "", always_visible = true },
 	}
 
 	local capleft = {
 		hl = function()
 			return { bg = "normal", fg = "bg" }
 		end,
-		icon = { str = " ", always_visible = true },
+		icon = { str = is_full_width and " " or "", always_visible = true },
 	}
 
 	local branch = {
