@@ -51,6 +51,7 @@
   "vim-foldtext": { "branch": "master", "commit": "450878552944173addaf1955d48b9c40c71a6d71" },
   "vim-fugitive": { "branch": "master", "commit": "5b0b138483de17a8fd8dfcec0b491782c8fbf102" },
   "vim-gitgrep": { "branch": "main", "commit": "f8cd8e687413d7b3be6bb0c1b10b96e27a345023" },
+  "vim-matchup": { "branch": "master", "commit": "db5120dd9887c988de7cd973ddb951e465d413e5" },
   "vim-rhubarb": { "branch": "master", "commit": "cad60fe382f3f501bbb28e113dfe8c0de6e77c75" },
   "vim-rooter": { "branch": "master", "commit": "0415be8b5989e56f6c9e382a04906b7f719cfb38" },
   "vim-slim": { "branch": "master", "commit": "f0758ea1c585d53b9c239177a8b891d8bbbb6fbb" },
