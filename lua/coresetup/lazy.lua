@@ -1,7 +1,6 @@
 local function setup(packages)
 	local options = {
 		defaults = { lazy = true },
-		checker = { enabled = true },
 		performance = {
 			rtp = {
 				disabled_plugins = {
