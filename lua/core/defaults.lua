@@ -22,7 +22,6 @@ local defaults = {
 		refactoring = false,
 		treesitter_playground = true,
 		treesitter_context = true,
-		pounce = false,
 		zk = false,
 
 		-- these might not be worth disabling I think

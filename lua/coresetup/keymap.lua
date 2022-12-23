@@ -27,7 +27,6 @@ local function get_default_mappings()
 			["gs"] = { ":%s~~", "Replace with…" },
 			["gP"] = features.hop and { "<cmd>HopPatternMW<cr>", "Go to pattern…" } or nil,
 			["gp"] = features.hop and { "<cmd>HopChar2MW<cr>", "Go to pattern (2 chars)…" } or nil,
-			-- ["gP"] = features.pounce and { "<cmd>Pounce<cr>", "Find pattern…" } or nil,
 			["]c"] = { "<cmd>cnext<CR>", "Next quickfix item" },
 			["[c"] = { "<cmd>cprev<CR>", "Prev quickfix item" },
 			["]g"] = features.gitsigns and {
@@ -195,7 +194,7 @@ local function get_default_mappings()
 				"<cmd>lua vim.lsp.buf.rename()<cr>",
 				" Rename symbol…",
 			} or nil,
-			["<leader>cd"] = features.lsp and { "<cmd>Telescope diagnostics<CR>", " Show diagnostics…" } or nil,
+			["<leader>cd"] = features.lsp and { "<cmd>Trouble<CR>", " Show diagnostics…" } or nil,
 			["<leader>cf"] = features.lsp and {
 				"<cmd>lua vim.lsp.buf.format()<cr>",
 				" Format via LSP",
@@ -248,7 +247,6 @@ local function get_default_mappings()
 			["gW"] = features.hop and { "<cmd>HopWordMW<cr>", "Go to word (all windows)…" } or nil,
 			["gp"] = features.hop and { "<cmd>HopPattern<cr>", "Find pattern…" } or nil,
 			["gP"] = features.hop and { "<cmd>HopPatternMW<cr>", "Find pattern (all windows)…" } or nil,
-			-- ["gP"] = features.pounce and { "<cmd>Pounce<cr>", "Find…" } or nil,
 		},
 		i = {
 			["<s-del>"] = { "<cmd>w<cr>:bd<cr>", "Save and close" },

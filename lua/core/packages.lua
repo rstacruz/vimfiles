@@ -19,7 +19,7 @@ local function get_packages(features)
 			end,
 		},
 
-		{
+		{ -- treesitter-context: Show context lines at the top
 			"nvim-treesitter/nvim-treesitter-context",
 			disable = not features.treesitter_context,
 			event = "BufReadPre",
@@ -225,7 +225,7 @@ local function get_packages(features)
 			end,
 		},
 
-		{
+		{ -- lspkind
 			"onsails/lspkind-nvim",
 			module = "lspkind",
 		},
@@ -347,7 +347,18 @@ local function get_packages(features)
 			end,
 		},
 
-		{
+		{ -- trouble: diagnostics
+			"folke/trouble.nvim",
+			cmd = { "TroubleToggle", "Trouble" },
+			config = function()
+				require("trouble").setup({
+					auto_open = false,
+					use_diagnostic_signs = true, -- en
+				})
+			end,
+		},
+
+		{ -- refactoring
 			"ThePrimeagen/refactoring.nvim",
 			disable = not features.refactoring,
 			event = "VeryLazy",
@@ -366,7 +377,7 @@ local function get_packages(features)
 			},
 		},
 
-		{
+		{ -- zk-nvim: Notes organiser
 			"mickael-menu/zk-nvim",
 			disable = not features.zk,
 			event = "VeryLazy",
@@ -375,16 +386,8 @@ local function get_packages(features)
 				require("coresetup.zk").setup()
 			end,
 		},
-		{
-			"rlane/pounce.nvim",
-			disabled = not features.pounce,
-			command = { "Pounce", "PounceRepeat" },
-			config = function()
-				require("coresetup.pounce").setup()
-			end,
-		},
 
-		{
+		{ -- Slim file type
 			"slim-template/vim-slim",
 			ft = { "slim" },
 		},
