@@ -10,6 +10,6 @@ require("core.autocmds").setup()
 vim.api.nvim_create_autocmd("User", {
 	pattern = "VeryLazy",
 	callback = function()
-		require("core.reload-utils").setup()
+		require("core.keymap").setup()
 	end,
 })

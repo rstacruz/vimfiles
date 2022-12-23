@@ -36,8 +36,6 @@ function M.config()
 			group = "", -- 
 		},
 	})
-
-	require("core.keymap").setup()
 end
 
 return M

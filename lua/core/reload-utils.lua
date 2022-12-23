@@ -1,48 +1,25 @@
-local function do_reload()
-	vim.cmd("luafile " .. vim.env.MYVIMRC)
-	-- TODO: reload via lazy
-	vim.notify(" Config reloaded")
+-- Rerun all config blocks in lazy.nvim packages
+local function retrigger_lazy_config_blocks()
+	local plugins = require("lazy").plugins()
+	for _, plugin in ipairs(plugins) do
+		if plugin.config then
+			plugin.config()
+		end
+	end
 end
 
 -- Reload neovim config
---   reload()
---   reload({ safe = true }) -- Suppress errors
-local function reload(options)
-	local opts = options or {}
+local function reload()
 	vim.g.hot_reload = true
-
 	local reload_module = require("plenary.reload").reload_module
 	reload_module("core")
 	reload_module("packages")
 	reload_module("custom")
 
-	if opts.safe then
-		local is_ok, _ = pcall(do_reload)
-		if not is_ok then
-			vim.notify(" Config reloading didn't work. Try 'leader-sr' to reload again and show errors.")
-		end
-	else
-		do_reload()
-	end
+	vim.cmd("luafile " .. vim.env.MYVIMRC)
+	retrigger_lazy_config_blocks()
+	vim.cmd([[doautocmd User VeryLazy]])
+	vim.notify(" Config reloaded")
 end
 
--- Automatically compile when writing init.lua
-local function setup()
-	local group = vim.api.nvim_create_augroup("AutoreloadOnSave", { clear = true })
-
-	vim.api.nvim_create_autocmd("BufWritePost", {
-		pattern = {
-			vim.env.MYVIMRC,
-			vim.fn.stdpath("config") .. "/lua/custom/*.lua",
-			vim.fn.stdpath("config") .. "/lua/core/*.lua",
-		},
-		group = group,
-		callback = function()
-			vim.schedule(function()
-				reload({ safe = true })
-			end)
-		end,
-	})
-end
-
-return { reload = reload, setup = setup }
+return { reload = reload }

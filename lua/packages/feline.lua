@@ -209,7 +209,6 @@ function M.config()
 		icon = { str = " ", hl = { fg = "mute2" } },
 	}
 
-	local rsep = { provider = "  " }
 	local sep = { provider = " " }
 
 	local components = {
