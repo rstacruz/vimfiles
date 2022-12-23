@@ -13,24 +13,25 @@ vim.opt.runtimepath:prepend(lazypath)
 
 -- Load configuration
 BaseConfig = require("core.defaults").defaults
--- pcall(require, "custom.init")
 
 -- Set Neovim options
 require("coresetup.nvim-options").setup()
 
--- Lazy packages
-local packages = require("core.packages").get_packages(BaseConfig.features)
-require("coresetup.lazy").setup(packages)
+-- Lazy packages (lazy can't be reinitialised)
+if not vim.g.hot_reload then
+	local packages = require("core.packages").get_packages(BaseConfig.features)
+	require("coresetup.lazy").setup(packages)
+end
 
 -- Apply theme
 require("core.theme-overrides").setup()
 require("core.theme-utils").setup()
+require("coresetup.autocmds").setup() -- has filetype stuff, so can't be deferred
 
 -- Defer loading some plugins until Vim is idle
 vim.api.nvim_create_autocmd("User", {
 	pattern = "VeryLazy",
 	callback = function()
 		require("core.reload-utils").setup()
-		require("coresetup.autocmds").setup()
 	end,
 })

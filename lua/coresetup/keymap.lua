@@ -151,10 +151,6 @@ local function get_default_mappings()
 				"<cmd>vsplit " .. vim.fn.stdpath("config") .. "/init.lua<cr>",
 				" Edit Neovim settings",
 			},
-			["<leader>s."] = {
-				"<cmd>lua require('core.actions').open_custom_settings()<cr>",
-				" Edit custom settings",
-			},
 			["<leader>sc"] = {
 				"<cmd>lua require('core.actions').open_colorscheme_picker()<cr>",
 				" Choose colorscheme…",
@@ -235,7 +231,7 @@ local function get_default_mappings()
 			["<leader>,s"] = { "<cmd>split ~/.scratchpad<cr><C-w>H", "Open scratchpad" },
 			["<leader>,p"] = { "<cmd>StartupTime<cr>", "Profile startup time" },
 			["<leader>,h"] = { "<cmd>TSHighlightCapturesUnderCursor<cr>", "Show highlight info at cursor" },
-			["<leader>?"] = { "<cmd>Telescope keymaps<cr>", "Show keybindings…" },
+			["<leader><Space>"] = { "<cmd>lua require('core.actions').show_keymaps()<cr>", "Show keybindings…" },
 		},
 		t = {
 			["<c-x>"] = { "<c-\\><c-n>" }, -- escape

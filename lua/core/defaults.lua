@@ -1,8 +1,9 @@
 local defaults = {
 	ui = {
 		-- github_dark | terafox | github_dimmed | catppuccin
-		theme_dark = "zenburned",
-		theme_light = "github_light",
+		theme_dark = "onedark",
+		-- github_light | dayfox | onedark
+		theme_light = "onedark",
 	},
 
 	-- Feature toggles to optimise loading times for some environments

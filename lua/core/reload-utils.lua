@@ -29,7 +29,7 @@ end
 
 -- Automatically compile when writing init.lua
 local function setup()
-	local group = vim.api.nvim_create_augroup("PackerReload", { clear = true })
+	local group = vim.api.nvim_create_augroup("AutoreloadOnSave", { clear = true })
 
 	vim.api.nvim_create_autocmd("BufWritePost", {
 		pattern = {

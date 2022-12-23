@@ -9,7 +9,7 @@ local function apply_options()
 		return
 	end
 
-	local has_groups, groups = pcall(require, "bufferline.groups")
+	-- local has_groups, groups = pcall(require, "bufferline.groups")
 
 	local options = {
 		options = {
@@ -25,7 +25,7 @@ local function apply_options()
 			},
 			separator_style = "thick", -- slant | thick | thin
 			diagnostics = "nvim_lsp",
-			tab_size = 24, -- Larger tabs (default: 18)
+			tab_size = 18, -- Larger tabs (default: 18)
 			show_close_icon = false, -- Close on the top-right (default false)
 			sort_by = "insert_after_current", -- Works like the browser I guess
 
@@ -34,25 +34,26 @@ local function apply_options()
 			always_show_bufferline = false,
 
 			-- diagnostics_indicator = function(count, level)
-			--	 local icon = level:match("error") and "" or ""
-			--	 return " " .. icon .. count
+			-- 	local icon = level:match("error") and "" or ""
+			-- 	return " " .. icon .. count
 			-- end,
-			groups = {
-				options = {
-					-- When you re-enter a hidden group this options re-opens that group
-					-- so the buffer is visible
-					toggle_hidden_on_enter = true,
-				},
-				items = {
-					has_groups and groups.builtin.ungrouped or nil,
-					{
-						name = "Docs",
-						matcher = function(buf)
-							return buf.filename:match("%.md") or buf.filename:match("%.txt")
-						end,
-					},
-				},
-			},
+
+			-- groups = {
+			-- 	options = {
+			-- 		-- When you re-enter a hidden group this options re-opens that group
+			-- 		-- so the buffer is visible
+			-- 		toggle_hidden_on_enter = true,
+			-- 	},
+			-- 	items = {
+			-- 		has_groups and groups.builtin.ungrouped or nil,
+			-- 		{
+			-- 			name = "Docs",
+			-- 			matcher = function(buf)
+			-- 				return buf.filename:match("%.md") or buf.filename:match("%.txt")
+			-- 			end,
+			-- 		},
+			-- 	},
+			-- },
 		},
 	}
 

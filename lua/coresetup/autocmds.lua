@@ -90,12 +90,24 @@ local function setup_auto_create_dir()
 	})
 end
 
+local function setup_mdx()
+	local group = vim.api.nvim_create_augroup("MdxFiletype", { clear = true })
+	vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+		group = group,
+		pattern = "*.mdx",
+		callback = function()
+			vim.opt_local.filetype = "markdown"
+		end,
+	})
+end
+
 local function setup()
 	setup_autoformat()
 	setup_terminal_overrides()
 	setup_gitcommit_overrides()
 	setup_auto_cursorline()
 	setup_auto_create_dir()
+	setup_mdx()
 end
 
 return { setup = setup, config = config }

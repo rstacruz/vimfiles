@@ -337,7 +337,7 @@ local function get_packages(features)
 		-- Close hidden buffers
 		{ "kazhala/close-buffers.nvim", module = "close_buffers" },
 
-		{
+		{ -- fidget: spinners for lsp messages
 			"j-hui/fidget.nvim",
 			disable = not features.lsp,
 			module = "fidget",
@@ -368,7 +368,7 @@ local function get_packages(features)
 			},
 		},
 
-		{
+		{ -- treesitter playground
 			"nvim-treesitter/playground",
 			disable = not features.treesitter_playground,
 			event = "VeryLazy",
@@ -393,13 +393,28 @@ local function get_packages(features)
 		},
 
 		-- Themes
-		{ "EdenEast/nightfox.nvim", lazy = true },
-		{ "cmoscofian/nibble-vim", lazy = true },
-		{ "navarasu/onedark.nvim", lazy = true }, --, event = { "User ColorAll", "User Color_onedark" },
-		{ "projekt0n/github-nvim-theme", lazy = true },
+		{ "EdenEast/nightfox.nvim", event = "VeryLazy" },
+		{ "cmoscofian/nibble-vim", event = "VeryLazy" },
+		{ -- onedark
+			"navarasu/onedark.nvim",
+			event = "VeryLazy",
+			config = function()
+				require("onedark").setup({
+					style = "warmer", -- dark, deep, warmer
+				})
+			end,
+		}, --, event = { "User ColorAll", "User Color_onedark" },
+		{ "projekt0n/github-nvim-theme", event = "VeryLazy" },
+		{ "mcchrish/zenbones.nvim", event = "VeryLazy" },
+		{ "catppuccin/nvim", as = "catppuccin-nvim", tag = "v0.2", event = "VeryLazy" },
 		{ "rktjmp/lush.nvim", module = "lush" }, -- required by Zenbones
-		{ "mcchrish/zenbones.nvim", lazy = true },
-		{ "catppuccin/nvim", as = "catppuccin-nvim", tag = "v0.2", lazy = true },
+		{
+			"tiagovla/tokyodark.nvim",
+			event = "VeryLazy",
+			config = function()
+				vim.g.tokyodark_color_gamma = "1.5"
+			end,
+		},
 		-- { "dracula/vim", as = "dracula-vim" },
 		-- { "cmoscofian/nibble-vim" }
 		-- { "embark-theme/vim", as = "embark-theme-vim" }
