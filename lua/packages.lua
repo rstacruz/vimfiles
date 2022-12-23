@@ -2,7 +2,6 @@ local function get_packages(features)
 	return {
 		{ -- Plenary: Library for Telescope and many others
 			"nvim-lua/plenary.nvim",
-			module = "plenary",
 		},
 
 		{ -- Treesitter
@@ -319,15 +318,6 @@ local function get_packages(features)
 					result_padding = "   ",
 					line_sep = "",
 				})
-			end,
-		},
-
-		{ -- bufferline
-			"akinsho/bufferline.nvim",
-			event = "VeryLazy",
-			cmd = { "BufferLineCycleNext", "BufferLineCyclePrev" },
-			config = function()
-				require("coresetup.bufferline").setup()
 			end,
 		},
 
