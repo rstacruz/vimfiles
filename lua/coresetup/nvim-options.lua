@@ -1,58 +1,3 @@
-local function setup_providers()
-	local features = BaseConfig.features
-
-	-- disable some builtin vim plugins
-	local default_plugins = {
-		"2html_plugin",
-		"getscript",
-		"getscriptPlugin",
-		"gzip",
-		"logipat",
-		"matchit",
-		"tar",
-		"tarPlugin",
-		"rrhelper",
-		"spellfile_plugin",
-		"vimball",
-		"vimballPlugin",
-		"zip",
-		"zipPlugin",
-		"tutor",
-		"rplugin",
-		"syntax",
-		"synmenu",
-		"optwin",
-		"compiler",
-		"bugreport",
-		"ftplugin",
-		"netrwSettings",
-		"netrwFileHandlers",
-	}
-
-	-- Fugitive relies on netrw for :GBrowse
-	if not features.github_fugitive then
-		vim.list_extend(default_plugins, {
-			"netrw",
-			"netrwPlugin",
-		})
-	end
-
-	for _, plugin in pairs(default_plugins) do
-		vim.g["loaded_" .. plugin] = 1
-	end
-
-	local default_providers = {
-		"node",
-		"perl",
-		"python3",
-		"ruby",
-	}
-
-	for _, provider in ipairs(default_providers) do
-		vim.g["loaded_" .. provider .. "_provider"] = 0
-	end
-end
-
 local function setup()
 	local features = BaseConfig.features
 	vim.g.vim_version = vim.version().minor
@@ -140,8 +85,6 @@ local function setup()
 	end
 
 	if not vim.g.hot_reload then
-		setup_providers()
-
 		-- Lazy-load the shada (shared data) file. This saves ~3ms of startup time
 		vim.opt.shadafile = "NONE"
 		vim.defer_fn(function()
