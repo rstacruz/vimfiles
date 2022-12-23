@@ -8,6 +8,7 @@ require("core.autocmds").setup()
 
 -- Defer loading some plugins until Vim is idle
 vim.api.nvim_create_autocmd("User", {
+	group = vim.api.nvim_create_augroup("KeymapSetup", { clear = true }),
 	pattern = "VeryLazy",
 	callback = function()
 		require("core.keymap").setup()

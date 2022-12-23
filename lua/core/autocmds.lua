@@ -10,11 +10,9 @@ local function setup_autoformat()
 		return
 	end
 
-	local group = vim.api.nvim_create_augroup("NullFormat", { clear = true })
-
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		pattern = pattern,
-		group = group,
+		group = vim.api.nvim_create_augroup("NullFormat", { clear = true }),
 		callback = function()
 			pcall(function()
 				vim.lsp.buf.format()
@@ -25,13 +23,13 @@ end
 
 -- Override settings for terminals
 local function setup_terminal_overrides()
-	local group = vim.api.nvim_create_augroup("TerminalOverrides", { clear = true })
-
 	vim.api.nvim_create_autocmd("TermOpen", {
 		pattern = "*",
-		group = group,
+		group = vim.api.nvim_create_augroup("TerminalOverrides", { clear = true }),
 		callback = function()
-			vim.cmd("setlocal nonumber norelativenumber nocursorline")
+			vim.opt_local.number = false
+			vim.opt_local.relativenumber = false
+			vim.opt_local.cursorline = false
 			vim.cmd("startinsert")
 		end,
 	})
@@ -91,9 +89,8 @@ local function setup_auto_create_dir()
 end
 
 local function setup_mdx()
-	local group = vim.api.nvim_create_augroup("MdxFiletype", { clear = true })
 	vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-		group = group,
+		group = vim.api.nvim_create_augroup("MdxFiletype", { clear = true }),
 		pattern = "*.mdx",
 		callback = function()
 			vim.opt_local.filetype = "markdown"
@@ -102,9 +99,8 @@ local function setup_mdx()
 end
 
 local function setup_filetype_overrides()
-	local group = vim.api.nvim_create_augroup("FiletypeOverrides", { clear = true })
 	vim.api.nvim_create_autocmd("Filetype", {
-		group = group,
+		group = vim.api.nvim_create_augroup("FiletypeOverrides", { clear = true }),
 		pattern = "spectre_panel,markdown",
 		callback = function()
 			vim.opt_local.number = false
