@@ -163,7 +163,7 @@ local function get_default_mappings()
 				" Choose colorscheme…",
 			},
 			["<leader>sk"] = {
-				"<cmd>vsplit " .. vim.fn.stdpath("config") .. "/lua/coresetup/keymap.lua<cr>",
+				"<cmd>vsplit " .. vim.fn.stdpath("config") .. "/lua/core/keymap.lua<cr>",
 				" Edit keymap",
 			},
 			["<leader>sr"] = {
