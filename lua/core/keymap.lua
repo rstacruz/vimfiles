@@ -334,4 +334,4 @@ local function setup()
 	apply_mappings(mappings)
 end
 
-return { setup = setup, apply_mappings = apply_mappings }
+return { setup = setup }

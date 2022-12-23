@@ -1,33 +1,28 @@
-if not vim.g.hot_reload then
-  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-  if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-      "git",
-      "clone",
-      "--filter=blob:none",
-      "--single-branch",
-      "https://github.com/folke/lazy.nvim.git",
-      lazypath,
-    })
-  end
-  vim.opt.runtimepath:prepend(lazypath)
-end
-
 -- Load configuration
 BaseConfig = require("core.defaults").defaults
+require("core.nvim-options").setup()
 
--- Set Neovim options
-require("coresetup.nvim-options").setup()
-
--- Lazy packages
+-- Install Packages
 if not vim.g.hot_reload then
-  require("coresetup.lazy").setup()
+	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+	if not vim.loop.fs_stat(lazypath) then
+		vim.fn.system({
+			"git",
+			"clone",
+			"--filter=blob:none",
+			"--single-branch",
+			"https://github.com/folke/lazy.nvim.git",
+			lazypath,
+		})
+	end
+	vim.opt.runtimepath:prepend(lazypath)
+	require("core.lazy").setup()
 end
 
--- Apply theme
+-- Things that can't be deferred
 require("core.theme-overrides").setup()
 require("core.theme-utils").setup()
-require("coresetup.autocmds").setup() -- has filetype stuff, so can't be deferred
+require("core.autocmds").setup()
 
 -- Defer loading some plugins until Vim is idle
 vim.api.nvim_create_autocmd("User", {

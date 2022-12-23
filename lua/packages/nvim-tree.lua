@@ -1,3 +1,10 @@
+-- nvim-tree: File explorer
+local M = {
+	"nvim-tree/nvim-tree.lua",
+	disable = not BaseConfig.features.file_explorer,
+	event = "VeryLazy",
+}
+
 local special_files = {
 	"Cargo.toml",
 	"Makefile",
@@ -38,13 +45,8 @@ local special_files = {
 	".stignore",
 }
 
-local function setup()
-	local has, nvim_tree = pcall(require, "nvim-tree")
-	if not has then
-		return
-	end
-
-	local options = {
+function M.config()
+	require("nvim-tree").setup({
 		sync_root_with_cwd = true,
 		view = {
 			width = 30,
@@ -97,9 +99,7 @@ local function setup()
 				},
 			},
 		},
-	}
-
-	nvim_tree.setup(options)
+	})
 end
 
-return { setup = setup }
+return M

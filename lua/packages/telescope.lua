@@ -1,8 +1,17 @@
-local function setup()
-	local has, telescope = pcall(require, "telescope")
-	if not has then
-		return
-	end
+local M = { -- telescope: file picker UI
+	"nvim-telescope/telescope.nvim",
+	-- cmd = "Telescope",
+	-- module = "telescope",
+	-- Ideally :cmd should take care of lazy-loading, but it has problems with
+	-- hot reloading
+	event = "VeryLazy",
+	requires = {
+		"nvim-telescope/telescope-fzf-native.nvim",
+	},
+}
+
+function M.config()
+	local telescope = require("telescope")
 
 	local options = {
 		defaults = {
@@ -69,4 +78,4 @@ local function setup()
 	end)
 end
 
-return { setup = setup }
+return M

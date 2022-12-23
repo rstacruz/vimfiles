@@ -1,3 +1,12 @@
+-- alpha: dashboard screen
+local M = {
+	"goolord/alpha-nvim",
+	disable = not BaseConfig.features.welcome_screen,
+	cmd = { "Alpha" },
+	module = "alpha",
+	event = { "VimEnter" },
+}
+
 local config = {
 	-- Banner to show in the welcome screen
 	banner = { "╲    ╱", " ╲  ╱ ", "  ╲╱ ", "" },
@@ -98,7 +107,7 @@ local function get_config()
 	return plugin_config
 end
 
-local function setup()
+function M.config()
 	local has, alpha = pcall(require, "alpha")
 	if not has then
 		return
@@ -108,4 +117,4 @@ local function setup()
 	alpha.setup(config)
 end
 
-return { setup = setup, get_config = get_config }
+return M

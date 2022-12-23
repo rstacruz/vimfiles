@@ -1,3 +1,19 @@
+-- cmp: Completions
+local M = {
+	"hrsh7th/nvim-cmp",
+	disable = not BaseConfig.features.completions,
+	event = "VeryLazy",
+	requires = {
+		"onsails/lspkind-nvim",
+		{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+		{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+		{ "hrsh7th/cmp-path", after = "nvim-cmp" },
+		{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+		{ "hrsh7th/cmp-emoji", after = "nvim-cmp" },
+		{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
+	},
+}
+
 local function get_borders(hl_name)
 	return {
 		{ "╭", hl_name },
@@ -11,7 +27,7 @@ local function get_borders(hl_name)
 	}
 end
 
-local function setup()
+function M.config()
 	-- Without this, hot-reload will make entries appear twice or more
 	if vim.g.hot_reload then
 		require("plenary.reload").reload_module("cmp")
@@ -106,4 +122,4 @@ local function setup()
 	})
 end
 
-return { setup = setup }
+return M

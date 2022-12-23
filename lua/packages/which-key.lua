@@ -1,10 +1,10 @@
-local function setup()
-	local has, which_key = pcall(require, "which-key")
-	if not has then
-		return
-	end
+local M = {
+	"folke/which-key.nvim",
+	event = "VeryLazy",
+}
 
-	local options = {
+function M.config()
+	require("which-key").setup({
 		window = {
 			border = "none", -- none single double shadow
 			position = "bottom",
@@ -35,8 +35,9 @@ local function setup()
 			separator = "┄", -- between a key and it's label
 			group = "", -- 
 		},
-	}
-	which_key.setup(options)
+	})
+
+	require("core.keymap").setup()
 end
 
-return { setup = setup }
+return M

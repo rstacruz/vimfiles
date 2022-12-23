@@ -1,10 +1,12 @@
-local function setup()
-	local has, indent_blankline = pcall(require, "indent_blankline")
-	if not has then
-		return
-	end
+-- indent-blankline: Indent guides
+local M = {
+	"lukas-reineke/indent-blankline.nvim",
+	disable = not BaseConfig.features.indent_guides,
+	event = "VeryLazy",
+}
 
-	local options = {
+function M.config()
+	require("indent_blankline").setup({
 		space_char_blankline = " ",
 		char_list = { "│" },
 		context_char_list = { "│" },
@@ -22,9 +24,7 @@ local function setup()
 			"help",
 			"spectre_panel",
 		},
-	}
-
-	indent_blankline.setup(options)
+	})
 end
 
-return { setup = setup }
+return M

@@ -1,3 +1,10 @@
+-- lspconfig
+local M = {
+	"neovim/nvim-lspconfig",
+	disable = not BaseConfig.features.lsp,
+	event = "VeryLazy",
+}
+
 -- lspconfig mappings are available here:
 -- https://github.com/williamboman/mason-lspconfig.nvim/blob/main/lua/mason-lspconfig/mappings/server.lua
 --
@@ -35,7 +42,7 @@ local function has_bin(bin_name)
 	return has_mason_bin(bin_name) or vim.fn.executable(bin_name) == 1
 end
 
-local function setup()
+function M.config()
 	-- Ensure mason is loaded first. This makes it so that the mason bin's are available
 	local has_mason, mason = pcall(require, "mason")
 	if has_mason then
@@ -85,4 +92,4 @@ local function setup()
 	end
 end
 
-return { setup = setup, config = config }
+return M

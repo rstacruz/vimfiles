@@ -1,8 +1,16 @@
-local function setup()
-	local is_available, nvim_treesitter = pcall(require, "nvim-treesitter.configs")
-	if not is_available then
-		return
-	end
+local M = {
+	"nvim-treesitter/nvim-treesitter",
+	disable = not BaseConfig.features.treesitter,
+	module = "nvim-treesitter",
+	run = ":TSUpdate",
+	cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSEnable", "TSDisable", "TSModuleInfo" },
+	requires = {
+		{ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
+	},
+}
+
+function M.config()
+	local nvim_treesitter = require("nvim-treesitter.configs")
 
 	nvim_treesitter.setup({
 		ensure_installed = { "lua" },
@@ -35,4 +43,4 @@ local function setup()
 	vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 end
 
-return { setup = setup, config = config }
+return M

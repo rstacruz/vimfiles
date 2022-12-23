@@ -1,15 +1,18 @@
-local function setup()
+-- workspaces: Project switcher
+local M = {
+	"natecraddock/workspaces.nvim",
+	disable = not BaseConfig.features.workspaces,
+	module = "workspaces",
+	cmd = { "WorkspacesAdd", "WorkspacesRemove", "WorkspacesList", "WorkspacesOpen" },
+}
+
+function M.config()
 	local features = BaseConfig.features
 
 	-- Use the UI from dressing.nvim for :WorkspacesList, if it's available
 	pcall(require, "dressing")
 
-	local has, workspaces = pcall(require, "workspaces")
-	if not has then
-		return
-	end
-
-	workspaces.setup({
+	require("workspaces").setup({
 		global_cd = true,
 		hooks = {
 			open_pre = { "silent %bd!" },
@@ -23,4 +26,4 @@ local function setup()
 	end
 end
 
-return { setup = setup }
+return M
