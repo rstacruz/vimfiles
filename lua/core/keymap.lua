@@ -16,17 +16,16 @@ local function get_default_mappings()
 			-- Open sidebar. Inspired by vim-vinegar.
 			["-"] = features.file_explorer and { "<cmd>NvimTreeFindFile<cr>", "Open file explorer" } or nil,
 
+			["s"] = features.hop and { "<cmd>HopChar1MW<cr>", "Go to character…" } or nil,
 			-- Use "123," to go to line 123. This just makes things easier to press
-			-- (no shift key needed).
+
 			[","] = { "G", "Go to line" },
 			["+"] = { "za", "Toggle fold under cursor" },
 			["<del>"] = { "<cmd>bd!<cr>", "Destroy this buffer" },
 			["<s-del>"] = { "<cmd>w<cr>:bd<cr>", "Save and close" },
 			["<c-p>"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open file…" },
-			["ga"] = { "<cmd>HopChar1MW<cr>", "Go to character…" },
 			["gs"] = { ":%s~~", "Replace with…" },
-			["gP"] = features.hop and { "<cmd>HopPatternMW<cr>", "Go to pattern…" } or nil,
-			["gp"] = features.hop and { "<cmd>HopChar2MW<cr>", "Go to pattern (2 chars)…" } or nil,
+			["ga"] = features.hop and { "<cmd>HopChar2MW<cr>", "Go to pattern (2 chars)…" } or nil,
 			["]c"] = { "<cmd>cnext<CR>", "Next quickfix item" },
 			["[c"] = { "<cmd>cprev<CR>", "Prev quickfix item" },
 			["]g"] = features.gitsigns and {
