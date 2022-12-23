@@ -1,11 +1,11 @@
 local M = {
-  "akinsho/bufferline.nvim",
-  event = "VeryLazy",
-  cmd = { "BufferLineCycleNext", "BufferLineCyclePrev" },
+	"akinsho/bufferline.nvim",
+	event = "VeryLazy",
+	cmd = { "BufferLineCycleNext", "BufferLineCyclePrev" },
 }
 
 local function apply_options()
-  local bufferline = require("bufferline")
+	local bufferline = require("bufferline")
 
 	-- local has_groups, groups = pcall(require, "bufferline.groups")
 

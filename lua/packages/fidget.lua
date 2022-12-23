@@ -1,13 +1,13 @@
 -- fidget: spinners for lsp messages
 local M = {
-  "j-hui/fidget.nvim",
-  disable = not BaseConfig.features.lsp,
-  module = "fidget",
-  event = "VeryLazy",
+	"j-hui/fidget.nvim",
+	disable = not BaseConfig.features.lsp,
+	module = "fidget",
+	event = "VeryLazy",
 }
 
 function M.config()
-  local fidget = require("fidget")
+	local fidget = require("fidget")
 
 	local options = {
 		text = {

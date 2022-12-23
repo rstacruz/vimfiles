@@ -1,7 +1,7 @@
 local M = { -- Status line
-  "feline-nvim/feline.nvim",
-  lazy = false,
-  disable = not BaseConfig.features.status_line,
+	"feline-nvim/feline.nvim",
+	lazy = false,
+	disable = not BaseConfig.features.status_line,
 }
 
 local function extract_color_from_group(color_group, what)

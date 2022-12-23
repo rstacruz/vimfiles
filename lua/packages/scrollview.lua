@@ -1,8 +1,8 @@
 -- scrollview: Scroll bars
 local M = {
-  "dstein64/nvim-scrollview",
-  disable = not BaseConfig.features.scrollbars,
-  event = "VeryLazy",
+	"dstein64/nvim-scrollview",
+	disable = not BaseConfig.features.scrollbars,
+	event = "VeryLazy",
 }
 
 function M.config()
