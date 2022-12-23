@@ -1,4 +1,4 @@
-local function setup(packages)
+local function setup()
 	local options = {
 		defaults = { lazy = true },
 		performance = {
@@ -47,7 +47,7 @@ local function setup(packages)
 			},
 		},
 	}
-	require("lazy").setup(packages, options)
+	require("lazy").setup("packages", options)
 end
 
 return { setup = setup }

@@ -428,4 +428,6 @@ local function get_packages(features)
 	}
 end
 
-return { get_packages = get_packages }
+local packages = get_packages(BaseConfig.features)
+return packages
+

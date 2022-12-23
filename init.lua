@@ -1,15 +1,17 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"--single-branch",
-		"https://github.com/folke/lazy.nvim.git",
-		lazypath,
-	})
+if not vim.g.hot_reload then
+  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+  if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--single-branch",
+      "https://github.com/folke/lazy.nvim.git",
+      lazypath,
+    })
+  end
+  vim.opt.runtimepath:prepend(lazypath)
 end
-vim.opt.runtimepath:prepend(lazypath)
 
 -- Load configuration
 BaseConfig = require("core.defaults").defaults
@@ -17,10 +19,9 @@ BaseConfig = require("core.defaults").defaults
 -- Set Neovim options
 require("coresetup.nvim-options").setup()
 
--- Lazy packages (lazy can't be reinitialised)
+-- Lazy packages
 if not vim.g.hot_reload then
-	local packages = require("core.packages").get_packages(BaseConfig.features)
-	require("coresetup.lazy").setup(packages)
+  require("coresetup.lazy").setup()
 end
 
 -- Apply theme
