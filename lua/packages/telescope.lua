@@ -6,7 +6,10 @@ local M = { -- telescope: file picker UI
 	-- hot reloading
 	event = "VeryLazy",
 	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-lua/popup.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", run = "make", opt = true },
+		"nvim-telescope/telescope-z.nvim",
 	},
 }
 
@@ -75,6 +78,10 @@ function M.config()
 
 	pcall(function()
 		telescope.load_extension("projects")
+	end)
+
+	pcall(function()
+		telescope.load_extension("z")
 	end)
 end
 

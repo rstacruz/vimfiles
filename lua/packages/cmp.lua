@@ -89,13 +89,12 @@ function M.config()
 			end,
 		},
 		sources = cmp.config.sources({
-			-- { name = "luasnip" },
 			{ name = "nvim_lsp" },
 			{ name = "nvim_lua" },
+			{ name = "luasnip" },
+			{ name = "buffer" },
 			{ name = "path" },
 			{ name = "emoji" },
-		}, {
-			{ name = "buffer" },
 		}),
 	}
 

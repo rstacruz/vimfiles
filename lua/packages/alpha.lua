@@ -56,7 +56,11 @@ local function get_config()
 		bottom = {
 			{ "e", "  New file", "<cmd>ene<cr>" },
 			features.workspaces and { "w", "  Open workspace…", "<cmd>WorkspacesList<cr>" } or false,
-			features.project_switcher and { "p", "  Switch project…", "<cmd>Telescope projects<cr>" } or false,
+			{
+				"z",
+				"  Switch to dir…",
+				"<cmd>lua require('telescope').extensions.z.list({})<cr>",
+			},
 			{ "q", "  Quit", "<cmd>qa<cr>" },
 		},
 	}

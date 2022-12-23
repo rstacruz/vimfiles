@@ -15,7 +15,6 @@ local defaults = {
 		treesitter = true,
 		github_fugitive = true,
 		workspaces = false,
-		project_switcher = true,
 		status_line = true,
 		welcome_screen = true,
 
