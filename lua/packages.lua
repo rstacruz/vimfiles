@@ -127,32 +127,12 @@ local function get_packages(features)
 			end,
 		},
 
-		{ -- gitsigns: Git indicators on the gutter
-			"lewis6991/gitsigns.nvim",
-			disable = not features.gitsigns,
-			event = "VeryLazy",
-			module = "gitsigns",
-			cmd = { "Gitsigns" },
-			config = function()
-				require("coresetup.gitsigns").setup()
-			end,
-		},
-
 		{ -- indent-blankline: Indent guides
 			"lukas-reineke/indent-blankline.nvim",
 			disable = not features.indent_guides,
 			event = "VeryLazy",
 			config = function()
 				require("coresetup.indent-blankline").setup()
-			end,
-		},
-
-		{ -- scrollview: Scroll bars
-			"dstein64/nvim-scrollview",
-			disable = not features.scrollbars,
-			event = "VeryLazy",
-			config = function()
-				require("coresetup.scrollview").setup()
 			end,
 		},
 
@@ -325,16 +305,6 @@ local function get_packages(features)
 		-- Close hidden buffers
 		{ "kazhala/close-buffers.nvim", module = "close_buffers" },
 
-		{ -- fidget: spinners for lsp messages
-			"j-hui/fidget.nvim",
-			disable = not features.lsp,
-			module = "fidget",
-			event = "VeryLazy",
-			config = function()
-				require("coresetup.fidget").setup()
-			end,
-		},
-
 		{ -- trouble: diagnostics
 			"folke/trouble.nvim",
 			cmd = { "TroubleToggle", "Trouble" },
@@ -363,16 +333,6 @@ local function get_packages(features)
 			requires = {
 				{ "nvim-treesitter/nvim-treesitter" },
 			},
-		},
-
-		{ -- zk-nvim: Notes organiser
-			"mickael-menu/zk-nvim",
-			disable = not features.zk,
-			event = "VeryLazy",
-			module = { "zk" },
-			config = function()
-				require("coresetup.zk").setup()
-			end,
 		},
 
 		{ -- Slim file type

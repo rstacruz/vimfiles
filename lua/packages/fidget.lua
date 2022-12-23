@@ -1,8 +1,13 @@
-local function setup()
-	local has, fidget = pcall(require, "fidget")
-	if not has then
-		return
-	end
+-- fidget: spinners for lsp messages
+local M = {
+  "j-hui/fidget.nvim",
+  disable = not BaseConfig.features.lsp,
+  module = "fidget",
+  event = "VeryLazy",
+}
+
+function M.config()
+  local fidget = require("fidget")
 
 	local options = {
 		text = {
@@ -25,4 +30,4 @@ local function setup()
 	fidget.setup(options)
 end
 
-return { setup = setup }
+return M
