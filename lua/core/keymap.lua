@@ -81,8 +81,8 @@ local function get_default_mappings()
 			["<leader>p?"] = { "<cmd>Telescope help_tags<cr>", " Vim help…" },
 			["<leader>p<space>"] = { "<cmd>Telescope resume<cr>", "· Resume last search…" },
 			["<leader>pb"] = { "<cmd>Telescope buffers<cr>", " List buffers…" },
-			["<leader>p/"] = { "<cmd>Telescope live_grep<cr>", " Grep…" },
-			["<leader>p*"] = { "<cmd>Telescope grep_string<cr>", " Grep word in cursor…" },
+			["<leader>p/"] = { "<cmd>Telescope live_grep<cr>", " Find in files (telescope)…" },
+			["<leader>p*"] = { "<cmd>Telescope grep_string<cr>", " Find current word (telescope)…" },
 			-- ["<leader>pf"] = { "<cmd>lua require('core.actions').open_file_picker()<cr>", "Open [f]ile…" },
 			["<leader>pp"] = features.project_switcher and {
 				"<cmd>Telescope projects<cr>",
@@ -102,7 +102,7 @@ local function get_default_mappings()
 				[[<cmd>lua require('spectre').open_visual({ select_word = true })<cr>]],
 				"Find current word (spectre)…",
 			},
-			["<leader>pss"] = {
+			["<leader>ps/"] = {
 				[[<cmd>lua require('spectre').open({ is_insert_mode = true })<cr>]],
 				"Find in files ([s]pectre)…",
 			},
@@ -233,7 +233,7 @@ local function get_default_mappings()
 			},
 
 			-- [,] others
-			["<leader>,"] = { name = " Essxperimental…" },
+			["<leader>,"] = { name = " Experimental…" },
 			["<leader>,e"] = { ":lua vim.notify(vim.inspect())<left><left>", "Evaluate lua line…" },
 			["<leader>,s"] = { "<cmd>split ~/.scratchpad<cr><C-w>H", "Open scratchpad" },
 			["<leader>,p"] = { "<cmd>StartupTime<cr>", "Profile startup time" },
@@ -277,6 +277,10 @@ local function get_default_mappings()
 				":lua require('telescope').extensions.refactoring.refactors()<cr>",
 				"· Refactor…",
 			} or nil,
+			["<leader>ps*"] = {
+				[[<cmd>lua require('spectre').open_visual()<cr>]],
+				"Find current word (spectre)…",
+			},
 		},
 		ctrl = {
 			["<c-h>"] = { [[<cmd>lua require('core.pane-utils').next_pane()<cr>]], "Focus previous pane" },
