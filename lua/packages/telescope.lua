@@ -5,8 +5,8 @@ local M = { -- telescope: file picker UI
 	-- Ideally :cmd should take care of lazy-loading, but it has problems with
 	-- hot reloading
 	event = "VeryLazy",
-	requires = {
-		"nvim-telescope/telescope-fzf-native.nvim",
+	dependencies = {
+		{ "nvim-telescope/telescope-fzf-native.nvim", run = "make", opt = true },
 	},
 }
 

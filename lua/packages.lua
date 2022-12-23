@@ -71,8 +71,12 @@ return {
 		disable = not features.completions,
 		module = "luasnip",
 	},
-
-	{ "nvim-telescope/telescope-fzf-native.nvim", run = "make", opt = true },
+	{ "hrsh7th/cmp-nvim-lsp" },
+	{ "hrsh7th/cmp-buffer" },
+	{ "hrsh7th/cmp-path" },
+	{ "hrsh7th/cmp-cmdline" },
+	{ "hrsh7th/cmp-emoji" },
+	{ "saadparwaiz1/cmp_luasnip" },
 
 	{ -- Profile startup with :StartupTime
 		"dstein64/vim-startuptime",

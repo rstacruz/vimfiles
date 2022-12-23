@@ -2,15 +2,15 @@
 local M = {
 	"hrsh7th/nvim-cmp",
 	disable = not BaseConfig.features.completions,
-	event = "VeryLazy",
-	requires = {
+	event = "InsertEnter",
+	dependencies = {
 		"onsails/lspkind-nvim",
-		{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
-		{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-		{ "hrsh7th/cmp-path", after = "nvim-cmp" },
-		{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
-		{ "hrsh7th/cmp-emoji", after = "nvim-cmp" },
-		{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
+		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-buffer",
+		"hrsh7th/cmp-path",
+		"hrsh7th/cmp-cmdline",
+		"hrsh7th/cmp-emoji",
+		"saadparwaiz1/cmp_luasnip",
 	},
 }
 
@@ -33,10 +33,7 @@ function M.config()
 		require("plenary.reload").reload_module("cmp")
 	end
 
-	local has_cmp, cmp = pcall(require, "cmp")
-	if not has_cmp then
-		return
-	end
+	local cmp = require("cmp")
 
 	local has_lspkind, lspkind = pcall(require, "lspkind")
 	local formatting = has_lspkind

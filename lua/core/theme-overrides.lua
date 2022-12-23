@@ -4,8 +4,8 @@ local config = {
 		HopNextKey1 = { link = "HopNextKey" },
 		HopNextKey2 = { link = "HopNextKey" },
 
-		-- Custom styles
-		XxLine = { link = "LineNr" }, -- borders and lines. also: Vertsplit
+		-- Borders
+		XxLine = { link = "LineNr" },
 
 		-- Pounce
 		PounceMatch = { link = "CursorLine" }, -- whats being searched
@@ -26,9 +26,9 @@ local config = {
 		TelescopePromptCounter = { link = "NonText" },
 
 		-- Indent blankline
-		IndentBlanklineContextStart = { link = "CursorLine" }, -- The line that started the context
-		IndentBlanklineChar = { link = "XxLine" },
-		IndentBlanklineContextChar = { link = "XxLine" },
+		-- xIndentBlanklineContextStart = { link = "CursorLine" }, -- The line that started the context
+		-- xIndentBlanklineChar = { link = "XxLine" },
+		-- xIndentBlanklineContextChar = { link = "XxLine" },
 
 		-- Treesitter Context
 		TreesitterContext = { link = "CursorLine" },
@@ -55,6 +55,21 @@ local config = {
 		-- Normal = { bg = "#333366" },
 		-- NormalNC = { bg = "#333366" },
 	},
+	dayfox = {
+		XxLine = { link = "VertSplit" }, -- for indent-blanklike
+	},
+	terafox = {
+		XxLine = { link = "Conceal" },
+	},
+	blue = {
+		XxLine = { link = "FloatBorder" },
+	},
+	github_dark = {
+		HopNextKey = { link = "IncSearch" },
+	},
+	github_dimmed = "github_dark",
+	nightfox = "dayfox",
+	carbonfox = "dayfox",
 }
 
 local function apply_list(list)
@@ -64,35 +79,18 @@ local function apply_list(list)
 end
 
 local function apply()
-	local col = vim.g.colors_name
+	local colorscheme = vim.g.colors_name
 
 	apply_list(config.base)
+	local target = config[colorscheme]
 
-	-- different themes have different groups that look nice with borders
-	if vim.tbl_contains({ "terafox", "nightfox", "carbonfox" }, col) then
-		vim.api.nvim_set_hl(0, "XxLine", { link = "Conceal" })
+	while type(target) == "string" do
+		target = target[target] -- resolve an alias
 	end
 
-	if vim.tbl_contains({ "dayfox" }, col) then
-		vim.api.nvim_set_hl(0, "XxLine", { link = "VertSplit" })
+	if target then
+		apply_list(target)
 	end
-
-	if vim.tbl_contains({ "blue" }, col) then
-		vim.api.nvim_set_hl(0, "XxLine", { link = "FloatBorder" })
-	end
-
-	if vim.tbl_contains({ "github_dark", "github_dimmed" }, col) then
-		vim.api.nvim_set_hl(0, "HopNextKey", { link = "IncSearch" }) -- "Search" is too muted
-	end
-
-	if col == "nibble" then
-		apply_list(config.nibble)
-	end
-
-	-- if ({ seoulbones = 1, rosebones = 1, zenbones = 1, dayfox = 1 })[col] and bg == "light" then
-	-- 	cmd([[hi! Normal guibg=#ffffff]])
-	-- 	cmd([[hi! NormalNC guibg=#fafafc]])
-	-- end
 end
 
 local function setup()

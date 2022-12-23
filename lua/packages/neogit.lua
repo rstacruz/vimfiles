@@ -2,7 +2,7 @@ local M = {
 	"TimUntersberger/neogit",
 	disable = not BaseConfig.features.neogit,
 	cmd = { "Neogit" },
-	requires = {
+	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"sindrets/diffview.nvim",
 	},
