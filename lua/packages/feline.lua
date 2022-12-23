@@ -1,3 +1,9 @@
+local M = { -- Status line
+  "feline-nvim/feline.nvim",
+  lazy = false,
+  disable = not BaseConfig.features.status_line,
+}
+
 local function extract_color_from_group(color_group, what)
 	local ok, color = pcall(function()
 		return vim.api.nvim_get_hl_by_name(color_group, true)
@@ -125,7 +131,7 @@ local function setup_theme()
 	})
 end
 
-local function setup()
+function M.config()
 	if vim.g.hot_reload then
 		require("plenary.reload").reload_module("feline")
 	end
@@ -267,4 +273,4 @@ local function setup()
 	end)
 end
 
-return { setup = setup }
+return M

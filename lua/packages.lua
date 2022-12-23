@@ -287,15 +287,6 @@ local function get_packages(features)
 			end,
 		},
 
-		{ -- Status line
-			"feline-nvim/feline.nvim",
-			lazy = false,
-			disable = not features.status_line,
-			config = function()
-				require("coresetup.feline").setup()
-			end,
-		},
-
 		{ -- comment
 			"numToStr/Comment.nvim",
 			event = "VeryLazy",
