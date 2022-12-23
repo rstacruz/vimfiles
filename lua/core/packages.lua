@@ -313,6 +313,13 @@ local function get_packages(features)
 		{ -- spectre
 			"nvim-pack/nvim-spectre",
 			module = { "spectre" },
+			config = function()
+				require("spectre").setup({
+					line_sep_start = "",
+					result_padding = "   ",
+					line_sep = "",
+				})
+			end,
 		},
 
 		{ -- bufferline

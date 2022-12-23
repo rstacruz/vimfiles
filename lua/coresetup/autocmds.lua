@@ -101,6 +101,17 @@ local function setup_mdx()
 	})
 end
 
+local function setup_filetype_overrides()
+	local group = vim.api.nvim_create_augroup("FiletypeOverrides", { clear = true })
+	vim.api.nvim_create_autocmd("Filetype", {
+		group = group,
+		pattern = "spectre_panel,markdown",
+		callback = function()
+			vim.opt_local.number = false
+		end,
+	})
+end
+
 local function setup()
 	setup_autoformat()
 	setup_terminal_overrides()
@@ -108,6 +119,7 @@ local function setup()
 	setup_auto_cursorline()
 	setup_auto_create_dir()
 	setup_mdx()
+	setup_filetype_overrides()
 end
 
 return { setup = setup, config = config }

@@ -98,7 +98,14 @@ local function get_default_mappings()
 			},
 			["<leader>pg"] = { [[<cmd>Telescope git_status<cr>]], " Files changed in Git…" },
 			-- ["<leader>ps"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Show [s]ymbols…" },
-			-- ["<leader>pg"] = { [[<cmd>lua require('spectre').open({ is_insert_mode = true })<cr>]], "Find in files ([g]rep)…" },
+			["<leader>ps*"] = {
+				[[<cmd>lua require('spectre').open_visual({ select_word = true })<cr>]],
+				"Find current word (spectre)…",
+			},
+			["<leader>pss"] = {
+				[[<cmd>lua require('spectre').open({ is_insert_mode = true })<cr>]],
+				"Find in files ([s]pectre)…",
+			},
 			-- ["<leader>pW"] = { name = "[w]orkspaces…" },
 			["<leader>pWa"] = features.workspaces and {
 				"<cmd>WorkspacesAdd<cr>",
