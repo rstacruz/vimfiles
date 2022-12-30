@@ -79,7 +79,7 @@ local function get_default_mappings()
 			["<leader>p"] = { name = " Pick…" },
 			["<leader>p?"] = { "<cmd>Telescope help_tags<cr>", " Vim help…" },
 			["<leader>p<space>"] = { "<cmd>Telescope resume<cr>", "· Resume last search…" },
-			["<leader>pf"] = { "<cmd>Telescope file_browser path=%:p:h initial_mode=normal<cr>", "· Browse files…" },
+			["<leader>pf"] = { "<cmd>Telescope file_browser path=%:p:h<cr>", "· Browse files…" },
 			["<leader>pb"] = { "<cmd>Telescope buffers<cr>", " List buffers…" },
 			["<leader>p/"] = { "<cmd>Telescope live_grep<cr>", " Find in files (telescope)…" },
 			["<leader>p*"] = { "<cmd>Telescope grep_string<cr>", " Find current word (telescope)…" },
