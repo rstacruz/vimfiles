@@ -10,8 +10,8 @@ local M = { -- telescope: file picker UI
 		"nvim-lua/popup.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", run = "make", opt = true },
 		"nvim-telescope/telescope-z.nvim",
-    -- alt-c / c  create
-    -- alt-r / r create
+		-- alt-c / c  create
+		-- alt-r / r create
 		"nvim-telescope/telescope-file-browser.nvim",
 	},
 }
@@ -71,11 +71,11 @@ function M.config()
 				n = { ["q"] = require("telescope.actions").close },
 			},
 		},
-    extensions = {
-      file_browser = {
-        theme = "ivy"
-      }
-    }
+		extensions = {
+			file_browser = {
+				theme = "ivy",
+			},
+		},
 	}
 
 	telescope.setup(options)
