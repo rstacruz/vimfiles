@@ -73,7 +73,7 @@ function M.config()
 		},
 		extensions = {
 			file_browser = {
-				theme = "ivy",
+				-- theme =ivy "ivy",
 			},
 		},
 	}
