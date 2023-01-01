@@ -52,6 +52,9 @@ local function get_default_mappings()
       ["<tab>"] = { "<cmd>BufferLineCycleNext<cr>", "Buffer: next" },
       ["<s-tab>"] = { "<cmd>BufferLineCyclePrev<cr>", "Buffer: previous" },
 
+      -- Normally shows document scroll status, but that's not very useful
+      ["<C-g>"] = { "<cmd>Telescope file_browser path=%:p:h<cr>", "· Browse files…" },
+
       -- others
       ["<leader>*"] = { ":GG <c-r><c-w><cr>", " Search for word in cursor…" },
       ["<leader>."] = { "<cmd>lua require('core.actions').open_terminal()<cr>", " Open terminal" },
