@@ -55,7 +55,6 @@ local function get_config()
 		},
 		bottom = {
 			{ "e", "  New file", "<cmd>ene<cr>" },
-			features.workspaces and { "w", "  Open workspace…", "<cmd>WorkspacesList<cr>" } or false,
 			{
 				"z",
 				"  Switch to dir…",

@@ -1,4 +1,9 @@
 -- nvim-surround: surround keybindings (cs, ds, ys)
+--
+--     cs'"   -- change surrounding ['] to ["]
+--     csth1  -- change [t]ag to [h1]
+--     ysiw"  -- surround current [w]ord with ["]
+--
 local M = {
 	"kylechui/nvim-surround",
 	disable = not BaseConfig.features.treesitter,
@@ -6,7 +11,7 @@ local M = {
 }
 
 function M.config()
-	require("nvim-autopairs").setup({})
+	require("nvim-surround").setup({})
 end
 
 return M
