@@ -80,6 +80,7 @@ local function get_default_mappings()
 
       -- Leader: [p] pick
       ["<leader>p"] = { name = " Pick…" },
+      ["<leader>pd"] = { "<cmd>lua require('telescope').extensions.olddirs.picker({})<cr>", "· Pick olddirs…" },
       ["<leader>ph"] = { "<cmd>Telescope help_tags<cr>", " Vim help…" },
       ["<leader>p<space>"] = { "<cmd>Telescope resume<cr>", "· Resume last search…" },
       ["<leader>pf"] = { "<cmd>Telescope file_browser path=%:p:h<cr>", "· Browse files…" },

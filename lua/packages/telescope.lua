@@ -13,6 +13,7 @@ local M = { -- telescope: file picker UI
 		-- alt-c / c  create
 		-- alt-r / r create
 		"nvim-telescope/telescope-file-browser.nvim",
+    "marcuscaisey/olddirs.nvim",
 	},
 }
 
@@ -94,6 +95,10 @@ function M.config()
 
 	pcall(function()
 		telescope.load_extension("file_browser")
+	end)
+
+	pcall(function()
+		telescope.load_extension("olddirs")
 	end)
 end
 
