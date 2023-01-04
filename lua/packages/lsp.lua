@@ -2,30 +2,30 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		disable = not BaseConfig.features.lsp,
-		event = "BufReadPre",
-  },
+	},
 	{
-			"williamboman/mason.nvim",
+		"williamboman/mason.nvim",
 		disable = not BaseConfig.features.lsp,
-		event = "BufReadPre",
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		disable = not BaseConfig.features.lsp,
+		event = { "BufRead", "InsertEnter" },
 		config = function()
 			require("mason").setup()
-		end,
-		},
-	{
-			"williamboman/mason-lspconfig.nvim",
-		disable = not BaseConfig.features.lsp,
-		event = "BufReadPre",
-		config = function()
 			require("mason-lspconfig").setup()
 
-			local has_navic, navic = pcall(require, "nvim-navic")
-			local on_attach = has_navic and navic.attach or nil
+			-- local has_navic, navic = pcall(require, "nvim-navic")
+			-- local on_attach = has_navic and navic.attach or nil
+
+      local lspconfig = require('lspconfig')
+      local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 			require("mason-lspconfig").setup_handlers({
 				function(server_name) -- default
 					require("lspconfig")[server_name].setup({
 						on_attach = on_attach,
+            capabilities = lsp_capabilities
 					})
 				end,
 			})
@@ -34,16 +34,16 @@ return {
 	{
 		"jose-elias-alvarez/null-ls.nvim",
 		disable = not BaseConfig.features.lsp,
-		event = "BufReadPre",
+		event = "BufRead",
 		config = function()
 			local nls = require("null-ls")
 			nls.setup({
-				root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", ".git"),
+				-- root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", ".git"),
 				sources = {
 					nls.builtins.formatting.stylua,
 					nls.builtins.formatting.prettierd,
 					nls.builtins.formatting.isort,
-					nls.builtins.formatting.fish_indent
+					nls.builtins.formatting.fish_indent,
 				},
 			})
 		end,

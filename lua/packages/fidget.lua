@@ -3,7 +3,7 @@ local M = {
 	"j-hui/fidget.nvim",
 	disable = not BaseConfig.features.lsp,
 	module = "fidget",
-	event = "VeryLazy",
+	event = "BufRead",
 }
 
 function M.config()
