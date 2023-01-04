@@ -20,7 +20,7 @@ return {
 
 			require("mason-lspconfig").setup_handlers({
 				function(server_name) -- default
-					require("lspconfig")[server_name].setup({
+					lspconfig[server_name].setup({
 						capabilities = lsp_capabilities,
 					})
 				end,
