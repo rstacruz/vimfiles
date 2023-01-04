@@ -2,7 +2,11 @@
 local M = {
 	"neovim/nvim-lspconfig",
 	disable = not BaseConfig.features.lsp,
-	event = "VeryLazy",
+  dependencies = {
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+		"jose-elias-alvarez/null-ls.nvim",
+  }
 }
 
 -- lspconfig mappings are available here:
@@ -43,53 +47,68 @@ local function has_bin(bin_name)
 end
 
 function M.config()
-	-- Ensure mason is loaded first. This makes it so that the mason bin's are available
-	local has_mason, mason = pcall(require, "mason")
-	if has_mason then
-		mason.setup()
-	end
-
-	local has_lspconfig, lspconfig = pcall(require, "lspconfig")
-	if not has_lspconfig then
-		return
-	end
+  require("mason").setup()
+  require("mason-lspconfig").setup()
 
 	local has_navic, navic = pcall(require, "nvim-navic")
 	local on_attach = has_navic and navic.attach or nil
 
-	local has_null_ls, null_ls = pcall(require, "null-ls")
-	local null_sources = {}
-
-	for _, tool in ipairs(config.tools) do
-		if has_bin(tool.bin) then
-			local root_dir = nil
-			if tool.root_pattern then
-				root_dir = lspconfig.util.root_pattern(unpack(tool.root_pattern))
-			end
-			if tool.lspconfig then
-				lspconfig[tool.lspconfig].setup({
+  require("mason-lspconfig").setup_handlers({
+    function (server_name) -- default
+      require("lspconfig")[server_name].setup({
 					on_attach = on_attach,
-					root_dir = root_dir,
-				})
-			end
-			if tool.null_ls_formatting then
-				table.insert(null_sources, null_ls.builtins.formatting[tool.null_ls_formatting])
-			end
-			if tool.null_ls_code_actions then
-				table.insert(null_sources, null_ls.builtins.code_actions[tool.null_ls_code_actions])
-			end
-			if tool.null_ls_completion then
-				table.insert(null_sources, null_ls.builtins.completion[tool.null_ls_completion])
-			end
-			if tool.null_ls_diagnostics then
-				table.insert(null_sources, null_ls.builtins.diagnostics[tool.null_ls_diagnostics])
-			end
-		end
-	end
-
-	if has_null_ls then
-		null_ls.setup({ sources = null_sources })
-	end
+      })
+    end
+  })
 end
+-- function M.configx()
+-- 	-- Ensure mason is loaded first. This makes it so that the mason bin's are available
+-- 	local has_mason, mason = pcall(require, "mason")
+-- 	if has_mason then
+-- 		mason.setup()
+-- 	end
+--
+-- 	local has_lspconfig, lspconfig = pcall(require, "lspconfig")
+-- 	if not has_lspconfig then
+-- 		return
+-- 	end
+--
+-- 	local has_navic, navic = pcall(require, "nvim-navic")
+-- 	local on_attach = has_navic and navic.attach or nil
+--
+-- 	local has_null_ls, null_ls = pcall(require, "null-ls")
+-- 	local null_sources = {}
+--
+-- 	for _, tool in ipairs(config.tools) do
+-- 		if has_bin(tool.bin) then
+-- 			local root_dir = nil
+-- 			if tool.root_pattern then
+-- 				root_dir = lspconfig.util.root_pattern(unpack(tool.root_pattern))
+-- 			end
+-- 			if tool.lspconfig then
+-- 				lspconfig[tool.lspconfig].setup({
+-- 					on_attach = on_attach,
+-- 					root_dir = root_dir,
+-- 				})
+-- 			end
+-- 			if tool.null_ls_formatting then
+-- 				table.insert(null_sources, null_ls.builtins.formatting[tool.null_ls_formatting])
+-- 			end
+-- 			if tool.null_ls_code_actions then
+-- 				table.insert(null_sources, null_ls.builtins.code_actions[tool.null_ls_code_actions])
+-- 			end
+-- 			if tool.null_ls_completion then
+-- 				table.insert(null_sources, null_ls.builtins.completion[tool.null_ls_completion])
+-- 			end
+-- 			if tool.null_ls_diagnostics then
+-- 				table.insert(null_sources, null_ls.builtins.diagnostics[tool.null_ls_diagnostics])
+-- 			end
+-- 		end
+-- 	end
+--
+-- 	if has_null_ls then
+-- 		null_ls.setup({ sources = null_sources })
+-- 	end
+-- end
 
 return M
