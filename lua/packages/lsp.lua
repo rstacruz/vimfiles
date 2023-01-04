@@ -10,13 +10,13 @@ return {
 	{
 		"williamboman/mason-lspconfig.nvim",
 		disable = not BaseConfig.features.lsp,
-		event = { "BufRead", "InsertEnter" },
+		event = "BufRead",
 		config = function()
 			require("mason").setup()
 			require("mason-lspconfig").setup()
 
-			-- local has_navic, navic = pcall(require, "nvim-navic")
-			-- local on_attach = has_navic and navic.attach or nil
+			local has_navic, navic = pcall(require, "nvim-navic")
+			local on_attach = has_navic and navic.attach or nil
 
       local lspconfig = require('lspconfig')
       local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -42,6 +42,7 @@ return {
 				sources = {
 					nls.builtins.formatting.stylua,
 					nls.builtins.formatting.prettierd,
+					nls.builtins.formatting.eslint_d,
 					nls.builtins.formatting.isort,
 					nls.builtins.formatting.fish_indent,
 				},
