@@ -179,8 +179,8 @@ local function get_default_mappings()
         "· Pull vim settings",
       },
       ["<leader>su"] = {
-        "<cmd>lua require('core.reload-utils').reload()<cr>:Lazy sync<cr>",
-        " Lazy: Update packages",
+        "<cmd>Lazy sync<cr>",
+        " Lazy: Update packages (sync)",
       },
       ["<leader>sp"] = {
         "<cmd>Lazy profile<cr>",
