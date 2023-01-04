@@ -13,7 +13,7 @@ local M = { -- telescope: file picker UI
 		-- alt-c / c  create
 		-- alt-r / r create
 		"nvim-telescope/telescope-file-browser.nvim",
-    "marcuscaisey/olddirs.nvim",
+		"marcuscaisey/olddirs.nvim",
 	},
 }
 

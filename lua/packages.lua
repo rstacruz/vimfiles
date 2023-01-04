@@ -15,25 +15,6 @@ return {
 		disable = not features.auto_cd_root,
 	},
 
-	-- { -- mason: Install LSP servers (:Mason)
-	-- 	"williamboman/mason.nvim",
-	-- 	disable = not (features.lsp and features.lsp_installer),
-	-- 	cmd = { "Mason", "MasonInstall" },
-	-- 	module = { "mason" },
-	-- 	config = function()
-	-- 		local has, mason = pcall(require, "mason")
-	-- 		if has then
-	-- 			mason.setup()
-	-- 		end
-	-- 	end,
-	-- },
-
-	-- { -- null-ls: Formatting and diagnostics
-	-- 	"jose-elias-alvarez/null-ls.nvim",
-	-- 	disable = not features.lsp,
-	-- 	module = "null-ls",
-	-- },
-
 	{ -- dressing: Improve vim.ui.select for :WorkspacesList and LSP rename
 		"stevearc/dressing.nvim",
 		disable = not (features.workspaces or features.lsp),

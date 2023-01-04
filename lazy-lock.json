@@ -27,7 +27,6 @@
   "neogit": { "branch": "master", "commit": "0d6002c6af432343937283fb70791fc76fa7227c" },
   "nibble-vim": { "branch": "main", "commit": "9738cda63e0f97ce98927c65e98597e3df9ac8ce" },
   "nightfox.nvim": { "branch": "main", "commit": "9c3756ae21743c9634923cea788c4cca0eafccf2" },
-  "null-ls.nvim": { "branch": "main", "commit": "b26851b3e7ac1c0c85666f8a74e36aef2acb89c6" },
   "nvim": { "branch": "main", "commit": "49c890f9c116937733ce0ed5cba28298ad9db011" },
   "nvim-autopairs": { "branch": "master", "commit": "03580d758231956d33c8dd91e2be195106a79fa4" },
   "nvim-cmp": { "branch": "main", "commit": "d09b0c396aaa078cdfe78316ec06940971136e85" },
