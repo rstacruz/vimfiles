@@ -10,18 +10,18 @@ return {
 	{
 		"williamboman/mason-lspconfig.nvim",
 		disable = not BaseConfig.features.lsp,
-		event = "BufRead",
+		event = "VeryLazy",
 		config = function()
 			require("mason").setup()
 			require("mason-lspconfig").setup()
 
-      local lspconfig = require('lspconfig')
-      local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+			local lspconfig = require("lspconfig")
+			local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			require("mason-lspconfig").setup_handlers({
 				function(server_name) -- default
 					require("lspconfig")[server_name].setup({
-            capabilities = lsp_capabilities
+						capabilities = lsp_capabilities,
 					})
 				end,
 			})
@@ -30,7 +30,7 @@ return {
 	{
 		"jose-elias-alvarez/null-ls.nvim",
 		disable = not BaseConfig.features.lsp,
-		event = "BufRead",
+		event = "VeryLazy",
 		config = function()
 			local nls = require("null-ls")
 			nls.setup({
