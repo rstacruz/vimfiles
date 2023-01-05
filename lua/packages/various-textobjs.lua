@@ -6,14 +6,14 @@
 --     cin   - change [n]umber
 --
 local M = {
-  "chrisgrieser/nvim-various-textobjs",
-  event = "VeryLazy"
+	"chrisgrieser/nvim-various-textobjs",
+	event = "VeryLazy",
 }
 
 function M.config()
-  require("various-textobjs").setup({
-    useDefaultKeymaps = true
-  })
+	require("various-textobjs").setup({
+		useDefaultKeymaps = true,
+	})
 end
 
 return M
