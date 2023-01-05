@@ -18,7 +18,7 @@ local defaults = {
 		welcome_screen = true,
 
 		-- Experimental
-		refactoring = false,
+		refactoring = true,
 		treesitter_playground = true,
 		treesitter_context = true,
 		zk = false,
