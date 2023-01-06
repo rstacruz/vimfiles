@@ -25,6 +25,7 @@ local defaults = {
 
 		-- these might not be worth disabling I think
 		hop = true,
+		pounce = true,
 		file_explorer = true,
 		gitsigns = true,
 		indent_detection = true,
