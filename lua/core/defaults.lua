@@ -23,9 +23,12 @@ local defaults = {
 		treesitter_context = true,
 		zk = false,
 
+		-- Hops
+		hop = true, -- s<char>, has 1char and 2char modes
+		pounce = false, -- s<char><char><uppercas>
+		leap = false, -- s<char><char><lowercase> (forward), and S for backward
+
 		-- these might not be worth disabling I think
-		hop = true,
-		pounce = true,
 		file_explorer = true,
 		gitsigns = true,
 		indent_detection = true,
