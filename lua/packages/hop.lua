@@ -1,6 +1,6 @@
 local M = { -- hop: Easymotion-style jumps
 	"phaazon/hop.nvim",
-	disable = not BaseConfig.features.hop,
+	enabled = BaseConfig.features.hop,
 	cmd = {
 		"HopLine",
 		"HopLineMW",

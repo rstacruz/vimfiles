@@ -1,7 +1,7 @@
 -- gitsigns: Git indicators on the gutter
 local M = {
 	"lewis6991/gitsigns.nvim",
-	disable = not BaseConfig.features.gitsigns,
+	enabled = BaseConfig.features.gitsigns,
 	event = "VeryLazy",
 	module = "gitsigns",
 	cmd = { "Gitsigns" },

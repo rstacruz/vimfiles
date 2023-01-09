@@ -1,7 +1,7 @@
 -- nvim-tree: File explorer
 local M = {
 	"nvim-tree/nvim-tree.lua",
-	disable = not BaseConfig.features.file_explorer,
+	enabled = BaseConfig.features.file_explorer,
 	event = "VeryLazy",
 }
 

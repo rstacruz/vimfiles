@@ -1,6 +1,6 @@
 local M = {
 	"windwp/nvim-autopairs",
-	disable = not BaseConfig.features.autopairs,
+	enabled = BaseConfig.features.autopairs,
 	event = "VeryLazy",
 }
 

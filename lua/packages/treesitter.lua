@@ -1,6 +1,6 @@
 local M = {
 	"nvim-treesitter/nvim-treesitter",
-	disable = not BaseConfig.features.treesitter,
+	enabled = BaseConfig.features.treesitter,
 	module = "nvim-treesitter",
 	run = ":TSUpdate",
 	cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSEnable", "TSDisable", "TSModuleInfo" },

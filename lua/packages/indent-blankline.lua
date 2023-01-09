@@ -1,7 +1,7 @@
 -- indent-blankline: Indent guides
 local M = {
 	"lukas-reineke/indent-blankline.nvim",
-	disable = not BaseConfig.features.indent_guides,
+	enabled = BaseConfig.features.indent_guides,
 
 	-- Lazy-loading works, but has a flash of content without the lines.
 	-- Using non-lazy adds maybe 1ms of startup time
