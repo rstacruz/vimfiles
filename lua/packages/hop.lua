@@ -4,6 +4,8 @@ local M = { -- hop: Easymotion-style jumps
 	cmd = {
 		"HopLine",
 		"HopLineMW",
+		"HopLineStart",
+		"HopLineStartMW",
 		"HopWord",
 		"HopWordMW",
 		"HopPattern",

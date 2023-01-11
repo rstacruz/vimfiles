@@ -252,8 +252,8 @@ local function get_default_mappings()
 			["<c-x>"] = { "<c-\\><c-n>" }, -- escape
 		},
 		nv = {
-			["gl"] = features.hop and { "<cmd>noh | HopLine<cr>", "Go to line" } or nil,
-			["gL"] = features.hop and { "<cmd>noh | HopLineMW<cr>", "Go to line (all windows)…" } or nil,
+			["gl"] = features.hop and { "<cmd>noh | HopLineStart<cr>", "Go to line" } or nil,
+			["gL"] = features.hop and { "<cmd>noh | HopLineStartMW<cr>", "Go to line (all windows)…" } or nil,
 			["gw"] = features.hop and { "<cmd>noh | HopWord<cr>", "Go to word" } or nil,
 			["gW"] = features.hop and { "<cmd>noh | HopWordMW<cr>", "Go to word (all windows)…" } or nil,
 			["gp"] = features.hop and { "<cmd>noh | HopPattern<cr>", "Find pattern…" } or nil,
