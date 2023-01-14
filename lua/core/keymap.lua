@@ -43,7 +43,8 @@ local function get_default_mappings()
 			["gr"] = features.lsp and { "<cmd>Telescope lsp_references<cr>", "References (lsp)…" } or nil,
 			["gR"] = features.lsp and { "<cmd>lua vim.lsp.buf.references()<cr>", "References to this file…" } or nil,
 			["gh"] = features.lsp and { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show hover" } or nil,
-			["gD"] = features.lsp and { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Declaration (lsp)…" } or nil,
+			["gD"] = features.lsp and { "<cmd>Telescope lsp_type_definitions<cr>", "Type definitions (lsp)…" } or nil,
+			["gC"] = features.lsp and { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Declaration (lsp)…" } or nil,
 			["gi"] = features.lsp and { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Implementation (lsp)…" } or nil,
 			["K"] = features.lsp and { "<cmd>lua vim.lsp.buf.hover()<cr>", "Show hover" } or nil,
 
