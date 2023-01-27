@@ -1,6 +1,6 @@
 local config = {
 	-- Auto-format on save
-	autoformat_files = "*.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs",
+	autoformat_files = "*.lua,*.js,*.jsx,*.ts,*.tsx,*.cjs,*.mjs,*.astro",
 }
 
 -- Run formatting before saving files
