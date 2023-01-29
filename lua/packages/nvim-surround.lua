@@ -5,13 +5,13 @@
 --     ysiw"  -- surround current [w]ord with ["]
 --
 local M = {
-  "kylechui/nvim-surround",
-  enabled = BaseConfig.features.treesitter,
-  event = "VeryLazy",
+	"kylechui/nvim-surround",
+	enabled = BaseConfig.features.treesitter,
+	event = "VeryLazy",
 }
 
 function M.config()
-  require("nvim-surround").setup({})
+	require("nvim-surround").setup({})
 end
 
 return M
