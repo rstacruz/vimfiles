@@ -14,6 +14,9 @@ function M.config()
 	require("various-textobjs").setup({
 		useDefaultKeymaps = true,
 	})
+
+	-- "rest of paragraph" conflicts with Neovim's default `r` for replace
+	vim.keymap.del({ "o", "x" }, "r")
 end
 
 return M

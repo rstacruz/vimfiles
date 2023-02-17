@@ -3,7 +3,7 @@ local defaults = {
 		-- github_dark | terafox | github_dimmed | catppuccin
 		theme_dark = "onedark",
 		-- github_light | dayfox | onedark
-		theme_light = "onedark",
+		theme_light = "dawnfox",
 	},
 
 	-- Feature toggles to optimise loading times for some environments
@@ -22,6 +22,7 @@ local defaults = {
 		treesitter_playground = true,
 		treesitter_context = true,
 		zk = false,
+		octo = true,
 
 		-- Hops
 		hop = true, -- s<char>, has 1char and 2char modes
