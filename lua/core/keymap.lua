@@ -80,6 +80,11 @@ local function get_default_mappings()
 			["<leader>gy"] = features.github_fugitive and { "<cmd>GBrowse!<cr>", " Copy GitHub URL" } or nil,
 			["<leader>gY"] = features.github_fugitive and { "<cmd>GBrowse<cr>", " Open in GitHub" } or nil,
 
+			-- Leader: [t] tab
+			["<leader>t"] = { name = "─ Tabs…" },
+			["<leader>tn"] = { "<cmd>tabnew<cr>", "New tab" },
+			["<leader>td"] = { "<cmd>tabclose<cr>", "Close tab" },
+
 			-- Leader: [p] pick
 			["<leader>p"] = { name = " Pick…" },
 			["<leader>pd"] = {
