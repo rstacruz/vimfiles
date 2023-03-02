@@ -16,9 +16,7 @@ local function get_default_mappings()
 			-- Open sidebar. Inspired by vim-vinegar.
 			["-"] = features.file_explorer and { "<cmd>NvimTreeFindFile<cr>", "Open file explorer" } or nil,
 
-			["s"] = features.pounce and { "<cmd>Pounce<cr>", "Go to character…" }
-				or features.hop and { "<cmd>noh | HopChar1<cr>", "Go to character…" }
-				or nil,
+			["s"] = features.hop and { "<cmd>noh | HopChar2<cr>", "Go to character…" } or nil,
 			-- Use "123," to go to line 123. This just makes things easier to press
 
 			[","] = { "G", "Go to line" },

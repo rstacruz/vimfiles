@@ -13,6 +13,11 @@ return {
   config = function()
     require("octo").setup({})
   end,
+  keys = {
+    { "<leader>ft", "<cmd>Neotree toggle<cr>", desc = "Neotree" }
+  }
+
+
 }
 ```
 
