@@ -15,9 +15,11 @@ return {
   end,
   keys = {
     { "<leader>ft", "<cmd>Neotree toggle<cr>", desc = "Neotree" }
-  }
-
-
+  },
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"sindrets/diffview.nvim",
+	},
 }
 ```
 

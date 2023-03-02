@@ -15,13 +15,6 @@ return {
     enable = features.auto_cd_root,
   },
 
-  { -- dressing: Improve vim.ui.select for :WorkspacesList and LSP rename
-    "stevearc/dressing.nvim",
-    enable = (features.workspaces or features.lsp),
-    event = "VeryLazy",
-    module = "dressing",
-  },
-
   { -- rhubarb: browse on GitHub
     "tpope/vim-rhubarb",
     event = "VeryLazy",

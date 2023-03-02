@@ -43,7 +43,7 @@ local defaults = {
 
 	pane_navigation = {
 		-- Don't resize these sidebars
-		excluded_filetypes = { "NvimTree", "DiffviewFiles" },
+		excluded_filetypes = { "NvimTree", "DiffviewFiles", "Outline" },
 
 		-- Minimum width of panes when navigating using ctrl-h and ctrl+n. Use -1
 		-- to disable
