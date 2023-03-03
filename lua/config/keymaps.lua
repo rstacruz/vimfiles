@@ -17,6 +17,9 @@ vim.keymap.set("n", "<c-p>", Util.telescope("files"), { desc = "Find Files (root
 -- Focus neotree (like spc-e)
 vim.keymap.set("n", "-", "<cmd>Neotree focus<cr>", { desc = "Focus neotree" })
 
+-- Keymaps (default: leader-sk)
+vim.keymap.set("n", "<f1>", "<cmd>Telescope keymaps<cr>", { desc = "Key Maps" })
+
 -- More lazygit
 vim.keymap.set("n", "<leader>gis", function()
   Util.float_term({ "lazygit", "status" }, { cwd = Util.get_root() })
