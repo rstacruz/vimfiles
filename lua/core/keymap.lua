@@ -257,6 +257,8 @@ local function get_default_mappings()
     },
     t = {
       ["<c-x>"] = { "<c-\\><c-n>" }, -- escape
+      ["<Esc>"] = { "<c-\\><c-n>" }, -- escape
+      ["<Esc><Esc>"] = { "<Esc>" }, -- escape
     },
     nv = {
       ["gl"] = features.hop and { "<cmd>noh | HopLineStart<cr>", "Go to line" } or nil,
