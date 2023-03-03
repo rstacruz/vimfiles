@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Usage: ./nvim [filename]
+# Runs neovim with this configuration
+
+script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+home_path="$script_dir/.home"
+config_path="$home_path/.config"
+data_path="$home_path/data"
+
+mkdir -p "$config_path" "$data_path"
+ln -nfs "$script_dir" "$config_path/nvim"
+export XDG_CONFIG_HOME="$config_path"
+export XDG_DATA_HOME="$data_path"
+exec nvim -- "$@"
