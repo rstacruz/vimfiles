@@ -1,5 +1,5 @@
 local M = { -- Status line
-	"feline-nvim/feline.nvim",
+	"freddiehaddad/feline.nvim",
 	lazy = false,
 	enabled = BaseConfig.features.status_line,
 }
