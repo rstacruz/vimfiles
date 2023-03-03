@@ -15,7 +15,6 @@ local defaults = {
 		treesitter = true,
 		github_fugitive = true,
 		status_line = true,
-		welcome_screen = true,
 
 		-- Experimental
 		refactoring = true,
