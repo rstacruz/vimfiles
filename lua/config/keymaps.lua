@@ -13,13 +13,13 @@ vim.keymap.set("n", "gs", ":%s~~")
 vim.keymap.set("v", "gs", ":s~~")
 
 -- toggle fold
-vim.keymap.set("n", "-", "zo")
+vim.keymap.set("n", "-", "za")
 
 -- find files (default: spc-spc)
 vim.keymap.set("n", "<c-p>", Util.telescope("files"), { desc = "Find Files (root dir)" })
 
 -- Focus neotree (like spc-e)
-vim.keymap.set("n", "-", "<cmd>Neotree focus<cr>", { desc = "Focus neotree" })
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree focus<cr>", { desc = "Focus neotree" })
 
 -- Keymaps (default: leader-sk)
 vim.keymap.set("n", "<f1>", "<cmd>Telescope keymaps<cr>", { desc = "Key Maps" })

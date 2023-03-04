@@ -9,6 +9,7 @@ return {
   },
 
   { -- Notify
+    -- Makes things more minimal and less intrusive
     "rcarriga/nvim-notify",
     opts = {
       render = "minimal", -- default: "default"
@@ -21,11 +22,13 @@ return {
   },
 
   { -- Pairs
+    -- I just don't like autopairs, that's all
     "echasnovski/mini.pairs",
     enabled = false,
   },
 
   { -- Indentscope
+    -- Remove animations
     "echasnovski/mini.indentscope",
     opts = {
       draw = {
@@ -33,5 +36,11 @@ return {
         animation = require("mini.indentscope").gen_animation.none(),
       },
     },
+  },
+
+  { -- Flit
+    -- Rebinds `f F t T` to be leap-like. I can never get used to it :(
+    "ggandor/flit.nvim",
+    enabled = false,
   },
 }
