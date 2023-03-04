@@ -43,4 +43,11 @@ return {
     "ggandor/flit.nvim",
     enabled = false,
   },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    keys = {
+      { "<leader>e", "<cmd>Neotree focus<cr>", { desc = "Focus Neotree" } },
+      -- ^ Focus instead of toggle
+    },
+  },
 }
