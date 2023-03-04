@@ -11,6 +11,12 @@ vim.keymap.set("v", "+", '"+')
 -- search-and-replace
 vim.keymap.set("n", "gs", ":%s~~")
 vim.keymap.set("v", "gs", ":s~~")
+vim.keymap.set("n", "g1", "<cmd>wincmd t<cr>")
+vim.keymap.set("n", "g2", "<cmd>wincmd t | wincmd w<cr>")
+vim.keymap.set("n", "g3", "<cmd>wincmd t | 3wincmd w<cr>")
+vim.keymap.set("n", "g4", "<cmd>wincmd t | 4wincmd w<cr>")
+vim.keymap.set("n", "g5", "<cmd>wincmd t | 5wincmd w<cr>")
+vim.keymap.set("n", "g6", "<cmd>wincmd t | 6wincmd w<cr>")
 
 -- toggle fold
 vim.keymap.set("n", "-", "za")
@@ -28,3 +34,6 @@ vim.keymap.set("n", "<f1>", "<cmd>Telescope keymaps<cr>", { desc = "Key Maps" })
 vim.keymap.set("n", "<leader>gis", function()
   Util.float_term({ "lazygit", "status" }, { cwd = Util.get_root() })
 end, { desc = "Lazygit status (root dir)" })
+
+-- Scratchpad
+vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad<cr><C-w>H", { desc = "Open scratchpad" })
