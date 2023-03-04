@@ -3,7 +3,7 @@ return {
   "goolord/alpha-nvim",
   opts = function()
     local dashboard = require("alpha.themes.dashboard")
-    dashboard.section.header.val = {}
+    dashboard.section.header.val = { "Neovim" }
     dashboard.section.buttons.val = {
       dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
       dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
@@ -14,14 +14,7 @@ return {
       -- dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
       dashboard.button("q", " " .. " Quit", ":qa<CR>"),
     }
-    for _, button in ipairs(dashboard.section.buttons.val) do
-      button.opts.hl = "AlphaButtons"
-      button.opts.hl_shortcut = "AlphaShortcut"
-    end
-    -- dashboard.section.footer.opts.hl = "Type"
-    -- dashboard.section.header.opts.hl = "AlphaHeader"
-    -- dashboard.section.buttons.opts.hl = "AlphaButtons"
-    -- dashboard.opts.layout[1].val = 8
+    dashboard.section.buttons.val = {}
     return dashboard
   end,
 }

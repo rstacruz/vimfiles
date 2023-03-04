@@ -8,6 +8,10 @@ local Util = require("lazyvim.util")
 vim.keymap.set("n", "+", '"+')
 vim.keymap.set("v", "+", '"+')
 
+-- search-and-replace
+vim.keymap.set("n", "gs", ":%s~~")
+vim.keymap.set("v", "gs", ":s~~")
+
 -- toggle fold
 vim.keymap.set("n", "-", "zo")
 
