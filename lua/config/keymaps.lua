@@ -43,7 +43,15 @@ vim.keymap.set("n", "<C-Down>", "<C-w>k", { desc = "Go to lower window" })
 vim.keymap.set("n", "<C-Left>", "<C-w>h", { desc = "Go to left window" })
 vim.keymap.set("n", "<C-Right>", "<C-w>l", { desc = "Go to right window" })
 
+vim.keymap.set(
+  "n",
+  "<leader>uB",
+  "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
+  { desc = "Toggle light/dark background " }
+)
+
 -- Substitute for H/L.
+--
 vim.keymap.set("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 
