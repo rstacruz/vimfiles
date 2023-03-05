@@ -20,7 +20,7 @@ vim.keymap.set("n", "g5", "<cmd>wincmd t | 5wincmd w<cr>")
 vim.keymap.set("n", "g6", "<cmd>wincmd t | 6wincmd w<cr>")
 
 -- toggle fold
--- vim.keymap.set("n", "-", "za")
+vim.keymap.set("n", "_", "za")
 vim.keymap.set("n", "-", "<cmd>Neotree focus<cr>", { desc = "Focus on neotree" })
 
 -- find files (default: spc-spc)
