@@ -38,12 +38,40 @@ return {
     },
   },
 
+  { -- Spectre
+    -- Opens in insert mode
+    "windwp/nvim-spectre",
+    opts = {
+      line_sep_start = "",
+      result_padding = "   ",
+      line_sep = "",
+    },
+    keys = {
+      { -- Updates options passed to open()
+        "<leader>sr",
+        function()
+          require("spectre").open({ is_insert_mode = true })
+        end,
+        desc = "Replace in files (Spectre)",
+      },
+      { -- new
+        "<leader>s*",
+        function()
+          require("spectre").open({ select_word = true })
+        end,
+        desc = "Replace in files (Spectre)",
+      },
+    },
+  },
+
   { -- Flit
     -- Rebinds `f F t T` to be leap-like. I can never get used to it :(
     "ggandor/flit.nvim",
     enabled = false,
   },
-  {
+
+  { -- Neotree
+    -- Changes key mappings
     "nvim-neo-tree/neo-tree.nvim",
     keys = {
       { "<leader>e", "<cmd>Neotree focus<cr>", { desc = "Focus Neotree" } },
