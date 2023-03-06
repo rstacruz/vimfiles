@@ -1,3 +1,7 @@
+local uname = vim.loop.os_uname()
+-- uname.sysname = "Darwin" | "Linux"
+-- uname.arch = "aarch64" (Android) | "arm64" (Mac) | "x86_64"
+
 return {
   { -- Noice
     "folke/noice.nvim",
@@ -97,5 +101,19 @@ return {
       }
       return dashboard
     end,
+  },
+
+  { -- Mason
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = uname.arch == "aarch64" and {} or {
+        "stylua",
+        "shellcheck",
+        "shfmt",
+        "prettierd",
+        "css-lsp",
+        "tailwindcss-language-server",
+      },
+    },
   },
 }
