@@ -45,13 +45,19 @@ vim.keymap.set("n", "<C-Right>", "<C-w>l", { desc = "Go to right window" })
 
 vim.keymap.set(
   "n",
+  "<leader>ur",
+  "<cmd>lua vim.o.relativenumber = not vim.o.relativenumber; vim.notify('Relative number: ' .. vim.o.relativenumber and 'on' or 'off')<cr>",
+  { desc = "Toggle relativenumber" }
+)
+
+vim.keymap.set(
+  "n",
   "<leader>uB",
-  "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'<cr>",
+  "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'; vim.notify('Background: ' .. vim.o.background)<cr>",
   { desc = "Toggle light/dark background " }
 )
 
--- Substitute for H/L.
---
+-- Substitute for H/L
 vim.keymap.set("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 

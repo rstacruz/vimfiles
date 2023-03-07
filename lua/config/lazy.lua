@@ -18,7 +18,7 @@ require("lazy").setup({
     version = false, -- Don't use git tag versioning (always use latest git)
   },
   install = { colorscheme = { "tokyonight", "habamax" } },
-  checker = { enabled = true }, -- automatically check for plugin updates
+  checker = { enabled = false }, -- automatically check for plugin updates
   performance = {
     rtp = {
       disabled_plugins = {
