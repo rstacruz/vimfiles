@@ -9,3 +9,10 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.wo.number = false -- no line numbers
   end,
 })
+
+vim.defer_fn(function()
+  require("etc.autotheme").setup({
+    dark = { colorscheme = "rosebones" },
+    light = { colorscheme = "neobones" },
+  })
+end, 0)

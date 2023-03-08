@@ -52,7 +52,7 @@ vim.keymap.set(
 
 vim.keymap.set(
   "n",
-  "<leader>uB",
+  "<leader>ub",
   "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'; vim.notify('Background: ' .. vim.o.background)<cr>",
   { desc = "Toggle light/dark background " }
 )

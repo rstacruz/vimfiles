@@ -3,6 +3,14 @@ local uname = vim.loop.os_uname()
 -- uname.arch = "aarch64" (Android) | "arm64" (Mac) | "x86_64"
 
 return {
+  -- Configure LazyVim to load gruvbox
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "rosebones",
+    },
+  },
+
   { -- Noice
     "folke/noice.nvim",
     opts = {
