@@ -63,8 +63,4 @@ local function setup(options)
   end)
 end
 
-get_mode(function(out)
-  vim.notify("mode:" .. out)
-end)
-
 return { setup = setup }
