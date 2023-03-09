@@ -7,6 +7,13 @@ return {
     dependencies = {
       { "rktjmp/lush.nvim", lazy = true },
     },
+    config = function()
+      local opts = { lightness = "bright", darkness = "warm", solid_line_nr = true }
+      vim.g.zenbones = opts
+      vim.g.rosebones = opts
+      vim.g.tokyobones = opts
+      vim.g.neobones = opts
+    end,
   },
   { "EdenEast/nightfox.nvim", lazy = true, event = "VeryLazy" },
 }

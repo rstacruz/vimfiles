@@ -13,6 +13,6 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.defer_fn(function()
   require("etc.autotheme").setup({
     dark = { colorscheme = "rosebones" },
-    light = { colorscheme = "neobones" },
+    light = { colorscheme = "zenbones" },
   })
 end, 0)
