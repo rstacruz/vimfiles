@@ -45,22 +45,39 @@ local function get_mode(callback)
   end
 end
 
+local function use_dark(opts)
+  vim.o.background = "dark"
+  if opts.dark and opts.dark.colorscheme then
+    vim.cmd("colorscheme " .. opts.dark.colorscheme)
+  end
+end
+
+local function use_light(opts)
+  vim.o.background = "light"
+  if opts.light and opts.light.colorscheme then
+    vim.cmd("colorscheme " .. opts.light.colorscheme)
+  end
+end
+
+local function use_mode(mode, opts)
+  if mode == "dark" then
+    use_dark(opts)
+  else
+    use_light(opts)
+  end
+end
+
 local function setup(options)
   local opts = options or {}
+  local mode = opts.mode or "auto"
 
-  get_mode(function(mode)
-    if mode == "dark" then
-      vim.o.background = "dark"
-      if opts.dark and opts.dark.colorscheme then
-        vim.cmd("colorscheme " .. opts.dark.colorscheme)
-      end
-    else
-      vim.o.background = "light"
-      if opts.light and opts.light.colorscheme then
-        vim.cmd("colorscheme " .. opts.light.colorscheme)
-      end
-    end
-  end)
+  if mode == "auto" then
+    get_mode(function(auto_mode)
+      use_mode(auto_mode, opts)
+    end)
+  else
+    use_mode(mode, opts)
+  end
 end
 
 return { setup = setup }

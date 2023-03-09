@@ -6,12 +6,24 @@ vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("custom_spectre", { clear = true }),
   pattern = { "spectre_panel" },
   callback = function()
-    vim.wo.number = false -- no line numbers
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+  end,
+})
+vim.api.nvim_create_autocmd("TermOpen", {
+  pattern = "*",
+  group = vim.api.nvim_create_augroup("custom_terminal", { clear = true }),
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.opt_local.cursorline = false
+    vim.cmd("startinsert")
   end,
 })
 
 vim.defer_fn(function()
-  require("etc.autotheme").setup({
+  require("etc.autotheme").setup(vim.g.theme or {
+    mode = "auto", -- dark | light | auto
     dark = { colorscheme = "rosebones" },
     light = { colorscheme = "zenbones" },
   })

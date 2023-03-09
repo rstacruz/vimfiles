@@ -12,6 +12,33 @@ vim.keymap.set("n", "<Del>", "<cmd>bw!<cr>")
 -- search-and-replace
 vim.keymap.set("n", "gs", ":%s~~")
 vim.keymap.set("v", "gs", ":s~~")
+
+-- Terminal escape
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+vim.keymap.set("t", "<Esc><Esc>", "<Esc>")
+
+-- Toggles
+vim.keymap.set(
+  "n",
+  "<leader>uv",
+  "<cmd>lua vim.o.virtualedit = vim.o.virtualedit == 'all' and 'none' or 'all'; vim.notify('Virtual edit: ' .. vim.o.virtualedit)<cr>",
+  { desc = "Toggle virtualedit" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>ur",
+  "<cmd>lua vim.o.relativenumber = not vim.o.relativenumber; vim.notify('Relative number: ' .. vim.o.relativenumber and 'on' or 'off')<cr>",
+  { desc = "Toggle relativenumber" }
+)
+
+vim.keymap.set(
+  "n",
+  "<leader>ub",
+  "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'; vim.notify('Background: ' .. vim.o.background)<cr>",
+  { desc = "Toggle light/dark background " }
+)
+
+-- switch to pane
 vim.keymap.set("n", "g1", "<cmd>wincmd t<cr>")
 vim.keymap.set("n", "g2", "<cmd>wincmd t | wincmd w<cr>")
 vim.keymap.set("n", "g3", "<cmd>wincmd t | 3wincmd w<cr>")
@@ -42,20 +69,6 @@ vim.keymap.set("n", "<C-Up>", "<C-w>j", { desc = "Go to upper window" })
 vim.keymap.set("n", "<C-Down>", "<C-w>k", { desc = "Go to lower window" })
 vim.keymap.set("n", "<C-Left>", "<C-w>h", { desc = "Go to left window" })
 vim.keymap.set("n", "<C-Right>", "<C-w>l", { desc = "Go to right window" })
-
-vim.keymap.set(
-  "n",
-  "<leader>ur",
-  "<cmd>lua vim.o.relativenumber = not vim.o.relativenumber; vim.notify('Relative number: ' .. vim.o.relativenumber and 'on' or 'off')<cr>",
-  { desc = "Toggle relativenumber" }
-)
-
-vim.keymap.set(
-  "n",
-  "<leader>ub",
-  "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'; vim.notify('Background: ' .. vim.o.background)<cr>",
-  { desc = "Toggle light/dark background " }
-)
 
 -- Substitute for H/L
 vim.keymap.set("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
