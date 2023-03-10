@@ -1,0 +1,12 @@
+{
+  "Props declaration": {
+    "scope": "astro",
+    "prefix": "props",
+    "body": "export type Props = {\n\ttitle: string\n};\nconst props = Astro.props as Props;\n"
+  },
+  "Props declaration with ---": {
+    "scope": "astro",
+    "prefix": "---props",
+    "body": "---\nexport type Props = {\n\ttitle: string\n};\nconst props = Astro.props as Props;\n---\n"
+  }
+}

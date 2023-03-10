@@ -1,0 +1,10 @@
+{
+  "contributes": {
+    "snippets": [
+      {
+        "language": "astro",
+        "path": "./astro.json"
+      }
+    ]
+  }
+}

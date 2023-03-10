@@ -3,9 +3,11 @@ local uname = vim.loop.os_uname()
 -- uname.arch = "aarch64" (Android) | "arm64" (Mac) | "x86_64"
 
 return {
-  -- Configure LazyVim to load gruvbox
-  {
-    "LazyVim/LazyVim",
+  { -- Luasnip snippets
+    "L3MON4D3/LuaSnip",
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load({ paths = "~/.config/nvim/snippets" })
+    end,
   },
 
   { -- Noice
