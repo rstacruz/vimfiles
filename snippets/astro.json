@@ -4,9 +4,9 @@
     "prefix": "props",
     "body": "export type Props = {\n\ttitle: string\n};\nconst props = Astro.props as Props;\n"
   },
-  "Props declaration with ---": {
+  "Component boilerplate": {
     "scope": "astro",
-    "prefix": "---props",
-    "body": "---\nexport type Props = {\n\ttitle: string\n};\nconst props = Astro.props as Props;\n---\n"
+    "prefix": "component",
+    "body": "---\nexport type Props = {\n\ttitle: string\n};\nconst props = Astro.props as Props;\n---\n<div class=\"\">\n\t{props.title}\n</div>\n"
   }
 }

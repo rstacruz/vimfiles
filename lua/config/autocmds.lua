@@ -10,6 +10,17 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.relativenumber = false
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("custom_foldexpr", { clear = true }),
+  pattern = { "typescript", "javascript" },
+  callback = function()
+    -- https://github.com/nvim-treesitter/nvim-treesitter#folding
+    vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
+    vim.opt_local.foldmethod = "expr"
+  end,
+})
+
 vim.api.nvim_create_autocmd("TermOpen", {
   pattern = "*",
   group = vim.api.nvim_create_augroup("custom_terminal", { clear = true }),
