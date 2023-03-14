@@ -10,7 +10,7 @@ vim.keymap.set("v", "+", '"+')
 vim.keymap.set("n", "<Del>", "<cmd>bw!<cr>")
 
 -- Folding. `za` can be hard to hit
-vim.keymap.set("n", "++", "za")
+vim.keymap.set("n", "<cr>", "za")
 
 -- search-and-replace
 vim.keymap.set("n", "gs", ":%s~~")
