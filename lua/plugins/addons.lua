@@ -1,4 +1,16 @@
 return {
+  { -- pretty fold
+    "anuvyklack/pretty-fold.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    opts = {
+      fill_char = " ",
+    },
+    config = function(_, opts)
+      require("pretty-fold").setup(opts)
+    end,
+  },
+
   { -- fugitive: Git blame and open in GitHub
     "tpope/vim-fugitive",
     lazy = true,
