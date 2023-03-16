@@ -68,7 +68,7 @@ return {
       { -- new
         "<leader>s*",
         function()
-          require("spectre").open({ select_word = true })
+          require("spectre").open_visual({ select_word = true })
         end,
         desc = "Replace in files (Spectre)",
       },
