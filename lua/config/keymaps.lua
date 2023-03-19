@@ -26,7 +26,7 @@ vim.keymap.set("t", "<Esc><Esc>", "<Esc>")
 -- Toggles
 vim.keymap.set(
   "n",
-  "<leader>uv",
+  "<leader>uV",
   "<cmd>lua vim.o.virtualedit = vim.o.virtualedit == 'all' and 'none' or 'all'; vim.notify('Virtual edit: ' .. vim.o.virtualedit)<cr>",
   { desc = "Toggle virtualedit" }
 )

@@ -3,9 +3,11 @@ return {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     lazy = true,
     event = "VeryLazy",
-    opts = {},
-    config = function(_, opts)
-      require("lsp_lines").setup(opts)
+    keys = {
+      { "<leader>uv", "<cmd>lua require('etc.toggle_virtual_lines').toggle()<cr>", desc = "Toggle virtual lines/text" },
+    },
+    config = function()
+      require("lsp_lines").setup()
     end,
   },
   { -- zk: Markdown lsp for notes
