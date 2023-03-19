@@ -24,8 +24,18 @@ return {
           nls.builtins.formatting.stylua,
           nls.builtins.formatting.shfmt,
           -- nls.builtins.diagnostics.flake8,
-          nls.builtins.formatting.prettierd,
-          nls.builtins.diagnostics.eslint_d,
+          nls.builtins.formatting.prettierd.with({
+            condition = function(utils)
+              -- https://prettier.io/docs/en/configuration.html
+              return utils.root_has_file_matches(".prettierrc*") or utils.root_has_file_matches("prettier.config.*")
+            end,
+          }),
+          nls.builtins.diagnostics.eslint_d.with({
+            condition = function(utils)
+              -- https://eslint.org/docs/latest/use/configure/configuration-files
+              return utils.root_has_file_matches(".eslint*") or utils.root_has_file_matches("eslint.config.*")
+            end,
+          }),
         },
       }
     end,
