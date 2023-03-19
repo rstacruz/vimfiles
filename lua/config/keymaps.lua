@@ -4,6 +4,9 @@ local Util = require("lazyvim.util")
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+-- Show full diagnostic, because virtual text can be too sparse
+vim.keymap.set("n", "<leader>xk", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Show full diagnostic message" })
+
 -- +y to copy to clipboard
 vim.keymap.set("n", "+", '"+')
 vim.keymap.set("v", "+", '"+')

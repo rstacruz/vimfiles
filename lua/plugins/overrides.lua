@@ -3,6 +3,34 @@ local uname = vim.loop.os_uname()
 -- uname.arch = "aarch64" (Android) | "arm64" (Mac) | "x86_64"
 
 return {
+  { -- nvim-lspconfig
+    "neovim/nvim-lspconfig",
+    opts = {
+      diagnostics = {
+        virtual_text = false, -- let lsp-lines handle it
+      },
+    },
+  },
+  { -- null-ls: add prettier
+    "jose-elias-alvarez/null-ls.nvim",
+    opts = function()
+      local nls = require("null-ls")
+      return {
+        sources = {
+          -- See `:Mason` then `(5) formatter` for formatters,
+          -- and `(4) linter` for diagnostics
+          nls.builtins.formatting.fish_indent,
+          nls.builtins.diagnostics.fish,
+          nls.builtins.formatting.stylua,
+          nls.builtins.formatting.shfmt,
+          -- nls.builtins.diagnostics.flake8,
+          nls.builtins.formatting.prettierd,
+          nls.builtins.diagnostics.eslint_d,
+        },
+      }
+    end,
+  },
+
   { -- Luasnip snippets
     "L3MON4D3/LuaSnip",
     config = function()

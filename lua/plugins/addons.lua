@@ -1,4 +1,13 @@
 return {
+  {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    opts = {},
+    config = function(_, opts)
+      require("lsp_lines").setup(opts)
+    end,
+  },
   { -- zk: Markdown lsp for notes
     "mickael-menu/zk-nvim",
     lazy = true,
