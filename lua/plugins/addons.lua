@@ -1,5 +1,5 @@
 return {
-  {
+  { -- file browser
     "nvim-telescope/telescope-file-browser.nvim",
     keys = {
       { "<leader>_", "<cmd>Telescope file_browser<cr>", desc = "Browse files" },

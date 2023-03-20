@@ -13,6 +13,13 @@ return {
     end,
   },
 
+  { -- Telescope
+    "nvim-telescope/telescope.nvim",
+    keys = {
+      { "<leader>fr", "<cmd>Telescope oldfiles only_cwd=true<cr>", desc = "Recent" },
+    },
+  },
+
   { -- nvim-lspconfigasrt
     "neovim/nvim-lspconfig",
     opts = {
@@ -146,7 +153,7 @@ return {
       local dashboard = require("alpha.themes.dashboard")
       dashboard.section.header.val = { "Neovim" }
       dashboard.section.buttons.val = {
-        dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
+        dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles only_cwd=true<CR>"),
         dashboard.button("q", " " .. " Quit", ":qa<CR>"),
         -- dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
         -- dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
