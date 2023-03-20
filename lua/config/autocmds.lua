@@ -36,7 +36,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.defer_fn(function()
   require("etc.autotheme").setup(vim.tbl_extend("force", {
     mode = "auto", -- dark | light | auto
-    dark = { colorscheme = "rosebones" },
+    dark = { colorscheme = "carbonfox" },
     light = { colorscheme = "zenbones" },
   }, vim.g.theme or {}))
 end, 0)

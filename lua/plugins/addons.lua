@@ -1,5 +1,15 @@
 return {
   {
+    "nvim-telescope/telescope-file-browser.nvim",
+    keys = {
+      { "<leader>_", "<cmd>Telescope file_browser<cr>", desc = "Browse files" },
+    },
+    config = function()
+      require("telescope").load_extension("file_browser")
+    end,
+  },
+
+  { -- lsp-lines: show more diagnostic info
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     lazy = true,
     event = "VeryLazy",
@@ -10,6 +20,7 @@ return {
       require("lsp_lines").setup()
     end,
   },
+
   { -- zk: Markdown lsp for notes
     "mickael-menu/zk-nvim",
     lazy = true,
