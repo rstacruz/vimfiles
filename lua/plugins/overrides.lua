@@ -3,7 +3,17 @@ local uname = vim.loop.os_uname()
 -- uname.arch = "aarch64" (Android) | "arm64" (Mac) | "x86_64"
 
 return {
-  { -- nvim-lspconfig
+  { -- lualine: simplify lualine
+    "nvim-lualine/lualine.nvim",
+    opts = function(_plugin, opts)
+      opts.sections.lualine_a = {} -- vim mode
+      opts.sections.lualine_b = {} -- branch
+      opts.sections.lualine_z = {} -- time
+      return opts
+    end,
+  },
+
+  { -- nvim-lspconfigasrt
     "neovim/nvim-lspconfig",
     opts = {
       diagnostics = {
@@ -11,6 +21,7 @@ return {
       },
     },
   },
+
   { -- null-ls: add prettier
     "jose-elias-alvarez/null-ls.nvim",
     opts = function()
