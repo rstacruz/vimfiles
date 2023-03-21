@@ -2,7 +2,7 @@
 -- just like `winwidth` but excludes sidebars and more
 --
 -- example:
---   require("etc.autosize").setup({})
+--   require("etc.autosize").setup()
 
 local function augroup(name)
   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
