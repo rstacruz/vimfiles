@@ -1,4 +1,14 @@
 return {
+  { -- surround (replaces mini-surround)
+    "kylechui/nvim-surround",
+    lazy = true,
+    event = "VeryLazy",
+    opts = {},
+    config = function(_, opts)
+      require("nvim-surround").setup(opts)
+    end,
+  },
+
   { -- file browser
     "nvim-telescope/telescope-file-browser.nvim",
     keys = {

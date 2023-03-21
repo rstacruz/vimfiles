@@ -3,6 +3,11 @@ local uname = vim.loop.os_uname()
 -- uname.arch = "aarch64" (Android) | "arm64" (Mac) | "x86_64"
 
 return {
+  { -- surround: remove
+    "echasnovski/mini.surround",
+    enabled = false,
+  },
+
   { -- lualine: simplify lualine
     "nvim-lualine/lualine.nvim",
     opts = function(_plugin, opts)
