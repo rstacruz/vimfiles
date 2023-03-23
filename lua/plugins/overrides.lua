@@ -158,13 +158,13 @@ return {
       local dashboard = require("alpha.themes.dashboard")
       dashboard.section.header.val = { "Neovim" }
       dashboard.section.buttons.val = {
+        dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
+        dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
         dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles only_cwd=true<CR>"),
+        dashboard.button("s", "󰑓 " .. " Restore Session", [[:lua require("persistence").load() <cr>]]),
         dashboard.button("q", " " .. " Quit", ":qa<CR>"),
-        -- dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
-        -- dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
-        -- dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
         -- dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
-        -- dashboard.button("s", "󰑓 " .. " Restore Session", [[:lua require("persistence").load() <cr>]]),
+        -- dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
         -- dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
       }
       return dashboard

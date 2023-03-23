@@ -1,4 +1,30 @@
 return {
+  { -- aerial: symbols
+    "stevearc/aerial.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    opts = {
+      -- see :help SymbolKind
+      filter_kind = false,
+      -- filter_kind = {
+      --   "Class", "Constructor", "Enum", "Function", "Interface", "Module", "Method", "Struct",
+      -- },
+    },
+    keys = {
+      { "<leader>cs", "<cmd>AerialToggle!<cr>", desc = "Browse symbol outline" },
+      { "<leader>!a", "<cmd>Telescope aerial<cr>", desc = "Go to symbol (aerial)" }, -- like leader-ss but supports more non-lsp filetypes
+    },
+    config = function(_, opts)
+      opts.on_attach = function(bufnr)
+        -- Jump forwards/backwards with '{' and '}'
+        vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr, desc = "Prev symbol" })
+        vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr, desc = "Next symbol" })
+      end
+      require("aerial").setup(opts)
+      require("telescope").load_extension("aerial")
+    end,
+  },
+
   { -- surround (replaces mini-surround)
     "kylechui/nvim-surround",
     lazy = true,
@@ -87,12 +113,5 @@ return {
       { "<leader>giY", "<cmd>GBrowse<cr>", desc = "Open GitHub URL in browser", mode = { "n", "v" } },
       { "<leader>gb", "<cmd>Git blame<cr>", desc = "Git Blame" },
     },
-  },
-
-  { -- symbols outline
-    "simrat39/symbols-outline.nvim",
-    cmd = "SymbolsOutline",
-    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
-    config = true,
   },
 }
