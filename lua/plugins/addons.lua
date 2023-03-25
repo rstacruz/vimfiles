@@ -1,4 +1,17 @@
 return {
+  { -- scrollview: Scroll bars
+    "dstein64/nvim-scrollview",
+    lazy = true,
+    event = "VeryLazy",
+    opts = {
+      -- Make it sit flush to the window edge. (default: 2)
+      column = 1,
+    },
+    config = function(_, opts)
+      require("scrollview").setup(opts)
+    end,
+  },
+
   { -- aerial: symbols
     "stevearc/aerial.nvim",
     lazy = true,
