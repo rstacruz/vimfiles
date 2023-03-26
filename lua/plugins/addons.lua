@@ -1,4 +1,20 @@
 return {
+  { -- refactoring
+    "ThePrimeagen/refactoring.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    dependencies = {
+        {"nvim-lua/plenary.nvim"},
+        {"nvim-treesitter/nvim-treesitter"}
+    },
+    opts = {
+    },
+    config = function(_, opts)
+      require('refactoring').setup(opts)
+      require("telescope").load_extension("refactoring")
+    end
+  },
+
   { -- scrollview: Scroll bars
     "dstein64/nvim-scrollview",
     lazy = true,
