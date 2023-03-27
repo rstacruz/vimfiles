@@ -1,4 +1,12 @@
 return {
+  { -- indent detection
+    "Darazaki/indent-o-matic",
+    opts = {},
+    config = function(_, opts)
+      require("indent-o-matic").setup(opts)
+    end,
+  },
+
   { -- refactoring
     "ThePrimeagen/refactoring.nvim",
     lazy = true,
