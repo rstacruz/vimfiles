@@ -3,6 +3,17 @@ local uname = vim.loop.os_uname()
 -- uname.arch = "aarch64" (Android) | "arm64" (Mac) | "x86_64"
 
 return {
+  { -- bufferline: add leader-bo
+    "akinsho/bufferline.nvim",
+    keys = {
+      {
+        "<leader>bo",
+        "<cmd>BufferLineTogglePin<cr>:BufferLineGroupClose ungrouped<cr>:BufferLineTogglePin<cr>",
+        desc = "Delete other buffers",
+      },
+    },
+  },
+
   { -- surround: remove
     "echasnovski/mini.surround",
     enabled = false,
@@ -10,7 +21,7 @@ return {
 
   { -- lualine: simplify lualine
     "nvim-lualine/lualine.nvim",
-    opts = function(_plugin, opts)
+    opts = function(_, opts)
       opts.sections.lualine_a = {} -- vim mode
       opts.sections.lualine_b = {} -- branch
       opts.sections.lualine_z = {} -- time
