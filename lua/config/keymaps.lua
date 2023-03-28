@@ -4,6 +4,9 @@ local Util = require("lazyvim.util")
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+-- Quicker shortcut than 'leader-qq'
+vim.keymap.set("n", "<leader>Q", "<cmd>qa<cr>", { desc = "Quit all" })
+
 -- Show full diagnostic, because virtual text can be too sparse
 vim.keymap.set("n", "<leader>xk", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Show full diagnostic message" })
 
