@@ -4,6 +4,11 @@ local Util = require("lazyvim.util")
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+-- Paste over selection without updating the register
+-- `_p` restores the default behaviour
+vim.keymap.set("v", "p", '"_dP')
+vim.keymap.set("v", "_p", "p")
+
 -- Quicker shortcut than 'leader-qq'
 vim.keymap.set("n", "<leader>Q", "<cmd>qa<cr>", { desc = "Quit all" })
 
