@@ -1,4 +1,18 @@
 return {
+  { -- hop
+    "phaazon/hop.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    opts = {},
+    config = function(_, opts)
+      require("hop").setup(opts)
+    end,
+    keys = {
+      { "gh", "<cmd>HopWord<cr>", desc = "Go to word..." },
+      { "g/", "<cmd>HopPattern<cr>", desc = "Find pattern..." },
+    },
+  },
+
   { -- indent detection
     "Darazaki/indent-o-matic",
     opts = {},
