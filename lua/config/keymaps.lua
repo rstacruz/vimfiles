@@ -9,6 +9,20 @@ local Util = require("lazyvim.util")
 vim.keymap.set("v", "p", '"_dP')
 vim.keymap.set("v", "_p", "p")
 
+vim.keymap.set("n", "<leader>fy", [[:let @+=@% | echo '→ ' . @%<cr>]], { desc = " Copy current path" })
+vim.keymap.set(
+  "n",
+  "<leader>fYp",
+  [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]],
+  { desc = " Copy full path" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>fYt",
+  [[:let @+=expand('%:t') | echo '→ ' . expand('%:t')<cr>]],
+  { desc = " Copy basename" }
+)
+
 -- Quicker shortcut than 'leader-qq'
 vim.keymap.set("n", "<leader>Q", "<cmd>qa<cr>", { desc = "Quit all" })
 
