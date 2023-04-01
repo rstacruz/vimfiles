@@ -1,3 +1,4 @@
+local is_vscode = vim.g.vscode or vim.env.VSCODE
 local uname = vim.loop.os_uname()
 -- uname.sysname = "Darwin" | "Linux"
 -- uname.arch = "aarch64" (Android) | "arm64" (Mac) | "x86_64"
@@ -10,6 +11,7 @@ return {
 
   { -- bufferline: add leader-bo
     "akinsho/bufferline.nvim",
+    enabled = not is_vscode,
     keys = {
       {
         "<leader>bo",
@@ -26,6 +28,7 @@ return {
 
   { -- lualine: simplify lualine
     "nvim-lualine/lualine.nvim",
+    enabled = not is_vscode,
     opts = function(_, opts)
       opts.sections.lualine_a = {} -- vim mode
       opts.sections.lualine_b = {} -- branch
@@ -36,13 +39,15 @@ return {
 
   { -- Telescope
     "nvim-telescope/telescope.nvim",
+    enabled = not is_vscode,
     keys = {
       { "<leader>fr", "<cmd>Telescope oldfiles only_cwd=true<cr>", desc = "Recent" },
     },
   },
 
-  { -- nvim-lspconfigasrt
+  { -- nvim-lspconfig
     "neovim/nvim-lspconfig",
+    enabled = not is_vscode,
     opts = {
       diagnostics = {
         virtual_text = false, -- let lsp-lines handle it
@@ -52,6 +57,7 @@ return {
 
   { -- null-ls: add prettier
     "jose-elias-alvarez/null-ls.nvim",
+    enabled = not is_vscode,
     opts = function()
       local nls = require("null-ls")
       return {
@@ -82,6 +88,7 @@ return {
 
   { -- Luasnip snippets
     "L3MON4D3/LuaSnip",
+    enabled = not is_vscode,
     config = function()
       require("luasnip.loaders.from_vscode").lazy_load({ paths = "~/.config/nvim/snippets" })
     end,
@@ -89,6 +96,7 @@ return {
 
   { -- Noice
     "folke/noice.nvim",
+    enabled = not is_vscode,
     opts = {
       presets = {
         lsp_doc_border = true,
@@ -99,6 +107,7 @@ return {
   { -- Notify
     -- Makes things more minimal and less intrusive
     "rcarriga/nvim-notify",
+    enabled = not is_vscode,
     opts = {
       render = "minimal", -- default: "default"
       stages = "static", -- default: "fade_in_slide_out"
@@ -118,6 +127,7 @@ return {
   { -- Indentscope
     -- Remove animations
     "echasnovski/mini.indentscope",
+    enabled = not is_vscode,
     opts = {
       draw = {
         delay = 0, -- default: 100
@@ -129,6 +139,7 @@ return {
   { -- Spectre
     -- Opens in insert mode
     "windwp/nvim-spectre",
+    enabled = not is_vscode,
     opts = {
       line_sep_start = "",
       result_padding = "   ",
@@ -161,6 +172,7 @@ return {
   { -- Neotree
     -- Changes key mappings
     "nvim-neo-tree/neo-tree.nvim",
+    enabled = not is_vscode,
     keys = {
       { "<leader>e", "<cmd>Neotree focus<cr>", { desc = "Focus Neotree" } },
       -- ^ Focus instead of toggle
@@ -170,6 +182,7 @@ return {
   { -- Alpha (welcome page)
     -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/ui.lua#L227-L239
     "goolord/alpha-nvim",
+    enabled = not is_vscode,
     opts = function()
       local dashboard = require("alpha.themes.dashboard")
       dashboard.section.header.val = { "Neovim" }
@@ -189,6 +202,7 @@ return {
 
   { -- Mason
     "williamboman/mason.nvim",
+    enabled = not is_vscode,
     opts = {
       ensure_installed = uname.arch == "aarch64" and {} or {
         "stylua",

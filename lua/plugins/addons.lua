@@ -1,3 +1,5 @@
+local is_vscode = vim.g.vscode or vim.env.VSCODE
+
 return {
   { -- hop
     "phaazon/hop.nvim",
@@ -16,6 +18,7 @@ return {
   { -- indent detection
     "Darazaki/indent-o-matic",
     opts = {},
+    enabled = not is_vscode,
     config = function(_, opts)
       require("indent-o-matic").setup(opts)
     end,
@@ -25,6 +28,7 @@ return {
     "ThePrimeagen/refactoring.nvim",
     lazy = true,
     event = "VeryLazy",
+    enabled = not is_vscode,
     dependencies = {
       { "nvim-lua/plenary.nvim" },
       { "nvim-treesitter/nvim-treesitter" },
@@ -54,6 +58,7 @@ return {
     "dstein64/nvim-scrollview",
     lazy = true,
     event = "VeryLazy",
+    enabled = not is_vscode,
     opts = {
       -- Make it sit flush to the window edge. (default: 2)
       column = 1,
@@ -67,6 +72,7 @@ return {
     "stevearc/aerial.nvim",
     lazy = true,
     event = "VeryLazy",
+    enabled = not is_vscode,
     opts = {
       -- see :help SymbolKind
       filter_kind = false,
@@ -104,6 +110,7 @@ return {
     keys = {
       { "<leader>_", "<cmd>Telescope file_browser<cr>", desc = "Browse files" },
     },
+    enabled = not is_vscode,
     config = function()
       require("telescope").load_extension("file_browser")
     end,
@@ -113,6 +120,7 @@ return {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     lazy = true,
     event = "VeryLazy",
+    enabled = not is_vscode,
     keys = {
       { "<leader>uv", "<cmd>lua require('etc.toggle_virtual_lines').toggle()<cr>", desc = "Toggle virtual lines/text" },
     },
@@ -125,6 +133,7 @@ return {
     "mickael-menu/zk-nvim",
     lazy = true,
     event = "VeryLazy",
+    enabled = not is_vscode,
     opts = {
       picker = "telescope",
     },
@@ -157,6 +166,7 @@ return {
     "anuvyklack/pretty-fold.nvim",
     lazy = true,
     event = "VeryLazy",
+    enabled = not is_vscode,
     opts = {
       fill_char = " ",
     },
@@ -169,6 +179,7 @@ return {
     "tpope/vim-fugitive",
     lazy = true,
     event = "VeryLazy",
+    enabled = not is_vscode,
     dependencies = {
       "tpope/vim-rhubarb",
     },
