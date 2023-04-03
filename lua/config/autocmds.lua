@@ -1,6 +1,9 @@
 -- Defaults: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 require("etc.autosize").setup()
 
+-- Save colorscheme on change
+require("etc.persist_colorscheme").setup()
+
 -- Spectre: no line numbers
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("custom_spectre", { clear = true }),
@@ -33,10 +36,24 @@ vim.api.nvim_create_autocmd("TermOpen", {
   end,
 })
 
-vim.defer_fn(function()
-  require("etc.autotheme").setup(vim.tbl_extend("force", {
-    mode = "auto", -- dark | light | auto
-    dark = { colorscheme = "catppuccin" },
-    light = { colorscheme = "tokyobones" },
-  }, vim.g.theme or {}))
-end, 0)
+local function persist_colorscheme()
+  local current_colorscheme = vim.g.colors_name
+
+  local cache_path = vim.fn.stdpath("cache")
+  local cache_file = cache_path .. "/colorscheme.lua"
+  local file = io.open(cache_file, "w")
+
+  file:write("vim.opt.background = '" .. vim.o.background .. "'")
+  file:write("vim.cmd('colorscheme " .. vim.g.colors_name .. "')")
+  file:close()
+end
+
+local function load_persisted_colorscheme()
+  local cache_path = vim.fn.stdpath("cache")
+  local cache_file = cache_path .. "/colorscheme.lua"
+
+  -- check if cache_file exists
+  if vim.fn.filereadable(cache_file) == 1 then
+    dofile(cache_file)
+  end
+end

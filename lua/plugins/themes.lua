@@ -9,7 +9,7 @@ return {
       { "rktjmp/lush.nvim", lazy = true },
     },
     config = function()
-      local opts = { lightness = "bright", darkness = "warm", solid_line_nr = false }
+      local opts = { lightness = "bright", darkness = "warm", solid_line_nr = true }
       vim.g.zenbones = opts
       vim.g.rosebones = opts
       vim.g.tokyobones = opts
