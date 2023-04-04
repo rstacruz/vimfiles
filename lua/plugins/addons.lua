@@ -1,6 +1,25 @@
 local is_vscode = vim.g.vscode or vim.env.VSCODE
 
 return {
+  { -- terminal
+    "akinsho/toggleterm.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    opts = {
+      size = 20,
+    },
+    config = function(_, opts)
+      require("toggleterm").setup(opts)
+    end,
+    keys = {
+      { "_", "<cmd>ToggleTerm<cr>", desc = "Terminal" },
+      { "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Terminal" },
+      { "<leader>ta", "<cmd>ToggleTerm 1<cr>", desc = "Terminal 1" },
+      { "<leader>tr", "<cmd>ToggleTerm 2<cr>", desc = "Terminal 2" },
+      { "<leader>ts", "<cmd>ToggleTerm 3<cr>", desc = "Terminal 3" },
+    },
+  },
+
   { -- hop
     "phaazon/hop.nvim",
     lazy = true,

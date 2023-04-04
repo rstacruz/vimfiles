@@ -14,6 +14,9 @@ end
 local function save()
   local cache_file = get_cache_file()
   local file = io.open(cache_file, "w")
+  if not file then
+    return
+  end
 
   file:write("vim.opt.background = '" .. vim.o.background .. "'")
   file:write("vim.cmd('colorscheme " .. vim.g.colors_name .. "')")
@@ -31,18 +34,18 @@ end
 
 -- Setup autocmd to save colorscheme on change
 local function setup_autocmd()
-    vim.api.nvim_create_autocmd("Colorscheme", {
+  vim.api.nvim_create_autocmd("Colorscheme", {
     pattern = "*",
     group = vim.api.nvim_create_augroup("persist_colorscheme", { clear = true }),
     callback = function()
-        save()
+      save()
     end,
-    })
+  })
 end
 
 local function setup()
-    setup_autocmd()
-    load()
+  setup_autocmd()
+  load()
 end
 
 return { save = save, load = load, setup = setup }
