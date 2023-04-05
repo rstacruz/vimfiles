@@ -1,9 +1,6 @@
 -- Defaults: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 require("etc.autosize").setup()
 
--- Save colorscheme on change
-require("etc.persist_colorscheme").setup()
-
 -- Spectre: no line numbers
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("custom_spectre", { clear = true }),

@@ -1,9 +1,15 @@
 return {
   {
+    dir = vim.fn.stdpath("config") .. "/mods/persist_colorscheme",
+    config = function()
+      require("persist_colorscheme").setup()
+    end,
+  },
+
+  {
     dir = vim.fn.stdpath("config") .. "/mods/close_unused_buffers",
     lazy = true,
     config = function()
-      vim.notify("hi")
       require("close_unused_buffers").setup()
     end,
     keys = {
