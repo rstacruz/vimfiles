@@ -4,6 +4,18 @@ local uname = vim.loop.os_uname()
 -- uname.arch = "aarch64" (Android) | "arm64" (Mac) | "x86_64"
 
 return {
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      defaults = {
+        prompt_prefix = "   ",
+        selection_caret = "› ",
+        entry_prefix = "  ",
+        borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
+      }
+    }
+  },
+
   { -- leap: disable
     "ggandor/leap.nvim",
     enabled = false,

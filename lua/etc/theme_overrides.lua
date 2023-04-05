@@ -7,12 +7,6 @@ local config = {
     -- Borders
     XxLine = { link = "LineNr" },
 
-    -- Pounce
-    PounceMatch = { link = "Search" },
-    PounceGap = { link = "Search" },
-    PounceAccept = { link = "IncSearch" },
-    PounceAcceptBest = { link = "IncSearch" },
-
     -- Telescope
     TelescopeNormal = { link = "Pmenu" },
     TelescopeBorder = { link = "Pmenu" },
@@ -32,29 +26,24 @@ local config = {
     -- xIndentBlanklineContextChar = { link = "XxLine" },
 
     -- Treesitter Context
-    TreesitterContext = { link = "CursorLine" },
+    -- TreesitterContext = { link = "CursorLine" },
 
     -- https://github.com/folke/which-key.nvim
     WhichKeyFloat = { link = "Pmenu" }, -- Nicer background especaiily github_dark
     WhichKeyDesc = { link = "Pmenu" },
     WhichKeyGroup = { link = "Type" },
 
-    NavicSeparator = { link = "XxLine" },
-
-    CmpBorder = { link = "XxLine" }, -- Border for completions
-    BufferLineFill = { link = "TabLineFill" }, -- looks better in github_light
-
-    NvimTreeSpecialFile = { link = "Comment" }, -- Make some files less visible
-    NvimTreeIndentMarker = { link = "NonText" }, -- Make some files less visible
-    NvimTreeRootFolder = { link = "Comment" }, -- make the heading less prominent
-    NvimTreeWinSeparator = { link = "EndOfBuffer" }, -- better visual boundary from tree sidebar to the buffer
-  },
   nibble = {
     Comment = { fg = "#8080cc", bg = "none", italic = 1 },
     CursorLine = { italic = 0, bg = "#2020aa" }, -- Default was underline
     LineNr = { fg = "#5555bb", italic = 0 },
     -- Normal = { bg = "#333366" },
     -- NormalNC = { bg = "#333366" },
+  },
+    NavicSeparator = { link = "XxLine" },
+
+    -- CmpBorder = { link = "XxLine" }, -- Border for completions
+    -- BufferLineFill = { link = "TabLineFill" }, -- looks better in github_light
   },
   dayfox = {
     XxLine = { link = "VertSplit" }, -- for indent-blanklike
