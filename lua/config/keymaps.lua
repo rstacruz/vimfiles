@@ -46,25 +46,18 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("t", "<Esc><Esc>", "<Esc>")
 
 -- Toggles
-vim.keymap.set(
-  "n",
-  "<leader>uV",
-  "<cmd>lua vim.o.virtualedit = vim.o.virtualedit == 'all' and 'none' or 'all'; vim.notify('Virtual edit: ' .. vim.o.virtualedit)<cr>",
-  { desc = "Toggle virtualedit" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>ur",
-  "<cmd>lua vim.o.relativenumber = not vim.o.relativenumber; vim.notify('Relative number: ' .. vim.o.relativenumber and 'on' or 'off')<cr>",
-  { desc = "Toggle relativenumber" }
-)
+vim.keymap.set("n", "<leader>uV", function()
+  vim.o.virtualedit = vim.o.virtualedit == "all" and "none" or "all"
+  vim.notify("Virtual edit: " .. vim.o.virtualedit)
+end, { desc = "Toggle virtualedit" })
+vim.keymap.set("n", "<leader>ur", function()
+  vim.o.relativenumber = not vim.o.relativenumber
+end, { desc = "Toggle relativenumber" })
 
-vim.keymap.set(
-  "n",
-  "<leader>ub",
-  "<cmd>lua vim.o.background = vim.o.background == 'light' and 'dark' or 'light'; vim.notify('Background: ' .. vim.o.background)<cr>",
-  { desc = "Toggle light/dark background " }
-)
+vim.keymap.set("n", "<leader>ub", function()
+  vim.o.background = vim.o.background == "light" and "dark" or "light"
+  vim.notify("Background: " .. vim.o.background)
+end, { desc = "Toggle light/dark background " })
 
 -- switch to pane
 vim.keymap.set("n", "g1", "<cmd>wincmd t<cr>")
