@@ -75,12 +75,6 @@ return {
               -- return utils.root_has_file_matches(".prettierrc*") or utils.root_has_file_matches("prettier.config.*")
             end,
           }),
-          nls.builtins.diagnostics.eslint_d.with({
-            condition = function(utils)
-              return utils.root_has_file("node_modules/eslint/package.json")
-              -- return utils.root_has_file_matches(".eslint*") or utils.root_has_file_matches("eslint.config.*")
-            end,
-          }),
         },
       }
     end,
