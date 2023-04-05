@@ -1,3 +1,5 @@
+-- Closes buffers that haven't been edited
+
 local function persist_buffer(bufnr)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
   vim.fn.setbufvar(bufnr, "bufpersist", 1)
@@ -15,7 +17,7 @@ end
 
 local function setup()
   vim.api.nvim_create_autocmd({ "BufRead" }, {
-    group = vim.api.nvim_create_augroup("startup", {
+    group = vim.api.nvim_create_augroup("close_unused", {
       clear = false,
     }),
     pattern = { "*" },

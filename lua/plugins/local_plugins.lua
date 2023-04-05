@@ -1,13 +1,20 @@
 return {
   {
-    dir = vim.fn.stdpath("config") .. "/mods/persist_colorscheme",
+    dir = vim.fn.stdpath("config") .. "/plugins/autosize",
+    config = function()
+      require("autosize").setup()
+    end,
+  },
+
+  {
+    dir = vim.fn.stdpath("config") .. "/plugins/persist_colorscheme",
     config = function()
       require("persist_colorscheme").setup()
     end,
   },
 
   {
-    dir = vim.fn.stdpath("config") .. "/mods/close_unused_buffers",
+    dir = vim.fn.stdpath("config") .. "/plugins/close_unused_buffers",
     lazy = true,
     config = function()
       require("close_unused_buffers").setup()

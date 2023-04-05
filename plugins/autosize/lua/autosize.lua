@@ -2,11 +2,7 @@
 -- just like `winwidth` but excludes sidebars and more
 --
 -- example:
---   require("etc.autosize").setup()
-
-local function augroup(name)
-  return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
-end
+--   require("autosize").setup()
 
 local settings = {
   excluded_filetypes = { "NvimTree", "neo-tree", "DiffviewFiles", "Outline" },
@@ -26,7 +22,7 @@ local function setup(opts)
   settings = vim.tbl_extend("keep", settings, opts or {})
 
   vim.api.nvim_create_autocmd("WinEnter", {
-    group = augroup("autosize_pane"),
+    group = vim.api.nvim_create_augroup("autosize", { clear = true }),
     callback = function()
       -- If a window has been autosized before, run it immediately
       if vim.w.autosize_used == 1 then

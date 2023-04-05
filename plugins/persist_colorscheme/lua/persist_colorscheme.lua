@@ -1,7 +1,7 @@
 -- Persist colorscheme across sessions
 --
 -- Usage:
---   require("etc.persist_colorscheme").setup()
+--   require("persist_colorscheme").setup()
 
 -- Get cache file
 local function get_cache_file()

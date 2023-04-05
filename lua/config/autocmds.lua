@@ -1,5 +1,4 @@
 -- Defaults: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
-require("etc.autosize").setup()
 
 -- Spectre: no line numbers
 vim.api.nvim_create_autocmd("FileType", {
