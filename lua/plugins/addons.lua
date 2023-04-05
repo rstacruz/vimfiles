@@ -4,7 +4,6 @@ return {
   { -- terminal
     "akinsho/toggleterm.nvim",
     lazy = true,
-    event = "VeryLazy",
     opts = {
       size = 20,
     },
@@ -23,7 +22,6 @@ return {
   { -- hop
     "phaazon/hop.nvim",
     lazy = true,
-    event = "VeryLazy",
     opts = {},
     config = function(_, opts)
       require("hop").setup(opts)
@@ -46,7 +44,6 @@ return {
   { -- refactoring
     "ThePrimeagen/refactoring.nvim",
     lazy = true,
-    event = "VeryLazy",
     enabled = not is_vscode,
     dependencies = {
       { "nvim-lua/plenary.nvim" },
@@ -90,7 +87,6 @@ return {
   { -- aerial: symbols
     "stevearc/aerial.nvim",
     lazy = true,
-    event = "VeryLazy",
     enabled = not is_vscode,
     opts = {
       -- see :help SymbolKind
@@ -151,7 +147,7 @@ return {
   { -- zk: Markdown lsp for notes
     "mickael-menu/zk-nvim",
     lazy = true,
-    event = "VeryLazy",
+    ft = { "markdown" },
     enabled = not is_vscode,
     opts = {
       picker = "telescope",

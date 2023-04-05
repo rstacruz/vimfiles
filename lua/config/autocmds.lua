@@ -35,25 +35,3 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.cmd("startinsert")
   end,
 })
-
-local function persist_colorscheme()
-  local current_colorscheme = vim.g.colors_name
-
-  local cache_path = vim.fn.stdpath("cache")
-  local cache_file = cache_path .. "/colorscheme.lua"
-  local file = io.open(cache_file, "w")
-
-  file:write("vim.opt.background = '" .. vim.o.background .. "'")
-  file:write("vim.cmd('colorscheme " .. vim.g.colors_name .. "')")
-  file:close()
-end
-
-local function load_persisted_colorscheme()
-  local cache_path = vim.fn.stdpath("cache")
-  local cache_file = cache_path .. "/colorscheme.lua"
-
-  -- check if cache_file exists
-  if vim.fn.filereadable(cache_file) == 1 then
-    dofile(cache_file)
-  end
-end
