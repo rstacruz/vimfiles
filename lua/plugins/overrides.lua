@@ -1,3 +1,7 @@
+-- Overrides:
+-- These are plugins that are included in LazyVim. They're defined in this files
+-- to override some settings.
+
 local is_vscode = vim.g.vscode or vim.env.VSCODE
 local uname = vim.loop.os_uname()
 -- uname.sysname = "Darwin" | "Linux"

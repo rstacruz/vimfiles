@@ -1,6 +1,19 @@
+-- Addons:
+-- These are plugins that aren't included in the LazyVim.
+
 local is_vscode = vim.g.vscode or vim.env.VSCODE
 
 return {
+  { -- early retirement: closes inactive tabs
+    "chrisgrieser/nvim-early-retirement",
+    lazy = true,
+    opts = {
+      retirementAgeMins = 5, -- Close tabs after 5min of inactivity
+    },
+    config = true,
+    event = "VeryLazy",
+  },
+
   { -- chatgpt
     -- <c-s> to submit prompt
     -- <c-y> copy last answer
