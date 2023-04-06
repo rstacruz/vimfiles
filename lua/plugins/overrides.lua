@@ -12,8 +12,8 @@ return {
         selection_caret = "› ",
         entry_prefix = "  ",
         borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
-      }
-    }
+      },
+    },
   },
 
   { -- leap: disable

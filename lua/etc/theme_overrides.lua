@@ -85,8 +85,7 @@ local function setup()
   vim.api.nvim_create_autocmd("Colorscheme", {
     pattern = "*",
     group = augroup,
-    callback = apply,
+    callback = apply,
   })
 end
-
 return { apply = apply, setup = setup }
