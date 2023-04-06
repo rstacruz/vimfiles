@@ -14,30 +14,6 @@ return {
     event = "VeryLazy",
   },
 
-  { -- chatgpt
-    -- <c-s> to submit prompt
-    -- <c-y> copy last answer
-    -- <c-k> copy last answer (code)
-    "jackMort/ChatGPT.nvim",
-    opts = {
-      keymaps = {
-        submit = "<C-s>",
-      },
-    },
-    enabled = os.getenv("OPENAI_API_KEY") ~= nil,
-    config = function(_, opts)
-      require("chatgpt").setup(opts)
-    end,
-    keys = {
-      { "<leader>!c", "<cmd>ChatGPT<cr>", desc = "Open ChatGPT" },
-    },
-    requires = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-  },
-
   { -- terminal
     "akinsho/toggleterm.nvim",
     lazy = true,
