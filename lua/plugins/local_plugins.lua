@@ -1,6 +1,23 @@
 return {
   {
+    dir = vim.fn.stdpath("config") .. "/plugins/transparentize",
+    lazy = true,
+    config = function()
+      require("autosize").setup()
+    end,
+    keys = {
+      {
+        "<leader>!t",
+        "<cmd>lua require('transparentize').transparentize()<cr>",
+        desc = "Make background transparent",
+      },
+    },
+  },
+
+  {
     dir = vim.fn.stdpath("config") .. "/plugins/autosize",
+    lazy = true,
+    event = "VeryLazy",
     config = function()
       require("autosize").setup()
     end,

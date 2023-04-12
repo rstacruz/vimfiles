@@ -20,10 +20,10 @@ return {
     },
   },
 
-  { -- leap: disable
-    "ggandor/leap.nvim",
-    enabled = false,
-  },
+  -- { -- leap: disable
+  --   "ggandor/leap.nvim",
+  --   enabled = false,
+  -- },
 
   { -- bufferline: add leader-bo
     "akinsho/bufferline.nvim",
