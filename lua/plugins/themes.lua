@@ -1,5 +1,33 @@
 return {
-  { "projekt0n/github-nvim-theme", lazy = true, event = "VeryLazy" },
+  { -- kanagawa
+    "rebelot/kanagawa.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    opts = {
+      colors = {
+        theme = {
+          all = {
+            ui = {
+              bg_gutter = "none",
+            },
+          },
+        },
+      },
+    },
+    config = function(_, opts)
+      require("kanagawa").setup(opts)
+    end,
+  },
+  { -- edge: like onedark
+    "sainnhe/edge",
+    lazy = true,
+    event = "VeryLazy",
+    config = function()
+      vim.g.edge_style = "neon"
+      vim.g.edge_better_performance = 1
+    end,
+  },
+  -- { "projekt0n/github-nvim-theme", lazy = true, event = "VeryLazy" },
 
   {
     "mcchrish/zenbones.nvim",

@@ -12,10 +12,13 @@ return {
     "nvim-telescope/telescope.nvim",
     opts = {
       defaults = {
-        prompt_prefix = "   ",
+        -- prompt_prefix = "   ",
+        prompt_prefix = "  ",
         selection_caret = "› ",
         entry_prefix = "  ",
         borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
+        -- borderchars = { " ", "▕", "▁", "▏", "▏", "▕", "🭿", "🭼" },
+        -- borderchars = { "▔", "▕", "▁", "▏", "🭽", "🭾", "🭿", "🭼" },
       },
     },
   },
