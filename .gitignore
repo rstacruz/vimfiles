@@ -8,3 +8,4 @@ foo.*
 data
 /.home
 /lua/init-local.lua
+/spell

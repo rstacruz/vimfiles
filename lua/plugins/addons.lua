@@ -4,6 +4,27 @@
 local is_vscode = vim.g.vscode or vim.env.VSCODE
 
 return {
+  { -- Neorg: note taking
+    "nvim-neorg/neorg",
+    build = ":Neorg sync-parsers",
+    lazy = true,
+    ft = { "neorg", "norg" },
+    opts = {
+      load = {
+        ["core.defaults"] = {}, -- Loads default behaviour
+        ["core.norg.concealer"] = {}, -- Adds pretty icons to your documents
+        ["core.norg.dirman"] = { -- Manages Neorg workspaces
+          config = {
+            workspaces = {
+              notes = "~/notes",
+            },
+          },
+        },
+      },
+    },
+    dependencies = { { "nvim-lua/plenary.nvim" } },
+  },
+
   { -- early retirement: closes inactive tabs
     "chrisgrieser/nvim-early-retirement",
     lazy = true,
