@@ -18,7 +18,7 @@ local function save()
     return
   end
 
-  file:write("vim.opt.background = '" .. vim.o.background .. "'")
+  file:write("vim.opt.background = '" .. vim.o.background .. "'\n")
   file:write("vim.cmd('colorscheme " .. vim.g.colors_name .. "')")
   file:close()
 end
