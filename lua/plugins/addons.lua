@@ -9,6 +9,7 @@ return {
     build = ":Neorg sync-parsers",
     lazy = true,
     ft = { "neorg", "norg" },
+    cmd = { "Neorg" },
     opts = {
       load = {
         ["core.defaults"] = {}, -- Loads default behaviour
