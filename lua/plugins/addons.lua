@@ -73,6 +73,7 @@ return {
   { -- terminal
     "akinsho/toggleterm.nvim",
     lazy = true,
+    cmd = { "ToggleTerm" },
     opts = {
       size = 20,
     },

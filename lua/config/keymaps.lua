@@ -77,9 +77,7 @@ vim.keymap.set("n", "<c-p>", Util.telescope("files"), { desc = "Find Files (root
 vim.keymap.set("n", "<f1>", "<cmd>Telescope keymaps<cr>", { desc = "Key Maps" })
 
 -- More lazygit
-vim.keymap.set("n", "<leader>gis", function()
-  Util.float_term({ "lazygit", "status" }, { cwd = Util.get_root() })
-end, { desc = "Lazygit status (root dir)" })
+vim.keymap.set("n", "<leader>gis", "<cmd>tabnew | term lazygit status<cr>", { desc = "Lazygit status (root dir)" })
 
 -- Scratchpad
 vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad<cr><C-w>H", { desc = "Open scratchpad" })
