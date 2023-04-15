@@ -17,6 +17,7 @@
   "edge": { "branch": "master", "commit": "cda4ae057cc6c0f6e15865772b64d2474f4dd5c2" },
   "friendly-snippets": { "branch": "main", "commit": "8d91ba2dc2421a54981115f61b914974f938fa77" },
   "gitsigns.nvim": { "branch": "main", "commit": "372d5cb485f2062ac74abc5b33054abac21d8b58" },
+  "harpoon": { "branch": "master", "commit": "f7040fd0c44e7a4010369136547de5604b9c22a1" },
   "hop.nvim": { "branch": "master", "commit": "90db1b2c61b820e230599a04fedcd2679e64bd07" },
   "indent-blankline.nvim": { "branch": "master", "commit": "018bd04d80c9a73d399c1061fa0c3b14a7614399" },
   "indent-o-matic": { "branch": "master", "commit": "f4138581fe4575b720eae2d123cbaed0d86c94cf" },

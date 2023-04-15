@@ -4,7 +4,37 @@
 local is_vscode = vim.g.vscode or vim.env.VSCODE
 
 return {
+  { -- Harpoon
+    "ThePrimeagen/harpoon",
+    lazy = true,
+    keys = {
+      {
+        "<leader>!fm",
+        function()
+          require("harpoon.ui").toggle_quick_menu()
+        end,
+        desc = "Edit marks... (harpoon)",
+      },
+      {
+        "<leader>fm",
+        "<cmd>Telescope harpoon marks<cr>",
+        desc = "Show marks... (harpoon)",
+      },
+      {
+        "<leader>fM",
+        function()
+          require("harpoon.mark").add_file()
+        end,
+        desc = "Mark this file (harpoon)",
+      },
+    },
+    config = function()
+      require("telescope").load_extension("harpoon")
+    end,
+  },
+
   { -- Neorg: note taking
+    -- I don't use this much, just giving this a try (Apr 2023)
     "nvim-neorg/neorg",
     build = ":Neorg sync-parsers",
     lazy = true,
@@ -13,14 +43,18 @@ return {
     opts = {
       load = {
         ["core.defaults"] = {}, -- Loads default behaviour
-        ["core.norg.concealer"] = {}, -- Adds pretty icons to your documents
-        ["core.norg.dirman"] = { -- Manages Neorg workspaces
-          config = {
-            workspaces = {
-              notes = "~/notes",
-            },
-          },
-        },
+        -- ["core.norg.concealer"] = {
+        --   config = {
+        --     -- icon_preset = "varied", -- basic | diamond | varied
+        --   },
+        -- }, -- Adds pretty icons to your documents
+        -- ["core.norg.dirman"] = { -- Manages Neorg workspaces
+        --   config = {
+        --     workspaces = {
+        --       notes = "~/notes",
+        --     },
+        --   },
+        -- },
       },
     },
     dependencies = { { "nvim-lua/plenary.nvim" } },

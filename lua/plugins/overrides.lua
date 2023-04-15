@@ -8,7 +8,8 @@ local uname = vim.loop.os_uname()
 -- uname.arch = "aarch64" (Android) | "arm64" (Mac) | "x86_64"
 
 return {
-  {
+  { -- Telescope
+    -- Updates borders to look more minimal
     "nvim-telescope/telescope.nvim",
     opts = {
       defaults = {
@@ -28,7 +29,8 @@ return {
   --   enabled = false,
   -- },
 
-  { -- bufferline: add leader-bo
+  { -- bufferline:
+    -- add `leader-bo` to isolate buffers
     "akinsho/bufferline.nvim",
     enabled = not is_vscode,
     keys = {
