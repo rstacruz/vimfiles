@@ -206,6 +206,7 @@ return {
         dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
         dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
         dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles only_cwd=true<CR>"),
+        dashboard.button("m", " " .. " Marks", ":lua require('harpoon.ui').toggle_quick_menu()<CR>"),
         dashboard.button("q", " " .. " Quit", ":qa<CR>"),
         -- dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
         -- dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
