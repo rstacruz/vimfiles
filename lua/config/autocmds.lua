@@ -18,6 +18,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
     vim.opt_local.foldmethod = "expr"
     vim.opt_local.foldenable = false
+    -- vim.opt_local.formatoptions:remove({ "r", "o" })
   end,
 })
 
@@ -25,6 +26,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
   pattern = "*",
   group = vim.api.nvim_create_augroup("custom_terminal", { clear = true }),
   callback = function()
+    -- something
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
     vim.opt_local.cursorline = false

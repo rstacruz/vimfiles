@@ -8,6 +8,16 @@ local uname = vim.loop.os_uname()
 -- uname.arch = "aarch64" (Android) | "arm64" (Mac) | "x86_64"
 
 return {
+  { -- indent guides for Neovim
+    "lukas-reineke/indent-blankline.nvim",
+    opts = {
+      char = "▏", -- from lazyvim: "│",
+
+      -- add neorg
+      filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason", "neorg" },
+    },
+  },
+
   { -- Telescope
     -- Updates borders to look more minimal
     "nvim-telescope/telescope.nvim",
