@@ -4,7 +4,7 @@ vim.opt.clipboard = "" -- Don't use system clipboard
 vim.opt.swapfile = false -- Don't write swap files
 vim.opt.gdefault = true -- Searches will be global by default
 vim.opt.fillchars = "eob: " -- No ~ at end of buffer
-vim.opt.conceallevel = 0 -- Don't conceal by default
+-- vim.opt.conceallevel = 0 -- Don't conceal by default
 
 vim.opt.formatoptions:remove({ "r", "o" })
 -- default: jcroqlnt
