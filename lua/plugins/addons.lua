@@ -43,6 +43,9 @@ return {
     opts = {
       load = {
         ["core.defaults"] = {}, -- Loads default behaviour
+        -- meta-enter will continue lists and headings
+        -- https://github.com/nvim-neorg/neorg/wiki/Itero
+        ["core.itero"] = {},
         ["core.concealer"] = {
           config = {
             icon_preset = "basic", -- basic | diamond | varied
