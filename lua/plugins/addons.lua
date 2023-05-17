@@ -43,11 +43,11 @@ return {
     opts = {
       load = {
         ["core.defaults"] = {}, -- Loads default behaviour
-        -- ["core.norg.concealer"] = {
-        --   config = {
-        --     -- icon_preset = "varied", -- basic | diamond | varied
-        --   },
-        -- }, -- Adds pretty icons to your documents
+        ["core.concealer"] = {
+          config = {
+            icon_preset = "basic", -- basic | diamond | varied
+          },
+        }, -- Adds pretty icons to your documents
         -- ["core.norg.dirman"] = { -- Manages Neorg workspaces
         --   config = {
         --     workspaces = {
