@@ -252,26 +252,28 @@ return {
     opts = function()
       local dashboard = require("alpha.themes.dashboard")
       dashboard.section.header.val = {
-        "┌─────────────────────────────────────────────┐",
-        "│                                             │",
-        "│   Microsoft® Visual Studio Code™            │",
-        "│   Version 0.9, MS-DOS Edition               │",
-        "│                                             │",
-        "│   Copyright © 1991, Microsoft Corporation   │",
-        "│                                             │",
-        "└─────────────────────────────────────────────┘",
+        "┌──┬──────────────────────────────────────────────┐",
+        "├──┴──────────────────────────────────────────────┤",
+        "│                                                 │",
+        "│   Microsoft® Visual Studio Code™        ┌─┐     │",
+        "│   Version 0.9, MS-DOS Edition          ⊙␣⊙│     │",
+        "│                                         │ ││    │",
+        "│   Copyright © 1991, Microsoft           │─┘│    │",
+        "│   Corporation. All rights reserved.     └──┘    │",
+        "│                                                 │",
+        "└─────────────────────────────────────────────────┘",
       }
-      -- dashboard.section.buttons.val = {
-      --   dashboard.button("s", "󰑓 " .. " Resume session", [[:lua require("persistence").load() <cr>]]),
-      --   dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
-      --   dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
-      --   dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles only_cwd=true<CR>"),
-      --   dashboard.button("m", " " .. " Marks", ":lua require('harpoon.ui').toggle_quick_menu()<CR>"),
-      --   dashboard.button("q", " " .. " Quit", ":qa<CR>"),
-      --   -- dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
-      --   -- dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
-      --   -- dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
-      -- }
+      dashboard.section.buttons.val = {
+        dashboard.button("s", "󰑓 " .. " RESUME.EXE", [[:lua require("persistence").load() <cr>]]),
+        dashboard.button("n", " " .. " NEWFILE.BAT", ":ene <BAR> startinsert <CR>"),
+        dashboard.button("f", " " .. " FIND.EXE", ":Telescope find_files <CR>"),
+        dashboard.button("r", " " .. " RECENTS.EXE", ":Telescope oldfiles only_cwd=true<CR>"),
+        dashboard.button("m", " " .. " MARKS.COM", ":lua require('harpoon.ui').toggle_quick_menu()<CR>"),
+        dashboard.button("q", " " .. " CTRLALT.DEL", ":qa<CR>"),
+        -- dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
+        -- dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
+        -- dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
+      }
       return dashboard
     end,
   },
