@@ -9,8 +9,9 @@ return {
     dependencies = "nvim-treesitter/nvim-treesitter",
     opts = {
       markdown = {
-        -- differentiates it a bit from code blocks
-        headline_highlights = { "DiagnosticVirtualTextInfo" },
+        dash_string = "─",
+        -- differentiates it a bit from code block
+        headline_highlights = { "DiagnosticVirtualTextWarn", "DiagnosticVirtualTextInfo" },
       },
     },
     config = true, -- or `opts = {}`

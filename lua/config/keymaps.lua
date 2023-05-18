@@ -50,6 +50,11 @@ vim.keymap.set("n", "<leader>uV", function()
   vim.o.virtualedit = vim.o.virtualedit == "all" and "none" or "all"
   vim.notify("Virtual edit: " .. vim.o.virtualedit)
 end, { desc = "Toggle virtualedit" })
+
+vim.keymap.set("n", "<leader>uL", function()
+  vim.o.cursorline = not vim.o.cursorline
+end, { desc = "Toggle cursorline" })
+
 vim.keymap.set("n", "<leader>ur", function()
   vim.o.relativenumber = not vim.o.relativenumber
 end, { desc = "Toggle relativenumber" })
