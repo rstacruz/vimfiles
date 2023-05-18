@@ -22,6 +22,15 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("custom_markdown", { clear = true }),
+  pattern = { "markdown" },
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+  end,
+})
+
 vim.api.nvim_create_autocmd("TermOpen", {
   pattern = "*",
   group = vim.api.nvim_create_augroup("custom_terminal", { clear = true }),

@@ -4,6 +4,18 @@
 local is_vscode = vim.g.vscode or vim.env.VSCODE
 
 return {
+  { -- headlines
+    "lukas-reineke/headlines.nvim",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    opts = {
+      markdown = {
+        -- differentiates it a bit from code blocks
+        headline_highlights = { "DiagnosticVirtualTextInfo" },
+      },
+    },
+    config = true, -- or `opts = {}`
+  },
+
   { -- Harpoon
     "ThePrimeagen/harpoon",
     lazy = true,
@@ -30,6 +42,24 @@ return {
     },
     config = function()
       require("telescope").load_extension("harpoon")
+    end,
+  },
+
+  { -- orgmode
+    -- just trying it out
+    "nvim-orgmode/orgmode",
+    -- lazy = true,
+    -- ft = { "org" },
+    dependencies = {
+      { "akinsho/org-bullets.nvim", lazy = true },
+    },
+    opts = {
+      org_agenda_files = { "~/Dev/org/*" },
+      org_default_notes_file = "~/Dev/org/index.org",
+    },
+    config = function(_, opts)
+      require("orgmode").setup_ts_grammar()
+      require("orgmode").setup(opts)
     end,
   },
 

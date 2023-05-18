@@ -8,13 +8,44 @@ local uname = vim.loop.os_uname()
 -- uname.arch = "aarch64" (Android) | "arm64" (Mac) | "x86_64"
 
 return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      highlight = {
+        -- Required for spellcheck, some LaTex highlights and
+        -- code block highlights that do not have ts grammar
+        additional_vim_regex_highlighting = { "org" },
+      },
+      ensure_installed = {
+        -- default:
+        "bash",
+        "help",
+        "html",
+        "javascript",
+        "json",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "query",
+        "regex",
+        "tsx",
+        "typescript",
+        "vim",
+        "yaml",
+        -- added:
+        "org",
+      },
+    },
+  },
+
   { -- indent guides for Neovim
     "lukas-reineke/indent-blankline.nvim",
     opts = {
       char = "▏", -- from lazyvim: "│",
 
-      -- add neorg
-      filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason", "neorg" },
+      -- add neorg and org
+      filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason", "neorg", "org" },
     },
   },
 
@@ -210,18 +241,27 @@ return {
     enabled = not is_vscode,
     opts = function()
       local dashboard = require("alpha.themes.dashboard")
-      dashboard.section.header.val = { "Neovim" }
-      dashboard.section.buttons.val = {
-        dashboard.button("s", "󰑓 " .. " Resume session", [[:lua require("persistence").load() <cr>]]),
-        dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
-        dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
-        dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles only_cwd=true<CR>"),
-        dashboard.button("m", " " .. " Marks", ":lua require('harpoon.ui').toggle_quick_menu()<CR>"),
-        dashboard.button("q", " " .. " Quit", ":qa<CR>"),
-        -- dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
-        -- dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
-        -- dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
+      dashboard.section.header.val = {
+        "┌─────────────────────────────────────────────┐",
+        "│                                             │",
+        "│   Microsoft® Visual Studio Code™            │",
+        "│   Version 0.9, MS-DOS Edition               │",
+        "│                                             │",
+        "│   Copyright © 1991, Microsoft Corporation   │",
+        "│                                             │",
+        "└─────────────────────────────────────────────┘",
       }
+      -- dashboard.section.buttons.val = {
+      --   dashboard.button("s", "󰑓 " .. " Resume session", [[:lua require("persistence").load() <cr>]]),
+      --   dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
+      --   dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
+      --   dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles only_cwd=true<CR>"),
+      --   dashboard.button("m", " " .. " Marks", ":lua require('harpoon.ui').toggle_quick_menu()<CR>"),
+      --   dashboard.button("q", " " .. " Quit", ":qa<CR>"),
+      --   -- dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
+      --   -- dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
+      --   -- dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
+      -- }
       return dashboard
     end,
   },
