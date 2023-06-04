@@ -4,41 +4,43 @@
 local is_vscode = vim.g.vscode or vim.env.VSCODE
 
 return {
-  { 'echasnovski/mini.jump2d', version = '*',
-  opts = {},
+  {
+    "echasnovski/mini.jump2d",
+    version = "*",
+    opts = {},
     lazy = true,
-  config = function()
-      require('mini.jump2d').setup()
+    config = function()
+      require("mini.jump2d").setup()
     end,
     keys = {
       {
-       "gl",
-      function()
-        MiniJump2d.start(MiniJump2d.builtin_opts.line_start)
-      end,
-      desc = "Go to line",
-        mode = {'n', 'v'}
+        "gl",
+        function()
+          MiniJump2d.start(MiniJump2d.builtin_opts.line_start)
+        end,
+        desc = "Go to line",
+        mode = { "n", "v" },
       },
       {
-       "gw",
-      function()
-        MiniJump2d.start({
-            spotter = MiniJump2d.gen_pattern_spotter('%a+')
+        "gw",
+        function()
+          MiniJump2d.start({
+            spotter = MiniJump2d.gen_pattern_spotter("%a+"),
           })
-      end,
-      desc = "Go to word"
-        mode = {'n', 'v'}
+        end,
+        desc = "Go to word",
+        mode = { "n", "v" },
       },
       {
-       "g!",
-      function()
-        MiniJump2d.start({
-            spotter = MiniJump2d.gen_pattern_spotter('[\'"`]')
+        "g!",
+        function()
+          MiniJump2d.start({
+            spotter = MiniJump2d.gen_pattern_spotter("['\"`]"),
           })
-      end,
-      desc = "Go to quote"
-        mode = {'n', 'v'}
-      }
+        end,
+        desc = "Go to quote",
+        mode = { "n", "v" },
+      },
     },
   },
 
