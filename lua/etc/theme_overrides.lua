@@ -1,62 +1,18 @@
 local config = {
   base = {
-    -- HopNextKey = { link = "Search" },
-    HopNextKey1 = { link = "HopNextKey" },
-    HopNextKey2 = { link = "HopNextKey" },
+    -- Jump2d
+    MiniJump2dSpot = { link = "IncSearch" }, -- or PmenuSel, TabLineSel
+    MiniJump2dSpotAhead = { link = "IncSearch" },
 
     -- Borders
     XxLine = { link = "LineNr" },
 
-    -- Telescope
-    TelescopeNormal = { link = "Pmenu" },
-    TelescopeBorder = { link = "Pmenu" },
-    TelescopePreviewBorder = { link = "Pmenu" },
-    TelescopeResultsBorder = { link = "Pmenu" },
-    TelescopeTitle = { link = "Search" },
-
-    TelescopePromptNormal = { link = "CursorLine" },
-    TelescopePromptPrefix = { link = "DevIconsTsx" },
-    TelescopePromptBorder = { link = "CursorLine" },
-    TelescopePromptTitle = { link = "IncSearch" },
-    TelescopePromptCounter = { link = "NonText" },
-
-    -- Indent blankline
-    -- xIndentBlanklineContextStart = { link = "CursorLine" }, -- The line that started the context
-    -- xIndentBlanklineChar = { link = "XxLine" },
-    -- xIndentBlanklineContextChar = { link = "XxLine" },
-
-    -- Treesitter Context
-    -- TreesitterContext = { link = "CursorLine" },
-
-    -- https://github.com/folke/which-key.nvim
-    WhichKeyFloat = { link = "Pmenu" }, -- Nicer background especaiily github_dark
-    WhichKeyDesc = { link = "Pmenu" },
-    WhichKeyGroup = { link = "Type" },
-
-  nibble = {
-    Comment = { fg = "#8080cc", bg = "none", italic = 1 },
-    CursorLine = { italic = 0, bg = "#2020aa" }, -- Default was underline
-    LineNr = { fg = "#5555bb", italic = 0 },
-    -- Normal = { bg = "#333366" },
-    -- NormalNC = { bg = "#333366" },
-  },
     NavicSeparator = { link = "XxLine" },
-
-    -- CmpBorder = { link = "XxLine" }, -- Border for completions
-    -- BufferLineFill = { link = "TabLineFill" }, -- looks better in github_light
   },
-  dayfox = {
-    XxLine = { link = "VertSplit" }, -- for indent-blanklike
+  forestbones = {
+    MiniJump2dSpot = { link = "Search" },
+    MiniJump2dSpotAhead = { link = "IncSearch" },
   },
-  terafox = {
-    XxLine = { link = "Conceal" },
-  },
-  blue = {
-    XxLine = { link = "FloatBorder" },
-  },
-  github_dimmed = "github_dark",
-  nightfox = "dayfox",
-  carbonfox = "dayfox",
 }
 
 local function apply_list(list)
@@ -85,7 +41,7 @@ local function setup()
   vim.api.nvim_create_autocmd("Colorscheme", {
     pattern = "*",
     group = augroup,
-    callback = apply,
+    callback = apply,
   })
 end
 return { apply = apply, setup = setup }
