@@ -46,4 +46,3 @@ BaseConfig.features.zk = true
 -- BaseConfig.plugins.nvim_autopairs = {}
 -- BaseConfig.plugins.navic = {}
 -- BaseConfig.plugins.neogit = {}
-

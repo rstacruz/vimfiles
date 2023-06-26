@@ -1,1 +1,4 @@
 vim.g.theme = { mode = "light" }
+
+-- Set to false to disable lazy.nvim's copilot support
+vim.g.use_lazy_copilot = true
