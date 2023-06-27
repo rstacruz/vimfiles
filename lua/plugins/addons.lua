@@ -5,6 +5,12 @@ local is_vscode = vim.g.vscode or vim.env.VSCODE
 
 return {
   {
+    "slim-template/vim-slim",
+    lazy = true,
+    ft = "slim",
+  },
+
+  {
     "echasnovski/mini.jump2d",
     version = "*",
     opts = {
