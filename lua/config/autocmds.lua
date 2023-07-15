@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("custom_foldexpr", { clear = true }),
-  pattern = { "typescript", "javascript", "markdown", "lua" },
+  pattern = { "typescript", "javascript", "markdown", "lua", "typescriptreact", "sh" },
   callback = function()
     -- https://github.com/nvim-treesitter/nvim-treesitter#folding
     vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"

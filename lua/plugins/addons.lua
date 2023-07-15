@@ -63,7 +63,12 @@ return {
       markdown = {
         dash_string = "─",
         -- differentiates it a bit from code block
-        headline_highlights = { "DiagnosticVirtualTextWarn", "DiagnosticVirtualTextInfo" },
+        headline_highlights = {
+          "DiagnosticVirtualTextError",
+          "DiagnosticVirtualTextInfo",
+          "DiagnosticVirtualTextWarn",
+          "CursorLine",
+        },
       },
     },
     config = true, -- or `opts = {}`
