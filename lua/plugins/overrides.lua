@@ -29,7 +29,6 @@ return {
       ensure_installed = {
         -- default:
         "bash",
-        "help",
         "html",
         "javascript",
         "json",
@@ -284,11 +283,14 @@ return {
     opts = {
       ensure_installed = uname.arch == "aarch64" and {} or {
         "stylua",
+        "css-lsp",
+        "deno",
+        "eslint-lsp",
+        "prettierd",
         "shellcheck",
         "shfmt",
-        "prettierd",
-        "css-lsp",
         "tailwindcss-language-server",
+        "typescript-language-server",
       },
     },
   },
