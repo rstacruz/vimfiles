@@ -8,8 +8,8 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 local imports = {
   { "LazyVim/LazyVim", import = "lazyvim.plugins" },
   { import = "lazyvim.plugins.extras.lang.typescript" },
-  { import = "lazyvim.plugins.extras.lang.tailwind" }, -- https://www.lazyvim.org/plugins/extras/lang.tailwind
-  { import = "lazyvim.plugins.extras.linting.eslint" }, -- https://www.lazyvim.org/plugins/extras/linting.eslint
+  { import = "lazyvim.plugins.extras.lang.tailwind" }, -- https://www.lazyvim.org/plugins/extras/lang/tailwind
+  { import = "lazyvim.plugins.extras.linting.eslint" }, -- https://www.lazyvim.org/plugins/extras/linting/eslint
   -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
   -- { import = "lazyvim.plugins.extras.formatting.prettier" },
   -- { import = "lazyvim.plugins.extras.lang.json" },
