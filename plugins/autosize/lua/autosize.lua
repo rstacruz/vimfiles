@@ -5,7 +5,7 @@
 --   require("autosize").setup()
 
 local settings = {
-  excluded_filetypes = { "NvimTree", "neo-tree", "DiffviewFiles", "Outline", "aerial" },
+  excluded_filetypes = { "NvimTree", "neo-tree", "DiffviewFiles", "Outline", "aerial", "minifiles" },
   min_width = 80,
 }
 

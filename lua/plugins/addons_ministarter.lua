@@ -23,6 +23,7 @@ return {
         items = {
           new_section("e new file", "ene | startinsert", ""),
           new_section("p open file...", "Telescope git_files", ""),
+          new_section("_ explore...", [[lua require("mini.files").open()]], ""),
           new_section("r session restore", [[lua require("persistence").load()]], ""),
           new_section("q exit", "qa", " "),
         },

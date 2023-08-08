@@ -23,8 +23,10 @@ return {
     "echasnovski/mini.files",
     opts = {
       windows = {
+        max_number = 4,
         preview = true,
         width_focus = 30,
+        width_nofocus = 30,
         width_preview = 30,
       },
       options = {
@@ -34,6 +36,7 @@ return {
       },
       mappings = {
         go_in = "<Right>",
+        go_in_plus = "<CR>",
         go_out = "<Left>",
       },
     },
