@@ -8,7 +8,7 @@ local uname = vim.loop.os_uname()
 -- uname.arch = "aarch64" (Android) | "arm64" (Mac) | "x86_64"
 
 return {
-  {
+  { -- nvim-cmp
     "hrsh7th/nvim-cmp",
     dependencies = { "hrsh7th/cmp-emoji" },
     ---@param opts cmp.ConfigSchema
@@ -18,7 +18,13 @@ return {
     end,
   },
 
-  { -- Treesitter
+  { -- flash
+    -- i don't like it :( it changes `f` and `/` behaviour
+    "folke/flash.nvim",
+    enabled = false,
+  },
+
+  { -- nvim-treesitter
     "nvim-treesitter/nvim-treesitter",
     opts = {
       highlight = {
@@ -48,7 +54,8 @@ return {
     },
   },
 
-  { -- indent guides for Neovim
+  { -- indent-blankline.nvim
+    -- change characters
     "lukas-reineke/indent-blankline.nvim",
     opts = {
       char = "▏", -- from lazyvim: "│",
@@ -79,7 +86,7 @@ return {
   --   enabled = false,
   -- },
 
-  { -- bufferline:
+  { -- bufferline
     -- add `leader-bo` to isolate buffers
     "akinsho/bufferline.nvim",
     enabled = not is_vscode,
