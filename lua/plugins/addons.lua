@@ -115,24 +115,6 @@ return {
     config = true, -- or `opts = {}`
   },
 
-  { -- orgmode
-    -- just trying it out
-    "nvim-orgmode/orgmode",
-    -- lazy = true,
-    -- ft = { "org" },
-    dependencies = {
-      { "akinsho/org-bullets.nvim", lazy = true },
-    },
-    opts = {
-      org_agenda_files = { "~/Dev/org/*" },
-      org_default_notes_file = "~/Dev/org/index.org",
-    },
-    config = function(_, opts)
-      require("orgmode").setup_ts_grammar()
-      require("orgmode").setup(opts)
-    end,
-  },
-
   { -- early retirement: closes inactive tabs
     "chrisgrieser/nvim-early-retirement",
     lazy = true,
@@ -158,19 +140,6 @@ return {
       { "<leader>ta", "<cmd>ToggleTerm 1<cr>", desc = "Terminal 1" },
       { "<leader>tr", "<cmd>ToggleTerm 2<cr>", desc = "Terminal 2" },
       { "<leader>ts", "<cmd>ToggleTerm 3<cr>", desc = "Terminal 3" },
-    },
-  },
-
-  { -- hop
-    "phaazon/hop.nvim",
-    lazy = true,
-    opts = {},
-    config = function(_, opts)
-      require("hop").setup(opts)
-    end,
-    keys = {
-      { "gh", "<cmd>HopWord<cr>", desc = "Go to word..." },
-      { "g/", "<cmd>HopPattern<cr>", desc = "Find pattern..." },
     },
   },
 
@@ -262,21 +231,10 @@ return {
     end,
   },
 
-  { -- file browser
-    "nvim-telescope/telescope-file-browser.nvim",
-    keys = {
-      { "<leader>_", "<cmd>Telescope file_browser<cr>", desc = "Browse files" },
-    },
-    enabled = not is_vscode,
-    config = function()
-      require("telescope").load_extension("file_browser")
-    end,
-  },
-
   { -- lsp-lines: show more diagnostic info
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     lazy = true,
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     enabled = not is_vscode,
     keys = {
       { "<leader>uv", "<cmd>lua require('etc.toggle_virtual_lines').toggle()<cr>", desc = "Toggle virtual lines/text" },

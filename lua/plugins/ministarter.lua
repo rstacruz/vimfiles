@@ -1,3 +1,5 @@
+local indent = 5
+
 return {
   {
     "goolord/alpha-nvim",
@@ -9,7 +11,7 @@ return {
     event = "VimEnter",
     opts = function()
       local logo = ""
-      local pad = string.rep(" ", 11)
+      local pad = string.rep(" ", indent)
 
       local new_section = function(name, action, section)
         return { name = name, action = action, section = pad .. section }
@@ -54,8 +56,8 @@ return {
         pattern = "LazyVimStarted",
         callback = function()
           local stats = require("lazy").stats()
-          local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-          local pad_footer = string.rep(" ", 13)
+          local ms = math.floor(math.floor(stats.startuptime * 100 + 0.5) / 100)
+          local pad_footer = string.rep(" ", indent + 2)
           starter.config.footer = pad_footer .. "" .. ms .. "ms"
           pcall(starter.refresh)
         end,
