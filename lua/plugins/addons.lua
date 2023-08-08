@@ -19,6 +19,35 @@ return {
     ft = "slim",
   },
 
+  { -- mini.files
+    "echasnovski/mini.files",
+    opts = {
+      windows = {
+        preview = true,
+        width_focus = 30,
+        width_preview = 30,
+      },
+      options = {
+        -- Whether to use for editing directories
+        -- Disabled by default in LazyVim because neo-tree is used for that
+        use_as_default_explorer = false,
+      },
+      mappings = {
+        go_in = "<Right>",
+        go_out = "<Left>",
+      },
+    },
+    keys = {
+      {
+        "_",
+        function()
+          require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+        end,
+        "Open mini.files",
+      },
+    },
+  },
+
   {
     "echasnovski/mini.jump2d",
     version = "*",
@@ -122,7 +151,6 @@ return {
       require("toggleterm").setup(opts)
     end,
     keys = {
-      { "_", "<cmd>ToggleTerm<cr>", desc = "Terminal" },
       { "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Terminal" },
       { "<leader>ta", "<cmd>ToggleTerm 1<cr>", desc = "Terminal 1" },
       { "<leader>tr", "<cmd>ToggleTerm 2<cr>", desc = "Terminal 2" },
