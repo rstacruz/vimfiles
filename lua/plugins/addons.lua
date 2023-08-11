@@ -136,6 +136,7 @@ return {
       require("toggleterm").setup(opts)
     end,
     keys = {
+      { "<leader>.", "<cmd>ToggleTerm<cr>", desc = "Terminal" },
       { "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Terminal" },
       { "<leader>ta", "<cmd>ToggleTerm 1<cr>", desc = "Terminal 1" },
       { "<leader>tr", "<cmd>ToggleTerm 2<cr>", desc = "Terminal 2" },
