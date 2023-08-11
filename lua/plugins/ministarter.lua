@@ -23,11 +23,12 @@ return {
         evaluate_single = true,
         header = logo,
         items = {
-          new_section("e new file", "ene | startinsert", ""),
-          new_section("p open file...", "Telescope git_files", ""),
-          new_section("_ explore...", [[lua require("mini.files").open()]], ""),
-          new_section("r session restore", [[lua require("persistence").load()]], ""),
-          new_section("q exit", "qa", " "),
+          new_section("e new file", "ene | startinsert", "Actions"),
+          new_section("p open file...", "Telescope git_files", "Actions"),
+          new_section("_ explore...", [[lua require("mini.files").open()]], "Actions"),
+          new_section("r session restore", [[lua require("persistence").load()]], "Actions"),
+          starter.sections.recent_files(6, true),
+          new_section("q exit", "qa", "Neovim"),
         },
         content_hooks = {
           starter.gen_hook.adding_bullet(pad .. "░ ", false),

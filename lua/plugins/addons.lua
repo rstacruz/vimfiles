@@ -209,7 +209,7 @@ return {
     },
     keys = {
       { "<leader>cs", "<cmd>AerialToggle!<cr>", desc = "Browse symbol outline" },
-      { "<leader>!a", "<cmd>Telescope aerial<cr>", desc = "Go to symbol (aerial)" }, -- like leader-ss but supports more non-lsp filetypes
+      { "<leader>!o", "<cmd>Telescope aerial<cr>", desc = "Go to symbol outline (aerial)" }, -- like leader-ss but supports more non-lsp filetypes
     },
     config = function(_, opts)
       opts.on_attach = function(bufnr)
