@@ -1,5 +1,3 @@
-local indent = 5
-
 return {
   {
     "goolord/alpha-nvim",
@@ -11,17 +9,16 @@ return {
     event = "VimEnter",
     opts = function()
       local logo = ""
-      local pad = string.rep(" ", indent)
 
       local new_section = function(name, action, section)
-        return { name = name, action = action, section = pad .. section }
+        return { name = name, action = action, section = section }
       end
 
       local starter = require("mini.starter")
 
       local config = {
         evaluate_single = true,
-        header = logo,
+        header = "Neovim",
         items = {
           new_section("e new file", "ene | startinsert", "Actions"),
           new_section("p open file...", "Telescope git_files", "Actions"),
@@ -31,7 +28,7 @@ return {
           new_section("q exit", "qa", "Neovim"),
         },
         content_hooks = {
-          starter.gen_hook.adding_bullet(pad .. "░ ", false),
+          starter.gen_hook.adding_bullet("░ ", false),
           starter.gen_hook.aligning("center", "center"),
         },
       }
@@ -58,7 +55,7 @@ return {
         callback = function()
           local stats = require("lazy").stats()
           local ms = math.floor(math.floor(stats.startuptime * 100 + 0.5) / 100)
-          local pad_footer = string.rep(" ", indent + 2)
+          local pad_footer = string.rep(" ", 2)
           starter.config.footer = pad_footer .. "" .. ms .. "ms"
           pcall(starter.refresh)
         end,

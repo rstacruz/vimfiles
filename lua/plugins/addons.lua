@@ -25,9 +25,9 @@ return {
       windows = {
         max_number = 4,
         preview = true,
-        width_focus = 30,
-        width_nofocus = 30,
-        width_preview = 30,
+        width_focus = 40,
+        width_nofocus = 10,
+        width_preview = 60,
       },
       options = {
         -- Whether to use for editing directories
