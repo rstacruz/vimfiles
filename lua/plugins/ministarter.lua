@@ -17,8 +17,13 @@ return {
       local starter = require("mini.starter")
 
       local config = {
+        -- Don't wait for extra <cr> to confirm actions
         evaluate_single = true,
-        header = "Neovim",
+
+        header = function()
+          return "" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+        end,
+
         items = {
           new_section("e new file", "ene | startinsert", "Actions"),
           new_section("p open file...", "Telescope git_files", "Actions"),
@@ -27,6 +32,7 @@ return {
           starter.sections.recent_files(6, true),
           new_section("q exit", "qa", "Neovim"),
         },
+
         content_hooks = {
           starter.gen_hook.adding_bullet("░ ", false),
           starter.gen_hook.aligning("center", "center"),
