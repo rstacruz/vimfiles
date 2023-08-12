@@ -2,6 +2,8 @@
 -- These are plugins that aren't included in the LazyVim.
 
 local is_vscode = vim.g.vscode or vim.env.VSCODE
+local uname = vim.loop.os_uname()
+local is_android = uname.arch == "aarch64"
 
 return {
   { -- Origami
@@ -249,7 +251,7 @@ return {
     "mickael-menu/zk-nvim",
     lazy = true,
     ft = { "markdown" },
-    enabled = not is_vscode,
+    enabled = not is_vscode and not is_android,
     opts = {
       picker = "telescope",
     },
