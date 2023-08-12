@@ -104,14 +104,18 @@ return {
     dependencies = "nvim-treesitter/nvim-treesitter",
     opts = {
       markdown = {
-        dash_string = "─",
-        -- differentiates it a bit from code block
+        -- Termux doesn't display the characters well
+        fat_headlines = not is_android,
+
+        -- Differentiates it a bit from code block
         headline_highlights = {
           "DiagnosticVirtualTextError",
           "DiagnosticVirtualTextInfo",
           "DiagnosticVirtualTextWarn",
           "CursorLine",
         },
+
+        dash_string = "─",
       },
     },
     config = true, -- or `opts = {}`
