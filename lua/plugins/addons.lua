@@ -6,6 +6,14 @@ local uname = vim.loop.os_uname()
 local is_android = uname.arch == "aarch64"
 
 return {
+  { -- align.nvim
+    "echasnovski/mini.align",
+    version = "*",
+    lazy = true,
+    opts = true,
+    event = "VeryLazy",
+  },
+
   { -- Origami
     -- `^ h` to fold (h at first non-blank char)
     -- `l` to unfold
