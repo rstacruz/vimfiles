@@ -263,7 +263,7 @@ return {
     "mickael-menu/zk-nvim",
     lazy = true,
     ft = { "markdown" },
-    enabled = not is_vscode and not is_android,
+    enabled = (not is_vscode) and (not is_android),
     opts = {
       picker = "telescope",
     },
