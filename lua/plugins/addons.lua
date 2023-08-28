@@ -14,6 +14,13 @@ return {
     event = "VeryLazy",
   },
 
+  { -- context
+    "nvim-treesitter/nvim-treesitter-context",
+    lazy = true,
+    event = "BufReadPost",
+    opts = {},
+  },
+
   { -- Origami
     -- `^ h` to fold (h at first non-blank char)
     -- `l` to unfold
@@ -263,7 +270,7 @@ return {
     "mickael-menu/zk-nvim",
     lazy = true,
     ft = { "markdown" },
-    enabled = (not is_vscode) and (not is_android),
+    enabled = (not is_vscode) and not is_android,
     opts = {
       picker = "telescope",
     },
