@@ -6,6 +6,17 @@ local uname = vim.loop.os_uname()
 local is_android = uname.arch == "aarch64"
 
 return {
+  { -- debugprint
+    "andrewferrier/debugprint.nvim",
+    opts = {},
+    keys = {
+      "g?p", -- insert below
+      "g?P", -- insert above
+      "g?v", -- print this variable (put cursor on a var)
+      { "g?v", mode = "v" }, -- print this visual selection
+    },
+  },
+
   { -- align.nvim
     "echasnovski/mini.align",
     version = "*",
