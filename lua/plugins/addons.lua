@@ -3,7 +3,7 @@
 
 local is_vscode = vim.g.vscode or vim.env.VSCODE
 local uname = vim.loop.os_uname()
-local is_android = uname.arch == "aarch64"
+local is_android = uname.machine == "aarch64"
 
 return {
   { -- debugprint
