@@ -10,10 +10,10 @@ return {
     "andrewferrier/debugprint.nvim",
     opts = {},
     keys = {
-      "g?p", -- insert below
-      "g?P", -- insert above
-      "g?v", -- print this variable (put cursor on a var)
-      { "g?v", mode = "v" }, -- print this visual selection
+      { "g?p", desc = "Debug: insert below" },
+      { "g?P", desc = "Debug: insert above" },
+      { "g?v", desc = "Debug: insert below from variable" }, -- (put cursor on a var)
+      { "g?v", desc = "Debug: insert from variable", mode = "v" },
     },
   },
 
