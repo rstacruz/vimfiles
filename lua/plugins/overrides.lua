@@ -133,30 +133,30 @@ return {
     },
   },
 
-  { -- null-ls: add prettier
-    "jose-elias-alvarez/null-ls.nvim",
-    enabled = not is_vscode,
-    opts = function()
-      local nls = require("null-ls")
-      return {
-        sources = {
-          -- See `:Mason` then `(5) formatter` for formatters,
-          -- and `(4) linter` for diagnostics
-          nls.builtins.formatting.fish_indent,
-          nls.builtins.diagnostics.fish,
-          nls.builtins.formatting.stylua,
-          nls.builtins.formatting.shfmt,
-          -- nls.builtins.diagnostics.flake8,
-          nls.builtins.formatting.prettierd.with({
-            condition = function(utils)
-              return utils.root_has_file("node_modules/prettier/package.json")
-              -- return utils.root_has_file_matches(".prettierrc*") or utils.root_has_file_matches("prettier.config.*")
-            end,
-          }),
-        },
-      }
-    end,
-  },
+  -- { -- null-ls: add prettier
+  --   "jose-elias-alvarez/null-ls.nvim",
+  --   enabled = not is_vscode,
+  --   opts = function()
+  --     local nls = require("null-ls")
+  --     return {
+  --       sources = {
+  --         -- See `:Mason` then `(5) formatter` for formatters,
+  --         -- and `(4) linter` for diagnostics
+  --         nls.builtins.formatting.fish_indent,
+  --         nls.builtins.diagnostics.fish,
+  --         nls.builtins.formatting.stylua,
+  --         nls.builtins.formatting.shfmt,
+  --         -- nls.builtins.diagnostics.flake8,
+  --         -- nls.builtins.formatting.prettierd.with({
+  --         --   condition = function(utils)
+  --         --     return utils.root_has_file("node_modules/prettier/package.json")
+  --         --     -- return utils.root_has_file_matches(".prettierrc*") or utils.root_has_file_matches("prettier.config.*")
+  --         --   end,
+  --         -- }),
+  --       },
+  --     }
+  --   end,
+  -- },
 
   { -- Luasnip snippets
     "L3MON4D3/LuaSnip",
