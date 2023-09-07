@@ -249,6 +249,16 @@ return {
       { "<leader>e", "<cmd>Neotree focus<cr>", { desc = "Focus Neotree" } },
       -- ^ Focus instead of toggle
     },
+    opts = function(_, opts)
+      opts.event_handlers = {
+        {
+          event = "file_opened",
+          handler = function(file_path)
+            require("neo-tree.command").execute({ action = "close" })
+          end,
+        },
+      }
+    end,
   },
 
   { -- Mason

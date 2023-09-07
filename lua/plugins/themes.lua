@@ -1,4 +1,10 @@
 return {
+  { -- visual_studio_code
+    "askfiy/visual_studio_code",
+    lazy = true,
+    event = "VeryLazy",
+  },
+
   { -- kanagawa
     "rebelot/kanagawa.nvim",
     lazy = true,
