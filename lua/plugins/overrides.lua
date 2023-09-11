@@ -248,8 +248,10 @@ return {
     keys = {
       { "<leader>e", "<cmd>Neotree focus<cr>", { desc = "Focus Neotree" } },
       -- ^ Focus instead of toggle
+      { "-", "<cmd>Neotree filesystem reveal float<cr>", { desc = "Reveal file in Neotree" } },
     },
     opts = function(_, opts)
+      opts.position = "float"
       opts.event_handlers = {
         {
           event = "file_opened",
