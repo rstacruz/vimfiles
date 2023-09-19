@@ -139,13 +139,19 @@ return {
         -- Termux doesn't display the characters well
         fat_headlines = not is_android,
 
-        -- Differentiates it a bit from code block
         headline_highlights = {
-          "DiagnosticVirtualTextError",
-          "DiagnosticVirtualTextInfo",
-          "DiagnosticVirtualTextWarn",
-          "CursorLine",
+          "DiffAdd",
+          "DiffDelete",
+          "DiffChange",
         },
+        -- codeblock_highlight = "DiffChange",
+        -- Differentiates it a bit from code block
+        -- headline_highlights = {
+        --   "DiagnosticVirtualTextError",
+        --   "DiagnosticVirtualTextInfo",
+        --   "DiagnosticVirtualTextWarn",
+        --   "CursorLine",
+        -- },
 
         dash_string = "─",
       },
