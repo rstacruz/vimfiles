@@ -6,6 +6,12 @@ local uname = vim.loop.os_uname()
 local is_android = uname.machine == "aarch64"
 
 return {
+  { -- navic
+    -- it's really cool af. In practice though, it never really helped me
+    "SmiteshP/nvim-navic",
+    enabled = false,
+  },
+
   { -- debugprint
     "andrewferrier/debugprint.nvim",
     opts = {},

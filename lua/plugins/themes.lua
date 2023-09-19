@@ -1,4 +1,15 @@
 return {
+  { -- caret
+    "projekt0n/caret.nvim",
+    lazy = true,
+    event = "VeryLazy",
+  },
+  { -- github
+    "projekt0n/github-nvim-theme",
+    lazy = true,
+    event = "VeryLazy",
+  },
+
   { -- visual_studio_code
     "askfiy/visual_studio_code",
     lazy = true,
