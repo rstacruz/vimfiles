@@ -19,9 +19,45 @@ return {
   },
 
   { -- flash
-    -- i don't like it :( it changes `f` and `/` behaviour
     "folke/flash.nvim",
-    enabled = false,
+    opts = {
+      -- Colemak labels
+      labels = "arstdhneiogmvkzxcqwfpbjluy",
+
+      label = {
+        -- Make labels bigger
+        format = function(opts)
+          return { { " " .. opts.match.label .. " ", opts.hl_group } }
+        end,
+      },
+
+      modes = {
+        char = {
+          -- disable `f F t T ; ,` motions
+          enabled = false,
+        },
+      },
+    },
+
+    -- remove `s` `r` `R` `c-s` keys
+    keys = {
+      {
+        "S",
+        mode = { "n", "o", "x" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Select block... (flash treesitter)",
+      },
+      {
+        "R",
+        mode = { "n", "o", "x" },
+        function()
+          require("flash").treesitter_search()
+        end,
+        desc = "Jump to block... (flash treesitter)",
+      },
+    },
   },
 
   { -- nvim-treesitter

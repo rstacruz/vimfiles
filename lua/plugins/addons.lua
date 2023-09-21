@@ -204,7 +204,7 @@ return {
     opts = {
       markdown = {
         -- Termux doesn't display the characters well
-        fat_headlines = not is_android,
+        fat_headlines = false, -- not is_android,
 
         headline_highlights = {
           "DiffAdd",
