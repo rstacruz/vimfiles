@@ -1,0 +1,7 @@
+{
+  "Em dash": {
+    "scope": "markdown",
+    "prefix": "--",
+    "body": "—"
+  }
+}
