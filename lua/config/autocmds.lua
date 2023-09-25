@@ -1,5 +1,13 @@
 -- Defaults: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 
+vim.api.nvim_create_autocmd("FocusGained", {
+  group = vim.api.nvim_create_augroup("autoreload_on_focus", { clear = true }),
+  pattern = { "spectre_panel" },
+  callback = function()
+    vim.cmd("checktime")
+  end,
+})
+
 -- Spectre: no line numbers
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("custom_spectre", { clear = true }),
