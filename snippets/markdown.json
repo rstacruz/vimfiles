@@ -21,12 +21,12 @@
   },
   "Em dash": {
     "scope": "markdown",
-    "prefix": "mdash",
+    "prefix": "md",
     "body": "—"
   },
   "Right arrow": {
     "scope": "markdown",
-    "prefix": "rarr",
+    "prefix": "ra",
     "body": "→"
   }
 }
