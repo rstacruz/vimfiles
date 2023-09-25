@@ -2,7 +2,7 @@
   "Frontmatter created at": {
     "scope": "markdown",
     "prefix": "fca",
-    "body": "—--\ncreatedAt: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}\n---\n"
+    "body": "---\ncreatedAt: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}\n---\n"
   },
   "Inline created at": {
     "scope": "markdown",
