@@ -6,6 +6,18 @@ local uname = vim.loop.os_uname()
 local is_android = uname.machine == "aarch64"
 
 return {
+  { -- git linker
+    "ruifm/gitlinker.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    lazy = true,
+    opts = {},
+    keys = {
+      { "<leader>gy", desc = "Copy GitHub URL", mode = { "n", "v" } },
+    },
+  },
+
   { -- obsidian
     -- :ObsidianOpen - open in obsidian app
     -- :ObsidianQuickSwitch
@@ -378,14 +390,9 @@ return {
   { -- fugitive: Git blame and open in GitHub
     "tpope/vim-fugitive",
     lazy = true,
-    event = "VeryLazy",
     enabled = not is_vscode,
-    dependencies = {
-      "tpope/vim-rhubarb",
-    },
+    cmd = "Git",
     keys = {
-      { "<leader>giy", "<cmd>GBrowse!<cr>", desc = "Copy GitHub URL", mode = { "n", "v" } },
-      { "<leader>giY", "<cmd>GBrowse<cr>", desc = "Open GitHub URL in browser", mode = { "n", "v" } },
       { "<leader>gb", "<cmd>Git blame<cr>", desc = "Git Blame" },
     },
   },
