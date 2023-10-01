@@ -34,8 +34,10 @@ return {
     "epwalsh/obsidian.nvim",
     lazy = true,
     event = vim.g.obsidian_vault_dir and {
-      "BufReadPre " .. vim.fn.expand(vim.g.obsidian_vault_dir) .. "/**.md",
-      "BufNewFile " .. vim.fn.expand(vim.g.obsidian_vault_dir) .. "/**.md",
+      -- "BufReadPre " .. vim.fn.expand(vim.g.obsidian_vault_dir) .. "/**.md",
+      -- "BufNewFile " .. vim.fn.expand(vim.g.obsidian_vault_dir) .. "/**.md",
+      "BufReadPre **.md",
+      "BufNewFile **.md",
     },
     dependencies = {
       "nvim-lua/plenary.nvim",
