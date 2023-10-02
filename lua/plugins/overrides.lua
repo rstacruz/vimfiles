@@ -49,14 +49,6 @@ return {
         end,
         desc = "Select block... (flash treesitter)",
       },
-      {
-        "R",
-        mode = { "n", "o", "x" },
-        function()
-          require("flash").treesitter_search()
-        end,
-        desc = "Jump to block... (flash treesitter)",
-      },
     },
   },
 

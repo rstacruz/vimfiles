@@ -1,27 +1,22 @@
 return {
-  { -- cp-image
-    -- Use `:PasteImage`
-    "niuiic/cp-image.nvim",
+  { -- markdown image
+    -- PasteImg
+    "postfen/clipboard-image.nvim",
+    -- Upstream is "ekickx/clipboard-image.nvim",
+    -- Context for fork: https://github.com/ekickx/clipboard-image.nvim/pull/48#issuecomment-1589760763
     lazy = true,
-    dependencies = { "niuiic/core.nvim" },
-    cmd = { "PasteImage" },
+    cmd = { "PasteImg" },
     opts = {
-      -- These settings are biased towards my Obsidian vaults
-      cmd = function(path, image_type)
-        if vim.fn.executable("wl-paste") then
-          return string.format("wl-paste -t image > %s", path)
-        else
-          vim.notify("Don't know how to paste, sorry :(")
-          return false
-        end
-      end,
-      text = function(relative_path, file_name, file_type, full_path)
-        local basename = vim.fn.fnamemodify(file_name, ":t") .. "." .. file_type
-        return string.format("![[%s]]", basename)
-      end,
-      path = function(project_root)
-        return project_root .. "/Media"
-      end,
+      default = {
+        img_dir = "Media",
+        -- https://github.com/ekickx/clipboard-image.nvim/discussions/15#discussioncomment-1638740
+        img_name = function()
+          vim.fn.inputsave()
+          local name = vim.fn.input("Name: ")
+          vim.fn.inputrestore()
+          return name
+        end,
+      },
     },
   },
 
