@@ -197,6 +197,7 @@ return {
       { "<leader>ta", "<cmd>ToggleTerm 1<cr>", desc = "Terminal 1" },
       { "<leader>tr", "<cmd>ToggleTerm 2<cr>", desc = "Terminal 2" },
       { "<leader>ts", "<cmd>ToggleTerm 3<cr>", desc = "Terminal 3" },
+      { "<leader>gf", '<cmd>TermExec cmd="git-fastsync"<cr>', desc = "Git fastsync" },
     },
   },
 

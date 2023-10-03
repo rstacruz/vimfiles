@@ -41,6 +41,9 @@ vim.keymap.set("n", "<Del>", "<cmd>bw!<cr>")
 vim.keymap.set("n", "gs", ":%s~~")
 vim.keymap.set("v", "gs", ":s~~")
 
+-- code action (like leader-ca)
+vim.keymap.set("n", "g.", vim.lsp.buf.code_action, { desc = "Code action" })
+
 -- Terminal escape
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("t", "<Esc><Esc>", "<Esc>")
