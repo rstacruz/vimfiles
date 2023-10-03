@@ -39,9 +39,17 @@ return {
     },
     opts = {
       dir = vim.g.obsidian_vault_dir,
+      mappings = {},
+
+      notes_subdir = "Scratch",
+
       -- Disable auto-updating frontmatter id, createdAt, alias, etc
       disable_frontmatter = true,
-      mappings = {},
+
+      completion = {
+        -- options: current_dir (default), notes_subdir
+        new_notes_location = "notes_subdir",
+      },
     },
     config = function(_, opts)
       require("obsidian").setup(opts)
