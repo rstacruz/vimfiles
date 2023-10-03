@@ -4,6 +4,7 @@
 
 local is_vscode = vim.g.vscode or vim.env.VSCODE
 local uname = vim.loop.os_uname()
+local is_android = uname.arch == "aarch64"
 -- uname.sysname = "Darwin" | "Linux"
 -- uname.arch = "aarch64" (Android) | "arm64" (Mac) | "x86_64"
 
@@ -109,11 +110,6 @@ return {
     },
   },
 
-  -- { -- leap: disable
-  --   "ggandor/leap.nvim",
-  --   enabled = false,
-  -- },
-
   { -- bufferline
     -- add `leader-bo` to isolate buffers
     "akinsho/bufferline.nvim",
@@ -155,8 +151,13 @@ return {
     "neovim/nvim-lspconfig",
     enabled = not is_vscode,
     opts = {
-      diagnostics = {
-        virtual_text = false, -- let lsp-lines handle it
+      -- diagnostics = {
+      --   virtual_text = false, -- let lsp-lines handle it
+      -- },
+      servers = {
+        lua_ls = {
+          mason = not is_android,
+        },
       },
     },
   },
