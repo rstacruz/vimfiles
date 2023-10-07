@@ -37,7 +37,7 @@ return {
     event = "BufReadPost",
     opts = {},
     keys = {
-      "<leader>ux", "<cmd>TSContextToggle<cr>", desc = "Toggle context lines" },
+      { "<leader>ux", "<cmd>TSContextToggle<cr>", desc = "Toggle context lines" },
     }
   },
 
