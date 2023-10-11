@@ -50,6 +50,15 @@ return {
         end,
         desc = "Select block... (flash treesitter)",
       },
+      {
+        "fw",
+        -- yeah, now we can't do `f w` to look for "w" anymore lol. but do i ever do that? probably not
+        mode = { "n", "o", "x" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Jump to... (flash)",
+      },
     },
   },
 
