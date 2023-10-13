@@ -16,25 +16,26 @@ return {
     event = "VeryLazy",
   },
 
-  { -- kanagawa
-    "rebelot/kanagawa.nvim",
-    lazy = true,
-    event = "VeryLazy",
-    opts = {
-      colors = {
-        theme = {
-          all = {
-            ui = {
-              bg_gutter = "none",
-            },
-          },
-        },
-      },
-    },
-    config = function(_, opts)
-      require("kanagawa").setup(opts)
-    end,
-  },
+  -- { -- kanagawa
+  --   "rebelot/kanagawa.nvim",
+  --   lazy = true,
+  --   event = "VeryLazy",
+  --   opts = {
+  --     colors = {
+  --       theme = {
+  --         all = {
+  --           ui = {
+  --             bg_gutter = "none",
+  --           },
+  --         },
+  --       },
+  --     },
+  --   },
+  --   config = function(_, opts)
+  --     require("kanagawa").setup(opts)
+  --   end,
+  -- },
+
   { -- edge: like onedark
     "sainnhe/edge",
     lazy = true,
@@ -46,21 +47,21 @@ return {
   },
   -- { "projekt0n/github-nvim-theme", lazy = true, event = "VeryLazy" },
 
-  {
-    "mcchrish/zenbones.nvim",
-    lazy = true,
-    event = "VeryLazy",
-    dependencies = {
-      { "rktjmp/lush.nvim", lazy = true },
-    },
-    config = function()
-      local opts = { lightness = "bright", darkness = "warm", solid_line_nr = true }
-      vim.g.zenbones = opts
-      vim.g.rosebones = opts
-      vim.g.tokyobones = opts
-      vim.g.neobones = opts
-    end,
-  },
+  -- {
+  --   "mcchrish/zenbones.nvim",
+  --   lazy = true,
+  --   event = "VeryLazy",
+  --   dependencies = {
+  --     { "rktjmp/lush.nvim", lazy = true },
+  --   },
+  --   config = function()
+  --     local opts = { lightness = "bright", darkness = "warm", solid_line_nr = true }
+  --     vim.g.zenbones = opts
+  --     vim.g.rosebones = opts
+  --     vim.g.tokyobones = opts
+  --     vim.g.neobones = opts
+  --   end,
+  -- },
 
   { "EdenEast/nightfox.nvim", lazy = true, event = "VeryLazy" },
 

@@ -131,6 +131,11 @@ return {
   { -- headlines
     "lukas-reineke/headlines.nvim",
     dependencies = "nvim-treesitter/nvim-treesitter",
+    lazy = true,
+    event = {
+      "BufReadPre **.md",
+      "BufNewFile **.md",
+    },
     opts = {
       markdown = {
         -- Termux doesn't display the characters well
@@ -189,6 +194,8 @@ return {
   { -- indent detection
     "Darazaki/indent-o-matic",
     opts = {},
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile" },
     enabled = not is_vscode,
     config = function(_, opts)
       require("indent-o-matic").setup(opts)
