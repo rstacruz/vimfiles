@@ -1,11 +1,8 @@
 return {
   {
-    "goolord/alpha-nvim",
-    enabled = false,
-  },
-  {
     "echasnovski/mini.starter",
     version = false, -- wait till new 0.7.0 release to put it back on semver
+    enabled = false,
     event = "VimEnter",
     opts = function()
       local logo = ""
