@@ -92,17 +92,6 @@ return {
     },
   },
 
-  { -- indent-blankline.nvim
-    -- change characters
-    "lukas-reineke/indent-blankline.nvim",
-    opts = {
-      char = "▏", -- from lazyvim: "│",
-
-      -- add neorg and org
-      filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason", "neorg", "org" },
-    },
-  },
-
   { -- Telescope
     -- Updates borders to look more minimal
     "nvim-telescope/telescope.nvim",
@@ -260,7 +249,8 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     enabled = not is_vscode,
     keys = {
-      { "-", "<cmd>Neotree filesystem reveal current<cr>", { desc = "Reveal file in Neotree" } },
+      { "-", "<cmd>Neotree filesystem reveal<cr>", { desc = "Reveal file in Neotree" } },
+      { "<leader>gS", "<cmd>Neotree git_status<cr>", { desc = "Git status in Neotree" } },
     },
     opts = function(_, opts)
       opts.position = "current"
