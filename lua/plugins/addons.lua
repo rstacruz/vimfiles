@@ -23,7 +23,7 @@ return {
     version = "*",
     lazy = true,
     opts = true,
-    event = "VeryLazy",
+    event = { "BufReadPost" },
   },
 
   { -- context
@@ -205,7 +205,7 @@ return {
   { -- surround (replaces mini-surround)
     "kylechui/nvim-surround",
     lazy = true,
-    event = "VeryLazy",
+    event = { "BufReadPost" },
     opts = {},
     config = function(_, opts)
       require("nvim-surround").setup(opts)
@@ -228,7 +228,7 @@ return {
   { -- pretty fold
     "anuvyklack/pretty-fold.nvim",
     lazy = true,
-    event = "VeryLazy",
+    event = { "BufReadPost" },
     enabled = not is_vscode,
     opts = {
       fill_char = " ",
