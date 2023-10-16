@@ -165,7 +165,7 @@ return {
     enabled = not is_vscode,
     config = function()
       require("luasnip.loaders.from_vscode").lazy_load({ paths = "~/.config/nvim/snippets" })
-      require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/sll.lunippets" })
+      require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/snippets" })
     end,
   },
 

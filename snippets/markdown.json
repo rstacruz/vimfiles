@@ -1,23 +1,8 @@
 {
-  "Todo": {
-    "scope": "markdown",
-    "prefix": "todo",
-    "body": "`todo:`"
-  },
-  "Done": {
-    "scope": "markdown",
-    "prefix": "done",
-    "body": "[✓](#DoneAt:${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND})"
-  },
   "Frontmatter created at": {
     "scope": "markdown",
     "prefix": "xca",
     "body": "---\ncreatedAt: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}\n---\n"
-  },
-  "Inline created at": {
-    "scope": "markdown",
-    "prefix": "ica",
-    "body": "[+](#CreatedAt:${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND})"
   },
   "Em dash": {
     "scope": "markdown",
