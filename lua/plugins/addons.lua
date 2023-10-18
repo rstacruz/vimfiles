@@ -140,10 +140,6 @@ return {
     end,
     keys = {
       { "<leader>.", "<cmd>ToggleTerm<cr>", desc = "Terminal" },
-      { "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Terminal" },
-      { "<leader>ta", "<cmd>ToggleTerm 1<cr>", desc = "Terminal 1" },
-      { "<leader>tr", "<cmd>ToggleTerm 2<cr>", desc = "Terminal 2" },
-      { "<leader>ts", "<cmd>ToggleTerm 3<cr>", desc = "Terminal 3" },
       { "<leader>gf", '<cmd>TermExec cmd="git-fastsync && exit"<cr>', desc = "Git fastsync" },
     },
   },
