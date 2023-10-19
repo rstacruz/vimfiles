@@ -1,3 +1,4 @@
+local Util = require("lazyvim.util")
 return {
   {
     "nvimdev/dashboard-nvim",
@@ -5,6 +6,9 @@ return {
     opts = function()
       local logo = "" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
       logo = string.rep("\n", 8) .. logo .. "\n\n"
+
+      local oldfiles = Util.telescope("oldfiles", { only_cwd = true })
+      local restore_session = 'lua require("persistence").load()'
 
       local opts = {
         theme = "doom",
@@ -15,8 +19,11 @@ return {
           header = vim.split(logo, "\n"),
           -- stylua: ignore
           center = {
-            { action = 'lua require("persistence").load()', desc = " Restore session", icon = " ", key = "s" },
-            { action = "qa",                                desc = " Quit",            icon = " ", key = "q" },
+            { action = "ene | startinsert",     desc = " New file",        icon = " ", key = "e" },
+            { action = Util.telescope('files'), desc = " Open file...",    icon = " ", key = "p" },
+            { action = oldfiles,                desc = " Recent files...", icon = " ", key = "r" },
+            { action = restore_session,         desc = " Restore session", icon = " ", key = "s" },
+            { action = "qa",                    desc = " Quit",            icon = " ", key = "q" },
           },
           footer = function()
             local stats = require("lazy").stats()
