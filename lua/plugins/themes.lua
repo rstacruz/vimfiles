@@ -1,4 +1,10 @@
 return {
+  { -- melange
+    "savq/melange-nvim",
+    lazy = true,
+    event = "VeryLazy",
+  },
+
   { -- caret
     "projekt0n/caret.nvim",
     lazy = true,
