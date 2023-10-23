@@ -56,10 +56,10 @@ return {
     lazy = true,
     opts = {
       windows = {
-        max_number = 4,
+        max_number = math.huge,
         preview = true,
         width_focus = 40,
-        width_nofocus = 10,
+        width_nofocus = 30,
         width_preview = 60,
       },
       options = {
@@ -77,7 +77,7 @@ return {
       {
         "_",
         function()
-          require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+          require("mini.files").open(vim.api.nvim_buf_get_name(0), false)
         end,
         "Open mini.files",
       },
