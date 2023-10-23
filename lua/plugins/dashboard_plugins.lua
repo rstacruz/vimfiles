@@ -19,16 +19,16 @@ return {
           header = vim.split(logo, "\n"),
           -- stylua: ignore
           center = {
-            { action = "ene | startinsert",     desc = " New file",        icon = " ", key = "e" },
-            { action = Util.telescope('files'), desc = " Open file...",    icon = " ", key = "p" },
-            { action = oldfiles,                desc = " Recent files...", icon = " ", key = "r" },
-            { action = restore_session,         desc = " Restore session", icon = " ", key = "s" },
-            { action = "qa",                    desc = " Quit",            icon = " ", key = "q" },
+            { action = "ene | startinsert",     desc = " New file",        icon = " ", key = "e", key_format = " %s" },
+            { action = Util.telescope('files'), desc = " Open file...",    icon = " ", key = "p", key_format = " %s" },
+            { action = oldfiles,                desc = " Recent files...", icon = " ", key = "r", key_format = " %s" },
+            { action = restore_session,         desc = " Restore session", icon = " ", key = "s", key_format = " %s" },
+            { action = "qa",                    desc = " Quit",            icon = " ", key = "q", key_format = " %s" },
           },
           footer = function()
             local stats = require("lazy").stats()
-            local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-            return { "" .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms" }
+            local ms = math.floor((stats.startuptime * 100 + 0.5) / 100)
+            return { "" .. stats.loaded .. "/" .. stats.count .. " plugins _ " .. ms .. "ms" }
           end,
         },
       }
