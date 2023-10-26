@@ -99,9 +99,9 @@ return {
         fat_headlines = not is_android,
 
         headline_highlights = {
-          "DiffAdd",
           "DiffDelete",
-          "DiffChange",
+          "DiffAdd",
+          "Headline",
         },
         -- codeblock_highlight = "DiffChange",
         -- Differentiates it a bit from code block

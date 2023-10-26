@@ -41,6 +41,8 @@ vim.keymap.set("n", "z3", "<cmd>set foldlevel=2<cr>", { desc = "Set foldlevel to
 vim.keymap.set("n", "z4", "<cmd>set foldlevel=3<cr>", { desc = "Set foldlevel to 3" })
 vim.keymap.set("n", "z5", "<cmd>set foldlevel=4<cr>", { desc = "Set foldlevel to 4" })
 vim.keymap.set("n", "zV", "zMzv", { desc = "Isolate this fold" })
+vim.keymap.set("n", "zu", "zMzv", { desc = "Isolate this fold" })
+vim.keymap.set("n", "zU", "zMzO", { desc = "Isolate and unfold this fold" })
 --
 -- search-and-replace
 vim.keymap.set("n", "gs", ":%s~~")
