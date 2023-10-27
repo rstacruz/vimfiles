@@ -1,5 +1,11 @@
 return {
   {
+    dir = vim.fn.stdpath("config") .. "/plugins/luasnip_codesnippets_loader",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile" },
+    config = true,
+  },
+  {
     dir = vim.fn.stdpath("config") .. "/plugins/transparentize",
     lazy = true,
     config = function()
