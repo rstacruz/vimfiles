@@ -88,6 +88,10 @@ return {
       -- },
       -- also see: https://github.com/LazyVim/LazyVim/discussions/1881#discussioncomment-7395199
     },
+    config = function(_, opts)
+      vim.o.foldlevel = 999
+      require("ufo").setup(opts)
+    end,
   },
 
   -- { -- Origami

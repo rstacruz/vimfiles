@@ -30,6 +30,29 @@ return {
     end,
   },
 
+  -- with dependencies, and config
+  {
+    "telescope.nvim",
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+      config = function()
+        require("telescope").load_extension("fzf")
+      end,
+    },
+  },
+
+  -- custom config
+  {
+    "jackMort/ChatGPT.nvim",
+    opts = {
+      keymaps = { submit = "<C-s>" },
+    },
+    config = function(_, opts)
+      require("chatgpt").setup(opts)
+    end,
+  },
+
   -- change trouble config
   {
     "folke/trouble.nvim",
@@ -79,18 +102,6 @@ return {
         sorting_strategy = "ascending",
         winblend = 0,
       },
-    },
-  },
-
-  -- add telescope-fzf-native
-  {
-    "telescope.nvim",
-    dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
     },
   },
 
