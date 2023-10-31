@@ -1,31 +1,19 @@
 -- https://github.com/kevinhwang91/nvim-ufo#customize-fold-text
-local handler = function(virtText, lnum, endLnum, width, truncate)
-  local newVirtText = {}
-  local suffix = ("[%d]"):format(endLnum - lnum)
-  local sufWidth = vim.fn.strdisplaywidth(suffix)
-  local targetWidth = width - sufWidth
-  local curWidth = 0
-  for _, chunk in ipairs(virtText) do
-    local chunkText = chunk[1]
-    local chunkWidth = vim.fn.strdisplaywidth(chunkText)
-    if targetWidth > curWidth + chunkWidth then
-      table.insert(newVirtText, chunk)
-    else
-      chunkText = truncate(chunkText, targetWidth - curWidth)
-      local hlGroup = chunk[2]
-      table.insert(newVirtText, { chunkText, hlGroup })
-      chunkWidth = vim.fn.strdisplaywidth(chunkText)
-      -- str width returned from truncate() may less than 2nd argument, need padding
-      if curWidth + chunkWidth < targetWidth then
-        suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
-      end
-      break
-    end
-    curWidth = curWidth + chunkWidth
+-- https://github.com/rafi/vim-config/blob/6b2b2d96697ad282d554eb2105f0278dd05fbcb0/lua/rafi/plugins/extras/editor/ufo.lua#L4
+local fold_virt_text_handler = function(text, lnum, endLnum, width)
+  local suffix = " 󰇘 "
+  local lines = (" %d 󰁂 "):format(endLnum - lnum)
+
+  local cur_width = 0
+  for _, section in ipairs(text) do
+    cur_width = cur_width + vim.fn.strdisplaywidth(section[1])
   end
-  table.insert(newVirtText, { " …  ", "Comment" })
-  table.insert(newVirtText, { suffix, "DiagnosticOk" }) -- MoreMsg
-  return newVirtText
+
+  suffix = suffix .. (" "):rep(width - cur_width - vim.fn.strdisplaywidth(lines) - 3)
+
+  table.insert(text, { suffix, "DiagnosticOk" }) -- Comment, UfoFoldedEllipsis
+  table.insert(text, { lines, "DiagnosticOk" })
+  return text
 end
 
 return {
@@ -37,7 +25,7 @@ return {
     lazy = true,
     event = { "BufReadPost", "BufNewFile" },
     opts = {
-      fold_virt_text_handler = handler,
+      fold_virt_text_handler = fold_virt_text_handler,
     },
     keys = {
       {
@@ -45,7 +33,7 @@ return {
         function()
           require("ufo").openAllFolds()
         end,
-        desc = "Open all folds",
+        desc = "Open all folds!",
       },
       {
         "zM",
