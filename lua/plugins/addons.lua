@@ -2,11 +2,9 @@
 -- These are plugins that aren't included in the LazyVim.
 
 local is_vscode = vim.g.vscode or vim.env.VSCODE
-local uname = vim.loop.os_uname()
-local is_android = uname.machine == "aarch64"
 
 return {
-  { -- debugprint
+  { -- debugprint (g?v = insert debug from variable)
     "andrewferrier/debugprint.nvim",
     lazy = true,
     opts = {},
@@ -26,7 +24,7 @@ return {
     event = { "BufReadPost" },
   },
 
-  { -- context
+  { -- context (show context lines)
     "nvim-treesitter/nvim-treesitter-context",
     lazy = true,
     event = "BufReadPost",
@@ -36,13 +34,13 @@ return {
     },
   },
 
-  {
+  { -- vim-slim (.slim filename support)
     "slim-template/vim-slim",
     lazy = true,
     ft = "slim",
   },
 
-  { -- mini.files
+  { -- mini.files (file browser)
     "echasnovski/mini.files",
     lazy = true,
     opts = {
@@ -75,41 +73,7 @@ return {
     },
   },
 
-  { -- headlines
-    "lukas-reineke/headlines.nvim",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    lazy = true,
-    event = {
-      "BufReadPre **.md",
-      "BufNewFile **.md",
-    },
-    opts = {
-      markdown = {
-        -- Termux doesn't display the characters well
-        -- fat_headlines = false,
-        fat_headlines = not is_android,
-
-        headline_highlights = {
-          "DiffDelete",
-          "DiffAdd",
-          "Headline",
-        },
-        -- codeblock_highlight = "DiffChange",
-        -- Differentiates it a bit from code block
-        -- headline_highlights = {
-        --   "DiagnosticVirtualTextError",
-        --   "DiagnosticVirtualTextInfo",
-        --   "DiagnosticVirtualTextWarn",
-        --   "CursorLine",
-        -- },
-
-        dash_string = "─",
-      },
-    },
-    config = true, -- or `opts = {}`
-  },
-
-  { -- early retirement: closes inactive tabs
+  { -- early retirement (closes inactive tabs)
     "chrisgrieser/nvim-early-retirement",
     lazy = true,
     opts = {

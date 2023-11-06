@@ -32,6 +32,12 @@ return {
     lazy = true,
     event = "BufReadPost",
     opts = true,
+    -- stylua: ignore
+    keys = {
+      { "<Right>", function() require("origami").l() end, "Right or unfold" },
+      { "<Left>", function() require("origami").h() end, "Left or unfold" },
+    }
+,
   },
 
   { -- pretty fold

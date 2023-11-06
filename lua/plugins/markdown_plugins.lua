@@ -1,3 +1,8 @@
+local function is_android()
+  local uname = vim.loop.os_uname()
+  return uname.machine == "aarch64"
+end
+
 return {
   { -- markdown image
     -- PasteImg
@@ -101,5 +106,40 @@ return {
     -- TODO: add mappings for ctrl-p -> :ObsidianQuickSwitch
     -- TODO: add mappings for gf (ObsidianFollowLink)
     -- TODO: add mappings for gr (ObsidianBacklinks)
+  },
+
+  { -- headlines
+    "lukas-reineke/headlines.nvim",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    lazy = true,
+    event = {
+      "BufReadPre **.md",
+      "BufNewFile **.md",
+    },
+    opts = {
+      markdown = {
+        -- Termux doesn't display the characters well
+        -- fat_headlines = is_android(),
+
+        fat_headlines = false,
+
+        headline_highlights = {
+          "DiffDelete",
+          "DiffAdd",
+          "Headline",
+        },
+        -- codeblock_highlight = "DiffChange",
+        -- Differentiates it a bit from code block
+        -- headline_highlights = {
+        --   "DiagnosticVirtualTextError",
+        --   "DiagnosticVirtualTextInfo",
+        --   "DiagnosticVirtualTextWarn",
+        --   "CursorLine",
+        -- },
+
+        dash_string = "─",
+      },
+    },
+    config = true, -- or `opts = {}`
   },
 }
