@@ -14,10 +14,12 @@ end
 
 local KEYS = {
   { "z1", "zM", desc = "Fold everything" },
-  { "z2", "<cmd>set foldlevel=1<cr>", desc = "Set foldlevel to 1" },
-  { "z3", "<cmd>set foldlevel=2<cr>", desc = "Set foldlevel to 2" },
-  { "z4", "<cmd>set foldlevel=3<cr>", desc = "Set foldlevel to 3" },
-  { "z5", "<cmd>set foldlevel=4<cr>", desc = "Set foldlevel to 4" },
+  { "z2", "<cmd>setl foldlevel=1<cr>", desc = "Set foldlevel to 1" },
+  { "z3", "<cmd>setl foldlevel=2<cr>", desc = "Set foldlevel to 2" },
+  { "z4", "<cmd>setl foldlevel=3<cr>", desc = "Set foldlevel to 3" },
+  { "z5", "<cmd>setl foldlevel=4<cr>", desc = "Set foldlevel to 4" },
+  { "<S-Left>", "zc", desc = "Close fold" },
+  { "<S-Right>", "zo", desc = "Open fold" },
   { "zU", "zMzv", desc = "Isolate this fold" },
   { "zu", "zMzO", desc = "Isolate and unfold this fold" },
 }
