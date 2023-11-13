@@ -1,8 +1,6 @@
 -- Addons:
 -- These are plugins that aren't included in the LazyVim.
 
-local is_vscode = vim.g.vscode or vim.env.VSCODE
-
 return {
   { -- debugprint (g?v = insert debug from variable)
     "andrewferrier/debugprint.nvim",
@@ -104,7 +102,6 @@ return {
     opts = {},
     lazy = true,
     event = { "BufReadPre", "BufNewFile" },
-    enabled = not is_vscode,
     config = function(_, opts)
       require("indent-o-matic").setup(opts)
     end,
@@ -113,7 +110,6 @@ return {
   { -- refactoring
     "ThePrimeagen/refactoring.nvim",
     lazy = true,
-    enabled = not is_vscode,
     dependencies = {
       { "nvim-lua/plenary.nvim" },
       { "nvim-treesitter/nvim-treesitter" },
@@ -143,7 +139,6 @@ return {
     "dstein64/nvim-scrollview",
     lazy = true,
     event = "VeryLazy",
-    enabled = not is_vscode,
     opts = {
       -- Make it sit flush to the window edge. (default: 2)
       column = 1,
@@ -167,7 +162,6 @@ return {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     lazy = true,
     -- event = "VeryLazy",
-    enabled = not is_vscode,
     keys = {
       { "<leader>uv", "<cmd>lua require('etc.toggle_virtual_lines').toggle()<cr>", desc = "Toggle virtual lines/text" },
     },
@@ -179,7 +173,6 @@ return {
   { -- fugitive: Git blame and open in GitHub
     "tpope/vim-fugitive",
     lazy = true,
-    enabled = not is_vscode,
     cmd = "Git",
     keys = {
       { "<leader>gb", "<cmd>Git blame<cr>", desc = "Git Blame" },
