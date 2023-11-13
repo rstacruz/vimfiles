@@ -1,0 +1,16 @@
+return {
+  {
+    "stevearc/oil.nvim",
+    lazy = true,
+    opts = {
+      float = {
+        padding = 2,
+      },
+    },
+    keys = {
+      { "<leader>fo", "<cmd>Oil<cr>", desc = "Explore files (oil)" },
+      { "<leader>fO", "<cmd>Oil --float<cr>", desc = "Explore files (oil, float)" },
+    },
+    cmd = { "Oil" },
+  },
+}
