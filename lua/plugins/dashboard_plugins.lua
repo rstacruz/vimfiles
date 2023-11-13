@@ -21,12 +21,12 @@ return {
           header = vim.split(logo, "\n"),
           -- stylua: ignore
           center = {
-            { action = "ene | startinsert",     desc = " New file",        icon = " ", key = "e" },
-            { action = Util.telescope('files'), desc = " Open file...",    icon = " ", key = "p" },
-            { action = explore,                 desc = " Explore...",      icon = " ", key = "x" },
-            { action = oldfiles,                desc = " Recent files...", icon = " ", key = "r" },
-            { action = restore_session,         desc = " Restore session", icon = " ", key = "s" },
-            { action = "qa",                    desc = " Quit",            icon = " ", key = "q" },
+            { action = "ene | startinsert",     desc = " New file",         icon = " ", key = "e" },
+            { action = Util.telescope('files'), desc = " Open file...",     icon = " ", key = "p" },
+            { action = explore,                 desc = " Explore files...", icon = " ", key = "f" },
+            { action = oldfiles,                desc = " Recents...",       icon = " ", key = "r" },
+            { action = restore_session,         desc = " Restore session",  icon = " ", key = "s" },
+            { action = "qa",                    desc = " Quit",             icon = " ", key = "q" },
           },
           footer = function()
             local stats = require("lazy").stats()
