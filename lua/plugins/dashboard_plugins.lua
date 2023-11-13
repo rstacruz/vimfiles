@@ -10,6 +10,7 @@ return {
 
       local oldfiles = Util.telescope("oldfiles", { only_cwd = true })
       local restore_session = 'lua require("persistence").load()'
+      local explore = 'lua require("mini.files").open()'
 
       local opts = {
         theme = "doom",
@@ -22,6 +23,7 @@ return {
           center = {
             { action = "ene | startinsert",     desc = " New file",        icon = " ", key = "e" },
             { action = Util.telescope('files'), desc = " Open file...",    icon = " ", key = "p" },
+            { action = explore,                 desc = " Explore...",      icon = " ", key = "x" },
             { action = oldfiles,                desc = " Recent files...", icon = " ", key = "r" },
             { action = restore_session,         desc = " Restore session", icon = " ", key = "s" },
             { action = "qa",                    desc = " Quit",            icon = " ", key = "q" },
