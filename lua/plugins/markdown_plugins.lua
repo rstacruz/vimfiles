@@ -76,12 +76,12 @@ return {
             "<cmd>ObsidianBacklinks<CR>",
             { buffer = event.buf, desc = "Obsidian: Show backlinks" }
           )
-          vim.keymap.set(
-            "n",
-            "<c-p>",
-            "<cmd>ObsidianQuickSwitch<CR>",
-            { buffer = event.buf, desc = "Obsidian: Open..." }
-          )
+          -- vim.keymap.set(
+          --   "n",
+          --   "<c-p>",
+          --   "<cmd>ObsidianQuickSwitch<CR>",
+          --   { buffer = event.buf, desc = "Obsidian: Open..." }
+          -- )
           vim.keymap.set(
             "n",
             "<leader>ms",
