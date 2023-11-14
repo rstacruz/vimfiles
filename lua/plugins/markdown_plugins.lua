@@ -46,7 +46,7 @@ return {
       dir = vim.g.obsidian_vault_dir,
       mappings = {},
 
-      notes_subdir = "Scratch",
+      notes_subdir = "Pages",
 
       -- Disable auto-updating frontmatter id, createdAt, alias, etc
       disable_frontmatter = true,
