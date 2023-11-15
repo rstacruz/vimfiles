@@ -32,7 +32,10 @@ vim.keymap.set("n", "<leader>xk", "<cmd>lua vim.diagnostic.open_float()<cr>", { 
 -- +y to copy to clipboard
 vim.keymap.set("n", "+", '"+')
 vim.keymap.set("v", "+", '"+')
+
+-- close/destroy
 vim.keymap.set("n", "<Del>", "<cmd>bw!<cr>")
+vim.keymap.set("n", "<bs>", "<cmd>q<cr>")
 
 -- fold methods
 vim.keymap.set("n", "<cr>", "za")
