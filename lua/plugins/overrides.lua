@@ -114,16 +114,8 @@ return {
   { -- Telescope
     -- Updates borders to look more minimal
     "nvim-telescope/telescope.nvim",
-    opts = {
-      defaults = {
-        -- prompt_prefix = "   ",
-        prompt_prefix = "  ",
-        selection_caret = "› ",
-        entry_prefix = "  ",
-        borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
-        -- borderchars = { " ", "▕", "▁", "▏", "▏", "▕", "🭿", "🭼" },
-        -- borderchars = { "▔", "▕", "▁", "▏", "🭽", "🭾", "🭿", "🭼" },
-      },
+    keys = {
+      { "<leader>fr", "<cmd>Telescope oldfiles only_cwd=true<cr>", desc = "Recent" },
     },
   },
 
@@ -154,14 +146,6 @@ return {
       opts.sections.lualine_z = {} -- time
       return opts
     end,
-  },
-
-  { -- Telescope
-    "nvim-telescope/telescope.nvim",
-    enabled = not is_vscode,
-    keys = {
-      { "<leader>fr", "<cmd>Telescope oldfiles only_cwd=true<cr>", desc = "Recent" },
-    },
   },
 
   { -- nvim-lspconfig

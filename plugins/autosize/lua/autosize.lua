@@ -5,7 +5,16 @@
 --   require("autosize").setup()
 
 local settings = {
-  excluded_filetypes = { "NvimTree", "neo-tree", "DiffviewFiles", "Outline", "aerial", "minifiles" },
+  excluded_filetypes = {
+    "NvimTree",
+    "neo-tree",
+    "DiffviewFiles",
+    "Outline",
+    "aerial",
+    "minifiles",
+    "TelescopePrompt",
+    "TelescopeResults",
+  },
   min_width = 80,
 }
 
