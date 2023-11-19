@@ -37,7 +37,7 @@ return {
     -- stylua: ignore
     keys = {
       { "<Right>", function() require("origami").l() end, "Right or unfold" },
-      { "<Left>", function() require("origami").h() end, "Left or unfold" },
+      -- { "<Left>", function() require("origami").h() end, "Left or unfold" },
     }
 ,
   },

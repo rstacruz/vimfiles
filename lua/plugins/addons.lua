@@ -19,13 +19,13 @@ return {
     version = "*",
     lazy = true,
     opts = true,
-    event = { "BufReadPost" },
+    event = { "LazyFile" },
   },
 
   { -- context (show context lines)
     "nvim-treesitter/nvim-treesitter-context",
     lazy = true,
-    event = "BufReadPost",
+    event = "LazyFile",
     opts = {},
     keys = {
       { "<leader>ux", "<cmd>TSContextToggle<cr>", desc = "Toggle context lines" },
@@ -151,7 +151,7 @@ return {
   { -- surround (replaces mini-surround)
     "kylechui/nvim-surround",
     lazy = true,
-    event = { "BufReadPost" },
+    event = { "LazyFile" },
     opts = {},
     config = function(_, opts)
       require("nvim-surround").setup(opts)
