@@ -107,7 +107,18 @@ return {
         "yaml",
         -- added:
         "org",
+        "astro",
       },
+      config = function(_, opts)
+        require("nvim-treesitter.configs").setup(opts)
+
+        -- mdx
+        -- https://www.devas.life/effective-neovim-setup-for-web-development-towards-2024/#treesitter
+        -- https://joschua.io/posts/2023/06/22/set-up-nvim-for-astro/
+        -- not working though :(
+        vim.filetype.add({ extension = { mdx = "mdx" } })
+        vim.treesitter.language.register("markdown", "mdx")
+      end,
     },
   },
 
