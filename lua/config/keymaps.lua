@@ -70,6 +70,19 @@ vim.keymap.set("n", "<leader>ub", function()
   vim.notify("Background: " .. vim.o.background)
 end, { desc = "Toggle light/dark background " })
 
+vim.keymap.set("n", "<leader>uc", function()
+  local prev = vim.o.conceallevel
+  local next_value = prev + 1
+  vim.o.conceallevel = next_value == 4 and 0 or next_value
+  local descriptions = {
+    [0] = "0 (No conceal)",
+    [1] = "1 (Replace with one char)",
+    [2] = "2 (Replace with one char, or hide)",
+    [3] = "3 (Completely hide)",
+  }
+  vim.notify("Conceal level: " .. descriptions[vim.o.conceallevel])
+end, { desc = "Adjust conceal level" })
+
 -- switch to pane
 vim.keymap.set("n", "g1", "<cmd>wincmd t<cr>")
 vim.keymap.set("n", "g2", "<cmd>wincmd t | wincmd w<cr>")
