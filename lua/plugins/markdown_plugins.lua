@@ -68,10 +68,20 @@ return {
       end,
 
       note_frontmatter_func = function(note)
+        -- Add createdAt: in the frontmatter
         local out = {}
         out.createdAt = os.date("!%Y-%m-%dT%TZ")
+
+        if string.match(note.id, "(index)") then
+          out["BC-link-note"] = "down"
+          out["tags"] = { "MOCs" }
+        end
         return out
       end,
+
+      attachments = {
+        img_folder = "Media", -- default: "assets/imgs"
+      },
     },
     config = function(_, opts)
       require("obsidian").setup(opts)
@@ -87,6 +97,14 @@ return {
             "<cmd>ObsidianBacklinks<CR>",
             { buffer = event.buf, desc = "Obsidian: Show backlinks" }
           )
+          vim.keymap.set("n", "<leader>mR", function()
+            local current_name = vim.fn.expand("%:t:r")
+            local new_name = vim.fn.input("New name: ", current_name, "file")
+            if new_name == "" then
+              return
+            end
+            vim.cmd("ObsidianRename " .. new_name)
+          end, { buffer = event.buf, desc = "Obsidian: Rename..." })
           vim.keymap.set(
             "n",
             "gr",
