@@ -9,6 +9,8 @@ local Util = require("lazyvim.util")
 vim.keymap.set("v", "p", '"_dP')
 vim.keymap.set("v", "_p", "p")
 
+vim.keymap.set("i", "<a-bs>", "<c-w>", { desc = "Delete word" })
+
 vim.keymap.set("n", "<leader>fy", [[:let @+=@% | echo '→ ' . @%<cr>]], { desc = " Copy current path" })
 vim.keymap.set(
   "n",
