@@ -33,28 +33,45 @@ return {
     -- :ObsidianSearch
     "epwalsh/obsidian.nvim",
     lazy = true,
-    event = vim.g.obsidian_vault_dir and {
-      -- "BufReadPre " .. vim.fn.expand(vim.g.obsidian_vault_dir) .. "/**.md",
-      -- "BufNewFile " .. vim.fn.expand(vim.g.obsidian_vault_dir) .. "/**.md",
-      "BufReadPre **.md",
-      "BufNewFile **.md",
-    },
+    ft = "markdown",
+    -- event = vim.g.obsidian_vault_dir and {
+    --   -- "BufReadPre " .. vim.fn.expand(vim.g.obsidian_vault_dir) .. "/**.md",
+    --   -- "BufNewFile " .. vim.fn.expand(vim.g.obsidian_vault_dir) .. "/**.md",
+    --   "BufReadPre **.md",
+    --   "BufNewFile **.md",
+    -- },
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
+    cmd = {
+      "ObsidianToday",
+      "ObsidianTomorrow",
+      "ObsidianSearch",
+      "ObsidianWorkspace",
+    },
     opts = {
-      dir = vim.g.obsidian_vault_dir,
-      mappings = {},
+      -- workspaces = {
+      --   name = "personal",
+      --   path = vim.g.obsidian_vault_dir,
+      -- },
 
       notes_subdir = "Pages",
-
-      -- Disable auto-updating frontmatter id, createdAt, alias, etc
-      disable_frontmatter = true,
 
       completion = {
         -- options: current_dir (default), notes_subdir
         new_notes_location = "notes_subdir",
       },
+
+      note_id_func = function(title)
+        -- Default behaviour: return something like "124351678905-XYZX"
+        return title
+      end,
+
+      note_frontmatter_func = function(note)
+        local out = {}
+        out.createdAt = os.date("!%Y-%m-%dT%TZ")
+        return out
+      end,
     },
     config = function(_, opts)
       require("obsidian").setup(opts)
