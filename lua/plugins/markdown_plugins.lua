@@ -1,8 +1,3 @@
-local function is_android()
-  local uname = vim.loop.os_uname()
-  return uname.machine == "aarch64"
-end
-
 return {
   { -- markdown image
     -- PasteImg
@@ -138,9 +133,6 @@ return {
         end,
       })
     end,
-    -- TODO: add mappings for ctrl-p -> :ObsidianQuickSwitch
-    -- TODO: add mappings for gf (ObsidianFollowLink)
-    -- TODO: add mappings for gr (ObsidianBacklinks)
   },
 
   { -- headlines
