@@ -1,4 +1,10 @@
 return {
+  { -- monet
+    "fynnfluegge/monet.nvim",
+    lazy = true,
+    event = "VeryLazy",
+  },
+
   { -- melange
     "savq/melange-nvim",
     lazy = true,

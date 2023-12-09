@@ -41,6 +41,7 @@
   "mini.files": { "branch": "main", "commit": "3f8af5f9e4bbedbacbade760531464c0d679490d" },
   "mini.hipatterns": { "branch": "main", "commit": "581ae9cab55fea530fecd3930925f4ef1c7703af" },
   "mini.indentscope": { "branch": "main", "commit": "c8fdafa7bf603d758986a27eb546c55a5c73b1a3" },
+  "monet.nvim": { "branch": "main", "commit": "04cf366c2cceff7b2a8cfc7d96406bd9b73526d7" },
   "neo-tree.nvim": { "branch": "v3.x", "commit": "230ff118613fa07138ba579b89d13ec2201530b9" },
   "neoconf.nvim": { "branch": "main", "commit": "64437787dba70fce50dad7bfbb97d184c5bc340f" },
   "neodev.nvim": { "branch": "main", "commit": "7d4e7ecede7f43b5d62b2a8bb82ffec34f1265d4" },
