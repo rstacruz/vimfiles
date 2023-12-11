@@ -52,6 +52,8 @@ vim.keymap.set("n", "g.", vim.lsp.buf.code_action, { desc = "Code action" })
 -- Terminal escape
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("t", "<Esc><Esc>", "<Esc>")
+vim.keymap.set("t", "<a-`>", "<C-\\><C-n><cmd>ToggleTerm<cr>")
+vim.keymap.set("n", "<a-`>", "<cmd>ToggleTerm<cr>")
 
 -- Toggles
 vim.keymap.set("n", "<leader>uV", function()
