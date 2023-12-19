@@ -18,6 +18,13 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  group = vim.api.nvim_create_augroup("filetype_mdx", { clear = true }),
+  pattern = { "*.mdx" },
+  callback = function()
+    vim.cmd("setfiletype markdown")
+  end,
+})
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("custom_foldexpr", { clear = true }),
   pattern = { "typescript", "javascript", "markdown", "lua", "typescriptreact", "sh" },

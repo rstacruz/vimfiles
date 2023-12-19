@@ -288,7 +288,7 @@ return {
         "css-lsp",
         "deno",
         "eslint-lsp",
-        "prettierd",
+        "prettier",
         "shellcheck",
         "shfmt",
         "tailwindcss-language-server",
