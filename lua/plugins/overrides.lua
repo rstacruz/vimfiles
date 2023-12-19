@@ -4,7 +4,7 @@
 
 local is_vscode = vim.g.vscode or vim.env.VSCODE
 local uname = vim.loop.os_uname()
-local is_android = uname.arch == "aarch64"
+local is_android = uname.machine == "aarch64"
 -- uname.sysname = "Darwin" | "Linux"
 -- uname.arch = "aarch64" (Android) | "arm64" (Mac) | "x86_64"
 
