@@ -156,6 +156,9 @@ return {
       "BufNewFile **.md",
     },
     opts = {
+      norg = {
+        headline_highlights = false,
+      },
       markdown = {
         -- Termux doesn't display the characters well
         -- fat_headlines = is_android(),
