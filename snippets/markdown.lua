@@ -5,7 +5,7 @@ return {
       local iso = os.date("%Y-%m-%d")
       local m = os.date("%b")
       local d = os.date("%d")
-      return string.format("[✓ %s %s](#DoneAt:%s)", d, m, iso)
+      return string.format("[[%s#DoneAt|%s %s ✓]]", iso, d, m)
     end),
   }),
 
@@ -14,14 +14,7 @@ return {
       local iso = os.date("%Y-%m-%d")
       local m = os.date("%b")
       local d = os.date("%d")
-      return string.format("[+%s %s](#CreatedAt:%s)", d, m, iso)
-    end),
-  }),
-
-  s("ica", { -- created at, short
-    f(function()
-      local iso = os.date("%Y-%m-%d")
-      return string.format("[+](#CreatedAt:%s)", iso)
+      return string.format("[[%s#CreatedAt|%s %s]]", iso, d, m)
     end),
   }),
 
