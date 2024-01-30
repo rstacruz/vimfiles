@@ -69,11 +69,6 @@ vim.keymap.set("n", "<leader>ur", function()
   vim.o.relativenumber = not vim.o.relativenumber
 end, { desc = "Toggle relativenumber" })
 
-vim.keymap.set("n", "<leader>ub", function()
-  vim.o.background = vim.o.background == "light" and "dark" or "light"
-  vim.notify("Background: " .. vim.o.background)
-end, { desc = "Toggle light/dark background " })
-
 vim.keymap.set("n", "<leader>uc", function()
   local prev = vim.o.conceallevel
   local next_value = prev + 1
