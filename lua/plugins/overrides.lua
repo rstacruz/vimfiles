@@ -63,7 +63,7 @@ return {
     keys = {
       {
         "S",
-        mode = { "n", "o", "x" },
+        mode = { "n" }, --, "o", "x" },
         function()
           require("flash").treesitter()
         end,
@@ -143,10 +143,10 @@ return {
     },
   },
 
-  { -- surround: remove
-    "echasnovski/mini.surround",
-    enabled = false,
-  },
+  -- { -- surround: remove
+  --   "echasnovski/mini.surround",
+  --   enabled = false,
+  -- },
 
   { -- lualine: simplify lualine
     "nvim-lualine/lualine.nvim",
@@ -233,6 +233,12 @@ return {
       line_sep_start = "",
       result_padding = "   ",
       line_sep = "",
+      find_engine = {
+        ["rg"] = {
+          -- add hidden
+          args = { "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--hidden" },
+        },
+      },
     },
     keys = {
       { -- Updates options passed to open()
