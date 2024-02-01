@@ -14,7 +14,7 @@ return {
       local iso = os.date("%Y-%m-%d")
       local m = os.date("%b")
       local d = os.date("%d")
-      return string.format("[[%s#CreatedAt|%s %s]]", iso, d, m)
+      return string.format("[[%s|%s %s]]", iso, d, m)
     end),
   }),
 
