@@ -2,15 +2,48 @@
 -- These are plugins that aren't included in the LazyVim.
 
 return {
-  { -- debugprint (g?v = insert debug from variable)
-    "andrewferrier/debugprint.nvim",
+  {
+    "chrisgrieser/nvim-chainsaw",
     lazy = true,
-    opts = {},
+    opts = {
+      marker = "🔹",
+    },
     keys = {
-      { "g?p", desc = "Debug: insert below" },
-      { "g?P", desc = "Debug: insert above" },
-      { "g?v", desc = "Debug: insert below from variable" }, -- (put cursor on a var)
-      { "g?v", desc = "Debug: insert from variable", mode = "v" },
+      {
+        "glo", -- g [lo]g
+        function()
+          require("chainsaw").messageLog()
+        end,
+        desc = "Log: custom message",
+      },
+      {
+        "gla", -- g [l]og [a]rgs
+        function()
+          require("chainsaw").variableLog()
+        end,
+        desc = "Log: variable log",
+      },
+      {
+        "glt",
+        function()
+          require("chainsaw").timeLog()
+        end,
+        desc = "Log: time log",
+      },
+      {
+        "glj", -- g [l]og [j]son
+        function()
+          require("chainsaw").objectLog()
+        end,
+        desc = "Log: object log",
+      },
+      {
+        "glx",
+        function()
+          require("chainsaw").removeLogs()
+        end,
+        desc = "Log: remove logs",
+      },
     },
   },
 

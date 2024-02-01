@@ -1,4 +1,16 @@
 return {
+  { -- debugprint (g?v = insert debug from variable)
+    "andrewferrier/debugprint.nvim",
+    lazy = true,
+    opts = {},
+    keys = {
+      { "g?p", desc = "Debug: insert below" },
+      { "g?P", desc = "Debug: insert above" },
+      { "g?v", desc = "Debug: insert below from variable" }, -- (put cursor on a var)
+      { "g?v", desc = "Debug: insert from variable", mode = "v" },
+    },
+  },
+
   { -- cp-image
     -- Use `:PasteImage`
     "niuiic/cp-image.nvim",
