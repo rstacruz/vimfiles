@@ -98,6 +98,7 @@ vim.keymap.set("n", "<f1>", "<cmd>Telescope keymaps<cr>", { desc = "Key Maps" })
 
 -- Scratchpad
 vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
+vim.keymap.set("n", "<leader>!b", "<cmd>split ~/.board.md<cr><C-w>H", { desc = "Open board" })
 
 -- I prefer these to navigate rather than resize
 vim.keymap.set("n", "<C-Up>", "<C-w>j", { desc = "Go to upper window" })
