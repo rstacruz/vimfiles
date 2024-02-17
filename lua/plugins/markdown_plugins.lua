@@ -45,10 +45,12 @@ return {
       "ObsidianWorkspace",
     },
     opts = {
-      -- workspaces = {
-      --   name = "personal",
-      --   path = vim.g.obsidian_vault_dir,
-      -- },
+      workspaces = {
+        {
+          name = "personal",
+          path = vim.g.obsidian_vault_dir,
+        },
+      },
 
       notes_subdir = "Pages",
 
@@ -65,7 +67,9 @@ return {
       note_frontmatter_func = function(note)
         -- Add createdAt: in the frontmatter
         local out = {}
-        out.createdAt = os.date("!%Y-%m-%dT%TZ")
+        if out.createdAt ~= nil then
+          out.createdAt = os.date("!%Y-%m-%dT%TZ")
+        end
 
         if string.match(note.id, "(index)") then
           out["BC-link-note"] = "down"
