@@ -67,7 +67,14 @@ return {
       note_frontmatter_func = function(note)
         -- Add createdAt: in the frontmatter
         local out = {}
-        if out.createdAt ~= nil then
+
+        if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
+          for k, v in pairs(note.metadata) do
+            out[k] = v
+          end
+        end
+
+        if out.createdAt == nil then
           out.createdAt = os.date("!%Y-%m-%dT%TZ")
         end
 
