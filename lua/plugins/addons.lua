@@ -6,10 +6,10 @@ return {
     "Pocco81/true-zen.nvim",
     lazy = true,
     keys = {
-      { "<leader>zs", "<cmd>TZNarrow<cr>", "Zen: zoom into selection (narrow)", mode = { "v" } },
-      { "<leader>za", "<cmd>TZAtaraxis<cr>", "Zen: zen mode (ataraxis)" },
-      { "<leader>zm", "<cmd>TZMinimalist<cr>", "Zen: disable UI components (minimal)" },
-      { "<leader>zw", "<cmd>TZFocus<cr>", "Zen: zoom current window (focus)" },
+      { "<leader>zs", "<cmd>TZNarrow<cr>", desc = "Zen: zoom into selection (narrow)", mode = { "v" } },
+      { "<leader>za", "<cmd>TZAtaraxis<cr>", desc = "Zen: zen mode (ataraxis)" },
+      { "<leader>zm", "<cmd>TZMinimalist<cr>", desc = "Zen: disable UI components (minimal)" },
+      { "<leader>zw", "<cmd>TZFocus<cr>", desc = "Zen: zoom current window (focus)" },
     },
   },
   {
