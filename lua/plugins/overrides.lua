@@ -269,8 +269,8 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     enabled = not is_vscode,
     keys = {
-      { "-", "<cmd>Neotree filesystem reveal<cr>", { desc = "Reveal file in Neotree" } },
-      { "<leader>gS", "<cmd>Neotree git_status<cr>", { desc = "Git status in Neotree" } },
+      { "-", "<cmd>Neotree filesystem reveal float<cr>", { desc = "Reveal file in Neotree" } },
+      { "<leader>gS", "<cmd>Neotree git_status float<cr>", { desc = "Git status in Neotree" } },
     },
     opts = function(_, opts)
       opts.position = "current"
