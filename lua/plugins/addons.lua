@@ -3,13 +3,37 @@
 
 return {
   {
+    "hoschi/yode-nvim",
+    opts = {},
+    keys = {
+      {
+        "<Leader>zs",
+        ":YodeCreateSeditorReplace<cr>",
+        desc = "Zoom into selection (Yode)",
+        mode = { "v" },
+      },
+      {
+        "<Leader>zb",
+        "vab:YodeCreateSeditorReplace<cr>",
+        desc = "Zoom into block (Yode)",
+        mode = { "n" },
+      },
+      {
+        "<Leader>zS",
+        ":YodeCreateSeditorFloating<cr>",
+        desc = "Zoom into selection into floating window (Yode)",
+        mode = { "v" },
+      },
+    },
+  },
+  {
     "Pocco81/true-zen.nvim",
     lazy = true,
     keys = {
-      { "<leader>zs", "<cmd>TZNarrow<cr>", desc = "Zen: zoom into selection (narrow)", mode = { "v" } },
+      -- { "<leader>zn", "<cmd>TZNarrow<cr>", desc = "Zen: zen mode (narrow)" },
       { "<leader>za", "<cmd>TZAtaraxis<cr>", desc = "Zen: zen mode (ataraxis)" },
       { "<leader>zm", "<cmd>TZMinimalist<cr>", desc = "Zen: disable UI components (minimal)" },
-      { "<leader>zw", "<cmd>TZFocus<cr>", desc = "Zen: zoom current window (focus)" },
+      -- { "<leader>zw", "<cmd>TZFocus<cr>", desc = "Zen: zoom current window (focus)" },
     },
   },
   {
@@ -217,8 +241,6 @@ return {
     "tpope/vim-fugitive",
     lazy = true,
     cmd = "Git",
-    keys = {
-      { "<leader>gb", "<cmd>Git blame<cr>", desc = "Git Blame" },
-    },
+    keys = {},
   },
 }
