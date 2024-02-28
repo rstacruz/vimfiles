@@ -4,6 +4,7 @@
 return {
   {
     "hoschi/yode-nvim",
+    lazy = true,
     opts = {},
     keys = {
       {
@@ -36,6 +37,7 @@ return {
       -- { "<leader>zw", "<cmd>TZFocus<cr>", desc = "Zen: zoom current window (focus)" },
     },
   },
+
   {
     "chrisgrieser/nvim-chainsaw",
     lazy = true,
