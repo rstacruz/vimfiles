@@ -78,9 +78,16 @@ return {
           out.createdAt = os.date("!%Y-%m-%dT%TZ")
         end
 
+        if note.aliases and next(note.aliases) ~= nil then
+          out.aliases = note.aliases
+        end
+
+        if note.tags and next(note.tags) ~= nil then
+          out.tags = note.tags
+        end
+
         if string.match(note.id, "(index)") then
           out["BC-link-note"] = "down"
-          out["tags"] = { "MOCs" }
         end
         return out
       end,
