@@ -33,4 +33,13 @@ return {
       { "<leader>gy", desc = "Copy GitHub URL", mode = { "n", "v" } },
     },
   },
+
+  { -- blame
+    "FabijanZulj/blame.nvim",
+    lazy = true,
+    cmd = { "ToggleBlame", "EnableBlame", "DisableBlame" },
+    keys = {
+      { "<leader>gb", "<cmd>ToggleBlame<cr>", "Blame" },
+    },
+  },
 }
