@@ -39,9 +39,6 @@ vim.keymap.set("v", "+", '"+')
 vim.keymap.set("n", "<Del>", "<cmd>bw!<cr>")
 vim.keymap.set("n", "<bs>", "<cmd>q<cr>")
 
--- fold methods
-vim.keymap.set("n", "<cr>", "za")
---
 -- search-and-replace
 vim.keymap.set("n", "gs", ":%s~~")
 vim.keymap.set("v", "gs", ":s~~")
