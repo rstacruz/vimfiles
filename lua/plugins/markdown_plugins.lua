@@ -98,12 +98,24 @@ return {
       ui = {
         checkboxes = {
           -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
+          -- Inspired by https://minimal.guide/checklists
+          -- ObsidianRightArrow = orange
+          -- ObsidianTilde = red
           [" "] = { char = "󰄱", hl_group = "Comment" },
           ["!"] = { char = "󰄱", hl_group = "DiagnosticError" }, -- high priority
           ["x"] = { char = "󰄲", hl_group = "DiagnosticOk" }, -- nf-md-checkbox_marked
           ["y"] = { char = "󰄲", hl_group = "DiagnosticOk" }, -- nf-md-checkbox_marked
-          [">"] = { char = "", hl_group = "ObsidianRightArrow" },
-          ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
+          [">"] = { char = "󰒊", hl_group = "Comment" }, -- nf-md-send
+          ["<"] = { char = "󰃰", hl_group = "Comment" }, -- nf-md-calendar_clock
+          -- ["<"] = { char = "󰥔", hl_group = "ObsidianRightArrow" }, -- nf-md-calendar_clock
+          -- ["<"] = { char = "󰃮", hl_group = "ObsidianRightArrow" }, -- nf-md-calendar_blank
+          ["~"] = { char = "󰂭", hl_group = "Comment" },
+          ["i"] = { char = "󰋼", hl_group = "DiagnosticInfo" }, -- nf-md-information
+          -- ["I"] = { char = "󰛨", hl_group = "DiagnosticWarn" }, -- nf-md-lightbulb_on
+          ["I"] = { char = "󰌵", hl_group = "DiagnosticWarn" }, -- nf-md-lightbulb
+          ["p"] = { char = "󰔓", hl_group = "DiagnosticOk" }, -- nf-md-thumb_up
+          ["c"] = { char = "󰔑", hl_group = "DiagnosticError" }, -- nf-md-thumb_down
+          ["s"] = { char = "󰓎", hl_group = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
           ["/"] = { char = "󰿦", hl_group = "DiagnosticWarn" }, -- in progress, nf-md-texture_box
         },
       },
