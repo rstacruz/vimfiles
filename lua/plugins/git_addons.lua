@@ -15,13 +15,6 @@ return {
     },
   },
 
-  { -- gitsigns (override)
-    "lewis6991/gitsigns.nvim",
-    keys = {
-      { "<leader>ug", "<cmd>Gitsigns toggle_signs<cr>", desc = "Toggle git signs" },
-    },
-  },
-
   { -- git linker
     "ruifm/gitlinker.nvim",
     dependencies = {
