@@ -1,17 +1,17 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.editor.aerial",
+    "lazyvim.plugins.extras.test.core",
     "lazyvim.plugins.extras.editor.mini-files",
     "lazyvim.plugins.extras.formatting.prettier",
     "lazyvim.plugins.extras.lang.tailwind",
     "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.linting.eslint",
-    "lazyvim.plugins.extras.test.core",
     "lazyvim.plugins.extras.util.mini-hipatterns",
-    "lazyvim.plugins.extras.vscode"
+    "lazyvim.plugins.extras.vscode",
+    "lazyvim.plugins.extras.editor.aerial"
   ],
   "news": {
-    "NEWS.md": "2123"
+    "NEWS.md": "3314"
   },
-  "version": 2
+  "version": 3
 }

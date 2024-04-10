@@ -54,10 +54,8 @@ return {
 
       notes_subdir = "Pages",
 
-      completion = {
-        -- options: current_dir (default), notes_subdir
-        new_notes_location = "notes_subdir",
-      },
+      -- options: current_dir (default), notes_subdir
+      new_notes_location = "notes_subdir",
 
       note_id_func = function(title)
         -- Default behaviour: return something like "124351678905-XYZX"
