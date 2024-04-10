@@ -60,10 +60,14 @@ return {
       -- options: current_dir (default), notes_subdir
       new_notes_location = "notes_subdir",
 
-      -- note_id_func = function(title)
-      --   -- Default behaviour: return something like "124351678905-XYZX"
-      --   return title
-      -- end,
+      note_id_func = function(title)
+        -- Default behaviour: return something like "124351678905-XYZX"
+        if title then
+          return title
+        end
+
+        return "Untitled-" .. tostring(os.time())
+      end,
 
       note_frontmatter_func = function(note)
         -- Add createdAt: in the frontmatter
