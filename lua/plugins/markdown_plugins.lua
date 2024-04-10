@@ -1,3 +1,6 @@
+local uname = vim.loop.os_uname()
+local is_android = uname.machine == "aarch64"
+
 return {
   { -- markdown image
     -- PasteImg
@@ -198,6 +201,7 @@ return {
   },
 
   { -- headlines
+    -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/lang/markdown.lua#L65
     "lukas-reineke/headlines.nvim",
     dependencies = "nvim-treesitter/nvim-treesitter",
     lazy = true,
@@ -205,15 +209,14 @@ return {
       "BufReadPre **.md",
       "BufNewFile **.md",
     },
+    ft = { "markdown", "norg", "rmd", "org" },
     opts = {
       norg = {
         headline_highlights = false,
       },
       markdown = {
         -- Termux doesn't display the characters well
-        -- fat_headlines = is_android(),
-
-        fat_headlines = false,
+        fat_headlines = not is_android,
 
         headline_highlights = {
           "DiffDelete",
@@ -232,6 +235,12 @@ return {
         dash_string = "─",
       },
     },
-    config = true, -- or `opts = {}`
+    config = function(_, opts)
+      -- PERF: schedule to prevent headlines slowing down opening a file
+      vim.schedule(function()
+        require("headlines").setup(opts)
+        require("headlines").refresh()
+      end)
+    end,
   },
 }
