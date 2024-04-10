@@ -1,5 +1,5 @@
 -- Addons: GPT
--- Plugins that aren't part of LazyVim. THese are OpenAI related plugins
+-- Plugins that aren't part of LazyVim. These are OpenAI related plugins
 local has_gpt_key = os.getenv("OPENAI_API_KEY") ~= nil
 
 return {
