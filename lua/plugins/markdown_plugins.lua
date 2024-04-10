@@ -60,10 +60,10 @@ return {
       -- options: current_dir (default), notes_subdir
       new_notes_location = "notes_subdir",
 
-      note_id_func = function(title)
-        -- Default behaviour: return something like "124351678905-XYZX"
-        return title
-      end,
+      -- note_id_func = function(title)
+      --   -- Default behaviour: return something like "124351678905-XYZX"
+      --   return title
+      -- end,
 
       note_frontmatter_func = function(note)
         -- Add createdAt: in the frontmatter
@@ -79,7 +79,8 @@ return {
           out.createdAt = os.date("!%Y-%m-%dT%TZ")
         end
 
-        if note.aliases and next(note.aliases) ~= nil then
+        -- Only save aliases if they're not the same as [self]
+        if note.aliases and next(note.aliases) ~= nil and (#note.aliases ~= 1 or note.aliases[1] ~= note.id) then
           out.aliases = note.aliases
         end
 
