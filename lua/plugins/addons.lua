@@ -162,7 +162,7 @@ return {
     end,
     keys = {
       { "<leader>.", "<cmd>ToggleTerm<cr>", desc = "Terminal" },
-      { "<leader>gf", '<cmd>TermExec size=6 cmd="git-fastsync && exit"<cr>', desc = "Git fastsync" },
+      { "<leader>gf", '<cmd>w | TermExec size=6 cmd="git-fastsync && exit"<cr>', desc = "Git fastsync" },
     },
   },
 
