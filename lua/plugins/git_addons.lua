@@ -30,9 +30,10 @@ return {
   { -- blame
     "FabijanZulj/blame.nvim",
     lazy = true,
-    cmd = { "ToggleBlame", "EnableBlame", "DisableBlame" },
+    cmd = { "BlameToggle" },
+    opts = {},
     keys = {
-      { "<leader>gb", "<cmd>ToggleBlame<cr>", "Blame" },
+      { "<leader>gb", "<cmd>BlameToggle<cr>", "Blame" },
     },
   },
 }
