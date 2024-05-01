@@ -104,7 +104,6 @@ return {
   },
 
   { -- Telescope
-    -- Updates borders to look more minimal
     "nvim-telescope/telescope.nvim",
     keys = {
       { "<leader>fr", "<cmd>Telescope oldfiles only_cwd=true<cr>", desc = "Recent" },

@@ -101,6 +101,7 @@ return {
       attachments = {
         img_folder = "Media", -- default: "assets/imgs"
       },
+
       ui = {
         checkboxes = {
           -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
@@ -126,6 +127,7 @@ return {
         },
       },
     },
+
     config = function(_, opts)
       require("obsidian").setup(opts)
 
@@ -140,28 +142,54 @@ return {
             "<cmd>ObsidianLink<CR>",
             { buffer = event.buf, desc = "Obsidian: Link selection to..." }
           )
-          vim.keymap.set("v", "<leader>mX", function()
-            vim.cmd("ObsidianLinkNew")
-          end, { buffer = event.buf, desc = "Obsidian: Link selection to (infer title)" })
+          -- vim.keymap.set("v", "<leader>mX", function()
+          --   vim.cmd("ObsidianLinkNew")
+          -- end, { buffer = event.buf, desc = "Obsidian: Link selection to (infer title)" })
+
+          -- vim.keymap.set("v", "<leader>mx", function()
+          --   local new_name = vim.fn.input("New name: ", "", "file")
+          --   if new_name == "" then
+          --     return
+          --   end
+          --   vim.cmd("ObsidianLinkNew " .. new_name)
+          -- end, { buffer = event.buf, desc = "Obsidian: Link selection to..." })
+
           vim.keymap.set("v", "<leader>mx", function()
             local new_name = vim.fn.input("New name: ", "", "file")
             if new_name == "" then
               return
             end
-            vim.cmd("ObsidianLinkNew " .. new_name)
-          end, { buffer = event.buf, desc = "Obsidian: Link selection to..." })
+            vim.cmd("ObsidianExtractNote " .. new_name)
+          end, { buffer = event.buf, desc = "Obsidian: Extract to..." })
+
           vim.keymap.set(
             "n",
             "<leader>mp",
             "<cmd>ObsidianPasteImg<CR>",
             { buffer = event.buf, desc = "Obsidian: Paste image" }
           )
+
+          vim.keymap.set(
+            "n",
+            "<leader>mc",
+            "<cmd>ObsidianToggleCheckbox<CR>",
+            { buffer = event.buf, desc = "Obsidian: Toggle checkbox" }
+          )
+
+          vim.keymap.set(
+            "n",
+            "<leader>mf",
+            "<cmd>ObsidianFollowLink vsplit<CR>",
+            { buffer = event.buf, desc = "Obsidian: Follow link in vsplit" }
+          )
+
           vim.keymap.set(
             "n",
             "<leader>mr",
             "<cmd>ObsidianBacklinks<CR>",
             { buffer = event.buf, desc = "Obsidian: Show backlinks" }
           )
+
           vim.keymap.set("n", "<leader>mR", function()
             local current_name = vim.fn.expand("%:t:r")
             local new_name = vim.fn.input("New name: ", current_name, "file")

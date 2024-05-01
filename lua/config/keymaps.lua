@@ -88,7 +88,7 @@ vim.keymap.set("n", "g5", "<cmd>wincmd t | 5wincmd w<cr>")
 vim.keymap.set("n", "g6", "<cmd>wincmd t | 6wincmd w<cr>")
 
 -- find files (default: spc-spc)
-vim.keymap.set("n", "<c-p>", Util.telescope("files"), { desc = "Find Files (root dir)" })
+vim.keymap.set("n", "<c-p>", "<cmd>Telescope find_files theme=dropdown<cr>", { desc = "Find Files (root dir)" })
 
 -- Keymaps (default: leader-sk)
 vim.keymap.set("n", "<f1>", "<cmd>Telescope keymaps<cr>", { desc = "Key Maps" })
