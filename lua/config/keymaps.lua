@@ -31,6 +31,9 @@ vim.keymap.set("n", "<leader>Q", "<cmd>qa<cr>", { desc = "Quit all" })
 -- Show full diagnostic, because virtual text can be too sparse
 vim.keymap.set("n", "<leader>xk", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Show full diagnostic message" })
 
+-- Make `23,` go to line 23. Easier to type than `23G`
+vim.keymap.set("n", ",", "G")
+
 -- +y to copy to clipboard
 vim.keymap.set("n", "+", '"+')
 vim.keymap.set("v", "+", '"+')
