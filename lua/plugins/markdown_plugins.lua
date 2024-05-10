@@ -89,7 +89,15 @@ return {
         end
 
         if out.createdAt == nil then
-          out.createdAt = os.date("!%Y-%m-%dT%TZ")
+          -- "2405 Page" -> 2024-05-01
+          if string.match(note.id, "^%d%d%d%d ") then
+            local year = "20" .. string.sub(note.id, 1, 2)
+            local month = string.sub(note.id, 3, 4)
+            local ymd = "" .. year .. "-" .. month .. "-0T00:00:00Z"
+            out.createdAt = ymd
+          else
+            out.createdAt = os.date("!%Y-%m-%dT%TZ")
+          end
         end
 
         -- Only save aliases if they're not the same as [self]
