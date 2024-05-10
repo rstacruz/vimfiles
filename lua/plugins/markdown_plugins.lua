@@ -60,6 +60,15 @@ return {
       -- options: current_dir (default), notes_subdir
       new_notes_location = "notes_subdir",
 
+      attachments = {
+        img_folder = "Media", -- default: "assets/imgs"
+      },
+
+      wiki_link_func = function(opts)
+        -- default: wiki_link_id_prefix (`[[id|title]]`)
+        return require("obsidian.util").wiki_link_alias_only(opts)
+      end,
+
       note_id_func = function(title)
         -- Default behaviour: return something like "124351678905-XYZX"
         if title then
@@ -98,10 +107,6 @@ return {
         return out
       end,
 
-      attachments = {
-        img_folder = "Media", -- default: "assets/imgs"
-      },
-
       ui = {
         checkboxes = {
           -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
@@ -124,6 +129,16 @@ return {
           ["c"] = { char = "󰔑", hl_group = "DiagnosticError" }, -- nf-md-thumb_down
           ["s"] = { char = "󰓎", hl_group = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
           ["/"] = { char = "󰿦", hl_group = "DiagnosticWarn" }, -- in progress, nf-md-texture_box
+        },
+      },
+
+      -- override mappings to remove `<leader>ch` and `<cr>`
+      mappings = {
+        ["gf"] = {
+          action = function()
+            return require("obsidian").util.gf_passthrough()
+          end,
+          opts = { noremap = false, expr = true, buffer = true },
         },
       },
     },
