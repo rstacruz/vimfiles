@@ -23,6 +23,8 @@ end
 
 table.insert(imports, { import = "plugins" })
 
+require("config.colorscheme_overrides").setup()
+
 require("lazy").setup({
   spec = imports,
   defaults = {

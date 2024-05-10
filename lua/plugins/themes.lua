@@ -1,10 +1,4 @@
 return {
-  {
-    "eldritch-theme/eldritch.nvim",
-    lazy = true,
-    event = "VeryLazy",
-  },
-
   { -- monet
     "fynnfluegge/monet.nvim",
     lazy = true,
