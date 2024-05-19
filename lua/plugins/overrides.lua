@@ -193,17 +193,17 @@ return {
     enabled = false,
   },
 
-  { -- Indentscope
-    -- Remove animations
-    "echasnovski/mini.indentscope",
-    enabled = not is_vscode,
-    opts = {
-      draw = {
-        delay = 0, -- default: 100
-        animation = require("mini.indentscope").gen_animation.none(),
-      },
-    },
-  },
+  -- { -- Indentscope
+  --   -- Remove animations
+  --   "echasnovski/mini.indentscope",
+  --   enabled = not is_vscode,
+  --   opts = {
+  --     draw = {
+  --       delay = 0, -- default: 100
+  --       animation = require("mini.indentscope").gen_animation.none(),
+  --     },
+  --   },
+  -- },
 
   { -- Spectre
     -- Opens in insert mode
