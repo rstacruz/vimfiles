@@ -90,7 +90,9 @@ return {
 
         if out.createdAt == nil then
           -- "2405 Page" -> 2024-05-01
-          if string.match(note.id, "^%d%d%d%d ") then
+          local datestamp = os.date("!%Y%m")
+          ---@cast datestamp string
+          if string.match(note.id, "^%d%d%d%d ") and string.sub(note.id, 1, 4) ~= string.sub(datestamp, 3, 9) then
             local year = "20" .. string.sub(note.id, 1, 2)
             local month = string.sub(note.id, 3, 4)
             local ymd = "" .. year .. "-" .. month .. "-01T00:00:00Z"
