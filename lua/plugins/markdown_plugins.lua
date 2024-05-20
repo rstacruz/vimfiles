@@ -66,7 +66,10 @@ return {
 
       wiki_link_func = function(opts)
         -- default: wiki_link_id_prefix (`[[id|title]]`)
-        return require("obsidian.util").wiki_link_alias_only(opts)
+        local link = require("obsidian.util").wiki_link_id_prefix(opts)
+        -- remove suffix (`[[id|title]]` -> `[[id]]`)
+        local output = string.gsub(link, "|[^]]+", "")
+        return output
       end,
 
       note_id_func = function(title)
