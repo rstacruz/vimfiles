@@ -1,3 +1,4 @@
+-- https://github.com/LazyVim/starter/blob/main/lua/config/lazy.lua
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   -- stylua: ignore
@@ -26,24 +27,28 @@ table.insert(imports, { import = "plugins" })
 require("lazy").setup({
   spec = imports,
   defaults = {
+    -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
+    -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
     lazy = false,
-    version = false, -- Don't use git tag versioning (always use latest git)
+    -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
+    -- have outdated releases, which may break your Neovim install.
+    version = false, -- always use the latest git commit
+    -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
   install = { colorscheme = { "tokyonight", "habamax" } },
-  checker = { enabled = false }, -- automatically check for plugin updates
+  checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {
-      -- stylua: ignore
+      -- disable some rtp plugins
       disabled_plugins = {
-        "gzip", "2html_plugin", "bugreport", "compiler", "ftplugin", "getscript", "getscriptPlugin", "gzip", "logipat",
-        "node_provider", "optwin", "perl_provider", "python3_provider", "rplugin", "rrhelper", "ruby_provider",
-        "spellfile_plugin", "synmenu", "syntax", "tar", "tarPlugin", "tarPlugin", "tohtml", "tohtml", "tutor", "tutor",
-        "vimball", "vimballPlugin", "zip", "zipPlugin", "zipPlugin",
+        "gzip",
         -- "matchit",
         -- "matchparen",
         -- "netrwPlugin",
-        -- "netrwFileHandlers",
-        -- "netrwSettings",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
       },
     },
   },
