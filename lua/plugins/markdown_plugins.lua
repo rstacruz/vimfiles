@@ -268,13 +268,13 @@ return {
       "BufNewFile **.md",
     },
     ft = { "markdown", "norg", "rmd", "org" },
-    opts = {
-      norg = {
-        headline_highlights = false,
-      },
-      markdown = {
+    opts = function()
+      local filetype_opts = {
         -- Termux doesn't display the characters well
-        fat_headlines = not is_android,
+        fat_headlines = false, -- not is_android,
+
+        -- disable bullets for now. See https://github.com/lukas-reineke/headlines.nvim/issues/66
+        bullets = {},
 
         headline_highlights = {
           "DiffDelete",
@@ -291,8 +291,15 @@ return {
         -- },
 
         dash_string = "─",
-      },
-    },
+      }
+      return {
+        norg = {
+          headline_highlights = false,
+        },
+        markdown = filetype_opts,
+        rmd = filetype_opts,
+      }
+    end,
     config = function(_, opts)
       -- PERF: schedule to prevent headlines slowing down opening a file
       vim.schedule(function()
