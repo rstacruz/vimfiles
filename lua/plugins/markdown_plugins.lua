@@ -130,8 +130,8 @@ return {
           ["!"] = { char = "󰄱", hl_group = "DiagnosticError" }, -- high priority
           ["x"] = { char = "󰄲", hl_group = "DiagnosticOk" }, -- nf-md-checkbox_marked
           ["y"] = { char = "󰄲", hl_group = "DiagnosticOk" }, -- nf-md-checkbox_marked
-          [">"] = { char = "󰒊", hl_group = "Comment" }, -- nf-md-send
-          ["<"] = { char = "󰃰", hl_group = "Comment" }, -- nf-md-calendar_clock
+          [">"] = { char = "󰒊", hl_group = "DiagnosticInfo" }, -- nf-md-send
+          ["<"] = { char = "󰃰", hl_group = "DiagnosticInfo" }, -- nf-md-calendar_clock
           -- ["<"] = { char = "󰥔", hl_group = "ObsidianRightArrow" }, -- nf-md-calendar_clock
           -- ["<"] = { char = "󰃮", hl_group = "ObsidianRightArrow" }, -- nf-md-calendar_blank
           ["~"] = { char = "󰂭", hl_group = "Comment" },
