@@ -279,7 +279,8 @@ return {
         "shfmt",
         "tailwindcss-language-server",
         -- "vtsls",
-        "typescript-language-server",
+        -- already installed by default using extras:
+        -- "typescript-language-server",
       },
     },
   },
