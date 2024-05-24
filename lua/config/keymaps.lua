@@ -11,19 +11,27 @@ vim.keymap.set("v", "_p", "p")
 
 vim.keymap.set("i", "<a-bs>", "<c-w>", { desc = "Delete word" })
 
-vim.keymap.set("n", "<leader>fy", [[:let @+=@% | echo '→ ' . @%<cr>]], { desc = " Copy current path" })
-vim.keymap.set(
-  "n",
-  "<leader>fYp",
-  [[:let @+=expand('%:p') | echo '→ ' . expand('%:p')<cr>]],
-  { desc = " Copy full path" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>fYt",
-  [[:let @+=expand('%:t') | echo '→ ' . expand('%:t')<cr>]],
-  { desc = " Copy basename" }
-)
+-- vim.keymap.set("n", "<leader>fy", [[:let @+=@% | echo '→ ' . @%<cr>]], { desc = " Copy current path" })
+vim.keymap.set("n", "<leader>fya", function()
+  local str = vim.fn.expand("%:p")
+  vim.fn.setreg('"', str)
+  vim.fn.setreg("+", str)
+  vim.notify("→ " .. str)
+end, { desc = " Copy absolute path" })
+
+vim.keymap.set("n", "<leader>fyb", function()
+  local str = vim.fn.expand("%:t")
+  vim.fn.setreg('"', str)
+  vim.fn.setreg("+", str)
+  vim.notify("→ " .. str)
+end, { desc = " Copy basename" })
+
+vim.keymap.set("n", "<leader>fyw", function()
+  local str = "[[" .. vim.fn.expand("%:t:r") .. "]]"
+  vim.fn.setreg('"', str)
+  vim.fn.setreg("+", str)
+  vim.notify("→ " .. str)
+end, { desc = " Copy wiki markdown link" })
 
 -- Quicker shortcut than 'leader-qq'
 vim.keymap.set("n", "<leader>Q", "<cmd>qa<cr>", { desc = "Quit all" })
