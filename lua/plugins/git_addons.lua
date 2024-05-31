@@ -5,7 +5,7 @@ return {
     event = "BufReadPost",
     opts = {},
     keys = {
-      { "<leader>gxl", "<cmd>GitConflictListQf<cr>", "List git conflicts" },
+      { "<leader>gxl", "<cmd>GitConflictListQf<cr>", desc = "List git conflicts" },
     },
   },
 
@@ -27,7 +27,7 @@ return {
     cmd = { "BlameToggle" },
     opts = {},
     keys = {
-      { "<leader>gb", "<cmd>BlameToggle<cr>", "Blame" },
+      { "<leader>gb", "<cmd>BlameToggle<cr>", desc = "Blame" },
     },
   },
 }
