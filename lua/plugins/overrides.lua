@@ -86,9 +86,6 @@ return {
         "typescript",
         "vim",
         "yaml",
-        -- added:
-        "org",
-        "astro",
       },
       config = function(_, opts)
         require("nvim-treesitter.configs").setup(opts)
