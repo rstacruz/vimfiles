@@ -20,6 +20,7 @@ local imports = {
 
 if vim.g.use_lazy_copilot ~= false then
   table.insert(imports, { import = "lazyvim.plugins.extras.coding.copilot" }) -- https://www.lazyvim.org/plugins/extras/coding.copilot
+  table.insert(imports, { import = "lazyvim.plugins.extras.coding.copilot-chat" }) -- https://www.lazyvim.org/plugins/extras/coding.copilot-chat
 end
 
 table.insert(imports, { import = "plugins" })
