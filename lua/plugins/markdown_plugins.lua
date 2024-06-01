@@ -199,6 +199,13 @@ return {
 
           vim.keymap.set(
             "n",
+            "<c-a>", -- yep, conflicts with a default
+            "<cmd>ObsidianToggleCheckbox<CR>",
+            { buffer = event.buf, desc = "Obsidian: Toggle checkbox" }
+          )
+
+          vim.keymap.set(
+            "n",
             "<leader>mc",
             "<cmd>ObsidianToggleCheckbox<CR>",
             { buffer = event.buf, desc = "Obsidian: Toggle checkbox" }
