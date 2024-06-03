@@ -4,11 +4,30 @@ local Util = require("lazyvim.util")
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+-- Make `23,` go to line 23. Easier to type than `23G`
+vim.keymap.set("n", ",", "G")
+
+-- +y to copy to clipboard
+vim.keymap.set("n", "+", '"+')
+vim.keymap.set("v", "+", '"+')
+
+-- close/destroy
+vim.keymap.set("n", "<Del>", "<cmd>bw!<cr>")
+vim.keymap.set("n", "<bs>", "<cmd>q<cr>")
+
 -- Paste over selection without updating the register
 -- `_p` restores the default behaviour
 vim.keymap.set("v", "p", '"_dP')
 vim.keymap.set("v", "_p", "p")
 
+-- Fold level
+vim.keymap.set("n", "z2", "zMzr")
+vim.keymap.set("n", "z3", "zMzrzr")
+
+-- Easier to hit than z-a, which is a single-finger bigram
+vim.keymap.set("n", "z<space>", "za")
+
+-- Like macOS's opt-delete
 vim.keymap.set("i", "<a-bs>", "<c-w>", { desc = "Delete word" })
 
 -- vim.keymap.set("n", "<leader>fy", [[:let @+=@% | echo '→ ' . @%<cr>]], { desc = " Copy current path" })
@@ -34,21 +53,10 @@ vim.keymap.set("n", "<leader>fyw", function()
 end, { desc = " Copy wiki markdown link" })
 
 -- Quicker shortcut than 'leader-qq'
-vim.keymap.set("n", "<leader>Q", "<cmd>qa<cr>", { desc = "Quit all" })
+vim.keymap.set("n", "<leader><bs>", "<cmd>qa<cr>", { desc = "Quit all" })
 
 -- Show full diagnostic, because virtual text can be too sparse
 vim.keymap.set("n", "<leader>xk", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Show full diagnostic message" })
-
--- Make `23,` go to line 23. Easier to type than `23G`
-vim.keymap.set("n", ",", "G")
-
--- +y to copy to clipboard
-vim.keymap.set("n", "+", '"+')
-vim.keymap.set("v", "+", '"+')
-
--- close/destroy
-vim.keymap.set("n", "<Del>", "<cmd>bw!<cr>")
-vim.keymap.set("n", "<bs>", "<cmd>q<cr>")
 
 -- search-and-replace
 vim.keymap.set("n", "gs", ":%s~~")
