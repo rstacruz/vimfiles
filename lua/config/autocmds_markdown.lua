@@ -22,6 +22,13 @@ M.setup = function()
         { buffer = event.buf, desc = "Markdown: paste link", remap = true }
       )
 
+      vim.keymap.set(
+        "n",
+        "g+",
+        'csb]%a()<Esc><Left>"+p<Right>',
+        { buffer = event.buf, desc = "Markdown: paste link into (...)", remap = true }
+      )
+
       -- https://github.com/epwalsh/obsidian.nvim/issues/286
       vim.opt_local.conceallevel = 2
     end,
