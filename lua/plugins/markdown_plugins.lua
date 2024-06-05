@@ -287,10 +287,15 @@ return {
         bullets = {},
 
         headline_highlights = {
-          "DiffDelete",
           "DiffAdd",
           "Headline",
         },
+
+        -- headline_highlights = {
+        --   "DiffDelete",
+        --   "DiffAdd",
+        --   "Headline",
+        -- },
         -- codeblock_highlight = "DiffChange",
         -- Differentiates it a bit from code block
         -- headline_highlights = {
