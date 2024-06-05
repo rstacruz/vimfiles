@@ -120,10 +120,19 @@ return {
     },
   },
 
-  -- { -- surround: remove
-  --   "echasnovski/mini.surround",
-  --   enabled = false,
-  -- },
+  { -- surround
+    "echasnovski/mini.surround",
+    opts = function(_, opts)
+      opts.custom_surroundings = {
+        -- markdown strong
+        ["s"] = {
+          input = { "%*%*().-()%*%*" },
+          output = { left = "**", right = "**" },
+        },
+      }
+      return opts
+    end,
+  },
 
   { -- lualine: simplify lualine
     "nvim-lualine/lualine.nvim",
