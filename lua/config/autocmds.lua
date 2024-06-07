@@ -57,6 +57,14 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("custom_gitcommit", { clear = true }),
+  pattern = { "gitcommit" },
+  callback = function()
+    vim.cmd([[startinsert]])
+  end,
+})
+
 vim.api.nvim_create_autocmd("TermOpen", {
   pattern = "*",
   group = vim.api.nvim_create_augroup("custom_terminal", { clear = true }),
