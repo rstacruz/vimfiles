@@ -29,6 +29,8 @@ M.setup = function()
         { buffer = event.buf, desc = "Markdown: paste link into (...)", remap = true }
       )
 
+      vim.keymap.set("n", "<leader>mC", "<cmd>%s/x]/ ]<cr>", { buffer = event.buf, desc = "Markdown: uncheck all" })
+
       -- https://github.com/epwalsh/obsidian.nvim/issues/286
       vim.opt_local.conceallevel = 2
     end,
