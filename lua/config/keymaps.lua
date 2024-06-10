@@ -12,20 +12,20 @@ vim.keymap.set("n", "+", '"+')
 vim.keymap.set("v", "+", '"+')
 
 -- close/destroy
-vim.keymap.set("n", "<Del>", "<cmd>bw!<cr>")
-vim.keymap.set("n", "<bs>", "<cmd>q<cr>")
+vim.keymap.set("n", "<Del>", "<cmd>bw!<cr>", { desc = "Destroy buffer" })
+vim.keymap.set("n", "<bs>", "<cmd>q<cr>", { desc = "Close window" })
 
 -- Paste over selection without updating the register
 -- `_p` restores the default behaviour
-vim.keymap.set("v", "p", '"_dP')
-vim.keymap.set("v", "_p", "p")
+vim.keymap.set("v", "p", '"_dP', { desc = "Paste without re-yanking" })
+vim.keymap.set("v", "_p", "p", { desc = "Paste with yanking" })
 
 -- Fold level
-vim.keymap.set("n", "z2", "zMzr")
-vim.keymap.set("n", "z3", "zMzrzr")
+vim.keymap.set("n", "z2", "zMzr", { desc = "Fold level 2" })
+vim.keymap.set("n", "z3", "zMzrzr", { desc = "Fold level 3" })
 
 -- Easier to hit than z-a, which is a single-finger bigram
-vim.keymap.set("n", "z<space>", "za")
+vim.keymap.set("n", "z<space>", "za", { desc = "Toggle fold under cursor (za)" })
 
 -- Like macOS's opt-delete
 vim.keymap.set("i", "<a-bs>", "<c-w>", { desc = "Delete word" })
