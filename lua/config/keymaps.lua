@@ -5,7 +5,8 @@ local Util = require("lazyvim.util")
 -- Add any additional keymaps here
 
 -- Make `23,` go to line 23. Easier to type than `23G`
-vim.keymap.set("n", ",", "G")
+vim.keymap.set("n", ",", "G", { desc = "Go to line" })
+vim.keymap.set("v", ",", "G", { desc = "Go to line" })
 
 -- +y to copy to clipboard
 vim.keymap.set("n", "+", '"+')
