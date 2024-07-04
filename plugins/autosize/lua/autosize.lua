@@ -19,12 +19,23 @@ local settings = {
 }
 
 local function run_autosize()
-  if not vim.tbl_contains(settings.excluded_filetypes, vim.bo.filetype) and settings.min_width ~= -1 then
-    local before = vim.o.winwidth
-    vim.o.winwidth = settings.min_width
-    vim.o.winwidth = before
-    vim.w.autosize_used = 1
+  if settings.min_width == -1 then
+    return
   end
+
+  -- don't run on vimdiff
+  if vim.api.nvim_get_option_value("diff", { scope = "local" }) then
+    return
+  end
+
+  if vim.tbl_contains(settings.excluded_filetypes, vim.bo.filetype) then
+    return
+  end
+
+  local before = vim.o.winwidth
+  vim.o.winwidth = settings.min_width
+  vim.o.winwidth = before
+  vim.w.autosize_used = 1
 end
 
 local function setup(opts)

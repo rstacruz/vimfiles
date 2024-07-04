@@ -46,14 +46,14 @@ return {
     },
     keys = {
       {
-        "glo", -- g [lo]g
+        "glm", -- g [l]g [m]essage
         function()
           require("chainsaw").messageLog()
         end,
         desc = "Log: custom message",
       },
       {
-        "gla", -- g [l]og [a]rgs
+        "glv", -- g [l]og [v]ar
         function()
           require("chainsaw").variableLog()
         end,
@@ -71,7 +71,7 @@ return {
         function()
           require("chainsaw").objectLog()
         end,
-        desc = "Log: object log",
+        desc = "Log: JSON.stringify log",
       },
       {
         "glx",

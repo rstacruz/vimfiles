@@ -5,6 +5,7 @@ vim.opt.swapfile = false -- Don't write swap files
 vim.opt.gdefault = true -- Searches will be global by default
 vim.opt.fillchars = "eob: " -- No ~ at end of buffer
 vim.opt.relativenumber = false
+vim.opt.laststatus = 3
 
 vim.opt.formatoptions:remove({ "r", "o" })
 -- default: jcroqlnt
