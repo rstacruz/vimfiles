@@ -1,6 +1,29 @@
 local uname = vim.loop.os_uname()
 local is_android = uname.machine == "aarch64"
 
+local home = os.getenv("HOME")
+
+local function filter(array, criteriaFunc)
+    local result = {}
+    for _, value in ipairs(array) do
+        if criteriaFunc(value) then
+            table.insert(result, value)
+        end
+    end
+    return result
+end
+
+local workspaces = filter(
+  {
+    { path = home .. "/Documents/Vaults/Notes", name = "Notes" },
+    { path = home .. "/Documents/Vaults/Worknotes", name = "Work" },
+    { path = home .. "/Documents/Vaults/Extranotes", name = "Extras" },
+  },
+  function(entry)
+    return vim.fn.isdirectory(entry.path) == 1
+  end
+)
+
 return {
   { -- markdown image
     -- PasteImg
@@ -48,12 +71,7 @@ return {
       "ObsidianWorkspace",
     },
     opts = {
-      workspaces = {
-        {
-          name = "personal",
-          path = vim.g.obsidian_vault_dir,
-        },
-      },
+      workspaces = workspaces,
 
       notes_subdir = "Pages",
 
