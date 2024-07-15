@@ -28,10 +28,17 @@ local function run_autosize()
     return
   end
 
+  -- if vim.api.nvim_get_option_value("buftype", { scope = "local" }) == "terminal" then
+  --   return
+  -- end
+
   if vim.tbl_contains(settings.excluded_filetypes, vim.bo.filetype) then
     return
   end
 
+  if vim.tbl_contains(settings.excluded_filetypes, vim.bo.filetype) then
+    return
+  end
   local before = vim.o.winwidth
   vim.o.winwidth = settings.min_width
   vim.o.winwidth = before
