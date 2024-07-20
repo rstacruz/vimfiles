@@ -1,25 +1,17 @@
-local uname = vim.loop.os_uname()
-local is_android = uname.machine == "aarch64"
-
 local home = os.getenv("HOME")
 
-local function filter(array, criteriaFunc)
-  local result = {}
-  for _, value in ipairs(array) do
-    if criteriaFunc(value) then
-      table.insert(result, value)
-    end
-  end
-  return result
-end
+local workspaces = {}
 
-local workspaces = filter({
-  { path = home .. "/Documents/Vaults/Notes", name = "Notes" },
-  { path = home .. "/Documents/Vaults/Worknotes", name = "Work" },
-  { path = home .. "/Documents/Vaults/Extranotes", name = "Extras" },
-}, function(entry)
-  return vim.fn.isdirectory(entry.path) == 1
-end)
+local vaults_dir = home .. "/Documents/Vaults/*"
+
+local items = vim.fn.glob(vaults_dir, false, 1)
+
+for _, filepath in ipairs(items) do
+  if vim.fn.isdirectory(filepath) == 1 then
+    local name = vim.fn.fnamemodify(filepath, ":t")
+    table.insert(workspaces, { path = filepath, name = name })
+  end
+end
 
 return {
   {
