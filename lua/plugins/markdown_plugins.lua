@@ -4,27 +4,64 @@ local is_android = uname.machine == "aarch64"
 local home = os.getenv("HOME")
 
 local function filter(array, criteriaFunc)
-    local result = {}
-    for _, value in ipairs(array) do
-        if criteriaFunc(value) then
-            table.insert(result, value)
-        end
+  local result = {}
+  for _, value in ipairs(array) do
+    if criteriaFunc(value) then
+      table.insert(result, value)
     end
-    return result
+  end
+  return result
 end
 
-local workspaces = filter(
-  {
-    { path = home .. "/Documents/Vaults/Notes", name = "Notes" },
-    { path = home .. "/Documents/Vaults/Worknotes", name = "Work" },
-    { path = home .. "/Documents/Vaults/Extranotes", name = "Extras" },
-  },
-  function(entry)
-    return vim.fn.isdirectory(entry.path) == 1
-  end
-)
+local workspaces = filter({
+  { path = home .. "/Documents/Vaults/Notes", name = "Notes" },
+  { path = home .. "/Documents/Vaults/Worknotes", name = "Work" },
+  { path = home .. "/Documents/Vaults/Extranotes", name = "Extras" },
+}, function(entry)
+  return vim.fn.isdirectory(entry.path) == 1
+end)
 
 return {
+  {
+    "MeanderingProgrammer/markdown.nvim",
+    lazy = true,
+    event = {
+      "BufReadPre **.md",
+      "BufNewFile **.md",
+    },
+    ft = { "markdown", "norg", "rmd", "org" },
+    opts = {
+      bullet = {
+        enabled = true,
+        -- default: { '●', '○', '◆', '◇' },
+        icons = { "─", "·", "·", "·" },
+        -- highlight = 'RenderMarkdownBullet',
+        highlight = "DiagnosticInfo", -- 'RenderMarkdownBullet',
+      },
+      checkbox = {
+        custom = {
+          wait = { raw = "[-]", rendered = "󰥔", highlight = "RenderMarkdownTodo" },
+          prio = { raw = "[!]", rendered = "󰄱", highlight = "DiagnosticError" }, -- high priority
+          done = { raw = "[x]", rendered = "󰄲", highlight = "DiagnosticOk" }, -- nf-md-checkbox_marked
+          yes = { raw = "[y]", rendered = "󰄲", highlight = "DiagnosticOk" }, -- nf-md-checkbox_marked
+          later = { raw = "[>]", rendered = "󰒊", highlight = "DiagnosticInfo" }, -- nf-md-send
+          sched = { raw = "[<]", rendered = "󰃰", highlight = "DiagnosticInfo" }, -- nf-md-calendar_clock
+          cancl = { raw = "[~]", rendered = "󰂭", highlight = "Comment" },
+          info = { raw = "[i]", rendered = "󰋼", highlight = "DiagnosticInfo" }, -- nf-md-information
+          idea = { raw = "[I]", rendered = "󰌵", highlight = "DiagnosticWarn" }, -- nf-md-lightbulb
+          pro = { raw = "[p]", rendered = "󰔓", highlight = "DiagnosticOk" }, -- nf-md-thumb_up
+          con = { raw = "[c]", rendered = "󰔑", highlight = "DiagnosticError" }, -- nf-md-thumb_down
+          star = { raw = "[s]", rendered = "󰓎", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
+          star2 = { raw = "[*]", rendered = "󰓎", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
+          half = { raw = "[/]", rendered = "󰿦", highlight = "DiagnosticWarn" }, -- in progress, nf-md-texture_box
+        },
+      },
+    },
+    config = function(_, opts)
+      require("render-markdown").setup(opts)
+    end,
+  },
+
   { -- obsidian
     -- :ObsidianOpen - open in obsidian app
     -- :ObsidianBacklinks
@@ -118,28 +155,10 @@ return {
       end,
 
       ui = {
-        checkboxes = {
-          -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
-          -- Inspired by https://minimal.guide/checklists
-          -- ObsidianRightArrow = orange
-          -- ObsidianTilde = red
-          [" "] = { char = "󰄱", hl_group = "Comment" },
-          ["!"] = { char = "󰄱", hl_group = "DiagnosticError" }, -- high priority
-          ["x"] = { char = "󰄲", hl_group = "DiagnosticOk" }, -- nf-md-checkbox_marked
-          ["y"] = { char = "󰄲", hl_group = "DiagnosticOk" }, -- nf-md-checkbox_marked
-          [">"] = { char = "󰒊", hl_group = "DiagnosticInfo" }, -- nf-md-send
-          ["<"] = { char = "󰃰", hl_group = "DiagnosticInfo" }, -- nf-md-calendar_clock
-          -- ["<"] = { char = "󰥔", hl_group = "ObsidianRightArrow" }, -- nf-md-calendar_clock
-          -- ["<"] = { char = "󰃮", hl_group = "ObsidianRightArrow" }, -- nf-md-calendar_blank
-          ["~"] = { char = "󰂭", hl_group = "Comment" },
-          ["i"] = { char = "󰋼", hl_group = "DiagnosticInfo" }, -- nf-md-information
-          -- ["I"] = { char = "󰛨", hl_group = "DiagnosticWarn" }, -- nf-md-lightbulb_on
-          ["I"] = { char = "󰌵", hl_group = "DiagnosticWarn" }, -- nf-md-lightbulb
-          ["p"] = { char = "󰔓", hl_group = "DiagnosticOk" }, -- nf-md-thumb_up
-          ["c"] = { char = "󰔑", hl_group = "DiagnosticError" }, -- nf-md-thumb_down
-          ["s"] = { char = "󰓎", hl_group = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
-          ["/"] = { char = "󰿦", hl_group = "DiagnosticWarn" }, -- in progress, nf-md-texture_box
-        },
+        -- use markdown.nvim instead for these
+        checkboxes = {},
+        bullets = {},
+        external_link_icon = {},
       },
 
       -- override mappings to remove `<leader>ch` and `<cr>`
@@ -262,62 +281,6 @@ return {
           )
         end,
       })
-    end,
-  },
-
-  { -- headlines
-    -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/lang/markdown.lua#L65
-    "lukas-reineke/headlines.nvim",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    lazy = true,
-    event = {
-      "BufReadPre **.md",
-      "BufNewFile **.md",
-    },
-    ft = { "markdown", "norg", "rmd", "org" },
-    opts = function()
-      local filetype_opts = {
-        -- Termux doesn't display the characters well
-        fat_headlines = false, -- not is_android,
-
-        -- disable bullets for now. See https://github.com/lukas-reineke/headlines.nvim/issues/66
-        bullets = {},
-
-        headline_highlights = {
-          "DiffAdd",
-          "Headline",
-        },
-
-        -- headline_highlights = {
-        --   "DiffDelete",
-        --   "DiffAdd",
-        --   "Headline",
-        -- },
-        -- codeblock_highlight = "DiffChange",
-        -- Differentiates it a bit from code block
-        -- headline_highlights = {
-        --   "DiagnosticVirtualTextError",
-        --   "DiagnosticVirtualTextInfo",
-        --   "DiagnosticVirtualTextWarn",
-        --   "CursorLine",
-        -- },
-
-        dash_string = "─",
-      }
-      return {
-        norg = {
-          headline_highlights = false,
-        },
-        markdown = filetype_opts,
-        rmd = filetype_opts,
-      }
-    end,
-    config = function(_, opts)
-      -- PERF: schedule to prevent headlines slowing down opening a file
-      vim.schedule(function()
-        require("headlines").setup(opts)
-        require("headlines").refresh()
-      end)
     end,
   },
 }
