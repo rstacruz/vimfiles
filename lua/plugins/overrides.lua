@@ -246,6 +246,7 @@ return {
         "shellcheck",
         "shfmt",
         "tailwindcss-language-server",
+        "bash-language-server",
         -- "vtsls",
         -- already installed by default using extras:
         -- "typescript-language-server",
