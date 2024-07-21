@@ -1,16 +1,17 @@
-local home = os.getenv("HOME")
+function get_obsidian_workspaces()
+  local workspaces = {}
+  local home = os.getenv("HOME")
+  local vaults_dir = home .. "/Documents/Vaults/*"
+  local items = vim.fn.glob(vaults_dir, false, 1)
 
-local workspaces = {}
-
-local vaults_dir = home .. "/Documents/Vaults/*"
-
-local items = vim.fn.glob(vaults_dir, false, 1)
-
-for _, filepath in ipairs(items) do
-  if vim.fn.isdirectory(filepath) == 1 then
-    local name = vim.fn.fnamemodify(filepath, ":t")
-    table.insert(workspaces, { path = filepath, name = name })
+  for _, filepath in ipairs(items) do
+    if vim.fn.isdirectory(filepath) == 1 then
+      local name = vim.fn.fnamemodify(filepath, ":t")
+      table.insert(workspaces, { path = filepath, name = name })
+    end
   end
+
+  return workspaces
 end
 
 return {
@@ -22,33 +23,35 @@ return {
       "BufNewFile **.md",
     },
     ft = { "markdown", "norg", "rmd", "org" },
-    opts = {
-      bullet = {
-        enabled = true,
-        -- default: { '●', '○', '◆', '◇' },
-        icons = { "─", "·", "·", "·" },
-        -- highlight = 'RenderMarkdownBullet',
-        highlight = "DiagnosticInfo", -- 'RenderMarkdownBullet',
-      },
-      checkbox = {
-        custom = {
-          wait = { raw = "[-]", rendered = "󰥔", highlight = "RenderMarkdownTodo" },
-          prio = { raw = "[!]", rendered = "󰄱", highlight = "DiagnosticError" }, -- high priority
-          done = { raw = "[x]", rendered = "󰄲", highlight = "DiagnosticOk" }, -- nf-md-checkbox_marked
-          yes = { raw = "[y]", rendered = "󰄲", highlight = "DiagnosticOk" }, -- nf-md-checkbox_marked
-          later = { raw = "[>]", rendered = "󰒊", highlight = "DiagnosticInfo" }, -- nf-md-send
-          sched = { raw = "[<]", rendered = "󰃰", highlight = "DiagnosticInfo" }, -- nf-md-calendar_clock
-          cancl = { raw = "[~]", rendered = "󰂭", highlight = "Comment" },
-          info = { raw = "[i]", rendered = "󰋼", highlight = "DiagnosticInfo" }, -- nf-md-information
-          idea = { raw = "[I]", rendered = "󰌵", highlight = "DiagnosticWarn" }, -- nf-md-lightbulb
-          pro = { raw = "[p]", rendered = "󰔓", highlight = "DiagnosticOk" }, -- nf-md-thumb_up
-          con = { raw = "[c]", rendered = "󰔑", highlight = "DiagnosticError" }, -- nf-md-thumb_down
-          star = { raw = "[s]", rendered = "󰓎", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
-          star2 = { raw = "[*]", rendered = "󰓎", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
-          half = { raw = "[/]", rendered = "󰿦", highlight = "DiagnosticWarn" }, -- in progress, nf-md-texture_box
+    opts = function()
+      return {
+        bullet = {
+          enabled = true,
+          -- default: { '●', '○', '◆', '◇' },
+          icons = { "─", "·", "·", "·" },
+          -- highlight = 'RenderMarkdownBullet',
+          highlight = "DiagnosticInfo", -- 'RenderMarkdownBullet',
         },
-      },
-    },
+        checkbox = {
+          custom = {
+            wait = { raw = "[-]", rendered = "󰥔", highlight = "RenderMarkdownTodo" },
+            prio = { raw = "[!]", rendered = "󰄱", highlight = "DiagnosticError" }, -- high priority
+            done = { raw = "[x]", rendered = "󰄲", highlight = "DiagnosticOk" }, -- nf-md-checkbox_marked
+            yes = { raw = "[y]", rendered = "󰄲", highlight = "DiagnosticOk" }, -- nf-md-checkbox_marked
+            later = { raw = "[>]", rendered = "󰒊", highlight = "DiagnosticInfo" }, -- nf-md-send
+            sched = { raw = "[<]", rendered = "󰃰", highlight = "DiagnosticInfo" }, -- nf-md-calendar_clock
+            cancl = { raw = "[~]", rendered = "󰂭", highlight = "Comment" },
+            info = { raw = "[i]", rendered = "󰋼", highlight = "DiagnosticInfo" }, -- nf-md-information
+            idea = { raw = "[I]", rendered = "󰌵", highlight = "DiagnosticWarn" }, -- nf-md-lightbulb
+            pro = { raw = "[p]", rendered = "󰔓", highlight = "DiagnosticOk" }, -- nf-md-thumb_up
+            con = { raw = "[c]", rendered = "󰔑", highlight = "DiagnosticError" }, -- nf-md-thumb_down
+            star = { raw = "[s]", rendered = "󰓎", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
+            star2 = { raw = "[*]", rendered = "󰓎", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
+            half = { raw = "[/]", rendered = "󰿦", highlight = "DiagnosticWarn" }, -- in progress, nf-md-texture_box
+          },
+        },
+      }
+    end,
     config = function(_, opts)
       require("render-markdown").setup(opts)
     end,
@@ -63,12 +66,6 @@ return {
     "epwalsh/obsidian.nvim",
     lazy = true,
     ft = "markdown",
-    -- event = vim.g.obsidian_vault_dir and {
-    --   -- "BufReadPre " .. vim.fn.expand(vim.g.obsidian_vault_dir) .. "/**.md",
-    --   -- "BufNewFile " .. vim.fn.expand(vim.g.obsidian_vault_dir) .. "/**.md",
-    --   "BufReadPre **.md",
-    --   "BufNewFile **.md",
-    -- },
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
@@ -79,7 +76,7 @@ return {
       "ObsidianWorkspace",
     },
     opts = {
-      workspaces = workspaces,
+      workspaces = get_obsidian_workspaces(),
 
       notes_subdir = "Pages",
 
