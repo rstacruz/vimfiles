@@ -88,6 +88,18 @@ return {
       "ObsidianNewFromTemplate",
       "ObsidianWorkspace",
     },
+    keys = {
+      {
+        "<leader>mw",
+        "<cmd>ObsidianWorkspace<cr>",
+        desc = "Obsidian: open workspace...",
+      },
+      {
+        "<leader>mn",
+        "<cmd>ObsidianNew<cr>",
+        desc = "Obsidian: create new file...",
+      },
+    },
     opts = {
       workspaces = get_obsidian_workspaces(),
 
