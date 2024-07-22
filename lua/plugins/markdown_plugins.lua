@@ -7,7 +7,18 @@ local function get_obsidian_workspaces()
   for _, filepath in ipairs(items) do
     if vim.fn.isdirectory(filepath) == 1 then
       local name = vim.fn.fnamemodify(filepath, ":t")
-      table.insert(workspaces, { path = filepath, name = name })
+      local item = { path = filepath, name = name }
+
+      -- Load overrides file if it exists
+      local overrides_file = filepath .. "/.obsidian-nvim-overrides.lua"
+      if vim.uv.fs_stat(overrides_file) then
+        local oldpath = package.path
+        package.path = filepath .. "/.?.lua;" .. oldpath
+        item.overrides = require("obsidian-nvim-overrides")
+        package.path = oldpath
+      end
+
+      table.insert(workspaces, item)
     end
   end
 
@@ -73,6 +84,8 @@ return {
       "ObsidianToday",
       "ObsidianTomorrow",
       "ObsidianSearch",
+      "ObsidianNew",
+      "ObsidianNewFromTemplate",
       "ObsidianWorkspace",
     },
     opts = {
@@ -93,15 +106,6 @@ return {
         -- remove suffix (`[[id|title]]` -> `[[id]]`)
         local output = string.gsub(link, "|[^]]+", "")
         return output
-      end,
-
-      note_id_func = function(title)
-        -- Default behaviour: return something like "124351678905-XYZX"
-        if title then
-          return title
-        end
-
-        return "Untitled-" .. tostring(os.time())
       end,
 
       note_frontmatter_func = function(note)
@@ -137,12 +141,16 @@ return {
           out.tags = note.tags
         end
 
-        -- like "CSS (index)" and "@CSS"
-        if string.match(note.id, "(index)") or string.match(note.id, "@") then
-          out["BC-link-note"] = "down"
+        return out
+      end,
+
+      note_id_func = function(title)
+        -- Default behaviour: return something like "124351678905-XYZX"
+        if title then
+          return title
         end
 
-        return out
+        return "Untitled-" .. tostring(os.time())
       end,
 
       templates = {
