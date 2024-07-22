@@ -1,4 +1,4 @@
-function get_obsidian_workspaces()
+local function get_obsidian_workspaces()
   local workspaces = {}
   local home = os.getenv("HOME")
   local vaults_dir = home .. "/Documents/Vaults/*"
@@ -105,7 +105,6 @@ return {
       end,
 
       note_frontmatter_func = function(note)
-        -- Add createdAt: in the frontmatter
         local out = {}
 
         if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
@@ -114,6 +113,7 @@ return {
           end
         end
 
+        -- Add createdAt: in the frontmatter
         if out.createdAt == nil then
           -- "2405 Page" -> 2024-05-01
           local datestamp = os.date("!%Y%m")
@@ -137,11 +137,17 @@ return {
           out.tags = note.tags
         end
 
-        if string.match(note.id, "(index)") then
+        -- like "CSS (index)" and "@CSS"
+        if string.match(note.id, "(index)") or string.match(note.id, "@") then
           out["BC-link-note"] = "down"
         end
+
         return out
       end,
+
+      templates = {
+        folder = "Templates",
+      },
 
       ui = {
         -- use markdown.nvim instead for these
@@ -250,6 +256,12 @@ return {
           --   "<cmd>ObsidianQuickSwitch<CR>",
           --   { buffer = event.buf, desc = "Obsidian: Open..." }
           -- )
+          vim.keymap.set(
+            "n",
+            "<leader>mt",
+            "<cmd>ObsidianTemplate<CR>",
+            { buffer = event.buf, desc = "Obsidian: Template..." }
+          )
           vim.keymap.set(
             "n",
             "<leader>ms",
