@@ -106,7 +106,7 @@ return {
       notes_subdir = "Pages",
 
       -- options: current_dir (default), notes_subdir
-      new_notes_location = "notes_subdir",
+      new_notes_location = "current_dir",
 
       attachments = {
         img_folder = "Media", -- default: "assets/imgs"
