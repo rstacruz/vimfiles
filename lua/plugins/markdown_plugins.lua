@@ -9,6 +9,18 @@ return {
     ft = { "markdown", "norg", "rmd", "org" },
     opts = function()
       return {
+        heading = {
+          -- default:
+          -- signs = { "󰫎 " },
+          -- icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
+
+          icons = { "━ " },
+          signs = { "₁", "₂", "₃", "₄", "󰲩", "󰲫" },
+          -- signs = { "Ⅰ", "Ⅱ", "Ⅲ", "Ⅳ", "󰲩", "󰲫" },
+          -- signs = { "∙", "∶", "∴", "∷", "󰲩", "󰲫" },
+          -- signs = { "━ " },
+        },
+
         bullet = {
           enabled = true,
           icons = { "─", "·", "·", "·" }, -- default: { '●', '○', '◆', '◇' },
