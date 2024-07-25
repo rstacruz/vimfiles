@@ -26,6 +26,7 @@ return {
         -- more:
         "mermaid",
         "sql",
+        "kdl",
       },
       config = function(_, opts)
         require("nvim-treesitter.configs").setup(opts)
