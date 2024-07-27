@@ -28,7 +28,7 @@ return {
         code = {
           sign = false,
           width = "block",
-          right_pad = 1,
+          right_pad = 2,
         },
 
         bullet = {
