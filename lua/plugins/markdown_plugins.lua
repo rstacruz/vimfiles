@@ -13,12 +13,22 @@ return {
           -- default:
           -- signs = { "󰫎 " },
           -- icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
-
           icons = { "━ " },
-          signs = { "₁", "₂", "₃", "₄", "󰲩", "󰲫" },
+          signs = { "󰎤 ", "󰎩 ", "󰎬 ", "󰎮 ", "󰎰 ", "󰎵 " },
+
+          -- signs = { "󰎦 ", "󰎩 ", "󰎬 ", "󰎮 ", "󰎰 ", "󰎵 " }, -- nf-md-numeric_0_box_outline
+          -- signs = { "󰎤 ", "󰎧 ", "󰎪 ", "󰎭 ", "󰎱 ", "󰎳 " }, -- nf-md-numeric_0_box
+          -- icons = { "󰎤 ", "󰎧 ", "󰎪 ", "󰎭 ", "󰎱 ", "󰎳 " }, -- nf-md-numeric_0_box
           -- signs = { "Ⅰ", "Ⅱ", "Ⅲ", "Ⅳ", "󰲩", "󰲫" },
           -- signs = { "∙", "∶", "∴", "∷", "󰲩", "󰲫" },
           -- signs = { "━ " },
+          -- sign = false,
+        },
+
+        code = {
+          sign = false,
+          width = "block",
+          right_pad = 1,
         },
 
         bullet = {
@@ -35,7 +45,7 @@ return {
             yes = { raw = "[y]", rendered = "󰄲", highlight = "DiagnosticOk" }, -- nf-md-checkbox_marked
             later = { raw = "[>]", rendered = "󰒊", highlight = "DiagnosticInfo" }, -- nf-md-send
             sched = { raw = "[<]", rendered = "󰃰", highlight = "DiagnosticInfo" }, -- nf-md-calendar_clock
-            cancl = { raw = "[~]", rendered = "󰂭", highlight = "Comment" },
+            cancel = { raw = "[~]", rendered = "󰂭", highlight = "Comment" },
             info = { raw = "[i]", rendered = "󰋼", highlight = "DiagnosticInfo" }, -- nf-md-information
             idea = { raw = "[I]", rendered = "󰌵", highlight = "DiagnosticWarn" }, -- nf-md-lightbulb
             pro = { raw = "[p]", rendered = "󰔓", highlight = "DiagnosticOk" }, -- nf-md-thumb_up
