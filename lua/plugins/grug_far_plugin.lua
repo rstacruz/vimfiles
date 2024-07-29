@@ -17,7 +17,7 @@ return {
           local word = vim.fn.expand("<cword>")
           -- https://github.com/MagicDuck/grug-far.nvim/blob/main/lua/grug-far/opts.lua
           grug.grug_far({
-            prefills = { search = word },
+            prefills = { search = word, flags = "-i" },
             placeholders = { enabled = false },
           })
         end,
@@ -28,6 +28,7 @@ return {
         function()
           local grug = require("grug-far")
           grug.grug_far({
+            prefills = { flags = "-i" },
             placeholders = { enabled = false },
           })
         end,
