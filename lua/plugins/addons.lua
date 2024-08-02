@@ -239,11 +239,4 @@ return {
       require("lsp_lines").setup()
     end,
   },
-
-  { -- fugitive: Git blame and open in GitHub
-    "tpope/vim-fugitive",
-    lazy = true,
-    cmd = "Git",
-    keys = {},
-  },
 }
