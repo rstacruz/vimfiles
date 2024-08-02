@@ -1,3 +1,5 @@
+local is_termux = string.find(vim.loop.os_uname().release, "android")
+
 return {
   {
     "MeanderingProgrammer/markdown.nvim",
@@ -74,6 +76,7 @@ return {
 
   {
     "iamcco/markdown-preview.nvim",
+    enabled = not is_termux,
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
     build = "cd app && yarn install",
