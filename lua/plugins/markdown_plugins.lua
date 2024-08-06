@@ -11,6 +11,7 @@ return {
     ft = { "markdown", "norg", "rmd", "org" },
     opts = function()
       return {
+        render_modes = { "n", "v", "i", "c" },
         heading = {
           -- default:
           -- signs = { "󰫎 " },
