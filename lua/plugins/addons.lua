@@ -239,4 +239,12 @@ return {
       require("lsp_lines").setup()
     end,
   },
+
+  {
+    "echasnovski/mini.misc",
+    lazy = false,
+    config = function()
+      require("mini.misc").setup_termbg_sync()
+    end,
+  },
 }

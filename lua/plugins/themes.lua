@@ -5,6 +5,12 @@ return {
     event = "VeryLazy",
   },
 
+  { -- lackluster (greyscale)
+    "slugbyte/lackluster.nvim",
+    lazy = true,
+    event = "VeryLazy",
+  },
+
   { -- melange
     "savq/melange-nvim",
     lazy = true,
