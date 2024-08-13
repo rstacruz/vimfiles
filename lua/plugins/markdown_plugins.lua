@@ -31,7 +31,9 @@ return {
         code = {
           sign = false,
           width = "block",
-          right_pad = 2,
+          position = "right",
+          right_pad = 15,
+          left_pad = 2,
         },
 
         bullet = {
