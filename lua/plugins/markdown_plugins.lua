@@ -34,6 +34,7 @@ return {
           position = "right",
           right_pad = 15,
           left_pad = 2,
+          border = "thick",
         },
 
         bullet = {
@@ -78,7 +79,15 @@ return {
 
           custom = {
             -- web = { pattern = "^http[s]?://", icon = "󰖟 ", highlight = "RenderMarkdownLink" },
+            jira = { pattern = "^http[s]?://%a+.atlassian.net", icon = "󰌃 ", highlight = "RenderMarkdownLink" },
             github = { pattern = "^http[s]?://github.com", icon = "󰊤 ", highlight = "RenderMarkdownLink" }, -- nf-md-github + ctrl-k 1M
+            trello = { pattern = "^http[s]?://trello.com", icon = "󰔲 ", highlight = "RenderMarkdownLink" },
+            -- miro = { pattern = "^http[s]?://miro.com", icon = "󰃥 ", highlight = "RenderMarkdownLink" },
+            -- googledrive = {
+            --   pattern = "^http[s]?://drive.google.com",
+            --   icon = "󰊶 ",
+            --   highlight = "RenderMarkdownLink",
+            -- },
             web = { pattern = "^http[s]?://", icon = "󰏌 ", highlight = "RenderMarkdownLink" }, -- nf-md-open_in_new + ctrl-k 1M
           },
         },
@@ -98,7 +107,7 @@ return {
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
-    config = function(_, opts)
+    config = function() -- (_, opts)
       -- require("markdown-preview").setup(opts)
 
       vim.api.nvim_create_autocmd("FileType", {
