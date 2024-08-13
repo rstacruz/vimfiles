@@ -17,6 +17,11 @@ function myFunction() {
 }
 ```
 
+## Links
+
+- [GitHub](https://github.com)
+- [Example.com](https://example.com)
+
 ## Admonition
 
 > [!NOTE]
