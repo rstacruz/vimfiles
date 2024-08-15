@@ -18,7 +18,7 @@ return {
           -- https://github.com/MagicDuck/grug-far.nvim/blob/main/lua/grug-far/opts.lua
           grug.grug_far({
             engines = {
-              prefills = { search = word, flags = "-i" },
+              prefills = { search = word, flags = "-S" },
               ripgrep = {
                 placeholders = { enabled = false },
               },
@@ -32,7 +32,7 @@ return {
         function()
           local grug = require("grug-far")
           grug.grug_far({
-            prefills = { flags = "-i" },
+            prefills = { flags = "-S" },
             engines = {
               ripgrep = {
                 placeholders = { enabled = false },
