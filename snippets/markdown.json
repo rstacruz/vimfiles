@@ -9,6 +9,21 @@
     "prefix": "bash",
     "body": ["```bash", "$0", "```"]
   },
+  "JSON code block": {
+    "scope": "markdown",
+    "prefix": "json",
+    "body": ["```json", "$0", "```"]
+  },
+  "Yaml code block": {
+    "scope": "markdown",
+    "prefix": "yaml",
+    "body": ["```yaml", "$0", "```"]
+  },
+  "Mermaid code block": {
+    "scope": "markdown",
+    "prefix": "mermaid",
+    "body": ["```mermaid", "$0", "```"]
+  },
   "Generic code block": {
     "scope": "markdown",
     "prefix": "cb",

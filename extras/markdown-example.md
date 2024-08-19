@@ -20,7 +20,8 @@ function myFunction() {
 ## Links
 
 - [GitHub](https://github.com)
-- [Jira](https://example.atlassian.net)
+- [Jira](https://example.atlassian.net/browse/1234)
+- [Confluence](https://example.atlassian.net/wiki/1234)
 - [Trello](https://trello.com/about)
 - [Example.com](https://example.com)
 
