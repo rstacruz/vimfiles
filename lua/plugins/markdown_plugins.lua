@@ -32,7 +32,7 @@ return {
           sign = false,
           width = "block",
           position = "right",
-          right_pad = 15,
+          right_pad = 5,
           left_pad = 2,
           border = "thick",
         },
