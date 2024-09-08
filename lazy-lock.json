@@ -48,7 +48,7 @@
   "mini.misc": { "branch": "main", "commit": "c599700d2150d43547eb8d94b8488173c777acce" },
   "mini.surround": { "branch": "main", "commit": "0e67c4bc147f2a15cee94e7c94dcc0e115b9f55e" },
   "monet.nvim": { "branch": "main", "commit": "af6c8fb9faaae2fa7aa16dd83b1b425c2b372891" },
-  "neo-tree.nvim": { "branch": "v2.x", "commit": "80dc74d081823649809f78370fa5b204aa9a853a" },
+  "neo-tree.nvim": { "branch": "main", "commit": "80dc74d081823649809f78370fa5b204aa9a853a" },
   "neotest": { "branch": "master", "commit": "6d6ad113f56edc7c3f2a77a0836ea8c1b955ebea" },
   "neotest-deno": { "branch": "main", "commit": "7136b9342aeecb675c7c16a0bde327d7fcb00a1c" },
   "neotest-jest": { "branch": "main", "commit": "514fd4eae7da15fd409133086bb8e029b65ac43f" },
