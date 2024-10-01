@@ -93,5 +93,6 @@
   "visual_studio_code": { "branch": "master", "commit": "5dcee1198e7065c07efefa0befd0d3d6a317b35c" },
   "which-key.nvim": { "branch": "main", "commit": "fb070344402cfc662299d9914f5546d840a22126" },
   "yanky.nvim": { "branch": "main", "commit": "73215b77d22ebb179cef98e7e1235825431d10e4" },
-  "yode-nvim": { "branch": "develop", "commit": "eaf3141b919c143ebf174d7ad180abd9c032b38c" }
+  "yode-nvim": { "branch": "develop", "commit": "eaf3141b919c143ebf174d7ad180abd9c032b38c" },
+  "zk-nvim": { "branch": "main", "commit": "8942fcc7ba2477e3e0d8097c806eec41cd844fd1" }
 }
