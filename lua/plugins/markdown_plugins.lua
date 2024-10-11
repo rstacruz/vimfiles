@@ -45,13 +45,18 @@ return {
 
         checkbox = {
           custom = {
+            -- Comment = grey
+            -- RenderMarkdownTodo = cyan?
+            -- DiagnosticError = red
+            -- DiagnosticInfo = cyan
+            -- DiagnosticWarn = yellow
             wait = { raw = "[-]", rendered = "󰥔 ", highlight = "RenderMarkdownTodo" },
             prio = { raw = "[!]", rendered = "󰄱 ", highlight = "DiagnosticError" }, -- high priority
             done = { raw = "[x]", rendered = "󰄲 ", highlight = "DiagnosticOk" }, -- nf-md-checkbox_marked
             yes = { raw = "[y]", rendered = "󰄲 ", highlight = "DiagnosticOk" }, -- nf-md-checkbox_marked
-            later = { raw = "[>]", rendered = "󰒊 ", highlight = "DiagnosticInfo" }, -- nf-md-send
-            sched = { raw = "[<]", rendered = "󰃰 ", highlight = "DiagnosticInfo" }, -- nf-md-calendar_clock
-            cancel = { raw = "[~]", rendered = "󰂭 ", highlight = "Comment" },
+            later = { raw = "[>]", rendered = "󰒊 ", highlight = "Comment" }, -- nf-md-send
+            sched = { raw = "[<]", rendered = "󰃰 ", highlight = "Comment" }, -- nf-md-calendar_clock
+            cancel = { raw = "[~]", rendered = "󰂭 ", highlight = "DiagnosticInfo" },
             info = { raw = "[i]", rendered = "󰋼 ", highlight = "DiagnosticInfo" }, -- nf-md-information
             idea = { raw = "[I]", rendered = "󰌵 ", highlight = "DiagnosticWarn" }, -- nf-md-lightbulb
             pro = { raw = "[p]", rendered = "󰔓 ", highlight = "DiagnosticOk" }, -- nf-md-thumb_up
