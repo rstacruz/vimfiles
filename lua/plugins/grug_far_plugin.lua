@@ -1,9 +1,3 @@
-local defaults = {
-  placeholders = {
-    search = "Search",
-    replace = "Replace",
-  },
-}
 return {
   {
     "MagicDuck/grug-far.nvim",
@@ -16,7 +10,7 @@ return {
           local grug = require("grug-far")
           local word = vim.fn.expand("<cword>")
           -- https://github.com/MagicDuck/grug-far.nvim/blob/main/lua/grug-far/opts.lua
-          grug.grug_far({
+          grug.open({
             engines = {
               prefills = { search = word, flags = "-S" },
               ripgrep = {
@@ -31,7 +25,7 @@ return {
         "<leader>sr",
         function()
           local grug = require("grug-far")
-          grug.grug_far({
+          grug.open({
             prefills = { flags = "-S" },
             engines = {
               ripgrep = {

@@ -3,42 +3,6 @@
 
 return {
   {
-    "hoschi/yode-nvim",
-    lazy = true,
-    opts = {},
-    keys = {
-      {
-        "<Leader>zs",
-        ":YodeCreateSeditorReplace<cr>",
-        desc = "Zoom into selection (Yode)",
-        mode = { "v" },
-      },
-      {
-        "<Leader>zb",
-        "vab:YodeCreateSeditorReplace<cr>",
-        desc = "Zoom into block (Yode)",
-        mode = { "n" },
-      },
-      {
-        "<Leader>zS",
-        ":YodeCreateSeditorFloating<cr>",
-        desc = "Zoom into selection into floating window (Yode)",
-        mode = { "v" },
-      },
-    },
-  },
-  {
-    "Pocco81/true-zen.nvim",
-    lazy = true,
-    keys = {
-      -- { "<leader>zn", "<cmd>TZNarrow<cr>", desc = "Zen: zen mode (narrow)" },
-      { "<leader>za", "<cmd>TZAtaraxis<cr>", desc = "Zen: zen mode (ataraxis)" },
-      { "<leader>zm", "<cmd>TZMinimalist<cr>", desc = "Zen: disable UI components (minimal)" },
-      -- { "<leader>zw", "<cmd>TZFocus<cr>", desc = "Zen: zoom current window (focus)" },
-    },
-  },
-
-  {
     "chrisgrieser/nvim-chainsaw",
     lazy = true,
     opts = {
@@ -174,34 +138,6 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function(_, opts)
       require("indent-o-matic").setup(opts)
-    end,
-  },
-
-  { -- refactoring
-    "ThePrimeagen/refactoring.nvim",
-    lazy = true,
-    dependencies = {
-      { "nvim-lua/plenary.nvim" },
-      { "nvim-treesitter/nvim-treesitter" },
-    },
-    keys = {
-      {
-        "<leader>ce",
-        "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
-        desc = "Select refactor...",
-        mode = "v",
-      },
-      -- {
-      --   "<leader>cE",
-      --   "<cmd>lua require('refactoring').select_refactor()<cr>",
-      --   desc = "Select refactor...",
-      --   mode = "v",
-      -- },
-    },
-    opts = {},
-    config = function(_, opts)
-      require("refactoring").setup(opts)
-      require("telescope").load_extension("refactoring")
     end,
   },
 

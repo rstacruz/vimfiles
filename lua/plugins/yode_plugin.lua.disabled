@@ -1,0 +1,28 @@
+-- 2024-10
+return {
+  {
+    "hoschi/yode-nvim",
+    lazy = true,
+    opts = {},
+    keys = {
+      {
+        "<Leader>zs",
+        ":YodeCreateSeditorReplace<cr>",
+        desc = "Zoom into selection (Yode)",
+        mode = { "v" },
+      },
+      {
+        "<Leader>zb",
+        "vab:YodeCreateSeditorReplace<cr>",
+        desc = "Zoom into block (Yode)",
+        mode = { "n" },
+      },
+      {
+        "<Leader>zS",
+        ":YodeCreateSeditorFloating<cr>",
+        desc = "Zoom into selection into floating window (Yode)",
+        mode = { "v" },
+      },
+    },
+  },
+}

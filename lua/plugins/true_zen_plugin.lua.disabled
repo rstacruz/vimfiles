@@ -1,0 +1,13 @@
+-- 2024-10
+return {
+  {
+    "Pocco81/true-zen.nvim",
+    lazy = true,
+    keys = {
+      -- { "<leader>zn", "<cmd>TZNarrow<cr>", desc = "Zen: zen mode (narrow)" },
+      { "<leader>za", "<cmd>TZAtaraxis<cr>", desc = "Zen: zen mode (ataraxis)" },
+      { "<leader>zm", "<cmd>TZMinimalist<cr>", desc = "Zen: disable UI components (minimal)" },
+      -- { "<leader>zw", "<cmd>TZFocus<cr>", desc = "Zen: zoom current window (focus)" },
+    },
+  },
+}
