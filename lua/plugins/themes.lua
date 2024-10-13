@@ -84,5 +84,15 @@ return {
   { "EdenEast/nightfox.nvim", lazy = true, event = "VeryLazy" },
 
   -- Add a VeryLazy so it shows up in laeder-uC
-  { "catppuccin/nvim", event = "VeryLazy" },
+  {
+    "catppuccin/nvim",
+    event = "VeryLazy",
+    opts = {
+      color_overrides = {
+        latte = {
+          base = "#ededf5",
+        },
+      },
+    },
+  },
 }
