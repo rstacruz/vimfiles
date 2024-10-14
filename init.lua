@@ -8,4 +8,3 @@ end
 pcall(require, "init-local")
 require("config.colorscheme_overrides").setup()
 require("config.lazy")
-require("config.vscode_overrides").setup()
