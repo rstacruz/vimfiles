@@ -139,3 +139,37 @@ vim.keymap.set("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev bu
 -- vim.keymap.set("n", "<C-Down>", "<cmd>resize -10<cr>", { desc = "Decrease window height" })
 -- vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -10<cr>", { desc = "Decrease window width" })
 -- vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +10<cr>", { desc = "Increase window width" })
+
+if vim.g.vscode then
+  vim.keymap.set(
+    "n",
+    "]d",
+    "<cmd>lua require('vscode').call('editor.action.marker.next')<cr>",
+    { desc = "Next Diagnostic" }
+  )
+  vim.keymap.set(
+    "n",
+    "[d",
+    "<cmd>lua require('vscode').call('editor.action.marker.previous')<cr>",
+    { desc = "Prev Diagnostic" }
+  )
+  vim.keymap.set(
+    "n",
+    "gr",
+    "<cmd>lua require('vscode').call('editor.action.goToReferences')<cr>",
+    { desc = "Goto References" }
+  )
+  vim.keymap.set(
+    "n",
+    "gd",
+    "<cmd>lua require('vscode').call('editor.action.revealDefinition')<cr>",
+    { desc = "Goto Definition" }
+  )
+  vim.keymap.set(
+    "n",
+    "gy",
+    "<cmd>lua require('vscode').call('editor.action.goToTypeDefinition')<cr>",
+    { desc = "Goto Type Definition" }
+  )
+end
+
