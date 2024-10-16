@@ -33,6 +33,14 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  group = vim.api.nvim_create_augroup("filetypes", { clear = true }),
+  pattern = { "settings.json", "keybindings.json" },
+  callback = function()
+    vim.cmd("set ft=jsonc")
+  end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("custom_foldexpr", { clear = true }),
   pattern = { "typescript", "javascript", "markdown", "lua", "typescriptreact", "sh" },
