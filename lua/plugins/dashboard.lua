@@ -10,10 +10,18 @@ return {
       opts.config.center = {
         {
           action = function()
+            LazyVim.pick("oldfiles")()
+          end,
+          desc = "open recent",
+          icon = "",
+          key = "r",
+        },
+        {
+          action = function()
             vim.api.nvim_input("<cmd>qa<cr>")
           end,
-          desc = " Quit",
-          icon = " ",
+          desc = "quit",
+          icon = "",
           key = "q",
         },
       }
