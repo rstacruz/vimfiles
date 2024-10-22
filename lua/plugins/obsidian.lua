@@ -128,6 +128,11 @@ return {
         folder = "Templates",
       },
 
+      -- when using `gf` on a URL by mistake
+      follow_url_func = function(url)
+        vim.ui.open(url)
+      end,
+
       ui = {
         -- use markdown.nvim instead for these
         checkboxes = {},
