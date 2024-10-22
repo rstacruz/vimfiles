@@ -2,6 +2,7 @@ return {
   { -- terminal
     "akinsho/toggleterm.nvim",
     lazy = true,
+    vscode = false,
     cmd = { "ToggleTerm" },
     opts = {
       size = 20,

@@ -3,6 +3,7 @@ local is_termux = string.find(vim.loop.os_uname().release, "android")
 return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
+    vscode = false,
     lazy = true,
     event = {
       "BufReadPre **.md",

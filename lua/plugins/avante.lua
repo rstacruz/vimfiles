@@ -2,6 +2,7 @@
 return {
   {
     "yetone/avante.nvim",
+    vscode = false,
     init = function()
       require("avante_lib").load()
     end,

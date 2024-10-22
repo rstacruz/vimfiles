@@ -2,6 +2,7 @@ return {
   {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
+    vscode = false,
     opts = function(_, opts)
       local logo = [[::]]
 

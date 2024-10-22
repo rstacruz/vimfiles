@@ -33,6 +33,7 @@ return {
     -- :ObsidianFollowLink
     -- :ObsidianQuickSwitch
     "epwalsh/obsidian.nvim",
+    vscode = false,
     lazy = true,
     ft = "markdown",
     dependencies = {

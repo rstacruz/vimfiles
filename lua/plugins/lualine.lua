@@ -1,6 +1,7 @@
 return {
   { -- lualine: simplify lualine
     "nvim-lualine/lualine.nvim",
+    vscode = false,
     opts = function(_, opts)
       opts.sections.lualine_a = {} -- vim mode
       opts.sections.lualine_b = {} -- branch
