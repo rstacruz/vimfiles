@@ -8,7 +8,7 @@ vim.keymap.set("n", "<leader>G", function()
 end, { desc = "Lazygit (Root Dir)" })
 
 -- find files (default: spc-spc)
-vim.keymap.set("n", "<c-p>", "<cmd>Telescope find_files theme=dropdown<cr>", { desc = "Find Files (root dir)" })
+vim.keymap.set("n", "<c-p>", '<cmd>lua LazyVim.pick("files")()<cr>', { desc = "Find Files (root dir)" })
 
 -- old files (default: leader-fr, but not really)
 vim.keymap.set("n", "<leader>r", '<cmd>lua LazyVim.pick("oldfiles")()<cr>', { desc = "Find Files (root dir)" })
