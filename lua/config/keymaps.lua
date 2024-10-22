@@ -2,6 +2,10 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+-- Make `23,` go to line 23. Easier to type than `23G`
+vim.keymap.set("n", ",", "G", { desc = "Go to line" })
+vim.keymap.set("v", ",", "G", { desc = "Go to line" })
+
 -- lazygit (default: leader-gg)
 vim.keymap.set("n", "<leader>G", function()
   LazyVim.lazygit({ cwd = LazyVim.root.git() })
