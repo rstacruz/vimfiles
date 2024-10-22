@@ -2,6 +2,12 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+-- Fold level
+vim.keymap.set("n", "z2", "zMzr", { desc = "Fold level 2" })
+vim.keymap.set("n", "z3", "zMzrzr", { desc = "Fold level 3" })
+vim.keymap.set("n", "zV", "zMzv", { desc = "Isolate fold" })
+vim.keymap.set("n", "z.", "zczO", { desc = "Unfold siblings" })
+
 -- Make `23,` go to line 23. Easier to type than `23G`
 vim.keymap.set("n", ",", "G", { desc = "Go to line" })
 vim.keymap.set("v", ",", "G", { desc = "Go to line" })
