@@ -1,0 +1,66 @@
+{
+  "TypeScript code block": {
+    "scope": "markdown",
+    "prefix": "ts",
+    "body": [
+      "```typescript",
+      "$0",
+      "```"
+    ]
+  },
+  "Bash code block": {
+    "scope": "markdown",
+    "prefix": "bash",
+    "body": [
+      "```bash",
+      "$0",
+      "```"
+    ]
+  },
+  "JSON code block": {
+    "scope": "markdown",
+    "prefix": "json",
+    "body": [
+      "```json",
+      "$0",
+      "```"
+    ]
+  },
+  "Yaml code block": {
+    "scope": "markdown",
+    "prefix": "yaml",
+    "body": [
+      "```yaml",
+      "$0",
+      "```"
+    ]
+  },
+  "Mermaid code block": {
+    "scope": "markdown",
+    "prefix": "mermaid",
+    "body": [
+      "```mermaid",
+      "$0",
+      "```"
+    ]
+  },
+  "Generic code block": {
+    "scope": "markdown",
+    "prefix": "cb",
+    "body": [
+      "```${1:bash}",
+      "$0",
+      "```"
+    ]
+  },
+  "Em dash": {
+    "scope": "markdown",
+    "prefix": "md",
+    "body": "—"
+  },
+  "Right arrow": {
+    "scope": "markdown",
+    "prefix": "ra",
+    "body": "→"
+  }
+}
