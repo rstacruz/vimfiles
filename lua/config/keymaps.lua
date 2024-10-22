@@ -8,7 +8,6 @@ vim.keymap.set("n", "<c-p>", "<cmd>Telescope find_files theme=dropdown<cr>", { d
 --- Keymaps (default: leader-sk)
 vim.keymap.set("n", "<f1>", "<cmd>Telescope keymaps<cr>", { desc = "Key Maps" })
 
--- Copy paths
 vim.keymap.set("n", "<leader>fya", function()
   local str = vim.fn.expand("%:p")
   vim.fn.setreg('"', str)
