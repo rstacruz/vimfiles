@@ -1,8 +1,11 @@
+local is_termux = string.find(vim.loop.os_uname().release, "android")
+
 -- https://github.com/LazyVim/LazyVim/pull/4440
 return {
   {
     "yetone/avante.nvim",
     vscode = false,
+    enabled = not is_termux,
     init = function()
       require("avante_lib").load()
     end,
