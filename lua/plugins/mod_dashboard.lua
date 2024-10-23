@@ -4,9 +4,10 @@ return {
     event = "VimEnter",
     vscode = false,
     opts = function(_, opts)
-      local logo = [[::]]
+      local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+      local logo = "" .. cwd .. "\n" -- .. string.rep("─", #cwd)
+      logo = string.rep("\n", 8) .. logo .. "\n"
 
-      logo = string.rep("\n", 8) .. logo .. "\n\n"
       opts.config.header = vim.split(logo, "\n")
       opts.config.center = {
         {
@@ -16,6 +17,7 @@ return {
           desc = "open recent",
           icon = "",
           key = "r",
+          key_format = "  %s",
         },
         {
           action = function()
@@ -24,12 +26,13 @@ return {
           desc = "quit",
           icon = "",
           key = "q",
+          key_format = "  %s",
         },
       }
       opts.config.footer = function()
         local stats = require("lazy").stats()
         local ms = math.floor((stats.startuptime * 100 + 0.5) / 100)
-        return { "", " ", "" .. stats.loaded .. "/" .. stats.count .. " plugins _ " .. ms .. "ms" }
+        return { " ", "" .. stats.loaded .. "/" .. stats.count .. " plugins · " .. ms .. "ms" }
       end
 
       opts.theme = "doom"
