@@ -1,6 +1,7 @@
 return {
   { -- git linker
     "ruifm/gitlinker.nvim",
+    vscode = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
     },

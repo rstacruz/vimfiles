@@ -1,6 +1,7 @@
 return {
   { -- blame
     "FabijanZulj/blame.nvim",
+    vscode = false,
     lazy = true,
     cmd = { "BlameToggle" },
     opts = {},

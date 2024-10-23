@@ -108,6 +108,7 @@ return {
 
   {
     "iamcco/markdown-preview.nvim",
+    vscode = false,
     enabled = not is_termux,
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
@@ -136,6 +137,7 @@ return {
 
   {
     "zk-org/zk-nvim",
+    vscode = false,
     lazy = true,
     ft = { "markdown" },
     opts = {

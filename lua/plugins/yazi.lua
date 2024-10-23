@@ -1,6 +1,7 @@
 return {
   {
     "mikavilpas/yazi.nvim",
+    vscode = false,
     event = "VeryLazy",
     keys = {
       {
