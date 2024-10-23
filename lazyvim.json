@@ -3,7 +3,9 @@
     "lazyvim.plugins.extras.editor.fzf",
     "lazyvim.plugins.extras.editor.harpoon2",
     "lazyvim.plugins.extras.editor.refactoring",
-    "lazyvim.plugins.extras.formatting.prettier"
+    "lazyvim.plugins.extras.formatting.prettier",
+    "lazyvim.plugins.extras.util.chezmoi",
+    "lazyvim.plugins.extras.vscode"
   ],
   "news": {
     "NEWS.md": "6520"
