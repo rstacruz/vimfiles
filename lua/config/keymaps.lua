@@ -1,6 +1,8 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+
+-- Close
+vim.keymap.set("n", "<bs>", "<cmd>:q<cr>", { desc = "Close" })
 
 -- Fold level
 vim.keymap.set("n", "z2", "zMzr", { desc = "Fold level 2" })
