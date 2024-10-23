@@ -11,6 +11,7 @@ return {
     end,
     event = "VeryLazy",
     opts = {
+      provider = "copilot",
       hints = { enabled = false },
     },
     build = LazyVim.is_win() and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" or "make",
