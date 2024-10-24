@@ -40,7 +40,6 @@ return {
           end
 
           colors.bg = "#fdfdfd"
-          colors.border = "#ff00ff"
         end
       end,
     },

@@ -9,5 +9,14 @@ return {
         parameter = "",
       },
     },
+    keys = {
+      {
+        "<leader>uH",
+        function()
+          require("lsp-endhints").toggle()
+        end,
+        desc = "Toggle hint location",
+      },
+    },
   },
 }
