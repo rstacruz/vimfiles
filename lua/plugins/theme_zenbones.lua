@@ -9,15 +9,15 @@ return {
       vim.g.zenbones_lightness = "bright"
       vim.api.nvim_create_autocmd("ColorScheme", {
         group = vim.api.nvim_create_augroup("color_overrides_zenbones", { clear = true }),
-        pattern = { "zenbones" },
+        pattern = { "zenbones", "zenwritten" },
         callback = function()
           -- no italic strings
           vim.cmd([[hi! Constant gui=none]])
 
           if vim.o.background == "light" then
-            vim.cmd([[hi! Normal guibg=#ffffff]])
-            vim.cmd([[hi! Constant gui=none guifg=#5566cc]])
-            vim.cmd([[hi! Number gui=none guifg=#5566cc]])
+            vim.cmd([[hi! Normal guibg=#fcfcfc]])
+            vim.cmd([[hi! Constant gui=none guifg=#58938e]])
+            vim.cmd([[hi! Number gui=none guifg=#58938e]])
             -- vim.cmd([[hi! @variable.typescript guifg=#5566cc]])
           end
         end,
