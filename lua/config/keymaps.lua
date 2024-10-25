@@ -1,6 +1,9 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 
+-- Code action (default: leader-ca)
+vim.keymap.set({ "n", "v" }, "g.", vim.lsp.buf.code_action, { desc = "Code Action" })
+
 -- Close
 vim.keymap.set("n", "<bs>", "<cmd>:q<cr>", { desc = "Close" })
 

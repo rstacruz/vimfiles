@@ -9,7 +9,19 @@ return {
       vim.g.zenbones_lightness = "bright"
       vim.api.nvim_create_autocmd("ColorScheme", {
         group = vim.api.nvim_create_augroup("color_overrides_zenbones", { clear = true }),
-        pattern = { "zenbones", "zenwritten" },
+        pattern = {
+          "duckbones",
+          "forestbones",
+          "kanagawabones",
+          "neobones",
+          "nordbones",
+          "rosebones",
+          "seoulbones",
+          "tokyobones",
+          "vimbones",
+          "zenbones",
+          "zenwritten",
+        },
         callback = function()
           -- no italic strings
           vim.cmd([[hi! Constant gui=none]])
