@@ -83,6 +83,12 @@ return {
           -- hyperlink = "󰌹 ",
           hyperlink = "",
 
+          -- image = "󰥶 ", -- Inlined with 'image' elements
+          -- email = "󰀓 ", -- Inlined with 'email_autolink' elements
+          -- hyperlink = "󰌹 ", -- Fallback icon for 'inline_link' elements
+          -- wiki = { icon = "󱗖 ", highlight = "RenderMarkdownWikiLink" },
+          wiki = { icon = "", highlight = "RenderMarkdownLink" },
+
           custom = {
             -- web = { pattern = "^http[s]?://", icon = "󰖟 ", highlight = "RenderMarkdownLink" },
             -- stylua: ignore start
