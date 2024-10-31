@@ -1,5 +1,8 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
+--
+-- -- Scratchpad
+vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
 
 -- Fix all the problems
 vim.keymap.set("n", "<leader>cx", "<cmd>LspRestart<cr>", { desc = "Restart LSP" })
