@@ -1,6 +1,9 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 
+-- Fix all the problems
+vim.keymap.set("n", "<leader>cx", "<cmd>LspRestart<cr>", { desc = "Restart LSP" })
+
 -- Code action (default: leader-ca)
 vim.keymap.set({ "n", "v" }, "g.", vim.lsp.buf.code_action, { desc = "Code Action" })
 
