@@ -48,6 +48,7 @@ return {
           custom = {
             -- Comment = grey
             -- RenderMarkdownTodo = cyan?
+            -- DiagnosticOk = green
             -- DiagnosticError = red
             -- DiagnosticInfo = cyan
             -- DiagnosticWarn = yellow
