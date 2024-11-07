@@ -8,6 +8,7 @@
     "lazyvim.plugins.extras.lang.astro",
     "lazyvim.plugins.extras.linting.eslint",
     "lazyvim.plugins.extras.util.mini-hipatterns",
+    "lazyvim.plugins.extras.util.octo",
     "lazyvim.plugins.extras.vscode"
   ],
   "news": {
