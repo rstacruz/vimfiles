@@ -11,8 +11,8 @@ return {
           local word = vim.fn.expand("<cword>")
           -- https://github.com/MagicDuck/grug-far.nvim/blob/main/lua/grug-far/opts.lua
           grug.open({
+            prefills = { search = word, flags = "-S" },
             engines = {
-              prefills = { search = word, flags = "-S" },
               ripgrep = {
                 placeholders = { enabled = false },
               },
