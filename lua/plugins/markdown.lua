@@ -56,7 +56,7 @@ return {
             prio = { raw = "[!]", rendered = "󰄱 ", highlight = "DiagnosticError" }, -- high priority
             done = { raw = "[x]", rendered = "󰄲 ", highlight = "DiagnosticOk" }, -- nf-md-checkbox_marked
             yes = { raw = "[y]", rendered = "󰄲 ", highlight = "DiagnosticOk" }, -- nf-md-checkbox_marked
-            later = { raw = "[>]", rendered = "󰒊 ", highlight = "Comment" }, -- nf-md-send
+            fwd = { raw = "[>]", rendered = "󰒊 ", highlight = "Comment" }, -- nf-md-send
             sched = { raw = "[<]", rendered = "󰃰 ", highlight = "Comment" }, -- nf-md-calendar_clock
             cancel = { raw = "[~]", rendered = "󰂭 ", highlight = "DiagnosticInfo" },
             info = { raw = "[i]", rendered = "󰋼 ", highlight = "DiagnosticInfo" }, -- nf-md-information
@@ -66,6 +66,10 @@ return {
             star = { raw = "[s]", rendered = "󰓎 ", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
             star2 = { raw = "[*]", rendered = "󰓎 ", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
             half = { raw = "[/]", rendered = "󰿦 ", highlight = "DiagnosticWarn" }, -- in progress, nf-md-texture_box
+            -- new
+            delegated = { raw = "[d]", rendered = "👤", highlight = "Comment" }, -- in progress, nf-md-texture_box
+            later = { raw = "[l]", rendered = "󰿦 ", highlight = "Comment" }, -- in progress, nf-md-texture_box
+            later2 = { raw = "[_]", rendered = "󰿦 ", highlight = "Comment" }, -- in progress, nf-md-texture_box
           },
         },
 
