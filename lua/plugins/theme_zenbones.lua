@@ -22,15 +22,20 @@ return {
           "zenbones",
           "zenwritten",
         },
-        callback = function()
+        callback = function(ev)
+          local name = ev.match
+
           -- no italic strings
           vim.cmd([[hi! Constant gui=none]])
 
           if vim.o.background == "light" then
-            vim.cmd([[hi! Normal guibg=#fcfcfc]])
             vim.cmd([[hi! Constant gui=none guifg=#58938e]])
             vim.cmd([[hi! Number gui=none guifg=#58938e]])
             -- vim.cmd([[hi! @variable.typescript guifg=#5566cc]])
+          end
+
+          if vim.o.background == "light" and name == "nordbones" then
+            vim.cmd([[hi! Normal guibg=#fcfcfc]])
           end
         end,
       })
