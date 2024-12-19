@@ -65,7 +65,7 @@ return {
             con = { raw = "[c]", rendered = "󰔑 ", highlight = "DiagnosticError" }, -- nf-md-thumb_down
             star = { raw = "[s]", rendered = "󰓎 ", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
             star2 = { raw = "[*]", rendered = "󰓎 ", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
-            half = { raw = "[/]", rendered = "󰿦 ", highlight = "DiagnosticWarn" }, -- in progress, nf-md-texture_box
+            half = { raw = "[/]", rendered = "󰿦 ", highlight = "Comment" }, -- in progress, nf-md-texture_box
             -- new
             delegated = { raw = "[d]", rendered = "👤", highlight = "Comment" }, -- in progress, nf-md-texture_box
             later = { raw = "[l]", rendered = "󰿦 ", highlight = "Comment" }, -- in progress, nf-md-texture_box
