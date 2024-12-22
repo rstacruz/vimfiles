@@ -68,8 +68,8 @@ return {
             half = { raw = "[/]", rendered = "󰿦 ", highlight = "Comment" }, -- in progress, nf-md-texture_box
             -- new
             delegated = { raw = "[d]", rendered = "👤", highlight = "Comment" }, -- in progress, nf-md-texture_box
-            later = { raw = "[l]", rendered = "󰿦 ", highlight = "Comment" }, -- in progress, nf-md-texture_box
-            later2 = { raw = "[_]", rendered = "󰿦 ", highlight = "Comment" }, -- in progress, nf-md-texture_box
+            later = { raw = "[l]", rendered = "󰿦 ", highlight = "Comment" }, -- in progress, nf-md-texture_box (deprecated)
+            later2 = { raw = "[_]", rendered = "󰿦 ", highlight = "DiagnosticWarn" }, -- focused in progress, nf-md-texture_box
           },
         },
 
