@@ -34,9 +34,6 @@ vim.keymap.set("n", "<c-p>", '<cmd>lua LazyVim.pick("files")()<cr>', { desc = "F
 -- old files (default: leader-fR)
 vim.keymap.set("n", "<leader>o", '<cmd>lua LazyVim.pick("oldfiles")()<cr>', { desc = "Find Files (root dir)" })
 
---- Keymaps (default: leader-sk)
-vim.keymap.set("n", "<f1>", "<cmd>Telescope keymaps<cr>", { desc = "Key Maps" })
-
 vim.keymap.set("n", "<leader>fya", function()
   local str = vim.fn.expand("%:p")
   vim.fn.setreg('"', str)
