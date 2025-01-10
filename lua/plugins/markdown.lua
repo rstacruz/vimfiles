@@ -34,7 +34,7 @@ return {
           width = "block",
           position = "right",
           right_pad = 5,
-          left_pad = 2,
+          -- left_pad = 2, -- messes up indent guides
           border = "thick",
         },
 
