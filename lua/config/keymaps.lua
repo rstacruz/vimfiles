@@ -63,8 +63,8 @@ vim.keymap.set("n", "<leader>fyw", function()
 end, { desc = " Copy wiki markdown link" })
 
 -- search-and-replace
-vim.keymap.set("n", "gs", ":%s~~")
-vim.keymap.set("v", "gs", ":s~~")
+vim.keymap.set("n", "gS", ":%s~~")
+vim.keymap.set("v", "gS", ":s~~")
 
 -- Terminal escape
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
