@@ -1,0 +1,43 @@
+return {
+  {
+    "snacks.nvim",
+    opts = {
+      dashboard = {
+        width = 30, -- default: 60
+
+        sections = {
+          -- { section = "header" },
+          -- `gap` - space-y
+          -- `padding` - margin-bottom
+          { section = "terminal", cmd = "sh -c 'basename $(pwd)'", padding = 2, height = 1 },
+          { section = "keys", gap = 1, padding = 2 },
+          { section = "startup" },
+          -- { section = "terminal", cmd = "date", padding = 2, height = 1 },
+        },
+        preset = {
+          -- header = [[]],
+
+          -- stylua: ignore
+          ---@type snacks.dashboard.Item[]
+          keys = {
+            { icon = " ", key = "f", desc = "file", action = ":lua Snacks.dashboard.pick('files')" },
+            { icon = " ", key = "n", desc = "new", action = ":ene | startinsert" },
+            { icon = " ", key = "r", desc = "recent", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+            { icon = " ", key = "s", desc = "session", section = "session" },
+            { icon = " ", key = "q", desc = "quit", action = ":qa" },
+
+            -- { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+            -- { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+            -- { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+            -- { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+            -- { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+            -- { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+            -- { icon = " ", key = "x", desc = "Lazy Extras", action = ":LazyExtras" },
+            -- { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
+            -- { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          },
+        },
+      },
+    },
+  },
+}
