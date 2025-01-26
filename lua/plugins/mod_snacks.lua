@@ -3,14 +3,14 @@ return {
     "snacks.nvim",
     opts = {
       dashboard = {
-        width = 30, -- default: 60
+        width = 20, -- default: 60
 
         sections = {
           -- { section = "header" },
           -- `gap` - space-y
           -- `padding` - margin-bottom
-          { section = "terminal", cmd = "sh -c 'basename $(pwd)'", padding = 2, height = 1 },
-          { section = "keys", gap = 1, padding = 2 },
+          { section = "terminal", cmd = "sh -c 'basename $(pwd)'", padding = 1, height = 1 },
+          { section = "keys", gap = 0, padding = 1 },
           { section = "startup" },
           -- { section = "terminal", cmd = "date", padding = 2, height = 1 },
         },
