@@ -14,6 +14,8 @@ local settings = {
     "minifiles",
     "TelescopePrompt",
     "TelescopeResults",
+    "snacks_picker_list",
+    "snacks_input",
   },
   min_width = 80,
 }
@@ -31,6 +33,14 @@ local function run_autosize()
   -- if vim.api.nvim_get_option_value("buftype", { scope = "local" }) == "terminal" then
   --   return
   -- end
+
+  local win_id = vim.api.nvim_get_current_win()
+  local win_config = vim.api.nvim_win_get_config(win_id)
+  local is_floating = win_config.relative ~= ""
+
+  if is_floating then
+    return
+  end
 
   if vim.tbl_contains(settings.excluded_filetypes, vim.bo.filetype) then
     return
