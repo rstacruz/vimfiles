@@ -20,6 +20,11 @@ local settings = {
   min_width = 80,
 }
 
+local function is_floating(win_id)
+  local win_config = vim.api.nvim_win_get_config(win_id)
+  return win_config.relative ~= ""
+end
+
 local function run_autosize()
   if settings.min_width == -1 then
     return
@@ -35,10 +40,8 @@ local function run_autosize()
   -- end
 
   local win_id = vim.api.nvim_get_current_win()
-  local win_config = vim.api.nvim_win_get_config(win_id)
-  local is_floating = win_config.relative ~= ""
 
-  if is_floating then
+  if is_floating(win_id) then
     return
   end
 
