@@ -118,7 +118,7 @@ return {
       note_id_func = function(raw_title)
         -- Default behaviour: return something like "124351678905-XYZX"
         if raw_title then
-          local title = raw_title:gsub(";", ":")
+          local title = raw_title:gsub(":", ";")
           return title
         end
 

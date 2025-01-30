@@ -1,4 +1,5 @@
 -- put extra config here
 -- vim.g.use_official_github_copilot = 1
+-- vim.g.disable_ai_plugins = 1
 
 -- vim.notify("Hello!")
