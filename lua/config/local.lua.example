@@ -1,0 +1,4 @@
+-- put extra config here
+-- vim.g.use_official_github_copilot = 1
+
+-- vim.notify("Hello!")
