@@ -25,7 +25,7 @@ vim.keymap.set("v", ",", "G", { desc = "Go to line" })
 
 -- lazygit (default: leader-gg)
 vim.keymap.set("n", "<leader>G", function()
-  LazyVim.lazygit({ cwd = LazyVim.root.git() })
+  Snacks.lazygit({ cwd = LazyVim.root.git() })
 end, { desc = "Lazygit (Root Dir)" })
 
 -- find files (default: spc-spc)

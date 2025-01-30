@@ -3,7 +3,7 @@ if vim.g.disable_ai_plugins == 1 then
 end
 
 return {
-  -- https://github.com/LazyVim/LazyVim/pull/4268
+  -- https://github.com/LazyVim/LazyVim/pull/4268/files
   {
     "olimorris/codecompanion.nvim",
     dependencies = {
@@ -36,5 +36,19 @@ return {
         },
       },
     },
+  },
+
+  -- Edgy integration
+  {
+    "folke/edgy.nvim",
+    optional = true,
+    opts = function(_, opts)
+      opts.right = opts.right or {}
+      table.insert(opts.right, {
+        ft = "codecompanion",
+        title = "CodeCompanion Chat",
+        size = { width = 50 },
+      })
+    end,
   },
 }
