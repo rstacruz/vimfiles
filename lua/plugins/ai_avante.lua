@@ -1,7 +1,11 @@
+-- avante requires building native modules. not supported on android-aarch64
+-- afaik (as of Feb 2025)
 local is_termux = string.find(vim.loop.os_uname().release, "android")
+
 local has_copilot_setup = vim.fn.filereadable(vim.fn.expand("~/.config/github-copilot/hosts.json")) == 1
 
 -- https://github.com/LazyVim/LazyVim/pull/4440
+-- https://github.com/yetone/avante.nvim/blob/main/lua/avante/config.lua
 return {
   {
     "yetone/avante.nvim",
@@ -14,6 +18,19 @@ return {
     opts = {
       provider = "copilot",
       hints = { enabled = false },
+      mappings = {
+        ask = "<leader>Aa",
+        edit = "<leader>Ae",
+        refresh = "<leader>Ar",
+        focus = "<leader>Af",
+        toggle = {
+          default = "<leader>At",
+          debug = "<leader>Ad",
+          hint = "<leader>Ah",
+          suggestion = "<leader>As",
+          repomap = "<leader>AR",
+        },
+      },
     },
     build = LazyVim.is_win() and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" or "make",
   },
@@ -29,7 +46,7 @@ return {
     optional = true,
     opts = {
       spec = {
-        { "<leader>a", group = "ai" },
+        { "<leader>!A", group = "+ai-avante" },
       },
     },
   },

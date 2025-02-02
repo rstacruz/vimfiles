@@ -9,5 +9,23 @@ return {
     vscode = false,
     event = "LazyFile",
     opts = {},
+    keys = {
+      { "<leader>!", "", desc = "+experimental", mode = { "n", "v" } },
+      { "<leader>!a", "<cmd>AiderOpen<cr>", mode = { "n", "v" }, desc = "Open Aider" },
+    },
+  },
+
+  -- Edgy integration
+  {
+    "folke/edgy.nvim",
+    optional = true,
+    opts = function(_, opts)
+      opts.right = opts.right or {}
+      table.insert(opts.right, {
+        ft = "AiderConsole",
+        title = "Aider",
+        size = { width = 50 },
+      })
+    end,
   },
 }

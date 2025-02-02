@@ -6,6 +6,7 @@
 
 local settings = {
   excluded_filetypes = {
+    "AiderConsole",
     "NvimTree",
     "neo-tree",
     "DiffviewFiles",
