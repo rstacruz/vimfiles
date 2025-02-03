@@ -4,7 +4,7 @@ return {
     vscode = false,
     opts = function(_, opts)
       opts.options.component_separators = { left = " ", right = " " }
-      opts.options.section_separators = { left = " ", right = " " }
+      opts.options.section_separators = { left = "▌", right = "▐" }
       opts.sections.lualine_a = {} -- vim mode
       opts.sections.lualine_b = {} -- branch
       opts.sections.lualine_z = {} -- time
