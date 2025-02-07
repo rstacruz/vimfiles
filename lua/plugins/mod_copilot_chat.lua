@@ -7,6 +7,13 @@ return {
         cz = {
           prompt = "generate a commit message in commitizen format.",
         },
+        sum = {
+          prompt = ""
+            .. "Summarise the following message into bullet points. "
+            .. "Be terse, concise. "
+            .. "Use headings when possible. "
+            .. "Try to keep bullet points to 8 words max unless necessary to convey key info.",
+        },
       }
       return opts
     end,
