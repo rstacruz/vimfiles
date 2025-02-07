@@ -11,7 +11,6 @@
     "lazyvim.plugins.extras.lang.astro",
     "lazyvim.plugins.extras.linting.eslint",
     "lazyvim.plugins.extras.ui.edgy",
-    "lazyvim.plugins.extras.ui.mini-animate",
     "lazyvim.plugins.extras.ui.treesitter-context",
     "lazyvim.plugins.extras.util.chezmoi",
     "lazyvim.plugins.extras.util.mini-hipatterns",

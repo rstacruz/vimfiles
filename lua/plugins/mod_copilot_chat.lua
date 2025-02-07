@@ -2,6 +2,9 @@ return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     optional = true,
+    dependencies = {
+      "ibhagwan/fzf-lua", -- no snacks integration for copilotchat yet
+    },
     opts = function(_, opts)
       opts.prompts = {
         cz = {
