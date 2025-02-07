@@ -152,7 +152,7 @@ return {
     lazy = true,
     ft = { "markdown" },
     opts = {
-      picker = "fzf_lua",
+      picker = "select",
     },
     config = function(_, opts)
       require("zk").setup(opts)
