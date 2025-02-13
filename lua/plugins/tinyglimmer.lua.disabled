@@ -1,0 +1,10 @@
+return {
+  {
+    "rachartier/tiny-glimmer.nvim",
+    -- gratuitous animations when copying and pasting
+    event = "VeryLazy",
+    opts = {
+      -- your configuration
+    },
+  },
+}
