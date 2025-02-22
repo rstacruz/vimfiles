@@ -1,57 +1,57 @@
 {
+  "Aider: eval TODO.md": {
+    "scope": "markdown",
+    "prefix": "aideval",
+    "body": [
+      "<!-- AI?",
+      "I want to do the thing in TODO.md.",
+      "Let me know if this is enough info you need.",
+      "Keep your response brief.",
+      "Avoid giving code examples, only help with requirements.",
+      "Try to list down what files and functions may be affected.",
+      "Do not make any edits to any files other than TODO.md.",
+      "-->"
+    ]
+  },
+  "Aider: do TODO.md": {
+    "scope": "markdown",
+    "prefix": "aido",
+    "body": [
+      "<!-- AI!",
+      "Perform the changes listed in TODO.md.",
+      "Then, clear out TODO.md, but leave the headings in place.",
+      "-->"
+    ]
+  },
   "TypeScript code block": {
     "scope": "markdown",
     "prefix": "ts",
-    "body": [
-      "```typescript",
-      "$0",
-      "```"
-    ]
+    "body": ["```typescript", "$0", "```"]
   },
   "Bash code block": {
     "scope": "markdown",
     "prefix": "bash",
-    "body": [
-      "```bash",
-      "$0",
-      "```"
-    ]
+    "body": ["```bash", "$0", "```"]
   },
   "JSON code block": {
     "scope": "markdown",
     "prefix": "json",
-    "body": [
-      "```json",
-      "$0",
-      "```"
-    ]
+    "body": ["```json", "$0", "```"]
   },
   "Yaml code block": {
     "scope": "markdown",
     "prefix": "yaml",
-    "body": [
-      "```yaml",
-      "$0",
-      "```"
-    ]
+    "body": ["```yaml", "$0", "```"]
   },
   "Mermaid code block": {
     "scope": "markdown",
     "prefix": "mermaid",
-    "body": [
-      "```mermaid",
-      "$0",
-      "```"
-    ]
+    "body": ["```mermaid", "$0", "```"]
   },
   "Generic code block": {
     "scope": "markdown",
     "prefix": "cb",
-    "body": [
-      "```${1:bash}",
-      "$0",
-      "```"
-    ]
+    "body": ["```${1:bash}", "$0", "```"]
   },
   "Em dash": {
     "scope": "markdown",

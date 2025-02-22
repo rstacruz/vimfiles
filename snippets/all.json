@@ -1,0 +1,17 @@
+{
+  "Aider: refine instruction": {
+    "scope": "javascript,javascriptreact,typescript,typescriptreact",
+    "prefix": "aidraft",
+    "body": [
+      "// AI? I want to do the following thing below. let me know if this is enough info you need.",
+      "// Keep your response brief. Avoid giving code examples, only help with requirements.",
+      "// Try to list down what files and functions may be affected.",
+      "// ..."
+    ]
+  },
+  "Aider: context hint": {
+    "scope": "javascript,javascriptreact,typescript,typescriptreact",
+    "prefix": "aictx",
+    "body": ["// for context AI"]
+  }
+}
