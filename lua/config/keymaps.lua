@@ -4,6 +4,10 @@
 -- -- Scratchpad
 vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
 
+-- System clipboard
+vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to clipboard" })
+vim.keymap.set("i", "<C-S-v>", '"+p', { desc = "Paste from clipboard" })
+
 -- Fix all the problems
 vim.keymap.set("n", "<leader>cx", "<cmd>LspRestart<cr>", { desc = "Restart LSP" })
 
