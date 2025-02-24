@@ -7,8 +7,11 @@ return {
     },
     opts = function(_, opts)
       opts.prompts = {
+        comblock = {
+          prompt = "Add comments to mark logical sections in the code. If there are any comments that may be outdated, point them out.",
+        },
         tododraft = {
-          description = "TODO: Lint draft",
+          description = "TODO.md: Lint draft",
           prompt = ""
             .. "#file:CONVENTIONS.md #file:TODO.md #buffers "
             .. "I am drafting a plan for a task in TODO.md. "
@@ -19,14 +22,12 @@ return {
             .. "Do not make any edits to any files other than TODO.md. ",
         },
         todogo = {
-          description = "TODO: Run todo",
-          prompt = ""
-            .. "#file:CONVENTIONS.md #file:TODO.md #buffers "
-            .. "Perform the changes listed in TODO.md. "
-            .. "Then, clear out TODO.md, but leave the headings in place.",
+          description = "TODO.md: Run todo",
+          prompt = "" .. "#file:CONVENTIONS.md #file:TODO.md #buffers Perform the changes listed in TODO.md. ",
         },
-        cz = {
-          prompt = "generate a commit message in commitizen format.",
+        todoclear = {
+          description = "TODO.md: clear todo",
+          prompt = "" .. "#file:TODO.md " .. "clear out TODO.md, but leave the headings in place.",
         },
         sum = {
           prompt = ""
