@@ -10,25 +10,6 @@
       "-->"
     ]
   },
-  "Aider: do TODO.md": {
-    "scope": "markdown",
-    "prefix": "aido",
-    "body": [
-      "<!-- AI!",
-      "Perform the changes listed in TODO.md.",
-      "Then, clear out TODO.md, but leave the headings in place.",
-      "-->"
-    ]
-  },
-  "Aider: clear TODO.md": {
-    "scope": "markdown",
-    "prefix": "aiclear",
-    "body": [
-      "<!-- AI!",
-      "Clear out TODO.md, but leave the headings in place.",
-      "-->"
-    ]
-  },
   "TypeScript code block": {
     "scope": "markdown",
     "prefix": "ts",
