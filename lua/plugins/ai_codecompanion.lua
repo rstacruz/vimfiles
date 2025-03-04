@@ -13,7 +13,7 @@ return {
     cmd = { "CodeCompanion", "CodeCompanionActions", "CodeCompanionChat", "CodeCompanionCmd" },
 
     keys = {
-      -- { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
+      { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
       { "<leader>!", "", desc = "+experimental", mode = { "n", "v" } },
       { "<leader>!c", "", desc = "+codecompanion", mode = { "n", "v" } },
       { "<leader>!cp", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "Prompt Actions (CodeCompanion)" },
