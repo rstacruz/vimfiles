@@ -9,7 +9,11 @@ return {
       opts.prompts = {
         ai = {
           -- mimics Aider's AI behaviour
-          prompt = "#buffer Look for comments in this file marked as AI!. Perform those actions. Then, remove the AI! comment.",
+          prompt = ""
+            .. "#buffer "
+            .. "Look for comments in this file marked as AI!. Perform those actions. "
+            .. "Also look for AI? comments. Answer those questions. "
+            .. "Then, remove the AI! and AI? comments. ",
         },
       }
       return opts
