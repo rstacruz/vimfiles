@@ -1,0 +1,8 @@
+return {
+  {
+    "Davidyz/VectorCode",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = "VectorCode",
+    build = "pipx upgrade vectorcode",
+  },
+}
