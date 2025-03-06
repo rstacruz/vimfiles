@@ -47,6 +47,17 @@ return {
           },
         },
       },
+      prompt_library = {
+        ["plan"] = {
+          strategy = "chat",
+          description = "Plan something",
+          prompts = {
+            { role = "user", content = [[
+sup
+              ]] },
+          },
+        },
+      },
     },
 
     config = function(_, opts)
