@@ -38,7 +38,37 @@ return {
           },
         },
       },
+      display = {
+        -- https://codecompanion.olimorris.dev/configuration/chat-buffer
+        chat = {
+          intro_message = "Press ? for options",
+          window = {
+            opts = { number = false },
+          },
+        },
+      },
     },
+
+    config = function(_, opts)
+      opts.adapters = {
+        copilot = function()
+          return require("codecompanion.adapters").extend("copilot", {
+            schema = {
+              -- https://github.com/olimorris/codecompanion.nvim/issues/796
+              model = { default = "claude-3.5-sonnet" },
+              max_tokens = { default = 65536 },
+            },
+          })
+        end,
+        -- anthropic = function()
+        --   return require("codecompanion.adapters").extend("anthropic", {
+        --     env = { api_key = "MY_OTHER_ANTHROPIC_KEY" },
+        --   })
+        -- end,
+      }
+
+      require("codecompanion").setup(opts)
+    end,
   },
 
   -- Edgy integration
@@ -49,8 +79,8 @@ return {
       opts.right = opts.right or {}
       table.insert(opts.right, {
         ft = "codecompanion",
-        title = "CodeCompanion Chat",
-        size = { width = 50 },
+        title = "CodeCompanion chat",
+        size = { width = 80 },
       })
     end,
   },

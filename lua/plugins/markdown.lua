@@ -9,7 +9,7 @@ return {
       "BufReadPre **.md",
       "BufNewFile **.md",
     },
-    ft = { "markdown", "norg", "rmd", "org" },
+    ft = { "markdown", "norg", "rmd", "org", "codecompanion" },
     opts = function()
       return {
         render_modes = { "n", "v", "i", "c" },
