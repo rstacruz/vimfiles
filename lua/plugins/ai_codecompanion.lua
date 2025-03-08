@@ -19,7 +19,6 @@ return {
       { "<leader>!c", "", desc = "+codecompanion", mode = { "n", "v" } },
       { "<leader>!cp", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "Prompt Actions (CodeCompanion)" },
       { "<leader>!cc", "<cmd>CodeCompanionChat Toggle<cr>", mode = { "n", "v" }, desc = "Open Chat (CodeCompanion)" },
-      { "<leader>!ca", "<cmd>CodeCompanionChat Add<cr>", mode = { "v" }, desc = "Add to chat (CodeCompanion)" },
       { "<leader>!ci", "<cmd>CodeCompanion<cr>", mode = { "n", "v" }, desc = "Inline prompt (CodeCompanion)" },
     },
 
@@ -55,10 +54,12 @@ return {
           prompts = {
             {
               role = "user",
-              content = ""
-                .. "Look for comments in this file marked as AI!. Perform those actions. "
-                .. "Also look for AI? comments. Answer those questions. "
-                .. "Then, remove the AI! and AI? comments. ",
+              content = [[
+#buffer
+Look for comments in this file marked as AI!. Perform those actions.
+Also look for AI? comments. Answer those questions.
+Then, remove the AI! and AI? comments.
+]],
             },
           },
         },
