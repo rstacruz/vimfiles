@@ -1,14 +1,22 @@
 {
-  "Aider: eval TODO.md": {
+  "AI comment": {
     "scope": "markdown",
-    "prefix": "aideval",
+    "prefix": "ai",
+    "body": ["<!-- AI! $0 -->"]
+  },
+  "AI: Make clear and readable": {
+    "scope": "markdown",
+    "prefix": "aiclear",
+    "description": "AI: Make clear and readable",
     "body": [
-      "<!-- AI?",
-      "I am drafting a plan for a task in TODO.md. Let me know if the file describes enough info you need.",
-      "Keep your response brief. Avoid giving code examples, only help with requirements.",
-      "Try to list down what files and functions may be affected.",
-      "-->"
+      "<!-- AI! Reformat the block below for readability and clarity -->"
     ]
+  },
+  "AI: table": {
+    "scope": "markdown",
+    "description": "AI: Reformat like markdown tables",
+    "prefix": "aitable",
+    "body": ["<!-- AI! Reformat the block below as Markdown table(s) -->"]
   },
   "TypeScript code block": {
     "scope": "markdown",
