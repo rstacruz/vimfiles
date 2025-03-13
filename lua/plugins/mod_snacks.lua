@@ -21,9 +21,10 @@ return {
           ---@type snacks.dashboard.Item[]
           keys = {
             { icon = " ", key = "f", desc = "file", action = ":lua Snacks.dashboard.pick('files')" },
-            { icon = " ", key = "n", desc = "new", action = ":ene | startinsert" },
+            { icon = " ", key = "e", desc = "new", action = ":ene | startinsert" },
             { icon = " ", key = "r", desc = "recent", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-            { icon = " ", key = "s", desc = "session", section = "session" },
+            { icon = " ", key = "S", desc = "session", section = "session" },
+            { icon = " ", key = "s", desc = "git status", action = ":lua Snacks.picker.git_status()" },
             { icon = " ", key = "q", desc = "quit", action = ":qa" },
 
             -- { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
