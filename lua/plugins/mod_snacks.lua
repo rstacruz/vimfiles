@@ -2,6 +2,16 @@ return {
   {
     "snacks.nvim",
     opts = {
+      styles = {
+        float = {
+          width = 0.999,
+          height = 0.9,
+        },
+        lazygit = {
+          width = 0.999,
+          height = 0.999,
+        },
+      },
       dashboard = {
         width = 20, -- default: 60
 
@@ -23,8 +33,9 @@ return {
             { icon = " ", key = "f", desc = "file", action = ":lua Snacks.dashboard.pick('files')" },
             { icon = " ", key = "e", desc = "new", action = ":ene | startinsert" },
             { icon = " ", key = "r", desc = "recent", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-            { icon = " ", key = "S", desc = "session", section = "session" },
-            { icon = " ", key = "s", desc = "git status", action = ":lua Snacks.picker.git_status()" },
+            { icon = " ", key = "@", desc = "session", section = "session" },
+            { icon = " ", key = "s", desc = "lazyvim", action = ":lua Snacks.lazygit({ cwd = LazyVim.root.git() })" },
+            { icon = " ", key = "S", desc = "git status", action = ":lua Snacks.picker.git_status()" },
             { icon = " ", key = "q", desc = "quit", action = ":qa" },
 
             -- { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
