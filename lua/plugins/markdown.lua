@@ -48,8 +48,10 @@ return {
           -- "󰄲" -- nf-md-checkbox_marked
           -- "󰄳" -- nf-md-checkbox_marked_circle
           -- "󰄰" -- nf-md-checkbox_blank_circle_outline
-          unchecked = { icon = "·", highlight = "Comment" },
-          checked = { icon = "󰄬" }, -- nf-md-check
+          -- "󰸞" -- nf-md-check-bold
+          -- "󰄬" -- nf-md-check
+          unchecked = { icon = "·" },
+          checked = { icon = "󰸞" }, -- nf-md-check-bold
           custom = {
             -- Comment = grey
             -- RenderMarkdownTodo = cyan?
@@ -59,8 +61,8 @@ return {
             -- DiagnosticWarn = yellow
             wait = { raw = "[-]", rendered = "󰥔", highlight = "RenderMarkdownTodo" },
             prio = { raw = "[!]", rendered = "󰄰", highlight = "DiagnosticError" }, -- high priority
-            done = { raw = "[x]", rendered = "󰄬", highlight = "DiagnosticOk" }, -- nf-md-checkbox_marked
-            -- yes = { raw = "[y]", rendered = "󰄬", highlight = "DiagnosticOk" }, -- nf-md-checkbox_marked
+            done = { raw = "[x]", rendered = "󰸞", highlight = "DiagnosticOk" },
+            -- yes = { raw = "[y]", rendered = "󰄬", highlight = "DiagnosticOk" },
             fwd = { raw = "[>]", rendered = "󰒊", highlight = "Comment" }, -- nf-md-send
             sched = { raw = "[<]", rendered = "󰃰", highlight = "Comment" }, -- nf-md-calendar_clock
             cancel = { raw = "[~]", rendered = "󰂭", highlight = "DiagnosticInfo" },
