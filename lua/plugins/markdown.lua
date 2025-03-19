@@ -40,11 +40,16 @@ return {
 
         bullet = {
           enabled = true,
-          icons = { "─", "·", "·", "·" }, -- default: { '●', '○', '◆', '◇' },
+          icons = { "─", "─", "─", "─" }, -- default: { '●', '○', '◆', '◇' },
           highlight = "DiagnosticInfo", -- 'RenderMarkdownBullet',
         },
 
         checkbox = {
+          -- "󰄲" -- nf-md-checkbox_marked
+          -- "󰄳" -- nf-md-checkbox_marked_circle
+          -- "󰄰" -- nf-md-checkbox_blank_circle_outline
+          unchecked = { icon = "·", highlight = "Comment" },
+          checked = { icon = "󰄬" }, -- nf-md-check
           custom = {
             -- Comment = grey
             -- RenderMarkdownTodo = cyan?
@@ -52,24 +57,24 @@ return {
             -- DiagnosticError = red
             -- DiagnosticInfo = cyan
             -- DiagnosticWarn = yellow
-            wait = { raw = "[-]", rendered = "󰥔 ", highlight = "RenderMarkdownTodo" },
-            prio = { raw = "[!]", rendered = "󰄱 ", highlight = "DiagnosticError" }, -- high priority
-            done = { raw = "[x]", rendered = "󰄲 ", highlight = "DiagnosticOk" }, -- nf-md-checkbox_marked
-            yes = { raw = "[y]", rendered = "󰄲 ", highlight = "DiagnosticOk" }, -- nf-md-checkbox_marked
-            fwd = { raw = "[>]", rendered = "󰒊 ", highlight = "Comment" }, -- nf-md-send
-            sched = { raw = "[<]", rendered = "󰃰 ", highlight = "Comment" }, -- nf-md-calendar_clock
-            cancel = { raw = "[~]", rendered = "󰂭 ", highlight = "DiagnosticInfo" },
-            info = { raw = "[i]", rendered = "󰋼 ", highlight = "DiagnosticInfo" }, -- nf-md-information
-            idea = { raw = "[I]", rendered = "󰌵 ", highlight = "DiagnosticWarn" }, -- nf-md-lightbulb
-            pro = { raw = "[p]", rendered = "󰔓 ", highlight = "DiagnosticOk" }, -- nf-md-thumb_up
-            con = { raw = "[c]", rendered = "󰔑 ", highlight = "DiagnosticError" }, -- nf-md-thumb_down
-            star = { raw = "[s]", rendered = "󰓎 ", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
-            star2 = { raw = "[*]", rendered = "󰓎 ", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
-            half = { raw = "[/]", rendered = "󰿦 ", highlight = "Comment" }, -- in progress, nf-md-texture_box
+            wait = { raw = "[-]", rendered = "󰥔", highlight = "RenderMarkdownTodo" },
+            prio = { raw = "[!]", rendered = "󰄰", highlight = "DiagnosticError" }, -- high priority
+            done = { raw = "[x]", rendered = "󰄬", highlight = "DiagnosticOk" }, -- nf-md-checkbox_marked
+            -- yes = { raw = "[y]", rendered = "󰄬", highlight = "DiagnosticOk" }, -- nf-md-checkbox_marked
+            fwd = { raw = "[>]", rendered = "󰒊", highlight = "Comment" }, -- nf-md-send
+            sched = { raw = "[<]", rendered = "󰃰", highlight = "Comment" }, -- nf-md-calendar_clock
+            cancel = { raw = "[~]", rendered = "󰂭", highlight = "DiagnosticInfo" },
+            info = { raw = "[i]", rendered = "󰋼", highlight = "DiagnosticInfo" }, -- nf-md-information
+            idea = { raw = "[I]", rendered = "󰌵", highlight = "DiagnosticWarn" }, -- nf-md-lightbulb
+            pro = { raw = "[p]", rendered = "󰔓", highlight = "DiagnosticOk" }, -- nf-md-thumb_up
+            con = { raw = "[c]", rendered = "󰔑", highlight = "DiagnosticError" }, -- nf-md-thumb_down
+            star = { raw = "[s]", rendered = "󰓎", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
+            star2 = { raw = "[*]", rendered = "󰓎", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
+            half = { raw = "[/]", rendered = "󰿦", highlight = "Comment" }, -- in progress, nf-md-texture_box
             -- new
             delegated = { raw = "[d]", rendered = "👤", highlight = "Comment" }, -- in progress, nf-md-texture_box
-            later = { raw = "[l]", rendered = "󰿦 ", highlight = "Comment" }, -- in progress, nf-md-texture_box (deprecated)
-            later2 = { raw = "[_]", rendered = "󰿦 ", highlight = "DiagnosticWarn" }, -- focused in progress, nf-md-texture_box
+            later = { raw = "[l]", rendered = "󰿦", highlight = "Comment" }, -- in progress, nf-md-texture_box (deprecated)
+            later2 = { raw = "[_]", rendered = "󰿦", highlight = "DiagnosticWarn" }, -- focused in progress, nf-md-texture_box
           },
         },
 
