@@ -51,7 +51,7 @@ return {
           -- "󰸞" -- nf-md-check-bold
           -- "󰄬" -- nf-md-check
           unchecked = { icon = "·" },
-          checked = { icon = "󰸞" }, -- nf-md-check-bold
+          checked = { icon = "󰸞", highlight = "DiagnosticOk" }, -- nf-md-check-bold
           custom = {
             -- Comment = grey
             -- RenderMarkdownTodo = cyan?
@@ -62,21 +62,26 @@ return {
             wait = { raw = "[-]", rendered = "󰥔", highlight = "RenderMarkdownTodo" },
             prio = { raw = "[!]", rendered = "󰄰", highlight = "DiagnosticError" }, -- high priority
             done = { raw = "[x]", rendered = "󰸞", highlight = "DiagnosticOk" },
+            prog1 = { raw = "[1]", rendered = "󰂎", highlight = "DiagnosticInfo" },
+            prog2 = { raw = "[2]", rendered = "󱊡", highlight = "DiagnosticInfo" },
+            prog4 = { raw = "[4]", rendered = "󱊢", highlight = "DiagnosticInfo" },
+            prog8 = { raw = "[8]", rendered = "󱊣", highlight = "DiagnosticInfo" },
+            -- prog1 = { raw = "[1]", rendered = "󰂎", highlight = "DiagnosticInfo" },
+            -- prog2 = { raw = "[2]", rendered = "󱊡", highlight = "DiagnosticInfo" },
+            -- prog4 = { raw = "[4]", rendered = "󱊢", highlight = "DiagnosticInfo" },
+            -- prog8 = { raw = "[8]", rendered = "󱊣", highlight = "DiagnosticInfo" },
             -- yes = { raw = "[y]", rendered = "󰄬", highlight = "DiagnosticOk" },
             fwd = { raw = "[>]", rendered = "󰒊", highlight = "Comment" }, -- nf-md-send
             sched = { raw = "[<]", rendered = "󰃰", highlight = "Comment" }, -- nf-md-calendar_clock
             cancel = { raw = "[~]", rendered = "󰂭", highlight = "DiagnosticInfo" },
-            info = { raw = "[i]", rendered = "󰋼", highlight = "DiagnosticInfo" }, -- nf-md-information
-            idea = { raw = "[I]", rendered = "󰌵", highlight = "DiagnosticWarn" }, -- nf-md-lightbulb
+            info = { raw = "[i]", rendered = "󰋼", highlight = "DiagnosticInfo" }, -- nf-md-information -- `i` in obsidian
+            idea = { raw = "[l]", rendered = "󰌵", highlight = "DiagnosticWarn" }, -- nf-md-lightbulb -- `I` in obsidian
             pro = { raw = "[p]", rendered = "󰔓", highlight = "DiagnosticOk" }, -- nf-md-thumb_up
             con = { raw = "[c]", rendered = "󰔑", highlight = "DiagnosticError" }, -- nf-md-thumb_down
             star = { raw = "[s]", rendered = "󰓎", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
             star2 = { raw = "[*]", rendered = "󰓎", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
             half = { raw = "[/]", rendered = "󰿦", highlight = "Comment" }, -- in progress, nf-md-texture_box
-            -- new
             delegated = { raw = "[d]", rendered = "👤", highlight = "Comment" }, -- in progress, nf-md-texture_box
-            later = { raw = "[l]", rendered = "󰿦", highlight = "Comment" }, -- in progress, nf-md-texture_box (deprecated)
-            later2 = { raw = "[_]", rendered = "󰿦", highlight = "DiagnosticWarn" }, -- focused in progress, nf-md-texture_box
           },
         },
 
