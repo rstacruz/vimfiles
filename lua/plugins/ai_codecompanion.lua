@@ -55,10 +55,7 @@ return {
             {
               role = "user",
               content = [[
-#buffer
-Look for comments in this file marked as AI!. Perform those actions.
-Also look for AI? comments. Answer those questions.
-Then, remove the AI! and AI? comments.
+#buffer Are there comments marked AI! or AI?? Perform actions for AI!, answer AI? questions, then delete these comments.
 ]],
             },
           },

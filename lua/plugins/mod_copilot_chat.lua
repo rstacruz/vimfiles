@@ -11,18 +11,12 @@ return {
         AI = {
           -- mimics Aider's AI behaviour
           prompt = ""
-            .. "#buffer "
-            .. "Look for comments in this file marked as AI!. Perform those actions. "
-            .. "Also look for AI? comments. Answer those questions. "
-            .. "Then, remove the AI! and AI? comments. ",
+            .. "#buffer Are there comments marked AI! or AI?? Perform actions for AI!, answer AI? questions, then delete these comments.",
         },
         AIAll = {
           -- mimics Aider's AI behaviour
           prompt = ""
-            .. "#buffers "
-            .. "Look for comments in these files marked as AI!. Perform those actions. "
-            .. "Also look for AI? comments. Answer those questions. "
-            .. "Then, remove the AI! and AI? comments. ",
+            .. "#buffers Are there comments marked AI! or AI?? Perform actions for AI!, answer AI? questions, then delete these comments.",
         },
       }
       return opts
