@@ -49,6 +49,8 @@ return {
           -- "󰄳" -- nf-md-checkbox_marked_circle
           -- "󰄰" -- nf-md-checkbox_blank_circle_outline
           -- "󰸞" -- nf-md-check-bold
+          -- "󰏤" -- nf-md-pause
+          -- "󰜺" -- nf-md-cancel
           -- "󰄬" -- nf-md-check
           unchecked = { icon = "·" },
           checked = { icon = "󰸞", highlight = "DiagnosticOk" }, -- nf-md-check-bold
@@ -73,7 +75,7 @@ return {
             -- yes = { raw = "[y]", rendered = "󰄬", highlight = "DiagnosticOk" },
             fwd = { raw = "[>]", rendered = "󰒊", highlight = "Comment" }, -- nf-md-send
             sched = { raw = "[<]", rendered = "󰃰", highlight = "Comment" }, -- nf-md-calendar_clock
-            cancel = { raw = "[~]", rendered = "󰂭", highlight = "DiagnosticInfo" },
+            cancel = { raw = "[~]", rendered = "󰏤", highlight = "DiagnosticWarn" },
             info = { raw = "[i]", rendered = "󰋼", highlight = "DiagnosticInfo" }, -- nf-md-information -- `i` in obsidian
             idea = { raw = "[l]", rendered = "󰌵", highlight = "DiagnosticWarn" }, -- nf-md-lightbulb -- `I` in obsidian
             pro = { raw = "[p]", rendered = "󰔓", highlight = "DiagnosticOk" }, -- nf-md-thumb_up
