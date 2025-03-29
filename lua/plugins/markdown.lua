@@ -31,6 +31,7 @@ return {
 
         code = {
           sign = false,
+          style = "normal",
           width = "block",
           position = "right",
           right_pad = 5,
@@ -128,35 +129,6 @@ return {
     end,
     config = function(_, opts)
       require("render-markdown").setup(opts)
-    end,
-  },
-
-  {
-    "iamcco/markdown-preview.nvim",
-    vscode = false,
-    enabled = not is_termux,
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = "cd app && yarn install",
-    init = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-    end,
-    config = function() -- (_, opts)
-      -- require("markdown-preview").setup(opts)
-
-      vim.api.nvim_create_autocmd("FileType", {
-        group = vim.api.nvim_create_augroup("markdown_preview_keybindings", { clear = true }),
-        pattern = { "markdown" },
-        callback = function(event)
-          -- event = { buf, event, file, group, id, match }
-          vim.keymap.set(
-            "n",
-            "<leader>mv",
-            "<cmd>MarkdownPreviewToggle<CR>",
-            { buffer = event.buf, desc = "Open Markdown preview in browser" }
-          )
-        end,
-      })
     end,
   },
 

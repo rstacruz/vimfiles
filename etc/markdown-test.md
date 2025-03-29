@@ -26,3 +26,9 @@
   - [6] in progress 6
   - [8] in progress 8
   - [x] done
+
+## Code block
+
+```typescript
+hello there!
+```
