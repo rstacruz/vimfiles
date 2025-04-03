@@ -9,6 +9,8 @@ local settings = {
     "aerial",
     "AiderConsole",
     "Avante",
+    "AvanteInput",
+    "AvanteSelectedFiles",
     "DiffviewFiles",
     "minifiles",
     "neo-tree",
