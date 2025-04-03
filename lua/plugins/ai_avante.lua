@@ -55,11 +55,11 @@ return {
           enable_cursor_applying_mode = true,
         }
       end
-      if vim.env.OPENAI_API_KEY then
-        opts.rag_service = {
-          enabled = true,
-        }
-      end
+      -- if vim.env.OPENAI_API_KEY then
+      --   opts.rag_service = {
+      --     enabled = true,
+      --   }
+      -- end
       return opts
     end,
     build = LazyVim.is_win() and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" or "make",
