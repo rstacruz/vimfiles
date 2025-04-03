@@ -3,3 +3,5 @@
 -- vim.g.disable_ai_plugins = 1
 
 -- vim.notify("Hello!")
+
+vim.env.OPENROUTER_API_KEY = """

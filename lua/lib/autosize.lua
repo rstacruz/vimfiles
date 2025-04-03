@@ -6,17 +6,18 @@
 
 local settings = {
   excluded_filetypes = {
-    "AiderConsole",
-    "NvimTree",
-    "neo-tree",
-    "DiffviewFiles",
-    "Outline",
     "aerial",
+    "AiderConsole",
+    "Avante",
+    "DiffviewFiles",
     "minifiles",
+    "neo-tree",
+    "NvimTree",
+    "Outline",
+    "snacks_input",
+    "snacks_picker_list",
     "TelescopePrompt",
     "TelescopeResults",
-    "snacks_picker_list",
-    "snacks_input",
   },
   min_width = 80,
 }

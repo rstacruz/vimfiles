@@ -115,6 +115,7 @@ Follow the `<guidelines>` for this next request. The request follows below.
         -- anthropic = function()
         --   return require("codecompanion.adapters").extend("anthropic", {
         --     env = { api_key = "MY_OTHER_ANTHROPIC_KEY" },
+        --
         --   })
         -- end,
       }
