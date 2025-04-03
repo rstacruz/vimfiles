@@ -14,96 +14,75 @@ return {
     cmd = { "CodeCompanion", "CodeCompanionActions", "CodeCompanionChat", "CodeCompanionCmd" },
 
     keys = {
-      { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
-      { "<leader>!", "", desc = "+experimental", mode = { "n", "v" } },
-      { "<leader>!c", "", desc = "+codecompanion", mode = { "n", "v" } },
-      { "<leader>!cp", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "Prompt Actions (CodeCompanion)" },
-      { "<leader>!cc", "<cmd>CodeCompanionChat Toggle<cr>", mode = { "n", "v" }, desc = "Open Chat (CodeCompanion)" },
-      { "<leader>!ci", "<cmd>CodeCompanion<cr>", mode = { "n", "v" }, desc = "Inline prompt (CodeCompanion)" },
+      { "<leader>C", "", desc = "+codecompanion", mode = { "n", "v" } },
+      { "<leader>Cp", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "Prompt Actions (CodeCompanion)" },
+      { "<leader>Cc", "<cmd>CodeCompanionChat Toggle<cr>", mode = { "n", "v" }, desc = "Open Chat (CodeCompanion)" },
+      { "<leader>Ci", "<cmd>CodeCompanion<cr>", mode = { "n", "v" }, desc = "Inline prompt (CodeCompanion)" },
     },
 
-    opts = {
-      -- https://codecompanion.olimorris.dev/configuration/inline-assistant.html#keymaps
-      strategies = {
-        inline = {
-          keymaps = {
-            accept_change = {
-              modes = { n = "ga" },
-              description = "Accept the suggested change",
-            },
-            reject_change = {
-              modes = { n = "gr" },
-              description = "Reject the suggested change",
+    opts = function(_, opts)
+      opts = {
+        -- https://codecompanion.olimorris.dev/configuration/inline-assistant.html#keymaps
+        strategies = {
+          inline = {
+            keymaps = {
+              accept_change = {
+                modes = { n = "ga" },
+                description = "Accept the suggested change",
+              },
+              reject_change = {
+                modes = { n = "gr" },
+                description = "Reject the suggested change",
+              },
             },
           },
         },
-      },
-      display = {
-        -- https://codecompanion.olimorris.dev/configuration/chat-buffer
-        chat = {
-          intro_message = "Press ? for options",
-          window = {
-            opts = { number = false },
+        display = {
+          -- https://codecompanion.olimorris.dev/configuration/chat-buffer
+          chat = {
+            intro_message = "Press ? for options",
+            window = {
+              opts = { number = false },
+            },
           },
         },
-      },
-      prompt_library = {
-        ["AIcomments"] = {
-          strategy = "inline",
-          description = "Address AI comments",
-          prompts = {
-            {
-              role = "user",
-              content = [[
+        prompt_library = {
+          ["AIcomments"] = {
+            strategy = "inline",
+            description = "Address AI comments",
+            prompts = {
+              {
+                role = "user",
+                content = [[
 #buffer Are there comments marked AI! or AI?? Perform actions for AI!, answer AI? questions, then delete these comments.
 ]],
+              },
             },
           },
+          -- ["plan"] = {
+          --   strategy = "chat",
+          --   description = "Plan something",
+          --   opts = {
+          --     is_slash_cmd = true,
+          --     short_name = "plan",
+          --   },
+          --   prompts = {
+          --     {
+          --       role = "user",
+          --       content = [[...]]
+          --     },
+          --   },
+          -- },
         },
-        ["plan"] = {
-          strategy = "chat",
-          description = "Plan something",
-          opts = {
-            is_slash_cmd = true,
-            short_name = "plan",
-          },
-          prompts = {
-            {
-              role = "user",
-              content = [[
-<guidelines>
-
-Follow the steps below.
-
-- **Step 1: Gather info**
-  - If files or answers aren't needed, skip to step 2
-  - Request needed files
-  - Ask questions if needed
-  - Skip this step if user input not needed
-  - No code changes yet
-- **Step 2: Write plan**
-  - Create structured plan with:
-    - Background (bullet points)
-    - Requirements
-    - Actions (files/functions to change. Use numbered, logical steps.)
-    - Out of scope
-  - Keep it brief, use `## headings`, sentence fragments. Wait for user to confirm before moving to next step.
-- **Step 3: Execute plan** - Start coding after plan approval.
-
-</guidelines>
-
-Follow the `<guidelines>` for this next request. The request follows below.
-
-]],
-            },
-          },
-        },
-      },
-    },
-
-    config = function(_, opts)
-      opts.adapters = {
-        copilot = function()
+      }
+      if vim.env.OPENROUTER_API_KEY then
+        local openrouter_env = {
+          url = "https://openrouter.ai/api",
+          api_key = "OPENROUTER_API_KEY",
+          chat_url = "/v1/chat/completions",
+        }
+        opts.adapters = {}
+        opts.adapters.copilot = function()
           return require("codecompanion.adapters").extend("copilot", {
             schema = {
               -- https://github.com/olimorris/codecompanion.nvim/issues/796
@@ -111,15 +90,28 @@ Follow the `<guidelines>` for this next request. The request follows below.
               max_tokens = { default = 65536 },
             },
           })
-        end,
-        -- anthropic = function()
-        --   return require("codecompanion.adapters").extend("anthropic", {
-        --     env = { api_key = "MY_OTHER_ANTHROPIC_KEY" },
-        --
-        --   })
-        -- end,
-      }
+        end
+        opts.adapters.openrouter_deepseek_v3 = function()
+          return require("codecompanion.adapters").extend("openai_compatible", {
+            env = openrouter_env,
+            schema = { model = { default = "deepseek/deepseek-chat-v3-0324" } },
+          })
+        end
+        opts.adapters.openrouter_gemini_flash = function()
+          return require("codecompanion.adapters").extend("openai_compatible", {
+            env = openrouter_env,
+            schema = { model = { default = "google/gemini-2.0-flash-001" } },
+          })
+        end
+        opts.strategies.chat = { adapter = "openrouter_deepseek_v3" }
+        opts.strategies.inline = { adapter = "openrouter_gemini_flash" }
+        opts.strategies.cmd = { adapter = "openrouter_deepseek_v3" }
+      end
 
+      return opts
+    end,
+
+    config = function(_, opts)
       require("codecompanion").setup(opts)
     end,
   },

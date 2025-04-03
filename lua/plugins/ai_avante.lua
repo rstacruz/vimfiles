@@ -47,7 +47,7 @@ return {
 
       -- Override provider and settings if OPENROUTER_API_KEY is set
       if vim.env.OPENROUTER_API_KEY then
-        opts.provider = "openrouter_gemini" -- Switch to OpenRouter provider
+        opts.provider = "openrouter_gemini_flash"
 
         -- Configure OpenRouter vendors
         opts.vendors = {
@@ -57,7 +57,7 @@ return {
             api_key_name = "OPENROUTER_API_KEY",
             model = "deepseek/deepseek-chat-v3-0324",
           },
-          openrouter_gemini = {
+          openrouter_gemini_flash = {
             __inherited_from = "openai",
             endpoint = "https://openrouter.ai/api/v1",
             api_key_name = "OPENROUTER_API_KEY",
@@ -65,7 +65,7 @@ return {
           },
         }
 
-        opts.cursor_applying_proivder = "openrouter_gemini"
+        opts.cursor_applying_proivder = "openrouter_gemini_flash"
         opts.behaviour = {
           enable_cursor_applying_mode = true,
         }
