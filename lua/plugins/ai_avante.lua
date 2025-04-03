@@ -71,11 +71,13 @@ return {
         }
       end
 
-      -- if vim.env.OPENAI_API_KEY then
-      --   opts.rag_service = {
-      --     enabled = true,
-      --   }
-      -- end
+      if vim.env.OLLAMA_ENABLED == "1" then
+        opts.rag_service = {
+          enabled = true,
+          provider = "ollama",
+          llm_pmodel = "nomic-embed-text",
+        }
+      end
 
       return opts
     end,
