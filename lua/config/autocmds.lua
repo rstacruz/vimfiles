@@ -13,3 +13,14 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.number = false -- toggle with leader-ul
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("custom_yaml", { clear = true }),
+  pattern = { "yaml" },
+  callback = function()
+    -- idk why this is not set
+    vim.defer_fn(function()
+      vim.opt_local.fixeol = true
+    end, 0)
+  end,
+})
