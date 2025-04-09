@@ -2,7 +2,7 @@ local function get_prefills()
   local cwd = vim.fn.getcwd()
   local is_vault = string.find(cwd, "Vault") ~= nil
   local files_filter = is_vault and "!*ZZ*" or ""
-  return { flags = "-S", filesFilter = files_filter }
+  return { flags = "-S --hidden", filesFilter = files_filter }
 end
 
 return {
