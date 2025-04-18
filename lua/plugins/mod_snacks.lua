@@ -31,11 +31,12 @@ return {
           ---@type snacks.dashboard.Item[]
           keys = {
             { icon = " ", key = "f", desc = "file", action = ":lua Snacks.dashboard.pick('files')" },
+            { icon = " ", key = "S", desc = "git status", action = ":lua Snacks.picker.git_status()" },
+            { icon = " ", key = "d", desc = "git diff", action = ":DiffviewOpen" },
             { icon = " ", key = "e", desc = "new", action = ":ene | startinsert" },
             { icon = " ", key = "r", desc = "recent", action = ":lua Snacks.dashboard.pick('oldfiles')" },
             { icon = " ", key = "@", desc = "session", section = "session" },
             { icon = " ", key = "s", desc = "lazyvim", action = ":lua Snacks.lazygit({ cwd = LazyVim.root.git() })" },
-            { icon = " ", key = "S", desc = "git status", action = ":lua Snacks.picker.git_status()" },
             { icon = " ", key = "q", desc = "quit", action = ":qa" },
 
             -- { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
