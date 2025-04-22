@@ -8,6 +8,9 @@ vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { des
 vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to clipboard" })
 vim.keymap.set("i", "<C-S-v>", '"+p', { desc = "Paste from clipboard" })
 
+-- spelling
+vim.keymap.set("i", "<C-l>", "<C-g>u<Esc>[s1z=`]a<C-g>u", { desc = "Correct spelling under cursor" })
+
 -- Fix all the problems
 vim.keymap.set("n", "<leader>cx", "<cmd>LspRestart<cr>", { desc = "Restart LSP" })
 

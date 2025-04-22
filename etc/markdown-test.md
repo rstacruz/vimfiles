@@ -19,7 +19,7 @@
   - [<] scheduled
   - [-] wait
   - [~] cancelled
-- [*] progres
+- [*] progress
   - to do
   - [!] priority
   - [2] in progress 2
