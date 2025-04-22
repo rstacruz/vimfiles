@@ -3,6 +3,7 @@
 --
 -- -- Scratchpad
 vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
+vim.keymap.set("n", "<leader>!t", "<cmd>hi Normal guibg=NONE ctermbg=NONE", { desc = "Make window transparent" })
 
 -- System clipboard
 vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to clipboard" })
