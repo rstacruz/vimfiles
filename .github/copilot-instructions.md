@@ -7,3 +7,8 @@ This is a repo for Neovim config managed by Lazyvim.
 ### lib/plugins
 
 These are plugins. See `lib/plugins/example.lua.disabled` for common patterns.
+
+### lua/lib
+
+These are custom lua modules that provide helper functions or configurations used across the Neovim setup.
+
