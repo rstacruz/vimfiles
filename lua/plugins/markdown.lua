@@ -53,7 +53,7 @@ return {
           -- "󰏤" -- nf-md-pause
           -- "󰜺" -- nf-md-cancel
           -- "󰄬" -- nf-md-check
-          unchecked = { icon = "·" },
+          unchecked = { icon = "□" },
           checked = { icon = "󰸞", highlight = "DiagnosticOk" }, -- nf-md-check-bold
           custom = {
             -- Comment = grey
