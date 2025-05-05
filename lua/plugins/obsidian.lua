@@ -150,6 +150,10 @@ return {
           opts = { noremap = false, expr = true, buffer = true },
         },
       },
+
+      picker = {
+        name = "snacks.pick",
+      },
     },
 
     config = function(_, opts)
