@@ -32,7 +32,7 @@ return {
     -- :ObsidianSearch
     -- :ObsidianFollowLink
     -- :ObsidianQuickSwitch
-    "epwalsh/obsidian.nvim",
+    "obsidian-nvim/obsidian.nvim",
     vscode = false,
     lazy = true,
     ft = "markdown",
