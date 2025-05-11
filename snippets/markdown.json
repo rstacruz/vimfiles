@@ -1,22 +1,16 @@
 {
+  "AI: preplan": {
+    "scope": "markadown",
+    "prefix": "aiplan",
+    "body": [
+      "(Before answering, make sure you have all info needed. Request files, ask questions, no coding until you have enough clarity.)",
+      ""
+    ]
+  },
   "AI comment": {
     "scope": "markdown",
     "prefix": "ai",
     "body": ["<!-- AI! $0 -->"]
-  },
-  "AI: Make clear and readable": {
-    "scope": "markdown",
-    "prefix": "aiclear",
-    "description": "AI: Make clear and readable",
-    "body": [
-      "<!-- AI! Reformat the block below for readability and clarity -->"
-    ]
-  },
-  "AI: table": {
-    "scope": "markdown",
-    "description": "AI: Reformat like markdown tables",
-    "prefix": "aitable",
-    "body": ["<!-- AI! Reformat the block below as Markdown table(s) -->"]
   },
   "TypeScript code block": {
     "scope": "markdown",
