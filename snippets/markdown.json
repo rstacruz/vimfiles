@@ -1,9 +1,9 @@
 {
-  "AI: preplan": {
-    "scope": "markadown",
-    "prefix": "aiplan",
+  "AI: preplan in arcrhitect mode": {
+    "scope": "markdown",
+    "prefix": "aiarch",
     "body": [
-      "(Before answering, make sure you have all info needed. Request files, ask questions, no coding until you have enough clarity.)",
+      "/architect (Before answering, make sure you have all info needed. Request files, ask questions, no coding until you have enough clarity.)",
       ""
     ]
   },
