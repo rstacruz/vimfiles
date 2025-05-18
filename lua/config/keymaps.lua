@@ -7,7 +7,7 @@ vim.keymap.set("n", "<leader>!t", "<cmd>hi Normal guibg=NONE ctermbg=NONE", { de
 
 -- System clipboard
 vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to clipboard" })
-vim.keymap.set("i", "<C-S-v>", '"+p', { desc = "Paste from clipboard" })
+vim.keymap.set("i", "<C-S-v>", "<C-R>+", { desc = "Paste from clipboard" })
 
 -- spelling
 vim.keymap.set("i", "<C-l>", "<C-g>u<Esc>[s1z=`]a<C-g>u", { desc = "Correct spelling under cursor" })
@@ -127,5 +127,18 @@ if vim.g.vscode then
     "gy",
     "<cmd>lua require('vscode').call('editor.action.goToTypeDefinition')<cr>",
     { desc = "Goto Type Definition" }
+  )
+end
+
+if vim.g.neovide then
+  vim.keymap.set(
+    { "n", "v" },
+    "<C-ScrollWheelUp>",
+    ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.05<CR>"
+  )
+  vim.keymap.set(
+    { "n", "v" },
+    "<C-ScrollWheelDown>",
+    ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.05<CR>"
   )
 end

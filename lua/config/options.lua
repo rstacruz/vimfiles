@@ -14,3 +14,10 @@ vim.opt.relativenumber = false
 -- default: jcroqlnt
 -- formatoptions-=r -- don't auto-insert comment leader on enter
 -- formatoptions-=o -- don't auto-insert comment leader on o/O
+
+if vim.g.neovide then
+  -- https://neovide.dev/configuration.html
+  vim.o.guifont = "Iosevka SS14:h14"
+  vim.g.neovide_text_gamma = 0.0
+  vim.g.neovide_text_contrast = 0.5
+end

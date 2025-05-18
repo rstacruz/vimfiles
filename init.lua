@@ -6,6 +6,7 @@ if is_termux and os.getenv("XDG_RUNTIME_DIR") == nil then
   print("XDG_RUNTIME_DIR is not set")
   local prefix = os.getenv("PREFIX")
   vim.fn.setenv("XDG_RUNTIME_DIR", prefix .. "/tmp")
+  vim.keymap.set("i", "<C-S-v>", '<Esc>"+pa', { desc = "Paste from clipboard" })
 end
 
 pcall(require, "config.local")
