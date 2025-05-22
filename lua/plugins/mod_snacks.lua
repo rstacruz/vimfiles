@@ -12,6 +12,13 @@ return {
           height = 0.999,
         },
       },
+      picker = {
+        sources = {
+          explorer = {
+            layout = { layout = { position = "right" } },
+          },
+        },
+      },
       dashboard = {
         width = 20, -- default: 60
 
