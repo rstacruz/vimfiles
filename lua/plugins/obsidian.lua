@@ -103,14 +103,14 @@ return {
           end
         end
 
-        -- Only save aliases if they're not the same as [self]
-        if note.aliases and next(note.aliases) ~= nil and (#note.aliases ~= 1 or note.aliases[1] ~= note.id) then
-          out.aliases = note.aliases
-        end
+        -- -- Only save aliases if they're not the same as [self]
+        -- if note.aliases and next(note.aliases) ~= nil and (#note.aliases ~= 1 or note.aliases[1] ~= note.id) then
+        --   out.aliases = note.aliases
+        -- end
 
-        if note.tags and next(note.tags) ~= nil then
-          out.tags = note.tags
-        end
+        -- if note.tags and next(note.tags) ~= nil then
+        --   out.tags = note.tags
+        -- end
 
         return out
       end,
