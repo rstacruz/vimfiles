@@ -2,7 +2,7 @@ local function get_obsidian_workspaces()
   local workspaces = {}
   local home = os.getenv("HOME")
   local vaults_dir = home .. "/Documents/Vaults/*"
-  local items = vim.fn.glob(vaults_dir, false, 1)
+  local items = vim.fn.glob(vaults_dir, false, true)
 
   for _, filepath in ipairs(items) do
     if vim.fn.isdirectory(filepath) == 1 then
