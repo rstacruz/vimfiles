@@ -1,0 +1,47 @@
+-- Tried this in 16 Jul 2025
+-- It used OPENAI_API_KEY
+-- I couldn't figure out how to change models, /help didn't work
+-- not sure if theres a conflict
+--
+-- alt-m - switch modes
+local is_termux = string.find(vim.loop.os_uname().release, "android")
+
+return {
+  {
+    "sudo-tee/opencode.nvim",
+    vscode = false,
+    enabled = not is_termux,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      {
+        "MeanderingProgrammer/render-markdown.nvim",
+        opts = {
+          anti_conceal = { enabled = false },
+          file_types = { "markdown", "opencode_output" },
+        },
+        ft = { "markdown", "Avante", "copilot-chat", "opencode_output" },
+      },
+    },
+    opts = {
+      keymap = {
+        global = {
+          toggle = "<leader>aoa", -- Open opencode. Close if opened
+          open_input = "<leader>aoi", -- Opens and focuses on input window on insert mode
+          open_input_new_session = "<leader>aoI", -- Opens and focuses on input window on insert mode. Creates a new session
+          open_output = "<leader>aoo", -- Opens and focuses on output window
+          toggle_focus = "<leader>aot", -- Toggle focus between opencode and last window
+          close = "<leader>aoq", -- Close UI windows
+          toggle_fullscreen = "<leader>aof", -- Toggle between normal and fullscreen mode
+          select_session = "<leader>aos", -- Select and load a opencode session
+          configure_provider = "<leader>aop", -- Quick provider and model switch from predefined list
+          diff_open = "<leader>aod", -- Opens a diff tab of a modified file since the last opencode prompt
+          diff_next = "<leader>ao]", -- Navigate to next file diff
+          diff_prev = "<leader>ao[", -- Navigate to previous file diff
+          diff_close = "<leader>aoc", -- Close diff view tab and return to normal editing
+          diff_revert_all = "<leader>aora", -- Revert all file changes since the last opencode prompt
+          diff_revert_this = "<leader>aort", -- Revert current file changes since the last opencode prompt
+        },
+      },
+    },
+  },
+}
