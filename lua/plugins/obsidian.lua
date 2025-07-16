@@ -146,14 +146,14 @@ return {
       },
 
       -- override mappings to remove `<leader>ch` and `<cr>`
-      mappings = {
-        ["gf"] = {
-          action = function()
-            return require("obsidian").util.gf_passthrough()
-          end,
-          opts = { noremap = false, expr = true, buffer = true },
-        },
-      },
+      -- mappings = {
+      --   ["gf"] = {
+      --     action = function()
+      --       return require("obsidian").util.gf_passthrough()
+      --     end,
+      --     opts = { noremap = false, expr = true, buffer = true },
+      --   },
+      -- },
 
       picker = {
         name = "snacks.pick",
