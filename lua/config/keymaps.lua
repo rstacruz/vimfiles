@@ -48,21 +48,30 @@ vim.keymap.set("n", "<leader>fya", function()
   local str = vim.fn.expand("%:p")
   vim.fn.setreg('"', str)
   vim.fn.setreg("+", str)
-  vim.notify("→ " .. str)
+  vim.notify(" " .. str)
 end, { desc = " Copy absolute path" })
 
-vim.keymap.set("n", "<leader>fyr", function()
-  local str = vim.fn.expand("%:.")
+-- Copy absolute path with line numbers
+vim.keymap.set("v", "<leader>fya", function()
+  local start_line = vim.fn.line("v")
+  local end_line = vim.fn.line(".")
+  local line_range = ""
+  if start_line == end_line then
+    line_range = ":" .. start_line
+  else
+    line_range = ":" .. start_line .. "-" .. end_line
+  end
+  local str = vim.fn.expand("%:p") .. line_range
   vim.fn.setreg('"', str)
   vim.fn.setreg("+", str)
-  vim.notify("→ " .. str)
-end, { desc = " Copy relative path" })
+  vim.notify(" " .. str)
+end, { desc = " Copy absolute path with line numbers" })
 
 vim.keymap.set("n", "<leader>fyr", function()
   local str = vim.fn.expand("%:.")
   vim.fn.setreg('"', str)
   vim.fn.setreg("+", str)
-  vim.notify("→ " .. str)
+  vim.notify(" " .. str)
 end, { desc = " Copy relative path" })
 
 vim.keymap.set("n", "<leader>fyt", function()
