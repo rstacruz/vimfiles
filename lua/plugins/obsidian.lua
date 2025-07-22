@@ -65,12 +65,17 @@ return {
       notes_subdir = "Pages",
 
       -- options: current_dir (default), notes_subdir
-      new_notes_location = "current_dir",
+      new_notes_location = "notes_subdir",
+
+      completion = {
+        blink = true,
+      },
 
       attachments = {
         img_folder = "Media", -- default: "assets/imgs"
       },
 
+      preferred_link_style = "wiki",
       -- wiki_link_func = function(opts)
       --   -- default: wiki_link_id_prefix (`[[id|title]]`)
       --   local link = require("obsidian.util").wiki_link_id_prefix(opts)
@@ -140,6 +145,7 @@ return {
 
       ui = {
         -- use markdown.nvim instead for these
+        enable = false,
         checkboxes = {},
         bullets = {},
         external_link_icon = {},
@@ -157,6 +163,12 @@ return {
 
       picker = {
         name = "snacks.pick",
+      },
+
+      backlinks = {
+        -- When 'true', using `:ObsidianBacklinks` will look for backlinks to the header
+        -- under the cursor. Defaults to true.
+        parse_headers = false,
       },
     },
 

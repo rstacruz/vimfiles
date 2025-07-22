@@ -135,6 +135,7 @@ return {
   {
     "zk-org/zk-nvim",
     vscode = false,
+    enabled = false,
     lazy = true,
     ft = { "markdown" },
     opts = {
