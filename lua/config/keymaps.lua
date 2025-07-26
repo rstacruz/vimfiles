@@ -94,9 +94,9 @@ vim.keymap.set("v", "<leader>fyr", function()
   local end_line = vim.fn.line(".")
   local line_range = ""
   if start_line == end_line then
-    line_range = ":" .. start_line
+    line_range = "#L" .. start_line
   else
-    line_range = ":" .. start_line .. "-" .. end_line
+    line_range = "#L" .. start_line .. "-" .. end_line
   end
   local str = vim.fn.expand("%:.") .. line_range
   vim.fn.setreg('"', str)
