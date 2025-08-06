@@ -74,20 +74,6 @@ vim.keymap.set("n", "<leader>fyr", function()
   vim.notify(" " .. str)
 end, { desc = " Copy relative path" })
 
-vim.keymap.set("n", "<leader>fyt", function()
-  local str = vim.fn.expand("%:t")
-  vim.fn.setreg('"', str)
-  vim.fn.setreg("+", str)
-  vim.notify(" " .. str)
-end, { desc = " Copy basename" })
-
-vim.keymap.set("n", "<leader>fyw", function()
-  local str = "[[" .. vim.fn.expand("%:t:r") .. "]]"
-  vim.fn.setreg('"', str)
-  vim.fn.setreg("+", str)
-  vim.notify(" " .. str)
-end, { desc = " Copy wiki markdown link" })
-
 -- Copy relative path with line numbers
 vim.keymap.set("v", "<leader>fyr", function()
   local start_line = vim.fn.line("v")
@@ -103,6 +89,20 @@ vim.keymap.set("v", "<leader>fyr", function()
   vim.fn.setreg("+", str)
   vim.notify(" " .. str)
 end, { desc = " Copy relative path with line numbers" })
+
+vim.keymap.set("n", "<leader>fyt", function()
+  local str = vim.fn.expand("%:t")
+  vim.fn.setreg('"', str)
+  vim.fn.setreg("+", str)
+  vim.notify(" " .. str)
+end, { desc = " Copy basename" })
+
+vim.keymap.set("n", "<leader>fyw", function()
+  local str = "[[" .. vim.fn.expand("%:t:r") .. "]]"
+  vim.fn.setreg('"', str)
+  vim.fn.setreg("+", str)
+  vim.notify(" " .. str)
+end, { desc = " Copy wiki markdown link" })
 
 -- search-and-replace
 vim.keymap.set("n", "gS", ":%s~~")
