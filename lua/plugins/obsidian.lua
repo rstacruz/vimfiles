@@ -146,9 +146,6 @@ return {
       ui = {
         -- use markdown.nvim instead for these
         enable = false,
-        checkboxes = {},
-        bullets = {},
-        external_link_icon = {},
       },
 
       -- override mappings to remove `<leader>ch` and `<cr>`
@@ -211,13 +208,6 @@ return {
             "<leader>mp",
             "<cmd>ObsidianPasteImg<CR>",
             { buffer = event.buf, desc = "Obsidian: Paste image" }
-          )
-
-          vim.keymap.set(
-            "n",
-            "<c-a>", -- yep, conflicts with a default
-            "<cmd>ObsidianToggleCheckbox<CR>",
-            { buffer = event.buf, desc = "Obsidian: Toggle checkbox" }
           )
 
           vim.keymap.set(
