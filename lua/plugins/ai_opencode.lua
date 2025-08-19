@@ -7,7 +7,13 @@ return {
       { "folke/snacks.nvim", opts = { input = { enabled = true } } },
     },
     opts = {
-      -- Your configuration, if any
+      prompts = {
+        -- @cursor, @diagnostics, @selection, @buffer, @buffers, @quickfix, @diff (git diff)
+        add_comments = {
+          description = "Add comments",
+          prompt = "Add comments to delineate logical blocks in @selection",
+        },
+      },
     },
     keys = {
       -- stylua: ignore start
