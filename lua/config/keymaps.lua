@@ -41,9 +41,6 @@ vim.keymap.set("n", "<c-p>", function()
   Snacks.picker.git_files({ layout = { preset = "vscode" }, untracked = true })
 end, { desc = "Find Files (root dir)" })
 
--- old files (default: leader-fR)
-vim.keymap.set("n", "<leader>o", '<cmd>lua LazyVim.pick("oldfiles")()<cr>', { desc = "Find Files (root dir)" })
-
 vim.keymap.set("n", "<leader>fya", function()
   local str = vim.fn.expand("%:p")
   vim.fn.setreg('"', str)
