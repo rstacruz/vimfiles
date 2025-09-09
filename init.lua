@@ -32,6 +32,7 @@ local LANG_CONFIG = {
 }
 
 now(function() -- options
+	vim.opt.laststatus = 0 -- to be set later
 	vim.opt.tabstop = 2
 	vim.opt.shiftwidth = 2
 	vim.opt.foldlevel = 99
@@ -46,6 +47,32 @@ now(function() -- options
 		diff = "╱",
 		eob = " ",
 	}
+end)
+
+now(function() -- mini.starter
+	local starter = require("mini.starter")
+
+	local function get_banner()
+		local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+		local logo = "" .. cwd .. "\n" .. string.rep("─", #cwd)
+		return logo
+	end
+
+	starter.setup({
+		evaluate_single = true, -- trigger on 1 keypress instead of having to press enter
+
+		footer = function()
+			return " "
+		end,
+
+		header = get_banner,
+
+		content_hooks = {
+			starter.gen_hook.adding_bullet(), -- line on the left
+			starter.gen_hook.indexing("all", { "Builtin actions" }), -- numbers
+			starter.gen_hook.aligning("center", "center"),
+		},
+	})
 end)
 
 now(function() -- tree sitter
@@ -87,7 +114,7 @@ now(function() -- autocmd's
 		group = vim.api.nvim_create_augroup("custom_markdown", { clear = true }),
 		pattern = { "markdown" },
 		callback = function()
-			vim.opt_local.cursorline = false -- doesn't look good when used with headline.nvim. toggle with leader-uL
+			vim.opt_local.cursorline = false -- doesn't look good with headlines
 			vim.opt_local.spell = false -- I find spellcheck only useful when writing prose. toggle with leader-us
 			vim.opt_local.wrap = false -- inline links make wrapping very weird. toggle with leader-uw
 			vim.opt_local.relativenumber = false
@@ -190,28 +217,33 @@ later(function() -- keys, keymaps
 		vim.notify(" " .. str)
 	end
 
+	local function explore_from_here()
+		require("mini.files").open(vim.api.nvim_buf_get_name(0), false)
+	end
+
   -- stylua: ignore start
-	vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
-  vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-  vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
-	vim.keymap.set("n", "<c-p>", function() Snacks.picker.files() end, { desc = "Open file..." })
-	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser" })
-	vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Switch buffer" })
-	vim.keymap.set("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Change colorscheme" })
-	vim.keymap.set("n", "<F1>", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
-	vim.keymap.set("n", "<leader>ux", function() Snacks.picker() end, { desc = "Choose picker" })
-	vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, { desc = "Go to definition" })
-	vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, { desc = "Show references" })
-	vim.keymap.set("n", "gI", function() vim.lsp.buf.implementation() end, { desc = "Show implementation" })
-	vim.keymap.set("n", "gy", function() vim.lsp.buf.type_definition() end, { desc = "Go to type definition" })
-	vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, { desc = "Go to declaration" })
-	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover" })
-	vim.keymap.set("n", "<leader>fya", function() copy_absolute_path() end, { desc = " Copy absolute path" })
-	vim.keymap.set("v", "<leader>fya", function() copy_absolute_path_range() end, { desc = " Copy absolute path with line numbers" })
 	vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
 	vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
 	vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
 	vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
+	vim.keymap.set("n", "<c-p>", function() Snacks.picker.files() end, { desc = "Open file..." })
+	vim.keymap.set("n", "<F1>", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
+	vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, { desc = "Go to declaration" })
+	vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, { desc = "Go to definition" })
+	vim.keymap.set("n", "gI", function() vim.lsp.buf.implementation() end, { desc = "Show implementation" })
+	vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, { desc = "Show references" })
+	vim.keymap.set("n", "gy", function() vim.lsp.buf.type_definition() end, { desc = "Go to type definition" })
+	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover" })
+	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
+	vim.keymap.set("n", "<leader>E", function() explore_from_here() end, { desc = "Open file browser (mini)" })
+	vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Switch buffer" })
+	vim.keymap.set("n", "<leader>fya", function() copy_absolute_path() end, { desc = " Copy absolute path" })
+	vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
+	vim.keymap.set("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Change colorscheme" })
+	vim.keymap.set("n", "<leader>ux", function() Snacks.picker() end, { desc = "Choose picker" })
+  vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+  vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+	vim.keymap.set("v", "<leader>fya", function() copy_absolute_path_range() end, { desc = " Copy absolute path with line numbers" })
 	-- stylua: ignore end
 end)
 
@@ -295,18 +327,8 @@ later(function() -- render-markdown
 	require("render-markdown").setup({
 		render_modes = { "n", "v", "i", "c" },
 		heading = {
-			-- default:
-			-- signs = { "󰫎 " },
-			-- icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
 			icons = { "━ " },
 			signs = { "󰎤 ", "󰎩 ", "󰎬 ", "󰎮 ", "󰎰 ", "󰎵 " },
-			-- signs = { "󰎦 ", "󰎩 ", "󰎬 ", "󰎮 ", "󰎰 ", "󰎵 " }, -- nf-md-numeric_0_box_outline
-			-- signs = { "󰎤 ", "󰎧 ", "󰎪 ", "󰎭 ", "󰎱 ", "󰎳 " }, -- nf-md-numeric_0_box
-			-- icons = { "󰎤 ", "󰎧 ", "󰎪 ", "󰎭 ", "󰎱 ", "󰎳 " }, -- nf-md-numeric_0_box
-			-- signs = { "Ⅰ", "Ⅱ", "Ⅲ", "Ⅳ", "󰲩", "󰲫" },
-			-- signs = { "∙", "∶", "∴", "∷", "󰲩", "󰲫" },
-			-- signs = { "━ " },
-			-- sign = false,
 		},
 
 		code = {
@@ -315,7 +337,6 @@ later(function() -- render-markdown
 			width = "block",
 			position = "right",
 			right_pad = 5,
-			-- left_pad = 2, -- messes up indent guides
 			border = "thick",
 		},
 
@@ -326,29 +347,12 @@ later(function() -- render-markdown
 		},
 
 		checkbox = {
-			-- "󰄲" -- nf-md-checkbox_marked
-			-- "󰄳" -- nf-md-checkbox_marked_circle
-			-- "󰄰" -- nf-md-checkbox_blank_circle_outline
-			-- "󰸞" -- nf-md-check-bold
-			-- "󰏤" -- nf-md-pause
-			-- "󰜺" -- nf-md-cancel
-			-- "󰄬" -- nf-md-check
 			unchecked = { icon = "□" },
 			checked = { icon = "󰸞", highlight = "DiagnosticOk" }, -- nf-md-check-bold
 			custom = {
-				-- Comment = grey
-				-- RenderMarkdownTodo = cyan?
-				-- DiagnosticOk = green
-				-- DiagnosticError = red
-				-- DiagnosticInfo = cyan
-				-- DiagnosticWarn = yellow
 				wait = { raw = "[-]", rendered = "󰥔", highlight = "RenderMarkdownTodo" },
 				prio = { raw = "[!]", rendered = "󰄰", highlight = "DiagnosticError" }, -- high priority
 				done = { raw = "[x]", rendered = "󰸞", highlight = "DiagnosticOk" },
-				prog1 = { raw = "[1]", rendered = "󰂎", highlight = "DiagnosticInfo" },
-				prog2 = { raw = "[2]", rendered = "󱊡", highlight = "DiagnosticInfo" },
-				prog4 = { raw = "[4]", rendered = "󱊢", highlight = "DiagnosticInfo" },
-				prog8 = { raw = "[8]", rendered = "󱊣", highlight = "DiagnosticInfo" },
 				fwd = { raw = "[>]", rendered = "󰒊", highlight = "Comment" }, -- nf-md-send
 				sched = { raw = "[<]", rendered = "󰃰", highlight = "Comment" }, -- nf-md-calendar_clock
 				cancel = { raw = "[~]", rendered = "󰏤", highlight = "DiagnosticWarn" },
@@ -360,15 +364,10 @@ later(function() -- render-markdown
 				star2 = { raw = "[*]", rendered = "󰓎", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
 				bookmark = { raw = "[b]", rendered = "󰃀", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
 				half = { raw = "[/]", rendered = "󰿦", highlight = "Comment" }, -- in progress, nf-md-texture_box
-				delegated = { raw = "[d]", rendered = "👤", highlight = "Comment" }, -- in progress, nf-md-texture_box
 			},
 		},
 
 		callout = {
-			-- RenderMarkdownHint, _Question - yellow
-			-- RenderMarkdownSuccess - green
-			-- RenderMarkdownInfo - blue
-			-- RenderMarkdownError - red
 			highlights = { raw = "[!HIGHLIGHTS]", rendered = "󰌶 Highlights ", highlight = "RenderMarkdownHint" },
 			tldr = { raw = "[!TLDR]", rendered = "󰌶 TLDR ", highlight = "RenderMarkdownHint" },
 			summary = { raw = "[!SUMMARY]", rendered = "󰌶 Summary ", highlight = "RenderMarkdownHint" },
@@ -404,21 +403,35 @@ later(function() -- render-markdown
 	})
 end)
 
--- :DepsUpdate
---
--- todo:
--- * replace Trouble with mini.extra diagnostics
--- * mini.diff - https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-diff.md
--- * blink cmp
--- * akinsho/bufferline
--- * `s` jumping
--- * leader-un toggle for numbers
--- * code actions
--- * recent
--- * show diagnostic info on K
--- * snacks.picker.keymaps()
--- * fold appearance
--- * ctrl-h ctrl-l
--- * bufferline
--- * markdown
--- * diffview
+later(function()
+	local statusline = require("mini.statusline")
+
+	local function active()
+		local mode, mode_hl = statusline.section_mode({ trunc_width = 2000 })
+		local diagnostics = statusline.section_diagnostics({ trunc_width = 75 })
+		local lsp = statusline.section_lsp({ trunc_width = 75 })
+		local filename = statusline.section_filename({ trunc_width = 12 })
+		local search = statusline.section_searchcount({ trunc_width = 75 })
+
+		return statusline.combine_groups({
+			{ hl = mode_hl, strings = { mode } },
+			"%<", -- Mark general truncate point
+			{ hl = "MiniStatuslineFilename", strings = { filename } },
+			"%=", -- End left alignment
+			{ hl = "MiniStatuslineInactive", strings = { diagnostics, lsp } },
+			{ hl = "MiniStatuslineFileinfo", strings = { search } },
+			{ hl = "MiniStatuslineInactive", strings = { "%2l:%-2v" } },
+			{ hl = mode_hl, strings = { " " } },
+		})
+	end
+	statusline.setup({ content = { active = active } })
+
+	-- Restore status line that was hidden earlier
+	vim.opt.laststatus = 2
+end)
+
+later(function()
+	require("mini.git").setup()
+	require("mini.icons").setup()
+	require("mini.diff").setup()
+end)
