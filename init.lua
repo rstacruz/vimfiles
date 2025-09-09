@@ -14,11 +14,14 @@ end
 
 setup_mini()
 local now, later = MiniDeps.now, MiniDeps.later
+local now_if_args = vim.fn.argc(-1) > 0 and now or later
+local now_if_no_args = vim.fn.argc(-1) > 0 and later or now
 
 -- Convenient config for all things related to language setup (LSP, etc)
 local LANG_CONFIG = {
 	treesitter = { "lua", "vimdoc", "javascript", "markdown" },
 	mason = { "lua-language-server", "prettierd" },
+	-- tools
 	lsp = { "vtsls" },
 	linters_by_ft = {
 		lua = {},
@@ -31,6 +34,7 @@ local LANG_CONFIG = {
 	},
 }
 
+-- Termux: some tools are only available certain platforms
 local is_termux = string.find(vim.loop.os_uname().release, "android")
 if not is_termux then
 	table.insert(LANG_CONFIG.lsp, "lua_ls")
@@ -45,7 +49,6 @@ now(function() -- options
 	vim.opt.foldlevel = 99
 	vim.opt.updatetime = 500 -- time to show diagnostics
 	vim.opt.winborder = "rounded" -- for lsp popups
-	-- vim.opt.laststatus = 3 -- global statusline
 	vim.opt.fillchars = {
 		foldopen = "",
 		foldclose = "",
@@ -56,7 +59,7 @@ now(function() -- options
 	}
 end)
 
-now(function() -- mini.starter
+now_if_no_args(function() -- mini.starter
 	local starter = require("mini.starter")
 
 	local function get_banner()
@@ -82,7 +85,7 @@ now(function() -- mini.starter
 	})
 end)
 
-now(function() -- tree sitter
+now_if_args(function() -- tree sitter
 	MiniDeps.add({
 		source = "nvim-treesitter/nvim-treesitter",
 		hooks = {
@@ -152,7 +155,8 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 		source = "mason-org/mason-lspconfig.nvim",
 		depends = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
 	})
-	require("mason").setup({ ensure_installed = LANG_CONFIG.mason })
+	require("mason").setup({})
+	-- require("mason-lspconfig").setup({ ensure_installed = vim.tbl_extend("force", LANG_CONFIG.lsp, LANG_CONFIG.mason) })
 	require("mason-lspconfig").setup({ ensure_installed = LANG_CONFIG.lsp })
 
 	-- Automatically pop up after `updatetime` milliseconds
@@ -202,37 +206,50 @@ later(function() -- editor: formatting
 end)
 
 later(function() -- keys, keymaps
-	local function copy_absolute_path()
-		local str = vim.fn.expand("%:p")
-		vim.fn.setreg('"', str)
-		vim.fn.setreg("+", str)
-		vim.notify(" " .. str)
-	end
-
-	local function copy_absolute_path_range()
+	local function copy_path(opts)
+		local str = vim.fn.expand(opts.expand)
 		local start_line = vim.fn.line("v")
 		local end_line = vim.fn.line(".")
-		local line_range = ""
-		if start_line == end_line then
-			line_range = ":" .. start_line
-		else
-			line_range = ":" .. start_line .. "-" .. end_line
+		if opts and opts.range then
+			if start_line == end_line then
+				str = str .. "#L" .. start_line
+			else
+				str = str .. "#L" .. start_line .. "-" .. end_line
+			end
 		end
-		local str = vim.fn.expand("%:p") .. line_range
 		vim.fn.setreg('"', str)
 		vim.fn.setreg("+", str)
 		vim.notify(" " .. str)
 	end
 
-	local function explore_from_here()
-		require("mini.files").open(vim.api.nvim_buf_get_name(0), false)
+	local function copy_absolute_path()
+		return copy_path({ expand = "%:p" })
+	end
+	local function copy_absolute_path_range()
+		return copy_path({ expand = "%:p", range = 1 })
+	end
+	local function copy_relative_path()
+		return copy_path({ expand = "%:." })
+	end
+	local function copy_relative_path_range()
+		return copy_path({ expand = "%:.", range = 1 })
 	end
 
-  -- stylua: ignore start
+	-- System clipboard
+	vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to clipboard" })
+	vim.keymap.set("i", "<C-S-v>", "<C-R>+", { desc = "Paste from clipboard" })
+
+	-- Windows
 	vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
 	vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
 	vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
 	vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
+
+	-- Make `23,` go to line 23. Easier to type than `23G`
+	vim.keymap.set("n", ",", "G", { desc = "Go to line" })
+	vim.keymap.set("v", ",", "G", { desc = "Go to line" })
+
+  -- stylua: ignore start
 	vim.keymap.set("n", "<c-p>", function() Snacks.picker.files() end, { desc = "Open file..." })
 	vim.keymap.set("n", "<F1>", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
 	vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, { desc = "Go to declaration" })
@@ -240,18 +257,20 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "gI", function() vim.lsp.buf.implementation() end, { desc = "Show implementation" })
 	vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, { desc = "Show references" })
 	vim.keymap.set("n", "gy", function() vim.lsp.buf.type_definition() end, { desc = "Go to type definition" })
+	vim.keymap.set("n", "g.", function() vim.lsp.buf.code_action() end, { desc = "Code action" })
 	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover" })
 	vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Close all and exit" })
 	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
-	vim.keymap.set("n", "<leader>E", function() explore_from_here() end, { desc = "Open file browser (mini)" })
 	vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Switch buffer" })
 	vim.keymap.set("n", "<leader>fya", function() copy_absolute_path() end, { desc = " Copy absolute path" })
+	vim.keymap.set("n", "<leader>fyr", function() copy_relative_path() end, { desc = " Copy relative path" })
 	vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
 	vim.keymap.set("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Change colorscheme" })
 	vim.keymap.set("n", "<leader>ux", function() Snacks.picker() end, { desc = "Choose picker" })
   vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
   vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 	vim.keymap.set("v", "<leader>fya", function() copy_absolute_path_range() end, { desc = " Copy absolute path with line numbers" })
+	vim.keymap.set("v", "<leader>fyr", function() copy_relative_path_range() end, { desc = " Copy relative path with line numbers" })
 	vim.keymap.set("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
 	-- stylua: ignore end
 end)
@@ -413,7 +432,7 @@ later(function() -- render-markdown
 	})
 end)
 
-later(function()
+later(function() -- mini.statusline
 	local statusline = require("mini.statusline")
 
 	local function active()
@@ -440,7 +459,33 @@ later(function()
 	vim.opt.laststatus = 2
 end)
 
-later(function()
+later(function() -- mini.files
+	local MiniFiles = require("mini.files")
+	MiniFiles.setup({
+		mappings = {
+			go_in_plus = "<cr>",
+			synchronize = "<c-s>",
+		},
+		windows = {
+			max_number = 3,
+			preview = true,
+			width_nofocus = math.floor((vim.o.columns - 5) * 0.25), -- 25% of screen minus border+padding
+			width_focus = math.floor((vim.o.columns - 5) * 0.25), -- 25% of screen minus border+padding
+			width_preview = math.floor((vim.o.columns - 3) * 0.5), -- 50% of screen minus border+padding,
+		},
+	})
+
+	local function explore_from_here()
+		MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+		MiniFiles.reveal_cwd()
+	end
+
+	-- stylua: ignore start
+	vim.keymap.set("n", "-", function() explore_from_here() end, { desc = "Open file browser (mini)" })
+	-- stylua: ignore end
+end)
+
+later(function() -- mini.etc
 	require("mini.git").setup()
 	require("mini.icons").setup()
 	require("mini.diff").setup()
