@@ -82,6 +82,31 @@ now(function() -- snacks: indent guides
 	})
 end)
 
+now(function() -- autocmd's
+	vim.api.nvim_create_autocmd("FileType", {
+		group = vim.api.nvim_create_augroup("custom_markdown", { clear = true }),
+		pattern = { "markdown" },
+		callback = function()
+			vim.opt_local.cursorline = false -- doesn't look good when used with headline.nvim. toggle with leader-uL
+			vim.opt_local.spell = false -- I find spellcheck only useful when writing prose. toggle with leader-us
+			vim.opt_local.wrap = false -- inline links make wrapping very weird. toggle with leader-uw
+			vim.opt_local.relativenumber = false
+			vim.opt_local.number = false -- toggle with leader-ul
+		end,
+	})
+
+	vim.api.nvim_create_autocmd("FileType", {
+		group = vim.api.nvim_create_augroup("custom_yaml", { clear = true }),
+		pattern = { "yaml" },
+		callback = function()
+			-- idk why this is not set
+			vim.defer_fn(function()
+				vim.opt_local.fixeol = true
+			end, 0)
+		end,
+	})
+end)
+
 later(function() -- editor: lsp features (blink, mason, lspconfig)
 	MiniDeps.add({ source = "Saghen/blink.cmp", checkout = "v1.6.0" })
 	MiniDeps.add({ source = "mason-org/mason.nvim" })
@@ -166,6 +191,7 @@ later(function() -- keys, keymaps
 	end
 
   -- stylua: ignore start
+	vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
   vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
   vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 	vim.keymap.set("n", "<c-p>", function() Snacks.picker.files() end, { desc = "Open file..." })
@@ -264,9 +290,125 @@ later(function() -- trouble: diagnostics
 	-- stylua: ignore end
 end)
 
+later(function()
+	MiniDeps.add({ source = "MeanderingProgrammer/render-markdown.nvim" })
+	require("render-markdown").setup({
+		render_modes = { "n", "v", "i", "c" },
+		heading = {
+			-- default:
+			-- signs = { "󰫎 " },
+			-- icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
+			icons = { "━ " },
+			signs = { "󰎤 ", "󰎩 ", "󰎬 ", "󰎮 ", "󰎰 ", "󰎵 " },
+			-- signs = { "󰎦 ", "󰎩 ", "󰎬 ", "󰎮 ", "󰎰 ", "󰎵 " }, -- nf-md-numeric_0_box_outline
+			-- signs = { "󰎤 ", "󰎧 ", "󰎪 ", "󰎭 ", "󰎱 ", "󰎳 " }, -- nf-md-numeric_0_box
+			-- icons = { "󰎤 ", "󰎧 ", "󰎪 ", "󰎭 ", "󰎱 ", "󰎳 " }, -- nf-md-numeric_0_box
+			-- signs = { "Ⅰ", "Ⅱ", "Ⅲ", "Ⅳ", "󰲩", "󰲫" },
+			-- signs = { "∙", "∶", "∴", "∷", "󰲩", "󰲫" },
+			-- signs = { "━ " },
+			-- sign = false,
+		},
+
+		code = {
+			sign = false,
+			style = "normal",
+			width = "block",
+			position = "right",
+			right_pad = 5,
+			-- left_pad = 2, -- messes up indent guides
+			border = "thick",
+		},
+
+		bullet = {
+			enabled = true,
+			icons = { "─", "─", "─", "─" }, -- default: { '●', '○', '◆', '◇' },
+			highlight = "DiagnosticInfo", -- 'RenderMarkdownBullet',
+		},
+
+		checkbox = {
+			-- "󰄲" -- nf-md-checkbox_marked
+			-- "󰄳" -- nf-md-checkbox_marked_circle
+			-- "󰄰" -- nf-md-checkbox_blank_circle_outline
+			-- "󰸞" -- nf-md-check-bold
+			-- "󰏤" -- nf-md-pause
+			-- "󰜺" -- nf-md-cancel
+			-- "󰄬" -- nf-md-check
+			unchecked = { icon = "□" },
+			checked = { icon = "󰸞", highlight = "DiagnosticOk" }, -- nf-md-check-bold
+			custom = {
+				-- Comment = grey
+				-- RenderMarkdownTodo = cyan?
+				-- DiagnosticOk = green
+				-- DiagnosticError = red
+				-- DiagnosticInfo = cyan
+				-- DiagnosticWarn = yellow
+				wait = { raw = "[-]", rendered = "󰥔", highlight = "RenderMarkdownTodo" },
+				prio = { raw = "[!]", rendered = "󰄰", highlight = "DiagnosticError" }, -- high priority
+				done = { raw = "[x]", rendered = "󰸞", highlight = "DiagnosticOk" },
+				prog1 = { raw = "[1]", rendered = "󰂎", highlight = "DiagnosticInfo" },
+				prog2 = { raw = "[2]", rendered = "󱊡", highlight = "DiagnosticInfo" },
+				prog4 = { raw = "[4]", rendered = "󱊢", highlight = "DiagnosticInfo" },
+				prog8 = { raw = "[8]", rendered = "󱊣", highlight = "DiagnosticInfo" },
+				fwd = { raw = "[>]", rendered = "󰒊", highlight = "Comment" }, -- nf-md-send
+				sched = { raw = "[<]", rendered = "󰃰", highlight = "Comment" }, -- nf-md-calendar_clock
+				cancel = { raw = "[~]", rendered = "󰏤", highlight = "DiagnosticWarn" },
+				info = { raw = "[i]", rendered = "󰋼", highlight = "DiagnosticInfo" }, -- nf-md-information -- `i` in obsidian
+				idea = { raw = "[l]", rendered = "󰌵", highlight = "DiagnosticWarn" }, -- nf-md-lightbulb -- `I` in obsidian
+				pro = { raw = "[p]", rendered = "󰔓", highlight = "DiagnosticOk" }, -- nf-md-thumb_up
+				con = { raw = "[c]", rendered = "󰔑", highlight = "DiagnosticError" }, -- nf-md-thumb_down
+				star = { raw = "[s]", rendered = "󰓎", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
+				star2 = { raw = "[*]", rendered = "󰓎", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
+				bookmark = { raw = "[b]", rendered = "󰃀", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
+				half = { raw = "[/]", rendered = "󰿦", highlight = "Comment" }, -- in progress, nf-md-texture_box
+				delegated = { raw = "[d]", rendered = "👤", highlight = "Comment" }, -- in progress, nf-md-texture_box
+			},
+		},
+
+		callout = {
+			-- RenderMarkdownHint, _Question - yellow
+			-- RenderMarkdownSuccess - green
+			-- RenderMarkdownInfo - blue
+			-- RenderMarkdownError - red
+			highlights = { raw = "[!HIGHLIGHTS]", rendered = "󰌶 Highlights ", highlight = "RenderMarkdownHint" },
+			tldr = { raw = "[!TLDR]", rendered = "󰌶 TLDR ", highlight = "RenderMarkdownHint" },
+			summary = { raw = "[!SUMMARY]", rendered = "󰌶 Summary ", highlight = "RenderMarkdownHint" },
+		},
+
+		link = {
+			-- Fallback icon for 'inline_link' elements
+			-- hyperlink = "󰌹 ",
+			hyperlink = "",
+
+			-- image = "󰥶 ", -- Inlined with 'image' elements
+			-- email = "󰀓 ", -- Inlined with 'email_autolink' elements
+			-- hyperlink = "󰌹 ", -- Fallback icon for 'inline_link' elements
+			-- wiki = { icon = "󱗖 ", highlight = "RenderMarkdownWikiLink" },
+			wiki = { icon = "", highlight = "RenderMarkdownLink" },
+
+			custom = {
+            -- web = { pattern = "^http[s]?://", icon = "󰖟 ", highlight = "RenderMarkdownLink" },
+            -- stylua: ignore start
+            jira = { pattern = "^http[s]?://%a+.atlassian.net/browse", icon = "󰌃 ", highlight = "RenderMarkdownLink" },
+            conf = { pattern = "^http[s]?://%a+.atlassian.net/wiki", icon = " ", highlight = "RenderMarkdownLink" }, -- nf-fa-confluence
+            slack = { pattern = "^http[s]?://%a+.slack.com", icon = "󰒱 ", highlight = "RenderMarkdownLink" }, -- nf-md-slack
+            github = { pattern = "^http[s]?://github.com", icon = "󰊤 ", highlight = "RenderMarkdownLink" }, -- nf-md-github + ctrl-k 1M
+            gitlab = { pattern = "^http[s]?://gitlab.com", icon = " ", highlight = "RenderMarkdownLink" }, -- nf-fa-gitlab
+            trello = { pattern = "^http[s]?://trello.com", icon = "󰔲 ", highlight = "RenderMarkdownLink" },
+            miro = { pattern = "^http[s]?://miro.com", icon = "󰃥 ", highlight = "RenderMarkdownLink" },
+            datadog = { pattern = "^http[s]?://app.datadoghq.com", icon = "󰩃 ", highlight = "RenderMarkdownLink" },
+            googledrive = { pattern = "^http[s]?://drive.google.com", icon = "󰊶 ", highlight = "RenderMarkdownLink", },
+            web = { pattern = "^http[s]?://", icon = "󰏌 ", highlight = "RenderMarkdownLink" }, -- nf-md-open_in_new + ctrl-k 1M
+				-- stylua: ignore end
+			},
+		},
+	})
+end)
+
 -- :DepsUpdate
 --
 -- todo:
+-- * replace Trouble with mini.extra diagnostics
+-- * mini.diff - https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-diff.md
 -- * blink cmp
 -- * akinsho/bufferline
 -- * `s` jumping
