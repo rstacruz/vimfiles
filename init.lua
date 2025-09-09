@@ -19,7 +19,7 @@ local now, later = MiniDeps.now, MiniDeps.later
 local LANG_CONFIG = {
 	treesitter = { "lua", "vimdoc", "javascript", "markdown" },
 	mason = { "lua-language-server", "prettierd" },
-	lsp = { "lua_ls", "vtsls" },
+	lsp = { "vtsls" },
 	linters_by_ft = {
 		lua = { "luac", "luacheck" },
 	},
@@ -30,6 +30,11 @@ local LANG_CONFIG = {
 		sh = { "shfmt" },
 	},
 }
+
+local is_termux = string.find(vim.loop.os_uname().release, "android")
+if not is_termux then
+	table.insert(LANG_CONFIG.lsp, "lua_ls")
+end
 
 now(function() -- options
 	vim.opt.laststatus = 0 -- to be set later
@@ -234,6 +239,7 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, { desc = "Show references" })
 	vim.keymap.set("n", "gy", function() vim.lsp.buf.type_definition() end, { desc = "Go to type definition" })
 	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover" })
+	vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Close all and exit" })
 	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
 	vim.keymap.set("n", "<leader>E", function() explore_from_here() end, { desc = "Open file browser (mini)" })
 	vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Switch buffer" })
@@ -244,6 +250,7 @@ later(function() -- keys, keymaps
   vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
   vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 	vim.keymap.set("v", "<leader>fya", function() copy_absolute_path_range() end, { desc = " Copy absolute path with line numbers" })
+	vim.keymap.set("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
 	-- stylua: ignore end
 end)
 
@@ -286,6 +293,7 @@ later(function() -- mini.clue: shows keyboard shortcuts
 			{ mode = "n", keys = "<leader>c", desc = "+code" },
 			{ mode = "n", keys = "<leader>x", desc = "+diagnostics" },
 			{ mode = "n", keys = "<leader>f", desc = "+file" },
+			{ mode = "n", keys = "<leader>q", desc = "+quit" },
 			-- Enhance this by adding descriptions for <Leader> mapping groups
 			miniclue.gen_clues.builtin_completion(),
 			miniclue.gen_clues.g(),
