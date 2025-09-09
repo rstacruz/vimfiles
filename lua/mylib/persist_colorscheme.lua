@@ -6,7 +6,7 @@
 -- Get cache file
 local function get_cache_file()
 	local cache_path = vim.fn.stdpath("cache")
-	local cache_file = cache_path .. "/colorscheme_xyz.lua"
+	local cache_file = cache_path .. "/colorscheme.lua"
 	return cache_file
 end
 
@@ -31,7 +31,10 @@ local function load()
 
 	if vim.fn.filereadable(cache_file) == 1 then
 		dofile(cache_file)
+		return 1
 	end
+
+	return 0
 end
 
 -- Setup autocmd to save colorscheme on change
@@ -45,9 +48,12 @@ local function setup_autocmd()
 	})
 end
 
-local function setup()
+local function setup(opts)
+	local is_loaded = load()
+	if is_loaded ~= 1 and opts.fallback then
+		vim.cmd("colorscheme " .. opts.fallback)
+	end
 	setup_autocmd()
-	load()
 end
 
 return { save = save, load = load, setup = setup }

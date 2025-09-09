@@ -32,8 +32,20 @@ local LANG_CONFIG = {
 }
 
 now(function() -- options
-	vim.o.tabstop = 2
-	vim.o.shiftwidth = 2
+	vim.opt.tabstop = 2
+	vim.opt.shiftwidth = 2
+	vim.opt.foldlevel = 99
+	vim.opt.updatetime = 500 -- time to show diagnostics
+	vim.opt.winborder = "rounded" -- for lsp popups
+	-- vim.opt.laststatus = 3 -- global statusline
+	vim.opt.fillchars = {
+		foldopen = "",
+		foldclose = "",
+		fold = " ",
+		foldsep = " ",
+		diff = "╱",
+		eob = " ",
+	}
 end)
 
 now(function() -- tree sitter
@@ -54,15 +66,15 @@ now(function() -- tree sitter
 
 	vim.wo.foldmethod = "expr"
 	vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-	vim.wo.foldlevel = 99
 end)
 
 now(function() -- color scheme
-	vim.cmd("colorscheme miniautumn")
-	require("mylib.persist_colorscheme").setup()
+	MiniDeps.add({ source = "rebelot/kanagawa.nvim" })
+	MiniDeps.add({ source = "projekt0n/github-nvim-theme" })
+	require("mylib.persist_colorscheme").setup({ fallback = "miniautumn" })
 end)
 
-now(function() -- snacks
+now(function() -- snacks: indent guides
 	MiniDeps.add({ source = "folke/snacks.nvim" })
 	vim.g.snacks_animate = false
 	require("snacks").setup({
@@ -70,7 +82,7 @@ now(function() -- snacks
 	})
 end)
 
-later(function() -- lsp [blink, mason, lsponfig]
+later(function() -- editor: lsp features (blink, mason, lspconfig)
 	MiniDeps.add({ source = "Saghen/blink.cmp", checkout = "v1.6.0" })
 	MiniDeps.add({ source = "mason-org/mason.nvim" })
 	MiniDeps.add({
@@ -84,13 +96,20 @@ later(function() -- lsp [blink, mason, lsponfig]
 	require("mason").setup({ ensure_installed = LANG_CONFIG.mason })
 	require("mason-lspconfig").setup({ ensure_installed = LANG_CONFIG.lsp })
 
+	-- Automatically pop up after `updatetime` milliseconds
+	vim.api.nvim_create_autocmd("CursorHold", {
+		callback = function()
+			vim.diagnostic.open_float(nil, { focus = false })
+		end,
+	})
+
 	-- https://github.com/mason-org/mason.nvim?tab=readme-ov-file#configuration
 	-- https://neovim.io/doc/user/lsp.html#lsp-quickstart
 	-- https://github.com/neovim/nvim-lspconfig
 	-- https://www.lazyvim.org/extras/coding/blink
 end)
 
-later(function() -- lint
+later(function() -- editor: linting
 	MiniDeps.add({
 		source = "mfussenegger/nvim-lint",
 	})
@@ -102,7 +121,7 @@ later(function() -- lint
 	})
 end)
 
-later(function() -- format
+later(function() -- editor: formatting
 	MiniDeps.add({ source = "stevearc/conform.nvim" })
 	require("conform").setup({ formatters_by_ft = LANG_CONFIG.formatters_by_ft })
 
@@ -153,6 +172,7 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser" })
 	vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Switch buffer" })
 	vim.keymap.set("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Change colorscheme" })
+	vim.keymap.set("n", "<F1>", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
 	vim.keymap.set("n", "<leader>ux", function() Snacks.picker() end, { desc = "Choose picker" })
 	vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, { desc = "Go to definition" })
 	vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, { desc = "Show references" })
@@ -169,7 +189,7 @@ later(function() -- keys, keymaps
 	-- stylua: ignore end
 end)
 
-later(function() -- mini.clue
+later(function() -- mini.clue: shows keyboard shortcuts
 	local miniclue = require("mini.clue")
 	miniclue.setup({
 		triggers = {
@@ -219,7 +239,7 @@ later(function() -- mini.clue
 	})
 end)
 
-later(function() -- mini.notify
+later(function() -- mini.notify: toast notifications
 	local notify = require("mini.notify")
 	notify.setup({})
 	vim.notify = notify.make_notify({})
@@ -231,11 +251,11 @@ later(function() -- mini.notify
 	-- https://github.com/nvim-mini/mini.notify
 end)
 
-later(function() -- mylib.autosize
+later(function() -- mylib.autosize: resize window widths
 	require("mylib.autosize").setup()
 end)
 
-later(function() -- trouble
+later(function() -- trouble: diagnostics
 	MiniDeps.add({ source = "folke/trouble.nvim" })
 	require("trouble").setup({})
 
@@ -249,6 +269,7 @@ end)
 -- todo:
 -- * blink cmp
 -- * akinsho/bufferline
+-- * `s` jumping
 -- * leader-un toggle for numbers
 -- * code actions
 -- * recent
