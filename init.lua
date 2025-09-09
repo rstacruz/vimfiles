@@ -21,7 +21,7 @@ local LANG_CONFIG = {
 	mason = { "lua-language-server", "prettierd" },
 	lsp = { "vtsls" },
 	linters_by_ft = {
-		lua = { "luac", "luacheck" },
+		lua = {},
 	},
 	formatters_by_ft = {
 		lua = { "stylua" },
@@ -34,6 +34,8 @@ local LANG_CONFIG = {
 local is_termux = string.find(vim.loop.os_uname().release, "android")
 if not is_termux then
 	table.insert(LANG_CONFIG.lsp, "lua_ls")
+	table.insert(LANG_CONFIG.mason, "luacheck")
+	table.insert(LANG_CONFIG.linters_by_ft.lua, "luacheck")
 end
 
 now(function() -- options
