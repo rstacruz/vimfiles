@@ -290,7 +290,7 @@ later(function() -- trouble: diagnostics
 	-- stylua: ignore end
 end)
 
-later(function()
+later(function() -- render-markdown
 	MiniDeps.add({ source = "MeanderingProgrammer/render-markdown.nvim" })
 	require("render-markdown").setup({
 		render_modes = { "n", "v", "i", "c" },
