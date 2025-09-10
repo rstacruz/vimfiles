@@ -198,7 +198,7 @@ later(function() -- keys, keymaps
 		if opts and opts.range then
 			if start_line == end_line then
 				str = str .. "#L" .. start_line
-			else if start_line > end_line then
+			elseif start_line > end_line then
 				str = str .. "#L" .. end_line .. "-" .. start_line
 			else
 				str = str .. "#L" .. start_line .. "-" .. end_line
@@ -244,6 +244,8 @@ later(function() -- keys, keymaps
 	vim.keymap.del("n", "grn")
 
   -- stylua: ignore start
+  vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+  vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 	vim.keymap.set("n", "<c-p>", function() Snacks.picker.files() end, { desc = "Open file..." })
 	vim.keymap.set("n", "<F1>", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
 	vim.keymap.set("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Go to declaration" })
@@ -266,8 +268,6 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Change colorscheme" })
 	vim.keymap.set("n", "<leader>ux", function() Snacks.picker() end, { desc = "Choose picker" })
 	vim.keymap.set("n", "<leader>u,", function() vim.cmd("e ~/.config/nvim/init.lua") end, { desc = "Open settings" })
-  vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-  vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 	vim.keymap.set("v", "<leader>fya", function() copy_absolute_path_range() end, { desc = " Copy absolute path with line numbers" })
 	vim.keymap.set("v", "<leader>fyr", function() copy_relative_path_range() end, { desc = " Copy relative path with line numbers" })
 	vim.keymap.set("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
