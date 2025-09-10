@@ -38,8 +38,6 @@ local LANG_CONFIG = {
 local is_termux = string.find(vim.loop.os_uname().release, "android")
 if not is_termux then
 	table.insert(LANG_CONFIG.lsp, "lua_ls")
-	table.insert(LANG_CONFIG.mason, "luacheck")
-	table.insert(LANG_CONFIG.linters_by_ft.lua, "luacheck")
 end
 
 now(function() -- options
@@ -267,6 +265,7 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
 	vim.keymap.set("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Change colorscheme" })
 	vim.keymap.set("n", "<leader>ux", function() Snacks.picker() end, { desc = "Choose picker" })
+	vim.keymap.set("n", "<leader>u,", function() vim.cmd("e ~/.config/nvim/init.lua") end, { desc = "Open settings" })
   vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
   vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 	vim.keymap.set("v", "<leader>fya", function() copy_absolute_path_range() end, { desc = " Copy absolute path with line numbers" })
