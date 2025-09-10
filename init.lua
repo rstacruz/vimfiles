@@ -31,16 +31,18 @@ local now_if_args = vim.fn.argc(-1) > 0 and now or later
 -- Convenient config for all things related to language setup (LSP, etc)
 local LANG_CONFIG = {
 	treesitter = { "lua", "vimdoc", "javascript", "markdown" },
-	mason = { "lua-language-server", "eslint", "prettier" }, -- not working
-	-- tools
-	lsp = { "vtsls" },
+	mason = { "prettier", "stylua" }, -- use :MasonInstallAll
+	-- tools (see :Mason)
+	lsp = { "vtsls", "tailwindcss", "eslint" },
 	linters_by_ft = {
-		lua = {},
+		lua = {}, -- luacheck
 	},
 	formatters_by_ft = {
 		lua = { "stylua" },
 		typescript = { "eslint", "prettier", lsp_format = "fallback" },
 		typescriptreact = { "eslint", "prettier", lsp_format = "fallback" },
+		javascript = { "eslint", "prettier", lsp_format = "fallback" },
+		javascriptreact = { "eslint", "prettier", lsp_format = "fallback" },
 		fish = { "fish_indent" },
 		sh = { "shfmt" },
 	},
@@ -165,6 +167,11 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 			vim.diagnostic.open_float(nil, { focus = false })
 		end,
 	})
+
+	vim.api.nvim_create_user_command("MasonInstallAll", function()
+		local packages = table.concat(LANG_CONFIG.mason, " ")
+		vim.cmd("MasonInstall " .. packages)
+	end, {})
 
 	-- https://github.com/mason-org/mason.nvim?tab=readme-ov-file#configuration
 	-- https://neovim.io/doc/user/lsp.html#lsp-quickstart
@@ -529,6 +536,21 @@ later(function()
 end)
 
 later(function() -- mini.etc
+	-- Better Around/Inside textobjects
+	--
+	-- Examples
+	--  - va)  - [V]isually select [A]round [)]paren
+	--  - yinq - [Y]ank [I]nside [N]ext [Q]uote
+	--  - ci'  - [C]hange [I]nside [']quote
+	require("mini.ai").setup()
+
+	-- Add/delete/replace surroundings (brackets, quotes, etc.)
+	--
+	-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
+	-- - sd'   - [S]urround [D]elete [']quotes
+	-- - sr)'  - [S]urround [R]eplace [)] [']
+	require("mini.surround").setup()
+
 	require("mini.git").setup()
 	require("mini.icons").setup()
 	require("mini.diff").setup()
