@@ -73,6 +73,19 @@ later(function() -- render-markdown
 	})
 end)
 
+-- Restore status line that was hidden earlier
+---@param value number
+local function defer_laststatus_update_on_insert(value)
+	local group = vim.api.nvim_create_augroup("restore", { clear = true })
+	vim.api.nvim_create_autocmd("InsertEnter", {
+		group = group,
+		callback = function()
+			vim.opt.laststatus = value
+			vim.api.nvim_del_augroup_by_id(group)
+		end,
+	})
+end
+
 -- ...
 -- :DepsUpdate
 --

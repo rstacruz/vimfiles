@@ -58,6 +58,7 @@ now(function() -- options
 	vim.opt.shiftwidth = 2
 	vim.opt.foldlevel = 99
 	vim.opt.updatetime = 500 -- time to show diagnostics
+	vim.opt.swapfile = false
 	vim.opt.fillchars = {
 		foldopen = "",
 		foldclose = "",
@@ -75,6 +76,9 @@ now(function() -- options
 	else
 		vim.opt.foldmethod = "indent"
 		vim.opt.foldtext = "v:lua.require'mylib.fold'.foldtext()"
+	end
+	if vim.fn.has("nvim-0.11") == 1 then
+		vim.opt.winblend = 3 -- reduce from 10 in mini.basics
 	end
 end)
 
@@ -442,7 +446,7 @@ later(function() -- render-markdown
 	})
 end)
 
-later(function() -- mini.statusline
+now_if_args(function() -- mini.statusline
 	local statusline = require("mini.statusline")
 
 	local function active()
@@ -466,7 +470,24 @@ later(function() -- mini.statusline
 	statusline.setup({ content = { active = active } })
 
 	-- Restore status line that was hidden earlier
-	vim.opt.laststatus = 2
+	---@param value number
+	local function defer_laststatus_update_on_insert(value)
+		local group = vim.api.nvim_create_augroup("restore", { clear = true })
+		vim.api.nvim_create_autocmd("InsertEnter", {
+			group = group,
+			callback = function()
+				vim.opt.laststatus = value
+				vim.api.nvim_del_augroup_by_id(group)
+			end,
+		})
+	end
+
+	-- Show status line immediately when starting with a file
+	if vim.fn.argc(-1) > 0 then
+		vim.opt.laststatus = 2
+	else
+		defer_laststatus_update_on_insert(2)
+	end
 end)
 
 later(function() -- mini.files
