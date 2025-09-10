@@ -1,4 +1,5 @@
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+local now_if_args = vim.fn.argc(-1) > 0 and now or later
 local now_if_no_args = vim.fn.argc(-1) > 0 and later or now
 
 now_if_no_args(function() -- mini.starter
