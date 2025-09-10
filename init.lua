@@ -66,15 +66,15 @@ now_if_no_args(function() -- mini.starter
 		return logo
 	end
 
+	local function get_footer()
+		return " "
+	end
+
 	starter.setup({
 		evaluate_single = true, -- trigger on 1 keypress instead of having to press enter
-
-		footer = function()
-			return " "
-		end,
-
+		footer = get_footer,
 		header = get_banner,
-
+		query_updaters = "eq0123456789",
 		content_hooks = {
 			starter.gen_hook.adding_bullet(), -- line on the left
 			starter.gen_hook.indexing("all", { "Builtin actions" }), -- numbers
