@@ -516,7 +516,7 @@ later(function() -- mini.files
 	-- stylua: ignore end
 end)
 
-now(function()
+later(function()
 	add({
 		source = "sindrets/diffview.nvim",
 	})
