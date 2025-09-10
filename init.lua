@@ -167,15 +167,20 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 		end,
 	})
 
-	local mr = require("mason-registry")
-	local pkgs_to_install = vim.tbl_filter(function(item)
-		local pkg = mr.get_package(item)
-		return pkg:is_installed() == false
-	end, LANG_CONFIG.mason)
+	---@param pkgs string[]
+	local function mason_auto_install(pkgs)
+		local mr = require("mason-registry")
+		local pkgs_to_install = vim.tbl_filter(function(item)
+			local pkg = mr.get_package(item)
+			return pkg:is_installed() == false
+		end, pkgs)
 
-	if #pkgs_to_install ~= 0 then
-		vim.cmd("MasonInstall " .. table.concat(pkgs_to_install, " "))
+		if #pkgs_to_install ~= 0 then
+			vim.cmd("MasonInstall " .. table.concat(pkgs_to_install, " "))
+		end
 	end
+
+	mason_auto_install(LANG_CONFIG.mason)
 
 	-- https://github.com/mason-org/mason.nvim?tab=readme-ov-file#configuration
 	-- https://neovim.io/doc/user/lsp.html#lsp-quickstart
