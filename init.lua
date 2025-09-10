@@ -31,7 +31,7 @@ local now_if_args = vim.fn.argc(-1) > 0 and now or later
 -- Convenient config for all things related to language setup (LSP, etc)
 local LANG_CONFIG = {
 	treesitter = { "lua", "vimdoc", "javascript", "markdown" },
-	mason = { "prettier", "stylua" }, -- use :MasonInstallAll
+	mason = { "prettier", "stylua" },
 	-- tools (see :Mason)
 	lsp = { "vtsls", "tailwindcss", "eslint" },
 	linters_by_ft = {
@@ -158,7 +158,6 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 		depends = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
 	})
 	require("mason").setup({})
-	-- require("mason-lspconfig").setup({ ensure_installed = vim.tbl_extend("force", LANG_CONFIG.lsp, LANG_CONFIG.mason) })
 	require("mason-lspconfig").setup({ ensure_installed = LANG_CONFIG.lsp })
 
 	-- Automatically pop up after `updatetime` milliseconds
@@ -168,10 +167,15 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 		end,
 	})
 
-	vim.api.nvim_create_user_command("MasonInstallAll", function()
-		local packages = table.concat(LANG_CONFIG.mason, " ")
-		vim.cmd("MasonInstall " .. packages)
-	end, {})
+	local mr = require("mason-registry")
+	local pkgs_to_install = vim.tbl_filter(function(item)
+		local pkg = mr.get_package(item)
+		return pkg:is_installed() == false
+	end, LANG_CONFIG.mason)
+
+	if #pkgs_to_install ~= 0 then
+		vim.cmd("MasonInstall " .. table.concat(pkgs_to_install, " "))
+	end
 
 	-- https://github.com/mason-org/mason.nvim?tab=readme-ov-file#configuration
 	-- https://neovim.io/doc/user/lsp.html#lsp-quickstart
