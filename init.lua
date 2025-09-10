@@ -26,6 +26,7 @@ end
 
 setup_mini()
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
+local no_args = vim.fn.argc(-1) == 0
 local now_if_args = vim.fn.argc(-1) > 0 and now or later
 
 -- Convenient config for all things related to language setup (LSP, etc)
@@ -276,33 +277,39 @@ later(function() -- keys, keymaps
 	vim.keymap.del("n", "grn")
 
   -- stylua: ignore start
-  vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-  vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
-	vim.keymap.set("n", "<c-p>", function() Snacks.picker.files() end, { desc = "Open file..." })
+	vim.keymap.set("n", "<c-p>", function() Snacks.picker.git_files() end, { desc = "Open file in git..." })
 	vim.keymap.set("n", "<F1>", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
+
+	vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Switch buffer..." })
+	vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
+	vim.keymap.set("n", "<leader>cr", function() vim.lsp.buf.rename() end, { desc = "Rename this..." })
+	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
+	vim.keymap.set("n", "<leader>fp", function() Snacks.picker.projects() end, { desc = "Recent projects..." })
+	vim.keymap.set("n", "<leader>fr", function() Snacks.picker.recent({ hidden = true, filter = { cwd = true } }) end, { desc = "Recent files..." })
+	vim.keymap.set("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Open file..." })
+	vim.keymap.set("n", "<leader>fya", function() copy_absolute_path() end, { desc = " Copy absolute path" })
+	vim.keymap.set("n", "<leader>fyr", function() copy_relative_path() end, { desc = " Copy relative path" })
+	vim.keymap.set("n", "<leader>gs", function() Snacks.picker.git_status() end, { desc = "Files changed in Git (status)..." })
+	vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Close all and exit" })
+	vim.keymap.set("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "Search in files via grep..." })
+	vim.keymap.set("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
+	vim.keymap.set("n", "<leader>u,", function() vim.cmd("e ~/.config/nvim/init.lua") end, { desc = "Open settings" })
+	vim.keymap.set("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Change colorscheme" })
+	vim.keymap.set("n", "<leader>ux", function() Snacks.picker() end, { desc = "Choose picker" })
+
+	vim.keymap.set("v", "<leader>fya", function() copy_absolute_path_range() end, { desc = " Copy absolute path with line numbers" })
+	vim.keymap.set("v", "<leader>fyr", function() copy_relative_path_range() end, { desc = " Copy relative path with line numbers" })
+
+	vim.keymap.set("n", "g.", function() vim.lsp.buf.code_action() end, { desc = "Code action" })
 	vim.keymap.set("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Go to declaration" })
 	vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Go to definition" })
 	vim.keymap.set("n", "gI", function() Snacks.picker.lsp_implementations() end, { desc = "Show implementation" })
 	vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, { desc = "Show references" })
 	vim.keymap.set("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Go to type definition" })
-	vim.keymap.set("n", "g.", function() vim.lsp.buf.code_action() end, { desc = "Code action" })
 	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover" })
-	vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Close all and exit" })
-	vim.keymap.set("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "Search in files via grep..." })
-	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
-	vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Switch buffer..." })
-	vim.keymap.set("n", "<leader>fr", function() Snacks.picker.recent() end, { desc = "Recent files..." })
-	vim.keymap.set("n", "<leader>fp", function() Snacks.picker.projects() end, { desc = "Recent projects..." })
-	vim.keymap.set("n", "<leader>fya", function() copy_absolute_path() end, { desc = " Copy absolute path" })
-	vim.keymap.set("n", "<leader>fyr", function() copy_relative_path() end, { desc = " Copy relative path" })
-	vim.keymap.set("n", "<leader>gs", function() Snacks.picker.git_status() end, { desc = "Files changed in Git (status)..." })
-	vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
-	vim.keymap.set("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Change colorscheme" })
-	vim.keymap.set("n", "<leader>ux", function() Snacks.picker() end, { desc = "Choose picker" })
-	vim.keymap.set("n", "<leader>u,", function() vim.cmd("e ~/.config/nvim/init.lua") end, { desc = "Open settings" })
-	vim.keymap.set("v", "<leader>fya", function() copy_absolute_path_range() end, { desc = " Copy absolute path with line numbers" })
-	vim.keymap.set("v", "<leader>fyr", function() copy_relative_path_range() end, { desc = " Copy relative path with line numbers" })
-	vim.keymap.set("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
+
+  vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+  vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 	-- stylua: ignore end
 end)
 
@@ -563,4 +570,9 @@ later(function() -- mini.etc
 	require("mini.git").setup()
 	require("mini.icons").setup()
 	require("mini.diff").setup()
+
+	-- Dashboard alternatinve: open recent files on startup
+	if no_args then
+		Snacks.picker.recent({ hidden = true, filter = { cwd = true } })
+	end
 end)
