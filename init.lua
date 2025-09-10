@@ -19,7 +19,7 @@ local now_if_args = vim.fn.argc(-1) > 0 and now or later
 -- Convenient config for all things related to language setup (LSP, etc)
 local LANG_CONFIG = {
 	treesitter = { "lua", "vimdoc", "javascript", "markdown" },
-	mason = { "lua-language-server", "prettierd" },
+	mason = { "lua-language-server", "eslint", "prettier" }, -- not working
 	-- tools
 	lsp = { "vtsls" },
 	linters_by_ft = {
@@ -27,7 +27,8 @@ local LANG_CONFIG = {
 	},
 	formatters_by_ft = {
 		lua = { "stylua" },
-		typescript = { "prettierd" },
+		typescript = { "eslint", "prettier", lsp_format = "fallback" },
+		typescriptreact = { "eslint", "prettier", lsp_format = "fallback" },
 		fish = { "fish_indent" },
 		sh = { "shfmt" },
 	},
@@ -122,6 +123,11 @@ now(function() -- autocmd's
 	})
 end)
 
+now_if_args(function() -- guess-indent
+	add({ source = "NMAC427/guess-indent.nvim" })
+	require("guess-indent").setup()
+end)
+
 later(function() -- editor: lsp features (blink, mason, lspconfig)
 	add({ source = "Saghen/blink.cmp", checkout = "v1.6.0" })
 	add({ source = "mason-org/mason.nvim" })
@@ -164,21 +170,22 @@ end)
 
 later(function() -- editor: formatting
 	add({ source = "stevearc/conform.nvim" })
-	require("conform").setup({ formatters_by_ft = LANG_CONFIG.formatters_by_ft })
+	require("conform").setup({
+		formatters_by_ft = LANG_CONFIG.formatters_by_ft,
+		format_on_save = {
+			-- These options will be passed to conform.format()
+			timeout_ms = 500,
+			lsp_format = "fallback",
+		},
+	})
 
 	-- stylua: ignore start
 	vim.keymap.set("n", "<leader>cf", function() require("conform").format() end, { desc = "Format" })
 	-- stylua: ignore end
 
-	vim.api.nvim_create_autocmd("BufWritePre", {
-		pattern = "*",
-		callback = function(args)
-			require("conform").format({ bufnr = args.buf })
-		end,
-	})
-
 	vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
+	vim.keymap.set("n", "<leader>!df", "<cmd>ConformInfo<cr>", { desc = "Debug: conform formatter info" })
 	-- https://github.com/stevearc/conform.nvim?tab=readme-ov-file#setup
 	-- https://www.lazyvim.org/plugins/formatting
 end)
@@ -191,6 +198,8 @@ later(function() -- keys, keymaps
 		if opts and opts.range then
 			if start_line == end_line then
 				str = str .. "#L" .. start_line
+			else if start_line > end_line then
+				str = str .. "#L" .. end_line .. "-" .. start_line
 			else
 				str = str .. "#L" .. start_line .. "-" .. end_line
 			end
@@ -241,16 +250,18 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Go to definition" })
 	vim.keymap.set("n", "gI", function() Snacks.picker.lsp_implementations() end, { desc = "Show implementation" })
 	vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, { desc = "Show references" })
-	vim.keymap.set("n", "gy", function() Snacks.picker.lsp_type_pefinitions() end, { desc = "Go to type definition" })
+	vim.keymap.set("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Go to type definition" })
 	vim.keymap.set("n", "g.", function() vim.lsp.buf.code_action() end, { desc = "Code action" })
 	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover" })
 	vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Close all and exit" })
 	vim.keymap.set("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "Search in files via grep..." })
 	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
-	vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Switch buffer" })
-	vim.keymap.set("n", "<leader>fr", function() Snacks.picker.recent() end, { desc = "Recent files" })
+	vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Switch buffer..." })
+	vim.keymap.set("n", "<leader>fr", function() Snacks.picker.recent() end, { desc = "Recent files..." })
+	vim.keymap.set("n", "<leader>fp", function() Snacks.picker.projects() end, { desc = "Recent projects..." })
 	vim.keymap.set("n", "<leader>fya", function() copy_absolute_path() end, { desc = " Copy absolute path" })
 	vim.keymap.set("n", "<leader>fyr", function() copy_relative_path() end, { desc = " Copy relative path" })
+	vim.keymap.set("n", "<leader>gs", function() Snacks.picker.git_status() end, { desc = "Files changed in Git (status)..." })
 	vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
 	vim.keymap.set("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Change colorscheme" })
 	vim.keymap.set("n", "<leader>ux", function() Snacks.picker() end, { desc = "Choose picker" })
