@@ -13,9 +13,8 @@ local function setup_mini()
 end
 
 setup_mini()
-local now, later = MiniDeps.now, MiniDeps.later
+local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 local now_if_args = vim.fn.argc(-1) > 0 and now or later
-local now_if_no_args = vim.fn.argc(-1) > 0 and later or now
 
 -- Convenient config for all things related to language setup (LSP, etc)
 local LANG_CONFIG = {
@@ -55,36 +54,20 @@ now(function() -- options
 		diff = "╱",
 		eob = " ",
 	}
-end)
 
-now_if_no_args(function() -- mini.starter
-	local starter = require("mini.starter")
-
-	local function get_banner()
-		local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-		local logo = "" .. cwd .. "\n" .. string.rep("─", #cwd)
-		return logo
+	if vim.fn.has("nvim-0.10") == 1 then
+		vim.opt.smoothscroll = true
+		vim.opt.foldexpr = "v:lua.require'mylib.fold'.foldexpr()"
+		vim.opt.foldmethod = "expr"
+		vim.opt.foldtext = ""
+	else
+		vim.opt.foldmethod = "indent"
+		vim.opt.foldtext = "v:lua.require'mylib.fold'.foldtext()"
 	end
-
-	local function get_footer()
-		return " "
-	end
-
-	starter.setup({
-		evaluate_single = true, -- trigger on 1 keypress instead of having to press enter
-		footer = get_footer,
-		header = get_banner,
-		query_updaters = "eq0123456789",
-		content_hooks = {
-			starter.gen_hook.adding_bullet(), -- line on the left
-			starter.gen_hook.indexing("all", { "Builtin actions" }), -- numbers
-			starter.gen_hook.aligning("center", "center"),
-		},
-	})
 end)
 
 now_if_args(function() -- tree sitter
-	MiniDeps.add({
+	add({
 		source = "nvim-treesitter/nvim-treesitter",
 		hooks = {
 			post_checkout = function()
@@ -98,19 +81,16 @@ now_if_args(function() -- tree sitter
 		indent = { enable = true },
 		highlight = { enable = true },
 	})
-
-	vim.wo.foldmethod = "expr"
-	vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 end)
 
 now(function() -- color scheme
-	MiniDeps.add({ source = "rebelot/kanagawa.nvim" })
-	MiniDeps.add({ source = "projekt0n/github-nvim-theme" })
+	add({ source = "rebelot/kanagawa.nvim" })
+	add({ source = "projekt0n/github-nvim-theme" })
 	require("mylib.persist_colorscheme").setup({ fallback = "miniautumn" })
 end)
 
 now(function() -- snacks: indent guides
-	MiniDeps.add({ source = "folke/snacks.nvim" })
+	add({ source = "folke/snacks.nvim" })
 	vim.g.snacks_animate = false
 	require("snacks").setup({
 		indent = { enabled = true }, -- needs early setup
@@ -143,13 +123,13 @@ now(function() -- autocmd's
 end)
 
 later(function() -- editor: lsp features (blink, mason, lspconfig)
-	MiniDeps.add({ source = "Saghen/blink.cmp", checkout = "v1.6.0" })
-	MiniDeps.add({ source = "mason-org/mason.nvim" })
-	MiniDeps.add({
+	add({ source = "Saghen/blink.cmp", checkout = "v1.6.0" })
+	add({ source = "mason-org/mason.nvim" })
+	add({
 		source = "neovim/nvim-lspconfig",
 		depends = { "mason-org/mason.nvim", "saghen/blink.cmp" },
 	})
-	MiniDeps.add({
+	add({
 		source = "mason-org/mason-lspconfig.nvim",
 		depends = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
 	})
@@ -171,7 +151,7 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 end)
 
 later(function() -- editor: linting
-	MiniDeps.add({
+	add({
 		source = "mfussenegger/nvim-lint",
 	})
 	require("lint").linters_by_ft = LANG_CONFIG.linters_by_ft
@@ -183,12 +163,12 @@ later(function() -- editor: linting
 end)
 
 later(function() -- editor: formatting
-	MiniDeps.add({ source = "stevearc/conform.nvim" })
+	add({ source = "stevearc/conform.nvim" })
 	require("conform").setup({ formatters_by_ft = LANG_CONFIG.formatters_by_ft })
 
-	vim.keymap.set("n", "<leader>cf", function()
-		require("conform").format()
-	end, { desc = "Format" })
+	-- stylua: ignore start
+	vim.keymap.set("n", "<leader>cf", function() require("conform").format() end, { desc = "Format" })
+	-- stylua: ignore end
 
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		pattern = "*",
@@ -258,6 +238,7 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "g.", function() vim.lsp.buf.code_action() end, { desc = "Code action" })
 	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover" })
 	vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Close all and exit" })
+	vim.keymap.set("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "Search in files via grep..." })
 	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
 	vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Switch buffer" })
 	vim.keymap.set("n", "<leader>fya", function() copy_absolute_path() end, { desc = " Copy absolute path" })
@@ -342,7 +323,7 @@ later(function() -- mylib.autosize: resize window widths
 end)
 
 later(function() -- trouble: diagnostics
-	MiniDeps.add({ source = "folke/trouble.nvim" })
+	add({ source = "folke/trouble.nvim" })
 	require("trouble").setup({})
 
 	-- stylua: ignore start
@@ -351,7 +332,7 @@ later(function() -- trouble: diagnostics
 end)
 
 later(function() -- render-markdown
-	MiniDeps.add({ source = "MeanderingProgrammer/render-markdown.nvim" })
+	add({ source = "MeanderingProgrammer/render-markdown.nvim" })
 	require("render-markdown").setup({
 		render_modes = { "n", "v", "i", "c" },
 		heading = {
@@ -481,6 +462,17 @@ later(function() -- mini.files
 
 	-- stylua: ignore start
 	vim.keymap.set("n", "-", function() explore_from_here() end, { desc = "Open file browser (mini)" })
+	-- stylua: ignore end
+end)
+
+now(function()
+	add({
+		source = "sindrets/diffview.nvim",
+	})
+
+	-- stylua: ignore start
+	vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Show diff" })
+	vim.keymap.set("n", "<leader>gD", "<cmd>DiffviewOpen main...HEAD<cr>", { desc = "Show diff for branch" })
 	-- stylua: ignore end
 end)
 
