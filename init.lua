@@ -9,7 +9,19 @@ local function setup_mini()
 		vim.cmd('echo "Installed `mini.nvim`" | redraw')
 	end
 	require("mini.deps").setup({ path = { package = path_package } })
-	require("mini.basics").setup()
+	require("mini.basics").setup({
+		options = {
+			extra_ui = true, -- winblend, listchars, pumheight, etc
+			win_borders = "rounded",
+		},
+		autocommands = {
+			relnum_in_visual_mode = true,
+		},
+		mapping = {
+			windows = true, -- navigation with <c-hjkl>, resize with <c-arrow>
+		},
+		silent = true, -- hide non-error feedback
+	})
 end
 
 setup_mini()
@@ -46,7 +58,6 @@ now(function() -- options
 	vim.opt.shiftwidth = 2
 	vim.opt.foldlevel = 99
 	vim.opt.updatetime = 500 -- time to show diagnostics
-	vim.opt.winborder = "rounded" -- for lsp popups
 	vim.opt.fillchars = {
 		foldopen = "",
 		foldclose = "",
