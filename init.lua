@@ -17,8 +17,9 @@ local function setup_mini()
 		autocommands = {
 			relnum_in_visual_mode = true,
 		},
-		mapping = {
+		mappings = {
 			windows = true, -- navigation with <c-hjkl>, resize with <c-arrow>
+			option_toggle_prefix = "<leader>u",
 		},
 		silent = true, -- hide non-error feedback
 	})
@@ -258,12 +259,6 @@ later(function() -- keys, keymaps
 	-- System clipboard
 	vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to clipboard" })
 	vim.keymap.set("i", "<C-S-v>", "<C-R>+", { desc = "Paste from clipboard" })
-
-	-- Windows
-	vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
-	vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
-	vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
-	vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
 
 	-- Make `23,` go to line 23. Easier to type than `23G`
 	vim.keymap.set("n", ",", "G", { desc = "Go to line" })

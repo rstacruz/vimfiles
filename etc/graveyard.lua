@@ -91,6 +91,9 @@ end
 -- :DepsUpdate
 --
 -- todo:
+-- * idk
+--
+-- todo:
 -- * mini-files: arrow keys https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-files.md
 -- * replace Trouble with mini.extra diagnostics
 -- * mini.diff - https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-diff.md
