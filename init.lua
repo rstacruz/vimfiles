@@ -337,7 +337,7 @@ later(function() -- keys, keymaps
 	vim.keymap.del("n", "grn")
 
   -- stylua: ignore start
-	vim.keymap.set("n", "<c-p>", function() Snacks.picker.git_files() end, { desc = "Open file in git..." })
+	vim.keymap.set("n", "<c-p>", function() Snacks.picker.git_files({ untracked = true }) end, { desc = "Open file in git..." })
 	vim.keymap.set("n", "<F1>", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
 
 	vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Switch buffer..." })
@@ -630,6 +630,26 @@ later(function() -- various-textobjs: vaq and more
 	-- vab  - select all in brackets ( [ { <
 	add({ source = "chrisgrieser/nvim-various-textobjs" })
 	require("various-textobjs").setup({})
+end)
+
+later(function() -- various-textobjs: vaq and more
+	-- vaq  - select all in quotes " ' `
+	-- vab  - select all in brackets ( [ { <
+	add({
+		source = "obsidian-nvim/obsidian.nvim",
+		depends = { "nvim-lua/plenary.nvim" },
+	})
+
+	local Obsidian = require("mylib/obsidian")
+	require("obsidian").setup(Obsidian.get_obsidian_options())
+
+	vim.api.nvim_create_autocmd("FileType", {
+		group = vim.api.nvim_create_augroup("obsidian_keybindings", { clear = true }),
+		pattern = { "markdown" },
+		callback = function(event)
+			Obsidian.bind_keys(event.buf)
+		end,
+	})
 end)
 
 later(function() -- mini.etc
