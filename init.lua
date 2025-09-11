@@ -40,7 +40,7 @@ local now_if_args = vim.fn.argc(-1) > 0 and now or later
 -- Convenient config for all things related to language setup (LSP, etc)
 local LANG_CONFIG = {
 	treesitter = { "lua", "vimdoc", "javascript", "markdown" },
-	mason = { "prettier", "stylua" },
+	mason = { "prettier" },
 	-- tools (see :Mason)
 	lsp = { "vtsls", "tailwindcss", "eslint" },
 	linters_by_ft = {
@@ -62,6 +62,7 @@ local LANG_CONFIG = {
 local is_termux = string.find(vim.loop.os_uname().release, "android")
 if not is_termux then
 	table.insert(LANG_CONFIG.lsp, "lua_ls")
+	table.insert(LANG_CONFIG.mason, "stylua")
 end
 
 now(function() -- options
@@ -151,7 +152,7 @@ now(function() -- snacks: indent guides, dashboard
 					or { { fname, hl = "file" } }
 			end,
 		},
-		width = 80,
+		width = 40,
 		preset = {
 			keys = {
 				{ action = ":ene", desc = "new file", key = "e" },
