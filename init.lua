@@ -48,6 +48,7 @@ local LANG_CONFIG = {
 	},
 	formatters_by_ft = {
 		lua = { "stylua" },
+		markdown = { "prettier" },
 		typescript = { "eslint", "prettier", lsp_format = "fallback" },
 		typescriptreact = { "eslint", "prettier", lsp_format = "fallback" },
 		javascript = { "eslint", "prettier", lsp_format = "fallback" },
@@ -616,6 +617,12 @@ later(function()
 	vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Show diff" })
 	vim.keymap.set("n", "<leader>gD", "<cmd>DiffviewOpen main...HEAD<cr>", { desc = "Show diff for branch" })
 	-- stylua: ignore end
+end)
+
+later(function()
+	add({ source = "nvim-treesitter/nvim-treesitter-context" })
+	require("treesitter-context").setup({})
+	-- https://github.com/nvim-treesitter/nvim-treesitter-context?tab=readme-ov-file#configuration
 end)
 
 later(function() -- mini.etc
