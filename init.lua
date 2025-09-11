@@ -130,9 +130,12 @@ now(function() -- snacks: indent guides, dashboard
 			end,
 
 			file = function(item, ctx)
-				local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":~")
 				local fname = vim.fn.fnamemodify(item.file, ":~")
+
+				-- strip cwd
+				local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":~") .. "/"
 				fname = string.gsub(fname, cwd, "")
+
 				fname = ctx.width and #fname > ctx.width and vim.fn.pathshorten(fname) or fname
 				if #fname > ctx.width then
 					local dir = vim.fn.fnamemodify(fname, ":h")
@@ -143,19 +146,21 @@ now(function() -- snacks: indent guides, dashboard
 					end
 				end
 				local dir, file = fname:match("^(.*)/(.+)$")
-				return dir and { { dir .. "/", hl = "dir" }, { file, hl = "file" } } or { { fname, hl = "file" } }
+				return dir and { { file, hl = "file" }, { " " .. dir .. "/", hl = "dir" } }
+					or { { fname, hl = "file" } }
 			end,
 		},
 		width = 80,
 		preset = {
 			keys = {
+				{ action = ":ene", desc = "new file", key = "e" },
 				{ action = ":q", desc = "quit", key = "q" },
 			},
 		},
 		sections = {
 			{ title = "" .. cwd, padding = 1 },
-			{ section = "recent_files", cwd = true, limit = 5, indent = 2, padding = 1 },
-			{ section = "keys", indent = 2 },
+			{ section = "recent_files", cwd = true, limit = 5, indent = 0, padding = 1 },
+			{ section = "keys", indent = 0 },
 		},
 	}
 
@@ -337,6 +342,7 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
 	vim.keymap.set("n", "<leader>cr", function() vim.lsp.buf.rename() end, { desc = "Rename this..." })
 	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
+	vim.keymap.set("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete other buffers" })
 	vim.keymap.set("n", "<leader>fp", function() Snacks.picker.projects() end, { desc = "Recent projects..." })
 	vim.keymap.set("n", "<leader>fr", function() Snacks.picker.recent({ hidden = true, filter = { cwd = true } }) end, { desc = "Recent files..." })
 	vim.keymap.set("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Open file..." })
