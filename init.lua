@@ -1,3 +1,10 @@
+-- Start with `PROF=1 nvim` or `PROF=1 nvim file.txt` to see startup time
+if vim.env.PROF then
+	local snacks = vim.fn.stdpath("data") .. "/lazy/snacks.nvim"
+	vim.opt.rtp:append(snacks)
+	require("snacks.profiler").startup({ startup = { event = "VimEnter" } })
+end
+
 local function setup_mini()
 	local path_package = vim.fn.stdpath("data") .. "/site/"
 	local mini_path = path_package .. "pack/deps/start/mini.nvim"
@@ -27,7 +34,7 @@ end
 
 setup_mini()
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
-local no_args = vim.fn.argc(-1) == 0
+local no_args = vim.fn.argc(-1) == 0 and not vim.env.PROF
 local now_if_args = vim.fn.argc(-1) > 0 and now or later
 
 -- Convenient config for all things related to language setup (LSP, etc)
@@ -110,10 +117,50 @@ now(function() -- color scheme
 	require("mylib.persist_colorscheme").setup({ fallback = "miniautumn" })
 end)
 
-now(function() -- snacks: indent guides
+now(function() -- snacks: indent guides, dashboard
 	add({ source = "folke/snacks.nvim" })
 	vim.g.snacks_animate = false
+
+	local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+
+	local dashboard_opts = {
+		formats = {
+			key = function(item)
+				return { { item.key, hl = "key" } }
+			end,
+
+			file = function(item, ctx)
+				local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":~")
+				local fname = vim.fn.fnamemodify(item.file, ":~")
+				fname = string.gsub(fname, cwd, "")
+				fname = ctx.width and #fname > ctx.width and vim.fn.pathshorten(fname) or fname
+				if #fname > ctx.width then
+					local dir = vim.fn.fnamemodify(fname, ":h")
+					local file = vim.fn.fnamemodify(fname, ":t")
+					if dir and file then
+						file = file:sub(-(ctx.width - #dir - 2))
+						fname = dir .. "/…" .. file
+					end
+				end
+				local dir, file = fname:match("^(.*)/(.+)$")
+				return dir and { { dir .. "/", hl = "dir" }, { file, hl = "file" } } or { { fname, hl = "file" } }
+			end,
+		},
+		width = 80,
+		preset = {
+			keys = {
+				{ action = ":q", desc = "quit", key = "q" },
+			},
+		},
+		sections = {
+			{ title = "" .. cwd, padding = 1 },
+			{ section = "recent_files", cwd = true, limit = 5, indent = 2, padding = 1 },
+			{ section = "keys", indent = 2 },
+		},
+	}
+
 	require("snacks").setup({
+		dashboard = no_args and dashboard_opts or {},
 		indent = { enabled = true }, -- needs early setup
 	})
 end)
@@ -225,6 +272,17 @@ later(function() -- editor: formatting
 end)
 
 later(function() -- keys, keymaps
+	local function copy_git_url()
+		Snacks.gitbrowse({
+			notify = false,
+			open = function(str)
+				vim.fn.setreg('"', str)
+				vim.fn.setreg("+", str)
+				vim.notify(" " .. str)
+			end,
+		})
+	end
+
 	local function copy_path(opts)
 		local str = vim.fn.expand(opts.expand)
 		local start_line = vim.fn.line("v")
@@ -282,6 +340,8 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>fp", function() Snacks.picker.projects() end, { desc = "Recent projects..." })
 	vim.keymap.set("n", "<leader>fr", function() Snacks.picker.recent({ hidden = true, filter = { cwd = true } }) end, { desc = "Recent files..." })
 	vim.keymap.set("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Open file..." })
+	vim.keymap.set("n", "<leader>gh", function() Snacks.gitbrowse() end, { desc = "Open GitHub in browser" })
+	vim.keymap.set("n", "<leader>fyg", function() copy_git_url() end, { desc = "Copy GitHub URL" })
 	vim.keymap.set("n", "<leader>fya", function() copy_absolute_path() end, { desc = " Copy absolute path" })
 	vim.keymap.set("n", "<leader>fyr", function() copy_relative_path() end, { desc = " Copy relative path" })
 	vim.keymap.set("n", "<leader>gs", function() Snacks.picker.git_status() end, { desc = "Files changed in Git (status)..." })
@@ -292,8 +352,10 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Change colorscheme" })
 	vim.keymap.set("n", "<leader>ux", function() Snacks.picker() end, { desc = "Choose picker" })
 
+	vim.keymap.set("v", "<leader>fyg", function() copy_git_url() end, { desc = "Copy GitHub URL" })
 	vim.keymap.set("v", "<leader>fya", function() copy_absolute_path_range() end, { desc = " Copy absolute path with line numbers" })
 	vim.keymap.set("v", "<leader>fyr", function() copy_relative_path_range() end, { desc = " Copy relative path with line numbers" })
+	vim.keymap.set("v", "<leader>gh", function() Snacks.gitbrowse() end, { desc = "Open GitHub in browser" })
 
 	vim.keymap.set("n", "g.", function() vim.lsp.buf.code_action() end, { desc = "Code action" })
 	vim.keymap.set("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Go to declaration" })
@@ -565,9 +627,4 @@ later(function() -- mini.etc
 	require("mini.git").setup()
 	require("mini.icons").setup()
 	require("mini.diff").setup()
-
-	-- Dashboard alternatinve: open recent files on startup
-	if no_args then
-		Snacks.picker.recent({ hidden = true, filter = { cwd = true } })
-	end
 end)
