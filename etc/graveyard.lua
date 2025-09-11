@@ -91,7 +91,7 @@ end
 -- :DepsUpdate
 --
 -- todo:
--- * idk
+-- * harpoon
 --
 -- todo:
 -- * mini-files: arrow keys https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-files.md

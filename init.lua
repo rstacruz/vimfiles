@@ -272,6 +272,7 @@ later(function() -- editor: formatting
 	vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
 	vim.keymap.set("n", "<leader>!df", "<cmd>ConformInfo<cr>", { desc = "Debug: conform formatter info" })
+	vim.keymap.set("n", "<leader>!dl", "<cmd>LspInfo<cr>", { desc = "Debug: show lsp info" })
 	-- https://github.com/stevearc/conform.nvim?tab=readme-ov-file#setup
 	-- https://www.lazyvim.org/plugins/formatting
 end)
@@ -340,6 +341,7 @@ later(function() -- keys, keymaps
 
 	vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Switch buffer..." })
 	vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
+	vim.keymap.set("n", "<leader>!g", function() vim.cmd("e " .. vim.fn.stdpath("config") .. "/etc/graveyard.lua") end, { desc = "Open config graveyard" })
 	vim.keymap.set("n", "<leader>cr", function() vim.lsp.buf.rename() end, { desc = "Rename this..." })
 	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
 	vim.keymap.set("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete other buffers" })
@@ -354,7 +356,7 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Close all and exit" })
 	vim.keymap.set("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "Search in files via grep..." })
 	vim.keymap.set("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
-	vim.keymap.set("n", "<leader>u,", function() vim.cmd("e ~/.config/nvim/init.lua") end, { desc = "Open settings" })
+	vim.keymap.set("n", "<leader>u,", function() vim.cmd("e " .. vim.fn.stdpath("config") .. "/init.lua") end, { desc = "Open settings" })
 	vim.keymap.set("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Change colorscheme" })
 	vim.keymap.set("n", "<leader>ux", function() Snacks.picker() end, { desc = "Choose picker" })
 
@@ -415,6 +417,8 @@ later(function() -- mini.clue: shows keyboard shortcuts
 			{ mode = "n", keys = "<leader>c", desc = "+code" },
 			{ mode = "n", keys = "<leader>x", desc = "+diagnostics" },
 			{ mode = "n", keys = "<leader>f", desc = "+file" },
+			{ mode = "n", keys = "<leader>!", desc = "+experimental" },
+			{ mode = "n", keys = "<leader>!d", desc = "+debug" },
 			{ mode = "n", keys = "<leader>q", desc = "+quit" },
 			-- Enhance this by adding descriptions for <Leader> mapping groups
 			miniclue.gen_clues.builtin_completion(),
