@@ -619,10 +619,17 @@ later(function()
 	-- stylua: ignore end
 end)
 
-later(function()
+later(function() -- treesitter-context
 	add({ source = "nvim-treesitter/nvim-treesitter-context" })
 	require("treesitter-context").setup({})
 	-- https://github.com/nvim-treesitter/nvim-treesitter-context?tab=readme-ov-file#configuration
+end)
+
+later(function() -- various-textobjs: vaq and more
+	-- vaq  - select all in quotes " ' `
+	-- vab  - select all in brackets ( [ { <
+	add({ source = "chrisgrieser/nvim-various-textobjs" })
+	require("various-textobjs").setup({})
 end)
 
 later(function() -- mini.etc
