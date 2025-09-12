@@ -96,22 +96,12 @@ M.get_obsidian_options = function()
 		--
 		-- 	return out
 		-- end,
-		-- note_id_func = function(raw_title)
-		-- 	-- Default behaviour: return something like "124351678905-XYZX"
-		-- 	if raw_title then
-		-- 		local title = raw_title:gsub(":", ";")
-		-- 		return title
-		-- 	end
-		--
-		-- 	return "Untitled-" .. tostring(os.time())
-		-- end,
+
+		note_id_func = M.note_id_func,
+
 		-- when using `gf` on a URL by mistake
-		-- follow_url_func = function(url)
-		-- 	vim.ui.open(url)
-		-- end,
-		-- follow_img_func = function(img)
-		-- 	vim.ui.open(img)
-		-- end,
+		follow_url_func = vim.ui.open,
+		follow_img_func = vim.ui.open,
 
 		backlinks = {
 			-- When 'true', using `:ObsidianBacklinks` will look for backlinks to the header
@@ -121,6 +111,16 @@ M.get_obsidian_options = function()
 	}
 
 	return opts
+end
+
+M.note_id_func = function(raw_title)
+	-- Default behaviour: return something like "124351678905-XYZX"
+	if raw_title then
+		local title = raw_title:gsub(":", ";")
+		return title
+	end
+
+	return "Untitled-" .. tostring(os.time())
 end
 
 return M
