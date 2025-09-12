@@ -39,7 +39,7 @@ local now_if_args = vim.fn.argc(-1) > 0 and now or later
 
 -- Convenient config for all things related to language setup (LSP, etc)
 local LANG_CONFIG = {
-	treesitter = { "lua", "vimdoc", "javascript", "markdown" },
+	treesitter = { "lua", "vimdoc", "javascript", "typescript", "markdown", "css", "astro", "bash" },
 	mason = { "prettier" },
 	-- tools (see :Mason)
 	lsp = { "vtsls", "tailwindcss", "eslint" },
@@ -389,6 +389,9 @@ later(function() -- mini.clue: shows keyboard shortcuts
 			{ mode = "x", keys = "<Leader>" },
 			-- Built-in completion
 			{ mode = "i", keys = "<C-x>" },
+			-- jump
+			{ mode = "n", keys = "[" },
+			{ mode = "n", keys = "]" },
 			-- `g` key
 			{ mode = "n", keys = "g" },
 			{ mode = "x", keys = "g" },
@@ -622,7 +625,12 @@ end)
 
 later(function() -- treesitter-context
 	add({ source = "nvim-treesitter/nvim-treesitter-context" })
-	require("treesitter-context").setup({})
+	require("treesitter-context").setup({ mode = "topline" })
+
+	vim.keymap.set("n", "[c", function()
+		require("treesitter-context").go_to_context(vim.v.count1)
+	end, { desc = "Jump to context", silent = true })
+
 	-- https://github.com/nvim-treesitter/nvim-treesitter-context?tab=readme-ov-file#configuration
 end)
 
@@ -651,6 +659,13 @@ later(function() -- various-textobjs: vaq and more
 			Obsidian.bind_keys(event.buf)
 		end,
 	})
+end)
+
+later(function() -- blame
+	add({ source = "FabijanZulj/blame.nvim" })
+	require("blame").setup({ blame_options = { "-w" } })
+	vim.keymap.set("n", "<leader>gb", "<cmd>BlameToggle window<cr>", { desc = "Show git blame (window)" })
+	vim.keymap.set("n", "<leader>gB", "<cmd>BlameToggle virtual<cr>", { desc = "Show git blame (virtual)" })
 end)
 
 later(function() -- mini.etc
