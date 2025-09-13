@@ -5,9 +5,11 @@ if vim.env.PROF then
 	require("snacks.profiler").startup({ startup = { event = "VimEnter" } })
 end
 
+-- Load the `mylib` module
 local function setup_mini()
 	local path_package = vim.fn.stdpath("data") .. "/site/"
 	local mini_path = path_package .. "pack/deps/start/mini.nvim"
+
 	if not vim.loop.fs_stat(mini_path) then
 		vim.cmd('echo "Installing `mini.nvim`" | redraw')
 		local clone_cmd = { "git", "clone", "--filter=blob:none", "https://github.com/nvim-mini/mini.nvim", mini_path }
@@ -216,12 +218,27 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 	})
 
 	-- <C-n>/<C-p> - next or previous match
+	-- <c-y> - accept
 	-- <cr> - accept
 	require("blink.cmp").setup({
 		keymap = { preset = "default" },
-
 		completion = { documentation = { auto_show = true } },
 		fuzzy = { implementation = "prefer_rust" },
+
+		-- show signature help when typing (
+		signature = { enabled = true },
+
+		-- sources = {
+		-- 	default = { "lsp", "path", "snippets", "buffer", "copilot" },
+		-- 	providers = {
+		-- 		copilot = {
+		-- 			name = "copilot",
+		-- 			module = "blink-cmp-copilot",
+		-- 			score_offset = 100,
+		-- 			async = true,
+		-- 		},
+		-- 	},
+		-- },
 	})
 
 	-- Mason
@@ -625,7 +642,7 @@ later(function() -- mini.files
 	-- stylua: ignore end
 end)
 
-later(function()
+later(function() -- diffview
 	add({
 		source = "sindrets/diffview.nvim",
 	})
@@ -654,7 +671,7 @@ later(function() -- various-textobjs: vaq and more
 	require("various-textobjs").setup({})
 end)
 
-later(function() -- various-textobjs: vaq and more
+later(function() -- obsidian
 	-- vaq  - select all in quotes " ' `
 	-- vab  - select all in brackets ( [ { <
 	add({
@@ -695,6 +712,19 @@ later(function() -- opencode
 	vim.keymap.set("n", "<S-C-u>", function() opencode.command("messages_half_page_up") end, { desc = "Scroll messages up" })
 	vim.keymap.set("n", "<S-C-d>", function() opencode.command("messages_half_page_down") end, { desc = "Scroll messages down" })
 	-- stylua: ignore end
+end)
+
+later(function() -- copilot
+	add({ source = "zbirenbaum/copilot.lua" })
+	require("copilot").setup({
+		suggestion = { enabled = true, auto_trigger = true, keymap = { accept = "<C-l>" } },
+		panel = { auto_refresh = true },
+		filetypes = {
+			markdown = true,
+		},
+	})
+
+	vim.keymap.set("n", "<leader>!as", "<cmd>Copilot panel<cr>", { desc = "Open Copilot suggestions panel" })
 end)
 
 later(function() -- mini.etc
