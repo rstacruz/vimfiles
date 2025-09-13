@@ -1,5 +1,5 @@
- local M = {}
- 
+local M = {}
+
 M.get_obsidian_workspaces = function()
 	local workspaces = {}
 	local home = os.getenv("HOME")
@@ -16,38 +16,20 @@ M.get_obsidian_workspaces = function()
 
 	return workspaces
 end
- 
+
 M.bind_keys = function(buf)
-	local function extract_to()
-		local new_name = vim.fn.input("New name: ", "", "file")
-		if new_name == "" then
-			return
-		end
-		vim.cmd("Obsidian extract_note " .. new_name)
-	end
-
-	local function rename()
-		local current_name = vim.fn.expand("%:t:r")
-		local new_name = vim.fn.input("New name: ", current_name, "file")
-		if new_name == "" then
-			return
-		end
-		vim.cmd("Obsidian rename " .. new_name)
-	end
-
-	vim.keymap.set("n", "<leader>mp", "<cmd>Obsidian paste_img<CR>", { buffer = buf, desc = "Obsidian: Paste image" })
-	vim.keymap.set("v", "<leader>mx", extract_to, { buffer = buf, desc = "Obsidian: Extract to..." })
-
   -- stylua: ignore start
+	vim.keymap.set("n", "<leader>mp", "<cmd>Obsidian paste_img<CR>", { buffer = buf, desc = "Obsidian: Paste image" })
+	vim.keymap.set("v", "<leader>mx", "<cmd>Obsidian extract_note<CR>", { buffer = buf, desc = "Obsidian: Extract to..." })
 	vim.keymap.set("n", "<leader>mc", "<cmd>Obsidian toggle_checkbox<CR>", { buffer = buf, desc = "Obsidian: Toggle checkbox" })
 	vim.keymap.set("n", "<leader>ms", "<cmd>Obsidian follow_link vsplit<CR>", { buffer = buf, desc = "Obsidian: Follow link in vsplit" })
 	vim.keymap.set("n", "<leader>mr", "<cmd>Obsidian backlinks<CR>", { buffer = buf, desc = "Obsidian: Show backlinks" })
-	vim.keymap.set("n", "<leader>mR", rename, { buffer = buf, desc = "Obsidian: Rename..." })
+	vim.keymap.set("n", "<leader>mR", "<cmd>Obsidian rename<CR>", { buffer = buf, desc = "Obsidian: Rename..." })
 	vim.keymap.set("n", "gf", "<cmd>Obsidian follow_link<CR>", { buffer = buf, desc = "Obsidian: Follow link" })
 	-- vim.keymap.set("n", "gr", "<cmd>Obsidian backlinks<CR>", { buffer = buf, desc = "Obsidian: Show backlinks" })
 	-- stylua: ignore end
 end
- 
+
 M.get_obsidian_options = function()
 	local opts = {
 		legacy_commands = false,
@@ -78,7 +60,7 @@ M.get_obsidian_options = function()
 
 	return opts
 end
- 
+
 M.note_id_func = function(raw_title)
 	-- Default behaviour: return something like "124351678905-XYZX"
 	if raw_title then
@@ -88,7 +70,7 @@ M.note_id_func = function(raw_title)
 
 	return "Untitled-" .. tostring(os.time())
 end
- 
+
 M.note_frontmatter_func = function(note)
 	local out = {}
 
@@ -124,6 +106,5 @@ M.note_frontmatter_func = function(note)
 
 	return out
 end
- 
-return M
 
+return M
