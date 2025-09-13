@@ -409,63 +409,6 @@ later(function() -- keys, keymaps
 	-- stylua: ignore end
 end)
 
-later(function() -- mini.clue: shows keyboard shortcuts
-	local miniclue = require("mini.clue")
-	miniclue.setup({
-		triggers = {
-			-- Leader triggers
-			{ mode = "n", keys = "<Leader>" },
-			{ mode = "x", keys = "<Leader>" },
-			-- Built-in completion
-			{ mode = "i", keys = "<C-x>" },
-			-- jump
-			{ mode = "n", keys = "[" },
-			{ mode = "n", keys = "]" },
-			-- `g` key
-			{ mode = "n", keys = "g" },
-			{ mode = "x", keys = "g" },
-			-- Marks
-			{ mode = "n", keys = "'" },
-			{ mode = "n", keys = "`" },
-			{ mode = "x", keys = "'" },
-			{ mode = "x", keys = "`" },
-			-- Registers
-			{ mode = "n", keys = '"' },
-			{ mode = "x", keys = '"' },
-			{ mode = "i", keys = "<C-r>" },
-			{ mode = "c", keys = "<C-r>" },
-			-- Window commands
-			{ mode = "n", keys = "<C-w>" },
-			-- `z` key
-			{ mode = "n", keys = "z" },
-			{ mode = "x", keys = "z" },
-		},
-		window = {
-			delay = 150,
-			config = { width = 30 },
-		},
-
-		clues = {
-			{ mode = "n", keys = "<leader>u", desc = "+settings" },
-			{ mode = "n", keys = "<leader>s", desc = "+search" },
-			{ mode = "n", keys = "<leader>c", desc = "+code" },
-			{ mode = "n", keys = "<leader>x", desc = "+diagnostics" },
-			{ mode = "n", keys = "<leader>f", desc = "+file" },
-			{ mode = "n", keys = "<leader>!", desc = "+experimental" },
-			{ mode = "n", keys = "<leader>!d", desc = "+debug" },
-			{ mode = "n", keys = "<leader>q", desc = "+quit" },
-			{ mode = "n", keys = "<leader>o", desc = "+opencode" },
-			-- Enhance this by adding descriptions for <Leader> mapping groups
-			miniclue.gen_clues.builtin_completion(),
-			miniclue.gen_clues.g(),
-			miniclue.gen_clues.marks(),
-			miniclue.gen_clues.registers(),
-			miniclue.gen_clues.windows(),
-			miniclue.gen_clues.z(),
-		},
-	})
-end)
-
 later(function() -- mini.notify: toast notifications
 	local notify = require("mini.notify")
 	notify.setup({})
@@ -725,6 +668,63 @@ later(function() -- copilot
 	})
 
 	vim.keymap.set("n", "<leader>!as", "<cmd>Copilot panel<cr>", { desc = "Open Copilot suggestions panel" })
+end)
+
+later(function() -- mini.clue: shows keyboard shortcuts
+	local miniclue = require("mini.clue")
+	miniclue.setup({
+		triggers = {
+			-- Leader triggers
+			{ mode = "n", keys = "<Leader>" },
+			{ mode = "x", keys = "<Leader>" },
+			-- Built-in completion
+			{ mode = "i", keys = "<C-x>" },
+			-- jump
+			{ mode = "n", keys = "[" },
+			{ mode = "n", keys = "]" },
+			-- `g` key
+			{ mode = "n", keys = "g" },
+			{ mode = "x", keys = "g" },
+			-- Marks
+			{ mode = "n", keys = "'" },
+			{ mode = "n", keys = "`" },
+			{ mode = "x", keys = "'" },
+			{ mode = "x", keys = "`" },
+			-- Registers
+			{ mode = "n", keys = '"' },
+			{ mode = "x", keys = '"' },
+			{ mode = "i", keys = "<C-r>" },
+			{ mode = "c", keys = "<C-r>" },
+			-- Window commands
+			{ mode = "n", keys = "<C-w>" },
+			-- `z` key
+			{ mode = "n", keys = "z" },
+			{ mode = "x", keys = "z" },
+		},
+		window = {
+			delay = 150,
+			config = { width = 30 },
+		},
+
+		clues = {
+			{ mode = "n", keys = "<leader>u", desc = "+settings" },
+			{ mode = "n", keys = "<leader>s", desc = "+search" },
+			{ mode = "n", keys = "<leader>c", desc = "+code" },
+			{ mode = "n", keys = "<leader>x", desc = "+diagnostics" },
+			{ mode = "n", keys = "<leader>f", desc = "+file" },
+			{ mode = "n", keys = "<leader>!", desc = "+experimental" },
+			{ mode = "n", keys = "<leader>!d", desc = "+debug" },
+			{ mode = "n", keys = "<leader>q", desc = "+quit" },
+			{ mode = "n", keys = "<leader>o", desc = "+opencode" },
+			-- Enhance this by adding descriptions for <Leader> mapping groups
+			miniclue.gen_clues.builtin_completion(),
+			miniclue.gen_clues.g(),
+			miniclue.gen_clues.marks(),
+			miniclue.gen_clues.registers(),
+			miniclue.gen_clues.windows(),
+			miniclue.gen_clues.z(),
+		},
+	})
 end)
 
 later(function() -- mini.etc
