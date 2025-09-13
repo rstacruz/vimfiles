@@ -660,6 +660,8 @@ later(function() -- obsidian
 	})
 end)
 
+-- AI ------------------------------------------------------------------------------------
+
 later(function() -- opencode
 	add({ source = "NickvanDyke/opencode.nvim", depends = { "folke/snacks.nvim" } })
 
