@@ -454,7 +454,7 @@ later(function() -- mini.clue: shows keyboard shortcuts
 			{ mode = "n", keys = "<leader>!", desc = "+experimental" },
 			{ mode = "n", keys = "<leader>!d", desc = "+debug" },
 			{ mode = "n", keys = "<leader>q", desc = "+quit" },
-			{ mode = "n", keys = "<leader>a", desc = "+agent" },
+			{ mode = "n", keys = "<leader>o", desc = "+opencode" },
 			-- Enhance this by adding descriptions for <Leader> mapping groups
 			miniclue.gen_clues.builtin_completion(),
 			miniclue.gen_clues.g(),
