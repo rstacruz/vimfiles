@@ -488,7 +488,22 @@ end)
 
 later(function() -- mini.notify: toast notifications
 	local notify = require("mini.notify")
-	notify.setup({})
+	notify.setup({
+		window = {
+			config = {
+				anchor = "SE",
+				col = vim.o.columns,
+				row = vim.o.lines - 2,
+				border = "rounded",
+			},
+		},
+		content = {
+			format = function(notif)
+				-- Don't prepent timestamp
+				return string.format("%s    ", notif.msg)
+			end,
+		},
+	})
 	vim.notify = notify.make_notify({})
 
 	vim.keymap.set("n", "<leader>snh", function()
@@ -766,6 +781,20 @@ later(function() -- mini.etc
 	-- - sd'   - [S]urround [D]elete [']quotes
 	-- - sr)'  - [S]urround [R]eplace [)] [']
 	require("mini.surround").setup()
+
+	-- [c ]c - next comment
+	-- [d ]d - next diagnostic
+	-- [i ]i - next indent change
+	-- [q ]q - next quickfix file
+	-- [l ]l - next loclist file
+	-- [t ]t - next treesitter node (eg, parent block)
+	require("mini.bracketed").setup()
+
+	-- gS - toggle between one-line and multi-line for function arguments, tables, etc.
+	require("mini.splitjoin").setup()
+
+	-- highlight word under cursor
+	require("mini.cursorword").setup()
 
 	require("mini.git").setup()
 	require("mini.icons").setup()
