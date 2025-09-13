@@ -39,6 +39,8 @@ local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 local no_args = vim.fn.argc(-1) == 0 and not vim.env.PROF
 local now_if_args = vim.fn.argc(-1) > 0 and now or later
 
+-- Config -------------------------------------------------------------------------------
+
 -- Convenient config for all things related to language setup (LSP, etc)
 local LANG_CONFIG = {
 	treesitter = { "lua", "vimdoc", "javascript", "typescript", "markdown", "css", "astro", "bash" },
@@ -66,6 +68,8 @@ if not is_termux then
 	table.insert(LANG_CONFIG.lsp, "lua_ls")
 	table.insert(LANG_CONFIG.mason, "stylua")
 end
+
+-- Core ----------------------------------------------------------------------------------
 
 now(function() -- options
 	vim.opt.shortmess:append("I") -- disable start screen
@@ -205,6 +209,111 @@ now_if_args(function() -- guess-indent
 	require("guess-indent").setup()
 end)
 
+-- Keymaps -------------------------------------------------------------------------------
+
+later(function() -- keys, keymaps
+	local function copy_git_url()
+		Snacks.gitbrowse({
+			notify = false,
+			open = function(str)
+				vim.fn.setreg('"', str)
+				vim.fn.setreg("+", str)
+				vim.notify(" " .. str)
+			end,
+		})
+	end
+
+	local function copy_path(opts)
+		local str = vim.fn.expand(opts.expand)
+		local start_line = vim.fn.line("v")
+		local end_line = vim.fn.line(".")
+		if opts and opts.range then
+			if start_line == end_line then
+				str = str .. "#L" .. start_line
+			elseif start_line > end_line then
+				str = str .. "#L" .. end_line .. "-" .. start_line
+			else
+				str = str .. "#L" .. start_line .. "-" .. end_line
+			end
+		end
+		vim.fn.setreg('"', str)
+		vim.fn.setreg("+", str)
+		vim.notify(" " .. str)
+	end
+
+	local function copy_absolute_path()
+		return copy_path({ expand = "%:p" })
+	end
+	local function copy_absolute_path_range()
+		return copy_path({ expand = "%:p", range = 1 })
+	end
+	local function copy_relative_path()
+		return copy_path({ expand = "%:." })
+	end
+	local function copy_relative_path_range()
+		return copy_path({ expand = "%:.", range = 1 })
+	end
+
+	-- System clipboard
+	vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to clipboard" })
+	vim.keymap.set("i", "<C-S-v>", "<C-R>+", { desc = "Paste from clipboard" })
+
+	-- Make `23,` go to line 23. Easier to type than `23G`
+	vim.keymap.set("n", ",", "G", { desc = "Go to line" })
+	vim.keymap.set("v", ",", "G", { desc = "Go to line" })
+
+	-- default keymaps for references, etc
+	vim.keymap.del("n", "grt")
+	vim.keymap.del("n", "gri")
+	vim.keymap.del("n", "grr")
+	vim.keymap.del("n", "gra")
+	vim.keymap.del("n", "grn")
+
+  -- stylua: ignore start
+	vim.keymap.set("n", "<c-p>", function() Snacks.picker.git_files({ untracked = true }) end, { desc = "Open file in git..." })
+	vim.keymap.set("n", "<F1>", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
+
+	vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Switch buffer..." })
+	vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
+	vim.keymap.set("n", "<leader>!g", function() vim.cmd("e " .. vim.fn.stdpath("config") .. "/etc/graveyard.lua") end, { desc = "Open config graveyard" })
+	vim.keymap.set("n", "<leader>cr", function() vim.lsp.buf.rename() end, { desc = "Rename this..." })
+	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
+	vim.keymap.set("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete other buffers" })
+	vim.keymap.set("n", "<leader>fp", function() Snacks.picker.projects() end, { desc = "Recent projects..." })
+	vim.keymap.set("n", "<leader>fr", function() Snacks.picker.recent({ hidden = true, filter = { cwd = true } }) end, { desc = "Recent files..." })
+	vim.keymap.set("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Open file..." })
+	vim.keymap.set("n", "<leader>gh", function() Snacks.gitbrowse() end, { desc = "Open GitHub in browser" })
+	vim.keymap.set("n", "<leader>fyg", function() copy_git_url() end, { desc = "Copy GitHub URL" })
+	vim.keymap.set("n", "<leader>fya", function() copy_absolute_path() end, { desc = " Copy absolute path" })
+	vim.keymap.set("n", "<leader>fyr", function() copy_relative_path() end, { desc = " Copy relative path" })
+	vim.keymap.set("n", "<leader>gs", function() Snacks.picker.git_status() end, { desc = "Files changed in Git (status)..." })
+	vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Close all and exit" })
+	vim.keymap.set("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "Search in files via grep..." })
+	vim.keymap.set("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
+	vim.keymap.set("n", "<leader>u,", function() vim.cmd("e " .. vim.fn.stdpath("config") .. "/init.lua") end, { desc = "Open settings" })
+	vim.keymap.set("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Change colorscheme" })
+	vim.keymap.set("n", "<leader>ux", function() Snacks.picker() end, { desc = "Choose picker" })
+
+	vim.keymap.set("v", "<leader>fyg", function() copy_git_url() end, { desc = "Copy GitHub URL" })
+	vim.keymap.set("v", "<leader>fya", function() copy_absolute_path_range() end, { desc = " Copy absolute path with line numbers" })
+	vim.keymap.set("v", "<leader>fyr", function() copy_relative_path_range() end, { desc = " Copy relative path with line numbers" })
+	vim.keymap.set("v", "<leader>gh", function() Snacks.gitbrowse() end, { desc = "Open GitHub in browser" })
+
+	vim.keymap.set("n", "g.", function() vim.lsp.buf.code_action() end, { desc = "Code action" })
+	vim.keymap.set("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Go to declaration" })
+	vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Go to definition" })
+	vim.keymap.set("n", "gI", function() Snacks.picker.lsp_implementations() end, { desc = "Show implementation" })
+	vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, { desc = "Show references" })
+	vim.keymap.set("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Go to type definition" })
+	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover" })
+
+  vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+  vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+	-- stylua: ignore end
+end)
+
+-- Editing -------------------------------------------------------------------------------
+
 later(function() -- editor: lsp features (blink, mason, lspconfig)
 	add({ source = "Saghen/blink.cmp", checkout = "v1.6.0" })
 	add({ source = "mason-org/mason.nvim" })
@@ -308,105 +417,68 @@ later(function() -- editor: formatting
 	-- https://www.lazyvim.org/plugins/formatting
 end)
 
-later(function() -- keys, keymaps
-	local function copy_git_url()
-		Snacks.gitbrowse({
-			notify = false,
-			open = function(str)
-				vim.fn.setreg('"', str)
-				vim.fn.setreg("+", str)
-				vim.notify(" " .. str)
+later(function() -- various-textobjs: vaq and more
+	-- vaq  - select all in quotes " ' `
+	-- vab  - select all in brackets ( [ { <
+	add({ source = "chrisgrieser/nvim-various-textobjs" })
+	require("various-textobjs").setup({})
+end)
+
+later(function() -- treesitter-context
+	add({ source = "nvim-treesitter/nvim-treesitter-context" })
+	require("treesitter-context").setup({ mode = "topline" })
+
+	vim.keymap.set("n", "[c", function()
+		require("treesitter-context").go_to_context(vim.v.count1)
+	end, { desc = "Jump to context", silent = true })
+
+	-- https://github.com/nvim-treesitter/nvim-treesitter-context?tab=readme-ov-file#configuration
+end)
+
+-- UI ------------------------------------------------------------------------------------
+
+now_if_args(function() -- mini.statusline
+	local statusline = require("mini.statusline")
+
+	local function active()
+		local mode, mode_hl = statusline.section_mode({ trunc_width = 2000 })
+		local diagnostics = statusline.section_diagnostics({ trunc_width = 75 })
+		local lsp = statusline.section_lsp({ trunc_width = 75 })
+		local filename = statusline.section_filename({ trunc_width = 12 })
+		local search = statusline.section_searchcount({ trunc_width = 75 })
+
+		return statusline.combine_groups({
+			{ hl = mode_hl, strings = { mode } },
+			"%<", -- Mark general truncate point
+			{ hl = "MiniStatuslineFilename", strings = { filename } },
+			"%=", -- End left alignment
+			{ hl = "MiniStatuslineInactive", strings = { diagnostics, lsp } },
+			{ hl = "MiniStatuslineFileinfo", strings = { search } },
+			{ hl = "MiniStatuslineInactive", strings = { "%2l:%-2v" } },
+			{ hl = mode_hl, strings = { " " } },
+		})
+	end
+	statusline.setup({ content = { active = active } })
+
+	-- Restore status line that was hidden earlier
+	---@param value number
+	local function defer_laststatus_update_on_insert(value)
+		local group = vim.api.nvim_create_augroup("restore", { clear = true })
+		vim.api.nvim_create_autocmd("InsertEnter", {
+			group = group,
+			callback = function()
+				vim.opt.laststatus = value
+				vim.api.nvim_del_augroup_by_id(group)
 			end,
 		})
 	end
 
-	local function copy_path(opts)
-		local str = vim.fn.expand(opts.expand)
-		local start_line = vim.fn.line("v")
-		local end_line = vim.fn.line(".")
-		if opts and opts.range then
-			if start_line == end_line then
-				str = str .. "#L" .. start_line
-			elseif start_line > end_line then
-				str = str .. "#L" .. end_line .. "-" .. start_line
-			else
-				str = str .. "#L" .. start_line .. "-" .. end_line
-			end
-		end
-		vim.fn.setreg('"', str)
-		vim.fn.setreg("+", str)
-		vim.notify(" " .. str)
+	-- Show status line immediately when starting with a file
+	if vim.fn.argc(-1) > 0 then
+		vim.opt.laststatus = 2
+	else
+		defer_laststatus_update_on_insert(2)
 	end
-
-	local function copy_absolute_path()
-		return copy_path({ expand = "%:p" })
-	end
-	local function copy_absolute_path_range()
-		return copy_path({ expand = "%:p", range = 1 })
-	end
-	local function copy_relative_path()
-		return copy_path({ expand = "%:." })
-	end
-	local function copy_relative_path_range()
-		return copy_path({ expand = "%:.", range = 1 })
-	end
-
-	-- System clipboard
-	vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to clipboard" })
-	vim.keymap.set("i", "<C-S-v>", "<C-R>+", { desc = "Paste from clipboard" })
-
-	-- Make `23,` go to line 23. Easier to type than `23G`
-	vim.keymap.set("n", ",", "G", { desc = "Go to line" })
-	vim.keymap.set("v", ",", "G", { desc = "Go to line" })
-
-	-- default keymaps for references, etc
-	vim.keymap.del("n", "grt")
-	vim.keymap.del("n", "gri")
-	vim.keymap.del("n", "grr")
-	vim.keymap.del("n", "gra")
-	vim.keymap.del("n", "grn")
-
-  -- stylua: ignore start
-	vim.keymap.set("n", "<c-p>", function() Snacks.picker.git_files({ untracked = true }) end, { desc = "Open file in git..." })
-	vim.keymap.set("n", "<F1>", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
-
-	vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Switch buffer..." })
-	vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
-	vim.keymap.set("n", "<leader>!g", function() vim.cmd("e " .. vim.fn.stdpath("config") .. "/etc/graveyard.lua") end, { desc = "Open config graveyard" })
-	vim.keymap.set("n", "<leader>cr", function() vim.lsp.buf.rename() end, { desc = "Rename this..." })
-	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
-	vim.keymap.set("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete other buffers" })
-	vim.keymap.set("n", "<leader>fp", function() Snacks.picker.projects() end, { desc = "Recent projects..." })
-	vim.keymap.set("n", "<leader>fr", function() Snacks.picker.recent({ hidden = true, filter = { cwd = true } }) end, { desc = "Recent files..." })
-	vim.keymap.set("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Open file..." })
-	vim.keymap.set("n", "<leader>gh", function() Snacks.gitbrowse() end, { desc = "Open GitHub in browser" })
-	vim.keymap.set("n", "<leader>fyg", function() copy_git_url() end, { desc = "Copy GitHub URL" })
-	vim.keymap.set("n", "<leader>fya", function() copy_absolute_path() end, { desc = " Copy absolute path" })
-	vim.keymap.set("n", "<leader>fyr", function() copy_relative_path() end, { desc = " Copy relative path" })
-	vim.keymap.set("n", "<leader>gs", function() Snacks.picker.git_status() end, { desc = "Files changed in Git (status)..." })
-	vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Close all and exit" })
-	vim.keymap.set("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "Search in files via grep..." })
-	vim.keymap.set("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
-	vim.keymap.set("n", "<leader>u,", function() vim.cmd("e " .. vim.fn.stdpath("config") .. "/init.lua") end, { desc = "Open settings" })
-	vim.keymap.set("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Change colorscheme" })
-	vim.keymap.set("n", "<leader>ux", function() Snacks.picker() end, { desc = "Choose picker" })
-
-	vim.keymap.set("v", "<leader>fyg", function() copy_git_url() end, { desc = "Copy GitHub URL" })
-	vim.keymap.set("v", "<leader>fya", function() copy_absolute_path_range() end, { desc = " Copy absolute path with line numbers" })
-	vim.keymap.set("v", "<leader>fyr", function() copy_relative_path_range() end, { desc = " Copy relative path with line numbers" })
-	vim.keymap.set("v", "<leader>gh", function() Snacks.gitbrowse() end, { desc = "Open GitHub in browser" })
-
-	vim.keymap.set("n", "g.", function() vim.lsp.buf.code_action() end, { desc = "Code action" })
-	vim.keymap.set("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Go to declaration" })
-	vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Go to definition" })
-	vim.keymap.set("n", "gI", function() Snacks.picker.lsp_implementations() end, { desc = "Show implementation" })
-	vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, { desc = "Show references" })
-	vim.keymap.set("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Go to type definition" })
-	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover" })
-
-  vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-  vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
-	-- stylua: ignore end
 end)
 
 later(function() -- mini.notify: toast notifications
@@ -433,6 +505,54 @@ later(function() -- trouble: diagnostics
 	vim.keymap.set("n", "<leader>xx", "<Cmd>Trouble diagnostics toggle<cr>", { desc = "Show diagnostics" })
 	-- stylua: ignore end
 end)
+
+later(function() -- mini.files
+	local MiniFiles = require("mini.files")
+	MiniFiles.setup({
+		mappings = {
+			go_in_plus = "<cr>",
+			synchronize = "<c-s>",
+		},
+		windows = {
+			max_number = 3,
+			preview = true,
+			width_nofocus = math.floor((vim.o.columns - 5) * 0.25), -- 25% of screen minus border+padding
+			width_focus = math.floor((vim.o.columns - 5) * 0.25), -- 25% of screen minus border+padding
+			width_preview = math.floor((vim.o.columns - 3) * 0.5), -- 50% of screen minus border+padding,
+		},
+	})
+
+	local function explore_from_here()
+		MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+		MiniFiles.reveal_cwd()
+	end
+
+	-- stylua: ignore start
+	vim.keymap.set("n", "-", function() explore_from_here() end, { desc = "Open file browser (mini)" })
+	-- stylua: ignore end
+end)
+
+-- Git -----------------------------------------------------------------------------------
+
+later(function() -- diffview
+	add({
+		source = "sindrets/diffview.nvim",
+	})
+
+	-- stylua: ignore start
+	vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Show diff" })
+	vim.keymap.set("n", "<leader>gD", "<cmd>DiffviewOpen main...HEAD<cr>", { desc = "Show diff for branch" })
+	-- stylua: ignore end
+end)
+
+later(function() -- blame
+	add({ source = "FabijanZulj/blame.nvim" })
+	require("blame").setup({ blame_options = { "-w" } })
+	vim.keymap.set("n", "<leader>gb", "<cmd>BlameToggle window<cr>", { desc = "Show git blame (window)" })
+	vim.keymap.set("n", "<leader>gB", "<cmd>BlameToggle virtual<cr>", { desc = "Show git blame (virtual)" })
+end)
+
+-- Markdown ------------------------------------------------------------------------------
 
 later(function() -- render-markdown
 	add({ source = "MeanderingProgrammer/render-markdown.nvim" })
@@ -515,105 +635,6 @@ later(function() -- render-markdown
 	})
 end)
 
-now_if_args(function() -- mini.statusline
-	local statusline = require("mini.statusline")
-
-	local function active()
-		local mode, mode_hl = statusline.section_mode({ trunc_width = 2000 })
-		local diagnostics = statusline.section_diagnostics({ trunc_width = 75 })
-		local lsp = statusline.section_lsp({ trunc_width = 75 })
-		local filename = statusline.section_filename({ trunc_width = 12 })
-		local search = statusline.section_searchcount({ trunc_width = 75 })
-
-		return statusline.combine_groups({
-			{ hl = mode_hl, strings = { mode } },
-			"%<", -- Mark general truncate point
-			{ hl = "MiniStatuslineFilename", strings = { filename } },
-			"%=", -- End left alignment
-			{ hl = "MiniStatuslineInactive", strings = { diagnostics, lsp } },
-			{ hl = "MiniStatuslineFileinfo", strings = { search } },
-			{ hl = "MiniStatuslineInactive", strings = { "%2l:%-2v" } },
-			{ hl = mode_hl, strings = { " " } },
-		})
-	end
-	statusline.setup({ content = { active = active } })
-
-	-- Restore status line that was hidden earlier
-	---@param value number
-	local function defer_laststatus_update_on_insert(value)
-		local group = vim.api.nvim_create_augroup("restore", { clear = true })
-		vim.api.nvim_create_autocmd("InsertEnter", {
-			group = group,
-			callback = function()
-				vim.opt.laststatus = value
-				vim.api.nvim_del_augroup_by_id(group)
-			end,
-		})
-	end
-
-	-- Show status line immediately when starting with a file
-	if vim.fn.argc(-1) > 0 then
-		vim.opt.laststatus = 2
-	else
-		defer_laststatus_update_on_insert(2)
-	end
-end)
-
-later(function() -- mini.files
-	local MiniFiles = require("mini.files")
-	MiniFiles.setup({
-		mappings = {
-			go_in_plus = "<cr>",
-			synchronize = "<c-s>",
-		},
-		windows = {
-			max_number = 3,
-			preview = true,
-			width_nofocus = math.floor((vim.o.columns - 5) * 0.25), -- 25% of screen minus border+padding
-			width_focus = math.floor((vim.o.columns - 5) * 0.25), -- 25% of screen minus border+padding
-			width_preview = math.floor((vim.o.columns - 3) * 0.5), -- 50% of screen minus border+padding,
-		},
-	})
-
-	local function explore_from_here()
-		MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
-		MiniFiles.reveal_cwd()
-	end
-
-	-- stylua: ignore start
-	vim.keymap.set("n", "-", function() explore_from_here() end, { desc = "Open file browser (mini)" })
-	-- stylua: ignore end
-end)
-
-later(function() -- diffview
-	add({
-		source = "sindrets/diffview.nvim",
-	})
-
-	-- stylua: ignore start
-	vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Show diff" })
-	vim.keymap.set("n", "<leader>gD", "<cmd>DiffviewOpen main...HEAD<cr>", { desc = "Show diff for branch" })
-	-- stylua: ignore end
-end)
-
-later(function() -- treesitter-context
-	add({ source = "nvim-treesitter/nvim-treesitter-context" })
-	require("treesitter-context").setup({ mode = "topline" })
-
-	vim.keymap.set("n", "[c", function()
-		require("treesitter-context").go_to_context(vim.v.count1)
-	end, { desc = "Jump to context", silent = true })
-
-	-- https://github.com/nvim-treesitter/nvim-treesitter-context?tab=readme-ov-file#configuration
-end)
-
-later(function() -- various-textobjs: vaq and more
-	-- vaq  - select all in quotes " ' `
-	-- vab  - select all in brackets ( [ { <
-	add({ source = "chrisgrieser/nvim-various-textobjs" })
-	require("various-textobjs").setup({})
-end)
-
 later(function() -- obsidian
 	-- vaq  - select all in quotes " ' `
 	-- vab  - select all in brackets ( [ { <
@@ -634,12 +655,7 @@ later(function() -- obsidian
 	})
 end)
 
-later(function() -- blame
-	add({ source = "FabijanZulj/blame.nvim" })
-	require("blame").setup({ blame_options = { "-w" } })
-	vim.keymap.set("n", "<leader>gb", "<cmd>BlameToggle window<cr>", { desc = "Show git blame (window)" })
-	vim.keymap.set("n", "<leader>gB", "<cmd>BlameToggle virtual<cr>", { desc = "Show git blame (virtual)" })
-end)
+-- AI ------------------------------------------------------------------------------------
 
 later(function() -- opencode
 	add({ source = "NickvanDyke/opencode.nvim", depends = { "folke/snacks.nvim" } })
@@ -669,6 +685,8 @@ later(function() -- copilot
 
 	vim.keymap.set("n", "<leader>!as", "<cmd>Copilot panel<cr>", { desc = "Open Copilot suggestions panel" })
 end)
+
+-- Mini ----------------------------------------------------------------------------------
 
 later(function() -- mini.clue: shows keyboard shortcuts
 	local miniclue = require("mini.clue")
