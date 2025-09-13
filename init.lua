@@ -330,7 +330,7 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 	-- <c-y> - accept
 	-- <cr> - accept
 	require("blink.cmp").setup({
-		keymap = { preset = "default" },
+		keymap = { preset = "default", ["<cr>"] = { "accept", "fallback" } },
 		completion = { documentation = { auto_show = true } },
 		fuzzy = { implementation = "prefer_rust" },
 
@@ -349,6 +349,11 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 		-- 	},
 		-- },
 	})
+
+	-- Insert a newline without accepting completion.
+	-- Useful for when completion popup is visible, but you need to start a new line.
+	-- side effect is that it shows a blank space differently (placeholder)
+	vim.keymap.set("i", "<space><cr>", "<C-j>")
 
 	-- Mason
 	require("mason").setup({})
@@ -654,8 +659,6 @@ later(function() -- obsidian
 		end,
 	})
 end)
-
--- AI ------------------------------------------------------------------------------------
 
 later(function() -- opencode
 	add({ source = "NickvanDyke/opencode.nvim", depends = { "folke/snacks.nvim" } })

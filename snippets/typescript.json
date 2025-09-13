@@ -1,0 +1,10 @@
+{
+  "AI comment (instruction)": {
+    "prefix": "ai",
+    "body": [ "// AI! ${1}" ]
+  },
+  "AI comment (question)": {
+    "prefix": "aiq",
+    "body": [ "// AI? ${1}" ]
+  }
+}

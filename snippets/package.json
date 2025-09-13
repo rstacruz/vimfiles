@@ -3,6 +3,7 @@
   "contributes": {
     "snippets": [
       { "language": "markdown", "path": "./markdown.json" }
+      { "language": ["typescript", "javascript", "typescriptreact", "javascriptreact"], "path": "./typescript.json" }
     ]
   }
 }
