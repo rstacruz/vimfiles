@@ -214,6 +214,17 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 		source = "mason-org/mason-lspconfig.nvim",
 		depends = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
 	})
+
+	-- <C-n>/<C-p> - next or previous match
+	-- <cr> - accept
+	require("blink.cmp").setup({
+		keymap = { preset = "default" },
+
+		completion = { documentation = { auto_show = true } },
+		fuzzy = { implementation = "prefer_rust" },
+	})
+
+	-- Mason
 	require("mason").setup({})
 	require("mason-lspconfig").setup({ ensure_installed = LANG_CONFIG.lsp })
 
@@ -671,7 +682,7 @@ later(function() -- blame
 end)
 
 later(function() -- opencode
-	add({ source = "NckvanDyke/opencode.nvim", depends = { "folke/snacks.nvim" } })
+	add({ source = "NickvanDyke/opencode.nvim", depends = { "folke/snacks.nvim" } })
 
 	local opencode = require("opencode")
 	-- stylua: ignore start
