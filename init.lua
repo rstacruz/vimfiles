@@ -168,6 +168,7 @@ now(function() -- snacks: indent guides, dashboard
 
 	require("snacks").setup({
 		dashboard = no_args and dashboard_opts or {},
+		input = { enabled = true }, -- for renames, etc
 		indent = { enabled = true }, -- needs early setup
 	})
 end)
@@ -425,6 +426,7 @@ later(function() -- mini.clue: shows keyboard shortcuts
 			{ mode = "n", keys = "<leader>!", desc = "+experimental" },
 			{ mode = "n", keys = "<leader>!d", desc = "+debug" },
 			{ mode = "n", keys = "<leader>q", desc = "+quit" },
+			{ mode = "n", keys = "<leader>a", desc = "+agent" },
 			-- Enhance this by adding descriptions for <Leader> mapping groups
 			miniclue.gen_clues.builtin_completion(),
 			miniclue.gen_clues.g(),
@@ -457,7 +459,7 @@ later(function() -- trouble: diagnostics
 	require("trouble").setup({})
 
 	-- stylua: ignore start
-	vim.keymap.set("n", "<leader>xx", function() vim.cmd("Trouble diagnostics toggle") end, { desc = "Show diagnostics" })
+	vim.keymap.set("n", "<leader>xx", "<Cmd>Trouble diagnostics toggle<cr>", { desc = "Show diagnostics" })
 	-- stylua: ignore end
 end)
 
@@ -666,6 +668,22 @@ later(function() -- blame
 	require("blame").setup({ blame_options = { "-w" } })
 	vim.keymap.set("n", "<leader>gb", "<cmd>BlameToggle window<cr>", { desc = "Show git blame (window)" })
 	vim.keymap.set("n", "<leader>gB", "<cmd>BlameToggle virtual<cr>", { desc = "Show git blame (virtual)" })
+end)
+
+later(function() -- opencode
+	add({ source = "NckvanDyke/opencode.nvim", depends = { "folke/snacks.nvim" } })
+
+	local opencode = require("opencode")
+	-- stylua: ignore start
+	vim.keymap.set("n", "<leader>oa", function() opencode.ask("@cursor: ") end, { desc = "Ask opencode" })
+	vim.keymap.set("v", "<leader>oa", function() opencode.ask("@selection: ") end, { desc = "Ask opencode about selection" })
+	vim.keymap.set("n", "<leader>ot", function() opencode.toggle() end, { desc = "Toggle embedded opencode" })
+	vim.keymap.set("n", "<leader>on", function() opencode.command("session_new") end, { desc = "New session" })
+	vim.keymap.set("n", "<leader>oy", function() opencode.command("messages_copy") end, { desc = "Copy last message" })
+	vim.keymap.set({ "n", "v" }, "<leader>op", function() opencode.select_prompt() end, { desc = "Select prompt" })
+	vim.keymap.set("n", "<S-C-u>", function() opencode.command("messages_half_page_up") end, { desc = "Scroll messages up" })
+	vim.keymap.set("n", "<S-C-d>", function() opencode.command("messages_half_page_down") end, { desc = "Scroll messages down" })
+	-- stylua: ignore end
 end)
 
 later(function() -- mini.etc
