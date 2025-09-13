@@ -19,12 +19,12 @@ end
 
 M.bind_keys = function(buf)
   -- stylua: ignore start
-	vim.keymap.set("n", "<leader>mp", "<cmd>Obsidian paste_img<CR>", { buffer = buf, desc = "Obsidian: Paste image" })
-	vim.keymap.set("v", "<leader>mx", "<cmd>Obsidian extract_note<CR>", { buffer = buf, desc = "Obsidian: Extract to..." })
-	vim.keymap.set("n", "<leader>mc", "<cmd>Obsidian toggle_checkbox<CR>", { buffer = buf, desc = "Obsidian: Toggle checkbox" })
-	vim.keymap.set("n", "<leader>ms", "<cmd>Obsidian follow_link vsplit<CR>", { buffer = buf, desc = "Obsidian: Follow link in vsplit" })
-	vim.keymap.set("n", "<leader>mr", "<cmd>Obsidian backlinks<CR>", { buffer = buf, desc = "Obsidian: Show backlinks" })
-	vim.keymap.set("n", "<leader>mR", "<cmd>Obsidian rename<CR>", { buffer = buf, desc = "Obsidian: Rename..." })
+	vim.keymap.set("n", "<leader>,p", "<cmd>Obsidian paste_img<CR>", { buffer = buf, desc = "Obsidian: Paste image" })
+	vim.keymap.set("v", "<leader>,x", "<cmd>Obsidian extract_note<CR>", { buffer = buf, desc = "Obsidian: Extract to..." })
+	vim.keymap.set("n", "<leader>,c", "<cmd>Obsidian toggle_checkbox<CR>", { buffer = buf, desc = "Obsidian: Toggle checkbox" })
+	vim.keymap.set("n", "<leader>,s", "<cmd>Obsidian follow_link vsplit<CR>", { buffer = buf, desc = "Obsidian: Follow link in vsplit" })
+	vim.keymap.set("n", "<leader>,r", "<cmd>Obsidian backlinks<CR>", { buffer = buf, desc = "Obsidian: Show backlinks" })
+	vim.keymap.set("n", "<leader>,R", "<cmd>Obsidian rename<CR>", { buffer = buf, desc = "Obsidian: Rename..." })
 	vim.keymap.set("n", "gf", "<cmd>Obsidian follow_link<CR>", { buffer = buf, desc = "Obsidian: Follow link" })
 	-- vim.keymap.set("n", "gr", "<cmd>Obsidian backlinks<CR>", { buffer = buf, desc = "Obsidian: Show backlinks" })
 	-- stylua: ignore end

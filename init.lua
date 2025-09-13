@@ -739,6 +739,7 @@ later(function() -- mini.clue: shows keyboard shortcuts
 			{ mode = "n", keys = "<leader>!d", desc = "+debug" },
 			{ mode = "n", keys = "<leader>q", desc = "+quit" },
 			{ mode = "n", keys = "<leader>o", desc = "+opencode" },
+			{ mode = "n", keys = "<leader>m", desc = "+marks" },
 			-- Enhance this by adding descriptions for <Leader> mapping groups
 			miniclue.gen_clues.builtin_completion(),
 			miniclue.gen_clues.g(),
@@ -769,4 +770,15 @@ later(function() -- mini.etc
 	require("mini.git").setup()
 	require("mini.icons").setup()
 	require("mini.diff").setup()
+end)
+
+later(function() -- marks
+	add({ source = "chentoast/marks.nvim" })
+
+	-- marks: highlights marks in the signcolumn, and shows a list of marks
+	-- similar to harpoon
+	require("marks").setup({})
+	vim.keymap.set("n", "<leader>ml", "<cmd>MarksListAll<cr>", { desc = "List all marks" })
+	vim.keymap.set("n", "<leader>mb", "<cmd>BookmarksListAll<cr>", { desc = "List bookmarks" })
+	vim.keymap.set("n", "<leader>mx", "<cmd>delmarks!<cr>", { desc = "Delete all marks" })
 end)
