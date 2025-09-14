@@ -62,6 +62,8 @@ local LANG_CONFIG = {
 	},
 }
 
+local CLUES = {}
+
 -- Termux: some tools are only available certain platforms
 local is_termux = string.find(vim.loop.os_uname().release, "android")
 if not is_termux then
@@ -276,6 +278,9 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Switch buffer..." })
 	vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
 	vim.keymap.set("n", "<leader>!g", function() vim.cmd("e " .. vim.fn.stdpath("config") .. "/etc/graveyard.lua") end, { desc = "Open config graveyard" })
+	table.insert(CLUES, { mode = "n", keys = "<leader>!ds", desc = "+snapshot" })
+	vim.keymap.set("n", "<leader>!dss", "<cmd>DepsSnapSave<cr>", { desc = "Deps: save snapshot" })
+	vim.keymap.set("n", "<leader>!dsl", "<cmd>DepsSnapLoad<cr>", { desc = "Deps: load snapshot" })
 	vim.keymap.set("n", "<leader>cr", function() vim.lsp.buf.rename() end, { desc = "Rename this..." })
 	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
 	vim.keymap.set("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete other buffers" })
@@ -682,6 +687,7 @@ later(function() -- opencode
 
 	local opencode = require("opencode")
 	-- stylua: ignore start
+	table.insert(CLUES, { mode = "n", keys = "<leader>o", desc = "+opencode" })
 	vim.keymap.set("n", "<leader>oa", function() opencode.ask("@cursor: ") end, { desc = "Ask opencode" })
 	vim.keymap.set("v", "<leader>oa", function() opencode.ask("@selection: ") end, { desc = "Ask opencode about selection" })
 	vim.keymap.set("n", "<leader>ot", function() opencode.toggle() end, { desc = "Toggle embedded opencode" })
@@ -749,12 +755,12 @@ later(function() -- mini.clue: shows keyboard shortcuts
 			{ mode = "n", keys = "<leader>s", desc = "+search" },
 			{ mode = "n", keys = "<leader>c", desc = "+code" },
 			{ mode = "n", keys = "<leader>x", desc = "+diagnostics" },
+			{ mode = "n", keys = "<leader>g", desc = "+git" },
+			{ mode = "n", keys = "<leader>b", desc = "+buffer" },
 			{ mode = "n", keys = "<leader>f", desc = "+file" },
 			{ mode = "n", keys = "<leader>!", desc = "+experimental" },
 			{ mode = "n", keys = "<leader>!d", desc = "+debug" },
 			{ mode = "n", keys = "<leader>q", desc = "+quit" },
-			{ mode = "n", keys = "<leader>o", desc = "+opencode" },
-			{ mode = "n", keys = "<leader>m", desc = "+marks" },
 			-- Enhance this by adding descriptions for <Leader> mapping groups
 			miniclue.gen_clues.builtin_completion(),
 			miniclue.gen_clues.g(),
@@ -762,6 +768,7 @@ later(function() -- mini.clue: shows keyboard shortcuts
 			miniclue.gen_clues.registers(),
 			miniclue.gen_clues.windows(),
 			miniclue.gen_clues.z(),
+			CLUES,
 		},
 	})
 end)
@@ -807,6 +814,7 @@ later(function() -- marks
 	-- marks: highlights marks in the signcolumn, and shows a list of marks
 	-- similar to harpoon
 	require("marks").setup({})
+	table.insert(CLUES, { mode = "n", keys = "<leader>m", desc = "+marks" })
 	vim.keymap.set("n", "<leader>ml", "<cmd>MarksListAll<cr>", { desc = "List all marks" })
 	vim.keymap.set("n", "<leader>mb", "<cmd>BookmarksListAll<cr>", { desc = "List bookmarks" })
 	vim.keymap.set("n", "<leader>mx", "<cmd>delmarks!<cr>", { desc = "Delete all marks" })
