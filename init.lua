@@ -824,7 +824,14 @@ end)
 later(function() -- flash
 	add({ source = "folke/flash.nvim" })
 	local flash = require("flash")
-	flash.setup({})
+	flash.setup({
+		modes = {
+			-- when using `/` or `?`
+			search = { highlight = { backdrop = false } },
+			-- when using f F t T ; ,
+			char = { highlight = { backdrop = false } },
+		},
+	})
 	vim.keymap.set("n", "S", flash.jump, { desc = "Flash" })
 	vim.keymap.set("n", "<leader>bt", flash.treesitter, { desc = "Select treesitter node" })
 end)
