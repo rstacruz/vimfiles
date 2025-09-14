@@ -87,26 +87,11 @@ local function defer_laststatus_update_on_insert(value)
 	})
 end
 
--- ...
--- :DepsUpdate
---
--- todo:
--- * harpoon
---
--- todo:
+later(function() -- ts-comments
+	-- when using `gc` to toggle comments, make it use the correct comment
+	-- eg, {/* ... */} in JSX
+	add({ source = "folke/ts-comments.nvim" })
+	require("ts-comments").setup({})
+end)
+
 -- * mini-files: arrow keys https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-files.md
--- * replace Trouble with mini.extra diagnostics
--- * mini.diff - https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-diff.md
--- * blink cmp
--- * akinsho/bufferline
--- * `s` jumping
--- * leader-un toggle for numbers
--- * code actions
--- * recent
--- * show diagnostic info on K
--- * snacks.picker.keymaps()
--- * fold appearance
--- * ctrl-h ctrl-l
--- * bufferline
--- * markdown
--- * diffview
