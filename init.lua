@@ -358,7 +358,7 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 	-- Insert a newline without accepting completion.
 	-- Useful for when completion popup is visible, but you need to start a new line.
 	-- side effect is that it shows a blank space differently (placeholder)
-	vim.keymap.set("i", "<space><cr>", "<C-j>")
+	-- vim.keymap.set("i", "<space><cr>", "<C-j>")
 
 	-- Mason
 	require("mason").setup({})
@@ -818,4 +818,12 @@ later(function() -- marks
 	vim.keymap.set("n", "<leader>ml", "<cmd>MarksListAll<cr>", { desc = "List all marks" })
 	vim.keymap.set("n", "<leader>mb", "<cmd>BookmarksListAll<cr>", { desc = "List bookmarks" })
 	vim.keymap.set("n", "<leader>mx", "<cmd>delmarks!<cr>", { desc = "Delete all marks" })
+end)
+
+later(function() -- flash
+	add({ source = "folke/flash.nvim" })
+	local flash = require("flash")
+	flash.setup({})
+	vim.keymap.set("n", "S", flash.jump, { desc = "Flash" })
+	vim.keymap.set("n", "<leader>bt", flash.treesitter, { desc = "Select treesitter node" })
 end)
