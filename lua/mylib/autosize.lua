@@ -2,7 +2,7 @@
 -- just like `winwidth` but excludes sidebars and more
 --
 -- example:
---   require("lib.autosize").setup()
+--   require("mylib.autosize").setup()
 
 local settings = {
 	excluded_filetypes = {

@@ -538,15 +538,18 @@ later(function() -- mini.files
 	local MiniFiles = require("mini.files")
 	MiniFiles.setup({
 		mappings = {
-			go_in_plus = "<cr>",
-			synchronize = "<c-s>",
+			go_out = "<Left>", -- default `h`
+			go_in = "<Right>", -- default `l`
+			go_in_plus = "<cr>", -- open (closes mini.files when used one a file)
+			synchronize = "<c-s>", -- save changes (default `=`)
+			help = "?", -- default `g?`
+			-- also: reveal_cwd (`@`)
 		},
 		windows = {
-			max_number = 3,
 			preview = true,
-			width_nofocus = math.floor((vim.o.columns - 5) * 0.25), -- 25% of screen minus border+padding
-			width_focus = math.floor((vim.o.columns - 5) * 0.25), -- 25% of screen minus border+padding
-			width_preview = math.floor((vim.o.columns - 3) * 0.5), -- 50% of screen minus border+padding,
+			width_nofocus = 12,
+			width_focus = 40,
+			width_preview = 40,
 		},
 	})
 
@@ -838,6 +841,6 @@ later(function() -- flash
 	vim.keymap.set("n", "<leader>bt", flash.treesitter, { desc = "Select treesitter node" })
 end)
 
-later(function()
+later(function() -- chezmoi
 	require("mylib.chezmoi_auto_apply").setup()
 end)
