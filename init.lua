@@ -43,7 +43,9 @@ local now_if_args = vim.fn.argc(-1) > 0 and now or later
 
 -- Convenient config for all things related to language setup (LSP, etc)
 local LANG_CONFIG = {
-	treesitter = { "lua", "vimdoc", "javascript", "typescript", "markdown", "css", "astro", "bash" },
+	-- stylua: ignore start
+	treesitter = { "lua", "vimdoc", "javascript", "typescript", "markdown", "markdown_inline", "css", "astro", "bash", "git_config", "git_rebase", "gitattributes", "gitcommit", "gitignore", "graphql", "html", "jsdoc", "json", "tsx", "toml", "xml", "yaml" },
+	-- stylua: ignore end
 	mason = { "prettier" },
 	-- tools (see :Mason)
 	lsp = { "vtsls", "tailwindcss", "eslint" },
@@ -834,4 +836,8 @@ later(function() -- flash
 	})
 	vim.keymap.set("n", "S", flash.jump, { desc = "Flash" })
 	vim.keymap.set("n", "<leader>bt", flash.treesitter, { desc = "Select treesitter node" })
+end)
+
+later(function()
+	require("mylib.chezmoi_auto_apply").setup()
 end)
