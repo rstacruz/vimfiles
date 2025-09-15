@@ -2,6 +2,42 @@ local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 local now_if_args = vim.fn.argc(-1) > 0 and now or later
 local now_if_no_args = vim.fn.argc(-1) > 0 and later or now
 
+-- measure startup time
+local start = (vim.uv or vim.loop).hrtime()
+now(function()
+	vim.api.nvim_create_autocmd("VimEnter", {
+		pattern = { "*" },
+		callback = function()
+			local now = (vim.uv or vim.loop).hrtime()
+			local delta = now - start
+			local loadtime = string.format("Loaded in %.2f ms", delta / 1e6)
+			vim.g.lol = loadtime -- display later?
+		end,
+	})
+end)
+
+vim.api.nvim_create_autocmd("VimEnter", {
+	pattern = { "*" },
+	callback = function()
+		local now = (vim.uv or vim.loop).hrtime()
+		local delta = now - start
+		local loadtime = string.format("Loaded in %.2f ms", delta / 1e6)
+		print(loadtime)
+		vim.notify(loadtime)
+		vim.g.lol = loadtime
+	end,
+})
+vim.api.nvim_create_autocmd("VimEnter", {
+	pattern = { "*" },
+	callback = function()
+		local now = (vim.uv or vim.loop).hrtime()
+		local delta = now - start
+		local loadtime = string.format("Loaded in %.2f ms", delta / 1e6)
+		print(loadtime)
+		vim.notify(loadtime)
+		vim.g.lol = loadtime
+	end,
+})
 now_if_no_args(function() -- mini.starter
 	local starter = require("mini.starter")
 

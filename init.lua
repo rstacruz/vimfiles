@@ -168,9 +168,22 @@ now(function() -- snacks: indent guides, dashboard
 
 	local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
 
-	local now = (vim.uv or vim.loop).hrtime()
-	local delta = now - start
-	local loadtime = string.format("Loaded in %.2f ms", delta / 1e6)
+	vim.api.nvim_create_autocmd("VimEnter", {
+		pattern = { "*" },
+		callback = function()
+			local now = (vim.uv or vim.loop).hrtime()
+			vim.g.loadtime = now - start
+		end,
+	})
+
+	require("snacks").dashboard.sections.startup = function(opts)
+		local loadtime = vim.g.loadtime and string.format("Loaded in %.2f ms", vim.g.loadtime / 1e6) or ""
+		return {
+			text = {
+				{ "" .. loadtime, hl = "NonText" },
+			},
+		}
+	end
 
 	local dashboard_opts = {
 		formats = {
@@ -211,7 +224,7 @@ now(function() -- snacks: indent guides, dashboard
 			{ title = "" .. cwd, padding = 1 },
 			{ section = "recent_files", cwd = true, limit = 5, indent = 0, padding = 1 },
 			{ section = "keys", indent = 0, padding = 1 },
-			{ title = loadtime, padding = 1, hl = "Comment" },
+			{ section = "startup", indent = 0, padding = 1 },
 		},
 	}
 
