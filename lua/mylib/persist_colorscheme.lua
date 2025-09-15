@@ -1,3 +1,5 @@
+local M = {}
+
 -- Persist colorscheme across sessions
 --
 -- Usage:
@@ -12,7 +14,7 @@ end
 
 -- Save colorscheme to cache
 ---@param name string
-local function save(name)
+M.save = function(name)
 	local cache_file = get_cache_file()
 	local file = io.open(cache_file, "w")
 	if not file then
@@ -26,7 +28,7 @@ local function save(name)
 end
 
 -- Load colorscheme from cache
-local function load()
+M.load = function()
 	local cache_file = get_cache_file()
 
 	if vim.fn.filereadable(cache_file) == 1 then
@@ -43,17 +45,21 @@ local function setup_autocmd()
 		pattern = "*",
 		group = vim.api.nvim_create_augroup("persist_colorscheme", { clear = true }),
 		callback = function(ev)
-			save(ev.match)
+			M.save(ev.match)
 		end,
 	})
 end
 
-local function setup(opts)
-	local is_loaded = load()
+---@class PersistColorschemeOpts
+---@field fallback string?
+
+---@param opts PersistColorschemeOpts
+M.setup = function(opts)
+	local is_loaded = M.load()
 	if is_loaded ~= 1 and opts.fallback then
 		vim.cmd("colorscheme " .. opts.fallback)
 	end
 	setup_autocmd()
 end
 
-return { save = save, load = load, setup = setup }
+return M
