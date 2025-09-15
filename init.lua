@@ -1,3 +1,5 @@
+local start = (vim.uv or vim.loop).hrtime()
+
 -- Start with `PROF=1 nvim` or `PROF=1 nvim file.txt` to see startup time
 if vim.env.PROF then
 	local snacks = vim.fn.stdpath("data") .. "/lazy/snacks.nvim"
@@ -129,11 +131,46 @@ now(function() -- color scheme
 	require("mylib.persist_colorscheme").setup({ fallback = "miniautumn" })
 end)
 
+now(function() -- autocmd's
+	vim.api.nvim_create_autocmd("FileType", {
+		group = vim.api.nvim_create_augroup("custom_markdown", { clear = true }),
+		pattern = { "markdown" },
+		callback = function()
+			vim.opt_local.cursorline = false -- doesn't look good with headlines
+			vim.opt_local.spell = false -- I find spellcheck only useful when writing prose. toggle with leader-us
+			vim.opt_local.wrap = false -- inline links make wrapping very weird. toggle with leader-uw
+			vim.opt_local.relativenumber = false
+			vim.opt_local.number = false -- toggle with leader-ul
+		end,
+	})
+
+	vim.api.nvim_create_autocmd("FileType", {
+		group = vim.api.nvim_create_augroup("custom_yaml", { clear = true }),
+		pattern = { "yaml" },
+		callback = function()
+			-- idk why this is not set
+			vim.defer_fn(function()
+				vim.opt_local.fixeol = true
+			end, 0)
+		end,
+	})
+end)
+
+now_if_args(function() -- guess-indent
+	-- Detects indentation settings per file (spaces, tabs)
+	add({ source = "NMAC427/guess-indent.nvim" })
+	require("guess-indent").setup()
+end)
+
 now(function() -- snacks: indent guides, dashboard
 	add({ source = "folke/snacks.nvim" })
 	vim.g.snacks_animate = false
 
 	local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+
+	local now = (vim.uv or vim.loop).hrtime()
+	local delta = now - start
+	local loadtime = string.format("Loaded in %.2f ms", delta / 1e6)
 
 	local dashboard_opts = {
 		formats = {
@@ -173,7 +210,8 @@ now(function() -- snacks: indent guides, dashboard
 		sections = {
 			{ title = "" .. cwd, padding = 1 },
 			{ section = "recent_files", cwd = true, limit = 5, indent = 0, padding = 1 },
-			{ section = "keys", indent = 0 },
+			{ section = "keys", indent = 0, padding = 1 },
+			{ title = loadtime, padding = 1, hl = "Comment" },
 		},
 	}
 
@@ -182,37 +220,6 @@ now(function() -- snacks: indent guides, dashboard
 		input = { enabled = true }, -- for renames, etc
 		indent = { enabled = true }, -- needs early setup
 	})
-end)
-
-now(function() -- autocmd's
-	vim.api.nvim_create_autocmd("FileType", {
-		group = vim.api.nvim_create_augroup("custom_markdown", { clear = true }),
-		pattern = { "markdown" },
-		callback = function()
-			vim.opt_local.cursorline = false -- doesn't look good with headlines
-			vim.opt_local.spell = false -- I find spellcheck only useful when writing prose. toggle with leader-us
-			vim.opt_local.wrap = false -- inline links make wrapping very weird. toggle with leader-uw
-			vim.opt_local.relativenumber = false
-			vim.opt_local.number = false -- toggle with leader-ul
-		end,
-	})
-
-	vim.api.nvim_create_autocmd("FileType", {
-		group = vim.api.nvim_create_augroup("custom_yaml", { clear = true }),
-		pattern = { "yaml" },
-		callback = function()
-			-- idk why this is not set
-			vim.defer_fn(function()
-				vim.opt_local.fixeol = true
-			end, 0)
-		end,
-	})
-end)
-
-now_if_args(function() -- guess-indent
-	-- Detects indentation settings per file (spaces, tabs)
-	add({ source = "NMAC427/guess-indent.nvim" })
-	require("guess-indent").setup()
 end)
 
 -- Keymaps -------------------------------------------------------------------------------
