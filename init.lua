@@ -166,6 +166,7 @@ now(function() -- snacks: indent guides, dashboard
 		preset = {
 			keys = {
 				{ action = ":ene", desc = "new file", key = "e" },
+				{ action = ":DiffviewOpen", desc = "git diff", key = "d" },
 				{ action = ":q", desc = "quit", key = "q" },
 			},
 		},
