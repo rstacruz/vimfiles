@@ -94,4 +94,25 @@ later(function() -- ts-comments
 	require("ts-comments").setup({})
 end)
 
+require("blink.cmp").setup({
+	keymap = { preset = "default", ["<cr>"] = { "accept", "fallback" } },
+	completion = { documentation = { auto_show = true } },
+	fuzzy = { implementation = "prefer_rust" },
+
+	-- show signature help when typing (
+	signature = { enabled = true },
+
+	-- sources = {
+	-- 	default = { "lsp", "path", "snippets", "buffer", "copilot" },
+	-- 	providers = {
+	-- 		copilot = {
+	-- 			name = "copilot",
+	-- 			module = "blink-cmp-copilot",
+	-- 			score_offset = 100,
+	-- 			async = true,
+	-- 		},
+	-- 	},
+	-- },
+})
+
 -- * mini-files: arrow keys https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-files.md

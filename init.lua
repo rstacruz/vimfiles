@@ -210,6 +210,7 @@ now(function() -- autocmd's
 end)
 
 now_if_args(function() -- guess-indent
+	-- Detects indentation settings per file (spaces, tabs)
 	add({ source = "NMAC427/guess-indent.nvim" })
 	require("guess-indent").setup()
 end)
@@ -273,6 +274,9 @@ later(function() -- keys, keymaps
 	vim.keymap.del("n", "grr")
 	vim.keymap.del("n", "gra")
 	vim.keymap.del("n", "grn")
+
+	-- Paste over currently selected text without yanking it
+	vim.keymap.set("x", "p", '"_dP', { noremap = true, silent = true })
 
   -- stylua: ignore start
 	vim.keymap.set("n", "<c-p>", function() Snacks.picker.git_files({ untracked = true }) end, { desc = "Open file in git..." })
@@ -339,24 +343,18 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 	-- <c-y> - accept
 	-- <cr> - accept
 	require("blink.cmp").setup({
+		-- <cr> to accept completions. To insert a new line instead, use
+		-- <C-j> or <space><cr>
 		keymap = { preset = "default", ["<cr>"] = { "accept", "fallback" } },
+
+		-- Show documentation in completion
 		completion = { documentation = { auto_show = true } },
+
+		-- Prefers native ("rust") but fallback to Lua implementation
 		fuzzy = { implementation = "prefer_rust" },
 
 		-- show signature help when typing (
 		signature = { enabled = true },
-
-		-- sources = {
-		-- 	default = { "lsp", "path", "snippets", "buffer", "copilot" },
-		-- 	providers = {
-		-- 		copilot = {
-		-- 			name = "copilot",
-		-- 			module = "blink-cmp-copilot",
-		-- 			score_offset = 100,
-		-- 			async = true,
-		-- 		},
-		-- 	},
-		-- },
 	})
 
 	-- Insert a newline without accepting completion.
@@ -375,6 +373,7 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 		end,
 	})
 
+	-- Install Mason packages that aren't installed
 	---@param pkgs string[]
 	local function mason_auto_install(pkgs)
 		local mr = require("mason-registry")
@@ -390,10 +389,12 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 
 	mason_auto_install(LANG_CONFIG.mason)
 
-	-- https://github.com/mason-org/mason.nvim?tab=readme-ov-file#configuration
-	-- https://neovim.io/doc/user/lsp.html#lsp-quickstart
-	-- https://github.com/neovim/nvim-lspconfig
-	-- https://www.lazyvim.org/extras/coding/blink
+	-- Also see:
+	--
+	-- * https://github.com/mason-org/mason.nvim?tab=readme-ov-file#configuration
+	-- * https://neovim.io/doc/user/lsp.html#lsp-quickstart
+	-- * https://github.com/neovim/nvim-lspconfig
+	-- * https://www.lazyvim.org/extras/coding/blink
 end)
 
 later(function() -- editor: linting
@@ -427,8 +428,11 @@ later(function() -- editor: formatting
 
 	vim.keymap.set("n", "<leader>!df", "<cmd>ConformInfo<cr>", { desc = "Debug: conform formatter info" })
 	vim.keymap.set("n", "<leader>!dl", "<cmd>LspInfo<cr>", { desc = "Debug: show lsp info" })
-	-- https://github.com/stevearc/conform.nvim?tab=readme-ov-file#setup
-	-- https://www.lazyvim.org/plugins/formatting
+
+	-- Also see:
+	--
+	-- * https://github.com/stevearc/conform.nvim?tab=readme-ov-file#setup
+	-- * https://www.lazyvim.org/plugins/formatting
 end)
 
 later(function() -- various-textobjs: vaq and more
@@ -442,10 +446,12 @@ later(function() -- treesitter-context
 	add({ source = "nvim-treesitter/nvim-treesitter-context" })
 	require("treesitter-context").setup({ mode = "topline" })
 
-	vim.keymap.set("n", "[c", function()
+	-- Jump to context parent
+	vim.keymap.set("n", "[p", function()
 		require("treesitter-context").go_to_context(vim.v.count1)
 	end, { desc = "Jump to context", silent = true })
 
+	-- Also see:
 	-- https://github.com/nvim-treesitter/nvim-treesitter-context?tab=readme-ov-file#configuration
 end)
 
@@ -799,6 +805,7 @@ later(function() -- mini.etc
 	-- [c ]c - next comment
 	-- [d ]d - next diagnostic
 	-- [i ]i - next indent change
+	-- [h ]h - next Git hunk
 	-- [q ]q - next quickfix file
 	-- [l ]l - next loclist file
 	-- [t ]t - next treesitter node (eg, parent block)
