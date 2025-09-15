@@ -1,4 +1,4 @@
--r- Start with `PROF=1 nvim` or `PROF=1 nvim file.txt` to see startup time
+-- Start with `PROF=1 nvim` or `PROF=1 nvim file.txt` to see startup time
 if vim.env.PROF then
 	local snacks = vim.fn.stdpath("data") .. "/lazy/snacks.nvim"
 	vim.opt.rtp:append(snacks)
