@@ -166,7 +166,7 @@ now(function() -- snacks: indent guides, dashboard
 		preset = {
 			keys = {
 				{ action = ":ene", desc = "new file", key = "e" },
-				{ action = ":DiffviewOpen", desc = "git diff", key = "d" },
+				{ action = ":DiffviewOpen", desc = "git status", key = "s" },
 				{ action = ":q", desc = "quit", key = "q" },
 			},
 		},
@@ -580,6 +580,19 @@ later(function() -- diffview
 	-- stylua: ignore start
 	vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Show diff" })
 	vim.keymap.set("n", "<leader>gD", "<cmd>DiffviewOpen main...HEAD<cr>", { desc = "Show diff for branch" })
+	-- Within the view:
+	-- <leader>cA - choose all
+	-- <leader>cB/cO/cT - choose base / ours / theirs
+	-- dX - delete conflict region
+	-- [x ]x - next conflict
+	-- L - open commit log panel
+	--
+	-- s / - - stage or unstage
+	-- S - stage all
+	-- gf - open in previous tab
+	-- <C-w><C-f> - open in split
+	-- <C-w>gf - open in new tab
+	--
 	-- stylua: ignore end
 end)
 
