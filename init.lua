@@ -1,4 +1,4 @@
--- Start with `PROF=1 nvim` or `PROF=1 nvim file.txt` to see startup time
+-r- Start with `PROF=1 nvim` or `PROF=1 nvim file.txt` to see startup time
 if vim.env.PROF then
 	local snacks = vim.fn.stdpath("data") .. "/lazy/snacks.nvim"
 	vim.opt.rtp:append(snacks)
@@ -44,7 +44,7 @@ local now_if_args = vim.fn.argc(-1) > 0 and now or later
 -- Convenient config for all things related to language setup (LSP, etc)
 local LANG_CONFIG = {
 	-- stylua: ignore start
-	treesitter = { "lua", "vimdoc", "javascript", "typescript", "markdown", "markdown_inline", "css", "astro", "bash", "git_config", "git_rebase", "gitattributes", "gitcommit", "gitignore", "graphql", "html", "jsdoc", "json", "tsx", "toml", "xml", "yaml" },
+	treesitter = { "lua", "vimdoc", "javascript", "typescript", "markdown", "markdown_inline", "css", "astro", "bash", "git_config", "git_rebase", "gitattributes", "gitcommit", "gitignore", "graphql", "html", "jsdoc", "json", "tsx", "toml", "xml", "yaml", "c" },
 	-- stylua: ignore end
 	mason = { "prettier" },
 	-- tools (see :Mason)
