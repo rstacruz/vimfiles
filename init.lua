@@ -312,7 +312,7 @@ later(function() -- keys, keymaps
 	table.insert(CLUES, { mode = "n", keys = "<leader>um", desc = "+dependencies" })
 	vim.keymap.set("n", "<leader>ums", "<cmd>DepsSnapSave<cr>", { desc = "Deps: save snapshot" })
 	vim.keymap.set("n", "<leader>uml", "<cmd>DepsSnapLoad<cr>", { desc = "Deps: load snapshot" })
-	vim.keymap.set("n", "<leader>umu", "<cmd>DepsUpdate<cr>", { desc = "Deps: update dependencies" })
+	vim.keymap.set("n", "<leader>umu", "<cmd>DepsUpdate! | DepsUpdateLog<cr>", { desc = "Deps: update dependencies" })
 	vim.keymap.set("n", "<leader>cr", function() vim.lsp.buf.rename() end, { desc = "Rename this..." })
 	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
 	vim.keymap.set("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete other buffers" })
@@ -894,4 +894,10 @@ end)
 
 later(function() -- chezmoi
 	require("mylib.chezmoi_auto_apply").setup()
+end)
+
+later(function()
+	if vim.env.UPDATE_DEPS then
+		vim.cmd("DepsUpdate! | DepsShowLog")
+	end
 end)
