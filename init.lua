@@ -177,10 +177,14 @@ now(function() -- snacks: indent guides, dashboard
 	})
 
 	require("snacks").dashboard.sections.startup = function(opts)
-		local loadtime = vim.g.loadtime and string.format("Loaded in %i ms", vim.g.loadtime / 1e6) or ""
+		local v = vim.version()
+		local version = string.format("%d.%d.%d", v.major, v.minor, v.patch)
+		local loadtime = vim.g.loadtime and string.format("%i ms", vim.g.loadtime / 1e6) or ""
 		return {
 			text = {
-				{ "" .. loadtime, hl = "NonText" },
+				{ "Neovim " .. version, hl = "NonText" },
+				{ " ", hl = "NonText" },
+				{ "(" .. loadtime .. ")", hl = "NonText" },
 			},
 		}
 	end
