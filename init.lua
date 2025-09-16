@@ -177,7 +177,7 @@ now(function() -- snacks: indent guides, dashboard
 	})
 
 	require("snacks").dashboard.sections.startup = function(opts)
-		local loadtime = vim.g.loadtime and string.format("Loaded in %.2f ms", vim.g.loadtime / 1e6) or ""
+		local loadtime = vim.g.loadtime and string.format("Loaded in %i ms", vim.g.loadtime / 1e6) or ""
 		return {
 			text = {
 				{ "" .. loadtime, hl = "NonText" },
