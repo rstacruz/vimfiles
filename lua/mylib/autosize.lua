@@ -21,7 +21,7 @@ local settings = {
 		"TelescopePrompt",
 		"TelescopeResults",
 	},
-	min_width = 80,
+	min_width = 90,
 }
 
 local function is_floating(win_id)
