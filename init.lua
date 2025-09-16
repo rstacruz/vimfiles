@@ -320,13 +320,17 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>fr", function() Snacks.picker.recent({ hidden = true, filter = { cwd = true } }) end, { desc = "Recent files..." })
 	vim.keymap.set("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Open file..." })
 	vim.keymap.set("n", "<leader>gh", function() Snacks.gitbrowse() end, { desc = "Open GitHub in browser" })
+	vim.keymap.set("n", "<leader>gl", function() Snacks.picker.git_log_line() end, { desc = "Show git log for line" })
 	vim.keymap.set("n", "<leader>fyg", function() copy_git_url() end, { desc = "Copy GitHub URL" })
 	vim.keymap.set("n", "<leader>fya", function() copy_absolute_path() end, { desc = " Copy absolute path" })
 	vim.keymap.set("n", "<leader>fyr", function() copy_relative_path() end, { desc = " Copy relative path" })
 	vim.keymap.set("n", "<leader>gs", function() Snacks.picker.git_status() end, { desc = "Files changed in Git (status)..." })
 	vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Close all and exit" })
 	vim.keymap.set("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "Search in files via grep..." })
+	vim.keymap.set("n", "<leader>sw", function() Snacks.picker.grep_word() end, { desc = "Search in files via grep for word..." })
 	vim.keymap.set("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
+	vim.keymap.set("n", "<leader>ss", function() Snacks.picker.lsp_symbols() end, { desc = "Show LSP symbols" })
+	vim.keymap.set("n", "<leader>s\"", function() Snacks.picker.registers() end, { desc = "Open registers" })
 	vim.keymap.set("n", "<leader>u,", function() vim.cmd("e " .. vim.fn.stdpath("config") .. "/init.lua") end, { desc = "Open settings" })
 	vim.keymap.set("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Change colorscheme" })
 	vim.keymap.set("n", "<leader>ux", function() Snacks.picker() end, { desc = "Choose picker" })
@@ -335,6 +339,8 @@ later(function() -- keys, keymaps
 	vim.keymap.set("v", "<leader>fya", function() copy_absolute_path_range() end, { desc = " Copy absolute path with line numbers" })
 	vim.keymap.set("v", "<leader>fyr", function() copy_relative_path_range() end, { desc = " Copy relative path with line numbers" })
 	vim.keymap.set("v", "<leader>gh", function() Snacks.gitbrowse() end, { desc = "Open GitHub in browser" })
+
+	vim.keymap.set("x", "<leader>sw", function() Snacks.picker.grep_word() end, { desc = "Search in files via grep for word..." })
 
 	vim.keymap.set("n", "g.", function() vim.lsp.buf.code_action() end, { desc = "Code action" })
 	vim.keymap.set("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Go to declaration" })
@@ -624,7 +630,7 @@ later(function() -- blame
 	add({ source = "FabijanZulj/blame.nvim" })
 	require("blame").setup({ blame_options = { "-w" } })
 	vim.keymap.set("n", "<leader>gb", "<cmd>BlameToggle window<cr>", { desc = "Show git blame (window)" })
-	vim.keymap.set("n", "<leader>gB", "<cmd>BlameToggle virtual<cr>", { desc = "Show git blame (virtual)" })
+	-- vim.keymap.set("n", "<leader>gB", "<cmd>BlameToggle virtual<cr>", { desc = "Show git blame (virtual)" })
 end)
 
 -- Markdown ------------------------------------------------------------------------------
