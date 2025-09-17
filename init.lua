@@ -236,6 +236,7 @@ now(function() -- snacks: indent guides, dashboard
 		dashboard = no_args and dashboard_opts or {},
 		input = { enabled = true }, -- for renames, etc
 		indent = { enabled = true }, -- needs early setup
+		picker = { enabled = true },
 	})
 end)
 
