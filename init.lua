@@ -75,6 +75,11 @@ if not is_termux then
 	table.insert(LANG_CONFIG.mason, "stylua")
 end
 
+local is_mac = vim.loop.os_uname().sysname == "Darwin"
+if is_mac then
+	table.insert(LANG_CONFIG.lsp, "kotlin_lsp")
+end
+
 -- Core ----------------------------------------------------------------------------------
 
 now(function() -- options
@@ -864,16 +869,19 @@ later(function() -- mini.etc
 	require("mini.git").setup()
 	require("mini.icons").setup()
 	require("mini.diff").setup()
-
-	local animate = require("mini.animate")
-	local fast = animate.gen_timing.cubic({ duration = 60, unit = "total" })
-
-	animate.setup({
-		cursor = { timing = fast },
-		scroll = { timing = fast },
-		resize = { timing = fast },
-	})
 end)
+
+-- intreferes with mouse scroll
+-- later(function()
+-- 	local animate = require("mini.animate")
+-- 	local fast = animate.gen_timing.cubic({ duration = 60, unit = "total" })
+--
+-- 	animate.setup({
+-- 		cursor = { timing = fast },
+-- 		scroll = { timing = fast },
+-- 		resize = { timing = fast },
+-- 	})
+-- end)
 
 later(function() -- marks
 	add({ source = "chentoast/marks.nvim" })
