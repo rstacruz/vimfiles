@@ -290,6 +290,11 @@ later(function() -- keys, keymaps
 		return copy_path({ expand = "%:.", range = 1 })
 	end
 
+	local function update_and_show_log()
+		vim.cmd("DepsUpdate!")
+		vim.cmd("DepsShowLog")
+	end
+
 	-- System clipboard
 	vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to clipboard" })
 	vim.keymap.set("i", "<C-S-v>", "<C-R>+", { desc = "Paste from clipboard" })
@@ -318,7 +323,7 @@ later(function() -- keys, keymaps
 	table.insert(CLUES, { mode = "n", keys = "<leader>um", desc = "+dependencies" })
 	vim.keymap.set("n", "<leader>ums", "<cmd>DepsSnapSave<cr>", { desc = "Deps: save snapshot" })
 	vim.keymap.set("n", "<leader>uml", "<cmd>DepsSnapLoad<cr>", { desc = "Deps: load snapshot" })
-	vim.keymap.set("n", "<leader>umu", "<cmd>DepsUpdate! | DepsUpdateLog<cr>", { desc = "Deps: update dependencies" })
+	vim.keymap.set("n", "<leader>umu", update_and_show_log, { desc = "Deps: update dependencies" })
 	vim.keymap.set("n", "<leader>cr", function() vim.lsp.buf.rename() end, { desc = "Rename this..." })
 	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
 	vim.keymap.set("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete other buffers" })
