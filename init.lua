@@ -319,6 +319,7 @@ later(function() -- keys, keymaps
 
 	vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Switch buffer..." })
 	vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
+	vim.keymap.set("n", "<leader>!c", "<cmd>split CONTEXT.local.md<cr><C-w>H", { desc = "Open context document" })
 	vim.keymap.set("n", "<leader>!g", function() vim.cmd("e " .. vim.fn.stdpath("config") .. "/etc/graveyard.lua") end, { desc = "Open config graveyard" })
 	table.insert(CLUES, { mode = "n", keys = "<leader>um", desc = "+dependencies" })
 	vim.keymap.set("n", "<leader>ums", "<cmd>DepsSnapSave<cr>", { desc = "Deps: save snapshot" })
