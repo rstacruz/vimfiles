@@ -853,10 +853,18 @@ later(function() -- mini.etc
 
 	-- Add/delete/replace surroundings (brackets, quotes, etc.)
 	--
+	-- - sa)   - surround add
+	-- - sd'   - surround delete
+	-- - sr)}  - surround replace
 	-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-	-- - sd'   - [S]urround [D]elete [']quotes
-	-- - sr)'  - [S]urround [R]eplace [)] [']
-	require("mini.surround").setup()
+	require("mini.surround").setup({
+		custom_surroundings = {
+			-- Markdown strong (visual select -> sas)
+			["s"] = { output = { left = "**", right = "**" } },
+			-- Markdown emphasis (visual select -> sae)
+			["e"] = { output = { left = "_", right = "_" } },
+		},
+	})
 
 	-- [c ]c - next comment
 	-- [d ]d - next diagnostic
