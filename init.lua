@@ -46,7 +46,7 @@ local now_if_args = vim.fn.argc(-1) > 0 and now or later
 -- Convenient config for all things related to language setup (LSP, etc)
 local LANG_CONFIG = {
 	-- stylua: ignore start
-	treesitter = { "lua", "vimdoc", "javascript", "typescript", "markdown", "markdown_inline", "css", "astro", "bash", "git_config", "git_rebase", "gitattributes", "gitcommit", "gitignore", "graphql", "html", "jsdoc", "json", "tsx", "toml", "xml", "yaml", "c" },
+	treesitter = { "lua", "vimdoc", "javascript", "typescript", "markdown", "markdown_inline", "css", "astro", "bash", "git_config", "git_rebase", "gitattributes", "gitcommit", "gitignore", "graphql", "html", "jsdoc", "json", "tsx", "toml", "xml", "yaml", "c", "sql", "python" },
 	-- stylua: ignore end
 	mason = { "prettier" },
 	-- tools (see :Mason)
@@ -133,6 +133,7 @@ end)
 now(function() -- color scheme
 	add({ source = "rebelot/kanagawa.nvim" })
 	add({ source = "projekt0n/github-nvim-theme" })
+	add({ source = "deparr/tairiki.nvim" }) -- tomorrow-night-like, light and dark versions
 	require("mylib.persist_colorscheme").setup({ fallback = "miniautumn" })
 end)
 
@@ -248,13 +249,25 @@ end)
 -- Keymaps -------------------------------------------------------------------------------
 
 later(function() -- keys, keymaps
-	local function copy_git_url()
+	local function copy_git_link()
+		local title = vim.fn.expand("%:.")
+		local start_line = vim.fn.line("v")
+		local end_line = vim.fn.line(".")
+		if start_line == end_line then
+			title = title .. "#L" .. start_line
+		elseif start_line > end_line then
+			title = title .. "#L" .. end_line .. "-" .. start_line
+		else
+			title = title .. "#L" .. start_line .. "-" .. end_line
+		end
+
 		Snacks.gitbrowse({
 			notify = false,
-			open = function(str)
-				vim.fn.setreg('"', str)
-				vim.fn.setreg("+", str)
-				vim.notify(" " .. str)
+			open = function(url)
+				local link = "[" .. title .. "](" .. url .. ")"
+				vim.fn.setreg('"', link)
+				vim.fn.setreg("+", link)
+				vim.notify(" " .. link)
 			end,
 		})
 	end
@@ -333,7 +346,7 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Open file..." })
 	vim.keymap.set("n", "<leader>gh", function() Snacks.gitbrowse() end, { desc = "Open GitHub in browser" })
 	vim.keymap.set("n", "<leader>gl", function() Snacks.picker.git_log_line() end, { desc = "Show git log for line" })
-	vim.keymap.set("n", "<leader>fyg", function() copy_git_url() end, { desc = "Copy GitHub URL" })
+	vim.keymap.set("n", "<leader>fyg", function() copy_git_link() end, { desc = "Copy GitHub URL" })
 	vim.keymap.set("n", "<leader>fya", function() copy_absolute_path() end, { desc = " Copy absolute path" })
 	vim.keymap.set("n", "<leader>fyr", function() copy_relative_path() end, { desc = " Copy relative path" })
 	vim.keymap.set("n", "<leader>gs", function() Snacks.picker.git_status() end, { desc = "Files changed in Git (status)..." })
@@ -347,7 +360,7 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Change colorscheme" })
 	vim.keymap.set("n", "<leader>ux", function() Snacks.picker() end, { desc = "Choose picker" })
 
-	vim.keymap.set("v", "<leader>fyg", function() copy_git_url() end, { desc = "Copy GitHub URL" })
+	vim.keymap.set("v", "<leader>fyg", function() copy_git_link() end, { desc = "Copy GitHub URL" })
 	vim.keymap.set("v", "<leader>fya", function() copy_absolute_path_range() end, { desc = " Copy absolute path with line numbers" })
 	vim.keymap.set("v", "<leader>fyr", function() copy_relative_path_range() end, { desc = " Copy relative path with line numbers" })
 	vim.keymap.set("v", "<leader>gh", function() Snacks.gitbrowse() end, { desc = "Open GitHub in browser" })
