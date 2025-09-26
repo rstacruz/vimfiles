@@ -377,7 +377,17 @@ later(function() -- keys, keymaps
 
   vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
   vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+
+  -- Terminal escape
+	vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+	vim.keymap.set("t", "<Esc><Esc>", "<Esc>")
 	-- stylua: ignore end
+end)
+
+later(function() -- terminal keymaps
+	vim.keymap.set("n", "<leader>tn", "<cmd>tabnew | term<cr>", { desc = "New terminal tab" })
+	vim.keymap.set("n", "<leader>to", "<cmd>tabnew | term opencode<cr>", { desc = "Open OpenCode in terminal" })
+	vim.keymap.set("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Close current tab" })
 end)
 
 -- Editing -------------------------------------------------------------------------------
