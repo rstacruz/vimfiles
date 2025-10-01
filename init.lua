@@ -386,7 +386,6 @@ end)
 
 later(function() -- terminal keymaps
 	vim.keymap.set("n", "<leader>tn", "<cmd>tabnew | term<cr>", { desc = "New terminal tab" })
-	vim.keymap.set("n", "<leader>to", "<cmd>tabnew | term opencode<cr>", { desc = "Open OpenCode in terminal" })
 	vim.keymap.set("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Close current tab" })
 end)
 
@@ -774,23 +773,6 @@ end)
 
 -- AI ------------------------------------------------------------------------------------
 
-later(function() -- opencode
-	add({ source = "NickvanDyke/opencode.nvim", depends = { "folke/snacks.nvim" } })
-
-	local opencode = require("opencode")
-	-- stylua: ignore start
-	table.insert(CLUES, { mode = "n", keys = "<leader>o", desc = "+opencode" })
-	vim.keymap.set("n", "<leader>oa", function() opencode.ask("@cursor: ") end, { desc = "Ask opencode" })
-	vim.keymap.set("v", "<leader>oa", function() opencode.ask("@selection: ") end, { desc = "Ask opencode about selection" })
-	vim.keymap.set("n", "<leader>ot", function() opencode.toggle() end, { desc = "Toggle embedded opencode" })
-	vim.keymap.set("n", "<leader>on", function() opencode.command("session_new") end, { desc = "New session" })
-	vim.keymap.set("n", "<leader>oy", function() opencode.command("messages_copy") end, { desc = "Copy last message" })
-	vim.keymap.set({ "n", "v" }, "<leader>op", function() opencode.select_prompt() end, { desc = "Select prompt" })
-	vim.keymap.set("n", "<S-C-u>", function() opencode.command("messages_half_page_up") end, { desc = "Scroll messages up" })
-	vim.keymap.set("n", "<S-C-d>", function() opencode.command("messages_half_page_down") end, { desc = "Scroll messages down" })
-	-- stylua: ignore end
-end)
-
 later(function() -- copilot
 	add({ source = "zbirenbaum/copilot.lua" })
 	require("copilot").setup({
@@ -802,6 +784,22 @@ later(function() -- copilot
 	})
 
 	vim.keymap.set("n", "<leader>!as", "<cmd>Copilot panel<cr>", { desc = "Open Copilot suggestions panel" })
+end)
+
+later(function() -- sidekick.nvim
+	add({ source = "folke/sidekick.nvim" })
+	require("sidekick").setup({
+		cli = {
+			mux = {
+				enable = true,
+				backend = "tmux",
+			},
+		},
+	})
+	-- stylua: ignore start
+	vim.keymap.set("n", "<leader>!sf", function() require("sidekick.cli").toggle({ focus = true }) end, { desc = "Focus" })
+	vim.keymap.set("n", "<leader>ot", function() require("sidekick.cli").toggle({ name = "opencode", focus = true }) end, { desc = "Toggle opencode" })
+	-- stylua: ignore end
 end)
 
 -- Mini ----------------------------------------------------------------------------------
@@ -908,18 +906,6 @@ later(function() -- mini.etc
 	require("mini.icons").setup()
 	require("mini.diff").setup()
 end)
-
--- intreferes with mouse scroll
--- later(function()
--- 	local animate = require("mini.animate")
--- 	local fast = animate.gen_timing.cubic({ duration = 60, unit = "total" })
---
--- 	animate.setup({
--- 		cursor = { timing = fast },
--- 		scroll = { timing = fast },
--- 		resize = { timing = fast },
--- 	})
--- end)
 
 later(function() -- marks
 	add({ source = "chentoast/marks.nvim" })

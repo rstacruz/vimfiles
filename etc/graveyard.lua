@@ -2,6 +2,35 @@ local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 local now_if_args = vim.fn.argc(-1) > 0 and now or later
 local now_if_no_args = vim.fn.argc(-1) > 0 and later or now
 
+-- intreferes with mouse scroll
+later(function()
+	local animate = require("mini.animate")
+	local fast = animate.gen_timing.cubic({ duration = 60, unit = "total" })
+
+	animate.setup({
+		cursor = { timing = fast },
+		scroll = { timing = fast },
+		resize = { timing = fast },
+	})
+end)
+
+later(function() -- opencode
+	add({ source = "NickvanDyke/opencode.nvim", depends = { "folke/snacks.nvim" } })
+
+	local opencode = require("opencode")
+	-- stylua: ignore start
+	table.insert(CLUES, { mode = "n", keys = "<leader>o", desc = "+opencode" })
+	vim.keymap.set("n", "<leader>oa", function() opencode.ask("@cursor: ") end, { desc = "Ask opencode" })
+	vim.keymap.set("v", "<leader>oa", function() opencode.ask("@selection: ") end, { desc = "Ask opencode about selection" })
+	vim.keymap.set("n", "<leader>ot", function() opencode.toggle() end, { desc = "Toggle embedded opencode" })
+	vim.keymap.set("n", "<leader>on", function() opencode.command("session_new") end, { desc = "New session" })
+	vim.keymap.set("n", "<leader>oy", function() opencode.command("messages_copy") end, { desc = "Copy last message" })
+	vim.keymap.set({ "n", "v" }, "<leader>op", function() opencode.select_prompt() end, { desc = "Select prompt" })
+	vim.keymap.set("n", "<S-C-u>", function() opencode.command("messages_half_page_up") end, { desc = "Scroll messages up" })
+	vim.keymap.set("n", "<S-C-d>", function() opencode.command("messages_half_page_down") end, { desc = "Scroll messages down" })
+	-- stylua: ignore end
+end)
+
 -- measure startup time
 local start = (vim.uv or vim.loop).hrtime()
 now(function()
