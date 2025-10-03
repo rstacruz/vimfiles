@@ -776,11 +776,17 @@ end)
 later(function() -- copilot
 	add({ source = "zbirenbaum/copilot.lua" })
 	require("copilot").setup({
-		suggestion = { enabled = true, auto_trigger = true, keymap = { accept = "<C-l>" } },
-		panel = { auto_refresh = true },
-		filetypes = {
-			markdown = true,
+		suggestion = {
+			enabled = true,
+			auto_trigger = true,
+			keymap = { accept = "<C-l>" },
 		},
+		nes = {
+			enabled = true,
+			keymap = { accept_and_goto = "<C-l>", accept = false, dismiss = "<Esc>" },
+		},
+		panel = { auto_refresh = true },
+		filetypes = { markdown = true },
 	})
 
 	vim.keymap.set("n", "<leader>!as", "<cmd>Copilot panel<cr>", { desc = "Open Copilot suggestions panel" })
@@ -789,6 +795,9 @@ end)
 later(function() -- sidekick.nvim
 	add({ source = "folke/sidekick.nvim" })
 	require("sidekick").setup({
+		nes = {
+			enabled = false,
+		},
 		cli = {
 			mux = {
 				enable = true,
