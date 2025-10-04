@@ -48,7 +48,7 @@ local LANG_CONFIG = {
 	-- stylua: ignore start
 	treesitter = { "lua", "vimdoc", "javascript", "typescript", "markdown", "markdown_inline", "css", "astro", "bash", "git_config", "git_rebase", "gitattributes", "gitcommit", "gitignore", "graphql", "html", "jsdoc", "json", "tsx", "toml", "xml", "yaml", "c", "sql", "python" },
 	-- stylua: ignore end
-	mason = { "prettier" },
+	mason = { "prettier" }, -- , "copilot-language-server" },
 	-- tools (see :Mason)
 	lsp = { "vtsls", "tailwindcss", "eslint" },
 	linters_by_ft = {
@@ -774,6 +774,7 @@ end)
 -- AI ------------------------------------------------------------------------------------
 
 later(function() -- copilot
+	add({ source = "copilotlsp-nvim/copilot-lsp" })
 	add({ source = "zbirenbaum/copilot.lua" })
 	require("copilot").setup({
 		suggestion = {
@@ -783,7 +784,7 @@ later(function() -- copilot
 		},
 		nes = {
 			enabled = true,
-			keymap = { accept_and_goto = "<C-l>", accept = false, dismiss = "<Esc>" },
+			keymap = { accept_and_goto = "<leader><C-l>", accept = false, dismiss = "<Esc>" },
 		},
 		panel = { auto_refresh = true },
 		filetypes = { markdown = true },
