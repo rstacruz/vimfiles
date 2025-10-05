@@ -407,9 +407,32 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 	-- <c-y> - accept
 	-- <cr> - accept
 	require("blink.cmp").setup({
-		-- <cr> to accept completions. To insert a new line instead, use
-		-- <C-j> or <space><cr>
-		keymap = { preset = "default", ["<cr>"] = { "accept", "fallback" } },
+		keymap = {
+			-- -- <cr> to accept completions. To insert a new line instead, use
+			-- -- <C-j> or <space
+			-- 	preset = "default",
+			["<cr>"] = { "accept", "fallback" },
+
+			preset = "super-tab",
+			["<Tab>"] = {
+				function(cmp)
+					if vim.b[vim.api.nvim_get_current_buf()].nes_state then
+						cmp.hide()
+						return (
+							require("copilot-lsp.nes").apply_pending_nes()
+							and require("copilot-lsp.nes").walk_cursor_end_edit()
+						)
+					end
+					if cmp.snippet_active() then
+						return cmp.accept()
+					else
+						return cmp.select_and_accept()
+					end
+				end,
+				"snippet_forward",
+				"fallback",
+			},
+		},
 
 		-- Show documentation in completion
 		completion = { documentation = { auto_show = true } },
@@ -419,6 +442,18 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 
 		-- show signature help when typing (
 		signature = { enabled = true },
+
+		sources = {
+			default = { "copilot" },
+			providers = {
+				copilot = {
+					name = "copilot",
+					module = "blink-copilot",
+					score_offset = 100,
+					async = true,
+				},
+			},
+		},
 	})
 
 	-- Insert a newline without accepting completion.
@@ -774,6 +809,7 @@ end)
 -- AI ------------------------------------------------------------------------------------
 
 later(function() -- copilot
+	add({ source = "fang2hou/blink-copilot" })
 	add({ source = "copilotlsp-nvim/copilot-lsp" })
 
 	vim.g.copilot_nes_debounce = 500
@@ -796,20 +832,20 @@ later(function() -- copilot
 		end
 	end, { desc = "Accept Copilot NES suggestion", expr = true })
 
-	add({ source = "zbirenbaum/copilot.lua" })
-	require("copilot").setup({
-		suggestion = {
-			enabled = true,
-			auto_trigger = true,
-			keymap = { accept = "<C-l>" },
-		},
-		-- nes = {
-		-- 	enabled = true,
-		-- 	keymap = { accept_and_goto = "<leader><C-l>", accept = false, dismiss = "<Esc>" },
-		-- },
-		panel = { auto_refresh = true },
-		filetypes = { markdown = true },
-	})
+	-- add({ source = "zbirenbaum/copilot.lua" })
+	-- require("copilot").setup({
+	-- 	suggestion = {
+	-- 		enabled = true,
+	-- 		auto_trigger = true,
+	-- 		keymap = { accept = "<C-l>" },
+	-- 	},
+	-- 	nes = {
+	-- 		enabled = true,
+	-- 		keymap = { accept_and_goto = "<leader><C-l>", accept = false, dismiss = "<Esc>" },
+	-- 	},
+	-- 	panel = { auto_refresh = true },
+	-- 	filetypes = { markdown = true },
+	-- })
 
 	vim.keymap.set("n", "<leader>!as", "<cmd>Copilot panel<cr>", { desc = "Open Copilot suggestions panel" })
 end)
