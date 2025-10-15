@@ -7,6 +7,10 @@ function M.foldtext()
 end
 
 function M.foldexpr()
+	local ft = vim.bo.filetype
+	if ft == "markdown" then
+		return vim.treesitter.foldexpr()
+	end
 	return vim.lsp.foldexpr() or vim.treesitter.foldexpr()
 end
 
