@@ -62,8 +62,7 @@ M.get_obsidian_options = function()
 		attachments = { img_folder = "Media" }, -- default: "assets/imgs"
 		preferred_link_style = "wiki",
 		picker = { name = "snacks.pick" },
-
-		note_frontmatter_func = M.note_frontmatter_func,
+		frontmatter = { func = M.note_frontmatter_func },
 
 		note_id_func = M.note_id_func,
 
