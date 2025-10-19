@@ -50,17 +50,17 @@ local LANG_CONFIG = {
 	-- stylua: ignore end
 	mason = { "prettier" }, -- , "copilot-language-server" },
 	-- tools (see :Mason)
-	lsp = { "vtsls", "tailwindcss", "eslint" },
+	lsp = { "vtsls", "tailwindcss", "biome", "eslint" },
 	linters_by_ft = {
 		lua = {}, -- luacheck
 	},
 	formatters_by_ft = {
 		lua = { "stylua" },
-		markdown = { "prettier" },
-		typescript = { "eslint", "prettier", lsp_format = "fallback" },
-		typescriptreact = { "eslint", "prettier", lsp_format = "fallback" },
-		javascript = { "eslint", "prettier", lsp_format = "fallback" },
-		javascriptreact = { "eslint", "prettier", lsp_format = "fallback" },
+		markdown = { "biome", "prettier" },
+		typescript = { "biome", "eslint", "prettier", lsp_format = "fallback" },
+		typescriptreact = { "biome", "eslint", "prettier", lsp_format = "fallback" },
+		javascript = { "biome", "eslint", "prettier", lsp_format = "fallback" },
+		javascriptreact = { "biome", "eslint", "prettier", lsp_format = "fallback" },
 		fish = { "fish_indent" },
 		sh = { "shfmt" },
 	},
