@@ -299,8 +299,8 @@ later(function() -- keys, keymaps
 
 	-- Paste linewise before/after current line
 	-- Usage: `yiw` to yank a word and `]p` to put it on the next line.
-	vim.keymap.set("n", "[p", '<Cmd>exe "put! " . v:register<CR>', "Paste above")
-	vim.keymap.set("n", "]p", '<Cmd>exe "put "  . v:register<CR>', "Paste below")
+	vim.keymap.set("n", "[p", '<Cmd>exe "put! " . v:register<CR>', { desc = "Paste above" })
+	vim.keymap.set("n", "]p", '<Cmd>exe "put "  . v:register<CR>', { desc = "Paste below" })
 
 	-- Make `23,` go to line 23. Easier to type than `23G`
 	vim.keymap.set("n", ",", "G", { desc = "Go to line" })
@@ -537,7 +537,7 @@ later(function() -- treesitter-context
 
 	-- Jump to context parent
 	-- Also consider [t (treesitter parent)
-	vim.keymap.set("n", "[p", function()
+	vim.keymap.set("n", "[t", function()
 		require("treesitter-context").go_to_context(vim.v.count1)
 	end, { desc = "Jump to context", silent = true })
 
