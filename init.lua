@@ -1,5 +1,8 @@
 local start = (vim.uv or vim.loop).hrtime()
 
+-- Define config table to be able to pass data between scripts
+_G.Config = {}
+
 -- Start with `PROF=1 nvim` or `PROF=1 nvim file.txt` to see startup time
 if vim.env.PROF then
 	local snacks = vim.fn.stdpath("data") .. "/lazy/snacks.nvim"
@@ -44,7 +47,7 @@ local now_if_args = vim.fn.argc(-1) > 0 and now or later
 -- Config -------------------------------------------------------------------------------
 
 -- Convenient config for all things related to language setup (LSP, etc)
-local LANG_CONFIG = {
+_G.Config.Languages = {
 	-- stylua: ignore start
 	treesitter = { "lua", "vimdoc", "javascript", "typescript", "markdown", "markdown_inline", "css", "astro", "bash", "git_config", "git_rebase", "gitattributes", "gitcommit", "gitignore", "graphql", "html", "jsdoc", "json", "tsx", "toml", "xml", "yaml", "c", "sql", "python" },
 	-- stylua: ignore end
@@ -71,13 +74,13 @@ local CLUES = {}
 -- Termux: some tools are only available certain platforms
 local is_termux = string.find(vim.loop.os_uname().release, "android")
 if not is_termux then
-	table.insert(LANG_CONFIG.lsp, "lua_ls")
-	table.insert(LANG_CONFIG.mason, "stylua")
+	table.insert(_G.Config.Languages.lsp, "lua_ls")
+	table.insert(_G.Config.Languages.mason, "stylua")
 end
 
 local is_mac = vim.loop.os_uname().sysname == "Darwin"
 if is_mac then
-	table.insert(LANG_CONFIG.lsp, "kotlin_lsp")
+	table.insert(_G.Config.Languages.lsp, "kotlin_lsp")
 end
 
 -- Load init.local.lua if it exists
@@ -130,7 +133,7 @@ now_if_args(function() -- tree sitter
 	})
 
 	require("nvim-treesitter.configs").setup({
-		ensure_installed = LANG_CONFIG.treesitter,
+		ensure_installed = _G.Config.Languages.treesitter,
 		indent = { enable = true },
 		highlight = { enable = true },
 	})
@@ -141,8 +144,6 @@ now(function() -- color scheme
 	add({ source = "projekt0n/github-nvim-theme" })
 	add({ source = "deparr/tairiki.nvim" }) -- tomorrow-night-like, light and dark versions
 	require("mylib.persist_colorscheme").setup({ fallback = "miniautumn" })
-end)
-
 end)
 
 now_if_args(function() -- guess-indent
@@ -291,9 +292,15 @@ later(function() -- keys, keymaps
 		vim.cmd("DepsShowLog")
 	end
 
+	-- Keymaps: see https://github.com/nvim-mini/MiniMax/blob/main/configs/nvim-0.11/plugin/20_keymaps.lua
 	-- System clipboard
 	vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to clipboard" })
 	vim.keymap.set("i", "<C-S-v>", "<C-R>+", { desc = "Paste from clipboard" })
+
+	-- Paste linewise before/after current line
+	-- Usage: `yiw` to yank a word and `]p` to put it on the next line.
+	vim.keymap.set("n", "[p", '<Cmd>exe "put! " . v:register<CR>', "Paste above")
+	vim.keymap.set("n", "]p", '<Cmd>exe "put "  . v:register<CR>', "Paste below")
 
 	-- Make `23,` go to line 23. Easier to type than `23G`
 	vim.keymap.set("n", ",", "G", { desc = "Go to line" })
@@ -446,7 +453,7 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 
 	-- Mason
 	require("mason").setup({})
-	require("mason-lspconfig").setup({ ensure_installed = LANG_CONFIG.lsp })
+	require("mason-lspconfig").setup({ ensure_installed = _G.Config.Languages.lsp })
 
 	-- Automatically pop up after `updatetime` milliseconds
 	vim.api.nvim_create_autocmd("CursorHold", {
@@ -469,7 +476,7 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 		end
 	end
 
-	mason_auto_install(LANG_CONFIG.mason)
+	mason_auto_install(_G.Config.Languages.mason)
 
 	-- Also see:
 	--
@@ -483,7 +490,7 @@ later(function() -- editor: linting
 	add({
 		source = "mfussenegger/nvim-lint",
 	})
-	require("lint").linters_by_ft = LANG_CONFIG.linters_by_ft
+	require("lint").linters_by_ft = _G.Config.Languages.linters_by_ft
 	vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
 		callback = function()
 			require("lint").try_lint()
@@ -494,7 +501,7 @@ end)
 later(function() -- editor: formatting
 	add({ source = "stevearc/conform.nvim" })
 	require("conform").setup({
-		formatters_by_ft = LANG_CONFIG.formatters_by_ft,
+		formatters_by_ft = _G.Config.Languages.formatters_by_ft,
 		format_on_save = {
 			-- These options will be passed to conform.format()
 			timeout_ms = 500,
