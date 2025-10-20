@@ -80,6 +80,12 @@ if is_mac then
 	table.insert(LANG_CONFIG.lsp, "kotlin_lsp")
 end
 
+-- Load init.local.lua if it exists
+local init_local = vim.fn.stdpath("config") .. "/init.local.lua"
+if vim.fn.filereadable(init_local) == 1 then
+	dofile(init_local)
+end
+
 -- Core ----------------------------------------------------------------------------------
 
 now(function() -- options
@@ -865,7 +871,10 @@ later(function() -- sidekick.nvim
 	})
 	-- stylua: ignore start
 	vim.keymap.set("n", "<leader>!sf", function() require("sidekick.cli").toggle({ focus = true }) end, { desc = "Focus" })
-	vim.keymap.set("n", "<leader>ot", function() require("sidekick.cli").toggle({ name = "opencode", focus = true }) end, { desc = "Toggle opencode" })
+	vim.keymap.set("n", "<leader>ot", function() require("sidekick.cli").toggle({ name = "opencode", focus = true }) end, { desc = "Sidekick: toggle opencode" })
+	vim.keymap.set("n", "<leader>o.", function() require("sidekick.cli").send({ msg = "{this}" }) end, { desc = "Sidekick: send this" })
+	vim.keymap.set("n", "<leader>of", function() require("sidekick.cli").send({ msg = "{file}" }) end, { desc = "Sidekick: send file" })
+	vim.keymap.set("v", "<leader>o.", function() require("sidekick.cli").send({ msg = "{selection}" }) end, { desc = "Sidekick: send visual select" })
 	-- stylua: ignore end
 end)
 
