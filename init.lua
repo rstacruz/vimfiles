@@ -256,6 +256,17 @@ later(function() -- keys, keymaps
 		})
 	end
 
+	local function copy_git_url()
+		Snacks.gitbrowse({
+			notify = false,
+			open = function(url)
+				vim.fn.setreg('"', url)
+				vim.fn.setreg("+", url)
+				vim.notify(" " .. url)
+			end,
+		})
+	end
+
 	local function copy_path(opts)
 		local str = vim.fn.expand(opts.expand)
 		local start_line = vim.fn.line("v")
@@ -336,7 +347,8 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Open file..." })
 	vim.keymap.set("n", "<leader>gh", function() Snacks.gitbrowse() end, { desc = "Open GitHub in browser" })
 	vim.keymap.set("n", "<leader>gl", function() Snacks.picker.git_log_line() end, { desc = "Show git log for line" })
-	vim.keymap.set("n", "<leader>fyg", function() copy_git_link() end, { desc = "Copy GitHub URL" })
+	vim.keymap.set("n", "<leader>fyg", function() copy_git_url() end, { desc = "Copy GitHub URL" })
+	vim.keymap.set("n", "<leader>fyG", function() copy_git_link() end, { desc = "Copy GitHub link" })
 	vim.keymap.set("n", "<leader>fya", function() copy_absolute_path() end, { desc = " Copy absolute path" })
 	vim.keymap.set("n", "<leader>fyr", function() copy_relative_path() end, { desc = " Copy relative path" })
 	vim.keymap.set("n", "<leader>gs", function() Snacks.picker.git_status() end, { desc = "Files changed in Git (status)..." })
