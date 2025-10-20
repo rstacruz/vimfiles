@@ -99,6 +99,11 @@ now(function() -- options
 	vim.opt.foldlevel = 99
 	vim.opt.updatetime = 500 -- time to show diagnostics
 	vim.opt.swapfile = false
+	vim.o.mousescroll = "ver:1" -- Slow mouse scroll
+	vim.o.shortmess = "CFOSWaco" -- Disable some built-in completion messages
+	vim.o.cursorlineopt = "screenline,number" -- Show cursor line per screen line
+	vim.o.showmode = false -- Don't show mode in command line
+	vim.o.iskeyword = "@,48-57,_,192-255,-" -- Treat dash as `word` textobject part
 	vim.opt.fillchars = {
 		foldopen = "",
 		foldclose = "",
@@ -107,6 +112,7 @@ now(function() -- options
 		diff = "╱",
 		eob = " ",
 	}
+	vim.o.listchars = "extends:…,nbsp:␣,precedes:…,tab:> "
 
 	if vim.fn.has("nvim-0.10") == 1 then
 		vim.opt.smoothscroll = true
@@ -120,6 +126,32 @@ now(function() -- options
 	if vim.fn.has("nvim-0.11") == 1 then
 		vim.opt.winblend = 3 -- reduce from 10 in mini.basics
 	end
+end)
+-- stylua: ignore end
+
+MiniDeps.later(function() -- diagnostics
+	-- Neovim has built-in support for showing diagnostic messages. This configures
+	-- a more conservative display while still being useful.
+	-- See `:h vim.diagnostic` and `:h vim.diagnostic.config()`.
+	local diagnostic_opts = {
+		-- Show signs on top of any other sign, but only for warnings and errors
+		signs = { priority = 9999, severity = { min = "WARN", max = "ERROR" } },
+
+		-- Show all diagnostics as underline (for their messages type `<Leader>ld`)
+		underline = { severity = { min = "HINT", max = "ERROR" } },
+
+		-- Show more details immediately for errors on the current line
+		virtual_lines = false,
+		virtual_text = {
+			current_line = true,
+			severity = { min = "ERROR", max = "ERROR" },
+		},
+
+		-- Don't update diagnostics when typing
+		update_in_insert = false,
+	}
+
+	vim.diagnostic.config(diagnostic_opts)
 end)
 
 now_if_args(function() -- tree sitter
