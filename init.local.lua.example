@@ -1,0 +1,4 @@
+_G.Config.Languages.formatters_by_ft.typescript = { "biome", lsp_format = "fallback" }
+_G.Config.Languages.formatters_by_ft.typescriptreact = { "biome", lsp_format = "fallback" }
+_G.Config.Languages.formatters_by_ft.javascript = { "biome", lsp_format = "fallback" }
+_G.Config.Languages.formatters_by_ft.javascriptreact = { "biome", lsp_format = "fallback" }
