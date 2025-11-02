@@ -60,10 +60,10 @@ _G.Config.Languages = {
 	formatters_by_ft = {
 		lua = { "stylua" },
 		markdown = { "biome", "prettier" },
-		typescript = { "biome", "eslint", "prettier", lsp_format = "fallback" },
-		typescriptreact = { "biome", "eslint", "prettier", lsp_format = "fallback" },
-		javascript = { "biome", "eslint", "prettier", lsp_format = "fallback" },
-		javascriptreact = { "biome", "eslint", "prettier", lsp_format = "fallback" },
+		typescript = { "biome", "eslint_d", "prettierd", lsp_format = "fallback" },
+		typescriptreact = { "biome", "eslint_d", "prettierd", lsp_format = "fallback" },
+		javascript = { "biome", "eslint_d", "prettierd", lsp_format = "fallback" },
+		javascriptreact = { "biome", "eslint_d", "prettierd", lsp_format = "fallback" },
 		fish = { "fish_indent" },
 		sh = { "shfmt" },
 	},
@@ -550,6 +550,17 @@ later(function() -- editor: formatting
 			-- These options will be passed to conform.format()
 			timeout_ms = 500,
 			lsp_format = "fallback",
+		},
+		formatters = {
+			prettier = {
+				require_cwd = true,
+			},
+			biome = {
+				require_cwd = true,
+			},
+			eslint = {
+				require_cwd = true,
+			},
 		},
 	})
 
