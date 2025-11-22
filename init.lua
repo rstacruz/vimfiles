@@ -1034,6 +1034,27 @@ later(function() -- marks
 	vim.keymap.set("n", "<leader>mx", "<cmd>delmarks!<cr>", { desc = "Delete all marks" })
 end)
 
+later(function() -- persistence
+	add({ source = "folke/persistence.nvim" })
+	local persistence = require("persistence")
+	persistence.setup({
+		need = 0, -- always save
+	})
+	-- stylua: ignore start
+	-- select a session to load
+	vim.keymap.set("n", "<leader>ql", function() persistence.select() end)
+
+	-- load the last session
+	vim.keymap.set("n", "<leader>qL", function() persistence.load({ last = true }) end)
+
+	-- load session
+	vim.keymap.set("n", "<leader>!qs", function() persistence.load() end)
+
+	-- stop Persistence => session won't be saved on exit
+	vim.keymap.set("n", "<leader>!qd", function() persistence.stop() end)
+	-- stylua: ignore end
+end)
+
 later(function() -- flash
 	add({ source = "folke/flash.nvim" })
 	local flash = require("flash")
