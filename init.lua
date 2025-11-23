@@ -335,6 +335,11 @@ later(function() -- keys, keymaps
 		vim.cmd("DepsShowLog")
 	end
 
+	local function close_buffers_and_reset()
+		Snacks.bufdelete.all()
+		Snacks.dashboard.open()
+	end
+
 	-- Keymaps: see https://github.com/nvim-mini/MiniMax/blob/main/configs/nvim-0.11/plugin/20_keymaps.lua
 	-- System clipboard
 	vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to clipboard" })
@@ -374,6 +379,7 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>cr", function() vim.lsp.buf.rename() end, { desc = "Rename this..." })
 	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
 	vim.keymap.set("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete other buffers" })
+	vim.keymap.set("n", "<leader>bd", close_buffers_and_reset, { desc = "Delete all buffers and open dashboard" })
 	vim.keymap.set("n", "<leader>fp", function() Snacks.picker.projects() end, { desc = "Recent projects..." })
 	vim.keymap.set("n", "<leader>fr", function() Snacks.picker.recent({ hidden = true, filter = { cwd = true } }) end, { desc = "Recent files..." })
 	vim.keymap.set("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Open file..." })
