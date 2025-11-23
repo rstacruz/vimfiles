@@ -1057,15 +1057,6 @@ later(function() -- persistence
 	vim.keymap.set("n", "<leader>!qs", function() persistence.load() end, { desc = "Session: load current session" })
 	vim.keymap.set("n", "<leader>!qd", function() persistence.stop() end, { desc = "Session: stop persistence" })
 	-- stylua: ignore end
-
-	vim.api.nvim_create_autocmd("VimEnter", {
-		callback = function()
-			if vim.fn.argc() == 0 then
-				require("persistence").load()
-			end
-		end,
-		desc = "Load session on startup",
-	})
 end)
 
 later(function() -- flash
