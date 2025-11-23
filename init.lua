@@ -190,7 +190,7 @@ end)
 
 now(function() -- snacks: indent guides, dashboard
 	add({ source = "folke/snacks.nvim" })
-	vim.g.snacks_animate = false
+	vim.g.snacks_animate = true
 
 	local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
 
@@ -252,8 +252,8 @@ now(function() -- snacks: indent guides, dashboard
 		preset = {
 			keys = {
 				{ action = ":ene", desc = "new file", key = "e" },
-				{ action = ":lua require('persistence').load()", desc = "resume session", key = "r" },
-				{ action = ":lua require('persistence').select()", desc = "load session…", key = "l" },
+				{ action = ":lua require('persisted').load()", desc = "resume session", key = "r" },
+				{ action = ":lua require('persisted').select()", desc = "load session…", key = "l" },
 				{ action = ":DiffviewOpen", desc = "git status", key = "s" },
 				{ action = ":q", desc = "quit", key = "q" },
 			},
@@ -391,7 +391,6 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>cr", function() vim.lsp.buf.rename() end, { desc = "LSP: rename this..." })
 	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
 	vim.keymap.set("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete other buffers" })
-	vim.keymap.set("n", "<leader>bd", close_buffers_and_reset, { desc = "Delete all buffers and open dashboard" })
 	vim.keymap.set("n", "<leader>qd", close_buffers_and_reset, { desc = "Delete all buffers and open dashboard" })
 	vim.keymap.set("n", "<leader>fp", function() Snacks.picker.projects() end, { desc = "Recent projects..." })
 	vim.keymap.set("n", "<leader>fr", function() Snacks.picker.recent({ hidden = true, filter = { cwd = true } }) end, { desc = "Recent files..." })
@@ -1054,16 +1053,31 @@ later(function() -- marks
 end)
 
 later(function() -- persistence
-	add({ source = "folke/persistence.nvim" })
-	local persistence = require("persistence")
-	persistence.setup({
-		need = 0, -- always save
+	add({ source = "olimorris/persisted.nvim" })
+	local persisted = require("persisted")
+
+	-- if you invoke Neovim from a sub-directory then the git branch will not be
+	-- detected. This fixes that:
+	persisted.branch = function()
+		local branch = vim.fn.systemlist("git branch --show-current")[1]
+		return vim.v.shell_error == 0 and branch or nil
+	end
+
+	persisted.setup({
+		autostart = true,
+		follow_cwd = true,
+		use_git_branch = true,
+		save_dir = vim.fn.stdpath("data") .. "/sessions/",
+		should_save = function() -- equivalent to need = 0 (always save)
+			return true
+		end,
 	})
+
 	-- stylua: ignore start
-	vim.keymap.set("n", "<leader>ql", function() persistence.save(); persistence.select() end, { desc = "Session: load new..." })
-	vim.keymap.set("n", "<leader>qL", function() persistence.load({ last = true }) end, { desc = "Session: load last session" })
-	vim.keymap.set("n", "<leader>!qs", function() persistence.load() end, { desc = "Session: load current session" })
-	vim.keymap.set("n", "<leader>!qd", function() persistence.stop() end, { desc = "Session: stop persistence" })
+	vim.keymap.set("n", "<leader>ql", function() require("persisted").save(); require("persisted").select() end, { desc = "Session: load new..." })
+	vim.keymap.set("n", "<leader>qL", function() require("persisted").load({ last = true }) end, { desc = "Session: load last session" })
+	vim.keymap.set("n", "<leader>!qs", function() require("persisted").load() end, { desc = "Session: load current session" })
+	vim.keymap.set("n", "<leader>!qd", function() require("persisted").stop() end, { desc = "Session: stop persistence" })
 	-- stylua: ignore end
 end)
 
