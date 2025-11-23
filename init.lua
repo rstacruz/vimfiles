@@ -202,6 +202,11 @@ now(function() -- snacks: indent guides, dashboard
 		end,
 	})
 
+	require("snacks").dashboard.sections.cwd = function(opts)
+		local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+		return { text = { cwd } }
+	end
+
 	require("snacks").dashboard.sections.startup = function(opts)
 		local v = vim.version()
 		local version = string.format("%d.%d.%d", v.major, v.minor, v.patch)
@@ -222,6 +227,7 @@ now(function() -- snacks: indent guides, dashboard
 			end,
 
 			file = function(item, ctx)
+				local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
 				local fname = vim.fn.fnamemodify(item.file, ":~")
 
 				-- strip cwd
@@ -253,7 +259,7 @@ now(function() -- snacks: indent guides, dashboard
 			},
 		},
 		sections = {
-			{ title = "" .. cwd, padding = 1 },
+			{ section = "cwd", padding = 1 },
 			{ section = "recent_files", cwd = true, limit = 5, indent = 0, padding = 1 },
 			{ section = "keys", indent = 0, padding = 1 },
 			{ section = "startup", indent = 0, padding = 1 },
