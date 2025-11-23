@@ -32,3 +32,10 @@ Keymaps:
 
   vim.keymap.set("n", "<leader>xx", descriptive_name, { desc = "xxx" })
   ```
+
+Keymap descriptions:
+
+- Always have a `desc` for each keymap.
+- For keymaps that open a prompt, add ellipsis at the end. Eg, `LSP: rename symbol…`
+- For plugin keybindings, ensure `desc` is prefixed by the plugin, "Flash: jump to" rather than "Jump to".
+

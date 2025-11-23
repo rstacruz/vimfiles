@@ -377,12 +377,12 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Switch buffer..." })
 	vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
 	vim.keymap.set("n", "<leader>!c", "<cmd>split CONTEXT.local.md<cr><C-w>H", { desc = "Open context document" })
-	vim.keymap.set("n", "<leader>!g", function() vim.cmd("e " .. vim.fn.stdpath("config") .. "/etc/graveyard.lua") end, { desc = "Open config graveyard" })
+	vim.keymap.set("n", "<leader>!g", function() vim.cmd("e " .. vim.fn.stdpath("config") .. "/etc/graveyard.lua") end, { desc = "Config: open config graveyard" })
 	table.insert(CLUES, { mode = "n", keys = "<leader>um", desc = "+dependencies" })
 	vim.keymap.set("n", "<leader>ums", "<cmd>DepsSnapSave<cr>", { desc = "Deps: save snapshot" })
 	vim.keymap.set("n", "<leader>uml", "<cmd>DepsSnapLoad<cr>", { desc = "Deps: load snapshot" })
 	vim.keymap.set("n", "<leader>umu", update_and_show_log, { desc = "Deps: update dependencies" })
-	vim.keymap.set("n", "<leader>cr", function() vim.lsp.buf.rename() end, { desc = "Rename this..." })
+	vim.keymap.set("n", "<leader>cr", function() vim.lsp.buf.rename() end, { desc = "LSP: rename this..." })
 	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
 	vim.keymap.set("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete other buffers" })
 	vim.keymap.set("n", "<leader>bd", close_buffers_and_reset, { desc = "Delete all buffers and open dashboard" })
@@ -392,38 +392,38 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Open file..." })
 	vim.keymap.set("n", "<leader>gh", function() Snacks.gitbrowse() end, { desc = "Open GitHub in browser" })
 	vim.keymap.set("n", "<leader>gl", function() Snacks.picker.git_log_line() end, { desc = "Show git log for line" })
-	vim.keymap.set("n", "<leader>fyg", function() copy_git_url() end, { desc = "Copy GitHub URL" })
-	vim.keymap.set("n", "<leader>fyG", function() copy_git_link() end, { desc = "Copy GitHub link" })
-	vim.keymap.set("n", "<leader>fya", function() copy_absolute_path() end, { desc = " Copy absolute path" })
-	vim.keymap.set("n", "<leader>fyr", function() copy_relative_path() end, { desc = " Copy relative path" })
+	vim.keymap.set("n", "<leader>fyg", function() copy_git_url() end, { desc = "Copy: copy GitHub URL" })
+	vim.keymap.set("n", "<leader>fyG", function() copy_git_link() end, { desc = "Copy: copy GitHub link" })
+	vim.keymap.set("n", "<leader>fya", function() copy_absolute_path() end, { desc = "Copy: copy absolute path" })
+	vim.keymap.set("n", "<leader>fyr", function() copy_relative_path() end, { desc = "Copy: copy relative path" })
 	vim.keymap.set("n", "<leader>gs", function() Snacks.picker.git_status() end, { desc = "Files changed in Git (status)..." })
 	vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Close all and exit" })
 	vim.keymap.set("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "Search in files via grep..." })
 	vim.keymap.set("n", "<leader>sw", function() Snacks.picker.grep_word() end, { desc = "Search in files via grep for word..." })
 	vim.keymap.set("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
-	vim.keymap.set("n", "<leader>ss", function() Snacks.picker.lsp_symbols() end, { desc = "Show LSP symbols" })
+	vim.keymap.set("n", "<leader>ss", function() Snacks.picker.lsp_symbols() end, { desc = "LSP: show LSP symbols" })
 	vim.keymap.set("n", "<leader>s\"", function() Snacks.picker.registers() end, { desc = "Open registers" })
-	vim.keymap.set("n", "<leader>u,", function() vim.cmd("e " .. vim.fn.stdpath("config") .. "/init.lua") end, { desc = "Open settings" })
+	vim.keymap.set("n", "<leader>u,", function() vim.cmd("e " .. vim.fn.stdpath("config") .. "/init.lua") end, { desc = "Config: open settings" })
 	vim.keymap.set("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Change colorscheme" })
-	vim.keymap.set("n", "<leader>ux", function() Snacks.picker() end, { desc = "Choose picker" })
+	vim.keymap.set("n", "<leader>ux", function() Snacks.picker() end, { desc = "Snacks: choose picker" })
 
-	vim.keymap.set("v", "<leader>fyg", function() copy_git_link() end, { desc = "Copy GitHub URL" })
-	vim.keymap.set("v", "<leader>fya", function() copy_absolute_path_range() end, { desc = " Copy absolute path with line numbers" })
-	vim.keymap.set("v", "<leader>fyr", function() copy_relative_path_range() end, { desc = " Copy relative path with line numbers" })
+	vim.keymap.set("v", "<leader>fyg", function() copy_git_link() end, { desc = "Copy: copy GitHub URL" })
+	vim.keymap.set("v", "<leader>fya", function() copy_absolute_path_range() end, { desc = "Copy: copy absolute path with line numbers" })
+	vim.keymap.set("v", "<leader>fyr", function() copy_relative_path_range() end, { desc = "Copy: copy relative path with line numbers" })
 	vim.keymap.set("v", "<leader>gh", function() Snacks.gitbrowse() end, { desc = "Open GitHub in browser" })
 
 	vim.keymap.set("x", "<leader>sw", function() Snacks.picker.grep_word() end, { desc = "Search in files via grep for word..." })
 
-	vim.keymap.set("n", "g.", function() vim.lsp.buf.code_action() end, { desc = "Code action" })
-	vim.keymap.set("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Go to declaration" })
-	vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Go to definition" })
-	vim.keymap.set("n", "gI", function() Snacks.picker.lsp_implementations() end, { desc = "Show implementation" })
-	vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, { desc = "Show references" })
-	vim.keymap.set("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Go to type definition" })
-	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover" })
+	vim.keymap.set("n", "g.", function() vim.lsp.buf.code_action() end, { desc = "LSP: code action" })
+	vim.keymap.set("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "LSP: go to declaration" })
+	vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "LSP: go to definition" })
+	vim.keymap.set("n", "gI", function() Snacks.picker.lsp_implementations() end, { desc = "LSP: show implementation" })
+	vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, { desc = "LSP: show references" })
+	vim.keymap.set("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "LSP: go to type definition" })
+	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { desc = "LSP: hover" })
 
-  vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-  vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+  vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Buffer: prev buffer" })
+  vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Buffer: next buffer" })
 
   -- Terminal escape
 	vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
@@ -432,8 +432,8 @@ later(function() -- keys, keymaps
 end)
 
 later(function() -- terminal keymaps
-	vim.keymap.set("n", "<leader>tn", "<cmd>tabnew | term<cr>", { desc = "New terminal tab" })
-	vim.keymap.set("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Close current tab" })
+	vim.keymap.set("n", "<leader>tn", "<cmd>tabnew | term<cr>", { desc = "Terminal: new terminal tab" })
+	vim.keymap.set("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Terminal: close current tab" })
 end)
 
 -- Editing -------------------------------------------------------------------------------
@@ -607,7 +607,7 @@ later(function() -- treesitter-context
 	-- Also consider [t (treesitter parent)
 	vim.keymap.set("n", "[t", function()
 		require("treesitter-context").go_to_context(vim.v.count1)
-	end, { desc = "Jump to context", silent = true })
+	end, { desc = "Treesitter-context: Jump to context", silent = true })
 
 	-- Also see:
 	-- https://github.com/nvim-treesitter/nvim-treesitter-context?tab=readme-ov-file#configuration
@@ -922,7 +922,7 @@ later(function() -- sidekick.nvim
 		},
 	})
 	-- stylua: ignore start
-	vim.keymap.set("n", "<leader>!sf", function() require("sidekick.cli").toggle({ focus = true }) end, { desc = "Focus" })
+	vim.keymap.set("n", "<leader>!sf", function() require("sidekick.cli").toggle({ focus = true }) end, { desc = "Sidekick: focus" })
 	vim.keymap.set("n", "<leader>ot", function() require("sidekick.cli").toggle({ name = "opencode", focus = true }) end, { desc = "Sidekick: toggle opencode" })
 	vim.keymap.set("n", "<leader>o.", function() require("sidekick.cli").send({ msg = "{this}" }) end, { desc = "Sidekick: send this" })
 	vim.keymap.set("n", "<leader>of", function() require("sidekick.cli").send({ msg = "{file}" }) end, { desc = "Sidekick: send file" })
@@ -1042,9 +1042,9 @@ later(function() -- marks
 	-- similar to harpoon
 	require("marks").setup({})
 	table.insert(CLUES, { mode = "n", keys = "<leader>m", desc = "+marks" })
-	vim.keymap.set("n", "<leader>ml", "<cmd>MarksListAll<cr>", { desc = "List all marks" })
-	vim.keymap.set("n", "<leader>mb", "<cmd>BookmarksListAll<cr>", { desc = "List bookmarks" })
-	vim.keymap.set("n", "<leader>mx", "<cmd>delmarks!<cr>", { desc = "Delete all marks" })
+	vim.keymap.set("n", "<leader>ml", "<cmd>MarksListAll<cr>", { desc = "Marks: list all marks" })
+	vim.keymap.set("n", "<leader>mb", "<cmd>BookmarksListAll<cr>", { desc = "Marks: list bookmarks" })
+	vim.keymap.set("n", "<leader>mx", "<cmd>delmarks!<cr>", { desc = "Marks: delete all marks" })
 end)
 
 later(function() -- persistence
@@ -1072,8 +1072,8 @@ later(function() -- flash
 			char = { highlight = { backdrop = false } },
 		},
 	})
-	vim.keymap.set("n", "S", flash.jump, { desc = "Flash" })
-	vim.keymap.set("n", "<leader>bt", flash.treesitter, { desc = "Select treesitter node" })
+	vim.keymap.set("n", "S", flash.jump, { desc = "Flash: jump to" })
+	vim.keymap.set("n", "<leader>bt", flash.treesitter, { desc = "Flash: select treesitter node" })
 end)
 
 later(function() -- chezmoi
