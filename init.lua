@@ -1041,17 +1041,10 @@ later(function() -- persistence
 		need = 0, -- always save
 	})
 	-- stylua: ignore start
-	-- select a session to load
-	vim.keymap.set("n", "<leader>ql", function() persistence.select() end)
-
-	-- load the last session
-	vim.keymap.set("n", "<leader>qL", function() persistence.load({ last = true }) end)
-
-	-- load session
-	vim.keymap.set("n", "<leader>!qs", function() persistence.load() end)
-
-	-- stop Persistence => session won't be saved on exit
-	vim.keymap.set("n", "<leader>!qd", function() persistence.stop() end)
+	vim.keymap.set("n", "<leader>ql", function() persistence.select() end, { desc = "Select a session to load" })
+	vim.keymap.set("n", "<leader>qL", function() persistence.load({ last = true }) end, { desc = "Load the last session" })
+	vim.keymap.set("n", "<leader>!qs", function() persistence.load() end, { desc = "Load current session" })
+	vim.keymap.set("n", "<leader>!qd", function() persistence.stop() end, { desc = "Stop session persistence" })
 	-- stylua: ignore end
 end)
 
