@@ -9,15 +9,16 @@ later(function() -- smear-cursor
 	end
 end)
 
--- intreferes with mouse scroll
-later(function()
+-- interferes with mouse scroll
+later(function() -- mini.animate
 	local animate = require("mini.animate")
 	local fast = animate.gen_timing.cubic({ duration = 60, unit = "total" })
+	local xfast = animate.gen_timing.cubic({ duration = 20, unit = "total" })
 
 	animate.setup({
-		cursor = { timing = fast },
+		cursor = { enable = false },
 		scroll = { timing = fast },
-		resize = { timing = fast },
+		resize = { timing = xfast },
 	})
 end)
 
