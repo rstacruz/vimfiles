@@ -380,6 +380,7 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
 	vim.keymap.set("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete other buffers" })
 	vim.keymap.set("n", "<leader>bd", close_buffers_and_reset, { desc = "Delete all buffers and open dashboard" })
+	vim.keymap.set("n", "<leader>qd", close_buffers_and_reset, { desc = "Delete all buffers and open dashboard" })
 	vim.keymap.set("n", "<leader>fp", function() Snacks.picker.projects() end, { desc = "Recent projects..." })
 	vim.keymap.set("n", "<leader>fr", function() Snacks.picker.recent({ hidden = true, filter = { cwd = true } }) end, { desc = "Recent files..." })
 	vim.keymap.set("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Open file..." })
@@ -1047,10 +1048,10 @@ later(function() -- persistence
 		need = 0, -- always save
 	})
 	-- stylua: ignore start
-	vim.keymap.set("n", "<leader>ql", function() persistence.select() end, { desc = "Select a session to load" })
-	vim.keymap.set("n", "<leader>qL", function() persistence.load({ last = true }) end, { desc = "Load the last session" })
-	vim.keymap.set("n", "<leader>!qs", function() persistence.load() end, { desc = "Load current session" })
-	vim.keymap.set("n", "<leader>!qd", function() persistence.stop() end, { desc = "Stop session persistence" })
+	vim.keymap.set("n", "<leader>ql", function() persistence.save(); persistence.select() end, { desc = "Session: load new..." })
+	vim.keymap.set("n", "<leader>qL", function() persistence.load({ last = true }) end, { desc = "Session: load last session" })
+	vim.keymap.set("n", "<leader>!qs", function() persistence.load() end, { desc = "Session: load current session" })
+	vim.keymap.set("n", "<leader>!qd", function() persistence.stop() end, { desc = "Session: stop persistence" })
 	-- stylua: ignore end
 end)
 
