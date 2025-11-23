@@ -126,6 +126,10 @@ now(function() -- options
 	if vim.fn.has("nvim-0.11") == 1 then
 		vim.opt.winblend = 3 -- reduce from 10 in mini.basics
 	end
+	if vim.g.neovide then
+		vim.o.guifont = "Iosevka Medium:h12:w-0.3"
+		vim.o.linespace = -2
+	end
 end)
 -- stylua: ignore end
 
@@ -1053,6 +1057,15 @@ later(function() -- persistence
 	vim.keymap.set("n", "<leader>!qs", function() persistence.load() end, { desc = "Session: load current session" })
 	vim.keymap.set("n", "<leader>!qd", function() persistence.stop() end, { desc = "Session: stop persistence" })
 	-- stylua: ignore end
+
+	vim.api.nvim_create_autocmd("VimEnter", {
+		callback = function()
+			if vim.fn.argc() == 0 then
+				require("persistence").load()
+			end
+		end,
+		desc = "Load session on startup",
+	})
 end)
 
 later(function() -- flash

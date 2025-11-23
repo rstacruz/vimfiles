@@ -2,6 +2,13 @@ local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 local now_if_args = vim.fn.argc(-1) > 0 and now or later
 local now_if_no_args = vim.fn.argc(-1) > 0 and later or now
 
+later(function() -- smear-cursor
+	if not vim.g.neovide then
+		add({ source = "sphamba/smear-cursor.nvim" })
+		require("smear_cursor").setup({})
+	end
+end)
+
 -- intreferes with mouse scroll
 later(function()
 	local animate = require("mini.animate")
