@@ -373,7 +373,13 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>umu", update_and_show_log, { desc = "Deps: update dependencies" })
 	vim.keymap.set("n", "<leader>cr", function() vim.lsp.buf.rename() end, { desc = "Rename this..." })
 	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
+	local function close_buffers_and_reset()
+		Snacks.bufdelete.all()
+		Snacks.dashboard.open()
+	end
+
 	vim.keymap.set("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete other buffers" })
+	vim.keymap.set("n", "<leader>bd", close_buffers_and_reset, { desc = "Delete all buffers and open dashboard" })
 	vim.keymap.set("n", "<leader>fp", function() Snacks.picker.projects() end, { desc = "Recent projects..." })
 	vim.keymap.set("n", "<leader>fr", function() Snacks.picker.recent({ hidden = true, filter = { cwd = true } }) end, { desc = "Recent files..." })
 	vim.keymap.set("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Open file..." })
