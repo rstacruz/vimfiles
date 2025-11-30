@@ -3,5 +3,24 @@
     "prefix": "checkbox",
     "description": "Insert a markdown checkbox",
     "body": [ "- [ ] ${1}" ]
+  },
+  "Plan": {
+    "prefix": "plan",
+    "description": "AI: Plan",
+    "body": [
+      "Plan for the following change in this codebase.",
+      "",
+      "## Scope:",
+      "",
+      "${1}",
+      "",
+      "## Rationale:",
+      "",
+      "${2}",
+      "",
+      "## But first, research:",
+      "",
+      "${3}"
+    ]
   }
 }
