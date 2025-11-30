@@ -494,7 +494,7 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 		signature = { enabled = true },
 
 		sources = {
-			default = { "copilot" },
+			default = { "lsp", "path", "snippets", "buffer", "copilot" },
 			providers = {
 				copilot = {
 					name = "copilot",
