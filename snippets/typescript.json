@@ -1,10 +1,10 @@
 {
-  "AI comment (instruction)": {
-    "prefix": "ai",
-    "body": [ "${1}" ]
+  "Jsdoc": {
+    "prefix": "jsdoc",
+    "body": [ "/**", " * ${1}", " */" ]
   },
-  "AI comment (question)": {
-    "prefix": "aiq",
-    "body": [ "${1}" ]
+  "AI comment": {
+    "prefix": "ai",
+    "body": [ "// AI: ${1}" ]
   }
 }
