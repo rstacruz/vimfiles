@@ -5,6 +5,6 @@
   },
   "AI comment": {
     "prefix": "ai",
-    "body": [ "// AI: ${1}" ]
+    "body": [ "/* AI: ${1} */" ]
   }
 }
