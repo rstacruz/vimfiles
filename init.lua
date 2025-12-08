@@ -452,6 +452,16 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 		source = "mason-org/mason-lspconfig.nvim",
 		depends = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
 	})
+	vim.lsp.config("vtsls", {
+		settings = {
+			typescript = {
+				tsserver = {
+					-- https://github.com/yioneko/vtsls/blob/175de18b59321d950cbc4c2c4cf55d5bb39b0675/README.md?plain=1#L123
+					maxTsServerMemory = 8192,
+				},
+			},
+		},
+	})
 
 	-- <C-n>/<C-p> - next or previous match
 	-- <c-y> - accept
@@ -838,7 +848,9 @@ later(function() -- render-markdown
             gitlab = { pattern = "^http[s]?://gitlab.com", icon = " ", highlight = "RenderMarkdownLink" }, -- nf-fa-gitlab
             trello = { pattern = "^http[s]?://trello.com", icon = "󰔲 ", highlight = "RenderMarkdownLink" },
             miro = { pattern = "^http[s]?://miro.com", icon = "󰃥 ", highlight = "RenderMarkdownLink" },
-            datadog = { pattern = "^http[s]?://app.datadoghq.com", icon = "󰩃 ", highlight = "RenderMarkdownLink" },
+            datadog = { pattern = "^http[s]?://%a+.datadoghq.com", icon = "󰩃 ", highlight = "RenderMarkdownLink" },
+            figma = { pattern = "^http[s]?://%a+.figma.com", icon = " ", highlight = "RenderMarkdownLink" },
+            notion = { pattern = "^http[s]?://%a+.notion.so", icon = " ", highlight = "RenderMarkdownLink" },
             googledrive = { pattern = "^http[s]?://drive.google.com", icon = "󰊶 ", highlight = "RenderMarkdownLink", },
             web = { pattern = "^http[s]?://", icon = "󰏌 ", highlight = "RenderMarkdownLink" }, -- nf-md-open_in_new + ctrl-k 1M
 				-- stylua: ignore end
@@ -927,9 +939,9 @@ later(function() -- sidekick.nvim
 	-- stylua: ignore start
 	vim.keymap.set("n", "<leader>!sf", function() require("sidekick.cli").toggle({ focus = true }) end, { desc = "Sidekick: focus" })
 	vim.keymap.set("n", "<leader>ot", function() require("sidekick.cli").toggle({ name = "opencode", focus = true }) end, { desc = "Sidekick: toggle opencode" })
-	vim.keymap.set("n", "<leader>o.", function() require("sidekick.cli").send({ msg = "{this}" }) end, { desc = "Sidekick: send this" })
-	vim.keymap.set("n", "<leader>of", function() require("sidekick.cli").send({ msg = "{file}" }) end, { desc = "Sidekick: send file" })
-	vim.keymap.set("v", "<leader>o.", function() require("sidekick.cli").send({ msg = "{selection}" }) end, { desc = "Sidekick: send visual select" })
+	vim.keymap.set("n", "<leader>o.", function() require("sidekick.cli").send({ name = "opencode", msg = "{this}" }) end, { desc = "Sidekick: send this" })
+	vim.keymap.set("n", "<leader>of", function() require("sidekick.cli").send({ name = "opencode", msg = "{file}" }) end, { desc = "Sidekick: send file" })
+	vim.keymap.set("v", "<leader>o.", function() require("sidekick.cli").send({ name = "opencode", msg = "{selection}" }) end, { desc = "Sidekick: send visual select" })
 	-- stylua: ignore end
 end)
 
@@ -1064,7 +1076,7 @@ later(function() -- persistence
 	persisted.setup({
 		autostart = true,
 		follow_cwd = true,
-		use_git_branch = true,
+		use_git_branch = false,
 		save_dir = vim.fn.stdpath("data") .. "/sessions/",
 		should_save = function() -- equivalent to need = 0 (always save)
 			return true
@@ -1133,15 +1145,17 @@ later(function() -- smear-cursor
 end)
 
 later(function() -- mini.animate
-	local animate = require("mini.animate")
-	local fast = animate.gen_timing.cubic({ duration = 60, unit = "total" })
-	local xfast = animate.gen_timing.cubic({ duration = 20, unit = "total" })
+	if not vim.g.neovide then
+		local animate = require("mini.animate")
+		local fast = animate.gen_timing.cubic({ duration = 60, unit = "total" })
+		local xfast = animate.gen_timing.cubic({ duration = 20, unit = "total" })
 
-	animate.setup({
-		cursor = { enable = false },
-		scroll = { timing = fast },
-		resize = { timing = xfast },
-	})
+		animate.setup({
+			cursor = { enable = false },
+			scroll = { timing = fast },
+			resize = { timing = xfast },
+		})
+	end
 end)
 
 later(function()
