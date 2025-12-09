@@ -18,7 +18,30 @@
       "",
       "${2}",
       "",
-      "## But first, research:",
+      "## Refer to these references:",
+      "",
+      "${3}",
+      "",
+      "## But first, research (discovery):",
+      "",
+      "${4}"
+    ]
+  },
+  "Research": {
+    "prefix": "Research",
+    "description": "AI: Research",
+    "body": [
+      "Produce research for the following concerns. (discovery)",
+      "",
+      "## Scope:",
+      "",
+      "${1}",
+      "",
+      "## Rationale:",
+      "",
+      "${2}",
+      "",
+      "## Refer to these references:",
       "",
       "${3}"
     ]
