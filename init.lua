@@ -474,9 +474,13 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 	require("blink.cmp").setup({
 		keymap = {
 			-- -- <cr> to accept completions. To insert a new line instead, use
-			-- -- <C-j> or <space
+			-- -- <C-j> or <space>
 			-- 	preset = "default",
 			["<cr>"] = { "accept", "fallback" },
+
+			-- Make c-k digraphs work
+			-- https://github.com/saghen/blink.cmp/issues/1307
+			["<C-k>"] = { "fallback" },
 
 			preset = "super-tab",
 			["<Tab>"] = {
