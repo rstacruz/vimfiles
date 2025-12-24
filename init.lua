@@ -93,7 +93,7 @@ end
 
 now(function() -- options
 	vim.opt.shortmess:append("I") -- disable start screen
-	vim.opt.laststatus = 0 -- to be set later
+	vim.opt.cmdheight = 0
 	vim.opt.tabstop = 2
 	vim.opt.shiftwidth = 2
 	vim.opt.foldlevel = 99
