@@ -161,6 +161,7 @@ end)
 now_if_args(function() -- tree sitter
 	add({
 		source = "nvim-treesitter/nvim-treesitter",
+		checkout = "main",
 		hooks = {
 			post_checkout = function()
 				vim.cmd("TSUpdate")
@@ -168,11 +169,7 @@ now_if_args(function() -- tree sitter
 		},
 	})
 
-	require("nvim-treesitter.configs").setup({
-		ensure_installed = _G.Config.Languages.treesitter,
-		indent = { enable = true },
-		highlight = { enable = true },
-	})
+	require("nvim-treesitter").install(_G.Config.Languages.treesitter)
 end)
 
 now(function() -- color scheme
