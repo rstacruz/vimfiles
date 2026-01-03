@@ -169,7 +169,13 @@ now_if_args(function() -- tree sitter
 		},
 	})
 
-	require("nvim-treesitter").install(_G.Config.Languages.treesitter)
+	local ts = require("nvim-treesitter")
+	ts.setup({
+		ensure_installed = _G.Config.Languages.treesitter,
+		highlight = { enable = true },
+		indent = { enable = true },
+		auto_install = true,
+	})
 end)
 
 now(function() -- color scheme
@@ -785,6 +791,7 @@ end)
 later(function() -- render-markdown
 	add({ source = "MeanderingProgrammer/render-markdown.nvim" })
 	require("render-markdown").setup({
+		restart_highlighter = true,
 		render_modes = { "n", "v", "i", "c" },
 		heading = {
 			icons = { "━ " },
