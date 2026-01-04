@@ -93,7 +93,7 @@ end
 
 now(function() -- options
 	vim.opt.shortmess:append("I") -- disable start screen
-	vim.opt.laststatus = 0 -- to be set later
+	vim.opt.cmdheight = 0
 	vim.opt.tabstop = 2
 	vim.opt.shiftwidth = 2
 	vim.opt.foldlevel = 99
@@ -161,6 +161,7 @@ end)
 now_if_args(function() -- tree sitter
 	add({
 		source = "nvim-treesitter/nvim-treesitter",
+		checkout = "main",
 		hooks = {
 			post_checkout = function()
 				vim.cmd("TSUpdate")
@@ -168,10 +169,12 @@ now_if_args(function() -- tree sitter
 		},
 	})
 
-	require("nvim-treesitter.configs").setup({
+	local ts = require("nvim-treesitter")
+	ts.setup({
 		ensure_installed = _G.Config.Languages.treesitter,
-		indent = { enable = true },
 		highlight = { enable = true },
+		indent = { enable = true },
+		auto_install = true,
 	})
 end)
 
@@ -800,6 +803,7 @@ end)
 later(function() -- render-markdown
 	add({ source = "MeanderingProgrammer/render-markdown.nvim" })
 	require("render-markdown").setup({
+		restart_highlighter = true,
 		render_modes = { "n", "v", "i", "c" },
 		heading = {
 			icons = { "━ " },

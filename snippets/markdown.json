@@ -8,7 +8,8 @@
     "prefix": "plan",
     "description": "AI: Plan",
     "body": [
-      "Plan for the following change in this codebase.",
+      "Plan for the following change in this codebase by creating a TDD.",
+      "Use the TDD skill first if it's available.",
       "",
       "## Scope:",
       "",
@@ -32,6 +33,7 @@
     "description": "AI: Research",
     "body": [
       "Produce research for the following concerns. (discovery)",
+      "Use the TDD skill first if it's available.",
       "",
       "## Scope:",
       "",
