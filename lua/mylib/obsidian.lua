@@ -59,7 +59,7 @@ M.get_obsidian_options = function()
 		ui = { enable = false }, -- use render-markdown.nvim instead
 		templates = { folder = "Templates" },
 		completion = { blink = true },
-		attachments = { img_folder = "Media" }, -- default: "assets/imgs"
+		attachments = { folder = "Media" }, -- default: "assets/imgs"
 		preferred_link_style = "wiki",
 		picker = { name = "snacks.pick" },
 		frontmatter = { func = M.note_frontmatter_func },
