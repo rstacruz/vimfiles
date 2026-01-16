@@ -347,6 +347,16 @@ later(function() -- keys, keymaps
 	local function copy_relative_path_range()
 		return copy_path({ expand = "%:.", range = 1 })
 	end
+	local function copy_basename()
+		return copy_path({ expand = "%:t" })
+	end
+	local function copy_wikilink()
+		local name = vim.fn.expand("%:t:r")
+		local str = "[[" .. name .. "]]"
+		vim.fn.setreg('"', str)
+		vim.fn.setreg("+", str)
+		vim.notify(" " .. str)
+	end
 
 	local function update_and_show_log()
 		vim.cmd("DepsUpdate!")
@@ -407,6 +417,8 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>fyG", function() copy_git_link() end, { desc = "Copy: copy GitHub link" })
 	vim.keymap.set("n", "<leader>fya", function() copy_absolute_path() end, { desc = "Copy: copy absolute path" })
 	vim.keymap.set("n", "<leader>fyr", function() copy_relative_path() end, { desc = "Copy: copy relative path" })
+	vim.keymap.set("n", "<leader>fyb", function() copy_basename() end, { desc = "Copy: copy basename" })
+	vim.keymap.set("n", "<leader>fyw", function() copy_wikilink() end, { desc = "Copy: copy wikilink" })
 	vim.keymap.set("n", "<leader>gs", function() Snacks.picker.git_status() end, { desc = "Files changed in Git (status)..." })
 	vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Close all and exit" })
 	vim.keymap.set("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "Search in files via grep..." })
@@ -1102,6 +1114,22 @@ later(function() -- persistence
 	vim.keymap.set("n", "<leader>!qs", function() require("persisted").load() end, { desc = "Session: load current session" })
 	vim.keymap.set("n", "<leader>!qd", function() require("persisted").stop() end, { desc = "Session: stop persistence" })
 	-- stylua: ignore end
+end)
+
+later(function() -- difft
+	-- https://github.com/ahkohd/difft.nvim
+	add({ source = "ahkohd/difft.nvim" })
+	vim.keymap.set("n", "<leader>!D", function()
+		if Difft.is_visible() then
+			Difft.hide()
+		else
+			Difft.diff()
+		end
+	end, { desc = "Difft: toggle" })
+	require("difft").setup({
+		command = "GIT_EXTERNAL_DIFF='difft --color=always' git diff", -- or "jj diff --no-pager"
+		layout = "float", -- nil (buffer), "float", or "ivy_taller"
+	})
 end)
 
 later(function() -- flash
