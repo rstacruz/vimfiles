@@ -66,10 +66,6 @@ M.get_obsidian_options = function()
 
 		note_id_func = M.note_id_func,
 
-		-- when using `gf` on a URL by mistake
-		follow_url_func = vim.ui.open,
-		follow_img_func = vim.ui.open,
-
 		backlinks = {
 			-- When 'true', using `:ObsidianBacklinks` will look for backlinks to the header
 			-- under the cursor. Defaults to true.
