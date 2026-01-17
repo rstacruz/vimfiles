@@ -171,10 +171,17 @@ now_if_args(function() -- tree sitter
 
 	local ts = require("nvim-treesitter")
 	ts.setup({
-		ensure_installed = _G.Config.Languages.treesitter,
-		highlight = { enable = true },
-		indent = { enable = true },
-		auto_install = true,
+		install_dir = vim.fn.stdpath("data") .. "/site",
+	})
+	ts.install(_G.Config.Languages.treesitter)
+
+	vim.api.nvim_create_autocmd("FileType", {
+		callback = function(args)
+			local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype) or vim.bo[args.buf].filetype
+			if lang then
+				pcall(vim.treesitter.start, args.buf, lang)
+			end
+		end,
 	})
 end)
 
@@ -812,7 +819,7 @@ later(function() -- render-markdown
 
 		code = {
 			sign = false,
-			style = "normal",
+			style = "full",
 			width = "block",
 			position = "right",
 			right_pad = 5,
