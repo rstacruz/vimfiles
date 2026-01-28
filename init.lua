@@ -659,6 +659,13 @@ end)
 
 -- UI ------------------------------------------------------------------------------------
 
+now_if_args(function() -- mini.tabline
+	require("mini.tabline").setup({
+		show_icons = true,
+		tabpage_section = "left",
+	})
+end)
+
 now_if_args(function() -- mini.statusline
 	local statusline = require("mini.statusline")
 
