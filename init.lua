@@ -849,6 +849,7 @@ later(function() -- render-markdown
 				fwd = { raw = "[>]", rendered = "󰒊", highlight = "Comment" }, -- nf-md-send
 				sched = { raw = "[<]", rendered = "󰃰", highlight = "Comment" }, -- nf-md-calendar_clock
 				cancel = { raw = "[~]", rendered = "󰏤", highlight = "DiagnosticWarn" },
+				wait = { raw = "[w]", rendered = "󰏤", highlight = "DiagnosticWarn" }, -- actually "win" in obsidian but I like it as wiating
 				info = { raw = "[i]", rendered = "󰋼", highlight = "DiagnosticInfo" }, -- nf-md-information -- `i` in obsidian
 				idea = { raw = "[l]", rendered = "󰌵", highlight = "DiagnosticWarn" }, -- nf-md-lightbulb -- `I` in obsidian
 				pro = { raw = "[p]", rendered = "󰔓", highlight = "DiagnosticOk" }, -- nf-md-thumb_up
