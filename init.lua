@@ -814,7 +814,7 @@ end)
 
 -- Markdown ------------------------------------------------------------------------------
 
-later(function() -- render-markdown
+now_if_args(function() -- render-markdown
 	add({ source = "MeanderingProgrammer/render-markdown.nvim" })
 	require("render-markdown").setup({
 		restart_highlighter = true,
@@ -899,7 +899,7 @@ later(function() -- render-markdown
 	})
 end)
 
-later(function() -- obsidian
+now_if_args(function() -- obsidian
 	-- vaq  - select all in quotes " ' `
 	-- vab  - select all in brackets ( [ { <
 	add({
