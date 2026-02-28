@@ -186,10 +186,14 @@ now_if_args(function() -- tree sitter
 end)
 
 now(function() -- color scheme
+	-- Feb 2026 favourites
+	add({ source = "followLemmi/cyberneon.nvim" }) -- borland-like
+	add({ source = "gnfisher/tomorrow-night-blue.nvim" })
+	add({ source = "oskarnurm/koda.nvim" }) -- minimal light
+	add({ source = "kshinya7/amaranth.nvim" }) -- like panda
+
 	add({ source = "rebelot/kanagawa.nvim" })
 	add({ source = "projekt0n/github-nvim-theme" })
-	add({ source = "kshinya7/amaranth.nvim" })
-	add({ source = "followLemmi/cyberneon.nvim" })
 	add({ source = "deparr/tairiki.nvim" }) -- tomorrow-night-like, light and dark versions
 	require("mylib.persist_colorscheme").setup({ fallback = "miniautumn" })
 end)
@@ -838,7 +842,7 @@ later(function() -- render-markdown
 			unchecked = { icon = "□" },
 			checked = { icon = "󰸞", highlight = "DiagnosticOk" }, -- nf-md-check-bold
 			custom = {
-				wait = { raw = "[-]", rendered = "󰥔", highlight = "RenderMarkdownTodo" },
+				wait2 = { raw = "[-]", rendered = "󰥔", highlight = "RenderMarkdownTodo" },
 				prio = { raw = "[!]", rendered = "󰄰", highlight = "DiagnosticError" }, -- high priority
 				done = { raw = "[x]", rendered = "󰸞", highlight = "DiagnosticOk" },
 				fwd = { raw = "[>]", rendered = "󰒊", highlight = "Comment" }, -- nf-md-send
