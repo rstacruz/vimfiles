@@ -112,7 +112,7 @@ now(function() -- options
 		diff = "╱",
 		eob = " ",
 	}
-	vim.o.listchars = "extends:…,nbsp:␣,precedes:…,tab:> "
+	vim.o.listchars = "extends:…,nbsp:␣,precedes:…,tab:  " -- hide tabs
 
 	if vim.fn.has("nvim-0.10") == 1 then
 		vim.opt.smoothscroll = true
@@ -186,6 +186,12 @@ now_if_args(function() -- tree sitter
 end)
 
 now(function() -- color scheme
+	-- Feb 2026 favourites
+	add({ source = "followLemmi/cyberneon.nvim" }) -- borland-like
+	add({ source = "gnfisher/tomorrow-night-blue.nvim" })
+	add({ source = "oskarnurm/koda.nvim" }) -- minimal light
+	add({ source = "kshinya7/amaranth.nvim" }) -- like panda
+
 	add({ source = "rebelot/kanagawa.nvim" })
 	add({ source = "projekt0n/github-nvim-theme" })
 	add({ source = "deparr/tairiki.nvim" }) -- tomorrow-night-like, light and dark versions
@@ -507,13 +513,6 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 			preset = "super-tab",
 			["<Tab>"] = {
 				function(cmp)
-					if vim.b[vim.api.nvim_get_current_buf()].nes_state then
-						cmp.hide()
-						return (
-							require("copilot-lsp.nes").apply_pending_nes()
-							and require("copilot-lsp.nes").walk_cursor_end_edit()
-						)
-					end
 					if cmp.snippet_active() then
 						return cmp.accept()
 					else
@@ -843,7 +842,7 @@ now_if_args(function() -- render-markdown
 			unchecked = { icon = "□" },
 			checked = { icon = "󰸞", highlight = "DiagnosticOk" }, -- nf-md-check-bold
 			custom = {
-				wait = { raw = "[-]", rendered = "󰥔", highlight = "RenderMarkdownTodo" },
+				wait2 = { raw = "[-]", rendered = "󰥔", highlight = "RenderMarkdownTodo" },
 				prio = { raw = "[!]", rendered = "󰄰", highlight = "DiagnosticError" }, -- high priority
 				done = { raw = "[x]", rendered = "󰸞", highlight = "DiagnosticOk" },
 				fwd = { raw = "[>]", rendered = "󰒊", highlight = "Comment" }, -- nf-md-send
@@ -853,6 +852,7 @@ now_if_args(function() -- render-markdown
 				info = { raw = "[i]", rendered = "󰋼", highlight = "DiagnosticInfo" }, -- nf-md-information -- `i` in obsidian
 				idea = { raw = "[l]", rendered = "󰌵", highlight = "DiagnosticWarn" }, -- nf-md-lightbulb -- `I` in obsidian
 				pro = { raw = "[p]", rendered = "󰔓", highlight = "DiagnosticOk" }, -- nf-md-thumb_up
+				fire = { raw = "[f]", rendered = "󰈸", highlight = "DiagnosticError" }, -- nf-md-fire
 				con = { raw = "[c]", rendered = "󰔑", highlight = "DiagnosticError" }, -- nf-md-thumb_down
 				star = { raw = "[s]", rendered = "󰓎", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
 				star2 = { raw = "[*]", rendered = "󰓎", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
@@ -925,25 +925,7 @@ later(function() -- copilot
 	add({ source = "fang2hou/blink-copilot" })
 	add({ source = "copilotlsp-nvim/copilot-lsp" })
 
-	vim.g.copilot_nes_debounce = 500
 	vim.lsp.enable("copilot_ls")
-	vim.keymap.set("n", "<tab>", function()
-		local bufnr = vim.api.nvim_get_current_buf()
-		local state = vim.b[bufnr].nes_state
-		if state then
-			-- Try to jump to the start of the suggestion edit.
-			-- If already at the start, then apply the pending suggestion and jump to the end of the edit.
-			local _ = require("copilot-lsp.nes").walk_cursor_start_edit()
-				or (
-					require("copilot-lsp.nes").apply_pending_nes()
-					and require("copilot-lsp.nes").walk_cursor_end_edit()
-				)
-			return nil
-		else
-			-- Resolving the terminal's inability to distinguish between `TAB` and `<C-i>` in normal mode
-			return "<C-i>"
-		end
-	end, { desc = "Accept Copilot NES suggestion", expr = true })
 
 	-- add({ source = "zbirenbaum/copilot.lua" })
 	-- require("copilot").setup({

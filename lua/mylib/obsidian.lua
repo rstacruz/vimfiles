@@ -52,6 +52,10 @@ end
 
 M.get_obsidian_options = function()
 	local opts = {
+		templates = {
+			enabled = true,
+			folder = "Templates", -- your templates directory
+		},
 		legacy_commands = false,
 		workspaces = M.get_obsidian_workspaces(),
 		notes_subdir = "Pages",
