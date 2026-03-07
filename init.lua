@@ -1130,6 +1130,11 @@ later(function() -- difft
 	})
 end)
 
+later(function() -- scope
+	add({ source = "tiagovla/scope.nvim" })
+	require("scope").setup({})
+end)
+
 later(function() -- flash
 	add({ source = "folke/flash.nvim" })
 	local flash = require("flash")
