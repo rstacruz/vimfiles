@@ -475,11 +475,11 @@ end)
 -- Editing -------------------------------------------------------------------------------
 
 later(function() -- editor: lsp features (blink, mason, lspconfig)
-	add({ source = "Saghen/blink.cmp", checkout = "v1.6.0" })
+	add({ source = "Saghen/blink.cmp", tag = "v1.9.1" })
 	add({ source = "mason-org/mason.nvim" })
 	add({
 		source = "neovim/nvim-lspconfig",
-		depends = { "mason-org/mason.nvim", "saghen/blink.cmp" },
+		depends = { "mason-org/mason.nvim" }, -- "saghen/blink.cmp"
 	})
 	add({
 		source = "mason-org/mason-lspconfig.nvim",
@@ -904,7 +904,7 @@ now_if_args(function() -- obsidian
 	-- vab  - select all in brackets ( [ { <
 	add({
 		source = "obsidian-nvim/obsidian.nvim",
-		depends = { "nvim-lua/plenary.nvim" },
+		depends = { "nvim-lua/plenary.nvim", "Saghen/blink.cmp" },
 	})
 
 	local Obsidian = require("mylib/obsidian")
