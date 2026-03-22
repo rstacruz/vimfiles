@@ -267,6 +267,7 @@ now(function() -- snacks: indent guides, dashboard
 			keys = {
 				{ action = ":ene", desc = "new file", key = "e" },
 				{ action = ":OpenCode", desc = "OpenCode", key = "o" },
+				{ action = ":OpenCodeAttach", desc = "attach OpenCode", key = "a" },
 				{ action = ":lua require('persisted').load()", desc = "resume session", key = "r" },
 				{ action = ":lua require('persisted').select()", desc = "load session…", key = "l" },
 				{ action = ":DiffviewOpen", desc = "git status", key = "s" },
@@ -471,6 +472,7 @@ end)
 later(function() -- terminal keymaps
 	vim.keymap.set("n", "<leader>tn", "<cmd>tabnew | term<cr>", { desc = "Terminal: new terminal tab" })
 	vim.keymap.set("n", "<leader>to", "<cmd>OpenCode<cr>", { desc = "Terminal: open OpenCode" })
+	vim.keymap.set("n", "<leader>tO", "<cmd>OpenCodeAttach<cr>", { desc = "Terminal: attach OpenCode" })
 	vim.keymap.set("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Terminal: close current tab" })
 end)
 
