@@ -470,6 +470,7 @@ end)
 
 later(function() -- terminal keymaps
 	vim.keymap.set("n", "<leader>tn", "<cmd>tabnew | term<cr>", { desc = "Terminal: new terminal tab" })
+	vim.keymap.set("n", "<leader>to", "<cmd>OpenCode<cr>", { desc = "Terminal: open OpenCode" })
 	vim.keymap.set("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Terminal: close current tab" })
 end)
 
