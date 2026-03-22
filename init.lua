@@ -744,8 +744,8 @@ later(function() -- mylib.autosize: resize window widths
 	require("mylib.autosize").setup()
 end)
 
-later(function() -- opencode
-	require("config.opencode").setup()
+now(function() -- opencode
+	require("config.opencode").setup({ auto_open = vim.env.NVIM_OC ~= nil })
 end)
 
 later(function() -- trouble: diagnostics
@@ -951,28 +951,6 @@ later(function() -- copilot
 	-- })
 
 	vim.keymap.set("n", "<leader>!as", "<cmd>Copilot panel<cr>", { desc = "Open Copilot suggestions panel" })
-end)
-
-later(function() -- sidekick.nvim
-	add({ source = "folke/sidekick.nvim" })
-	require("sidekick").setup({
-		nes = {
-			enabled = false,
-		},
-		cli = {
-			mux = {
-				enable = true,
-				backend = "tmux",
-			},
-		},
-	})
-	-- stylua: ignore start
-	vim.keymap.set("n", "<leader>!sf", function() require("sidekick.cli").toggle({ focus = true }) end, { desc = "Sidekick: focus" })
-	vim.keymap.set("n", "<leader>ot", function() require("sidekick.cli").toggle({ name = "opencode", focus = true }) end, { desc = "Sidekick: toggle opencode" })
-	vim.keymap.set("n", "<leader>o.", function() require("sidekick.cli").send({ name = "opencode", msg = "{this}" }) end, { desc = "Sidekick: send this" })
-	vim.keymap.set("n", "<leader>of", function() require("sidekick.cli").send({ name = "opencode", msg = "{file}" }) end, { desc = "Sidekick: send file" })
-	vim.keymap.set("v", "<leader>o.", function() require("sidekick.cli").send({ name = "opencode", msg = "{selection}" }) end, { desc = "Sidekick: send visual select" })
-	-- stylua: ignore end
 end)
 
 -- Mini ----------------------------------------------------------------------------------

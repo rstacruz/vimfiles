@@ -25,13 +25,17 @@ function M.attach_opencode(opts)
 	run_in_tab("opencode attach http://127.0.0.1:" .. port .. " --dir .", "OpenCodeAttach")
 end
 
-function M.setup()
+---@param opts? { auto_open?: boolean }
+function M.setup(opts)
 	vim.api.nvim_create_user_command("OpenCode", M.open_opencode, { desc = "Terminal: open OpenCode" })
 	vim.api.nvim_create_user_command(
 		"OpenCodeAttach",
 		M.attach_opencode,
 		{ nargs = "?", desc = "Terminal: attach OpenCode" }
 	)
+	if opts and opts.auto_open then
+		vim.api.nvim_create_autocmd("VimEnter", { once = true, callback = M.open_opencode })
+	end
 end
 
 return M
