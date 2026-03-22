@@ -266,6 +266,7 @@ now(function() -- snacks: indent guides, dashboard
 		preset = {
 			keys = {
 				{ action = ":ene", desc = "new file", key = "e" },
+				{ action = ":OpenCode", desc = "opencode", key = "o" },
 				{ action = ":lua require('persisted').load()", desc = "resume session", key = "r" },
 				{ action = ":lua require('persisted').select()", desc = "load session…", key = "l" },
 				{ action = ":DiffviewOpen", desc = "git status", key = "s" },
@@ -738,6 +739,10 @@ end)
 
 later(function() -- mylib.autosize: resize window widths
 	require("mylib.autosize").setup()
+end)
+
+later(function() -- opencode
+	require("config.opencode").setup()
 end)
 
 later(function() -- trouble: diagnostics
