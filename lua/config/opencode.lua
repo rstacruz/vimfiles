@@ -6,15 +6,12 @@ function M.open_opencode()
 		return
 	end
 
-	vim.cmd.tabnew()
-	vim.fn.termopen("opencode")
+	vim.cmd("tabnew | term opencode")
 	vim.cmd.startinsert()
 end
 
 function M.setup()
-	vim.api.nvim_create_user_command("OpenCode", function()
-		M.open_opencode()
-	end, { desc = "Terminal: open OpenCode in a new tab" })
+	vim.api.nvim_create_user_command("OpenCode", M.open_opencode, { desc = "Terminal: open OpenCode in a new tab" })
 end
 
 return M
