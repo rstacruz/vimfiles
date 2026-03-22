@@ -1,27 +1,24 @@
 local M = {}
 
-function M.open_opencode()
+---@param cmd string Shell command to run in the new tab
+local function run_in_tab(cmd)
 	if vim.fn.executable("opencode") == 0 then
 		vim.notify("opencode not found in PATH", vim.log.levels.ERROR)
 		return
 	end
 
-	vim.cmd("tabnew | term opencode")
+	vim.cmd("tabnew | term " .. cmd)
 	vim.cmd.startinsert()
+end
+
+function M.open_opencode()
+	run_in_tab("opencode")
 end
 
 ---@param opts { args: string }
 function M.attach_opencode(opts)
-	if vim.fn.executable("opencode") == 0 then
-		vim.notify("opencode not found in PATH", vim.log.levels.ERROR)
-		return
-	end
-
 	local port = (opts.args ~= "") and opts.args or "40970"
-	local url = "http://127.0.0.1:" .. port
-
-	vim.cmd("tabnew | term opencode attach " .. url .. " --dir .")
-	vim.cmd.startinsert()
+	run_in_tab("opencode attach http://127.0.0.1:" .. port .. " --dir .")
 end
 
 function M.setup()
