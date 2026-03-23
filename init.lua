@@ -471,6 +471,8 @@ end)
 
 later(function() -- terminal keymaps
 	vim.keymap.set("n", "<leader>tn", "<cmd>tabnew | term<cr>", { desc = "Terminal: new terminal tab" })
+	vim.keymap.set("n", "<leader>ts", "<cmd>split | term<cr>", { desc = "Terminal: new terminal (horizontal split)" })
+	vim.keymap.set("n", "<leader>tv", "<cmd>vsplit | term<cr>", { desc = "Terminal: new terminal (vertical split)" })
 	vim.keymap.set("n", "<leader>to", "<cmd>OpenCode<cr>", { desc = "Terminal: open OpenCode" })
 	vim.keymap.set("n", "<leader>tO", "<cmd>OpenCodeAttach<cr>", { desc = "Terminal: attach OpenCode" })
 	vim.keymap.set("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Terminal: close current tab" })
