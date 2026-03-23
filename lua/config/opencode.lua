@@ -22,7 +22,7 @@ end
 ---@param opts { args: string }
 function M.attach_opencode(opts)
 	local port = (opts.args ~= "") and opts.args or "40970"
-	run_in_tab("opencode attach http://127.0.0.1:" .. port .. " --dir .", "OpenCodeAttach")
+	run_in_tab("opencode attach http://127.0.0.1:" .. port .. " --dir .", "OpenCode")
 end
 
 ---@param opts? { auto_open?: boolean }

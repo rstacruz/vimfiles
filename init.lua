@@ -422,6 +422,7 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>cr", function() vim.lsp.buf.rename() end, { desc = "LSP: rename this..." })
 	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
 	vim.keymap.set("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete other buffers" })
+	vim.keymap.set("n", "<leader>bd", "<cmd>bdelete!<cr>", { desc = "Delete buffer" })
 	vim.keymap.set("n", "<leader>qd", close_buffers_and_reset, { desc = "Delete all buffers and open dashboard" })
 	vim.keymap.set("n", "<leader>fp", function() Snacks.picker.projects() end, { desc = "Recent projects..." })
 	vim.keymap.set("n", "<leader>fr", function() Snacks.picker.recent({ hidden = true, filter = { cwd = true } }) end, { desc = "Recent files..." })
@@ -471,6 +472,7 @@ end)
 
 later(function() -- terminal keymaps
 	vim.keymap.set("n", "<leader>tn", "<cmd>tabnew | term<cr>", { desc = "Terminal: new terminal tab" })
+	vim.keymap.set("n", "<leader>tg", "<cmd>tabnew | term lazygit<cr>", { desc = "Terminal: lazygit" })
 	vim.keymap.set("n", "<leader>to", "<cmd>OpenCode<cr>", { desc = "Terminal: open OpenCode" })
 	vim.keymap.set("n", "<leader>tO", "<cmd>OpenCodeAttach<cr>", { desc = "Terminal: attach OpenCode" })
 	vim.keymap.set("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Terminal: close current tab" })
@@ -1207,4 +1209,17 @@ later(function()
 	if vim.env.UPDATE_DEPS then
 		vim.cmd("DepsUpdate! | DepsShowLog")
 	end
+end)
+
+later(function() -- Auto-close terminal
+	-- Automatically close to prevent "[process exited 0]" message
+	vim.api.nvim_create_autocmd("TermClose", {
+		pattern = "*",
+		callback = function()
+			-- Check if the process exited successfully (status 0)
+			if vim.v.event.status == 0 then
+				vim.api.nvim_buf_delete(0, { force = true })
+			end
+		end,
+	})
 end)
