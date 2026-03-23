@@ -663,9 +663,25 @@ end)
 -- UI ------------------------------------------------------------------------------------
 
 now_if_args(function() -- mini.tabline
-	require("mini.tabline").setup({
+	local MiniTabline = require("mini.tabline")
+
+	MiniTabline.setup({
 		show_icons = true,
 		tabpage_section = "left",
+	})
+
+	local orig_make = MiniTabline.make_tabline_string
+	MiniTabline.make_tabline_string = function()
+		local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+		local icon, icon_hl = require("mini.icons").get("directory", cwd)
+		return orig_make() .. "%=%#" .. icon_hl .. "#" .. icon .. " " .. "%#LineNr#" .. cwd .. " "
+	end
+
+	vim.api.nvim_create_autocmd("DirChanged", {
+		desc = "Redraw tabline on cwd change",
+		callback = function()
+			vim.cmd("redrawtabline")
+		end,
 	})
 end)
 
@@ -707,9 +723,9 @@ now_if_args(function() -- mini.statusline
 
 	-- Show status line immediately when starting with a file
 	if vim.fn.argc(-1) > 0 then
-		vim.opt.laststatus = 2
+		vim.opt.laststatus = 3
 	else
-		defer_laststatus_update_on_insert(2)
+		defer_laststatus_update_on_insert(3)
 	end
 end)
 
