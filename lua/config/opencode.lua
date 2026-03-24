@@ -21,8 +21,8 @@ end
 
 ---@param opts { args: string }
 function M.attach_opencode(opts)
-	local server = (opts.args ~= "") and opts.args or vim.env.OPENCODE_SERVER_URL or "127.0.0.1:4096"
-	run_in_tab("opencode attach http://" .. server .. " --dir .", "OpenCode")
+	local server = (opts.args ~= "") and opts.args or vim.env.OPENCODE_SERVER_URL or "http://127.0.0.1:4096"
+	run_in_tab("opencode attach " .. server .. " --dir .", "OpenCode")
 end
 
 ---@param opts? { auto_open?: boolean }
