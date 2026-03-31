@@ -810,7 +810,8 @@ end)
 
 later(function() -- diffview
 	add({
-		source = "sindrets/diffview.nvim",
+		-- see https://github.com/sindrets/diffview.nvim/issues/605
+		source = "dlyongemallo/diffview.nvim",
 	})
 
 	-- stylua: ignore start

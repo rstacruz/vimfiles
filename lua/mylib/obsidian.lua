@@ -52,10 +52,6 @@ end
 
 M.get_obsidian_options = function()
 	local opts = {
-		templates = {
-			enabled = true,
-			folder = "Templates", -- your templates directory
-		},
 		legacy_commands = false,
 		workspaces = M.get_obsidian_workspaces(),
 		notes_subdir = "Pages",
@@ -64,7 +60,7 @@ M.get_obsidian_options = function()
 		templates = { folder = "Templates" },
 		completion = { blink = true },
 		attachments = { folder = "Media" }, -- default: "assets/imgs"
-		preferred_link_style = "wiki",
+		link = { style = "wiki" },
 		picker = { name = "snacks.pick" },
 		frontmatter = { func = M.note_frontmatter_func },
 
