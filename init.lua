@@ -819,7 +819,7 @@ later(function() -- diffview
 
 	-- stylua: ignore start
 	vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Show diff" })
-	vim.keymap.set("n", "<leader>gD", "<cmd>DiffviewOpen main...HEAD<cr>", { desc = "Show diff for branch" })
+	vim.keymap.set("n", "<leader>gD", "<cmd>DiffviewOpen origin/main<cr>", { desc = "Show diff for branch" })
 	-- Within the view:
 	-- <leader>cA - choose all
 	-- <leader>cB/cO/cT - choose base / ours / theirs
