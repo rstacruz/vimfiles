@@ -94,6 +94,9 @@ end
 now(function() -- options
 	vim.opt.shortmess:append("I") -- disable start screen
 	vim.opt.cmdheight = 0
+	if vim.fn.has("nvim-0.12") == 1 then
+		require("vim._core.ui2").enable({})
+	end
 	vim.opt.tabstop = 2
 	vim.opt.shiftwidth = 2
 	vim.opt.foldlevel = 99
