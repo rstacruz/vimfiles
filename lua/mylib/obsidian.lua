@@ -58,6 +58,7 @@ M.get_obsidian_options = function()
 		new_notes_location = "notes_subdir", -- options: current_dir (default), notes_subdir
 		ui = { enable = false }, -- use render-markdown.nvim instead
 		templates = { folder = "Templates" },
+		-- obsidian.nvim only supports nvim-cmp or blink sources today.
 		completion = { nvim_cmp = false, blink = false },
 		attachments = { folder = "Media" }, -- default: "assets/imgs"
 		link = { style = "wiki" },

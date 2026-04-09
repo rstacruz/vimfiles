@@ -507,6 +507,17 @@ later(function() -- editor: lsp features (mini completion, mason, lspconfig)
 		source = "mason-org/mason-lspconfig.nvim",
 		depends = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
 	})
+
+	local MiniCompletion = require("mini.completion")
+	local MiniSnippets = require("mini.snippets")
+	local capabilities = vim.tbl_deep_extend(
+		"force",
+		vim.lsp.protocol.make_client_capabilities(),
+		MiniCompletion.get_lsp_capabilities()
+	)
+
+	vim.lsp.config("*", { capabilities = capabilities })
+
 	vim.lsp.config("vtsls", {
 		settings = {
 			typescript = {
@@ -517,9 +528,6 @@ later(function() -- editor: lsp features (mini completion, mason, lspconfig)
 			},
 		},
 	})
-
-	local MiniCompletion = require("mini.completion")
-	local MiniSnippets = require("mini.snippets")
 
 	MiniSnippets.setup({
 		snippets = {
@@ -579,7 +587,7 @@ later(function() -- editor: lsp features (mini completion, mason, lspconfig)
 	-- * https://github.com/mason-org/mason.nvim?tab=readme-ov-file#configuration
 	-- * https://neovim.io/doc/user/lsp.html#lsp-quickstart
 	-- * https://github.com/neovim/nvim-lspconfig
-	-- * https://www.lazyvim.org/extras/coding/blink
+	-- * https://nvim-mini.org/mini.nvim/readmes/mini-completion.html
 end)
 
 later(function() -- editor: linting
