@@ -298,6 +298,8 @@ end)
 -- Keymaps -------------------------------------------------------------------------------
 
 later(function() -- keys, keymaps
+	local MiniPick = require("mini.pick")
+
 	local function copy_git_link()
 		local title = vim.fn.expand("%:.")
 		local start_line = vim.fn.line("v")
@@ -383,6 +385,18 @@ later(function() -- keys, keymaps
 		Snacks.dashboard.open()
 	end
 
+	local function pick_git_files()
+		MiniPick.builtin.files({ tool = "git" })
+	end
+
+	local function pick_files()
+		MiniPick.builtin.files()
+	end
+
+	local function pick_buffers()
+		MiniPick.builtin.buffers()
+	end
+
 	-- Keymaps: see https://github.com/nvim-mini/MiniMax/blob/main/configs/nvim-0.11/plugin/20_keymaps.lua
 	-- System clipboard
 	vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to clipboard" })
@@ -408,10 +422,10 @@ later(function() -- keys, keymaps
 	vim.keymap.set("x", "p", '"_dP', { noremap = true, silent = true })
 
   -- stylua: ignore start
-	vim.keymap.set("n", "<c-p>", function() Snacks.picker.git_files({ untracked = true }) end, { desc = "Open file in git..." })
+	vim.keymap.set("n", "<c-p>", pick_git_files, { desc = "Open file in git..." })
 	vim.keymap.set("n", "<F1>", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
 
-	vim.keymap.set("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Switch buffer..." })
+	vim.keymap.set("n", "<leader>,", pick_buffers, { desc = "Switch buffer..." })
 	vim.keymap.set("n", "<leader>!s", "<cmd>split ~/.scratchpad.md<cr><C-w>H", { desc = "Open scratchpad" })
 	vim.keymap.set("n", "<leader>!c", "<cmd>split CONTEXT.local.md<cr><C-w>H", { desc = "Open context document" })
 	vim.keymap.set("n", "<leader>!g", function() vim.cmd("e " .. vim.fn.stdpath("config") .. "/etc/graveyard.lua") end, { desc = "Config: open config graveyard" })
@@ -426,7 +440,7 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>qd", close_buffers_and_reset, { desc = "Delete all buffers and open dashboard" })
 	vim.keymap.set("n", "<leader>fp", function() Snacks.picker.projects() end, { desc = "Recent projects..." })
 	vim.keymap.set("n", "<leader>fr", function() Snacks.picker.recent({ hidden = true, filter = { cwd = true } }) end, { desc = "Recent files..." })
-	vim.keymap.set("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Open file..." })
+	vim.keymap.set("n", "<leader>ff", pick_files, { desc = "Open file..." })
 	vim.keymap.set("n", "<leader>gh", function() Snacks.gitbrowse() end, { desc = "Open GitHub in browser" })
 	vim.keymap.set("n", "<leader>gl", function() Snacks.picker.git_log_line() end, { desc = "Show git log for line" })
 	vim.keymap.set("n", "<leader>fyg", function() copy_git_url() end, { desc = "Copy: copy GitHub URL" })
@@ -482,12 +496,12 @@ end)
 
 -- Editing -------------------------------------------------------------------------------
 
-later(function() -- editor: lsp features (blink, mason, lspconfig)
-	add({ source = "Saghen/blink.cmp", tag = "v1.9.1" })
+later(function() -- editor: lsp features (mini completion, mason, lspconfig)
+	add({ source = "rafamadriz/friendly-snippets" })
 	add({ source = "mason-org/mason.nvim" })
 	add({
 		source = "neovim/nvim-lspconfig",
-		depends = { "mason-org/mason.nvim" }, -- "saghen/blink.cmp"
+		depends = { "mason-org/mason.nvim" },
 	})
 	add({
 		source = "mason-org/mason-lspconfig.nvim",
@@ -504,54 +518,28 @@ later(function() -- editor: lsp features (blink, mason, lspconfig)
 		},
 	})
 
-	-- <C-n>/<C-p> - next or previous match
-	-- <c-y> - accept
-	-- <cr> - accept
-	require("blink.cmp").setup({
-		keymap = {
-			-- -- <cr> to accept completions. To insert a new line instead, use
-			-- -- <C-j> or <space>
-			-- 	preset = "default",
-			["<cr>"] = { "accept", "fallback" },
+	local MiniCompletion = require("mini.completion")
+	local MiniSnippets = require("mini.snippets")
 
-			-- Make c-k digraphs work
-			-- https://github.com/saghen/blink.cmp/issues/1307
-			["<C-k>"] = { "fallback" },
-
-			preset = "super-tab",
-			["<Tab>"] = {
-				function(cmp)
-					if cmp.snippet_active() then
-						return cmp.accept()
-					else
-						return cmp.select_and_accept()
-					end
-				end,
-				"snippet_forward",
-				"fallback",
-			},
+	MiniSnippets.setup({
+		snippets = {
+			MiniSnippets.gen_loader.from_lang(),
 		},
+	})
+	MiniSnippets.start_lsp_server()
 
-		-- Show documentation in completion
-		completion = { documentation = { auto_show = true } },
-
-		-- Prefers native ("rust") but fallback to Lua implementation
-		fuzzy = { implementation = "prefer_rust" },
-
-		-- show signature help when typing (
-		signature = { enabled = true },
-
-		sources = {
-			default = { "lsp", "path", "snippets", "buffer", "copilot" },
-			providers = {
-				copilot = {
-					name = "copilot",
-					module = "blink-copilot",
-					score_offset = 100,
-					async = true,
-				},
-			},
+	MiniCompletion.setup({
+		lsp_completion = {
+			source_func = "omnifunc",
+			auto_setup = false,
 		},
+	})
+
+	vim.api.nvim_create_autocmd("LspAttach", {
+		desc = "Enable mini.completion for LSP buffers",
+		callback = function(event)
+			vim.bo[event.buf].omnifunc = "v:lua.MiniCompletion.completefunc_lsp"
+		end,
 	})
 
 	-- Insert a newline without accepting completion.
@@ -731,6 +719,10 @@ now_if_args(function() -- mini.statusline
 	else
 		defer_laststatus_update_on_insert(3)
 	end
+end)
+
+later(function() -- mini.pick
+	require("mini.pick").setup({})
 end)
 
 later(function() -- mini.notify: toast notifications
@@ -933,7 +925,7 @@ now_if_args(function() -- obsidian
 	-- vab  - select all in brackets ( [ { <
 	add({
 		source = "obsidian-nvim/obsidian.nvim",
-		depends = { "nvim-lua/plenary.nvim", "Saghen/blink.cmp" },
+		depends = { "nvim-lua/plenary.nvim" },
 	})
 
 	local Obsidian = require("mylib/obsidian")
@@ -951,7 +943,6 @@ end)
 -- AI ------------------------------------------------------------------------------------
 
 later(function() -- copilot
-	add({ source = "fang2hou/blink-copilot" })
 	add({ source = "copilotlsp-nvim/copilot-lsp" })
 
 	vim.lsp.enable("copilot_ls")

@@ -58,7 +58,7 @@ M.get_obsidian_options = function()
 		new_notes_location = "notes_subdir", -- options: current_dir (default), notes_subdir
 		ui = { enable = false }, -- use render-markdown.nvim instead
 		templates = { folder = "Templates" },
-		completion = { blink = true },
+		completion = { nvim_cmp = false, blink = false },
 		attachments = { folder = "Media" }, -- default: "assets/imgs"
 		link = { style = "wiki" },
 		picker = { name = "snacks.pick" },
