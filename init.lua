@@ -44,6 +44,85 @@ local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 local no_args = vim.fn.argc(-1) == 0 and not vim.env.PROF
 local now_if_args = vim.fn.argc(-1) > 0 and now or later
 
+local function get_cwd_name()
+	return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+end
+
+local starter_actions = {
+	{ action = "enew", desc = "Starter: new file", key = "e", name = "new file" },
+	{ action = "OpenCode", desc = "Starter: run OpenCode", key = "o", name = "opencode run" },
+	{ action = "OpenCodeAttach", desc = "Starter: attach OpenCode", key = "a", name = "opencode attach" },
+	{ action = "DiffviewOpen", desc = "Starter: git status", key = "s", name = "git status" },
+	{ action = "q", desc = "Starter: quit", key = "q", name = "quit" },
+}
+
+local starter_group = vim.api.nvim_create_augroup("starter_keymaps", { clear = true })
+local starter_is_setup = false
+
+local function ensure_starter()
+	local starter = require("mini.starter")
+	if starter_is_setup then
+		return starter
+	end
+
+	---@param path string
+	local function show_recent_file_path(path)
+		local relative = vim.fn.fnamemodify(path, ":.")
+		local dir = vim.fn.fnamemodify(relative, ":h")
+		return dir == "." and "" or " " .. dir .. "/"
+	end
+
+	local action_items = vim.tbl_map(function(item)
+		return {
+			action = item.action,
+			name = item.key .. " " .. item.name,
+			section = "Actions",
+		}
+	end, starter_actions)
+
+	starter.setup({
+		autoopen = no_args and vim.env.NVIM_OC == nil,
+		evaluate_single = false,
+		header = get_cwd_name,
+		items = {
+			starter.sections.recent_files(5, true, show_recent_file_path),
+			action_items,
+		},
+		footer = function()
+			local v = vim.version()
+			local version = string.format("%d.%d.%d", v.major, v.minor, v.patch)
+			if not vim.g.loadtime then
+				return "Neovim " .. version
+			end
+
+			return string.format("Neovim %s (%i ms)", version, vim.g.loadtime / 1e6)
+		end,
+		content_hooks = {
+			starter.gen_hook.aligning("center", "center"),
+		},
+		silent = true,
+	})
+
+	vim.api.nvim_create_autocmd("User", {
+		group = starter_group,
+		pattern = "MiniStarterOpened",
+		callback = function()
+			local buf = vim.api.nvim_get_current_buf()
+			for _, item in ipairs(starter_actions) do
+				vim.keymap.set("n", item.key, "<Cmd>" .. item.action .. "<CR>", {
+					buffer = buf,
+					desc = item.desc,
+					nowait = true,
+					silent = true,
+				})
+			end
+		end,
+	})
+
+	starter_is_setup = true
+	return starter
+end
+
 -- Config -------------------------------------------------------------------------------
 
 -- Convenient config for all things related to language setup (LSP, etc)
@@ -207,7 +286,7 @@ now_if_args(function() -- guess-indent
 	require("guess-indent").setup()
 end)
 
-now(function() -- snacks: indent guides, dashboard
+now(function() -- snacks, mini.starter, indent guides
 	add({ source = "folke/snacks.nvim" })
 	vim.g.snacks_animate = true
 
@@ -219,71 +298,11 @@ now(function() -- snacks: indent guides, dashboard
 		end,
 	})
 
-	require("snacks").dashboard.sections.cwd = function(opts)
-		local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-		return { text = { cwd } }
+	if no_args and vim.env.NVIM_OC == nil then
+		ensure_starter()
 	end
-
-	require("snacks").dashboard.sections.startup = function(opts)
-		local v = vim.version()
-		local version = string.format("%d.%d.%d", v.major, v.minor, v.patch)
-		local loadtime = vim.g.loadtime and string.format("%i ms", vim.g.loadtime / 1e6) or ""
-		return {
-			text = {
-				{ "Neovim " .. version, hl = "NonText" },
-				{ " ", hl = "NonText" },
-				{ "(" .. loadtime .. ")", hl = "NonText" },
-			},
-		}
-	end
-
-	local dashboard_opts = {
-		formats = {
-			key = function(item)
-				return { { item.key, hl = "key" } }
-			end,
-
-			file = function(item, ctx)
-				local fname = vim.fn.fnamemodify(item.file, ":~")
-
-				-- strip cwd
-				local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":~") .. "/"
-				fname = string.gsub(fname, cwd, "")
-
-				fname = ctx.width and #fname > ctx.width and vim.fn.pathshorten(fname) or fname
-				if #fname > ctx.width then
-					local dir = vim.fn.fnamemodify(fname, ":h")
-					local file = vim.fn.fnamemodify(fname, ":t")
-					if dir and file then
-						file = file:sub(-(ctx.width - #dir - 2))
-						fname = dir .. "/…" .. file
-					end
-				end
-				local dir, file = fname:match("^(.*)/(.+)$")
-				return dir and { { file, hl = "file" }, { " " .. dir .. "/", hl = "dir" } }
-					or { { fname, hl = "file" } }
-			end,
-		},
-		width = 40,
-		preset = {
-			keys = {
-				{ action = ":ene", desc = "new file", key = "e", padding = 1 },
-				{ action = ":OpenCode", desc = "opencode › run", key = "o" },
-				{ action = ":OpenCodeAttach", desc = "opencode › attach", key = "a" },
-				{ action = ":DiffviewOpen", desc = "git status", key = "s", padding = 1 },
-				{ action = ":q", desc = "quit", key = "q" },
-			},
-		},
-		sections = {
-			{ section = "cwd" },
-			{ section = "recent_files", cwd = true, limit = 5, indent = 0, padding = 1 },
-			{ section = "keys", indent = 0, padding = 1 },
-			{ section = "startup", indent = 0, padding = 1 },
-		},
-	}
 
 	require("snacks").setup({
-		dashboard = no_args and dashboard_opts or {},
 		input = { enabled = true }, -- for renames, etc
 		-- indent = { enabled = true }, -- needs early setup
 		picker = { enabled = true },
@@ -381,8 +400,18 @@ later(function() -- keys, keymaps
 	end
 
 	local function close_buffers_and_reset()
+		local starter = ensure_starter()
 		Snacks.bufdelete.all()
-		Snacks.dashboard.open()
+		vim.cmd("silent! only")
+		local buf = vim.api.nvim_get_current_buf()
+		vim.schedule(function()
+			if vim.api.nvim_buf_is_valid(buf) then
+				starter.open(buf)
+				return
+			end
+
+			starter.open()
+		end)
 	end
 
 	local function pick_git_files()
@@ -437,7 +466,7 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>e", function() Snacks.picker.explorer() end, { desc = "Open file browser (sidebar)" })
 	vim.keymap.set("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete other buffers" })
 	vim.keymap.set("n", "<leader>bd", "<cmd>bdelete!<cr>", { desc = "Delete buffer" })
-	vim.keymap.set("n", "<leader>qd", close_buffers_and_reset, { desc = "Delete all buffers and open dashboard" })
+	vim.keymap.set("n", "<leader>qd", close_buffers_and_reset, { desc = "Delete all buffers and open starter" })
 	vim.keymap.set("n", "<leader>fp", function() Snacks.picker.projects() end, { desc = "Recent projects..." })
 	vim.keymap.set("n", "<leader>fr", function() Snacks.picker.recent({ hidden = true, filter = { cwd = true } }) end, { desc = "Recent files..." })
 	vim.keymap.set("n", "<leader>ff", pick_files, { desc = "Open file..." })
@@ -669,7 +698,7 @@ now_if_args(function() -- mini.tabline
 
 	local orig_make = MiniTabline.make_tabline_string
 	MiniTabline.make_tabline_string = function()
-		local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+		local cwd = get_cwd_name()
 		local icon, icon_hl = require("mini.icons").get("directory", cwd)
 		return orig_make() .. "%=%#" .. icon_hl .. "#" .. icon .. " " .. "%#LineNr#" .. cwd .. " "
 	end
