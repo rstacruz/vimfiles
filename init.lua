@@ -244,7 +244,6 @@ now(function() -- snacks: indent guides, dashboard
 			end,
 
 			file = function(item, ctx)
-				local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
 				local fname = vim.fn.fnamemodify(item.file, ":~")
 
 				-- strip cwd
@@ -272,8 +271,6 @@ now(function() -- snacks: indent guides, dashboard
 				{ action = ":OpenCode", desc = "opencode › run", key = "o" },
 				{ action = ":OpenCodeAttach", desc = "opencode › attach", key = "a" },
 				{ action = ":DiffviewOpen", desc = "git status", key = "s", padding = 1 },
-				-- { action = ":lua require('persisted').load()", desc = "resume session", key = "r" },
-				-- { action = ":lua require('persisted').select()", desc = "load session…", key = "l" },
 				{ action = ":q", desc = "quit", key = "q" },
 			},
 		},
@@ -513,11 +510,8 @@ later(function() -- editor: lsp features (mini completion, mason, lspconfig)
 
 	local MiniCompletion = require("mini.completion")
 	local MiniSnippets = require("mini.snippets")
-	local capabilities = vim.tbl_deep_extend(
-		"force",
-		vim.lsp.protocol.make_client_capabilities(),
-		MiniCompletion.get_lsp_capabilities()
-	)
+	local capabilities =
+		vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), MiniCompletion.get_lsp_capabilities())
 
 	vim.lsp.config("*", { capabilities = capabilities })
 
@@ -1093,32 +1087,20 @@ later(function() -- marks
 	vim.keymap.set("n", "<leader>mx", "<cmd>delmarks!<cr>", { desc = "Marks: delete all marks" })
 end)
 
-later(function() -- persistence
-	add({ source = "olimorris/persisted.nvim" })
-	local persisted = require("persisted")
+later(function() -- sessions
+	local MiniSessions = require("mini.sessions")
+	local session_dir = vim.fn.stdpath("data") .. "/sessions"
 
-	-- if you invoke Neovim from a sub-directory then the git branch will not be
-	-- detected. This fixes that:
-	persisted.branch = function()
-		local branch = vim.fn.systemlist("git branch --show-current")[1]
-		return vim.v.shell_error == 0 and branch or nil
-	end
-
-	persisted.setup({
-		autostart = true,
-		follow_cwd = true,
-		use_git_branch = false,
-		save_dir = vim.fn.stdpath("data") .. "/sessions/",
-		should_save = function() -- equivalent to need = 0 (always save)
-			return true
-		end,
+	MiniSessions.setup({
+		autowrite = true,
+		autoread = false,
+		directory = session_dir,
+		file = "",
+		verbose = { read = false, write = false, delete = true },
 	})
 
 	-- stylua: ignore start
-	vim.keymap.set("n", "<leader>ql", function() require("persisted").save(); require("persisted").select() end, { desc = "Session: load new..." })
-	vim.keymap.set("n", "<leader>qL", function() require("persisted").load({ last = true }) end, { desc = "Session: load last session" })
-	vim.keymap.set("n", "<leader>!qs", function() require("persisted").load() end, { desc = "Session: load current session" })
-	vim.keymap.set("n", "<leader>!qd", function() require("persisted").stop() end, { desc = "Session: stop persistence" })
+	vim.keymap.set("n", "<leader>qr", MiniSessions.restart, { desc = "Session: restart Neovim" })
 	-- stylua: ignore end
 end)
 
