@@ -39,3 +39,6 @@ Keymap descriptions:
 - For keymaps that open a prompt, add ellipsis at the end. Eg, `LSP: rename symbol…`
 - For plugin keybindings, ensure `desc` is prefixed by the plugin, "Flash: jump to" rather than "Jump to".
 
+## Documentation
+
+When working with mini.nvim, consult the website for documentation, not context7. See <https://github.com/nvim-mini/mini.nvim/tree/main/readmes>
