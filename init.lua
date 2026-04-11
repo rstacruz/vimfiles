@@ -761,6 +761,10 @@ later(function() -- mylib.autosize: resize window widths
 	require("mylib.autosize").setup()
 end)
 
+later(function() -- mylib.terminal_title: terminal labels
+	require("mylib.terminal_title").setup()
+end)
+
 now(function() -- opencode
 	require("config.opencode").setup({ auto_open = vim.env.NVIM_OC ~= nil })
 end)
