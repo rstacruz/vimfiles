@@ -757,6 +757,14 @@ later(function() -- mini.notify: toast notifications
 	-- https://github.com/nvim-mini/mini.notify
 end)
 
+later(function() -- mini.misc helpers
+	require("mini.misc").setup()
+
+	MiniMisc.setup_auto_root()
+	MiniMisc.setup_restore_cursor()
+	MiniMisc.setup_termbg_sync()
+end)
+
 later(function() -- mylib.autosize: resize window widths
 	require("mylib.autosize").setup()
 end)
@@ -801,6 +809,16 @@ later(function() -- mini.files
 		MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
 		MiniFiles.reveal_cwd()
 	end
+
+	local function add_cwd_bookmark()
+		MiniFiles.set_bookmark("w", vim.fn.getcwd, { desc = "Working directory" })
+	end
+
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "MiniFilesExplorerOpen",
+		desc = "Add MiniFiles cwd bookmark",
+		callback = add_cwd_bookmark,
+	})
 
 	-- stylua: ignore start
 	vim.keymap.set("n", "-", function() explore_from_here() end, { desc = "Open file browser (mini)" })
@@ -1003,6 +1021,9 @@ later(function() -- mini.clue: shows keyboard shortcuts
 			{ mode = "c", keys = "<C-r>" },
 			-- Window commands
 			{ mode = "n", keys = "<C-w>" },
+			-- `s` key (mini.surround, etc.)
+			{ mode = "n", keys = "s" },
+			{ mode = "x", keys = "s" },
 			-- `z` key
 			{ mode = "n", keys = "z" },
 			{ mode = "x", keys = "z" },
@@ -1028,11 +1049,39 @@ later(function() -- mini.clue: shows keyboard shortcuts
 			miniclue.gen_clues.g(),
 			miniclue.gen_clues.marks(),
 			miniclue.gen_clues.registers(),
-			miniclue.gen_clues.windows(),
+			miniclue.gen_clues.square_brackets(),
+			miniclue.gen_clues.windows({ submode_resize = true }),
 			miniclue.gen_clues.z(),
 			CLUES,
 		},
 	})
+end)
+
+later(function() -- mini.extra
+	require("mini.extra").setup()
+end)
+
+later(function() -- mini.comment
+	require("mini.comment").setup()
+end)
+
+later(function() -- mini.hipatterns
+	local hipatterns = require("mini.hipatterns")
+	local hi_words = MiniExtra.gen_highlighter.words
+
+	hipatterns.setup({
+		highlighters = {
+			fixme = hi_words({ "FIXME", "Fixme", "fixme" }, "MiniHipatternsFixme"),
+			hack = hi_words({ "HACK", "Hack", "hack" }, "MiniHipatternsHack"),
+			todo = hi_words({ "TODO", "Todo", "todo" }, "MiniHipatternsTodo"),
+			note = hi_words({ "NOTE", "Note", "note" }, "MiniHipatternsNote"),
+			hex_color = hipatterns.gen_highlighter.hex_color(),
+		},
+	})
+end)
+
+later(function() -- mini.trailspace
+	require("mini.trailspace").setup()
 end)
 
 later(function() -- mini.etc
