@@ -197,6 +197,7 @@ now(function() -- color scheme
 
 	add({ source = "rebelot/kanagawa.nvim" })
 	add({ source = "projekt0n/github-nvim-theme" })
+	add({ source = "ellisonleao/gruvbox.nvim" })
 	add({ source = "deparr/tairiki.nvim" }) -- tomorrow-night-like, light and dark versions
 	require("mylib.persist_colorscheme").setup({ fallback = "miniautumn" })
 end)
@@ -412,11 +413,12 @@ later(function() -- keys, keymaps
 	vim.keymap.set("v", ",", "G", { desc = "Go to line" })
 
 	-- default keymaps for references, etc
-	vim.keymap.del("n", "grt")
-	vim.keymap.del("n", "gri")
-	vim.keymap.del("n", "grr")
-	vim.keymap.del("n", "gra")
-	vim.keymap.del("n", "grn")
+	-- vim.keymap.del("n", "grt")
+	-- vim.keymap.del("n", "gri")
+	-- vim.keymap.del("n", "grr")
+	-- vim.keymap.del("n", "gra")
+	-- vim.keymap.del("n", "grn")
+	-- vim.keymap.del("n", "grx")
 
 	-- Paste over currently selected text without yanking it
 	vim.keymap.set("x", "p", '"_dP', { noremap = true, silent = true })
@@ -471,7 +473,7 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "LSP: go to declaration" })
 	vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "LSP: go to definition" })
 	vim.keymap.set("n", "gI", function() Snacks.picker.lsp_implementations() end, { desc = "LSP: show implementation" })
-	vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, { desc = "LSP: show references" })
+	vim.keymap.set("n", "gGr", function() Snacks.picker.lsp_references() end, { desc = "LSP: show references" })
 	vim.keymap.set("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "LSP: go to type definition" })
 	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { desc = "LSP: hover" })
 
