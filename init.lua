@@ -268,8 +268,6 @@ now(function() -- snacks: indent guides, dashboard
 		preset = {
 			keys = {
 				{ action = ":ene", desc = "new file", key = "e", padding = 1 },
-				{ action = ":OpenCode", desc = "opencode › run", key = "o" },
-				{ action = ":OpenCodeAttach", desc = "opencode › attach", key = "a" },
 				{ action = ":DiffviewOpen", desc = "git status", key = "s", padding = 1 },
 				{ action = ":q", desc = "quit", key = "q" },
 			},
@@ -489,8 +487,6 @@ later(function() -- terminal keymaps
 	vim.keymap.set("n", "<leader>tg", "<cmd>tabnew | term lazygit<cr>", { desc = "Terminal: lazygit" })
 	vim.keymap.set("n", "<leader>ts", "<cmd>split | term<cr>", { desc = "Terminal: new terminal (horizontal split)" })
 	vim.keymap.set("n", "<leader>tv", "<cmd>vsplit | term<cr>", { desc = "Terminal: new terminal (vertical split)" })
-	vim.keymap.set("n", "<leader>to", "<cmd>OpenCode<cr>", { desc = "Terminal: open OpenCode" })
-	vim.keymap.set("n", "<leader>tO", "<cmd>OpenCodeAttach<cr>", { desc = "Terminal: attach OpenCode" })
 	vim.keymap.set("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Terminal: close current tab" })
 end)
 
@@ -771,10 +767,6 @@ end)
 
 later(function() -- mylib.terminal_title: terminal labels
 	require("mylib.terminal_title").setup()
-end)
-
-now(function() -- opencode
-	require("config.opencode").setup({ auto_open = vim.env.NVIM_OC ~= nil })
 end)
 
 later(function() -- trouble: diagnostics
