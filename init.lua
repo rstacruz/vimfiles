@@ -504,11 +504,11 @@ later(function() -- terminal keymaps
 	vim.keymap.set("n", "<leader>tcl", "<cmd>rightbelow vsplit | term claude --dangerously-skip-permissions<cr>", { desc = "Claude: open to right" })
 
 	-- Pi
-	vim.keymap.set("n", "<leader>ti.", "<cmd>tabnew | term pi<cr>", { desc = "Pi: open here" })
-	vim.keymap.set("n", "<leader>tit", "<cmd>tabnew | term pi<cr>", { desc = "Pi: open in tab" })
-	vim.keymap.set("n", "<leader>tij", "<cmd>belowright split | term pi<cr>", { desc = "Pi: open to down" })
-	vim.keymap.set("n", "<leader>tih", "<cmd>leftabove vsplit | term pi<cr>", { desc = "Pi: open to left" })
-	vim.keymap.set("n", "<leader>til", "<cmd>rightbelow vsplit | term pi<cr>", { desc = "Pi: open to right" })
+	vim.keymap.set("n", "<leader>tp.", "<cmd>tabnew | term pi<cr>", { desc = "Pi: open here" })
+	vim.keymap.set("n", "<leader>tpt", "<cmd>tabnew | term pi<cr>", { desc = "Pi: open in tab" })
+	vim.keymap.set("n", "<leader>tpj", "<cmd>belowright split | term pi<cr>", { desc = "Pi: open to down" })
+	vim.keymap.set("n", "<leader>tph", "<cmd>leftabove vsplit | term pi<cr>", { desc = "Pi: open to left" })
+	vim.keymap.set("n", "<leader>tpl", "<cmd>rightbelow vsplit | term pi<cr>", { desc = "Pi: open to right" })
 	-- stylua: ignore end
 end)
 
