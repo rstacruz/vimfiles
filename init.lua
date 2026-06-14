@@ -875,6 +875,26 @@ later(function() -- blame
 	-- vim.keymap.set("n", "<leader>gB", "<cmd>BlameToggle virtual<cr>", { desc = "Show git blame (virtual)" })
 end)
 
+later(function() -- octo
+	add({
+		source = "pwntester/octo.nvim",
+		depends = { "nvim-lua/plenary.nvim", "folke/snacks.nvim" },
+	})
+	require("octo").setup({
+		picker = "snacks",
+		enable_builtin = true,
+		file_panel = { icons = false },
+	})
+
+	-- stylua: ignore start
+	vim.keymap.set("n", "<leader>oi", "<cmd>Octo issue list<cr>", { desc = "Octo: list issues" })
+	vim.keymap.set("n", "<leader>op", "<cmd>Octo pr list<cr>", { desc = "Octo: list pull requests" })
+	vim.keymap.set("n", "<leader>on", "<cmd>Octo notification list<cr>", { desc = "Octo: list notifications" })
+	vim.keymap.set("n", "<leader>os", "<cmd>Octo search<cr>", { desc = "Octo: search GitHub" })
+	vim.keymap.set("n", "<leader>od", "<cmd>Octo discussion list<cr>", { desc = "Octo: list discussions" })
+	-- stylua: ignore end
+end)
+
 -- Markdown ------------------------------------------------------------------------------
 
 now_if_args(function() -- render-markdown
@@ -1061,6 +1081,7 @@ later(function() -- mini.clue: shows keyboard shortcuts
 			{ mode = "n", keys = "<leader>c", desc = "+code" },
 			{ mode = "n", keys = "<leader>x", desc = "+diagnostics" },
 			{ mode = "n", keys = "<leader>g", desc = "+git" },
+			{ mode = "n", keys = "<leader>o", desc = "+github" },
 			{ mode = "n", keys = "<leader>b", desc = "+buffer" },
 			{ mode = "n", keys = "<leader>f", desc = "+file" },
 			{ mode = "n", keys = "<leader>!", desc = "+experimental" },
