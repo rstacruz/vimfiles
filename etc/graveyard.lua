@@ -1,3 +1,6 @@
+-- Graveyard: removed/deprecated plugin configs kept for reference.
+-- This file is NOT sourced — nothing here runs.
+
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 local now_if_args = vim.fn.argc(-1) > 0 and now or later
 local now_if_no_args = vim.fn.argc(-1) > 0 and later or now
@@ -172,3 +175,20 @@ require("blink.cmp").setup({
 })
 
 -- * mini-files: arrow keys https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-files.md
+
+later(function() -- marks
+	add({ source = "chentoast/marks.nvim" })
+
+	-- marks: highlights marks in the signcolumn, and shows a list of marks
+	-- similar to harpoon
+	require("marks").setup({})
+end)
+
+later(function() -- difft
+	-- https://github.com/ahkohd/difft.nvim
+	add({ source = "ahkohd/difft.nvim" })
+	require("difft").setup({
+		command = "GIT_EXTERNAL_DIFF='difft --color=always' git diff",
+		layout = "float",
+	})
+end)

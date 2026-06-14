@@ -1150,17 +1150,7 @@ later(function() -- mini.etc
 	require("mini.diff").setup()
 end)
 
-later(function() -- marks
-	add({ source = "chentoast/marks.nvim" })
 
-	-- marks: highlights marks in the signcolumn, and shows a list of marks
-	-- similar to harpoon
-	require("marks").setup({})
-	table.insert(CLUES, { mode = "n", keys = "<leader>m", desc = "+marks" })
-	vim.keymap.set("n", "<leader>ml", "<cmd>MarksListAll<cr>", { desc = "Marks: list all marks" })
-	vim.keymap.set("n", "<leader>mb", "<cmd>BookmarksListAll<cr>", { desc = "Marks: list bookmarks" })
-	vim.keymap.set("n", "<leader>mx", "<cmd>delmarks!<cr>", { desc = "Marks: delete all marks" })
-end)
 
 later(function() -- sessions
 	local MiniSessions = require("mini.sessions")
@@ -1179,21 +1169,7 @@ later(function() -- sessions
 	-- stylua: ignore end
 end)
 
-later(function() -- difft
-	-- https://github.com/ahkohd/difft.nvim
-	add({ source = "ahkohd/difft.nvim" })
-	vim.keymap.set("n", "<leader>!D", function()
-		if Difft.is_visible() then
-			Difft.hide()
-		else
-			Difft.diff()
-		end
-	end, { desc = "Difft: toggle" })
-	require("difft").setup({
-		command = "GIT_EXTERNAL_DIFF='difft --color=always' git diff", -- or "jj diff --no-pager"
-		layout = "float", -- nil (buffer), "float", or "ivy_taller"
-	})
-end)
+
 
 later(function() -- scope
 	add({ source = "tiagovla/scope.nvim" })
@@ -1225,47 +1201,6 @@ now(function() -- flatten: allow `nvim` in terminal
 	flatten.setup({})
 end)
 
--- later(function() -- smear-cursor
--- 	if not vim.g.neovide then
--- 		add({ source = "sphamba/smear-cursor.nvim" })
--- 		require("smear_cursor").setup({
---
--- 			cursor_color = "#ff8060",
--- 			-- particles_enabled = true,
--- 			-- stiffness = 0.5,
--- 			-- trailing_stiffness = 0.2,
--- 			-- trailing_exponent = 5,
--- 			-- damping = 0.6,
--- 			-- gradient_exponent = 0,
--- 			-- gamma = 1,
--- 			-- never_draw_over_target = true, -- if you want to actually see under the cursor
--- 			-- hide_target_hack = true, -- same
--- 			-- particle_spread = 1,
--- 			-- particles_per_second = 500,
--- 			-- particles_per_length = 50,
--- 			-- particle_max_lifetime = 800,
--- 			-- particle_max_initial_velocity = 20,
--- 			-- particle_velocity_from_cursor = 0.5,
--- 			-- particle_damping = 0.15,
--- 			-- particle_gravity = -50,
--- 			-- min_distance_emit_particles = 0,
--- 		})
--- 	end
--- end)
-
--- later(function() -- mini.animate
--- 	if not vim.g.neovide then
--- 		local animate = require("mini.animate")
--- 		local fast = animate.gen_timing.cubic({ duration = 60, unit = "total" })
--- 		local xfast = animate.gen_timing.cubic({ duration = 20, unit = "total" })
---
--- 		animate.setup({
--- 			cursor = { enable = false },
--- 			scroll = { timing = fast },
--- 			resize = { timing = xfast },
--- 		})
--- 	end
--- end)
 
 later(function()
 	if vim.env.UPDATE_DEPS then
