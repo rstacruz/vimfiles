@@ -478,6 +478,8 @@ later(function() -- keys, keymaps
   vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Buffer: prev buffer" })
   vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Buffer: next buffer" })
 
+  vim.keymap.set("n", "<leader>mr", "<cmd>RenderMarkdown toggle<cr>", { desc = "Toggle markdown rendering" })
+
   -- Terminal escape
 	vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 	vim.keymap.set("t", "<Esc><Esc>", "<Esc>")
