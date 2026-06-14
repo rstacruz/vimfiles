@@ -881,8 +881,13 @@ now_if_args(function() -- render-markdown
 		restart_highlighter = true,
 		render_modes = { "n", "v", "i", "c" },
 		heading = {
-			icons = { "━ " },
-			signs = { "󰎤 ", "󰎩 ", "󰎬 ", "󰎮 ", "󰎰 ", "󰎵 " },
+			width = "block",
+			border = { true, true, false, false, false, false },
+			border_virtual = true,
+			right_pad = 8,
+			icons = { "" },
+			sign = false,
+			-- signs = { "󰎤 ", "󰎩 ", "󰎬 ", "󰎮 ", "󰎰 ", "󰎵 " },
 		},
 
 		code = {
@@ -890,7 +895,8 @@ now_if_args(function() -- render-markdown
 			style = "full",
 			width = "block",
 			position = "right",
-			right_pad = 5,
+			right_pad = 3,
+			left_pad = 2,
 			border = "thick",
 		},
 
