@@ -725,25 +725,7 @@ now_if_args(function() -- mini.statusline
 	end
 	statusline.setup({ content = { active = active } })
 
-	-- Restore status line that was hidden earlier
-	---@param value number
-	local function defer_laststatus_update_on_insert(value)
-		local group = vim.api.nvim_create_augroup("restore", { clear = true })
-		vim.api.nvim_create_autocmd("InsertEnter", {
-			group = group,
-			callback = function()
-				vim.opt.laststatus = value
-				vim.api.nvim_del_augroup_by_id(group)
-			end,
-		})
-	end
-
-	-- Show status line immediately when starting with a file
-	if vim.fn.argc(-1) > 0 then
-		vim.opt.laststatus = 3
-	else
-		defer_laststatus_update_on_insert(3)
-	end
+	vim.opt.laststatus = 3
 end)
 
 later(function() -- mini.pick
@@ -1034,6 +1016,20 @@ later(function() -- copilot
 	vim.keymap.set("n", "<leader>!as", "<cmd>Copilot panel<cr>", { desc = "Open Copilot suggestions panel" })
 end)
 
+later(function() -- mole: code annotation notes
+	add({ source = "zion-off/mole.nvim", depends = { "MunifTanjim/nui.nvim" } })
+	require("mole").setup({
+		picker = "snacks",
+		keys = {
+			start = "<leader>ns",
+			stop = "<leader>nq",
+			resume = "<leader>nr",
+			toggle = "<leader>nw",
+			annotate = "<leader>na",
+		},
+	})
+end)
+
 -- Mini ----------------------------------------------------------------------------------
 
 later(function() -- mini.clue: shows keyboard shortcuts
@@ -1086,6 +1082,7 @@ later(function() -- mini.clue: shows keyboard shortcuts
 			{ mode = "n", keys = "<leader>f", desc = "+file" },
 			{ mode = "n", keys = "<leader>!", desc = "+experimental" },
 			{ mode = "n", keys = "<leader>!d", desc = "+debug" },
+			{ mode = "n", keys = "<leader>n", desc = "+notes" },
 			{ mode = "n", keys = "<leader>q", desc = "+quit" },
 			-- Enhance this by adding descriptions for <Leader> mapping groups
 			miniclue.gen_clues.builtin_completion(),

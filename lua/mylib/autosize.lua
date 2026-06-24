@@ -3,8 +3,10 @@
 --
 -- example:
 --   require("mylib.autosize").setup()
+--   require("mylib.autosize").toggle()
 
 local settings = {
+	enabled = true,
 	excluded_filetypes = {
 		"aerial",
 		"AiderConsole",
@@ -30,7 +32,7 @@ local function is_floating(win_id)
 end
 
 local function run_autosize()
-	if settings.min_width == -1 then
+	if not settings.enabled then
 		return
 	end
 
@@ -62,6 +64,23 @@ local function run_autosize()
 	vim.w.autosize_used = 1
 end
 
+local function disable()
+	settings.enabled = false
+end
+
+local function enable()
+	settings.enabled = true
+	run_autosize()
+end
+
+local function toggle()
+	if settings.enabled then
+		disable()
+	else
+		enable()
+	end
+end
+
 local function setup(opts)
 	settings = vim.tbl_extend("keep", settings, opts or {})
 
@@ -81,4 +100,4 @@ local function setup(opts)
 	})
 end
 
-return { setup = setup }
+return { setup = setup, enable = enable, disable = disable, toggle = toggle }
