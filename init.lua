@@ -1021,10 +1021,10 @@ later(function() -- mole: code annotation notes
 	require("mole").setup({
 		picker = "snacks",
 		keys = {
-			start = "<leader>ns",
-			stop = "<leader>nq",
-			resume = "<leader>nr",
-			toggle = "<leader>nw",
+			start_session = "<leader>ns",
+			stop_session = "<leader>nq",
+			resume_session = "<leader>nr",
+			toggle_window = "<leader>nw",
 			annotate = "<leader>na",
 		},
 	})
@@ -1168,8 +1168,6 @@ later(function() -- mini.etc
 	require("mini.diff").setup()
 end)
 
-
-
 later(function() -- sessions
 	local MiniSessions = require("mini.sessions")
 	local session_dir = vim.fn.stdpath("data") .. "/sessions"
@@ -1186,8 +1184,6 @@ later(function() -- sessions
 	vim.keymap.set("n", "<leader>qr", MiniSessions.restart, { desc = "Session: restart Neovim" })
 	-- stylua: ignore end
 end)
-
-
 
 later(function() -- scope
 	add({ source = "tiagovla/scope.nvim" })
@@ -1218,7 +1214,6 @@ now(function() -- flatten: allow `nvim` in terminal
 	local flatten = require("flatten")
 	flatten.setup({})
 end)
-
 
 later(function()
 	if vim.env.UPDATE_DEPS then
