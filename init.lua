@@ -732,6 +732,11 @@ later(function() -- mini.pick
 	require("mini.pick").setup({})
 end)
 
+later(function() -- tiny-cmdline: centered floating cmdline
+	add({ source = "rachartier/tiny-cmdline.nvim" })
+	require("tiny-cmdline").setup()
+end)
+
 later(function() -- mini.notify: toast notifications
 	local notify = require("mini.notify")
 	notify.setup({
@@ -883,7 +888,8 @@ now_if_args(function() -- render-markdown
 	add({ source = "MeanderingProgrammer/render-markdown.nvim" })
 	require("render-markdown").setup({
 		restart_highlighter = true,
-		render_modes = { "n", "v", "i", "c" },
+		render_modes = { "n", "v", "i", "c", "t" },
+
 		heading = {
 			width = "block",
 			border = { true, true, false, false, false, false },
