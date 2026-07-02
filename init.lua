@@ -296,6 +296,36 @@ end)
 
 -- Keymaps -------------------------------------------------------------------------------
 
+local nav_on = false
+local nav_modes = { "n", "i", "v", "t" }
+local nav_keys = {
+	["<C-S-l>"] = { "<Cmd>tabprevious<cr>", "Tab: prev" },
+	["<C-S-y>"] = { "<Cmd>tabnext<cr>", "Tab: next" },
+	["<C-S-n>"] = { "<Cmd>wincmd h<cr>", "Focus: left" },
+	["<C-S-e>"] = { "<Cmd>wincmd j<cr>", "Focus: down" },
+	["<C-S-i>"] = { "<Cmd>wincmd l<cr>", "Focus: right" },
+	["<C-S-u>"] = { "<Cmd>wincmd k<cr>", "Focus: up" },
+	["<C-S-v>"] = { "<Cmd>vsplit<cr>", "Split: vertical" },
+	["<C-S-h>"] = { "<Cmd>split<cr>", "Split: horizontal" },
+	["<C-S-t>"] = { "<Cmd>tabnew<cr>", "Tab: new" },
+}
+local function apply_nav()
+	for key, spec in pairs(nav_keys) do
+		if nav_on then
+			vim.keymap.set(nav_modes, key, spec[1], { desc = spec[2] })
+		else
+			vim.keymap.del(nav_modes, key)
+		end
+	end
+end
+local function toggle_nav()
+	nav_on = not nav_on
+	apply_nav()
+	vim.notify("Tab nav keymaps: " .. (nav_on and "on" or "off"))
+end
+nav_on = true
+apply_nav()
+
 later(function() -- keys, keymaps
 	local MiniPick = require("mini.pick")
 
@@ -459,6 +489,7 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>u,", function() vim.cmd("e " .. vim.fn.stdpath("config") .. "/init.lua") end, { desc = "Config: open settings" })
 	vim.keymap.set("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Change colorscheme" })
 	vim.keymap.set("n", "<leader>ux", function() Snacks.picker() end, { desc = "Snacks: choose picker" })
+	vim.keymap.set("n", "<leader>uk", toggle_nav, { desc = "Toggle tab nav keymaps" })
 
 	vim.keymap.set("v", "<leader>fyg", function() copy_git_link() end, { desc = "Copy: copy GitHub URL" })
 	vim.keymap.set("v", "<leader>fya", function() copy_absolute_path_range() end, { desc = "Copy: copy absolute path with line numbers" })
