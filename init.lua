@@ -867,8 +867,24 @@ later(function() -- diffview
 		source = "dlyongemallo/diffview.nvim",
 	})
 
+	require("diffview").setup({
+		-- See https://github.com/dlyongemallo/diffview-plus.nvim/blob/main/RECIPES.md
+		default_args = {
+			DiffviewOpen = { "--imply-local" },
+		},
+
+		-- Better diffs, character-level
+		enhanced_diff_hl = true,
+		diffopt = { algorithm = "histogram" },
+
+		file_panel = {
+			show_branch_name = true,
+			always_show_sections = true,
+		},
+	})
+
 	-- stylua: ignore start
-	vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Show diff" })
+	vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewToggle<cr>", { desc = "Show diff" })
 	vim.keymap.set("n", "<leader>gD", "<cmd>DiffviewOpen origin/main<cr>", { desc = "Show diff for branch" })
 	-- stylua: ignore end
 	-- Within the view:
