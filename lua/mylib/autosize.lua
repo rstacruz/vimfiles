@@ -13,6 +13,7 @@ local settings = {
 		"Avante",
 		"AvanteInput",
 		"AvanteSelectedFiles",
+		"codediff-explorer",
 		"DiffviewFiles",
 		"minifiles",
 		"neo-tree",
