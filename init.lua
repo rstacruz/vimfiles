@@ -884,8 +884,8 @@ later(function() -- diffview
 	})
 
 	-- stylua: ignore start
-	vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewToggle<cr>", { desc = "Show diff" })
-	vim.keymap.set("n", "<leader>gD", "<cmd>DiffviewOpen origin/main<cr>", { desc = "Show diff for branch" })
+	-- vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewToggle<cr>", { desc = "Show diff" })
+	-- vim.keymap.set("n", "<leader>gD", "<cmd>DiffviewOpen origin/main<cr>", { desc = "Show diff for branch" })
 	-- stylua: ignore end
 	-- Within the view:
 	-- <leader>cA - choose all
@@ -902,21 +902,32 @@ later(function() -- diffview
 end)
 
 later(function() -- diffbandit
-	add({ source = "CoreyKaylor/diffbandit.nvim" })
-	require("diffbandit").setup()
+	add({ source = "esmuellert/codediff.nvim" })
+	require("codediff").setup({
+		explorer = {
+			view_mode = "tree",
+		},
+	})
 
+	-- :CodeDiff
+	-- :CodeDiff history
+	--
+	-- Keymap:
+	-- g? - help
+	-- t - toggle side by side
+	-- gc - toggle compact mode
+	-- `-` - stage/unstage
+	--
+	-- q - quit
+	-- [c ]c - next hunk
+	-- [f ]f - next file
+	-- <leader>hs - stage hunk
+	-- <leader>hu - unstage hunk
+	-- <leader>hr - reject hunk
 	-- stylua: ignore start
-	-- vim.keymap.set("n", "<leader>gd", "<cmd>DiffBanditGit<cr>", { desc = "Show diff (diffbandit)" })
-	-- vim.keymap.set("n", "<leader>gD", "<cmd>DiffBanditGit --base main<cr>", { desc = "Show diff for branch (diffbandit)" })
-	-- vim.keymap.set("n", "<leader>gc", "<cmd>DiffBanditCommitPanel<cr>", { desc = "Git commit panel (diffbandit)" })
+	vim.keymap.set("n", "<leader>gd", "<cmd>CodeDiff<cr>", { desc = "Show diff" })
+	vim.keymap.set("n", "<leader>gD", "<cmd>CodeDiff origin/main<cr>", { desc = "Show diff for branch" })
 	-- stylua: ignore end
-	-- Inside a diff view:
-	-- ]c / [c - next/prev hunk
-	-- ]f / [f - next/prev changed file
-	-- <Space>  - toggle stage hunk
-	-- >> / <<  - apply left/right side
-	-- u        - undo last action
-	-- q        - close
 end)
 
 later(function() -- blame
