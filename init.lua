@@ -102,6 +102,7 @@ now(function() -- options
 	vim.opt.foldlevel = 99
 	vim.opt.updatetime = 500 -- time to show diagnostics
 	vim.opt.swapfile = false
+	vim.opt.winminwidth = 0 -- c-w | will zoom
 	vim.o.mousescroll = "ver:1" -- Slow mouse scroll
 	vim.o.shortmess = "CFOSWaco" -- Disable some built-in completion messages
 	vim.o.cursorlineopt = "screenline,number" -- Show cursor line per screen line
@@ -308,6 +309,7 @@ local nav_keys = {
 	["<C-S-v>"] = { "<Cmd>vsplit<cr>", "Split: vertical" },
 	["<C-S-h>"] = { "<Cmd>split<cr>", "Split: horizontal" },
 	["<C-S-t>"] = { "<Cmd>tabnew<cr>", "Tab: new" },
+	["<C-S-z>"] = { "<C-w>|", "Pane: zoom" },
 }
 local function apply_nav()
 	for key, spec in pairs(nav_keys) do
@@ -452,6 +454,7 @@ later(function() -- keys, keymaps
 	vim.keymap.set("x", "p", '"_dP', { noremap = true, silent = true })
 
   -- stylua: ignore start
+	vim.keymap.set("n", "<c-z>", "<c-w>|", { desc = "Pane: zoom" })
 	vim.keymap.set("n", "<c-p>", pick_git_files, { desc = "Open file in git..." })
 	vim.keymap.set("n", "<F1>", function() Snacks.picker.keymaps() end, { desc = "Open keymaps" })
 
@@ -487,6 +490,7 @@ later(function() -- keys, keymaps
 	vim.keymap.set("n", "<leader>ss", function() Snacks.picker.lsp_symbols() end, { desc = "LSP: show LSP symbols" })
 	vim.keymap.set("n", "<leader>s\"", function() Snacks.picker.registers() end, { desc = "Open registers" })
 	vim.keymap.set("n", "<leader>u,", function() vim.cmd("e " .. vim.fn.stdpath("config") .. "/init.lua") end, { desc = "Config: open settings" })
+	vim.keymap.set("n", "<leader>ua", function() require("mylib.autosize").toggle() end, { desc = "Toggle autosize" })
 	vim.keymap.set("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Change colorscheme" })
 	vim.keymap.set("n", "<leader>ux", function() Snacks.picker() end, { desc = "Snacks: choose picker" })
 	vim.keymap.set("n", "<leader>uk", toggle_nav, { desc = "Toggle tab nav keymaps" })
