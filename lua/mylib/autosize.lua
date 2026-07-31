@@ -14,7 +14,6 @@ local settings = {
 		"AvanteInput",
 		"AvanteSelectedFiles",
 		"codediff-explorer",
-		"DiffviewFiles",
 		"minifiles",
 		"neo-tree",
 		"NvimTree",

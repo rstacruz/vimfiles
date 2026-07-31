@@ -270,7 +270,7 @@ now(function() -- snacks: indent guides, dashboard
 		preset = {
 			keys = {
 				{ action = ":ene", desc = "new file", key = "e", padding = 1 },
-				{ action = ":DiffviewOpen", desc = "git status", key = "s", padding = 1 },
+				{ action = ":CodeDiff", desc = "git status", key = "s", padding = 1 },
 				{ action = ":q", desc = "quit", key = "q" },
 			},
 		},
@@ -864,46 +864,6 @@ later(function() -- mini.files
 end)
 
 -- Git -----------------------------------------------------------------------------------
-
-later(function() -- diffview
-	add({
-		-- see https://github.com/sindrets/diffview.nvim/issues/605
-		source = "dlyongemallo/diffview.nvim",
-	})
-
-	require("diffview").setup({
-		-- See https://github.com/dlyongemallo/diffview-plus.nvim/blob/main/RECIPES.md
-		default_args = {
-			DiffviewOpen = { "--imply-local" },
-		},
-
-		-- Better diffs, character-level
-		enhanced_diff_hl = true,
-		diffopt = { algorithm = "histogram" },
-
-		file_panel = {
-			show_branch_name = true,
-			always_show_sections = true,
-		},
-	})
-
-	-- stylua: ignore start
-	-- vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewToggle<cr>", { desc = "Show diff" })
-	-- vim.keymap.set("n", "<leader>gD", "<cmd>DiffviewOpen origin/main<cr>", { desc = "Show diff for branch" })
-	-- stylua: ignore end
-	-- Within the view:
-	-- <leader>cA - choose all
-	-- <leader>cB/cO/cT - choose base / ours / theirs
-	-- dX - delete conflict region
-	-- [x ]x - next conflict
-	-- L - open commit log panel
-	--
-	-- s / - - stage or unstage
-	-- S - stage all
-	-- gf - open in previous tab
-	-- <C-w><C-f> - open in split
-	-- <C-w>gf - open in new tab
-end)
 
 later(function() -- diffbandit
 	add({ source = "esmuellert/codediff.nvim" })

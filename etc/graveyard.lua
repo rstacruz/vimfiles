@@ -192,3 +192,39 @@ later(function() -- difft
 		layout = "float",
 	})
 end)
+
+later(function() -- diffview (replaced by codediff.nvim)
+	add({
+		-- see https://github.com/sindrets/diffview.nvim/issues/605
+		source = "dlyongemallo/diffview.nvim",
+	})
+
+	require("diffview").setup({
+		-- See https://github.com/dlyongemallo/diffview-plus.nvim/blob/main/RECIPES.md
+		default_args = {
+			DiffviewOpen = { "--imply-local" },
+		},
+
+		-- Better diffs, character-level
+		enhanced_diff_hl = true,
+		diffopt = { algorithm = "histogram" },
+
+		file_panel = {
+			show_branch_name = true,
+			always_show_sections = true,
+		},
+	})
+
+	-- Within the view:
+	-- <leader>cA - choose all
+	-- <leader>cB/cO/cT - choose base / ours / theirs
+	-- dX - delete conflict region
+	-- [x ]x - next conflict
+	-- L - open commit log panel
+	--
+	-- s / - - stage or unstage
+	-- S - stage all
+	-- gf - open in previous tab
+	-- <C-w><C-f> - open in split
+	-- <C-w>gf - open in new tab
+end)
