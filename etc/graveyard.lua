@@ -1,5 +1,11 @@
 -- Graveyard: removed/deprecated plugin configs kept for reference.
+later(function() -- scope
+	add({ source = "tiagovla/scope.nvim" })
+	require("scope").setup({})
+end)
+
 -- This file is NOT sourced — nothing here runs.
+-- Try to put latest ones at the bottom.
 
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 local now_if_args = vim.fn.argc(-1) > 0 and now or later
@@ -227,4 +233,9 @@ later(function() -- diffview (replaced by codediff.nvim)
 	-- gf - open in previous tab
 	-- <C-w><C-f> - open in split
 	-- <C-w>gf - open in new tab
+end)
+
+later(function() -- scope: idk i like being able to open the same terminal in 2 tabs
+	add({ source = "tiagovla/scope.nvim" })
+	require("scope").setup({})
 end)
