@@ -873,6 +873,20 @@ later(function() -- diffbandit
 		},
 	})
 
+	-- Diff against the merge-base with the current PR's base branch (falls back to origin/main)
+	local function diff_against_pr_base()
+		local base = vim.trim(vim.fn.system("gh pr view --json baseRefName --jq .baseRefName 2>/dev/null"))
+		if vim.v.shell_error ~= 0 or base == "" then
+			base = "main"
+		end
+		local merge_base = vim.trim(vim.fn.system("git merge-base " .. base .. " HEAD"))
+		if vim.v.shell_error ~= 0 or merge_base == "" then
+			vim.notify("diff_against_pr_base: could not find merge-base", vim.log.levels.ERROR)
+			return
+		end
+		vim.cmd("CodeDiff " .. merge_base)
+	end
+
 	-- :CodeDiff
 	-- :CodeDiff history
 	--
@@ -890,7 +904,7 @@ later(function() -- diffbandit
 	-- <leader>hr - reject hunk
 	-- stylua: ignore start
 	vim.keymap.set("n", "<leader>gd", "<cmd>CodeDiff<cr>", { desc = "Show diff" })
-	vim.keymap.set("n", "<leader>gD", "<cmd>CodeDiff origin/main<cr>", { desc = "Show diff for branch" })
+	vim.keymap.set("n", "<leader>gp", diff_against_pr_base, { desc = "Show diff against PR base" })
 	-- stylua: ignore end
 end)
 
