@@ -878,6 +878,8 @@ later(function() -- diffbandit
 		local base = vim.trim(vim.fn.system("gh pr view --json baseRefName --jq .baseRefName 2>/dev/null"))
 		if vim.v.shell_error ~= 0 or base == "" then
 			base = "main"
+		else
+			base = "origin/" .. base
 		end
 		local merge_base = vim.trim(vim.fn.system("git merge-base " .. base .. " HEAD"))
 		if vim.v.shell_error ~= 0 or merge_base == "" then
