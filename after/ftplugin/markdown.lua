@@ -7,7 +7,7 @@ vim.opt_local.number = false -- toggle with leader-ul
 local function gh_preview()
 	vim.cmd("write")
 	local file = vim.fn.expand("%:p")
-	vim.fn.jobstart({ "gh", "markdown-preview", file }, { detach = true })
+	vim.fn.jobstart({ "timeout", "600", "gh", "markdown-preview", file }, { detach = true })
 end
 
 vim.keymap.set("n", "<leader>mp", gh_preview, { buffer = true, desc = "Markdown: preview in browser…" })
