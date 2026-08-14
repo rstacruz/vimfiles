@@ -1091,6 +1091,17 @@ later(function() -- mole: code annotation notes
 	})
 end)
 
+later(function() -- postilla: inline review comments, exported for coding agents
+	add({ source = "eltonsst/postilla.nvim" })
+	require("postilla").setup({ keymap = "<leader>rc" })
+
+	-- stylua: ignore start
+	vim.keymap.set("n", "<leader>rs", "<cmd>PostillaStart<cr>", { desc = "Postilla: start/restore review" })
+	vim.keymap.set("n", "<leader>rl", "<cmd>PostillaList<cr>", { desc = "Postilla: list comments" })
+	vim.keymap.set("n", "<leader>ry", "<cmd>PostillaDone<cr>", { desc = "Postilla: export to clipboard" })
+	-- stylua: ignore end
+end)
+
 -- Mini ----------------------------------------------------------------------------------
 
 later(function() -- mini.clue: shows keyboard shortcuts
