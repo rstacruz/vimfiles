@@ -1092,20 +1092,6 @@ later(function() -- copilot
 	vim.keymap.set("n", "<leader>!as", "<cmd>Copilot panel<cr>", { desc = "Open Copilot suggestions panel" })
 end)
 
-later(function() -- mole: code annotation notes
-	add({ source = "zion-off/mole.nvim", depends = { "MunifTanjim/nui.nvim" } })
-	require("mole").setup({
-		picker = "snacks",
-		keys = {
-			start_session = "<leader>ns",
-			stop_session = "<leader>nq",
-			resume_session = "<leader>nr",
-			toggle_window = "<leader>nw",
-			annotate = "<leader>na",
-		},
-	})
-end)
-
 later(function() -- postilla: inline review comments, exported for coding agents
 	add({ source = "eltonsst/postilla.nvim" })
 	require("postilla").setup({ keymap = "<leader>rc" })

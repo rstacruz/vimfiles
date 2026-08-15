@@ -239,3 +239,17 @@ later(function() -- scope: idk i like being able to open the same terminal in 2 
 	add({ source = "tiagovla/scope.nvim" })
 	require("scope").setup({})
 end)
+
+later(function() -- mole: code annotation notes
+	add({ source = "zion-off/mole.nvim", depends = { "MunifTanjim/nui.nvim" } })
+	require("mole").setup({
+		picker = "snacks",
+		keys = {
+			start_session = "<leader>ns",
+			stop_session = "<leader>nq",
+			resume_session = "<leader>nr",
+			toggle_window = "<leader>nw",
+			annotate = "<leader>na",
+		},
+	})
+end)
