@@ -910,6 +910,21 @@ later(function() -- diffbandit
 	-- stylua: ignore end
 end)
 
+later(function() -- atlas: PRs & issues (GitHub/GitLab/Bitbucket/Jira)
+	add({ source = "emrearmagan/atlas.nvim" })
+	require("atlas").setup({})
+	--
+	-- Commands:
+	-- :AtlasPulls [provider] - browse PRs
+	-- :AtlasIssues [provider] - browse issues
+	-- :AtlasSearch [provider] - search PRs/issues
+	-- :AtlasOpen <target> - open PR URL / issue key / number
+	-- :AtlasCreatePR - create PR from current branch
+	-- :AtlasDiff <base>...<head> - review diff
+	-- :AtlasLogs / :AtlasClearCache
+	-- :checkhealth atlas
+end)
+
 later(function() -- blame
 	add({ source = "FabijanZulj/blame.nvim" })
 	require("blame").setup({ blame_options = { "-w" } })
