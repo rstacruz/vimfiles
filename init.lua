@@ -187,6 +187,54 @@ now_if_args(function() -- tree sitter
 			end
 		end,
 	})
+
+	-- Syntax-aware text objects (select, move, swap)
+	-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+	add({
+		source = "nvim-treesitter/nvim-treesitter-textobjects",
+		checkout = "main",
+	})
+
+	-- Use treesitter textobjects instead of python's built-in `]]`/`]m` ftplugin maps
+	vim.g.no_python_maps = true
+
+	require("nvim-treesitter-textobjects").setup({
+		select = {
+			-- Automatically jump forward to textobj, similar to targets.vim
+			lookahead = true,
+			selection_modes = {
+				["@function.outer"] = "V", -- linewise
+				["@class.outer"] = "V", -- linewise
+			},
+		},
+		move = {
+			set_jumps = true,
+		},
+	})
+
+	local select_textobject = require("nvim-treesitter-textobjects.select").select_textobject
+	local move = require("nvim-treesitter-textobjects.move")
+	local swap = require("nvim-treesitter-textobjects.swap")
+
+	-- stylua: ignore start
+	vim.keymap.set({ "x", "o" }, "am", function() select_textobject("@function.outer", "textobjects") end, { desc = "Treesitter-textobjects: select around function" })
+	vim.keymap.set({ "x", "o" }, "im", function() select_textobject("@function.inner", "textobjects") end, { desc = "Treesitter-textobjects: select inside function" })
+	vim.keymap.set({ "x", "o" }, "ac", function() select_textobject("@class.outer", "textobjects") end, { desc = "Treesitter-textobjects: select around class" })
+	vim.keymap.set({ "x", "o" }, "ic", function() select_textobject("@class.inner", "textobjects") end, { desc = "Treesitter-textobjects: select inside class" })
+	vim.keymap.set({ "x", "o" }, "al", function() select_textobject("@loop.outer", "textobjects") end, { desc = "Treesitter-textobjects: select around loop" })
+	vim.keymap.set({ "x", "o" }, "il", function() select_textobject("@loop.inner", "textobjects") end, { desc = "Treesitter-textobjects: select inside loop" })
+	vim.keymap.set({ "x", "o" }, "ah", function() select_textobject("@section.outer", "textobjects") end, { desc = "Treesitter-textobjects: select markdown h2 section" })
+
+	vim.keymap.set({ "n", "x", "o" }, "]m", function() move.goto_next_start("@function.outer", "textobjects") end, { desc = "Treesitter-textobjects: next function start" })
+	vim.keymap.set({ "n", "x", "o" }, "[m", function() move.goto_previous_start("@function.outer", "textobjects") end, { desc = "Treesitter-textobjects: prev function start" })
+	vim.keymap.set({ "n", "x", "o" }, "]M", function() move.goto_next_end("@function.outer", "textobjects") end, { desc = "Treesitter-textobjects: next function end" })
+	vim.keymap.set({ "n", "x", "o" }, "[M", function() move.goto_previous_end("@function.outer", "textobjects") end, { desc = "Treesitter-textobjects: prev function end" })
+	vim.keymap.set({ "n", "x", "o" }, "]o", function() move.goto_next_start({ "@loop.inner", "@loop.outer" }, "textobjects") end, { desc = "Treesitter-textobjects: next loop" })
+	vim.keymap.set({ "n", "x", "o" }, "[o", function() move.goto_previous_start({ "@loop.inner", "@loop.outer" }, "textobjects") end, { desc = "Treesitter-textobjects: prev loop" })
+
+	vim.keymap.set("n", "<leader>a", function() swap.swap_next("@parameter.inner") end, { desc = "Treesitter-textobjects: swap parameter next" })
+	vim.keymap.set("n", "<leader>A", function() swap.swap_previous("@parameter.outer") end, { desc = "Treesitter-textobjects: swap parameter previous" })
+	-- stylua: ignore end
 end)
 
 now(function() -- color scheme
