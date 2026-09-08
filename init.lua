@@ -1010,9 +1010,10 @@ now_if_args(function() -- render-markdown
 
 		heading = {
 			width = "block",
-			border = { true, true, false, false, false, false },
+			-- border = { true, true, false, false, false, false },
+			border = false,
 			border_virtual = true,
-			right_pad = 8,
+			right_pad = { 300, 300, 8, 8, 8, 8 },
 			icons = { "" },
 			sign = false,
 			-- signs = { "󰎤 ", "󰎩 ", "󰎬 ", "󰎮 ", "󰎰 ", "󰎵 " },
