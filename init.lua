@@ -41,7 +41,7 @@ end
 
 setup_mini()
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
-local no_args = vim.fn.argc(-1) == 0 and not vim.env.PROF
+local no_args = #vim.v.argv == 1 and not vim.env.PROF
 local now_if_args = vim.fn.argc(-1) > 0 and now or later
 
 -- Config -------------------------------------------------------------------------------
@@ -318,7 +318,8 @@ now(function() -- snacks: indent guides, dashboard
 		preset = {
 			keys = {
 				{ action = ":ene", desc = "new file", key = "e", padding = 1 },
-				{ action = ":CodeDiff", desc = "git status", key = "s", padding = 1 },
+				{ action = ":CodeDiff", desc = "codediff", key = "s", padding = 1 },
+				{ action = ":CodeDiffPR", desc = "diff against PR base", key = "p", padding = 1 },
 				{ action = ":q", desc = "quit", key = "q" },
 			},
 		},
@@ -331,7 +332,8 @@ now(function() -- snacks: indent guides, dashboard
 	}
 
 	require("snacks").setup({
-		dashboard = no_args and dashboard_opts or {},
+		-- only auto-open the dashboard for a bare `nvim` invocation
+		dashboard = vim.tbl_extend("force", dashboard_opts, { enabled = no_args }),
 		input = { enabled = true }, -- for renames, etc
 		-- indent = { enabled = true }, -- needs early setup
 		picker = { enabled = true },
@@ -921,24 +923,80 @@ later(function() -- diffbandit
 		},
 	})
 
-	-- Diff against the merge-base with the current PR's base branch (falls back to origin/main)
-	local function diff_against_pr_base()
-		local base = vim.trim(vim.fn.system("gh pr view --json baseRefName --jq .baseRefName 2>/dev/null"))
-		if vim.v.shell_error ~= 0 or base == "" then
-			base = "main"
-		else
-			base = "origin/" .. base
+	-- Run a command in `cwd` and return trimmed stdout, or nil on failure
+	local function run(cmd, cwd)
+		local ok, proc = pcall(vim.system, cmd, { cwd = cwd, text = true })
+		if not ok then
+			return nil
 		end
-		local merge_base = vim.trim(vim.fn.system("git merge-base " .. base .. " HEAD"))
-		if vim.v.shell_error ~= 0 or merge_base == "" then
-			vim.notify("diff_against_pr_base: could not find merge-base", vim.log.levels.ERROR)
+		local result = proc:wait(10000)
+		if result.code ~= 0 then
+			return nil
+		end
+		return vim.trim(result.stdout or "")
+	end
+
+	local function git_root()
+		local dir = vim.fs.dirname(vim.api.nvim_buf_get_name(0))
+		if dir == "" or vim.fn.isdirectory(dir) == 0 then
+			dir = vim.fn.getcwd()
+		end
+		return run({ "git", "rev-parse", "--show-toplevel" }, dir)
+	end
+
+	local function ref_exists(ref, root)
+		return run({ "git", "rev-parse", "--verify", "--quiet", ref }, root) ~= nil
+	end
+
+	-- Prefer the current PR's base branch; fall back to the remote's default branch
+	local function resolve_pr_base(root)
+		local base = run({ "gh", "pr", "view", "--json", "baseRefName", "--jq", ".baseRefName" }, root)
+		if base and base ~= "" then
+			for _, ref in ipairs({ "origin/" .. base, base }) do
+				if ref_exists(ref, root) then
+					return ref, false
+				end
+			end
+		end
+
+		local default = run({ "git", "symbolic-ref", "--short", "refs/remotes/origin/HEAD" }, root)
+		if default and ref_exists(default, root) then
+			return default, true
+		end
+		for _, ref in ipairs({ "main", "master" }) do
+			if ref_exists(ref, root) then
+				return ref, true
+			end
+		end
+	end
+
+	-- :CodeDiffPR uses codediff's triple-dot syntax (merge-base vs working tree)
+	local function diff_against_pr_base()
+		local root = git_root()
+		if not root then
+			vim.notify("CodeDiffPR: not in a git repository", vim.log.levels.ERROR)
 			return
 		end
-		vim.cmd("CodeDiff " .. merge_base)
+
+		local base, fallback = resolve_pr_base(root)
+		if not base then
+			vim.notify("CodeDiffPR: no base branch found", vim.log.levels.ERROR)
+			return
+		end
+		if fallback then
+			vim.notify("CodeDiffPR: no PR found, diffing against " .. base, vim.log.levels.INFO)
+		end
+
+		vim.cmd("CodeDiff " .. base .. "...")
 	end
+
+	vim.api.nvim_create_user_command("CodeDiffPR", diff_against_pr_base, {
+		desc = "Diff against the current PR's base branch",
+	})
 
 	-- :CodeDiff
 	-- :CodeDiff history
+	-- :CodeDiffPR (diff against PR base, or origin/HEAD when there's no PR)
 	--
 	-- Keymap:
 	-- g? - help
@@ -954,7 +1012,7 @@ later(function() -- diffbandit
 	-- <leader>hr - reject hunk
 	-- stylua: ignore start
 	vim.keymap.set("n", "<leader>gd", "<cmd>CodeDiff<cr>", { desc = "Show diff" })
-	vim.keymap.set("n", "<leader>gp", diff_against_pr_base, { desc = "Show diff against PR base" })
+	vim.keymap.set("n", "<leader>gp", "<cmd>CodeDiffPR<cr>", { desc = "Show diff against PR base" })
 	-- stylua: ignore end
 end)
 
