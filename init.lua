@@ -1083,7 +1083,7 @@ now_if_args(function() -- render-markdown
 			width = "block",
 			position = "right",
 			right_pad = 3,
-			left_pad = 2,
+			left_pad = 0,
 			border = "thick",
 		},
 
