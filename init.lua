@@ -41,7 +41,9 @@ end
 
 setup_mini()
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
-local no_args = #vim.v.argv == 1 and not vim.env.PROF
+-- The built-in TUI re-execs the server as `nvim --embed [args...]`
+local argv = vim.v.argv
+local no_args = #argv < (argv[2] == "--embed" and 3 or 2) and not vim.env.PROF
 local now_if_args = vim.fn.argc(-1) > 0 and now or later
 
 -- Config -------------------------------------------------------------------------------
@@ -317,9 +319,9 @@ now(function() -- snacks: indent guides, dashboard
 		width = 40,
 		preset = {
 			keys = {
-				{ action = ":ene", desc = "new file", key = "e", padding = 1 },
-				{ action = ":CodeDiff", desc = "codediff", key = "s", padding = 1 },
-				{ action = ":CodeDiffPR", desc = "diff against PR base", key = "p", padding = 1 },
+				{ action = ":ene", desc = "new file", key = "e", padding = 0 },
+				{ action = ":CodeDiff", desc = "diff", key = "s", padding = 0 },
+				{ action = ":CodeDiffPR", desc = "diff against PR base", key = "p", padding = 0 },
 				{ action = ":q", desc = "quit", key = "q" },
 			},
 		},
@@ -333,7 +335,7 @@ now(function() -- snacks: indent guides, dashboard
 
 	require("snacks").setup({
 		-- only auto-open the dashboard for a bare `nvim` invocation
-		dashboard = vim.tbl_extend("force", dashboard_opts, { enabled = no_args }),
+		dashboard = dashboard_opts,
 		input = { enabled = true }, -- for renames, etc
 		-- indent = { enabled = true }, -- needs early setup
 		picker = { enabled = true },
